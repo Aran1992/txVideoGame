@@ -65,7 +65,7 @@ class ActionManager {
             this.actionFinish(parseInt(this.currModel.ans.split(",")[this.successType]));
     }
 
-    public addEffect(ani: Animation) {
+    public addEffect(ani: my.Animation) {
         this.videoData.addChild(ani);
     }
 

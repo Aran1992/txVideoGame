@@ -365,7 +365,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
     private models: Modeljuqingkuai[];
     private UIDict;
     private refreshUIAry: string[];
-    private handAni: Animation;
+    private handAni: my.Animation;
     private lockLayer: egret.DisplayObjectContainer;
 
     private readonly NOT_SHOW: number = 0;
@@ -472,7 +472,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             let curJuqingID: number = GameCommon.getInstance().getCurJuqingID(UserInfo.curBokData);
             if (this._curFile == FILE_TYPE.AUTO_FILE && cfg.id == curJuqingID) {
                 if (!this.handAni) {
-                    this.handAni = new Animation('juqing_kuang', -1);
+                    this.handAni = new my.Animation('juqing_kuang', -1);
                     this.addChild(this.handAni);
                     this.handAni.onPlay();
                 }

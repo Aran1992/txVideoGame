@@ -1,7 +1,7 @@
 class ActionMusic extends ActionSceneBase {
     public timeBar1: eui.ProgressBar;
     public timeBar2: eui.ProgressBar;
-    private controlers: MusicControler[];
+    private controllers: MusicController[];
     private touchChecks: boolean[];
     private datas: egret.Rectangle[];
     private currIdx: number;
@@ -41,9 +41,9 @@ class ActionMusic extends ActionSceneBase {
     protected onInit(): void {
         super.onInit();
         let count = 2;
-        this.controlers = [];
+        this.controllers = [];
         for (let i = 0; i < count; ++i) {
-            this.controlers[i] = new MusicControler(this, i);
+            this.controllers[i] = new MusicController(this, i);
         }
 
         this.successCount = parseInt(this.paramList[3]);
@@ -76,7 +76,7 @@ class ActionMusic extends ActionSceneBase {
         if (this.isVideoRun) {
             super.update(dt);
             this.updateData(dt);
-            for (let i = 0; i < this.controlers.length; ++i) {
+            for (let i = 0; i < this.controllers.length; ++i) {
                 this['groupClick0'].visible = true;
                 this['groupClick1'].visible = true;
                 // this.handAni = new Animation('effect_zhi', -1);
@@ -93,7 +93,7 @@ class ActionMusic extends ActionSceneBase {
                     super.stopRun();
                     GuideManager.getInstance().isComPleteMusic = true;
                 } else {
-                    this.controlers[i].update(dt);
+                    this.controllers[i].update(dt);
                 }
             }
         }
@@ -114,7 +114,7 @@ class ActionMusic extends ActionSceneBase {
     }
 
     private setMusic(type: number, edtime: number, idx: number) {
-        this.controlers[type].setRun(idx, edtime);
+        this.controllers[type].setRun(idx, edtime);
     }
 
     private updateData(dt) {
@@ -132,7 +132,7 @@ class ActionMusic extends ActionSceneBase {
     }
 }
 
-class MusicControler {
+class MusicController {
     public scale: number;
     private actionMusic: ActionMusic;
     private groupClick: eui.Group;
@@ -145,7 +145,7 @@ class MusicControler {
     private liangdi: eui.Image;
     private tw;
     private share: egret.Shape;
-    private handAni: Animation;
+    private handAni: my.Animation;
     private curTime: number = 0;
     private endTime: number = 0;
 
@@ -183,7 +183,7 @@ class MusicControler {
         this.curTime = 0;
         this.liangdi.visible = true;
 
-        this.handAni = new Animation('music_kuosan', -1);
+        this.handAni = new my.Animation('music_kuosan', -1);
         this.handAni.scaleX = 1;
         this.handAni.scaleY = 1;
         this.handAni.x = 100; //this.guideImg.x + 296;// - this.groupClick.width / 2;

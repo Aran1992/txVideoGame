@@ -14,7 +14,7 @@ class ActionNewMusic extends ActionSceneBase {
     private timeImg2: eui.Image;
     private timeImg1: eui.Image;
     private timeImg0: eui.Image;
-    private handAni: Animation;
+    private handAni: my.Animation;
     private huxiFactory: egret.MovieClipDataFactory;
     private mcFactory: egret.MovieClipDataFactory;
     private share0: egret.Shape;
@@ -302,7 +302,7 @@ class ActionNewMusic extends ActionSceneBase {
                     this.mTim = this.runTime;
                     if (GuideManager.getInstance().isGuide && !GuideManager.getInstance().isComPleteMusic) {
                         this.drawArc(this['share' + 0], 980, 980, 300);
-                        this.handAni = new Animation('effect_zhi', -1);
+                        this.handAni = new my.Animation('effect_zhi', -1);
                         this.handAni.x = this.guideImg.x + 223;// - this.groupClick.width / 2;
                         this.handAni.y = this.guideImg.y - 138;// - this.groupClick.height / 2;
                         this.handAni.scaleY = -1;

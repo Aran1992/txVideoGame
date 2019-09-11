@@ -247,7 +247,7 @@ class ResultWinItem extends eui.Component {
     private desc1: eui.Label;
     private roleType: eui.Label;
     private roleTypeNams: string[] = ['主\n唱', '贝\n斯\n手', '吉\n他\n手', '键\n盘\n手'];
-    private handAni: Animation;
+    private handAni: my.Animation;
 
     public constructor() {
         super();
@@ -261,7 +261,7 @@ class ResultWinItem extends eui.Component {
         this._data = info;
         if (info.idx == info.xindong) {
             this.haogan1.visible = true;
-            this.handAni = new Animation('role_xin', -1);
+            this.handAni = new my.Animation('role_xin', -1);
             this.handAni.scaleX = 1;
             this.handAni.scaleY = 1;
             this.handAni.x = this.haogan1.width / 2;// - this.groupClick.width / 2;

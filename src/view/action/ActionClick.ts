@@ -24,7 +24,7 @@ class ActionClick extends ActionSceneBase {
     private desc1: eui.Label;
     private heiping: eui.Image;
     private guideGorup: eui.Group;
-    private handAni: Animation;
+    private handAni: my.Animation;
     private soundSrc: string[] = ['G4.mp3', 'D4.mp3', 'E4.mp3', 'D4.mp3', 'E4.mp3', 'G4.mp3', 'E4.mp3'];
     private isComp: boolean = false;
 
@@ -75,7 +75,7 @@ class ActionClick extends ActionSceneBase {
             // this.handAni.scaleY = 1;
             // this.handAni.x = this.lineGroup.x - 120; //this.guideImg.x + 296;// - this.groupClick.width / 2;
             // this.handAni.y = this.lineGroup.y + 383; //this.guideImg.y + 198;// - this.groupClick.height / 2;
-            this.handAni = new Animation('effect_zhiyin', -1);
+            this.handAni = new my.Animation('effect_zhiyin', -1);
             this.handAni.scaleX = 1;
             this.handAni.scaleY = 1;
             this.handAni.x = 86; //this.guideImg.x + 296;// - this.groupClick.width / 2;
@@ -95,7 +95,7 @@ class ActionClick extends ActionSceneBase {
                 this.groupClick.y = Math.floor(this.height * (parseInt(posStr[1]) / 100));
                 // this.guideImg.x = Math.floor(this.width * (parseInt(posStr[0]) / 100)) - 25
                 // this.guideImg.y = Math.floor(this.height * (parseInt(posStr[1]) / 100)) + 120;
-                this.handAni = new Animation('effect_zhiyin', -1);
+                this.handAni = new my.Animation('effect_zhiyin', -1);
                 this.handAni.scaleX = 1;
                 this.handAni.scaleY = 1;
                 this.handAni.x = 86; //this.guideImg.x + 296;// - this.groupClick.width / 2;
@@ -329,7 +329,7 @@ class ActionClick extends ActionSceneBase {
         }
         if (this.model.id == 75) {
             this.groupBG.removeChildren();
-            let ani1: Animation = new Animation(res);
+            let ani1: my.Animation = new my.Animation(res);
             // ani1.setFinishCallBack(this.onExit, this);
             ani1.x = this.lineGroup.x;// - this.groupClick.width / 2;
             ani1.y = this.lineGroup.y + 477;// - this.groupClick.height / 2;
@@ -355,7 +355,7 @@ class ActionClick extends ActionSceneBase {
             }
             return;
         }
-        let ani: Animation = new Animation(res);
+        let ani: my.Animation = new my.Animation(res);
         ani.setFinishCallBack(this.onExit, this);
         if (res == 'lingxing_effect') {
             ani.scaleX = 0.8;

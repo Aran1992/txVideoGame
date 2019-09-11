@@ -3,7 +3,7 @@ class ActionClickCount extends ActionSceneBase {
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
     private desc: eui.Label;
-    private handAni: Animation;
+    private handAni: my.Animation;
     private touch_probar_grp: eui.Group;
     private progress_img: eui.Image;
     private pro_mask: egret.Shape;
@@ -54,7 +54,7 @@ class ActionClickCount extends ActionSceneBase {
         let rate_X: number = parseInt(posStr[0]) / GameDefine.GAME_VIEW_WIDTH;
         let rate_Y: number = parseInt(posStr[1]) / GameDefine.GAME_VIEW_HEIGHT;
         if (effectRes) {
-            this.handAni = new Animation(effectRes, -1);
+            this.handAni = new my.Animation(effectRes, -1);
             this.handAni.x = Math.floor(this.width * rate_X);
             this.handAni.y = Math.floor(this.height * rate_Y);
             this.handAni.touchEnabled = true;
@@ -91,7 +91,7 @@ class ActionClickCount extends ActionSceneBase {
         this.times = Math.max(0, this.times - 1);
         if (this.times == 0) {
             let posStr: string[] = this.paramList[4].split("_");
-            let okAnim: Animation = new Animation("lingxing_effect");
+            let okAnim: my.Animation = new my.Animation("lingxing_effect");
             okAnim.scaleX = 0.8;
             okAnim.scaleY = 0.8;
             okAnim.x = parseInt(posStr[0]);

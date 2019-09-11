@@ -22,7 +22,7 @@ class ActionSlide extends ActionSceneBase {
     private starPosX: number = 0;
     private starPosY: number = 0;
     private handMoveDis: number[];
-    private handAni: Animation;
+    private handAni: my.Animation;
     private x_move_ok: boolean = false;
     private y_move_ok: boolean = false;
 
@@ -55,26 +55,26 @@ class ActionSlide extends ActionSceneBase {
         this.dangaoGroup.visible = false;
         if (this.model.id == "32" || this.model.id == "73" || this.model.id == "60") {
             this.curGroup = this.dangaoGroup;
-            this.handAni = new Animation('effect_shanghuadong', -1);
+            this.handAni = new my.Animation('effect_shanghuadong', -1);
             this.dangaoGroup.addChild(this.handAni);
             this.handAni.onPlay();
             this.handMoveDis = [0, -100];
         } else if (this.model.id == "58") {
             this.curGroup = this.dangaoGroup;
-            this.handAni = new Animation('effect_motou2', -1);
+            this.handAni = new my.Animation('effect_motou2', -1);
             this.dangaoGroup.addChild(this.handAni);
             this.handAni.onPlay();
             this.handMoveDis = [100, 50];
         } else if (this.model.id == "54") {
             this.curGroup = this.dangaoGroup;
-            this.handAni = new Animation('effect_kaimen', -1);
+            this.handAni = new my.Animation('effect_kaimen', -1);
             this.handAni.scaleX = -1;
             this.dangaoGroup.addChild(this.handAni);
             this.handAni.onPlay();
             this.handMoveDis = [100, 0];
         } else if (this.model.id == "45") {
             this.curGroup = this.dangaoGroup;
-            this.handAni = new Animation('effect_motou3', -1);
+            this.handAni = new my.Animation('effect_motou3', -1);
             this.dangaoGroup.addChild(this.handAni);
             this.handAni.onPlay();
             this.handMoveDis = [50, 0];
@@ -82,7 +82,7 @@ class ActionSlide extends ActionSceneBase {
             this.curGroup = this.groupHand;
             this.groupHand.anchorOffsetX = this.groupHand.width / 2;
             this.groupHand.anchorOffsetY = this.groupHand.height / 2;
-            this.handAni = new Animation('effect_kaimen', -1);
+            this.handAni = new my.Animation('effect_kaimen', -1);
             this.handAni.x = 200;
             this.handAni.y = 100;
             this.groupHand.addChild(this.handAni);

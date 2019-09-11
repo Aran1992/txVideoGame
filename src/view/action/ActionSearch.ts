@@ -38,7 +38,7 @@ class ActionSearch extends ActionSceneBase {
         }
         //初始化探索位置
         for (let i: number = 1; i <= this.TanSuo_Pos_Ary.length; i++) {
-            let anim: Animation = new Animation("effect_tansuo", -1);
+            let anim: my.Animation = new my.Animation("effect_tansuo", -1);
             anim.width = 130;
             anim.height = 130;
             anim.anchorOffsetX = 65;
@@ -97,7 +97,7 @@ class ActionSearch extends ActionSceneBase {
             this.parent.removeChild(this);
         }
         for (let i: number = this.hudong_grp.numChildren - 1; i >= 0; i--) {
-            let anim: Animation = this.hudong_grp.getChildAt(i) as Animation;
+            let anim: my.Animation = this.hudong_grp.getChildAt(i) as my.Animation;
             anim.onDestroy();
             anim = null;
         }

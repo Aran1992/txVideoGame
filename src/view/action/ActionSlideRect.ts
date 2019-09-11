@@ -20,8 +20,8 @@ class ActionSlideRect extends ActionSceneBase {
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
     private desc1: eui.Label;
-    private handAni: Animation;
-    private handAni1: Animation;
+    private handAni: my.Animation;
+    private handAni1: my.Animation;
     private start_posY: number = 0;
     private start_posX: number = 0;
     private end_posx: number = 0;
@@ -64,7 +64,7 @@ class ActionSlideRect extends ActionSceneBase {
         let handX: number = this.groupHand.x;
         let handY: number = this.groupHand.y;
 
-        this.handAni = new Animation('effect_motou', -1);
+        this.handAni = new my.Animation('effect_motou', -1);
         this.handAni.scaleX = 1;
         this.handAni.scaleY = 1;
         this.handAni.x = 280; //this.guideImg.x + 296;// - this.groupClick.width / 2;

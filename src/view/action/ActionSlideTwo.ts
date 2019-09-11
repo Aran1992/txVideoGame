@@ -7,8 +7,8 @@ class ActionSlideTwo extends ActionSceneBase {
     private rightGroup: eui.Group;
     private desc: eui.Label;
     // private timeBar: eui.ProgressBar;
-    private handAni: Animation;
-    private handAni1: Animation;
+    private handAni: my.Animation;
+    private handAni1: my.Animation;
     private hand1MoveDis: number[];
     private hand2MoveDis: number[];
     private starPosX1: number;
@@ -50,8 +50,8 @@ class ActionSlideTwo extends ActionSceneBase {
 
         switch (this.model.id) {
             case 29://从下往上滑动
-                this.handAni = new Animation('effect_shanghuadong', -1);
-                this.handAni1 = new Animation('effect_shanghuadong', -1);
+                this.handAni = new my.Animation('effect_shanghuadong', -1);
+                this.handAni1 = new my.Animation('effect_shanghuadong', -1);
                 this.handAni.y = -150;
                 this.handAni1.y = -150;
                 this.handAni1.scaleX = -1;
@@ -61,8 +61,8 @@ class ActionSlideTwo extends ActionSceneBase {
             case 36://从内往里滑动
             case 39:
             case 56:
-                this.handAni = new Animation('effect_shanghuadong', -1);
-                this.handAni1 = new Animation('effect_shanghuadong', -1);
+                this.handAni = new my.Animation('effect_shanghuadong', -1);
+                this.handAni1 = new my.Animation('effect_shanghuadong', -1);
                 this.handAni.y = 830;
                 this.handAni1.y = 830;
                 this.handAni1.scaleX = -1;
@@ -72,9 +72,9 @@ class ActionSlideTwo extends ActionSceneBase {
                 this.hand2MoveDis = [-50, 0];
                 break;
             case 71:
-                this.handAni = new Animation('effect_motou2', -1);
+                this.handAni = new my.Animation('effect_motou2', -1);
                 this.handAni.rotation = 270;
-                this.handAni1 = new Animation('effect_motou2', -1);
+                this.handAni1 = new my.Animation('effect_motou2', -1);
                 this.handAni1.rotation = 90;
                 // this.handAni1.scaleX = this.handAni1.scaleY =this.handAni.scaleX = this.handAni.scaleY = 0.7;
                 this.handAni.x = -920;
