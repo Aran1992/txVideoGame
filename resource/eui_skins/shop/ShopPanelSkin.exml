@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ShopPanelSkin" width="1600" height="900" currentState="normal" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
+		<e:Image alpha="1" anchorOffsetY="0" touchEnabled="false" y="0" left="0" width="100%" height="100%"
+		         source="cundang_bj_jpg" locked="true" />
+		<e:Button id="btnClose" left="47" top="40" label="商城" width="200" height="62">
+			<e:skinName>
+				<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
+					<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png"
+					         verticalCenter="0" left="0" />
+					<e:Label id="labelDisplay" size="50" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9"
+					         left="30" />
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="filter_btn" right="75" y="32" width="80" height="80" visible="false">
+			<e:skinName>
+				<e:Skin states="up,down">
+					<e:Image width="100%" height="100%" source="shop_shaixuan_png" horizontalCenter="0" verticalCenter="0"
+					         height.down="90%" width.down="90%" />
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:RadioButton id="xinshoubao_btn" width="110" height="110" y="737.67" x="66">
+			<e:skinName>
+				<e:Skin states="up,down,upAndSelected,downAndSelected">
+					<e:Image source="shop_shaixuan_selected_png" left="-32" right="-28" top="-25" bottom="-35"
+					         includeIn="upAndSelected,downAndSelected" />
+					<e:Image width="100%" height="100%" source="shop_xinshoubao_png" horizontalCenter="0" verticalCenter="0"
+					         height.down="90%" width.down="90%" />
+				</e:Skin>
+			</e:skinName>
+		</e:RadioButton>
+		<e:Group y="41" right="230">
+			<e:Group id="zuanshi_curreny_grp" y="0" height="58" width="240" x="0" visible="false">
+				<e:Image source="currency_di_png" scale9Grid="30,6,118,39" left="0" right="0" top="0" bottom="0" locked="true" />
+				<e:Image width="55" height="55" verticalCenter="0" left="-5" source="common_suipian_pink_png" locked="true" />
+				<e:Image source="shop_jiahao_png" right="15" width="30" height="30" verticalCenter="0" locked="true" />
+				<e:Label id="zuanshiNum" text="12345" size="36" fontFamily="Arial" horizontalCenter="6" verticalCenter="0" />
+			</e:Group>
+			<e:Group id="suip_curreny_grp" y="0" height="58" width="240" x="0">
+				<e:Image source="currency_di_png" scale9Grid="30,6,118,39" left="0" right="0" top="0" bottom="0" locked="true" />
+				<e:Image verticalCenter="0" left="0" source="common_suipian_pink_png" width="50" height="50" />
+				<e:Image source="shop_jiahao_png" right="15" width="30" height="30" verticalCenter="0" locked="true" />
+				<e:Label id="suipNum" text="12345" size="36" fontFamily="Arial" horizontalCenter="6" verticalCenter="2" />
+			</e:Group>
+			<e:layout>
+				<e:HorizontalLayout gap="40" />
+			</e:layout>
+		</e:Group>
+		<e:Group id="tabGroup" touchChildren="true" y="180" x="0">
+			<e:RadioButton id="shopBtn0" groupName="tabGroup" label="图集" skinName="skins.Common_TabButtonSkin1" width="260"
+			               height="90" value="0" selected="true" />
+			<e:RadioButton id="shopBtn1" groupName="tabGroup" label="视频" skinName="skins.Common_TabButtonSkin1" width="260"
+			               height="90" value="1" />
+			<e:RadioButton id="shopBtn2" groupName="tabGroup" label="音乐" skinName="skins.Common_TabButtonSkin1" width="260"
+			               height="90" value="2" />
+			<e:RadioButton id="shopBtn3" groupName="tabGroup" label="章节" skinName="skins.Common_TabButtonSkin1" width="260"
+			               height="90" value="3" />
+			<e:RadioButton id="shopBtn4" groupName="tabGroup" label="道具" skinName="skins.Common_TabButtonSkin1" width="260"
+			               height="90" value="4" />
+			<e:layout>
+				<e:VerticalLayout gap="15" />
+			</e:layout>
+		</e:Group>
+		<e:Group id="shopGroup" left="300" right="0" top="135" bottom="0">
+			<e:Group id="image_shop_grp" width="100%" height="100%" verticalCenter="0" visible="false">
+				<e:Scroller id="image_shop_scroll" top="40" bottom="40" left="0" right="0">
+					<e:Group width="100%" height="100%">
+						<e:List id="imgs_list" horizontalCenter="0">
+							<e:layout>
+								<e:TileLayout requestedColumnCount="4" horizontalGap="80" verticalGap="30" horizontalAlign="center" />
+							</e:layout>
+						</e:List>
+					</e:Group>
+				</e:Scroller>
+			</e:Group>
+			<e:Group id="video_shop_grp" width="100%" height="100%" visible="false">
+				<e:Scroller id="video_shop_scroll" left="0" right="0" top="40" bottom="40">
+					<e:Group width="100%" height="100%">
+						<e:List id="videos_list" width="100%" height="100%">
+							<e:layout>
+								<e:HorizontalLayout gap="30" />
+							</e:layout>
+						</e:List>
+					</e:Group>
+				</e:Scroller>
+			</e:Group>
+			<e:Group id="music_shop_grp" width="100%" height="100%" visible="false">
+				<e:Scroller id="musics_shop_scroll" width="1250" height="730" horizontalCenter="0">
+					<e:Group width="100%" height="100%">
+						<e:List id="musics_list" horizontalCenter="0">
+							<e:layout>
+								<e:TileLayout requestedColumnCount="3" horizontalGap="55" verticalGap="30" />
+							</e:layout>
+						</e:List>
+					</e:Group>
+				</e:Scroller>
+			</e:Group>
+			<e:Group id="chapter_shop_grp" width="100%" height="100%" visible="false">
+				<e:Scroller id="chapter_shop_scroll" left="0" right="0" top="40" bottom="40">
+					<e:Group width="100%" height="100%">
+						<e:List id="chapter_list" width="100%" height="100%">
+							<e:layout>
+								<e:HorizontalLayout gap="40" />
+							</e:layout>
+						</e:List>
+					</e:Group>
+				</e:Scroller>
+			</e:Group>
+			<e:Group id="daoju_shop_grp" width="100%" height="100%" visible="false">
+				<e:Scroller id="daoju_shop_scroll" left="0" right="0" top="0" bottom="40">
+					<e:Group width="100%" height="100%">
+						<e:List id="daoju_list" width="100%" height="100%">
+							<e:layout>
+								<e:HorizontalLayout gap="20" />
+							</e:layout>
+						</e:List>
+					</e:Group>
+				</e:Scroller>
+			</e:Group>
+			<e:Group id="xinshoubao_grp" width="100%" height="765">
+				<e:Image source="shop_xinshou_bg_png" scale9Grid="15,3,91,50" bottom="40" top="20" left="10" right="40"
+				          locked="true"/>
+				<e:Scroller left="20" right="50" top="30" bottom="200">
+					<e:Group>
+						<e:Group id="xinshoubao_list" horizontalCenter="0">
+							<e:layout>
+								<e:HorizontalLayout gap="40" />
+							</e:layout>
+						</e:Group>
+					</e:Group>
+				</e:Scroller>
+				<e:Component id="xinshou_discountBar" skinName="skins.ShopDiscountBarSkin" horizontalCenter="-45" bottom="150" />
+				<e:Button id="xinshoubao_buy_btn" skinName="skins.Button_ShopStyle1_Skin" bottom="70" horizontalCenter="0"
+				          label="购 买" />
+			</e:Group>
+		</e:Group>
+		<e:Group id="dianjicundang" alpha="1" touchEnabled="false" touchChildren="false" x="282" y="440" visible="false">
+			<e:Image alpha="1" anchorOffsetY="0" source="msg_shurukuang_png" verticalCenter="0" x="0" width="440"
+			         scale9Grid="49,7,296,46" />
+			<e:Label text="使用能量兑换新手礼包" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+			         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" y="9" x="17" />
+		</e:Group>
+		<e:Group id="cloLab" alpha="1" touchEnabled="false" touchChildren="false" bottom="62" left="124" visible="false">
+			<e:Image alpha="1" anchorOffsetY="0" source="msg_shurukuang_png" verticalCenter="0" x="0" width="469"
+			         scale9Grid="49,7,296,46" />
+			<e:Label text="去看看刚刚购买的收藏吧" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+			         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" y="9" x="17" />
+		</e:Group>
+	</e:Group>
+</e:Skin>

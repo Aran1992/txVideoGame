@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ResultWinItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="301"
+        height="559">
+	<e:Group x="0">
+		<e:Image id="roleDi1" x="0" source="result_role_di1_png"/>
+		<e:Image source="result_role_di_png" x="0"/>
+		<e:Image id="role0" source="resultRoleImg0_png" x="0"/>
+        <e:Image id="roleName" source="result_zi2_png" x="39" y="410"/>
+		<e:Image  source="resule_huatong_png" x="10" y="419"/>
+		<e:Label id="roleType"  size="20" fontFamily="SimHei" x="13" y="453"/>
+		<e:Group id="haogan1" x="-7" y="-12" visible="false">
+		<e:Image source="role_biaoqian_png"/>
+        
+		<e:Label text="最有好感" size="20" fontFamily="SimHei" x="13" y="4"/>
+        <e:Image id="xindong" source="resule_xin2_png" x="97" y="309" visible="false"/>
+		</e:Group>
+		<e:Group id="hide1" x="301" y="152" width="0" visible="false">
+		<e:Label id="desc1" text="起跳、摔倒、站起来、这样不断重复才能越跳越高，别担心我陪着你。" size="26" fontFamily="SimHei" x="10" y="2" width="359"/>
+		<e:Image source="result_fenjiexian_png" x="7" y="136"/>
+		<e:Label text="—获得成就—" size="30" fontFamily="SimHei" x="100" y="170"/>
+		<e:Group  x="16" y="215" width="365">
+		<e:Group id="roleCj1Group1" x="16" y="215" width="300">
+			<e:Image source="result_biaoqian_png" x="0" y="0" width="100%" scale9Grid="39,6,78,37"/>
+			<e:Label id='titleId1' text="从这里开始：肖万寻" size="30" fontFamily="SimHei" horizontalCenter="0" verticalCenter="0" bold="true"/>
+		</e:Group>
+		<e:Group id="roleCj1Group2" x="197" y="215" width="300">
+			<e:Image source="result_biaoqian_png" x="0" y="0" width="100%" scale9Grid="39,6,78,37"/>
+			<e:Label id='titleId2' text="获得成就" size="30" fontFamily="SimHei" horizontalCenter="0" verticalCenter="0" bold="true"/>
+		</e:Group>
+		<e:Group id="roleCj1Group3" x="16" y="277" width="300">
+			<e:Image source="result_biaoqian_png" x="0" y="0" width="100%" scale9Grid="39,6,78,37"/>
+			<e:Label id='titleId3' text="获得成就" size="30" fontFamily="SimHei" horizontalCenter="0" verticalCenter="0" bold="true"/>
+		</e:Group>
+			<e:layout>
+				<e:VerticalLayout gap="12" horizontalAlign="center"/>
+			</e:layout>
+		</e:Group>
+		<e:layout>
+			<e:BasicLayout/>
+		</e:layout>
+		</e:Group>
+	</e:Group>
+</e:Skin>

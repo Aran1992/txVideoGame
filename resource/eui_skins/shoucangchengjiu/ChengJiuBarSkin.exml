@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ChengJiuBarSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="200"
+        height="30">
+    <e:Image left="0" right="0" top="0" bottom="0"  source="cj_di_png" />
+	<e:Image id="thumb" source="cj_jindudi_png" scale9Grid="13,0,57,24" left="1" bottom="2" top="4" right="5"/>
+    <e:Label id="desc" text="0%" size="15" fontFamily="Arial" textAlign="left" touchEnabled="false" textColor="0xffffff" verticalAlign="middle" height="22" right="16" bottom="4" bold="true"/>
+</e:Skin>

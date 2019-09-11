@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.Common_TabButtonSkin1" states="up,down,upAndSelected,downAndSelected" currentState="up"
+        xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="260" height="73">
+    <e:Group width="100%" height="100%">
+        <e:Image source="left_btn_di_png" source.up="" source.down="left_btn_di_png"
+                 source.upAndSelected="left_btn_di_png" source.downAndSelected="left_btn_di_png" left="0" right="0"
+                 top="0" bottom="0" includeIn="down,upAndSelected,downAndSelected" />
+        <e:Image source="main_jiantou1_png" left="0" verticalCenter="0" includeIn="upAndSelected,downAndSelected"
+                 scale9Grid.down="8,2,40,17" left.down="0" right.down="175" />
+        <e:Label id="labelDisplay" size="40" fontFamily="Microsoft JhengHei" verticalCenter="0"
+                 bold.upAndSelected="true" bold.downAndSelected="true"  text="按难度" left.up="80" width.up="120" left="80" width="120"/>
+    </e:Group>
+</e:Skin>

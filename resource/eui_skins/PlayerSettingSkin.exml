@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.PlayerSettingSkin" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*"
+        xmlns:w="http://ns.egret.com/wing" width="1600" height="900">
+	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" y="0" x="0">
+		<e:Image x="0" y="0" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" width="100%"
+		         height="100%" alpha="1"  scale9Grid="30,10,182,29" source="chapter_mask1_png"/>
+		<e:Group horizontalCenter="0" verticalCenter="0" height="722">
+			<e:Image source="cj_baidi_png" x="0" y="0" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" />
+			<e:Image source="chapter_biaoti_png" y="21" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0"
+			         horizontalCenter="0" />
+			<e:Image source="setting_title_png" y="21" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0"
+			         horizontalCenter="0" />
+
+			<e:Group y="130" x="44" scaleX="1" scaleY="1" height="552" width="1194">
+			<e:Scroller id="scroll" height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">
+			<e:Group id="goodsLayer">
+			<e:Group y="130" x="44" scaleX="1" scaleY="1" height="246">
+				<e:Image y="0" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" x="0" source="setting_biaoqian1_png" />
+				<e:Label size="45" fontFamily="SimHei" text="声音" left="23" textAlign="left" top="10" />
+				<e:Label size="45" fontFamily="SimHei" text="主音量" textAlign="right" x="75" y="95" width="180" textColor="0x384374" />
+				<e:Label size="45" fontFamily="SimHei" text="背景音乐" textAlign="right" x="75" y="155" textColor="0x384374" />
+				<e:ProgressBar id="mainVolume" skinName="skins.VolumeBarSkin" y="96" height="42" x="343" scaleX="1" scaleY="1"
+				               value="0" width="616" />
+				<e:ProgressBar id="bgVolume" skinName="skins.VolumeBarSkin" y="156" height="42" x="343" scaleX="1" scaleY="1"  width="616"/>
+				<e:Label size="45" fontFamily="SimHei" text="声音" textAlign="left" y="95" x="1026" />
+				<e:Label size="45" fontFamily="SimHei" text="声音" textAlign="left" y="155" right="0" />
+			</e:Group>
+			<e:Group y="400" x="44" scaleX="1" scaleY="1" height="299">
+				<e:Image y="0" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" x="0" source="setting_biaoqian1_png" />
+				<e:Label size="45" fontFamily="SimHei" text="画面" left="23" textAlign="left" top="10" />
+				<e:Label size="45" fontFamily="SimHei" text="亮度" textAlign="right" x="75" y="110" width="180" textColor="0x384374" />
+				<e:Label size="45" fontFamily="SimHei" text="清晰度" textAlign="right" x="75" y="214" textColor="0x384374" width="180" />
+				<e:ProgressBar id="huamianPro" skinName="skins.VolumeBarSkin" y="111" height="42" x="343" scaleX="1" scaleY="1"
+				               value="0" width="616" />
+				<e:Label size="45" fontFamily="SimHei" text="声音" textAlign="left" y="110" x="1026" />
+				<e:Button id="puqing" label="普清" y="196" x="334" skinName="skins.Common_Button_blueSkin" scaleX="1" scaleY="1" />
+				<e:Button id="gaoqing" label="高清" y="196" x="612" skinName="skins.Common_Button_blueSkin" scaleX="1" scaleY="1" />
+			</e:Group>
+			<e:Group id="qita" y="398" x="44" scaleX="1" scaleY="1" width="1116">
+				<e:Image y="0" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" x="0" source="setting_biaoqian1_png" />
+				<e:Label size="45" fontFamily="SimHei" text="其他" left="23" textAlign="left" top="10" />
+				<e:Label text="免密支付" size="45" fontFamily="SimHei" textAlign="left" x="178" y="99" width="195" height="44"
+				         touchEnabled="false" textColor="0x384374" bold="true" />
+				<e:Button id="duihuanBtn" label="兑换码" y="195" x="180" skinName="skins.Common_Button_blueSkin" scaleX="1" scaleY="1" />
+				<e:Button id="cleanCacheBtn" label="清除缓存" y="195" x="446" scaleX="1" scaleY="1"
+				          skinName="skins.Common_Button_RedSkin" />
+				<e:ToggleSwitch id="touchBtn" skinName="skins.ToggleSwitchSkin" x="392" y="85" scaleX="1" scaleY="1" />
+				<e:Label text="预先缓存" size="45" fontFamily="SimHei" textAlign="left" x="635" y="99" width="195" height="44"
+				         touchEnabled="false" textColor="0x384374" bold="true" />
+				<e:ToggleSwitch id="touchBtn1" skinName="skins.ToggleSwitchSkin" x="1015" y="85" scaleX="-1" scaleY="1" />
+			</e:Group>
+
+				<e:Group id="fuwu" y="398" x="44" scaleX="1" scaleY="1"  width="1116">
+				<e:Image y="0" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" x="0" source="setting_biaoqian1_png" />
+				<e:Label size="45" fontFamily="SimHei" text="服务" left="23" textAlign="left" top="10" />
+
+				<e:Button id="helpBtn" label="帮助" y="107" x="180" skinName="skins.Common_Button_blueSkin" scaleX="1" scaleY="1" />
+				<e:Button id="guanyuBtn" label="关于我们" y="107" x="446" scaleX="1" scaleY="1"
+				           skinName="skins.Common_Button_blueSkin"/>
+				<e:Button id="xieyiBtn" label="用户协议" y="107" x="732" scaleX="1" scaleY="1"
+				           skinName="skins.Common_Button_blueSkin"/>
+			</e:Group>
+			
+				<e:layout>
+				<e:TileLayout requestedColumnCount="1" horizontalGap="20" verticalGap="5" horizontalAlign="center"/>
+				</e:layout>
+			</e:Group>
+			</e:Scroller>
+
+			
+
+			<!--<e:Scroller id="scroll" height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">-->
+			
+				<!--</e:Scroller>-->
+				<!--<e:layout>
+					<e:VerticalLayout gap="10"/>
+				</e:layout>-->
+			</e:Group>
+			<e:Button id="closeBtn" width="40" height="39" scaleX="1" scaleY="1" right="31" top="52">
+				<e:skinName>
+				<e:Skin states="up,down,disabled" width="109">
+					<e:Image scaleX.down="0.9" scaleY.down="0.9" source="chapter_close_png" source.down="chapter_close_png" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+		</e:Group>
+	</e:Group>
+	
+
+</e:Skin>

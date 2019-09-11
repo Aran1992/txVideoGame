@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ShouCangItemSkin" xmlns:e="http://ns.egret.com/eui" width="310" height="634"
+        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+
+    <e:Image id="icon" touchEnabled="true" horizontalCenter="0"  source="sc_list_role1_png"/>
+    <e:Image  touchEnabled="true"  source="sc_item_di_png" scale9Grid="38,79,230,476" left="0" top="0" bottom="0" right="0" locked="true"/>
+    
+	<e:Label id="roleTp" text="主唱" size="26" fontFamily="SimHei" touchEnabled="false" textColor="0xffffff" bottom="34" x="37"/>
+
+	
+    <e:Label id="roleName" text="肖千叶" size="52" fontFamily="SimHei" touchEnabled="true"
+             textColor="0xffffff" bold="true"  bottom="78" x="32"/>
+	<e:Group id="music" x="30" bottom="20" visible="false">
+	<e:Image  y="0" touchEnabled="true" horizontalCenter="0"  source="sc_music_tubiao_png"/>
+	<e:Image  y="0" touchEnabled="true" horizontalCenter="0"  source="sc_music_tubiao_png" alpha="0.7"/>
+	<e:Image  y="0" touchEnabled="true" horizontalCenter="0"  source="sc_music_tubiao_png" alpha="0.3"/>
+		<e:layout>
+			<e:HorizontalLayout gap="-17"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

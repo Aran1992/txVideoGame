@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.DaojuShopItemSkin" width="300" height="650" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Group top="70" bottom="0" left="0" right="0">
+		<e:Image source="shop_daoju_bg_png" horizontalCenter="0" locked="true" />
+		<e:Image id="banner_img" width="287" height="287" horizontalCenter="0"  source=""/>
+		<e:Label id="title_lab" size="28" fontFamily="SimHei" text="" y="290" width="280" textAlign="center"
+		         horizontalCenter="0" />
+		<e:Label id="desc_lab" size="24" fontFamily="SimHei" text="" y="330" width="280" horizontalCenter="0"
+		         textColor="0xa8a8a8" lineSpacing="6" verticalAlign="justify" />
+		<e:Component id="discount_bar" skinName="skins.ShopDiscountBarSkin" horizontalCenter="-45" bottom="70" />
+		<e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" horizontalCenter="0"
+		          bottom="0"  label="购 买"/>
+	</e:Group>
+</e:Skin>

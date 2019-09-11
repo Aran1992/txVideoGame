@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionHuiYiSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+	<e:Group id="mainGroup" scaleX="0.5" scaleY="0.5" width="100%" height="100%" verticalCenter="0" horizontalCenter="0"
+	          visible="false"/>
+	<!--<e:ProgressBar id="timeBar" skinName="skins.ActionBarSkin" horizontalCenter="0" top="32" />
+	-->
+	<e:Group id="qinmiGroup" horizontalCenter="0" verticalCenter="0" width="100%" height="100%" visible="false">
+		<e:Image source="video_heidi1_png" alpha="0.7" width="100%" height="100%" y="0" />
+		<e:Image fillMode="scale" scale9Grid="128,6,117,33" source="common_heidi2_png" height="232" width="619"
+		         horizontalCenter="0" verticalCenter="-100" />
+		<e:Label size="35" textColor="0xFFFFFF" verticalAlign="middle" text="亲密度不足，无法开启选项" textAlign="center"
+		         anchorOffsetX="0" anchorOffsetY="0" fontFamily="SimHei" horizontalCenter="0" verticalCenter="-100" />
+	</e:Group>
+	<e:Group horizontalCenter="0" top="32">
+		<e:Image source="action_timedi_png" horizontalCenter="0" top="0" locked="true" />
+		<e:ProgressBar id="timeBar1" skinName="skins.ActionBar1Skin" scaleX="-1" horizontalCenter="-125" value="100" />
+		<e:ProgressBar id="timeBar2" skinName="skins.ActionBar1Skin" horizontalCenter="125" value="100" />
+		<e:Label id="miaoshu" text="" fontFamily="SimHei" size="40" height="60" verticalAlign="middle" verticalCenter="0"
+		         horizontalCenter="0" />
+	</e:Group>
+	<e:Group width="100%" height="283" bottom="95">
+		<e:Group id="groupHand1" y="0" x="0" width="283" height="283">
+			<e:Image source="huiyi_head_di2_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image scaleX="-1" source="huiyi_head_di_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image id="icon1" scaleX="-1" source="huiyi_icon1_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image id="timeImg1" horizontalCenter="0" verticalCenter="0" source="sc_music_icondi_png" height="208" width="208"
+			         alpha="0.5" />
+			<e:Image id="suo1" scaleX="-1" source="sc_shipin_suo_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image horizontalCenter="0" y="281" scale9Grid="23,0,77,39" source="xiangqishei_di_png" />
+			<e:Label id="desc1" size="28" fontFamily="SimHei" text="想起韩小百" y="288" x="75" />
+		</e:Group>
+		<e:Group id="groupHand2" y="0" x="0" width="283" height="283">
+			<e:Image source="huiyi_head_di2_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image scaleX="-1" source="huiyi_head_di_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image id="icon2" scaleX="-1" source="huiyi_icon1_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image id="timeImg2" horizontalCenter="0" verticalCenter="0" source="sc_music_icondi_png" height="208" width="208"
+			         alpha="0.5" />
+			<e:Image id="suo2" scaleX="-1" source="sc_shipin_suo_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image horizontalCenter="0" y="281" scale9Grid="23,0,77,39" source="xiangqishei_di_png" />
+			<e:Label id="desc2" size="28" fontFamily="SimHei" text="想起韩小百" y="288" x="75" />
+		</e:Group>
+		<e:Group id="groupHand3" y="0" x="0" width="283" height="283">
+			<e:Image source="huiyi_head_di2_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image scaleX="-1" source="huiyi_head_di_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image id="icon3" scaleX="-1" source="huiyi_icon1_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image id="timeImg3" horizontalCenter="0" verticalCenter="0" source="sc_music_icondi_png" height="208" width="208"
+			         alpha="0.5" />
+			<e:Image id="suo3" scaleX="-1" source="sc_shipin_suo_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image horizontalCenter="0" y="281" scale9Grid="23,0,77,39" source="xiangqishei_di_png" />
+			<e:Label id="desc3" size="28" fontFamily="SimHei" text="想起韩小百" y="288" x="75" />
+		</e:Group>
+		<e:Group id="groupHand4" y="0" x="0" width="283" height="283">
+			<e:Image source="huiyi_head_di2_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image scaleX="-1" source="huiyi_head_di_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image id="icon4" scaleX="-1" source="huiyi_icon1_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image id="timeImg4" horizontalCenter="0" verticalCenter="0" source="sc_music_icondi_png" height="208" width="208"
+			         alpha="0.5" />
+			<e:Image id="suo4" scaleX="-1" source="sc_shipin_suo_png" horizontalCenter="0" verticalCenter="0" />
+			<e:Image horizontalCenter="0" y="281" scale9Grid="23,0,77,39" source="xiangqishei_di_png" />
+			<e:Label id="desc4" size="28" fontFamily="SimHei" text="想起韩小百" y="288" x="75" />
+		</e:Group>
+		<e:layout>
+			<e:HorizontalLayout horizontalAlign="center" gap="20" />
+		</e:layout>
+	</e:Group>
+
+
+</e:Skin>

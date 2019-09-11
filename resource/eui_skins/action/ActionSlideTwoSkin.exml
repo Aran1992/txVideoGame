@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionSlideTwoSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"
+        width="1600" height="900">
+	<e:Group id="groupBottom" left="0" right="0" top="0" bottom="0">
+		<e:Group horizontalCenter="0" top="32">
+			<e:Image source="action_timedi_png" horizontalCenter="0" top="0"  locked="true"/>
+			<e:ProgressBar id="timeBar1" skinName="skins.ActionBar1Skin" scaleX="-1" horizontalCenter="-122" value="100" />
+			<e:ProgressBar id="timeBar2" skinName="skins.ActionBar1Skin" horizontalCenter="124" value="100" />
+			<e:Label id="desc" text="" fontFamily="SimHei" size="40" height="60" verticalAlign="middle" verticalCenter="0"
+			         horizontalCenter="0" />
+		</e:Group>
+		<e:Group id="leftGroup" rotation="0" horizontalCenter="-430" verticalCenter="120" />
+		<e:Group id="rightGroup" rotation="0" horizontalCenter="430" verticalCenter="120" />
+		<e:Group id="touchLeft_Grp" width="50%" height="100%" touchEnabled="true" />
+		<e:Group id="touchRight_Grp" width="50%" height="100%" right="0" touchEnabled="true" />
+	</e:Group>
+</e:Skin>

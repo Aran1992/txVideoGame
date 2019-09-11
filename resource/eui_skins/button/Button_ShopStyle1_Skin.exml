@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.Button_ShopStyle1_Skin" states="up,down,disabled" currentState="up"
+        xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="188" height="53">
+	<e:Image left="0" right.up="0" top="0" bottom="0" left.down="2" right.down="2" top.down="2" bottom.down="2" right="0"
+	         source="shop_btn_style1_png" scale9Grid="39,6,104,41"/>
+	<e:Group horizontalCenter="0" verticalCenter="0">
+		<e:Image id="iconDisplay" scaleX.down="0.95" scaleY.down="0.95" source="" x="0" y="0"  includeIn="up,down"/>
+		<e:Label id="labelDisplay" text="" size="30" fontFamily="SimHei" scaleX.down="0.95" scaleY.down="0.95" x="39" y="5" />
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle" />
+		</e:layout>
+	</e:Group>
+</e:Skin>

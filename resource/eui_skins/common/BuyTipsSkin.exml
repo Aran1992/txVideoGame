@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.BuyTipsSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+    <e:Group id="buyGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false" width="820"
+             height="385">
+        <e:Image fillMode="scale" scale9Grid="128,6,117,33" source="common_heidi2_png" width="100%" height="100%"  x="-1" y="1" locked="true"/>
+        <e:Image id='icon' fillMode="scale" left="30" source="sc_role1_imgIcon_1_png"
+                  scaleX="0.6" scaleY="0.55" verticalCenter="0"/>
+        <e:Group horizontalCenter="88" verticalCenter="-29">
+            <e:Group horizontalCenter="0" verticalCenter="-66" width="244">
+                <e:Image fillMode="scale" source="control_btn_di_png" height="58" />
+                <e:Image fillMode="scale" source="common_yuese_png" x="18" y="15" />
+                <e:Label id="money1" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="588" textAlign="center"
+                         x="90" fontFamily="SimHei" scaleX="1" scaleY="1" width="127" verticalCenter="0" />
+            </e:Group>
+            <e:Group horizontalCenter="0" verticalCenter="-66" width="244">
+                <e:Image source="control_btn_di_png" height="58" />
+                <e:Image x="18" y="15" source="common_zuanshi1_png" />
+                <e:Label id="money2" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="588" textAlign="center"
+                         x="90" fontFamily="SimHei" width="127" verticalCenter="0" />
+            </e:Group>
+            <e:layout>
+                <e:VerticalLayout gap="27" />
+            </e:layout>
+        </e:Group>
+        <e:Group bottom="29" x="249">
+            <e:Button id="suipBuy" label="碎片购买" touchEnabled="true" width="240" skinName="skins.Common_Button2Skin" height="53"></e:Button>
+            <e:Button id="zuanshiBuy" label="钻石购买" touchEnabled="true" x="294" width="240" height="53"
+                      skinName="skins.Common_Button2Skin"></e:Button>
+        </e:Group>
+        <e:Label id="closeBtn" size="50" textColor="0xFFFFFF" verticalAlign="middle" text="X" textAlign="center"
+                 fontFamily="Arial" width="41" bold="true" right="0" top="0" />
+    </e:Group>
+</e:Skin>

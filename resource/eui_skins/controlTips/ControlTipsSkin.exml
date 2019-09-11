@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ControlTipsSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" x="0" y="0" alpha="1">
+		<e:Image id="mengban" alpha="1" width="100%" height="100%" x="0" y="-2" touchEnabled="false" source="video_heidi1_png"
+		         visible="false" />
+		<e:Image id="bgBtn" source="zhezhao_png" alpha="0.001" width="100%" height="100%" y="0" x="1" />
+		<e:Group id="controlGroup" touchEnabled="false" left="0" width="100%" height="100%" y="0" alpha="1" x="0">
+			<e:Button id="play_pauseBtn" width="70" height="87" icon="pauseImg_png" left="33" bottom="0">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image width="70" height="82" alpha="0" source="sc_shipin_close_png" horizontalCenter="0" verticalCenter="0" />
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" id="iconDisplay" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button id="goMain" width="91" height="91" top="113" right="158">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png"
+						         horizontalCenter="0" verticalCenter="0" width="91" height="91" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:ProgressBar id="videoPro" value="0" width="100%" touchEnabled="false" skinName="skins.Mp3BarSkin" left="0" x="0"
+			               slideDuration="0" maximum="1" bottom="110" />
+			<e:ProgressBar id="videoPro1" value="0" width="100%" touchEnabled="false" skinName="skins.Mp3BarSkin" left="0" x="0"
+			               slideDuration="0" maximum="1" height="43" bottom="102" alpha="0" />
+			<!--<e:ProgressBar id="videoPro" value="0" width="100%" touchEnabled="false" skinName="skins.VolumeBarSkin"
+			                   bottom="96" left="0" x="0" y="804" height="12" slideDuration="0" maximum="1" />
+			-->
+			<!--<e:ProgressBar id="videoPro" skinName="skins.VolumeBarSkin" y="96" height="42" x="343" value="0" width="616" />
+			-->
+			<e:Group id="pauseGroup" horizontalCenter="0" verticalCenter="0" x="713" y="358" visible="false">
+				<e:Image scaleX="1.5" source="control_d1_png" horizontalCenter="0" verticalCenter="0" scaleY="1.5" />
+				<e:Button id="playBtn" width="105" height="123" icon="playImg_png" verticalCenter="0" horizontalCenter="8"
+				          scaleX="1.5" scaleY="1.5">
+					<e:skinName>
+						<e:Skin states="up,down,disabled">
+							<e:Image width="105" height="123" alpha="0" source="sc_shipin_close_png" horizontalCenter="0" verticalCenter="0" />
+							<e:Image scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" id="iconDisplay" />
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+			</e:Group>
+			<e:Group height="53" touchEnabled="false" bottom="39" right="108" x="1192" y="808">
+				<e:Button id="speedBtn" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.0X">
+					<e:skinName>
+						<e:Skin states="up,down,disabled">
+							<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
+							<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
+							         verticalAlign="middle" textAlign="center" />
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button id="qualityBtn" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1080P">
+					<e:skinName>
+						<e:Skin states="up,down,disabled">
+							<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
+							<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
+							         verticalAlign="middle" textAlign="center" />
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:layout>
+					<e:HorizontalLayout gap="66" />
+				</e:layout>
+			</e:Group>
+			<e:Group id="beisuGroup" touchEnabled="false" alpha="1" height="231" right="263" bottom="116" x="1162" y="553"
+			         locked="true" visible="false">
+				<e:Image source="control_beisudi_png" />
+				<e:Group touchEnabled="false" alpha="1" y="16" horizontalCenter="0">
+					<e:Button id="sp1" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+						<e:skinName>
+							<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
+								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
+								         verticalAlign="middle" textAlign="center" />
+							</e:Skin>
+						</e:skinName>
+					</e:Button>
+				</e:Group>
+				<e:Group touchEnabled="false" alpha="1" y="89" horizontalCenter="0">
+					<e:Button id="sp2" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+						<e:skinName>
+							<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
+								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
+								         verticalAlign="middle" textAlign="center" />
+							</e:Skin>
+						</e:skinName>
+					</e:Button>
+				</e:Group>
+				<e:Group touchEnabled="false" alpha="1" y="158" horizontalCenter="0">
+					<e:Button id="sp3" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+						<e:skinName>
+							<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
+								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
+								         verticalAlign="middle" textAlign="center" />
+							</e:Skin>
+						</e:skinName>
+					</e:Button>
+				</e:Group>
+			</e:Group>
+			<e:Group id="pinzhiGroup" touchEnabled="false" alpha="1" height="231" right="83" bottom="116" x="1342" y="553"
+			         visible="false">
+				<e:Image source="control_beisudi_png" />
+				<e:Group touchEnabled="false" alpha="1" y="16" horizontalCenter="0">
+					<e:Button id="pinzhi1" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+						<e:skinName>
+							<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
+								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
+								         verticalAlign="middle" textAlign="center" />
+							</e:Skin>
+						</e:skinName>
+					</e:Button>
+				</e:Group>
+				<e:Group touchEnabled="false" alpha="1" y="89" horizontalCenter="0">
+					<e:Button id="pinzhi2" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+						<e:skinName>
+							<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
+								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
+								         verticalAlign="middle" textAlign="center" />
+							</e:Skin>
+						</e:skinName>
+					</e:Button>
+				</e:Group>
+				<e:Group touchEnabled="false" alpha="1" y="158" horizontalCenter="0">
+					<e:Button id="pinzhi3" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+						<e:skinName>
+							<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
+								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
+								         verticalAlign="middle" textAlign="center" />
+							</e:Skin>
+						</e:skinName>
+					</e:Button>
+				</e:Group>
+			</e:Group>
+			<e:layout>
+				<e:BasicLayout/>
+			</e:layout>
+		</e:Group>
+		<e:ProgressBar id="timeBar4" skinName="skins.VolumeBarSkin" y="839" width="426" height="31" x="367" visible="false" />
+	</e:Group>
+</e:Skin>

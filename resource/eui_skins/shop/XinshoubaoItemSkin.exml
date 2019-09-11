@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.XinshoubaoItemSkin" width="367" height="528" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Group>
+		<e:Image id="banner_img" source="" width="367" height="528" />
+		<e:Image id="type_icon" source="shop_music_icon_png" width="40" height="40" right="15" top="15" />
+		<e:Group y="300" horizontalCenter="0">
+			<e:Label id="title_lab" size="28" fontFamily="SimHei" text="" y="0" x="0" />
+			<e:Image id="pingfen_img" source="" x="110" y="3" />
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle" />
+			</e:layout>
+		</e:Group>
+		<e:Label id="style_name_lab" size="36" fontFamily="SimHei" text="" horizontalCenter="0" y="360" bold="true" />
+	</e:Group>
+</e:Skin>

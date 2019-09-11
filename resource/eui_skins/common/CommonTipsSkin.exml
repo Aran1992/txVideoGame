@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.CommonTipsSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+    <e:Group id="grp" x="43" y="148" touchChildren="false" touchEnabled="false">
+        <e:Image x="83" y="14" source="chengjiu_tips_di_png" scale9Grid="144,13,61,24" />
+        <e:Image x="0" y="0" source="common_chengjiu_icon_png" />
+        <e:Label id="desc" size="32" textColor="0xFFFFFF" verticalAlign="middle" textAlign="left" height="55" text="加油"
+                 width="310" x="119" y="17" fontFamily="SimHei" anchorOffsetX="0" anchorOffsetY="0" />
+    </e:Group>
+    <e:Group id="grp1" x="43" y="148" touchChildren="false" touchEnabled="false">
+        <e:Image x="83" y="13" source="chengjiu_tips_di_png" scale9Grid="144,13,61,24" />
+        <e:Image x="0" y="0" source="common_like_icon_png" />
+        <e:Label id="desc1" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="" width="310" x="116"
+                 textAlign="left" verticalCenter="0" fontFamily="SimHei" />
+    </e:Group>
+    <e:Group id="grp2" x="1263" y="45" visible="false">
+        <e:Image x="0" y="0" source="tips_di_yuan_png" scale9Grid="35,6,210,39" width="337" />
+        <e:Label id="desc2" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="即将进行互动" width="228" x="78"
+                 bold="true" textAlign="center" y="9" fontFamily="SimHei" />
+    </e:Group>
+    <e:Group id="grp3" horizontalCenter="0" verticalCenter="0" visible="false">
+        <e:Image source="tips_di_yuan_png" left="-12" right="-12" top="-2" bottom="-2" scale9Grid="35,6,210,39" />
+        <e:Label id="desc3" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="" bold="true" textAlign="center"
+                 y="9" horizontalCenter="0" fontFamily="SimHei" />
+    </e:Group>
+    <e:Group id="grp4" horizontalCenter="0" top="20" visible="false">
+        <e:Image x="0" y="0" source="hudong_topdi_png" width="557" scale9Grid="128,6,117,48" />
+        <e:BitmapLabel id="desc4" text="" font="syht_fnt" touchEnabled="false" letterSpacing="-1" horizontalCenter="0"
+                       verticalCenter="0" textAlign="center" height="45" />
+    </e:Group>
+    <e:Group id="grp5" horizontalCenter="0" verticalCenter="0" visible="false">
+        <e:Image x="0" y="0" source="tips_di_yuan_png" scale9Grid="128,6,117,33" width="354" />
+        <e:Label id="desc5" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="" bold="true" textAlign="center"
+                 verticalCenter="0" horizontalCenter="0" fontFamily="SimHei" />
+    </e:Group>
+    <e:Group id="buyGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false"
+             visible="false">
+        <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
+        <e:Group id="buyGroup1" verticalCenter="-66" horizontalCenter="0">
+            <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="是否花费" textAlign="center" x="3" y="0"
+                     fontFamily="SimHei" />
+            <e:Label id="desc6" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="XXX" textAlign="center"
+                     x="13" y="10" fontFamily="SimHei" />
+            <e:Image id="moneyIcon" source="common_yuese_png" x="155" y="1" />
+            <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="购买？" textAlign="center" x="23" y="20"
+                     fontFamily="SimHei" />
+            <e:layout>
+                <e:HorizontalLayout verticalAlign="middle" />
+            </e:layout>
+        </e:Group>
+        <e:Group id="buyGroup2" width="583" x="115" y="118" visible="false">
+            <e:Image source="common_yuese_png" x="313" y="5" />
+            <e:Image x="192" y="4" source="common_zuanshi1_png" />
+            <e:Label size="35" textColor="0xFFFFFF" verticalAlign="middle" text="碎片数量不足" textAlign="center" y="-49"
+                     fontFamily="SimHei" horizontalCenter="0" />
+            <e:Label id="desc7" size="35" textColor="0xFFFFFF" verticalAlign="middle" text="是否花费XX   兑换   XX碎片购买？"
+                     textAlign="center" x="3" y="0" fontFamily="SimHei" />
+        </e:Group>
+        <e:Group horizontalCenter="0" verticalCenter="70">
+            <e:Button id="btnConfirm" label="是" bottom="1" horizontalCenter="-127" touchEnabled="true" width="217"
+                      height="53" skinName="skins.Common_Button2Skin" />
+            <e:Button id="btnCancel" label="否" bottom="56" horizontalCenter="-250" touchEnabled="true" width="217"
+                      skinName="skins.Common_Button2Skin" height="53"></e:Button>
+            <e:layout>
+                <e:HorizontalLayout gap="88" />
+            </e:layout>
+        </e:Group>
+    </e:Group>
+	<e:Group id="confirmGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false" height="390" width="760" visible="false">
+		<e:Image scale9Grid="128,6,117,33" source="common_heidi2_png" left="0" right="0" top="0" bottom="0" locked="true"/>
+		<e:Label id="confirm_desc_lab" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="" textAlign="center" fontFamily="SimHei" horizontalCenter="0" width="690" height="200" verticalCenter="-45"/>
+		<e:Label id="confirm_desc2_lab" size="28" text="" fontFamily="SimHei" horizontalCenter="0" y="345" textColor="0xffbe56"/>
+		<e:Group horizontalCenter="0" y="260">
+		<e:Button id="confirm_btn" label="是" bottom="1" horizontalCenter="-127" touchEnabled="true" width="217" height="53" skinName="skins.Common_Button2Skin"/>
+		<e:Button id="cancel_btn" label="否" bottom="56" horizontalCenter="-250" touchEnabled="true" width="217" skinName="skins.Common_Button2Skin" height="53"/>
+		<e:layout>
+			<e:HorizontalLayout gap="88"/>
+		</e:layout>
+		</e:Group>
+	</e:Group>
+    <e:Group id="buyGrp1" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false"
+             visible="false">
+        <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
+        <e:Group id="buyGroup3" y="118" horizontalCenter="0">
+            <e:Image source="common_yuese_png" x="313" y="5" visible="false" />
+            <e:Image x="192" y="4" source="common_zuanshi1_png" visible="false" />
+            <e:Label id="desc8" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="回到过去，重新选择，达成条件即可开启该选项"
+                     textAlign="center" fontFamily="SimHei" horizontalCenter="0" />
+        </e:Group>
+        <e:Group horizontalCenter="0" verticalCenter="70">
+            <e:Button id="btnCancel1" label="我知道了" bottom="0" horizontalCenter="-180.5" touchEnabled="true" width="250"
+                      skinName="skins.Common_Button2Skin" height="53"></e:Button>
+            <e:Button id="btnConfirm2" label="付费解锁" bottom="0" horizontalCenter="180.5" touchEnabled="true" width="250"
+                      height="53">
+                <e:skinName>
+                    <e:Skin states="up,down,disabled">
+                        <e:Image source="main_btn2_png" source.down="main_btn2_select_png" horizontalCenter="0"
+                                 verticalCenter="0" width="100%" height="100%" width.down="90%" height.down="90%"
+                                 scale9Grid="42,6,135,41" />
+                        <e:Label id="labelDisplay" horizontalCenter="-40" verticalCenter="0" size="26"
+                                 fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9" />
+                        <e:Image scaleX.down="0.9" verticalCenter="0" scaleY.down="0.9" source="common_zuanshi1_png"
+                                 source.down="common_zuanshi1_png" horizontalCenter="36" />
+                        <e:Label id="money" text="58" horizontalCenter="73" verticalCenter="0" size="26"
+                                 fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9" textColor="0xe0af2c" />
+                    </e:Skin>
+                </e:skinName>
+            </e:Button>
+            <e:layout>
+                <e:HorizontalLayout gap="90" />
+            </e:layout>
+        </e:Group>
+    </e:Group>
+    <e:Group id="qinmiGroup" horizontalCenter="0" verticalCenter="0" visible="false">
+        <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
+        <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="亲密度不足，无法开启选项" textAlign="center"
+                 fontFamily="SimHei" horizontalCenter="0" verticalCenter="-39" />
+        <e:Button id="btnConfirm1" label="我知道了" horizontalCenter="0" verticalCenter="87" skinName="skins.Common_Button2Skin"
+                  width="240" height="53"></e:Button>
+    </e:Group>
+    <e:Group id="buyResult" horizontalCenter="0" verticalCenter="0" visible="false">
+        <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
+        <e:Image id='buyResultImg' source="common_close2_png" horizontalCenter="0" y="105" />
+        <e:Label id='buyResultLab' size="32" textColor="0xFFFFFF" verticalAlign="middle" text="购买成功" textAlign="center"
+                 fontFamily="SimHei" horizontalCenter="0" y="205" />
+        <e:Button id="btn_qianwang" label="" touchEnabled="true" width="240" height="53" horizontalCenter="0" y="280"
+                  skinName="skins.Common_Button2Skin" visible="false"></e:Button>
+        <e:Label id="result_closebtn" size="50" textColor="0xFFFFFF" verticalAlign="middle" text="X" textAlign="center"
+                 fontFamily="Arial" width="41" bold="true" right="0" visible="false" />
+    </e:Group>
+    <e:Group id="duquResult" horizontalCenter="0" verticalCenter="0" visible="false">
+        <e:Image scale9Grid="128,6,117,33" source="common_heidi1_png" locked="true" />
+        <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="读取失败" textAlign="center"
+                 fontFamily="SimHei" horizontalCenter="0" verticalCenter="0" />
+    </e:Group>
+    <e:Scroller width="600" height="400" right="0" bottom="10" touchEnabled="false" touchChildren="false">
+        <e:Group>
+            <e:Label id="logLab" size="20" fontFamily="SimHei" textAlign="right" textColor="0xFFFFFF" lineSpacing="3"
+                     stroke="2" right="0" bottom="0" width="600" />
+        </e:Group>
+    </e:Scroller>
+</e:Skin>

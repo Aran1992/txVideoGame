@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.FileBar" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="400"
+        height="6">
+    <e:Image left="0" right="0" top="0" bottom="0"  source="file_tiao2_png" scale9Grid="6,2,11,3"/>
+	<e:Image id="thumb" source="file_tiao1_png" y="0" x="0" width="100%" height="100%" scale9Grid="2,0,36,6"/>
+	<e:Label id="labelDisplay" size="16" fontFamily="SimHei" horizontalCenter="0" verticalCenter="-1" text="111" bold="true" textColor="0xdaffff" stroke="2" strokeColor="0x4651cd" visible="false"/>
+</e:Skin>

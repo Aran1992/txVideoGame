@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionFullSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+	<e:Image id="guide_left" rotation="0" x="128" top="150" source="" />
+	<e:Image id="guide_right" scaleX="-1" rotation="0" x="1472" top="150" source="" />
+	<e:ProgressBar id="timeBar" skinName="skins.ActionBarSkin" horizontalCenter="0" top="32" />
+</e:Skin>

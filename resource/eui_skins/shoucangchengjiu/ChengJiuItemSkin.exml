@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ChengJiuItemSkin" xmlns:e="http://ns.egret.com/eui" width="280" height="344"
+        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:Image id='icon' x="0" y="0" touchEnabled="true" source="cj_head1_png" />
+
+	<e:Group id="jiesuo" horizontalCenter="-9" bottom="97" visible="false">
+		<e:Image source="button_pinkdi_png" />
+		<e:Image source="common_suipian_png" y="8" x="49" />
+		<e:Label id="num" text="+25" size="30" fontFamily="Arial" textAlign="left" x="91" y="13" width="82" height="31"
+		         touchEnabled="false" textColor="0xffffff" />
+	</e:Group>
+	<e:Group id="weijiesuo" width="100%" height="100%" touchEnabled="false" touchChildren="false" visible="false">
+		<e:Image source="cj_itemdi_png" />
+		<e:Image anchorOffsetY="0" touchEnabled="false" source="sc_shipin_suo_png" horizontalCenter="-12" verticalCenter="65"
+		         scaleX="0.7" scaleY="0.7" />
+	</e:Group>
+	<e:Label id="title" text="嘴巴嘟嘟嘟" size="30" fontFamily="SimHei" textAlign="center" x="-2" y="305" width="265"
+	         height="34" touchEnabled="false" bold="true" textColor="0xffffff" />
+	<e:Group id="nandu">
+		<e:Image x="222" y="55" touchEnabled="true" source="cj_qipaodi_png"/>
+		<e:Label id="difficulty" text="终极" size="20" fontFamily="Arial" textAlign="left" x="227" y="69" width="45" height="20" touchEnabled="false" textColor="0x0009ff"/>
+	</e:Group>
+</e:Skin>

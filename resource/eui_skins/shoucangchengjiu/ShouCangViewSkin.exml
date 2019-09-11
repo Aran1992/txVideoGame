@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ShouCangViewSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
+		<e:Image y="0" x="0" width="100%" height="100%" source="cundang_bj_jpg" />
+		<e:Button id="filter_btn" width="80" height="80" right="75" y="32" visible="false">
+			<e:skinName>
+				<e:Skin states="up,down">
+					<e:Image width="100%" height="100%" source="shop_shaixuan_png" horizontalCenter="0" verticalCenter="0"
+					         height.down="90%" width.down="90%" />
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:BitmapLabel id="suipNum" text="15" font="zuanshiFont_fnt" touchEnabled="false" letterSpacing="0" scaleX="0.5"
+		               scaleY="0.5" right="80" top="47" visible="false" />
+		<e:Group id="centerGroup" height="647" left="86" right="0" verticalCenter="11.5">
+			<e:Group id="itemGroup" touchChildren="true" touchEnabled="true" width="100%" height="100%">
+				<e:Scroller id="scroll" height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">
+					<e:Group id="goodsLayer">
+						<e:layout>
+							<e:HorizontalLayout gap="23" />
+						</e:layout>
+					</e:Group>
+				</e:Scroller>
+			</e:Group>
+		</e:Group>
+		<e:Button id="bgBtn" label="收藏" width="200" x="40" y="28" height="62">
+			<e:skinName>
+				<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
+					<e:Group width="100%" height="100%" />
+					<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png"
+					         verticalCenter="0" left="0" locked="true" />
+					<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9"
+					         left="50" text="" />
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label text="剧情线" size="36" fontFamily="SimHei" left="144" top="72" visible="false" />
+		<!--<e:Button id="bgBtn" width="62" height="62" scaleX="1" scaleY="1" left="63" top="58">
+		<e:skinName>
+			<e:Skin states="up,down,disabled" width="62">
+				<e:Image scaleX.down="0.9" scaleY.down="0.9" source="sc_shipin_close_png" source.down="sc_shipin_close_png"
+				         horizontalCenter="0" verticalCenter="0" />
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	-->
+</e:Group>
+</e:Skin>

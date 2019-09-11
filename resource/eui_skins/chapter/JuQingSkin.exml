@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.JuQingSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        xmlns:n1s='*' height="900">
+    <e:Group id="mainGroup" width="100%" height="100%" verticalCenter="0" horizontalCenter="0">
+        <e:Image touchEnabled="false" width="100%" height="100%" source="cundang_bj_jpg" locked="true" />
+        <e:Image touchEnabled="false" source="cundang_zhezhao_png" x="0" width="100%" bottom="186" locked="true" />
+        <e:Image id="leftmask" alpha="0.6" touchEnabled="false" verticalCenter="0" left="0" source="cundangMask_png"
+                 scale9Grid="24,112,38,676" />
+        <e:Image id="rightmask" alpha="0.6" touchEnabled="false" scaleX="-1" verticalCenter="0" right="0"
+                 source="cundangMask_png" scale9Grid="24,112,38,676" />
+        <e:Group y="0" x="0" width="100%" height="100%">
+            <e:Group id="noneFile" touchChildren="true" y="0" x="0" width="100%" height="100%" visible="false">
+                <e:Label text="一暂无存档一" size="48" fontFamily="SimHei" textAlign="left" strokeColor="0x3E0909" height="59"
+                         touchEnabled="false" horizontalCenter="0" verticalCenter="0" textColor="0xffffff" />
+            </e:Group>
+            <e:Label id='timerLab' text="" size="30" fontFamily="SimHei" textAlign="left" strokeColor="0x3E0909"
+                     height="35" touchEnabled="false" verticalCenter="-190" textColor="0xffffff" right="86" />
+            <e:Group id="qiuGroup" width="100%" horizontalCenter="0" bottom="160" height="500">
+                <e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0" />
+                <e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0" />
+                <e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0" />
+                <e:layout>
+                    <e:HorizontalLayout horizontalAlign="center" verticalAlign="bottom" />
+                </e:layout>
+            </e:Group>
+            <e:Group id="slideGroup" touchEnabled="true" x="0" y="0" />
+            <e:Group top="116" right="6" width="979">
+                <e:Button id="fileBtn1" label="记忆线" icon='cundang_kuang1_png' width="191" height="71" bottom="56" x="0">
+                    <e:skinName>
+                        <e:Skin states="up,down,disabled" width="109">
+                            <e:Image width="191" height="71" alpha="0" source="sc_shipin_close_png" horizontalCenter="0"
+                                     verticalCenter="0" />
+                            <e:Image touchEnabled="false" id="iconDisplay" horizontalCenter="-100" verticalCenter="0" />
+                            <e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="40"
+                                     fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9" text="213" />
+                        </e:Skin>
+                    </e:skinName>
+                </e:Button>
+                <e:Button id="fileBtn2" label="回忆一" width="191" height="71" y="0" x="194">
+                    <e:skinName>
+                        <e:Skin states="up,down,disabled" width="109">
+                            <e:Image width="191" height="71" alpha="0" source="sc_shipin_close_png" horizontalCenter="0"
+                                     verticalCenter="0" />
+                            <e:Image touchEnabled="false" id="iconDisplay" horizontalCenter="-100" verticalCenter="0" />
+                            <e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="40"
+                                     fontFamily="SimHei" textColor="0xa9aaac" scaleX.down="0.9" scaleY.down="0.9"
+                                     text="123" />
+                        </e:Skin>
+                    </e:skinName>
+                </e:Button>
+                <e:Button id="fileBtn3" label="回忆二" width="191" height="71" bottom="56" x="388">
+                    <e:skinName>
+                        <e:Skin states="up,down,disabled" width="109">
+                            <e:Image width="191" height="71" alpha="0" source="sc_shipin_close_png" horizontalCenter="0"
+                                     verticalCenter="0" />
+                            <e:Image touchEnabled="false" id="iconDisplay" horizontalCenter="-100" verticalCenter="0" />
+                            <e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="40"
+                                     fontFamily="SimHei" textColor="0xa9aaac" scaleX.down="0.9" scaleY.down="0.9" />
+                        </e:Skin>
+                    </e:skinName>
+                </e:Button>
+                <e:Button id="fileBtn4" label="回忆三" width="191" height="71" bottom="56" x="582">
+                    <e:skinName>
+                        <e:Skin states="up,down,disabled" width="109">
+                            <e:Image width="191" height="71" alpha="0" source="sc_shipin_close_png" horizontalCenter="0"
+                                     verticalCenter="0" />
+                            <e:Image touchEnabled="false" id="iconDisplay" horizontalCenter="-100" verticalCenter="0" />
+                            <e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="40"
+                                     fontFamily="SimHei" textColor="0xa9aaac" scaleX.down="0.9" scaleY.down="0.9" />
+                        </e:Skin>
+                    </e:skinName>
+                </e:Button>
+                <e:Button id="fileBtn5" label="回忆四" width="191" height="71" bottom="56" x="776">
+                    <e:skinName>
+                        <e:Skin states="up,down,disabled" width="109">
+                            <e:Image width="191" height="71" alpha="0" source="sc_shipin_close_png" horizontalCenter="0"
+                                     verticalCenter="0" />
+                            <e:Image touchEnabled="false" id="iconDisplay" horizontalCenter="-100" verticalCenter="0" />
+                            <e:Label width="191" id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="40"
+                                     fontFamily="SimHei" textColor="0xa9aaac" scaleX.down="0.9" scaleY.down="0.9"
+                                     verticalAlign="middle" textAlign="center" />
+                        </e:Skin>
+                    </e:skinName>
+                </e:Button>
+                <e:layout>
+                    <e:HorizontalLayout/>
+                </e:layout>
+            </e:Group>
+        </e:Group>
+        <e:Button id="bgBtn" left="40" top="35" label="剧情线" width="300" height="62">
+            <e:skinName>
+                <e:Skin states="up,down,disabled" width="190" height="62">
+                    <e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png"
+                             source.down="common_close1_png" verticalCenter="0" left="0" />
+                    <e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9"
+                             scaleY.down="0.9" left="60" />
+                    <e:Group width="300" height="100" y="-21" x="-43" />
+                </e:Skin>
+            </e:skinName>
+        </e:Button>
+        <e:Group id="guide_grp" width="100%" height="100%">
+            <e:Image id="mengban" alpha="0.8" width="100%" height="100%" x="0" y="-2" touchEnabled="false"
+                     source="video_heidi1_png" visible="true" />
+            <e:Image id="xinshou_step_img" horizontalCenter="0"  verticalCenter="0"/>
+        </e:Group>
+    </e:Group>
+    <e:Button id="cunchuBtn" label="记录" icon='control_cundang_png' width="252" height="71" bottom="62" right="77">
+        <e:skinName>
+            <e:Skin states="up,down,disabled" width="109">
+                <e:Image scaleX.down="0.9" scaleY.down="0.9" source="main_btn1_png" source.down="main_btn1_select_png" />
+                <e:Image touchEnabled="false" id="iconDisplay" horizontalCenter="-42" verticalCenter="0" />
+                <e:Label id="labelDisplay" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9"
+                         scaleY.down="0.9" x="120" />
+            </e:Skin>
+        </e:skinName>
+    </e:Button>
+</e:Skin>

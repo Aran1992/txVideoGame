@@ -1,0 +1,32 @@
+{
+  "engineVersion": "5.2.25",
+  "compilerVersion": "5.2.25",
+  "template": {},
+  "target": {
+    "current": "web"
+  },
+  "modules": [
+    {
+      "name": "egret"
+    },
+    {
+      "name": "eui"
+    },
+    {
+      "name": "jszip",
+      "path": "libs/jszip"
+    },
+    {
+      "name": "assetsmanager"
+    },
+    {
+      "name": "tween"
+    },
+    {
+      "name": "game"
+    },
+    {
+      "name": "promise"
+    }
+  ]
+}

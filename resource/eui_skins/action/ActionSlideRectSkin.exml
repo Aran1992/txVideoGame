@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionSlideRectSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"
+        width="1600" height="900">
+	<e:Group id="groupTouch" left="0" right="0" top="0" bottom="0"></e:Group>
+	<e:Group id="groupHand" scaleX="1" scaleY="1" y="30" x="666" width="175" height="175" touchChildren="false"
+	         touchEnabled="false" visible="false"></e:Group>
+	<e:Group id="tips" touchChildren="true" touchEnabled="true" y="131" width="595" x="503">
+		<e:Image id="rightImg" y="45" scaleY="1" scaleX="1" rotation="0" x="280" source="action_motouhuadong_png"
+		         visible="false" />
+		<e:Group id="tuo" y="0" x="151" touchEnabled="true" width="133" height="133" visible="false">
+			<e:Image scaleX="1" scaleY="1" source="action_tanqin_lv_png" alpha="0.3" horizontalCenter="0" verticalCenter="0" />
+			<e:Image scaleY="1" scaleX="1" source="action_motou_png" />
+			<e:Image id='timeImg' scaleY="1" scaleX="1" source="slide_zi_quan_png" />
+		</e:Group>
+		<e:Image scaleY="1" scaleX="1" rotation="0" source="action_jiantou2_png" horizontalCenter="0" visible="false" />
+		<e:Image id="handImg1" scaleX="1" scaleY="1" alpha="1" source="action_yuandian_png" y="78" x="-3" visible="false" />
+		<e:Image id="handImg" y="109" x="0" source="action_shou_png" touchEnabled="false" scaleX="1" scaleY="1" rotation="-20"
+		         visible="false" />
+	</e:Group>
+	<e:ProgressBar id="timeBar" skinName="skins.ActionBarSkin" scaleX="1" scaleY="1" horizontalCenter="0" top="32"
+	               visible="false" />
+	<e:Group horizontalCenter="0" top="32">
+		<e:Image source="action_timedi_png" horizontalCenter="0" top="0" locked="true" />
+		<e:ProgressBar id="timeBar1" skinName="skins.ActionBar1Skin" scaleX="-1" horizontalCenter="-125" value="100" />
+		<e:ProgressBar id="timeBar2" skinName="skins.ActionBar1Skin" horizontalCenter="125" value="100" />
+		<e:Label id="desc1" text="" fontFamily="SimHei" size="40" height="60" verticalAlign="middle" verticalCenter="0"
+		         horizontalCenter="0" />
+	</e:Group>
+</e:Skin>

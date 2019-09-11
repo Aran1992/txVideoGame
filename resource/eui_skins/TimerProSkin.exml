@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.TimerProSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600" height="8">
+
+	<e:Image id="thumb" height="100%"
+	          width="100%" y="0" x="0" scale9Grid="14,1,6,8" source="baisedaojishi_jpg"/>
+</e:Skin>

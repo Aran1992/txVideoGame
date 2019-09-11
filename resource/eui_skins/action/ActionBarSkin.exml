@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionBarSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+    <e:Image source="action_timedi_png" width="100%" height="100%" scale9Grid="62,7,378,47"/>
+	<e:Image id="thumb" source="action_timedi1_png" horizontalCenter="0" width="100%" height="100%" scale9Grid="62,7,378,47"/>
+     <e:BitmapLabel id="desc" text="" font="syht_fnt" touchEnabled="false" letterSpacing="-1"  horizontalCenter="0" verticalCenter="0" textAlign="center"/>     
+</e:Skin>

@@ -1,0 +1,693 @@
+// TypeScript file
+class JuQingPanel extends eui.Component {
+    private mainGroup: eui.Group;
+    private chapterGroup: eui.Group;
+    private juqingDatas: PlotTreeItem[];
+    private bgBtn: eui.Button;
+    private slideGroup: eui.Group;
+    private noneFile: eui.Group;
+    private qiuGroup: eui.Group;
+    private rightmask: eui.Image;
+    private leftmask: eui.Image;
+    private timerLab: eui.Label;
+    private cunchuBtn: eui.Button;
+    private guide_grp: eui.Group;
+    private mengban: eui.Image;
+    private xinshou_step_img: eui.Image;
+
+    private _curIdx: number = FILE_TYPE.AUTO_FILE;
+    private animRecords: PlotTreeItem[];
+    private qiuImgs: eui.Image[];
+    private _idx: number = 0;
+    private kuaiDatas;
+    private guide_images: string[] = [];
+
+    constructor() {
+        super();
+        this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
+        this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+    }
+    //添加到舞台
+    private onAddToStage(): void {
+        this.onSkinName();
+    }
+    protected onRegist(): void {
+        GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdata, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.REFRESH_JUQING, this.onRefresh, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onShowVideo, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.SELECT_JUQING, this.onShowConfirm, this);
+
+        this.cunchuBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSaveCunChu, this);
+        this.slideGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
+        this.slideGroup.addEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
+        this.qiuGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
+        this.qiuGroup.addEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
+        for (var i: number = 1; i <= GameDefine.MAX_CUNDAGN_NUM; i++) {
+            this['fileBtn' + i].name = i;
+            this['fileBtn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
+        }
+        this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+    }
+    protected onRemove(): void {
+        GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdata, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.REFRESH_JUQING, this.onRefresh, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.STARTCHAPTER, this.onShowVideo, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.SELECT_JUQING, this.onShowConfirm, this);
+
+        this.cunchuBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onSaveCunChu, this);
+        this.slideGroup.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
+        this.slideGroup.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
+        this.qiuGroup.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
+        this.qiuGroup.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
+        for (var i: number = 1; i <= GameDefine.MAX_CUNDAGN_NUM; i++) {
+            this['fileBtn' + i].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
+        }
+        this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+    }
+
+    private onRefresh() {
+        this.onSwitchKuai(this._curIdx);
+    }
+    private onRefreshUpdata() {
+        if (GameDefine.ISFILE_STATE) {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
+        }
+    }
+    private onSaveCunChu() {
+        if (this._curIdx != FILE_TYPE.AUTO_FILE && !this.noneFile.visible) {
+            var self = this;
+            GameCommon.getInstance().showConfirmTips("是否存储？", function (): void {
+                GameCommon.getInstance().setBookData(self._curIdx);
+            }, "注：存储会覆盖原来的存档");
+        } else {
+            GameCommon.getInstance().setBookData(this._curIdx);
+        }
+    }
+    private onShowVideo() {
+        this.touchEnabled = false;
+        this.touchChildren = false;
+    }
+    private _videoData;
+    private onShowConfirm(data) {
+        if (this._curIdx == FILE_TYPE.AUTO_FILE) {
+            var self = this;
+            GameCommon.getInstance().showConfirmTips("清空记忆，从这里从新开始？", function (): void {
+                self._videoData = data.data;
+                GameCommon.getInstance().showLoading();
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), self._videoData);
+            }, "注：此处仅影响自动存档，不影响手动存档存储");
+        }
+    }
+    private onFirmBtn() {
+        // GameCommon.getInstance().addAlert('暂未接通支付接口');
+        // ShopManager.getInstance().myShopData[1] = 1;
+        ChengJiuManager.getInstance().onDlcChengJiu(1);
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH))
+    }
+    private onClose() {
+        this.onRemove();
+        this.qiuGroup.removeChildren();
+        this.slideGroup.removeChildren();
+        if (GameDefine.IS_DUDANG) {
+            GameDefine.IS_DUDANG = false;
+            VideoManager.getInstance().videoResume();
+        }
+        GameDefine.ISFILE_STATE = false;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel')
+    }
+    private updateResize() {
+        this.width = size.width;
+        this.height = size.height;
+    }
+    private onShowChapterVideo(event: egret.Event) {
+        var name: number = Number(event.currentTarget.name);
+        if (this._curIdx == name)
+            return;
+        this['fileBtn' + this._curIdx].icon = '';
+        this['fileBtn' + this._curIdx]['labelDisplay']['textColor'] = '0xa9aaac';
+        this['fileBtn' + this._curIdx].touchEnabled = true;
+        this['fileBtn' + name].icon = 'cundang_kuang1_png';
+        this['fileBtn' + name]['labelDisplay']['textColor'] = '0xffffff';
+        // this['fileBtn' + name].parent.setChildIndex(this['fileBtn' + this._curIdx], 1);
+        // this['fileBtn' + name].parent.setChildIndex(this['fileBtn' + name], 0);
+        this._curIdx = name;
+        this.onSwitchKuai(name);
+    }
+    private onLoadComplete(): void {
+        GameDefine.CUR_IS_MAINVIEW = true;
+        this.touchEnabled = false;
+        this.onRegist();
+        this.updateResize();
+        GameDefine.ISFILE_STATE = false;
+        GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE2);
+        GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE3);
+        GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE4);
+        GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE5);
+        GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE6);
+        this.onRefresh();
+        this.onGuideHandler();
+    }
+    private starPos: number = 0;
+    private endPos: number = 0;
+    private imgIndx: number = 1;
+    private onEventDown(event: egret.TouchEvent) {
+        this.starPos = event.stageX;
+    }
+    private onEventEnd(event: egret.TouchEvent) {
+        if (this.starPos > event.stageX) {
+            if (this.starPos - event.stageX > 20) {
+                this.onNextImg();
+            }
+        }
+        else if (this.starPos < event.stageX) {
+            if (event.stageX - this.starPos > 20) {
+                this.onLastImg();
+            }
+        }
+    }
+    private onLastImg() {
+        if (this.imgIndx - 1 < 0)
+            return;
+        this.play(false);
+    }
+    private onNextImg() {
+        if (this.imgIndx + 1 >= this.imgMaxNumb)
+            return;
+        this.play(true);
+    }
+    private imgMaxNumb: number = 5;
+    private _playTween: boolean;
+    private play(bo): void {
+        if (this._playTween) return;
+        this._playTween = true;
+        let currIndex: number = this.imgIndx;
+        let self = this;
+        let tweenEnd = function (): void {
+            self._playTween = false;
+            egret.Tween.removeTweens(self.slideGroup);
+        }
+        if (bo) {
+            this.imgIndx++;
+            egret.Tween.get(this.slideGroup).to({ x: -(this.imgIndx * size.width) }, 150, egret.Ease.sineIn).call(tweenEnd, this);
+        }
+        else {
+            this.imgIndx--;
+            egret.Tween.get(this.slideGroup).to({ x: -(this.imgIndx * size.width) }, 150, egret.Ease.sineIn).call(tweenEnd, this);
+        }
+
+        this.qiuImgs[currIndex].source = 'cundang_dian2_png';
+        this.qiuImgs[this.imgIndx].source = 'cundang_dian1_png';
+    }
+    private onSwitchKuai(tp: number) {
+        // this.slideGroup.removeChildren();
+        // this.slideGroup.addChild(new PlotTreeItem(tp));
+        this['fileBtn' + tp].touchEnabled = false;
+        this._idx = 0;
+        if (tp == 1) {
+            this.cunchuBtn.visible = false;
+        }
+        else {
+            this.cunchuBtn.visible = true;
+        }
+        this.timerLab.text = '';
+        // UserInfo.curBokData.allVideos['V019'] = 'V019'
+        // UserInfo.curBokData.videoDic['V019'] = 'V019'
+        this.kuaiDatas = {};
+        let juqingKuaiMax: number = 0;
+        if (this._curIdx != FILE_TYPE.AUTO_FILE) {
+            if (UserInfo.fileDatas[this._curIdx]) {
+                this.timerLab.text = '最后存储时间' + Tool.getCurrDayTime(UserInfo.fileDatas[this._curIdx].timestamp);
+                juqingKuaiMax = GameCommon.getInstance().getCurJuqingID(UserInfo.fileDatas[this._curIdx]);
+            }
+        } else {
+            for (let key in UserInfo.curBokData.allVideos) {
+                let videoid: string = UserInfo.curBokData.allVideos[key];
+                let spCfg: Modelshipin = JsonModelManager.instance.getModelshipin()[videoid];
+                if (!spCfg) continue;
+                if (!juqingKuaiMax) juqingKuaiMax = spCfg.juqing;
+                else if (GameCommon.getInstance().checkJuqingKuaiOpen(spCfg.juqing, juqingKuaiMax)) juqingKuaiMax = spCfg.juqing;
+            }
+        }
+
+        let likeData = GameCommon.getInstance().getSortLike();
+        let roleIdx: number = likeData.id;
+        let juqingAry: number[] = GameDefine.ROLE_JUQING_TREE[roleIdx];
+        for (var i: number = 0; i < juqingAry.length; i++) {
+            let juqing_page: number = juqingAry[i];
+            let bool: boolean = true;
+            let allCfg = JsonModelManager.instance.getModeljuqingkuai()[juqing_page];
+            if (!allCfg) break;
+            for (var k in allCfg) {
+                if (allCfg[k].openVideo) {
+                    if (GameCommon.getInstance().checkJuqingKuaiOpen(juqingKuaiMax, allCfg[k].id)) {
+                        if (!this.kuaiDatas[allCfg[k].show]) {
+                            this._idx = this._idx + 1;
+                            this.kuaiDatas[allCfg[k].show] = allCfg[k];
+                        }
+                    } else {
+                        bool = false;
+                        break;
+                    }
+                } else {
+                    if (this._curIdx == FILE_TYPE.AUTO_FILE) {
+                        if (!this.kuaiDatas[allCfg[k].show]) {
+                            this._idx = this._idx + 1;
+                            this.kuaiDatas[allCfg[k].show] = allCfg[k];
+                        }
+                    }
+                }
+            }
+            if (!bool) break;
+        }
+
+        this.animRecords = [];
+        var _record: PlotTreeItem;
+        this.imgIndx = 0;
+        this.qiuImgs = [];
+        this.qiuGroup.removeChildren();
+        this.slideGroup.removeChildren();
+
+        let models: Modeljuqingkuai[] = [];
+        for (var k in this.kuaiDatas) {
+            models.push(this.kuaiDatas[k]);
+            var img: eui.Image = new eui.Image;
+            img.source = 'cundang_dian2_png';
+            this.qiuGroup.addChild(img);
+            this.qiuImgs.push(img);
+        }
+        let item: PlotTreeItem;
+        for (let i: number = models.length - 1; i >= 0; i--) {
+            let cfg: Modeljuqingkuai = models[i];
+            let nextkuaiID = juqingAry[Math.min(juqingAry.indexOf(cfg.show) + 1, juqingAry.length - 1)];
+            item = new PlotTreeItem(cfg.show, nextkuaiID, tp);
+            item.x = i * size.width + ((size.width - GameDefine.GAME_VIEW_WIDTH) / 2);
+            this.slideGroup.addChild(item);
+            this.animRecords.push(item);
+        }
+
+        if (this._curIdx != 1 && models.length < 1) {
+            this.noneFile.visible = true;
+            this.slideGroup.visible = false;
+            return;
+        }
+        else {
+            this.noneFile.visible = false;
+            this.slideGroup.visible = true;
+        }
+
+        if (models.length > 0) {
+            this.imgIndx = models.length - 1;
+        }
+        if (this.qiuImgs[this.imgIndx]) {
+            this.qiuImgs[this.imgIndx].source = 'cundang_dian1_png';
+        }
+        this.slideGroup.x = -(this.imgIndx * size.width);
+
+        this.imgMaxNumb = this._idx;
+
+        // // GameCommon.getInstance().showCommomTips(curItemIdx)
+    }
+
+    private onGuideHandler(): void {
+        this.guide_grp.visible = false;
+        // let isguide: boolean = true;
+        // for (let idx in UserInfo.fileDatas) {
+        //     if (parseInt(idx) != FILE_TYPE.AUTO_FILE && UserInfo.fileDatas[idx]) {
+        //         isguide = false;
+        //         break;
+        //     }
+        // }
+        // this.guide_grp.visible = isguide;
+        // if (isguide) {
+        //     this.guide_images = ["1", "2", "3", "4", "5"];
+        //     this.mengban.mask = this.xinshou_step_img;
+        //     this.touchGuideHandler();
+        //     this.guide_grp.addEventListener(egret.TouchEvent.TOUCH_TAP, this.touchGuideHandler, this);
+        // }
+    }
+    private touchGuideHandler(): void {
+        if (this.guide_images.length == 0) {
+            this.guide_grp.visible = false;
+            this.mengban.mask = null;
+            this.guide_grp.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.touchGuideHandler, this);
+            return;
+        }
+        let step: string = this.guide_images.shift();
+        this.xinshou_step_img.source = `cundagn_xinshou_step${step}_png`;
+    }
+
+    protected onSkinName(): void {
+        this.skinName = skins.JuQingSkin;
+    }
+}
+/**剧情线树状图组件**/
+class PlotTreeItem extends egret.DisplayObjectContainer {
+    public index: number;
+    public nextIdx: number;
+    private models: Modeljuqingkuai[];
+    private UIDict;
+    private refreshUIAry: string[];
+    private handAni: Animation;
+    private lockLayer: egret.DisplayObjectContainer;
+
+    private readonly NOT_SHOW: number = 0;
+    private readonly HAS_LOCK: number = 2;
+    private readonly IS_OPEN: number = 1;
+    private _curFile: number = 0;
+    private statusData = {};
+
+    public constructor(index: number, nextIdx: number, tp) {
+        super();
+        this.width = GameDefine.GAME_VIEW_WIDTH;
+        this.height = GameDefine.GAME_VIEW_HEIGHT;
+        this._curFile = tp;
+        this.index = index;
+        this.nextIdx = nextIdx;
+        this.models = JsonModelManager.instance.getModeljuqingkuai()[this.index];
+        this.onInitUI();
+    }
+    private onInitUI(): void {
+        let tree_json = RES.getRes(`plotTree${this.index}_json`);
+        if (!tree_json) {
+            // Tool.error(`剧情树状：缺少plotTree${this.index}_json文件`);
+            return;
+        }
+        this.lockLayer = new egret.DisplayObjectContainer();
+        this.UIDict = {};
+        this.refreshUIAry = [];
+        let plot_slots = tree_json.armature[0].skin[0].slot;
+        for (let idx in plot_slots) {
+            let slotObj = plot_slots[idx];
+            let displayName: string = slotObj["name"];
+            let transform = slotObj["display"][0]["transform"];
+            let slotDisplay: eui.Image = new eui.Image();
+            if (displayName.indexOf("BE_") == -1) {
+                slotDisplay.source = displayName + "_png";
+            } else {
+                slotDisplay.source = "cundang_betu_png";
+            }
+            slotDisplay.x = transform.x;
+            slotDisplay.y = transform.y;
+            this.addChild(slotDisplay);
+            slotDisplay.visible = false;
+            this.UIDict[displayName] = slotDisplay;
+            if (this.refreshUIAry.indexOf(displayName) == -1) {
+                this.refreshUIAry.push(displayName);
+            }
+            /**剧情块点击事件**/
+            if (displayName.indexOf('plot') != -1 && displayName.indexOf('_image') != -1) {
+                slotDisplay.name = displayName.replace('plot', '').replace('_image', '');
+                slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
+            } else if (displayName.indexOf('plot') != -1 && displayName.indexOf('BE_') != -1) {
+                slotDisplay.name = displayName.replace('plot', '').replace('BE_', '');
+                slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
+            }
+        }
+        this.addEventListener(egret.Event.ENTER_FRAME, this.invalidateSize, this);
+    }
+    private invalidateSize(): void {
+        if (!this.refreshUIAry || this.refreshUIAry.length == 0) {
+            this.refreshUIAry = null;
+            this.removeEventListener(egret.Event.ENTER_FRAME, this.invalidateSize, this);
+            this.onUpdateStatus();
+        } else {
+            for (let i: number = this.refreshUIAry.length - 1; i >= 0; i--) {
+                let displayName: string = this.refreshUIAry[i];
+                let slotDisplay: eui.Image = this.UIDict[displayName];
+                if (slotDisplay.width != 0 && slotDisplay.height != 0) {
+                    // slotDisplay.visible = true;
+                    slotDisplay.x = slotDisplay.x - slotDisplay.width / 2;
+                    slotDisplay.y = slotDisplay.y - slotDisplay.height / 2;
+                    this.refreshUIAry.splice(i, 1);
+                }
+            }
+        }
+    }
+    public onUpdateStatus(): void {
+        if (!this.UIDict || this.refreshUIAry) return;
+        let _status: number;
+        let index: number = 0;
+        for (let id in this.models) {
+            let cfg: Modeljuqingkuai = this.models[id];
+            /**判断当前章节的状态**/
+            if (cfg.openVideo) {
+                _status = this.getOpen(cfg);
+            } else {
+                _status = this.IS_OPEN;
+            }
+            this.statusData[cfg.id] = _status;
+            /**根据状态来修改UI样式**/
+            let slotImg: eui.Image;
+            if (cfg.BE) {
+                slotImg = this.UIDict[`BE_plot${cfg.id}`];
+                if (!slotImg) slotImg = this.UIDict[`plot${cfg.id}_image`];//图片
+            } else {
+                slotImg = this.UIDict[`plot${cfg.id}_image`];//图片
+            }
+            let txtImg: eui.Image = this.UIDict[`plot${cfg.id}_txt`];//文字
+            if (!slotImg)
+                return;
+            switch (_status) {
+                case this.NOT_SHOW:
+                    slotImg.visible = false;
+                    if (txtImg) txtImg.visible = false;
+                    break;
+                case this.HAS_LOCK:
+                    slotImg.visible = true;
+                    if (txtImg) txtImg.visible = false;
+                    this.addLock(cfg);
+                    break;
+                case this.IS_OPEN:
+                    slotImg.visible = true;
+                    if (txtImg) txtImg.visible = true;
+                    break;
+            }
+            /**关系线逻辑处理**/
+            let grayLineImg: eui.Image;
+            let lightLineImg: eui.Image;
+            if (!cfg.lastKuai) {
+            } else if (cfg.lastKuai.indexOf(",") == -1 || index == 0) {
+                grayLineImg = this.UIDict[`plot${cfg.id}_grayLine`];//暗线
+                lightLineImg = this.UIDict[`plot${cfg.id}_lightLine`];//明线
+                switch (_status) {
+                    case this.NOT_SHOW:
+                        if (grayLineImg) grayLineImg.visible = false;
+                        if (lightLineImg) lightLineImg.visible = false;
+                        break;
+                    case this.HAS_LOCK:
+                        if (grayLineImg) grayLineImg.visible = true;
+                        if (lightLineImg) lightLineImg.visible = false;
+                        break;
+                    case this.IS_OPEN:
+                        if (grayLineImg) grayLineImg.visible = true;
+                        if (lightLineImg) lightLineImg.visible = true;
+                        break;
+                }
+            } else {
+                let lastkuaiAry: string[] = cfg.lastKuai.split(',');
+                for (let i: number = 0; i < lastkuaiAry.length; i++) {
+                    let lastKuaiId: string = lastkuaiAry[i];
+                    grayLineImg = this.UIDict[`plot${cfg.id}_${lastKuaiId}_grayLine`];//暗线
+                    lightLineImg = this.UIDict[`plot${cfg.id}_${lastKuaiId}_lightLine`];//明线
+                    // this.statusData = this.statusData[parseInt(lastKuaiId)] ? this.statusData[parseInt(lastKuaiId)] : this.NOT_SHOW;
+                    switch (_status) {
+                        case this.NOT_SHOW:
+                            if (grayLineImg) grayLineImg.visible = false;
+                            if (lightLineImg) lightLineImg.visible = false;
+                            break;
+                        case this.HAS_LOCK:
+                            if (grayLineImg) grayLineImg.visible = true;
+                            if (lightLineImg) lightLineImg.visible = false;
+                            break;
+                        case this.IS_OPEN:
+                            if (grayLineImg) grayLineImg.visible = true;
+                            if (lightLineImg) lightLineImg.visible = true;
+                            break;
+                    }
+                }
+            }
+            /**当前进行中的剧情用特效标记出来**/
+            let curJuqingID: number = GameCommon.getInstance().getCurJuqingID(UserInfo.curBokData);
+            if (this._curFile == FILE_TYPE.AUTO_FILE && cfg.id == curJuqingID) {
+                if (!this.handAni) {
+                    this.handAni = new Animation('juqing_kuang', -1);
+                    this.addChild(this.handAni);
+                    this.handAni.onPlay();
+                }
+                this.handAni.scaleX = this.handAni.scaleY = cfg.scal;
+                if (cfg.BE == 1) {
+                    this.handAni.x = slotImg.x + 55;
+                    this.handAni.y = slotImg.y - 20;
+                } else if (cfg.scal == 0.58) {
+                    this.handAni.x = slotImg.x + (121 / 2) - 3;
+                    this.handAni.y = slotImg.y - 20;
+                } else {
+                    this.handAni.x = slotImg.x + (210 / 2);
+                    this.handAni.y = slotImg.y - 40;
+                }
+            }
+
+            index++;
+        }
+        this.nextkuaiHandler();
+    }
+    /** 处理尾页划线 **/
+    private nextkuaiHandler(): void {
+        if (this.nextIdx == this.index) return; //最后一页了 不用处理了
+        let nextmodel: Modeljuqingkuai;
+        for (let id in JsonModelManager.instance.getModeljuqingkuai()[this.nextIdx]) {
+            nextmodel = JsonModelManager.instance.getModeljuqingkuai()[this.nextIdx][id];
+            break;
+        }
+        if (!nextmodel) return;
+        let grayLineImg: eui.Image;
+        let lightLineImg: eui.Image;
+        let _status: number;
+        if (nextmodel.openVideo) {
+            _status = this.getOpen(nextmodel);
+        } else {
+            _status = this.IS_OPEN;
+        }
+
+        if (nextmodel.lastKuai.indexOf(",") == -1) {
+            grayLineImg = this.UIDict[`page${this.index}_last_grayLine`];//暗线
+            lightLineImg = this.UIDict[`page${this.index}_last_lightLine`];//明线
+            if (grayLineImg) grayLineImg.visible = _status != this.NOT_SHOW;
+            if (lightLineImg) lightLineImg.visible = _status == this.IS_OPEN;
+        } else {
+            let lastkuaiAry: string[] = nextmodel.lastKuai.split(',');
+            for (let i: number = 0; i < lastkuaiAry.length; i++) {
+                let lastKuaiId: number = parseInt(lastkuaiAry[i]);
+                grayLineImg = this.UIDict[`page${this.index}_last${lastKuaiId}_grayLine`];//暗线
+                lightLineImg = this.UIDict[`page${this.index}_last${lastKuaiId}_lightLine`];//明线
+                if (grayLineImg) grayLineImg.visible = _status != this.NOT_SHOW;
+                if (lightLineImg) lightLineImg.visible = _status == this.IS_OPEN && this.statusData[lastKuaiId] && this.statusData[lastKuaiId] == this.IS_OPEN ? true : false;
+            }
+        }
+    }
+    /**
+     * 0 是未开启
+     * 1 代表有锁
+     * 2 开启
+     * **/
+    private getOpen(juqingCfg: Modeljuqingkuai) {
+        if (!UserInfo.curBokData) {
+            return this.NOT_SHOW;
+        }
+        /** 判断剧情块的开启
+         * 自动存档  要求1.比当前正在看的问题小那些  如果看过视频则开启 没有则上锁  2.比问题大的章节如果用户层看过的视频  找出最高的剧情ID 向下锁定
+         * 存档位   只显示当前问题向下的状态 
+         *  **/
+        let fileData;
+        if (this._curFile == FILE_TYPE.AUTO_FILE) {
+            fileData = UserInfo.curBokData;
+        } else {
+            fileData = UserInfo.fileDatas[this._curFile];
+        }
+        let curJuqingID: number = GameCommon.getInstance().getCurJuqingID(fileData);
+        if (GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id)) {//比当前剧情低的情况
+            if (juqingCfg.id == curJuqingID) return this.IS_OPEN;
+            else if (fileData.videoDic[juqingCfg.videoId]) return this.IS_OPEN;
+            else return this.HAS_LOCK;
+        } else {//比当前剧情高的情况   就仅处理自动存档
+            if (this._curFile == FILE_TYPE.AUTO_FILE) {
+                curJuqingID = 0;
+                let models;
+                if (juqingCfg.show == this.index) models = this.models;
+                else models = JsonModelManager.instance.getModeljuqingkuai()[juqingCfg.show];
+                for (let id in models) {
+                    let model: Modeljuqingkuai = models[id];
+                    if (UserInfo.curBokData.allVideos[model.videoId]) {
+                        if (curJuqingID == 0 || GameCommon.getInstance().checkJuqingKuaiOpen(model.id, curJuqingID)) {
+                            curJuqingID = model.id;
+                        }
+                    }
+                }
+                if (curJuqingID > 0 && GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id)) return this.HAS_LOCK;
+            }
+        }
+
+        return this.NOT_SHOW;
+    }
+    private addLock(cfg: Modeljuqingkuai) {
+        let heidiImg: eui.Image = new eui.Image();
+        heidiImg.source = "cundang_iconhei_png";
+        heidiImg.scaleX = heidiImg.scaleY = cfg.scal;
+
+        let lockImg: eui.Image = new eui.Image();
+        lockImg.source = "sc_shipin_suo_png";
+        lockImg.scaleX = lockImg.scaleY = cfg.scal;
+        this.addChild(heidiImg);
+        this.addChild(lockImg);
+        if (cfg.BE == 1) {
+            let juqingImg: eui.Image = this.UIDict[`BE_plot${cfg.id}`];
+            if (!juqingImg) {
+                juqingImg = this.UIDict[`plot${cfg.id}_image`];
+                if (cfg.scal == 0.58) {
+                    heidiImg.x = juqingImg.x + 5;
+                    heidiImg.y = juqingImg.y + 4;
+                    lockImg.x = juqingImg.x + 38;
+                    lockImg.y = juqingImg.y + 44;
+                }
+                else {
+                    heidiImg.x = juqingImg.x + 8;
+                    heidiImg.y = juqingImg.y + 8;
+                    lockImg.x = juqingImg.x + 60;
+                    lockImg.y = juqingImg.y + 70;
+                }
+            }
+            else {
+                heidiImg.source = 'cundang_iconhei1_png';
+                lockImg.scaleX = lockImg.scaleY = 0.7;
+                heidiImg.x = juqingImg.x + 1;
+                heidiImg.y = juqingImg.y + 2;
+                lockImg.x = juqingImg.x + 30;
+                lockImg.y = juqingImg.y + 28;
+            }
+        }
+        else {
+            let juqingImg: eui.Image = this.UIDict[`plot${cfg.id}_image`];
+            if (cfg.scal == 0.58) {
+                heidiImg.x = juqingImg.x + 5;
+                heidiImg.y = juqingImg.y + 4;
+                lockImg.x = juqingImg.x + 38;
+                lockImg.y = juqingImg.y + 44;
+            }
+            else {
+                heidiImg.x = juqingImg.x + 8;
+                heidiImg.y = juqingImg.y + 8;
+                lockImg.x = juqingImg.x + 60;
+                lockImg.y = juqingImg.y + 70;
+            }
+        }
+    }
+    private onTouchBtn(event: egret.Event) {
+        var name: number = Number(event.currentTarget.name);
+        var allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
+        if (allCfg[name]) {
+            if (allCfg[name].openVideo) {
+                if (this.getOpen(allCfg[name]) == this.IS_OPEN) {
+                    GameCommon.getInstance().showLoading();
+                    if (this._curFile != FILE_TYPE.AUTO_FILE) {
+                        UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
+                    }
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), { cfg: allCfg[name], idx: this._curFile });
+                    return;
+                }
+                GameCommon.getInstance().showCommomTips('暂未开启');
+            }
+            else {
+                if (allCfg[name].videoId) {
+                    GameCommon.getInstance().showLoading();
+                    if (this.index != FILE_TYPE.AUTO_FILE) {
+                        UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
+                    }
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), { cfg: allCfg[name], idx: this._curFile });
+                }
+            }
+        }
+    }
+    //The end
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionCheckDrink" width="1600" height="900" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Group touchChildren="true" width="100%" height="100%">
+		<e:Group horizontalCenter="0" top="32">
+			<e:Image source="action_timedi_png" horizontalCenter="0" top="0" locked="true" />
+			<e:ProgressBar id="timeBar1" skinName="skins.ActionBar1Skin" scaleX="-1" horizontalCenter="-125" value="100" />
+			<e:ProgressBar id="timeBar2" skinName="skins.ActionBar1Skin" horizontalCenter="125" value="100" />
+			<e:Label id="desc" text="" fontFamily="SimHei" size="40" height="60" verticalAlign="middle" verticalCenter="0"
+			         horizontalCenter="0" />
+		</e:Group>
+		<e:Group id="tabGroup" width="100%" height="100%">
+			<e:RadioButton id="drink0_btn" groupName="tabGroup" value="1" skinName="skins.Common_TabButtonSkin3" x="910" y="182" />
+			<e:RadioButton id="drink1_btn" groupName="tabGroup" skinName="skins.Common_TabButtonSkin3" value="2" y="308" x="910" />
+			<e:RadioButton id="drink2_btn" groupName="tabGroup" skinName="skins.Common_TabButtonSkin3" value="3" y="432" x="910" />
+			<e:RadioButton id="drink3_btn" groupName="tabGroup" skinName="skins.Common_TabButtonSkin3" value="4" y="573" x="910" />
+			<e:RadioButton id="drink4_btn" groupName="tabGroup" skinName="skins.Common_TabButtonSkin3" value="5" y="714" x="910" />
+		</e:Group>
+	</e:Group>
+</e:Skin>

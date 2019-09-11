@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.Mp3PanelSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        xmlns:n1s='*' height="900">
+
+	<e:Image source="video_heidi1_png" x="-1" y="0"  width="100%" height="100%"/>
+	<e:Group verticalCenter="-25" horizontalCenter="-269.5">
+		<e:Image x="1" y="1" source="sc_music_icondi_png"/>
+		<e:Image id="banner_img" x="9" y="9" width="355" height="355"  source="shop_banner5_jpg"/>
+
+		<e:Image id="timeImg" x="2" y="3"  source="sc_music_baiquan_png" scaleX="0.78" scaleY="0.78"/>
+		
+		<e:Image touchEnabled="true" source="control_zidi_select_png" x="281" y="391" scaleX="0.5" scaleY="0.5" />
+		<e:Label id="musicNum" text="8首" size="20" fontFamily="SimHei" textAlign="left" x="299" y="395" />
+		<e:Label id="musicName" text="" size="30" fontFamily="Arial" textAlign="left" x="75" y="390" width="164"
+		         height="34" touchEnabled="false" textColor="0xffffff" bold="true" />
+		<e:Label id="desc" text="" size="20" fontFamily="Arial" textAlign="left" x="74" y="429" width="265"
+		         touchEnabled="false" textColor="0xcecece" />
+	</e:Group>
+	<e:Label id="author" text="如果你也有梦想" size="16" fontFamily="SimHei" textAlign="left" touchEnabled="true"
+	         textColor="0xffffff" verticalAlign="middle" bottom="16" left="24"  visible="false"/>
+	<e:Group id="yindaoGroup" touchChildren="true" touchEnabled="true" scaleX="1" scaleY="1" width="377" height="430" horizontalCenter="273.5" verticalCenter="-34">
+		<e:Scroller id="scroll" height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">
+		<e:Group id="goodsLayer" width="1498">
+
+			<e:layout>
+				<e:VerticalLayout gap="21"/>
+			</e:layout>
+		</e:Group>
+		</e:Scroller>
+	</e:Group>
+	<e:Button id="bgBtn" width="91" height="91" top="113" right="158">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png"
+				         horizontalCenter="0" verticalCenter="0" width="91" height="91" />
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Scroller id="labScroll" skinName="skins.ScrollerSkin" horizontalCenter="0" height="96" bottom="60">
+	<e:Label id="lyricsLab" text="" size="34"
+	         fontFamily="SimHei" textAlign="center" touchEnabled="false" verticalAlign="top" y="767" x="402" width="567"
+	         lineSpacing="8" height="92"  textColor="0x545454"/>
+	</e:Scroller>
+</e:Skin>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionMsgSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+    <e:Group id="mainGroup" height="100%" width="100%" y="0" x="0">
+        <e:Group height="100%" right="0" top="0" width="501">
+            <e:Image alpha="1" left="0" top="0" scale9Grid="80,83,275,505" source="msg_kuang_png" />
+            <e:Group id='mainMsg' height="888" right="0" width="501" y="20">
+                <e:Group id='msg0' y="151" x="0" width="100%" height="82" visible="false">
+                    <!--<e:Image y="-29" x="435" scaleX="1" scaleY="1" source="msg_linbohe_png" visible="false" />
+                    -->
+                    <e:Image y="0" x="256" scaleX="1" scaleY="1" source="msg_right1_png" />
+                    <!--<e:Image y="-36" x="290" scaleX="1" scaleY="1" source="action_msg_zi2_png" />
+                    -->
+                    <!--<e:Label text="江雪!ㄒoㄒ" size="27" fontFamily="SimHei" touchEnabled="false" anchorOffsetX="0"
+                                 anchorOffsetY="0" scaleX="1" scaleY="1" width="167" height="35" x="337"
+                                 textColor="0xffffff" verticalCenter="0" verticalAlign="middle" textAlign="center" />
+                    -->
+                </e:Group>
+                <e:Group id='msg1' y="233" x="60" height="77" width="231" visible="false">
+                    <!--<e:Image y="-3" x="4" scaleX="1" scaleY="1" source="msg_jiangxue_png" visible="false" />
+                    -->
+                    <e:Image y="2" x="0" source="msg_left1_png" />
+                    <!--<e:Label text="怎么了，薄荷？" size="27" fontFamily="SimHei" touchEnabled="false" anchorOffsetX="0"
+                                 anchorOffsetY="0" scaleX="1" scaleY="1" height="35" textColor="0xffffff"
+                                 verticalAlign="middle" textAlign="center" horizontalCenter="0" verticalCenter="0" />
+                    -->
+                    <!--<e:Label text="怎么了，薄荷？" size="30" fontFamily="SimHei" textColor="0x000000" touchEnabled="false"
+                                 anchorOffsetX="0" anchorOffsetY="0" x="108" scaleX="1" scaleY="1" y="13" width="220"
+                                 height="36" />
+                    -->
+                    <!--<e:Image y="0" x="78" source="msg_whitedi2_png" scale9Grid="52,11,318,52" width="249"
+                                 height="68" scaleX="1" scaleY="1" />
+                    <e:Label text="怎么了，薄荷？" size="30" fontFamily="SimHei" textColor="0x000000" touchEnabled="false"
+                             anchorOffsetX="0" anchorOffsetY="0" x="108" scaleX="1" scaleY="1" y="13" width="220"
+                             height="36" />
+                    -->
+                </e:Group>
+                <e:Group id='msg2' y="313" x="0" width="100%" height="75" visible="false">
+                    <!--<e:Image y="-40" x="446" scaleX="1" scaleY="1" source="msg_linbohe_png" visible="false" />
+                    -->
+                    <e:Image y="0" x="169" source="msg_right2_png" />
+                    <!--<e:Image width="301" source="msg_di1_png" right="100" y="0" height="68"
+                                 scale9Grid="52,40,318,44" x="205" scaleX="1" scaleY="1" />
+                    -->
+                    <!--<e:Label text="你在哪啊？出事了！" size="27" fontFamily="SimHei" touchEnabled="false" anchorOffsetX="0"
+                                 anchorOffsetY="0" scaleX="1" scaleY="1" width="261" height="35" textColor="0xffffff"
+                                 verticalAlign="middle" textAlign="center" verticalCenter="0" x="271" />
+                    -->
+                </e:Group>
+                <e:Group id='msg3' y="392" x="75" height="77" visible="false">
+                    <!--<e:Image y="-40" x="14" scaleX="1" scaleY="1" source="msg_jiangxue_png" visible="false" />
+                    -->
+                    <e:Image y="0" x="-15" source="msg_left2_png" />
+                    <!--<e:Image y="0" x="78" source="msg_whitedi2_png" width="436" height="100"
+                                 scale9Grid="52,43,318,26" scaleX="1" scaleY="1" />
+                    -->
+                    <!--<e:Label text="我在社联这呢，你快说，怎么了啊？" size="27" fontFamily="SimHei" touchEnabled="false"
+                                 anchorOffsetX="0" anchorOffsetY="0" x="-10" scaleX="1" scaleY="1" width="433"
+                                 height="29" textColor="0xffffff" verticalCenter="0" />
+                    -->
+                </e:Group>
+                <e:Group id='msg4' y="675" x="0" height="98" width="100%" visible="false">
+                    <e:Label text="我们的排练厅被Mad-max的人给占了,没有排练厅用了怎么办啊？" size="27" fontFamily="SimHei" touchEnabled="false"
+                             anchorOffsetX="0" anchorOffsetY="0" x="130" scaleX="1" scaleY="1" width="392" height="74"
+                             textColor="0xffffff" y="0" verticalAlign="middle" />
+                    <!--<e:Image y="0" x="78" source="msg_whitedi2_png" width="436" height="100"
+                                 scale9Grid="52,43,318,26" scaleX="1" scaleY="1" />
+                    -->
+                </e:Group>
+            </e:Group>
+            <e:Group id="msgInput" width="394" touchEnabled="true" right="57" bottom="202">
+                <e:Image id="msg_input1" source="wentikuang1_png" left="0" top="0" width="394" height="60"
+                         scale9Grid="162,45,43,9" />
+                <e:Image id="msg_input" source="msg_shurukuang_png" left="0" top="0" width="394"
+                         scale9Grid="162,45,43,9" />
+                <e:Label id="msgLab" text="" size="30" fontFamily="SimHei" textAlign="left" verticalAlign="justify"
+                         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" stroke="0" scaleX="1" scaleY="1"
+                         width="372" top="15" left="10" textColor="0xffffff" />
+            </e:Group>
+            <e:Group id="btnSend" touchEnabled="true" y="715" horizontalCenter="0">
+                <e:Image x="0" scaleX="1" scaleY="1" source="msg_send_btn_png" y="0" />
+                <e:Label id="tipLab" text="发送" size="45" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+                         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"
+                         textColor="0x000000" horizontalCenter="0" verticalCenter="0" />
+            </e:Group>
+        </e:Group>
+        <e:Group horizontalCenter="0" top="32">
+            <e:Image source="action_timedi_png" horizontalCenter="0" top="0" locked="true" />
+            <e:ProgressBar id="timeBar1" skinName="skins.ActionBar1Skin" scaleX="-1" horizontalCenter="-125" value="100" />
+            <e:ProgressBar id="timeBar2" skinName="skins.ActionBar1Skin" horizontalCenter="125" value="100" />
+            <e:Label id="desc1" text="" fontFamily="SimHei" size="40" height="60" verticalAlign="middle"
+                     verticalCenter="0" horizontalCenter="0" />
+        </e:Group>
+        <!--<e:Image id="msgImg" source="zuoyouhuadongchakan_png" anchorOffsetX="250" anchorOffsetY="0" y="66"
+                     fillMode="clip" width="501" x="752" />
+        -->
+        <!--<e:Image id="tipsImg" source="zuoyouhuadongchakan_png" anchorOffsetX="250" anchorOffsetY="0" y="66"
+                     fillMode="clip" width="501" x="752" />
+        -->
+        <e:Label id="up_Btn" text="向上滑动发送" size="35" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+                 touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" y="117"
+                 horizontalCenter="150" visible="false" />
+        <e:Label id='down_Btn' text="向下滑动取消" size="35" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+                 touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" y="727"
+                 horizontalCenter="150" visible="false" />
+        <e:Group id="groupTouch" width="100%" height="100%" verticalCenter="0" horizontalCenter="0" touchChildren="false"
+                 touchEnabled="false"></e:Group>
+    </e:Group>
+    <!--<e:ProgressBar id="timeBar" skinName="skins.ActionBarSkin" scaleX="1" scaleY="1" horizontalCenter="0" top="32" />
+    -->
+</e:Skin>

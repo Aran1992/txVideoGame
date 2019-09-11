@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.VideoShopPreviewSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+    <e:Image source="video_heidi1_png" left="0" right="0" top="0" bottom="0" locked="true" />
+    <e:Label text="——  仅支持动图预览，购买后观看完整流畅的视频 —— " y="50" fontFamily="SimHei" textColor="0xff5fa5" size="28"
+             horizontalCenter="0" locked="true" />
+    <e:Group width="1600" height="900" horizontalCenter="0" verticalCenter="0">
+        <e:Group horizontalCenter="0" y="140">
+            <e:Image id="banner_img" height="580" width="1150"  source=""/>
+            <e:Group id="playBtn" horizontalCenter="0" verticalCenter="-10">
+                <e:Image source="anniudi_png" width="150" height="150" horizontalCenter="0" verticalCenter="0"
+                         locked="true" />
+                <e:Image scaleX="1.5" source="control_d1_png" horizontalCenter="0" verticalCenter="0" scaleY="1.5"
+                         locked="true" />
+                <e:Button icon="playImg_png" verticalCenter="0" horizontalCenter="8" scaleX="1.5" scaleY="1.5"
+                          locked="true">
+                    <e:skinName>
+                        <e:Skin states="up,down,disabled">
+                            <e:Image width="105" height="123" alpha="0" source="sc_shipin_close_png"
+                                     horizontalCenter="0" verticalCenter="0" />
+                            <e:Image scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0"
+                                     id="iconDisplay" />
+                        </e:Skin>
+                    </e:skinName>
+                </e:Button>
+            </e:Group>
+        </e:Group>
+        <e:Group y="760" x="220">
+            <e:Group>
+                <e:Label id="name_lab" text="视频名称" size="30" fontFamily="SimHei" textAlign="center" touchEnabled="false"
+                         textColor="0xffffff" />
+                <e:Group height="46" width="100">
+                    <e:Image touchEnabled="true" source="control_zidi_select_png" left="0" right="0" top="0" bottom="0"
+                             locked="true" />
+                    <e:Label id="time_lab" text="7:25" size="28" fontFamily="SimHei" textAlign="left"
+                             horizontalCenter="0" verticalCenter="0" />
+                </e:Group>
+                <e:layout>
+                    <e:HorizontalLayout verticalAlign="middle" gap="15" />
+                </e:layout>
+            </e:Group>
+            <e:Label id="desc_lab" text="视频描述XXXXXXX" size="20" fontFamily="SimHei" x="0" y="60" touchEnabled="false"
+                     textColor="0xcecece" width="460" />
+        </e:Group>
+        <e:Group y="770" horizontalCenter="300">
+            <e:Component id="discount_bar" skinName="skins.ShopDiscountBarSkin" x="0" y="16" />
+            <e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" x="275" y="0"
+                       label="购 买"/>
+            <e:layout>
+                <e:HorizontalLayout verticalAlign="middle" gap="180" />
+            </e:layout>
+        </e:Group>
+    </e:Group>
+    <e:Button id="closeBtn" top="50" right="70" width="91" height="91">
+        <e:skinName>
+            <e:Skin states="up,down,disabled">
+                <e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png"
+                         horizontalCenter="0" verticalCenter="0" width="91" height="91" />
+            </e:Skin>
+        </e:skinName>
+    </e:Button>
+</e:Skin>

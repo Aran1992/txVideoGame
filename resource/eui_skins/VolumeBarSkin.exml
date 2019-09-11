@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.VolumeBarSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="616" height="42">
+    <e:Image  x="0"  source="setting_pro_png" verticalCenter="3" width="100%"/>
+	<e:Image id="thumb"
+	          x="1" source="setting_pro3_png" verticalCenter="3" width="100%" scale9Grid="20,12,13,0"/>
+    <e:Image id="touchBtn" x="-1" scaleX="1" source="setting_pro2_png" verticalCenter="0"/>          
+</e:Skin>

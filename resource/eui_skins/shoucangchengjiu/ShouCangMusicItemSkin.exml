@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ShouCangMusicItemSkin" xmlns:e="http://ns.egret.com/eui" width="320" height="366"
+        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+    <e:Image id="icon" touchEnabled="true" source="sc_music_icon1_png" />
+    <e:Image touchEnabled="true" source="sc_yinyue_icon_png" right="11" top="11" locked="true" />
+    <e:Group horizontalCenter="0" bottom="0">
+        <e:Label id="musicName" text="音乐专辑" size="30" fontFamily="SimHei" touchEnabled="true" textColor="0xffffff" x="0"
+                 y="3" bold="true" />
+        <e:Group x="235" y="0">
+            <e:Image touchEnabled="true" source="shoucang_shipindi_png" width="60" height="30" locked="true" />
+            <e:Label id="musicNum" text="8首" size="26" fontFamily="SimHei" textAlign="left" horizontalCenter="0"
+                     verticalCenter="0" />
+        </e:Group>
+        <e:layout>
+            <e:HorizontalLayout gap="14" verticalAlign="middle" />
+        </e:layout>
+    </e:Group>
+    <e:Label id="author" text="如果你也有梦想" size="16" fontFamily="SimHei" textAlign="left" touchEnabled="true"
+             textColor="0xffffff" verticalAlign="middle" bottom="16" left="24" visible="false" />
+    <e:Button id="btnSetXinDong" label="3.500" width="188" height="53" scaleX="1" scaleY="1" horizontalCenter="0"
+              bottom="4" visible="false">
+        <e:skinName>
+            <e:Skin states="up,down,disabled">
+                <e:Image scaleX.down="0.9" scaleY.down="0.9" width="188" height="53" source="button_pinkdi_png"
+                         source.down="button_pinkdi_png" horizontalCenter="0" verticalCenter="0" />
+                <e:Image scaleX.down="0.9" scaleY.down="0.9" x='30' width="38" height="39" source="common_suipian_png"
+                         source.down="common_suipian_png" verticalCenter="0" />
+                <e:Label id="labelDisplay" verticalCenter="0" size="30" x='75' fontFamily="SimHei" scaleX.down="0.9"
+                         scaleY.down="0.9" />
+            </e:Skin>
+        </e:skinName>
+    </e:Button>
+</e:Skin>

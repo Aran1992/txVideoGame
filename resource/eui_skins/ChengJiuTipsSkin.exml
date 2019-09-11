@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ChengJiuTipsSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+    <e:Group id="grp" x="43" y="45">
+        <e:Image x="83" y="14" scaleX="1" scaleY="1" fillMode="scale" source="chengjiu_tips_di_png"
+                 scale9Grid="144,13,61,24" />
+        <e:Image x="0" y="0" scaleX="1" scaleY="1" fillMode="scale" source="common_chengjiu_icon_png" />
+        <e:Label id="desc" size="30" textColor="0xFFFFFF" verticalAlign="middle" textAlign="left" height="49"
+                 text="加油你是最棒的" width="321" x="110" y="17"  fontFamily="SimHei"/>
+    </e:Group>
+    <e:Group id="grp1" x="43" y="148">
+        <e:Image x="83" y="13" scaleX="1" scaleY="1" fillMode="scale" source="chengjiu_tips_di_png"
+                 scale9Grid="144,13,61,24" />
+        <e:Image x="0" y="0" scaleX="1" scaleY="1" fillMode="scale" source="common_like_icon_png" />
+        <e:Label id="desc1" size="30" textColor="0xFFFFFF" verticalAlign="middle" text="" width="310" x="116"
+                 textAlign="center" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0"  fontFamily="SimHei"/>
+    </e:Group>
+    <e:Group id="grp2" x="1263" y="45">
+        <e:Image x="0" y="0" scaleX="1" scaleY="1" fillMode="scale" source="tips_di_yuan_png"  scale9Grid="35,6,210,39" width="337"/>
+        <e:Label id="desc2" size="35" textColor="0xFFFFFF" verticalAlign="middle" text="即将进行互动" width="228" x="78"
+                 bold="true" textAlign="center" anchorOffsetX="0" anchorOffsetY="0"  y="9"/>
+    </e:Group>
+    <e:Group id="grp3" horizontalCenter="0" verticalCenter="0">
+        <e:Image x="0" y="0" scaleX="1" scaleY="1" fillMode="scale" source="tips_di_yuan_png"  scale9Grid="35,6,210,39"/>
+        <e:Label id="desc3" size="35" textColor="0xFFFFFF" verticalAlign="middle" text=""
+                 bold="true" textAlign="center" anchorOffsetX="0" anchorOffsetY="0"  y="9" horizontalCenter="0"/>
+    </e:Group>
+    <e:Group id="grp4" horizontalCenter="0" top="20">
+        <e:Image x="0" y="0" scaleX="1" scaleY="1" fillMode="scale"  source="hudong_topdi_png" width="557" scale9Grid="128,6,117,48"/>
+        <e:BitmapLabel id="desc4" text="" font="syht_fnt" touchEnabled="false" letterSpacing="-1"  horizontalCenter="0" verticalCenter="0" textAlign="center" height="45"/>
+     </e:Group>
+     <e:Group id="grp5" horizontalCenter="0" verticalCenter="0">
+        <e:Image x="0" y="0" scaleX="1" scaleY="1" fillMode="scale"  source="tips_di_yuan_png" scale9Grid="128,6,117,33" width="354"/>
+       <e:Label id="desc5" size="35" textColor="0xFFFFFF" verticalAlign="middle" text=""
+                 bold="true" textAlign="center" anchorOffsetX="0" anchorOffsetY="0"  verticalCenter="0" horizontalCenter="0"/>
+     </e:Group>
+</e:Skin>

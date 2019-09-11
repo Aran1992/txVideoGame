@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.SlideBar" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="291" height="4">
+
+	<e:Image id="thumb" height="100%"
+	          width="100%" y="0" x="0" scale9Grid="14,1,6,8" source="kaimen_lvtiao_png"/>
+</e:Skin>

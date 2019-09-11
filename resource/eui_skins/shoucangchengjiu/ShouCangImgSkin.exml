@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ShouCangImgSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+    <e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
+        <e:Image y="0" x="0" width="100%" height="100%" source="video_heidi1_png" alpha="1" />
+        <e:Group id='imgGroup' width="100%" touchChildren="true" touchEnabled="true" y="0" height="100%"
+                 anchorOffsetX="0" horizontalCenter="0">
+            <e:Group width="100%" touchChildren="true" touchEnabled="true" y="0" height="100%" anchorOffsetX="0"
+                     horizontalCenter="0">
+                <e:Group id="img0Group" touchEnabled="false" anchorOffsetX="0" verticalCenter="0" x="269">
+                    <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
+                             verticalCenter="0" />
+                    <e:Image id="img0" anchorOffsetY="0" touchEnabled="true" scale9Grid="278,0,16,250"
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                    <e:Group id="xindong0" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
+                             top="26">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
+                                 source="tips_di_yuan_png" width="200" />
+                        <e:Label size="35" touchEnabled="false" verticalAlign="middle" textAlign="center" height="39"
+                                 text="主页背景" width="200" fontFamily="SimHei" textColor="0xffffff" horizontalCenter="3"
+                                 verticalCenter="0" />
+                    </e:Group>
+                    <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
+                             bottom="-2" width="1062">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
+                                 source="sc_img_mask_png" width="1062" x="-7" />
+                        <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
+                                 horizontalCenter="0">
+                            <e:Image id='shengyin0' anchorOffsetY="0" touchEnabled="false" y="11"
+                                     source="sc_img_shuxian_png" x="0" />
+                            <e:Label id="miaoshu0" size="25" touchEnabled="false" verticalAlign="middle"
+                                     textAlign="center" height="39" text="小姐姐我刚刚帮你" fontFamily="SimHei" x="68"
+                                     textColor="0xd6d4d4" y="27" />
+                        </e:Group>
+                    </e:Group>
+                </e:Group>
+                <e:Group id="img2Group" touchEnabled="false" anchorOffsetX="0" verticalCenter="0" x="1446" scaleX="0.9"
+                         scaleY="0.9">
+                    <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
+                             verticalCenter="0" />
+                    <e:Image id="img2" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                    <e:Group id="xindong2" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
+                             top="26">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
+                                 source="tips_di_yuan_png" width="200" />
+                        <e:Label size="35" touchEnabled="false" verticalAlign="middle" textAlign="center" height="39"
+                                 text="主页背景" width="200" fontFamily="SimHei" textColor="0xffffff" horizontalCenter="3"
+                                 verticalCenter="0" />
+                    </e:Group>
+                    <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
+                             bottom="-2" width="1062">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
+                                 source="sc_img_mask_png" width="1062" x="-7" />
+                        <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
+                                 horizontalCenter="0">
+                            <e:Image id='shengyin2' anchorOffsetY="0" touchEnabled="false" y="11"
+                                     source="sc_img_shuxian_png" x="0" />
+                            <e:Label id="miaoshu2" size="25" touchEnabled="false" verticalAlign="middle"
+                                     textAlign="center" height="39" text="小姐姐我刚刚帮你" fontFamily="SimHei" x="68"
+                                     textColor="0xd6d4d4" y="27" />
+                        </e:Group>
+                    </e:Group>
+                </e:Group>
+                <e:Group id="img1Group" touchEnabled="false" anchorOffsetX="0" verticalCenter="0" x="1737" scaleY="0.9"
+                         scaleX="0.9">
+                    <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
+                             verticalCenter="0" />
+                    <e:Image id="img1" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                    <e:Group id="xindong1" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
+                             top="26">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
+                                 source="tips_di_yuan_png" width="200" />
+                        <e:Label size="35" touchEnabled="false" verticalAlign="middle" textAlign="center" height="39"
+                                 text="主页背景" width="200" fontFamily="SimHei" textColor="0xffffff" horizontalCenter="3"
+                                 verticalCenter="0" />
+                    </e:Group>
+                    <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
+                             bottom="-2" width="1062">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
+                                 source="sc_img_mask_png" width="1062" x="-7" />
+                        <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
+                                 horizontalCenter="0">
+                            <e:Image id='shengyin1' anchorOffsetY="0" touchEnabled="false" y="11"
+                                     source="sc_img_shuxian_png" x="0" />
+                            <e:Label id="miaoshu1" size="25" touchEnabled="false" verticalAlign="middle"
+                                     textAlign="center" height="39" text="小姐姐我刚刚帮你" fontFamily="SimHei" x="68"
+                                     textColor="0xd6d4d4" y="27" />
+                        </e:Group>
+                    </e:Group>
+                </e:Group>
+                <e:Group id="img3Group" touchEnabled="false" anchorOffsetX="0" verticalCenter="0" x="-1092" scaleX="0.9"
+                         scaleY="0.9">
+                    <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
+                             verticalCenter="0" />
+                    <e:Image id="img3" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                    <e:Group id="xindong3" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
+                             top="26">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
+                                 source="tips_di_yuan_png" width="200" />
+                        <e:Label size="35" touchEnabled="false" verticalAlign="middle" textAlign="center" height="39"
+                                 text="主页背景" width="200" fontFamily="SimHei" textColor="0xffffff" horizontalCenter="3"
+                                 verticalCenter="0" />
+                    </e:Group>
+                    <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
+                             bottom="-2" width="1062">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
+                                 source="sc_img_mask_png" width="1062" x="-7" />
+                        <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
+                                 horizontalCenter="0">
+                            <e:Image id='shengyin3' anchorOffsetY="0" touchEnabled="false" y="11"
+                                     source="sc_img_shuxian_png" x="0" />
+                            <e:Label id="miaoshu3" size="25" touchEnabled="false" verticalAlign="middle"
+                                     textAlign="center" height="39" text="小姐姐我刚刚帮你" fontFamily="SimHei" x="68"
+                                     textColor="0xd6d4d4" y="27" />
+                        </e:Group>
+                    </e:Group>
+                </e:Group>
+                <e:Group id="img4Group" touchEnabled="false" anchorOffsetX="0" verticalCenter="0" x="-863" scaleX="0.9"
+                         scaleY="0.9">
+                    <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
+                             verticalCenter="0" />
+                    <e:Image id="img4" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                    <e:Group id="xindong4" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
+                             top="26">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
+                                 source="tips_di_yuan_png" width="200" />
+                        <e:Label size="35" touchEnabled="false" verticalAlign="middle" textAlign="center" height="39"
+                                 text="主页背景" width="200" fontFamily="SimHei" textColor="0xffffff" horizontalCenter="3"
+                                 verticalCenter="0" />
+                    </e:Group>
+                    <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
+                             bottom="-2" width="1062">
+                        <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
+                                 source="sc_img_mask_png" width="1062" x="-7" />
+                        <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
+                                 horizontalCenter="0">
+                            <e:Image id='shengyin4' anchorOffsetY="0" touchEnabled="false" y="11"
+                                     source="sc_img_shuxian_png" x="0" />
+                            <e:Label id="miaoshu4" size="25" touchEnabled="false" verticalAlign="middle"
+                                     textAlign="center" height="39" text="小姐姐我刚刚帮你" fontFamily="SimHei" x="68"
+                                     textColor="0xd6d4d4" y="27" />
+                        </e:Group>
+                    </e:Group>
+                </e:Group>
+                <e:Button id="btnNextImg" label="回主界面" horizontalCenter="0" bottom="39" visible="false">
+                    <e:skinName>
+                        <e:Skin states="up,down,disabled">
+                            <!--<e:Image scaleX.down="0.9" scaleY.down="0.9" source="sc_img_jiantou_png"
+                                         horizontalCenter="0" verticalCenter="0" />
+                            -->
+                        </e:Skin>
+                    </e:skinName>
+                </e:Button>
+            </e:Group>
+            <e:Button id="btnSetXinDong" label="设为主页背景" width="284" height="71" horizontalCenter="0" bottom="56">
+                <e:skinName>
+                    <e:Skin states="up,down,disabled" width="109">
+                        <e:Image scaleX.down="0.9" scaleY.down="0.9" width="270" height="71" source="main_btn1_png"
+                                 source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0" />
+                        <e:Label id="labelDisplay" verticalCenter="0" size="36" horizontalCenter="0" fontFamily="SimHei"
+                                 scaleX.down="0.9" scaleY.down="0.9" />
+                    </e:Skin>
+                </e:skinName>
+            </e:Button>
+            <e:Button id="playSound" icon="sc_img_shuxian_png" bottom="43" horizontalCenter="205">
+                <e:skinName>
+                    <e:Skin states="up,down">
+                        <e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_d1_png" horizontalCenter="0"
+                                 verticalCenter="0" />
+                        <e:Image scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0"
+                                 id="iconDisplay" />
+                    </e:Skin>
+                </e:skinName>
+            </e:Button>
+            <e:Button id="btnShare" horizontalCenter="320" bottom="69">
+                <e:skinName>
+                    <e:Skin states="up,down,disabled">
+                        <e:Image scaleX.down="0.9" scaleY.down="0.9" source="sc_img_fenxiang_png" horizontalCenter="0"
+                                 verticalCenter="0" />
+                    </e:Skin>
+                </e:skinName>
+            </e:Button>
+        </e:Group>
+        <e:Group id="yindaoGroup" width="100%" height="616" touchChildren="false" touchEnabled="false"
+                 horizontalCenter="0" verticalCenter="0" visible="false">
+            <e:Image id="left_jiantou" y="214" scaleX="-1" rotation="0" source="" x="490" />
+            <e:Image id="right_jiantou" y="214" rotation="0" source="" x="1142" />
+            <e:Image alpha="1" anchorOffsetY="0" source="msg_shurukuang_png" width="406" scale9Grid="49,7,296,46"
+                     horizontalCenter="0" top="-6" />
+            <e:Label textAlign="left" size="45" fontFamily="SimHei" text="左右滑动切换图片" horizontalCenter="0" top="0" />
+        </e:Group>
+        <e:Group id="yindaoGroup1" width="100%" height="616" touchChildren="false" touchEnabled="false"
+                 horizontalCenter="0" verticalCenter="0" visible="false">
+            <e:Group id="fanhuiLab" alpha="1" touchEnabled="false" touchChildren="false" bottom="-96" left="146">
+                <e:Image alpha="1" anchorOffsetY="0" source="msg_shurukuang_png" verticalCenter="0" x="0" width="508"
+                         scale9Grid="49,7,296,46" />
+                <e:Label text="" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+                         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" y="9" x="17" />
+            </e:Group>
+        </e:Group>
+        <e:Button id="bgBtn" width="91" height="91" top="70" right="155">
+            <e:skinName>
+                <e:Skin states="up,down,disabled">
+                    <e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png"
+                             source.down="common_close_png" horizontalCenter="0" verticalCenter="0" width="91"
+                             height="91" />
+                </e:Skin>
+            </e:skinName>
+        </e:Button>
+    </e:Group>
+    <e:Image id="datu" anchorOffsetY="0" touchEnabled="true" source="sc_xuanding_tu2_png" horizontalCenter="-2"
+             verticalCenter="0" visible="false" />
+</e:Skin>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ChapterShopItemSkin" width="290" height="618" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="100%" height="100%">
+		<e:Image id="banner_img" width="100%" height="100%"  source=""/>
+		<e:Image source="shop_image_maskbg_png" left="0" right="0" bottom="0" scale9Grid="59,59,154,355" touchEnabled="false" locked="true"/>
+		<e:Group horizontalCenter="0" verticalCenter="-30">
+			<e:Group width="322" height="433" scaleY="0.65" scaleX="0.75">
+				<e:Image source="shop_chapter_bg_png" left="22" right="22" top="0" bottom="100"/>
+				<e:Image alpha="0.8" scale9Grid="40,94,242,228" source="result_cj_role_di_png" left="0" right="0" top="0" bottom="0"/>
+			</e:Group>
+			<e:Label id="title_lab" size="42" fontFamily="SimHei" text="" horizontalCenter="0" verticalCenter="0"/>
+		</e:Group>
+		<e:Component id="discount_bar" y="470" skinName="skins.ShopDiscountBarSkin" horizontalCenter="-45"  visible="false"/>
+		<e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" horizontalCenter="0"
+		          bottom="40"  label="购 买"/>
+	</e:Group>
+</e:Skin>

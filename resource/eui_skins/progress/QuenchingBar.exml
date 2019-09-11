@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.QuenchingBar" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="440"
+        height="16">
+    <e:Image left="0" right="0" top="0" bottom="0"  scale9Grid="6,2,428,10" source="proBar1_bg_png"/>
+	<e:Image id="thumb" scale9Grid="2,2,14,6" left="4" right="4" top="2" bottom="3" source="proBar1_png"/>
+	<e:Label id="labelDisplay" size="16" fontFamily="SimHei" horizontalCenter="0" verticalCenter="-1" text="111" bold="true" textColor="0xdaffff" stroke="2" strokeColor="0x4651cd"/>
+</e:Skin>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.BadEndSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"  width="1600" height="900">
+
+	<e:Group id="group" y="0" x="0">
+	</e:Group>
+	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
+
+
+	<e:Button id="goMain"  label="返回主界面" width="251" height="71" scaleX="1" scaleY="1" right="434" bottom="141">
+			<e:skinName>
+			<e:Skin states="up,down,disabled" width="109">
+				<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png" source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0"/>
+				<e:Label id="labelDisplay"   horizontalCenter="0" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btnContinueGame"  width="393" height="150" scaleX="1" scaleY="1" label="重来一次" right="57" bottom="100">
+			<e:skinName>
+			<e:Skin states="up,down,disabled" width="109">
+				<e:Image scaleX.down="0.9" scaleY.down="0.9" width="393" height="149" source="main_jixuBtn_di_png" horizontalCenter="0" verticalCenter="0"/>
+				<e:Image scaleX.down="0.9" scaleY.down="0.9" width="68" height="63" source="xiangji_png" verticalCenter="0" left="95"/>
+				<e:Label id="labelDisplay"    horizontalCenter="36" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>
+</e:Skin>

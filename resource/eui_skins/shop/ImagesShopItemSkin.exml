@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ImagesShopItemSkin" width="290" height="618" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Group x="0" y="0">
+		<e:Image id="banner_img" width="290" height="618" touchEnabled="true"  source=""/>
+		<e:Image source="shop_image_maskbg_png" left="0" right="0" bottom="0" scale9Grid="59,59,154,355" touchEnabled="false"  locked="true"/>
+		<e:Image  source="sc_tupian_icon_png" right="6" top="7" locked="true"/>
+		<e:Group y="10" right="10" width="100" height="42" visible="false">
+			<e:Image source="control_zidi_png" left="0" right="0" top="0" bottom="0" />
+			<e:Label id="imgs_num_lab" size="30" fontFamily="SimHei" text="" horizontalCenter="0" verticalCenter="0" />
+		</e:Group>
+		<e:Group y="360" horizontalCenter="0">
+			<e:Label id="title_lab" size="28" fontFamily="SimHei" text="" y="0" x="0" />
+			<e:Image id="pingfen_img" source="" x="110" y="3" />
+			<e:layout>
+				<e:HorizontalLayout verticalAlign="middle" />
+			</e:layout>
+		</e:Group>
+		<e:Label id="style_name_lab" size="36" fontFamily="SimHei" text="" horizontalCenter="0" y="410" bold="true"  width="270" verticalAlign="middle" textAlign="center"/>
+		<e:Component id="discount_bar" skinName="skins.ShopDiscountBarSkin" horizontalCenter="-45" bottom="100" />
+		<e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" horizontalCenter="0"
+		          bottom="30"  label="购 买"/>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.Common_TabButtonSkin2" states="up,down,upAndSelected,downAndSelected" currentState="up"
+        xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="162" height="55">
+    <e:Group width="100%" height="100%">
+        <e:Image source="shop_shaixuan_toggle1_png" source.down="shop_shaixuan_toggle2_png"
+                 source.upAndSelected="shop_shaixuan_toggle2_png" source.downAndSelected="shop_shaixuan_toggle2_png"
+                 left="0" right="0" top="0" bottom="0" scale9Grid="31,6,99,43" />
+        <e:Label id="labelDisplay" size="30" fontFamily="SimHei" verticalCenter="0" horizontalCenter="0"
+                 textColor.down="0x000000" textColor.upAndSelected="0x000000" textColor.downAndSelected="0x000000" />
+    </e:Group>
+</e:Skin>

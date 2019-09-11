@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.BActionArrowSkin" xmlns:e="http://ns.egret.com/eui" height="135">
+	<e:Label  text="按指引右滑开门" size="35" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"  touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0"  textColor="0xffffff" y="14" x="119" visible="false"/>
+	<e:Image  scaleX="1" scaleY="1" y="14" x="0" source="kaimen_di_png"/>
+	<e:Image  scaleX="1" scaleY="1" y="48" source="kaimen_huadongkaimen_png" x="523"/>
+	<e:Image id="imgArrow" scaleX="1" scaleY="1" y="8" x="14" source="kaimen_yuan_png" visible="false"/>
+</e:Skin>

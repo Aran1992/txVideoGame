@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ShaixuanBarSkin" width="420" height="900" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="video_heidi1_png" left="0" right="0" top="0" bottom="0" locked="true" />
+	<e:Scroller left="15" right="15" top="30" bottom="220">
+		<e:Group>
+			<e:Group id="shaixuan_btns_grp">
+				<e:layout>
+					<e:VerticalLayout gap="50"/>
+				</e:layout>
+			</e:Group>
+		</e:Group>
+	</e:Scroller>
+	<e:ToggleSwitch id="check_has_btn" label="只看未拥有" x="50" skinName="skins.ToggleSwitch_Style2_Skin" bottom="140"  visible="false"/>
+	<e:Button id="reset_btn" label="重 置" width="190" horizontalCenter="-105" skinName="skins.Button_ShopStyle2_Skin" bottom="50"
+	          height="50" />
+	<e:Button id="sure_btn" label="确认(999)" skinName="skins.Button_ShopStyle1_Skin" width="190" horizontalCenter="105" bottom="50"
+	          height="50" />
+</e:Skin>

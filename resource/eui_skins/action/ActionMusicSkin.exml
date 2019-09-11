@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionMusicSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+	<e:Image touchEnabled="false" alpha="1" horizontalCenter="0" source="music_bjdi_png" verticalCenter="0" visible="false" />
+	<e:Image touchEnabled="false" alpha="1" horizontalCenter="0" source="action_Music_huawen_png" top="0" visible="false" />
+	<e:Image touchEnabled="false" alpha="1" horizontalCenter="0" source="action_Music_huawen1_png" bottom="0"
+	         visible="false" />
+	<e:Image touchEnabled="false" source="action_Music_di_png" alpha="1" right="0" top="0" scaleX="-1" visible="false" />
+	<e:Image touchEnabled="false" source="action_Music_di_png" alpha="1" verticalCenter="0" left="0" visible="false" />
+	<e:Group width="1400" horizontalCenter="0" height="600" y="0">
+		<e:Label id="jiezou" text="按照节奏,操作DJ台上的按钮" size="45" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+		         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" horizontalCenter="0" top="19"
+		         visible="false" />
+		<e:Image touchEnabled="false" id='clickImg0' source="music_chongjibo_png" left="263" bottom="206" top="0"
+		         scale9Grid="0,47,131,581" alpha="1" visible="false" />
+		<e:Image touchEnabled="false" id='clickImg1' source="music_chongjibo_png" bottom="206" right="263" top="0"
+		         scale9Grid="0,47,131,581" visible="false" />
+		<e:Group id="groupClick0" width="193" height="193" touchEnabled="true" y="300" x="440" alpha="1">
+			<e:Image id="perfect0" touchEnabled="false" source="perfect_png" alpha="0" horizontalCenter="0" x="-67" y="-94"
+			         scaleX="1" scaleY="1" />
+			<e:Image horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu1_png" visible="false" />
+			<e:Image id="imgRound0" horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu2_png"
+			         height="193" visible="false" />
+			<e:Group id="musicImg0" touchChildren="false" touchEnabled="false" width="132" height="132" anchorOffsetX="66"
+			         anchorOffsetY="66" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0">
+				<e:Image touchEnabled="false" source="action_Music_qiu3_png" anchorOffsetX="156" anchorOffsetY="156"
+				         horizontalCenter="0" verticalCenter="0" visible="false" />
+				<e:Image touchEnabled="false" source="action_Music_qiu4_png" horizontalCenter="0" verticalCenter="0" visible="false" />
+			</e:Group>
+			<e:Group id="guideImg" width="338" height="256" scaleX="1" scaleY="1" anchorOffsetX="171" anchorOffsetY="255"
+			         touchEnabled="false" touchChildren="false" x="100" y="0" visible="false">
+				<e:Label text="按照引导点击此处" size="35" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+				         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" textColor="0xffffff" y="25" />
+				<e:Image id="handImg" x="215" y="-75" scaleY="0.8" scaleX="0.8" rotation="90" source="action_weith_png" />
+			</e:Group>
+		</e:Group>
+		<e:Group id="groupClick1" width="193" height="193" touchEnabled="true" x="980" y="333" alpha="0">
+			<e:Image horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu1_png" visible="false" />
+			<e:Image id="imgRound1" horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu2_png"
+			         visible="false" />
+			<e:Group id="musicImg1" touchChildren="false" touchEnabled="false" width="132" height="132" anchorOffsetX="66"
+			         anchorOffsetY="66" horizontalCenter="0" verticalCenter="0">
+				<e:Image touchEnabled="false" source="action_Music_qiu3_png" anchorOffsetX="156" anchorOffsetY="156"
+				         horizontalCenter="0" verticalCenter="0" visible="false" />
+				<e:Image touchEnabled="false" source="action_Music_qiu4_png" horizontalCenter="0" verticalCenter="0" visible="false" />
+			</e:Group>
+			<e:Image id="perfect1" touchEnabled="false" source="perfect_png" alpha="0" horizontalCenter="0" x="-91" y="-94"
+			         scaleX="1" scaleY="1" />
+		</e:Group>
+		<e:layout>
+			<e:BasicLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Group id="groupBG" touchChildren="false" touchEnabled="false" height="900" width="1196" horizontalCenter="0"
+	         verticalCenter="0" />
+</e:Skin>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.GameMainSkin" minHeight="50" minWidth="100" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing" width="1600" height="900">
+	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
+		<e:Group id="bg_grp" touchChildren="true">
+			<e:Image id="bg" source="main_bj1_jpg" />
+			<e:Image source="main_bj2_jpg" width="1600" height="900" locked="true" />
+		</e:Group>
+		<e:Group id="leftBtnGroup" left="0" top="0" height="100%" width="100%">
+			<e:Group touchChildren="true">
+				<e:Image source="quanquan_title_png" y="46" x="38" />
+				<e:Image id="icon" source="main_icon_png" x="56" y="25" visible="false" />
+			</e:Group>
+			<e:Group verticalCenter="0">
+				<e:Button id="btnShouCang" icon="yuandianbai_png" height="93" width="260">
+					<e:skinName>
+						<e:Skin states="up,down" width="260" height="88">
+							<e:Image source="left_btn_di_png" visible.down='true' left='0' verticalCenter="0" width="272" height="88"
+							         visible="false" />
+							<e:Label text="纪 念 册" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
+							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button id="btnChengjiu" icon="yuandianbai_png" width="260" height="93">
+					<e:skinName>
+						<e:Skin states="up,down" width="272" height="88">
+							<e:Image source="left_btn_di_png" visible="false" visible.down='true' left='0' verticalCenter="0" />
+							<e:Label text="青春痕迹" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
+							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" />
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button id="btnShangCheng" icon="yuandianbai_png" width="260" height="93">
+					<e:skinName>
+						<e:Skin states="up,down" width="260" height="88">
+							<e:Image source="left_btn_di_png" visible.down='true' left='0' verticalCenter="0" width="272" height="88"
+							         visible="false" />
+							<e:Label text="福 利 社" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
+							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button id="btnSetting" icon="yuandianbai_png" width="260" height="93">
+					<e:skinName>
+						<e:Skin states="up,down" width="260" height="88">
+							<e:Image source="left_btn_di_png" visible.down='true' left='0' verticalCenter="0" width="272" height="88"
+							         visible="false" />
+							<e:Label text="设  置" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
+							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:layout>
+					<e:VerticalLayout gap="12" />
+				</e:layout>
+			</e:Group>
+			<e:Group touchEnabled="false" touchChildren="false" y="225" x="267" visible="false">
+				<e:Group id="zjLab" touchEnabled="false" touchChildren="false" y="238" x="209">
+					<e:Image source="msg_shurukuang_png" verticalCenter="0" x="46" width="455" scale9Grid="49,7,296,46" />
+					<e:Label text="进入章节系统,精彩继续" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+					         touchEnabled="false" textColor="0xffffff" y="9" x="63" />
+				</e:Group>
+				<e:Group id="cjLab" touchEnabled="false" touchChildren="false" y="238" x="209">
+					<e:Image source="msg_shurukuang_png" verticalCenter="0" x="46" width="276" scale9Grid="49,7,296,46" />
+					<e:Label text="进入成就系统" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom" touchEnabled="false"
+					         textColor="0xffffff" y="9" x="63" />
+				</e:Group>
+				<e:Group id="shopLab" touchEnabled="false" touchChildren="false" y="238" x="209">
+					<e:Image source="msg_shurukuang_png" verticalCenter="0" x="46" width="727" scale9Grid="49,7,296,46" />
+					<e:Label text="使用获得的能量，可以在商城兑换收藏!" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+					         touchEnabled="false" textColor="0xffffff" y="9" x="63" />
+				</e:Group>
+				<e:Group id="scLab" touchEnabled="false" touchChildren="false" y="238" x="209">
+					<e:Image source="msg_shurukuang_png" verticalCenter="0" x="46" width="436" scale9Grid="49,7,296,46" />
+					<e:Label text="看看刚刚获得的新收藏" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+					         touchEnabled="false" textColor="0xffffff" y="9" x="63" />
+				</e:Group>
+				<e:layout>
+					<e:VerticalLayout gap="15" />
+				</e:layout>
+			</e:Group>
+		</e:Group>
+		<e:Label id="desc" text="" size="25" fontFamily="SimHei" textAlign="center" verticalAlign="justify" x="342" top="74"
+		         width="800" height="509" visible="false" />
+		<e:Group id="rightGruop" right="0" width="239" height="523" top="0">
+			<e:Button id="btnHuodong" icon="yuandianbai_png" width="136" height="147" right="71" top="83" visible="false">
+				<e:skinName>
+					<e:Skin states="up,down,disabled" width="109">
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" width="136" height="147" source="huodong_png"
+						         source.down="huodong_png" horizontalCenter="0" verticalCenter="0" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Label id="cleanLab" text="清档" size="25" fontFamily="SimHei" textAlign="center" verticalAlign="justify" width="96"
+			         right="83" top="314" />
+			<e:Label id="wallet" text="我的钱包" size="25" fontFamily="SimHei" textAlign="center" verticalAlign="justify" width="120"
+			         right="68" top="388" visible="false" />
+			<e:Label id="closeWeb" text="关闭" size="25" fontFamily="SimHei" textAlign="center" verticalAlign="justify" width="120"
+			         right="68" top="456" visible="false" />
+		</e:Group>
+		<e:Group id="rightDownGroup" right="71" bottom="39">
+			<e:Label id="chapterName" text="第一章" size="25" fontFamily="SimHei" textAlign="center" verticalAlign="justify" y="50"
+			         x="80" width="0" visible="false" />
+			<e:Button id="btnXinkaishi" label="新的开始" width="251" height="71" y="38">
+				<e:skinName>
+					<e:Skin states="up,down,disabled" width="109">
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png"
+						         source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0" />
+						<e:Label id="labelDisplay" verticalCenter="0" size="36" horizontalCenter="0" fontFamily="SimHei" scaleX.down="0.9"
+						         scaleY.down="0.9" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<!--<e:Group id="btnContinueGame1" bottom="113" width="84" height="99" right="640" x="-73.99999999999989" y="117.99999999999989"   visible="false">
+			<e:Image y="0" source="main_bofang_png" horizontalCenter="-10" />
+		</e:Group>
+		-->
+		<e:Button id="btnDuQu" label="存档" width="251" height="71" y="38" x="268">
+			<e:skinName>
+				<e:Skin states="up,down,disabled" width="109">
+					<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png"
+					         source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0" />
+					<e:Label id="labelDisplay" verticalCenter="0" size="36" horizontalCenter="0" fontFamily="SimHei" scaleX.down="0.9"
+					         scaleY.down="0.9" />
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btnContinueGame" icon="yuandianbai_png" width="393" height="149" x="507">
+			<e:skinName>
+				<e:Skin states="up,down,disabled" width="393" height="149">
+					<e:Image scaleX.down="0.9" scaleY.down="0.9" width="393" height="149" source="main_jixuBtn_di_png"
+					         horizontalCenter="0" verticalCenter="0" />
+					<e:Label text="继续章节" fontFamily="SimHei" size="40" scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="26.5"
+					         verticalCenter="0" />
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:layout>
+			<e:BasicLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Button id="xindong" x="50" bottom="92" label="更换心动壁纸">
+		<e:skinName>
+			<e:Skin states="up,down" width="276" height="48">
+				<e:Group scaleY.down="0.9" scaleX.down="0.9" horizontalCenter="0" verticalCenter="0">
+					<e:Image source="genggaibizhi_png" verticalCenter="0" x="0" y="0" />
+					<e:Label id="labelDisplay" left="58" size="38" textColor="0xFFFFFF" verticalAlign="middle" fontFamily="SimHei"
+					         text="" verticalCenter="0" />
+					<e:layout>
+						<e:HorizontalLayout gap="10" verticalAlign="middle" />
+					</e:layout>
+				</e:Group>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Group>
+<e:Image id="play_zi" source="quanquan_title_png" horizontalCenter="0" verticalCenter="-109" scaleX="2" scaleY="2"
+         visible="false" />
+<e:Button id="play_Btn" icon="playImg_png" horizontalCenter="0" scaleX="3" scaleY="3" verticalCenter="33"
+          visible="false">
+	<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" id="iconDisplay" />
+		</e:Skin>
+	</e:skinName>
+</e:Button>
+</e:Skin>

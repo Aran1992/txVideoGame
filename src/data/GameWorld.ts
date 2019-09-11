@@ -1,0 +1,364 @@
+/**
+ * 
+ * @author 
+ * 
+ */
+class GameWorld extends egret.DisplayObjectContainer {
+    public stage: egret.Stage;
+    private sceneLayer: egret.DisplayObjectContainer;
+    private promptLayer: egret.DisplayObjectContainer;
+    private LoginSuccsess: boolean = false;//登录成功
+    private isloginin: boolean = false;
+    public PupoBar: egret.DisplayObjectContainer;//弹出面板层
+    private PupoBar1: egret.DisplayObjectContainer;//弹出面板层
+    private panelDict;
+    private setPanel: PlayerSettingPanel;
+    private videoLayer: egret.DisplayObjectContainer;//视频层
+    public constructor() {
+        super();
+        this.panelDict = {};
+        this.init();
+        this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+        this.onRegistEvent();
+    }
+
+    private onRegistEvent(): void {
+        GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.readFiel, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.SHOW_VIEW, this.onShowView, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.SHOW_VIEW_WITH_PARAM, this.onShowViewWithParam, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.CLOSE_VIEW, this.onCloseView, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.CLOSE_VIDEODATA, this.onClose, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.GAME_WIN, this.onClose, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onStartVideo, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.PLAY_VIDEO3, this.onHidePop, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.CLOSE_VIDEO3, this.onShowPop, this);
+    }
+    private isAgaig: boolean = false;
+    private onClose(): void {
+        if (!this.videoData)
+            return;
+        this.isAgaig = true;
+        // this.videoData = null;
+    }
+    private onHidePop() {
+        this.PupoBar.visible = false;
+    }
+    private onShowPop() {
+        this.PupoBar.visible = true;
+    }
+    private onCloseView(data): void {
+        var windowName = data.data;
+        if (this.panelDict[windowName]) {
+            if (windowName == 'ControlTipsPanel') {
+                this.PupoBar1.removeChild(this.panelDict[windowName])
+                this.panelDict[windowName] = null;
+                return;
+            }
+            this.PupoBar.removeChild(this.panelDict[windowName])
+            this.panelDict[windowName] = null;
+            delete this.panelDict[windowName];
+        }
+        /**移除所有二级界面**/
+        for (let key in this.panelDict) {
+            let panel = this.panelDict[key];
+            if (!panel) {
+                delete this.panelDict[key];
+                continue;
+            }
+            if (panel['priority'] && panel['priority'] == PANEL_HIERARCHY_TYPE.II) {
+                this.PupoBar.removeChild(panel);
+                panel = null;
+                delete this.panelDict[key];
+            }
+        }
+    }
+    private onShowView(data): void {
+        var windowName = data.data;
+        if (this.panelDict[windowName]) {
+            this.PupoBar.removeChild(this.panelDict[windowName])
+            this.panelDict[windowName] = null;
+        }
+        else {
+            if (data.data.windowName) {
+
+                windowName = data.data.windowName;
+                var d;
+                if (data.data.data) {
+                    d = new window[windowName](data.data.data);
+                }
+                else {
+                    d = new window[windowName]();
+                }
+                this.panelDict[windowName] = d;
+                this.PupoBar.addChild(this.panelDict[windowName]);
+            }
+            else {
+                var d = new window[windowName](1);
+                this.panelDict[windowName] = d;
+                if (windowName == 'ControlTipsPanel') {
+                    this.PupoBar1.addChild(this.panelDict[windowName]);
+                    return;
+                }
+                this.PupoBar.addChild(this.panelDict[windowName]);
+            }
+
+        }
+    }
+    private onShowViewWithParam(event: egret.Event): void {
+        var window_param: WindowParam = event.data as WindowParam;
+        var windowName = window_param.windowname;
+        if (this.panelDict[windowName]) {
+            this.PupoBar.removeChild(this.panelDict[windowName])
+            this.panelDict[windowName] = null;
+        } else {
+            var panel = new window[windowName](window_param.data);
+            this.panelDict[windowName] = panel;
+            this.PupoBar.addChild(this.panelDict[windowName]);
+        }
+    }
+    private init(): void {
+        this.onResize();
+    }
+    public readFiel(data) {
+        if (!GameDefine.ISFILE_STATE) {
+            return;
+        }
+        // GameDefine.ISFILE_STATE = false;
+        if (!this.videoData) {
+            this.videoData = new VideoData();
+            this.videoLayer.addChild(this.videoData);
+            this.touchEnabled = false;
+        }
+        else {
+            this.videoData.visible = true;
+        }
+        if (this.isAgaig) {
+            this.videoLayer.addChild(this.videoData);
+        }
+        this.videoData.readFiel();
+    }
+    /**舞台尺寸发生变化**/
+    public onResize(): void {
+        // this.promptLayer.x = Globar_Pos.x;
+        // if (DataManager.IS_PC_Game) {
+        //     try {
+        //         this.gamescene.getModuleLayer().onStageResize();
+        //         this.gamescene.getMapLayer().onResizeLayer();
+        //     } catch (e) {
+        //     }
+        // }
+    }
+    private settingMain: PlayerSettingPanel;
+    private onAddToStage(event: egret.Event): void {
+        this.onRegist();
+
+        let view = new MainView(this);
+        GameCommon.getInstance().report('login', { num: 1 })
+        this.addChild(view);
+        this.videoLayer = new egret.DisplayObjectContainer();
+        this.addChild(this.videoLayer)
+        this.PupoBar = new egret.DisplayObjectContainer();
+        this.addChild(this.PupoBar);
+        this.PupoBar1 = new egret.DisplayObjectContainer();
+        this.addChild(this.PupoBar1);
+        CaptionView.getInstance().touchEnabled = false;
+        this.addChild(CaptionView.getInstance())
+        this.addChild(PromptPanel.getInstance());
+        PromptPanel.getInstance().touchEnabled = false;
+        // PromptPanel.getInstance().touchChildren = false;
+        if (!this.videoData) {
+            this.videoData = new VideoData();
+            this.videoLayer.addChild(this.videoData);
+            this.videoData.visible = false;
+        }
+        videoModels = JsonModelManager.instance.getModelshipin();
+        wentiModels = JsonModelManager.instance.getModelwenti();
+        answerModels = JsonModelManager.instance.getModelanswer();
+        // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH));
+    }
+
+    public createGameScene(chapId: number = 0): void {
+        // if (this.isAgaig) {
+        // this.addChild(this.videoData);
+        // }
+        if (!this.videoData) {
+            this.videoData = new VideoData();
+            this.videoLayer.addChild(this.videoData);
+        }
+        else {
+            this.videoData.visible = true;
+        }
+        this.touchEnabled = false;
+        var curSelf = this;
+        this.onButtonClick(chapId);
+    }
+    private _isPause: string = '';
+    private videoData: VideoData;
+    private onButtonClick(chapId: number) {
+        // GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
+        GameDefine.CUR_IS_MAINVIEW = false;
+        var curChapterCfg = JsonModelManager.instance.getModelchapter()[chapId];
+        let videoIds = curChapterCfg.videoSrc.split(",");
+        VideoManager.getInstance().updateVideoData(videoIds[0]);
+        this.videoData.setVideos(videoIds);
+        this.videoData.starVideo(curChapterCfg.wenti);
+    }
+    private onStartVideo(data) {
+        if (!data.data)
+            return;
+        GameDefine.CUR_IS_MAINVIEW = false;
+        GameDefine.IS_DUDANG = true;
+        if (!this.videoData) {
+            this.videoData = new VideoData();
+            this.videoLayer.addChild(this.videoData);
+        }
+        else {
+            this.videoData.visible = true;
+        }
+        let cfg: Modeljuqingkuai = data.data.cfg;
+        VideoManager.getInstance().log(JSON.stringify(UserInfo.curBokData.wentiId))
+        if (VideoManager.getInstance().getVideoID() == cfg.videoId) {
+            VideoManager.getInstance().videoResume();
+            this.videoData.onInitVideoData();
+            GameCommon.getInstance().removeLoading();
+            return;
+        }
+        var src = cfg.videoId;
+
+        var wentiId = data.data.cfg.wentiId;
+        if (VideoManager.getInstance().loadSrc == cfg.videoId && GameDefine.CUR_PLAYER_VIDEO == 1) {
+            GameCommon.getInstance().showLoading();
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
+            VideoManager.getInstance().loadSrc = '';
+            return;
+        }
+        if (cfg.BE != 1) {
+            let videoIds = [];
+            let _isfind: boolean;
+            for (let chapterId in JsonModelManager.instance.getModelchapter()) {
+                let chapterCfg: Modelchapter = JsonModelManager.instance.getModelchapter()[chapterId];
+                let _vids: string[] = chapterCfg.videoSrc.split(",");
+
+                for (let i: number = 0; i < _vids.length; i++) {
+                    if (_vids[i] == src) {
+                        if (!wentiId) {
+                            wentiId = chapterCfg.wenti;
+                        }
+                        _isfind = true;
+                    }
+                    if (_isfind) {
+                        videoIds.push(_vids[i]);
+                    }
+                }
+
+                if (_isfind) break;
+            }
+            if (!_isfind) {
+                let models = JsonModelManager.instance.getModelanswer();
+                for (let ansKey in models) {
+                    for (let ansIdx in models[ansKey]) {
+                        let anscfg: Modelanswer = models[ansKey][ansIdx];
+                        let _vids: string[] = anscfg.videos.split(",");
+                        for (let i: number = 0; i < _vids.length; i++) {
+                            if (_vids[i] == src) {
+                                _isfind = true;
+                                if (!wentiId) {
+                                    wentiId = anscfg.qid;
+                                }
+                            }
+                            if (_isfind) {
+                                videoIds.push(_vids[i]);
+                            }
+                        }
+                        if (_isfind) break;
+                    }
+
+                    if (_isfind) break;
+                }
+            }
+            this.videoData.setVideos(videoIds);
+
+            if (data.data.idx == FILE_TYPE.AUTO_FILE) {
+            } else {
+                let fileData = UserInfo.fileDatas[data.data.idx];
+                if (fileData) {
+                    UserInfo.curBokData = UserInfo.fileDatas[data.data.idx];
+                }
+            }
+        } else {
+            UserInfo.curBokData.videoNames[wentiId] = cfg.openVideo;
+            UserInfo.curBokData.times[wentiId] = 0;
+            UserInfo.curBokData.answerId[wentiId] = '';
+            wentiId = 0;
+        }
+
+        VideoManager.getInstance().setVideoState();
+        GameCommon.getInstance().onCleanFile(data.data.cfg);
+        if (VideoManager.getInstance().videoCurrTime() != 0) {
+            VideoManager.getInstance().clear();
+        }
+        VideoManager.getInstance().updateVideoData(src);
+        let wentiCfg: Modelwenti = wentiModels[wentiId];
+        VideoManager.getInstance().updateGameChapter(wentiCfg.chapter);
+        var obj = this;
+        Tool.callbackTime(function () {
+            if (obj.isAgaig) {
+                obj.isAgaig = false;
+                obj.videoData.againGame(wentiId);
+            }
+            else {
+                obj.videoData.starVideo(wentiId);
+            }
+        }, obj, 1000);
+    }
+    /**事件注册**/
+    private onRegist(): void {
+        window.onerror = function (message, url, line) {
+            GameCommon.getInstance().showErrorLog("URL: " + url + "\n" + 'line' + line + '\n' + message);
+        }
+
+        window['onEventNotify'] = function (event, json) {
+            let data = JSON.parse(json);
+            switch (event) {
+                case WEB_EVENT_NOTIFY.onPause:
+                    VideoManager.getInstance().videoPause();
+                    break;
+                case WEB_EVENT_NOTIFY.onResume:
+                    break;
+                case WEB_EVENT_NOTIFY.wechat_Share:
+                case WEB_EVENT_NOTIFY.qq_Share:
+                    if (data.code == 1) {
+                        GameCommon.getInstance().showCommomTips('分享成功！');
+                    } else {
+                        GameCommon.getInstance().showCommomTips('分享失败！errorcode::' + data.code);
+                    }
+                    break;
+            }
+        };
+    }
+}
+class WindowParam {
+    public windowname: string;
+    public data;
+    public constructor(windowname: string, data?: any) {
+        this.windowname = windowname;
+        this.data = data;
+    }
+}
+//层级类型
+enum PANEL_HIERARCHY_TYPE {
+    I = 0,
+    II = 1,
+}
+//web事件类型
+enum WEB_EVENT_NOTIFY {
+    onCreate = 1,
+    onStart = 2,
+    onResume = 3,
+    onPause = 4,
+    onStop = 5,
+    onDestory = 6,
+    onSaveFile = 7,
+    wechat_Share = 1000,
+    qq_Share = 1001,
+} 

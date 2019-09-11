@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.Common_Button1Skin" states="up,down" currentState="up" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing" width="160" height="78" >
+	<e:Image   right.up="0"  scale9Grid="31,13,106,16" left.down="2" right.down="2" top.down="2" bottom.down="2" source="cj_seebiaoqian_png" y="0" x="0"/>
+	<e:Image id="iconDisplay" horizontalCenter="0" verticalCenter="0"  source="cundang_png" scaleX.down="0.9" scaleY.down="0.9" visible="false"/>
+	<e:Label id="labelDisplay"   text="查看" horizontalCenter="0" verticalCenter="0" size="30" fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9"/>
+	
+</e:Skin>

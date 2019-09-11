@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.Button_ShopStyle2_Skin" states="up,down,disabled" currentState="up"
+        xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="188" height="53">
+	<e:Image left="0" right.up="0" top="0" bottom="0" left.down="2" right.down="2" top.down="2" bottom.down="2" right="0"
+	         source="shop_btn_style2_png" scale9Grid="39,6,104,41" source.disabled="shop_btn_style1_gray_png" />
+	<e:Label id="labelDisplay" text="" size="30" fontFamily="SimHei" scaleX.down="0.95" scaleY.down="0.95"  horizontalCenter="0" verticalCenter="0"/>
+</e:Skin>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ShouCangMusicSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"
+        width="1600" height="900">
+	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
+		<e:Image y="0" x="0" width="100%" height="100%" source="cundang_bj_jpg" locked="true" />
+		<e:Group touchChildren="true" touchEnabled="true" width="100%" height="716"
+		         verticalCenter="36">
+			<e:Scroller id="scroll" skinName="skins.ScrollerSkin" horizontalCenter="0">
+				<e:Group id="goodsLayer">
+					<e:layout>
+						<e:TileLayout horizontalGap="52" verticalGap="127" requestedColumnCount="4" />
+					</e:layout>
+				</e:Group>
+			</e:Scroller>
+		</e:Group>
+		<e:Group id='closeGroup1' width="268" left="0" top="0">
+			<e:Button id="bgBtn" label="音乐" width="200" x="40" y="28" height="62">
+				<e:skinName>
+					<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
+						<e:Group width="100%" height="100%" />
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png"
+						         verticalCenter="0" left="0" locked="true" />
+						<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9"
+						         left="50" text="" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+		</e:Group>
+	</e:Group>
+</e:Skin>

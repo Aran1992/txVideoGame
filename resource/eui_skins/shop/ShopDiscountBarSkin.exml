@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ShopDiscountBarSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group height="39">
+		<e:Label text="原价：" fontFamily="SimHei" textColor="0xA8A8A8" size="26"  locked="true"/>
+		<e:Group x="62" y="-2" height="36" width="60">
+			<e:Image id="icon_img" source="common_suipian_png" alpha="0.7"  width="36" height="36"/>
+		</e:Group>
+		<e:Label id="price_lab" text="" fontFamily="SimHei" textColor="0xA8A8A8" size="28" />
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle" gap="-10" />
+		</e:layout>
+	</e:Group>
+	<e:Rect height="3" fillColor="0x878787" strokeColor="0x878787" verticalCenter="0" left="-5" right="-5"  locked="true"/>
+	<e:Group right="-90">
+		<e:Image source="shop_discount_bg_png"  width="80" locked="true"/>
+		<e:Label id="discout_lab" size="26" fontFamily="SimHei" text="" verticalCenter="0" horizontalCenter="0" />
+	</e:Group>
+</e:Skin>

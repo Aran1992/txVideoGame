@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ImageShopPreviewSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+    <e:Image source="video_heidi1_png" left="0" right="0" top="0" bottom="0" locked="true" />
+    <e:Label text="——  已购买该商品，可在收藏查看完整内容 —— " y="50" fontFamily="SimHei" textColor="0xff5fa5" size="28"
+             horizontalCenter="0" locked="true" />
+    <e:Group width="1600" height="900" horizontalCenter="0" verticalCenter="0">
+        <e:Group y="120" horizontalCenter="0">
+            <e:Image source="shop_bannerkuang_png" y="0" scale9Grid="65,33,396,109" width="1180" height="600" x="0"
+                     locked="true" />
+            <e:Image id="banner_img" horizontalCenter="-10" height="582" width="1170"  source=""/>
+        </e:Group>
+        <e:Group y="760" x="200">
+            <e:Group>
+                <e:Label id="name_lab" text="图集名称" size="30" fontFamily="SimHei" textAlign="center" touchEnabled="false"
+                         textColor="0xffffff" />
+                <e:Image id="pingfen_img" source="" x="110" y="3" />
+                <e:Group height="46" width="100">
+                    <e:Image touchEnabled="true" source="control_zidi_select_png" left="0" right="0" top="0" bottom="0"
+                             locked="true" />
+                    <e:Label id="count_lab" text="19P" size="28" fontFamily="SimHei" textAlign="left"
+                             horizontalCenter="0" verticalCenter="0" />
+                </e:Group>
+                <e:layout>
+                    <e:HorizontalLayout verticalAlign="middle" gap="15" />
+                </e:layout>
+            </e:Group>
+            <e:Label id="desc_lab" text="乐队主唱韩小百毕业现场" size="20" fontFamily="SimHei" x="0" y="60" touchEnabled="false"
+                     textColor="0xcecece" width="460" />
+        </e:Group>
+        <e:Group y="770" horizontalCenter="300">
+            <e:Component id="discount_bar" skinName="skins.ShopDiscountBarSkin" x="0" y="16" />
+            <e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" x="275" y="0"
+                       label="购 买"/>
+            <e:layout>
+                <e:HorizontalLayout verticalAlign="middle" gap="180" />
+            </e:layout>
+        </e:Group>
+    </e:Group>
+    <e:Button id="closeBtn" top="50" right="70" width="91" height="91">
+        <e:skinName>
+            <e:Skin states="up,down,disabled">
+                <e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png"
+                         horizontalCenter="0" verticalCenter="0" width="91" height="91" />
+            </e:Skin>
+        </e:skinName>
+    </e:Button>
+    <e:Image id="datu" touchEnabled="true" horizontalCenter="0" verticalCenter="0"
+              source=""/>
+</e:Skin>

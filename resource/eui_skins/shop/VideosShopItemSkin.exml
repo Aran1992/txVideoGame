@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.VideosShopItemSkin" width="290" height="618" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="100%" height="100%">
+		<e:Image id="banner_img" width="100%" height="100%" x="0" y="0"  touchEnabled="true" source=""/>
+		<e:Image source="shop_image_maskbg_png" left="0" right="0" bottom="0" scale9Grid="59,59,154,355"  touchEnabled="false" locked="true"/>
+		<e:Group y="340" horizontalCenter="0">
+			<e:Group>
+				<e:Label id="name_lab" text="视频名称" size="28" fontFamily="SimHei" textAlign="center" touchEnabled="false"
+				         textColor="0xffffff" />
+				<e:Group height="46" width="100">
+					<e:Image touchEnabled="true" left="0" right="0" top="0" bottom="0" source="control_zidi_png" locked="true" />
+					<e:Label id="time_lab" text="7:25" size="28" fontFamily="SimHei" textAlign="left" horizontalCenter="0"
+					         verticalCenter="0" />
+				</e:Group>
+				<e:layout>
+					<e:HorizontalLayout verticalAlign="middle" gap="5" />
+				</e:layout>
+			</e:Group>
+		</e:Group>
+		<e:Label id="style_name_lab" size="36" fontFamily="SimHei" text="" horizontalCenter="0" y="410" bold="true" />
+		<e:Component id="discount_bar" y="485" skinName="skins.ShopDiscountBarSkin" horizontalCenter="-45" visible="false" />
+		<e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" horizontalCenter="0"
+		          bottom="40"  label="购 买"/>
+		<e:Image source="shop_video_icon_png" right="15" top="15"/>
+	</e:Group>
+</e:Skin>

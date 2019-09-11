@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.Common_ButtonWenTiSkin" states="up,down" currentState="up" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing" width="327" height="92" >
+	<e:Image id="iconDisplay"  right.up="0" width='327' height='92' scale9Grid="31,13,106,16" left.down="2" right.down="2" top.down="2" bottom.down="2" source="wentikuang_png" horizontalCenter="0" verticalCenter="0"/>
+	<!--<e:Image  horizontalCenter="0" verticalCenter="0"  source="cundang_png" scaleX.down="0.9" scaleY.down="0.9" visible="false"/>-->
+	<e:Label id="labelDisplay"   text="查看" horizontalCenter="0" verticalCenter="0" size="32" fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9" bold="true"/>
+	<e:Group id="lock_grp" width="100%" height="100%">
+		<e:Image source="wentikuang1_png" left="0" right="0" top="0" bottom="0"/>
+		<e:Image source="sc_shipin_suo_png" scaleX="0.5" scaleY="0.5" locked="true"/>
+	</e:Group>
+	
+</e:Skin>

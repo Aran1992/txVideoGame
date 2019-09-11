@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ShouCangListSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        xmlns:n1s='*' height="900">
+	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
+		<e:Image y="0" x="0" width="100%" height="100%" source="cundang_bj_jpg"  locked="true"/>
+		<e:Group id="fanhuiLab" alpha="1" touchEnabled="false" touchChildren="false" bottom="62" left="124" visible="false">
+			<e:Image alpha="1" anchorOffsetY="0" source="msg_shurukuang_png" verticalCenter="0" x="0" width="424"
+			         scale9Grid="49,7,296,46" />
+			<e:Label text="返回继续精彩的剧情吧" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+			         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" y="9" x="17" />
+		</e:Group>
+		<e:Group id="shoucangGroup" scaleX="1" scaleY="1" left="86" verticalCenter="11.5" right="0">
+			<e:Group id="jinruLab" alpha="1" touchEnabled="false" touchChildren="false" y="618" x="664" visible="false">
+				<e:Image alpha="1" anchorOffsetY="0" source="msg_shurukuang_png" verticalCenter="0" x="0" width="354"
+				         scale9Grid="49,7,296,46" />
+				<e:Label text="进入夏子豪的收藏" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom"
+				         touchEnabled="false" anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" y="9" x="17" />
+			</e:Group>
+			<e:Group id="musicLab" alpha="1" touchEnabled="false" touchChildren="false" y="618" x="1063" visible="false">
+				<e:Image alpha="1" anchorOffsetY="0" source="msg_shurukuang_png" verticalCenter="0" x="0" width="273"
+				         scale9Grid="49,7,296,46" />
+				<e:Label text="进入音乐收藏" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="bottom" touchEnabled="false"
+				         anchorOffsetX="0" anchorOffsetY="0" textColor="0xffffff" y="9" x="17" />
+			</e:Group>
+			<e:Scroller id='shoucangScrol' height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">
+				<e:Group>
+					<n1s:ShouCangListItem id="scBtn1" skinName="skins.ShouCangItemSkin" />
+					<n1s:ShouCangListItem id="scBtn2" skinName="skins.ShouCangItemSkin"  x="309"/>
+					<n1s:ShouCangListItem id="scBtn3" skinName="skins.ShouCangItemSkin" />
+					<n1s:ShouCangListItem id="scBtn4" skinName="skins.ShouCangItemSkin" />
+					<n1s:ShouCangListItem id="scBtn5" skinName="skins.ShouCangItemSkin" />
+					<n1s:ShouCangListItem id="scBtn6" skinName="skins.ShouCangItemSkin" />
+					<e:layout>
+						<e:HorizontalLayout gap="23"/>
+					</e:layout>
+
+				</e:Group>
+			</e:Scroller>
+		</e:Group>
+		<e:Group id='closeGroup1' width="268" left="0" top="0">
+			<e:Button id="bgBtn" label="收藏" width="200" x="40" y="28" height="62">
+				<e:skinName>
+					<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
+						<e:Group width="100%" height="100%" />
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png"
+						         verticalCenter="0" left="0" locked="true" />
+						<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9"
+						         left="50" text="" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+		</e:Group>
+	</e:Group>
+</e:Skin>

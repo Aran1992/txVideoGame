@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.MusicsShopItemSkin" width="373" height="540" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="100%" height="100%">
+		<e:Image id="banner_img" x="9" y="9" width="355" height="355"  touchEnabled="true" source=""/>
+		<e:Image touchEnabled="true" source="sc_yinyue_icon_png" right="20" top="20"/>
+		<e:Group horizontalCenter="0" top="375">
+			<e:Group y="0" x="0">
+				<e:Label id="name_lab" size="32" fontFamily="SimHei" text="" y="4" x="0"  bold="true"/>
+				<e:Group y="0" width="80" height="40" x="141">
+					<e:Image source="control_zidi_png" left="0" right="0" top="0" bottom="0" locked="true" />
+					<e:Label id="count_lab" size="30" fontFamily="SimHei" text="" horizontalCenter="0" verticalCenter="0" />
+				</e:Group>
+				<e:layout>
+					<e:HorizontalLayout verticalAlign="middle" gap="10" />
+				</e:layout>
+			</e:Group>
+			<e:Group x="81" y="42">
+				<e:Component id="discount_bar" skinName="skins.ShopDiscountBarSkin" x="-95" />
+			</e:Group>
+			<e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" x="43" y="100"  label="购 买"/>
+			<e:layout>
+				<e:VerticalLayout horizontalAlign="center" gap="15" />
+			</e:layout>
+		</e:Group>
+	</e:Group>
+</e:Skin>

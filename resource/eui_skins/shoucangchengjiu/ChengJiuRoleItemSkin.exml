@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ChengJiuRoleItemSkin" xmlns:e="http://ns.egret.com/eui" width="290" height="663"
+        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+
+    <e:Image id="icon" y="0" touchEnabled="true" horizontalCenter="0"  source="cj_roledi4_png"/>
+    <e:Image  y="29" touchEnabled="true"  source="sc_item_di_png" scale9Grid="0,0,338,95" x="-1" width="290"/>
+    
+	<e:Label id="desc" text="韩小白视频" size="20" fontFamily="SimHei" textAlign="left" touchEnabled="false" textColor="0xffffff" verticalAlign="middle" height="22" horizontalCenter="0" bottom="88"/>
+
+    <e:Group  horizontalCenter="0" bottom="33">
+
+
+        <e:Image y="0" touchEnabled="false" source="cj_sub_icon_png"  x="4"/>
+        <e:ProgressBar id="barPro" skinName="skins.ChengJiuBarSkin" y="5"  scaleX="1" scaleY="1"  x="44"/>
+    </e:Group>
+    <e:Label id="title" text="谁家少" size="45" fontFamily="SimHei" textAlign="left" touchEnabled="true"
+             textColor="0xffffff" verticalAlign="middle" height="42" bold="true" horizontalCenter="0"  bottom="135"/>
+</e:Skin>

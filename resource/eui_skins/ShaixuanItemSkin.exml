@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ShaixuanItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+    <e:Group>
+        <e:Group>
+            <e:Image source="resule_dian_png" locked="true" />
+            <e:Label id="title_lab" size="26" fontFamily="SimHei" text="" />
+            <e:layout>
+                <e:HorizontalLayout verticalAlign="middle" gap="8" />
+            </e:layout>
+        </e:Group>
+        <e:Group id="buttons_grp" x="15" y="45">
+            <e:layout>
+                <e:TileLayout requestedColumnCount="2" verticalGap="20" horizontalGap="30" />
+            </e:layout>
+        </e:Group>
+    </e:Group>
+</e:Skin>

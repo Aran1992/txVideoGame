@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ToggleSwitch_Style2_Skin" states="up,down,upAndSelected,downAndSelected,disabledAndSelected"
+        xmlns:e="http://ns.egret.com/eui" width="210">
+    <e:Image source="shop_tiao2_png" source.upAndSelected="shop_tiao3_png" verticalCenter="0" left="0" right="0"
+             scale9Grid="72,5,97,36" scaleX.upAndSelected="-1" source.downAndSelected="shop_tiao3_png"
+             scaleX.downAndSelected="-1" source.disabledAndSelected="shop_tiao3_png" scaleX.disabledAndSelected="-1" />
+    <e:Label id="labelDisplay" size="22" fontFamily="SimHei" horizontalCenter="10" verticalCenter="0"
+             horizontalCenter.upAndSelected="-10" horizontalCenter.downAndSelected="-10"
+             horizontalCenter.disabledAndSelected="-10" />
+</e:Skin>

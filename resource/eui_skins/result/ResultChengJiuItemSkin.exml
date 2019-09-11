@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ResultChengJiuItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="322"
+        height="433">
+	<e:Group x="0">
+
+		<e:Image x="0" source="result_cj_role_di_png"/>
+		<e:Image id="roleIcon" x="0" source="result_cj_role1_png" y="-9"/>
+		<e:Image id="xindong" x="0" y="0" source="result_cj_role_di1_png"/>
+
+        <e:Image id="roleName" x="0" y="265" source="result_fenjiexian_png" width="323"/>
+		<e:Label id="cjName" text="韩小百啊" size="30" fontFamily="SimHei" y="217" horizontalCenter="0" bold="true"/>
+        <e:Label id="desc" text="我用尽我所有的力气，都想要成全你一次满意" size="20" fontFamily="SimHei" y="297" horizontalCenter="0" height="47" width="264" textColor="0xdbdbdb" textAlign="center"/>
+
+	</e:Group>
+</e:Skin>

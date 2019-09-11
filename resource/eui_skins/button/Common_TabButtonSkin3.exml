@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.Common_TabButtonSkin3" states="up,down,upAndSelected,downAndSelected" currentState="up"
+        xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="576" height="83">
+    <e:Group width="100%" height="100%">
+        <e:Image source="action_check1_com_png" source.down="action_check1_select_png"
+                 source.upAndSelected="action_check1_select_png" source.downAndSelected="action_check1_select_png"
+                 left="0" right="0" top="0" bottom="0" scale9Grid="45,23,480,40" locked="true" />
+        <e:Image source="action_checkbtn1_com_png" source.down="action_checkbtn1_select_png"
+                 source.upAndSelected="action_checkbtn1_select_png" source.downAndSelected="action_checkbtn1_select_png"
+                 right="15" verticalCenter="0" locked="true" />
+        <e:Label id="labelDisplay" size="32" fontFamily="SimHei" verticalCenter="0" 
+                 left="10" right="90" />
+    </e:Group>
+</e:Skin>

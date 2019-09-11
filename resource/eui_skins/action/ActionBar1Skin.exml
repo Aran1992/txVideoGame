@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionBar1Skin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="thumb" source="action_timedi3_png"  scale9Grid="31,7,189,47"/>
+</e:Skin>

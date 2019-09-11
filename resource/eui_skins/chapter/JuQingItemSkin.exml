@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.JuQingItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+        height="900">
+
+    <e:Group id="mk" width="100%" height="100%">
+			<e:Image id="bgm" alpha="1" anchorOffsetY="0" touchEnabled="false" y="0" scaleX="1" scaleY="1" width="1600" height="900" x="0" source="cundang_kuai1_png" scale9Grid="1555,112,28,676"/>
+        <e:Image id="item1" y="321" scaleX="1" scaleY="1" x="738" source="cundang_betu_png" />
+        <e:Image id="item2" source="cundang_itemdi_png" y="574" x="1056" scaleX="1" />
+        <e:Image id="item3" y="389" x="417" scaleX="1" scaleY="1"  source="sc_shipin_suo_png" visible="false"/>
+        <e:Image id="item4" source="cundang_itemdi_png" y="206" x="1056"  visible="false"/>
+        <e:Image id="item5" source="cundang_itemdi_png" y="206" x="1056"  visible="false"/>
+        <e:Image id="item6" source="cundang_itemdi_png" y="206" x="1056"  visible="false"/>
+        <e:Image id="item7" source="cundang_itemdi_png" y="206" x="1056"  visible="false"/>
+        <e:Image id="item8" source="cundang_itemdi_png" y="206" x="1056" visible="false" />
+        <e:Image id="item9" source="cundang_itemdi_png" y="206" x="1056" visible="false" />
+        <e:Image id="item10" source="cundang_itemdi_png" y="206" x="1056" visible="false" />
+        <e:Image id="item11" source="cundang_itemdi_png" y="206" x="1056" visible="false" />
+        <e:Image id="heidi1" x="738" y="321" source="cundang_iconhei_png" touchEnabled="false"/>
+        <e:Image id="heidi2" x="738" y="321" touchEnabled="false" source="cundang_iconhei_png"  visible="false"/>
+        <e:Image id="heidi3" x="738" y="321" visible="false"  touchEnabled="false" source="cundang_iconhei_png"/>
+        <e:Image id="heidi4" x="738" y="321" visible="false" touchEnabled="false" source="cundang_iconhei_png"  />
+        <e:Image id="heidi5" x="738" y="321" visible="false"  touchEnabled="false" source="cundang_iconhei_png"  />
+        <e:Image id="heidi6" x="738" y="321" visible="false" touchEnabled="false" source="cundang_iconhei_png" />
+        <e:Image id="heidi7" x="738" y="321" source="cundang_iconhei_png" touchEnabled="false"  visible="false"/>
+        <e:Image id="heidi8" x="738" y="321" source="cundang_iconhei_png"  touchEnabled="false" visible="false"/>
+        <e:Image id="heidi9" x="738" y="321" source="cundang_iconhei_png"  touchEnabled="false" visible="false"/>
+        <e:Image id="heidi10" x="738" y="321" source="cundang_iconhei_png" touchEnabled="false"  visible="false"/>
+        <e:Image id="heidi11" x="738" y="321" source="cundang_iconhei_png"  touchEnabled="false" visible="false"/>
+        <e:Image id="suo1" x="738" y="321" source="sc_shipin_suo_png" touchEnabled="false"/>
+        <e:Image id="suo2" x="738" y="321" touchEnabled="false" source="sc_shipin_suo_png" />
+        <e:Image id="suo3" x="738" y="321"  touchEnabled="false" source="sc_shipin_suo_png"/>
+        <e:Image id="suo4" x="738" y="321" touchEnabled="false" source="sc_shipin_suo_png"  />
+        <e:Image id="suo5" x="738" y="321"  touchEnabled="false" source="sc_shipin_suo_png"  />
+        <e:Image id="suo6" x="738" y="321" visible="false" touchEnabled="false" source="sc_shipin_suo_png" />
+        <e:Image id="suo7" x="738" y="321" source="sc_shipin_suo_png" touchEnabled="false"  visible="false"/>
+        <e:Image id="suo8" x="738" y="321" source="sc_shipin_suo_png"  touchEnabled="false" visible="false"/>
+        <e:Image id="suo9" x="738" y="321" source="sc_shipin_suo_png"  touchEnabled="false" visible="false"/>
+        <e:Image id="suo10" x="738" y="321" source="sc_shipin_suo_png" touchEnabled="false"  visible="false"/>
+        <e:Image id="suo11" x="738" y="321" source="sc_shipin_suo_png"  touchEnabled="false" visible="false"/>
+
+        
+        <!--<e:Image id="be1" source="cundang_betu_png" y="485" x="611" />
+        <e:Image id="be2" source="cundang_betu_png" y="486" x="1171" visible="false" />
+        -->
+    </e:Group>
+    <e:Image id="zhezhao" alpha="1" anchorOffsetY="0" touchEnabled="false" x="0"  source="setting_biaoqian2_png"/>
+</e:Skin>
