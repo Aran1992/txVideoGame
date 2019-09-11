@@ -61,7 +61,7 @@
 //         this.buyGroup.visible = false;
 //     }
 //     private onFirmBtn1() {
-        
+
 //         if (!UserInfo.guideDic[1]) {
 //             UserInfo.guideDic[1] = 1;
 //             // this.jixu.visible = true;
@@ -105,7 +105,7 @@
 //         this.chapterGroup.visible = false;
 //     }
 //     private onClose() {
-//         this.jixu.visible = false; 
+//         this.jixu.visible = false;
 //         GuideManager.getInstance().curState = true;
 //         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'CunDangPanel')
 //     }

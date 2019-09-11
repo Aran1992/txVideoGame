@@ -157,7 +157,7 @@
 //         {
 //             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), name - 1);
 //         }
-        
+
 //         // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ChapterPanel')
 //     }
 //     private onLoadComplete(): void {

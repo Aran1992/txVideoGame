@@ -1,4 +1,4 @@
-/** 
+/**
  * 平台数据接口。
  * 由于每款游戏通常需要发布到多个平台上，所以提取出一个统一的接口用于开发者获取平台数据信息
  * 推荐开发者通过这种方式封装平台逻辑，以保证整体结构的稳定
@@ -16,6 +16,7 @@ declare interface Platform {
     getBookLastHistory(bookId): Promise<any>;//读取最近一次阅读进度，继续阅读。 在开始阅读前可通过该接口获得最近一次进度继续阅读。
     getBookValues(bookId, slotId, callback): Promise<any>;//获取管理端配置的可购买的物品信息，包括章节，物品。
     buyGoods(bookId, itemId, num, curSlotId)
+
     takeOffBookValue(bookId, saleId, currentSlotId, num): Promise<any>;//消耗后台已购买物品（管理配置）
     report(bookId, evt, params): Promise<any>;//统计类接口
     getUserPlatformData(): Promise<any>;//获取用户平台数据
@@ -24,12 +25,14 @@ declare interface Platform {
     getBusinessEventData(bookId, evtId, optionId): Promise<any>;//查询上报的事件选项统计
     triggerEventNotify(evt, str): Promise<any>;//事件通知（web主动通知app）
     finishPage();
+
     isDebug(): boolean;
 }
+
 class DebugPlatform implements Platform {
     async getUserInfo() {
         if (window['StoryPlatform']) {
-            var data = window['StoryPlatform']['getUserInfo']()
+            var data = window['StoryPlatform']['getUserInfo']();
             var info = JSON.parse(data);
             if (info && info.code == 0) {
                 info = JSON.parse(info.data);
@@ -48,16 +51,19 @@ class DebugPlatform implements Platform {
             await window['StoryPlatform']['share'](bookId, title, summary, icon, window.location.href, array);
         }
     }
+
     async shareImage(bookId, imageData) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['shareImage'](bookId, imageData);
         }
     }
+
     async openButton(str) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform'].openButton(str, "");
         }
     }
+
     //游戏存档
     async saveBookHistory(bookId, slotId, title, externParam) {
         if (window['StoryPlatform']) {
@@ -78,12 +84,14 @@ class DebugPlatform implements Platform {
             await window['StoryPlatform']['getBookHistory'](bookId, slotId, 'callbackGetBookHistory');
         }
     }
+
     //删除制定存档
     async deleteBookHistory(bookId, slotId) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['deleteBookHistory'](bookId, slotId, 'callbackdeleteBookHistory');
         }
     }
+
     //获取最近进度
     async getBookLastHistory(bookId) {
         if (window['StoryPlatform']) {
@@ -91,17 +99,20 @@ class DebugPlatform implements Platform {
         }
 
     }
+
     //获取商业化数值
     async getBookValues(bookId, slotId, callback) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['getBookValues'](bookId, slotId, callback);
         }
     }
+
     async buyGoods(bookId, itemId, num, curSlotId) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['buyGoods'](bookId, itemId, num, curSlotId, 'callbackBuyGoods');
         }
     }
+
     async takeOffBookValue(bookId, saleId, currentSlotId, num) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['takeOffBookValue'](bookId, saleId, currentSlotId, num, 'callbackTakeOffBookValue');
@@ -113,31 +124,37 @@ class DebugPlatform implements Platform {
             await window['StoryPlatform']['report'](bookId, evt, JSON.stringify(params), 'callbackReport');
         }
     }
+
     async getUserPlatformData() {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['getUserPlatformData']('callbackGetUserPlatformData');
         }
     }
+
     async getBookConsumeData(bookId) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['getBookConsumeData'](bookId, 'callbackGetBookConsumeData');
         }
     }
+
     async reportBusinessEvent(bookId, evtId, optionId) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['reportBusinessEvent'](bookId, evtId, optionId, 'callbackReportBusinessEvent');
         }
     }
+
     async getBusinessEventData(bookId, evtId, optionId) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['getBusinessEventData'](bookId, evtId, optionId, 'callbackGetBusinessEventData');
         }
     }
+
     async triggerEventNotify(evt, str) {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['triggerEventNotify'](evt, str);
         }
     }
+
     async finishPage() {//退出页面
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['finishPage']();
@@ -154,8 +171,8 @@ if (!window.platform) {
     window.platform = new DebugPlatform();
 }
 declare let platform: Platform;
-declare let appToH5EventType: number
-declare let appToH5EventData: string
+declare let appToH5EventType: number;
+declare let appToH5EventData: string;
 declare let nextVideoUrl: string;
 
 declare interface Window {

@@ -17,23 +17,23 @@ class ChengJiuPanel extends eui.Component {
     private tab1Group: eui.Group;
     private dianjicundang: eui.Group;
     private fanhuiLab: eui.Group;
-    private wanchengdu: eui.Label//BitmapLabel
+    private wanchengdu: eui.Label;//BitmapLabel
     private suipNum: eui.BitmapLabel;
 
     private closeGroup2: eui.Group;
     private closeGroup1: eui.Group;
     private bgBtn1: eui.Button;
     private roleName: eui.Label;
+    private tabIdx: number = 0;
+    private currIdx: number = 1;
+
     constructor(data) {
         super();
 
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
-    //添加到舞台
-    private onAddToStage(): void {
-        this.onSkinName();
-    }
+
     protected onRegist(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.CHENGJIU_REFRESH, this.onRefresh, this);
@@ -53,6 +53,7 @@ class ChengJiuPanel extends eui.Component {
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         // this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddVideo, this);
     }
+
     protected onRemove(): void {
         // this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onShowBottomBtn, this);
         for (var i: number = 1; i < 7; i++) {
@@ -68,6 +69,33 @@ class ChengJiuPanel extends eui.Component {
         this.bgBtn1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onHideList, this);
         this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
     }
+
+    //供子类覆盖
+    protected onInit(): void {
+        // this.showGoods(1);
+        var item: ChengJiuRoleItem;
+        this.taskGroup.visible = false;
+        this.taskGroup1.visible = true;
+        this.taskGroup2.visible = false;
+        for (var j: number = 1; j < 5; j++) {
+            item = new ChengJiuRoleItem();
+            item.data = j;
+            item.name = j + '';
+            item.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowRoleItemList, this);
+            this.goodsLayer1.addChild(item);
+        }
+        // return;
+    }
+
+    protected onSkinName(): void {
+        this.skinName = skins.ChengJiuSkin;
+    }
+
+    //添加到舞台
+    private onAddToStage(): void {
+        this.onSkinName();
+    }
+
     private onClose() {
         // if (!UserInfo.guideDic[5])//关闭界面去进行商城引导
         // {
@@ -77,6 +105,7 @@ class ChengJiuPanel extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ChengJiuPanel')
     }
+
     private onRefresh() {
         // if (!UserInfo.guideDic[5])//关闭界面去进行商城引导
         // {
@@ -98,18 +127,19 @@ class ChengJiuPanel extends eui.Component {
         this.suipNum.text = UserInfo.suipianMoney + '';
         this.showGoods(this.currIdx);
     }
+
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
         // this.mainGroup.scaleX = GameDefine.SCALENUMX;
         // this.mainGroup.scaleY = GameDefine.SCALENUMY;
     }
-    private tabIdx: number = 0;
+
     private onChangeTab(event: egret.Event) {
         // var index: number = Number(event.target.name);
 
         let tabButton: eui.RadioButton = event.currentTarget as eui.RadioButton;
-        var index: number = tabButton.value//Number(event.target.name);
+        var index: number = tabButton.value;//Number(event.target.name);
 
         if (this.tabIdx == index)
             return;
@@ -140,8 +170,7 @@ class ChengJiuPanel extends eui.Component {
                 this.goodsLayer1.addChild(item);
             }
             return;
-        }
-        else {
+        } else {
             this.closeGroup1.visible = true;
             this.closeGroup2.visible = false;
             this.taskGroup.visible = true;
@@ -150,6 +179,7 @@ class ChengJiuPanel extends eui.Component {
         }
 
     }
+
     private onHideList() {
         this.closeGroup1.visible = true;
         this.closeGroup2.visible = false;
@@ -157,6 +187,7 @@ class ChengJiuPanel extends eui.Component {
         this.taskGroup2.visible = false;
         this.taskGroup1.visible = true;
     }
+
     private onShowRoleItemList(event: egret.Event) {
         var index: number = Number(event.currentTarget.name);
         this.closeGroup1.visible = false;
@@ -179,8 +210,8 @@ class ChengJiuPanel extends eui.Component {
                 // item = new ChengJiuItem();
                 // item.data = cfgs[k];
                 // this.goodsLayer2.addChild(item);
-                let idx = this.getSt(cfgs[k])
-                datas.push({ cfg: cfgs[k], idx: idx });
+                let idx = this.getSt(cfgs[k]);
+                datas.push({cfg: cfgs[k], idx: idx});
             }
             // }
         }
@@ -193,13 +224,14 @@ class ChengJiuPanel extends eui.Component {
             }
         }
     }
-    private currIdx: number = 1;
+
     private onShowChengJiu(event: egret.Event) {
         var index: number = Number(event.target.name);
         if (this.currIdx == index)
             return;
         this.showGoods(index);
     }
+
     private sortCj(data) {
         var obj = this;
         data.sort(function (arg1, arg2) {
@@ -210,23 +242,21 @@ class ChengJiuPanel extends eui.Component {
         });
         return data;
     }
+
     private getSt(data) {
         if (UserInfo.achievementDics[data.id]) {
             if (UserInfo.achievementDics[data.id].iscomplete == 2) {
                 return 3;
-            }
-            else if(UserInfo.achievementDics[data.id].iscomplete==1){
+            } else if (UserInfo.achievementDics[data.id].iscomplete == 1) {
                 return 1;
-            }
-            else
-            {
+            } else {
                 return 2;
             }
-        }
-        else {
+        } else {
             return 2;
         }
     }
+
     private showGoods(index) {
         this.taskGroup2.visible = false;
         this.taskGroup1.visible = false;
@@ -243,7 +273,7 @@ class ChengJiuPanel extends eui.Component {
         //     item.data = cfgs[17];
         //     this.goodsLayer.addChild(item);
         // }
-        let datas= [];
+        let datas = [];
         for (var k in cfgs) {
             if (index == 1) {
                 // if (cfgs[k].id != 17) {
@@ -253,17 +283,16 @@ class ChengJiuPanel extends eui.Component {
                 // this.goodsLayer.addChild(item);
                 // }
                 // }
-                let idx = this.getSt(cfgs[k])
-                datas.push({cfg:cfgs[k],idx:idx});
-            }
-            else if (cfgs[k].level == index - 1) {
+                let idx = this.getSt(cfgs[k]);
+                datas.push({cfg: cfgs[k], idx: idx});
+            } else if (cfgs[k].level == index - 1) {
                 // if (cfgs[k].id != 17) {
                 // if (cfgs[k].tp2 == this.tabIdx || this.tabIdx == 0) {
                 // item = new ChengJiuItem();
                 // item.data = cfgs[k];
                 // this.goodsLayer.addChild(item);
-                let idx = this.getSt(cfgs[k])
-                datas.push({ cfg: cfgs[k], idx: idx });
+                let idx = this.getSt(cfgs[k]);
+                datas.push({cfg: cfgs[k], idx: idx});
                 // }
                 // }
             }
@@ -278,6 +307,7 @@ class ChengJiuPanel extends eui.Component {
         }
         // this.scroll.viewport.scrollV = 0;
     }
+
     private onLoadComplete(): void {
         this.suipNum.text = UserInfo.suipianMoney + '';
         this.touchEnabled = false;
@@ -306,27 +336,8 @@ class ChengJiuPanel extends eui.Component {
         //     GuideManager.getInstance().onShowImg(this.taskGroup, this.taskGroup, 'chengjiu');
         // }
     }
-
-    //供子类覆盖
-    protected onInit(): void {
-        // this.showGoods(1);
-        var item: ChengJiuRoleItem;
-        this.taskGroup.visible = false;
-        this.taskGroup1.visible = true;
-        this.taskGroup2.visible = false;
-        for (var j: number = 1; j < 5; j++) {
-            item = new ChengJiuRoleItem();
-            item.data = j;
-            item.name = j + '';
-            item.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowRoleItemList, this);
-            this.goodsLayer1.addChild(item);
-        }
-        // return;
-    }
-    protected onSkinName(): void {
-        this.skinName = skins.ChengJiuSkin;
-    }
 }
+
 class ChengJiuItem extends eui.Component {
     public title: eui.Label;
     public pro: eui.Button;
@@ -337,11 +348,13 @@ class ChengJiuItem extends eui.Component {
     private jiesuo: eui.Group;
     private num: eui.Label;
     private difficulty: eui.Label;
+
     public constructor() {
         super();
         this.skinName = skins.ChengJiuItemSkin;
         this.touchEnabled = false;
     }
+
     public set data(info) {
         this.info = info;
         this.title.text = info.titleID;
@@ -350,12 +363,10 @@ class ChengJiuItem extends eui.Component {
             this.jiesuo.visible = true;
             if (UserInfo.achievementDics[info.id].iscomplete == 2) {
                 this.num.text = '已领取';
-            }
-            else {
+            } else {
                 this.num.text = '+' + info.jianglisuipian;
             }
-        }
-        else {
+        } else {
             this.weijiesuo.visible = true;
             this.jiesuo.visible = false;
         }
@@ -370,12 +381,12 @@ class ChengJiuItem extends eui.Component {
         this.jiesuo.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGet, this);
         this.icon.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
     }
+
     private onGet() {
         if (UserInfo.achievementDics[this.info.id].iscomplete == 2) {
             this.onTouchBtn();
             return;
-        }
-        else {
+        } else {
             this.num.text = '已领取';
             if (UserInfo.achievementDics[this.info.id].iscomplete == 1) {
                 UserInfo.achievementDics[this.info.id].iscomplete = 2;
@@ -389,6 +400,7 @@ class ChengJiuItem extends eui.Component {
         }
 
     }
+
     private onTouchBtn() {//更改的地方
         // if (UserInfo.achievementDics[this.info.id]) {
         //     if (UserInfo.achievementDics[this.info.id].iscomplete == 1) {
@@ -401,9 +413,13 @@ class ChengJiuItem extends eui.Component {
         //     }
         // }
         // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CHENGJIU_REFRESH));
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), { windowName: 'ChengJiuItemPanel', data: this.info })
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
+            windowName: 'ChengJiuItemPanel',
+            data: this.info
+        })
     }
 }
+
 class ChengJiuRoleItem extends eui.Component {
     public title: eui.Label;
     private icon: eui.Image;
@@ -417,6 +433,7 @@ class ChengJiuRoleItem extends eui.Component {
         this.skinName = skins.ChengJiuRoleItemSkin;
         this.touchEnabled = false;
     }
+
     public set data(info) {
         this.info = info;
         this.icon.source = 'cj_roledi' + info + '_png';
@@ -429,7 +446,7 @@ class ChengJiuRoleItem extends eui.Component {
         var item: ChengJiuItem;
         for (var k in cfgs) {
             if (cfgs[k].tp2 == info) {
-                if (UserInfo.achievementDics[k]&&UserInfo.achievementDics[k].iscomplete>0) {
+                if (UserInfo.achievementDics[k] && UserInfo.achievementDics[k].iscomplete > 0) {
                     num = num + 1;
                 }
                 maxNum = maxNum + 1;
@@ -439,8 +456,7 @@ class ChengJiuRoleItem extends eui.Component {
             this.barPro['desc'].text = '0%';
             // this.barPro.maximum = maxNum;// Math.floor(num / ChengJiuManager.getInstance().getMaxChengJiuMax() * 100) + '%';
             this.barPro.value = 0;
-        }
-        else {
+        } else {
             this.barPro['desc'].text = Math.floor(num / maxNum * 100) + '%';
             // this.barPro.maximum = maxNum;// Math.floor(num / ChengJiuManager.getInstance().getMaxChengJiuMax() * 100) + '%';
             this.barPro.value = Math.floor(num / maxNum * 100);

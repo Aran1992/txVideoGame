@@ -2,20 +2,33 @@
 class Tool {
     private static timerManager = {};
     private static callbacktimeManager = {};
+    /***
+     * 将HTML文本格式转化成富文本
+     */
+    private static _htmlParser: egret.HtmlTextParser;
+    private static colorMatrix = [
+        0.3, 0.6, 0, 0, 0,
+        0.3, 0.6, 0, 0, 0,
+        0.3, 0.6, 0, 0, 0,
+        0, 0, 0, 1, 0
+    ];
 
     public static logClassName(str) {
         // if (SDKManager.isLocal) {
         //     egret.log("className: " + str);
         // }
     }
+
     public static log(str) {
         // if (SDKManager.isLocal) {
         //     egret.log("log: " + str);
         // }
     }
+
     public static error(str) {
         egret.error(str);
     }
+
     public static isAndroid(): boolean {
         if (egret.Capabilities.os == 'Android') {
             return true;
@@ -24,24 +37,28 @@ class Tool {
         // }
         return false;
     }
+
     public static randomInt(a, b) {
         return a + Math.floor((Math.random() * (b - a)));
     }
+
     public static randomFloat(a, b) {
         return a + (Math.random() * (b - a));
     }
+
     public static callback(callback, target, ...param) {
         egret.callLater(callback, target, ...param);
         // callback.call(target, ...param);
     }
+
     public static callbackTime(callback, target, time, ...param) {
         var timeoutKey = -1;
         if (time > 0) {
-            var callbackObj = { intervalId: 0, callback: callback, target: target, time: time, args: param };
+            var callbackObj = {intervalId: 0, callback: callback, target: target, time: time, args: param};
             var callbackFunc = function (callbackObj): void {
                 this.callback(callbackObj.callback, callbackObj.target, ...callbackObj.args);
                 egret.clearTimeout(callbackObj.intervalId);
-            }
+            };
             callbackObj.intervalId = egret.setTimeout(callbackFunc, this, time, callbackObj);
             timeoutKey = callbackObj.intervalId;
         } else {
@@ -49,12 +66,14 @@ class Tool {
         }
         return timeoutKey;
     }
+
     public static throwException(logstr = undefined, classz = ExceptionBase) {
         if (logstr) {
             egret.log(logstr);
         }
         throw new classz();
     }
+
     public static addTimer(callback, thisObject, time: number = 1000) {
         if (!Tool.timerManager[time.toString()]) {
             var timer: egret.Timer = new egret.Timer(time);
@@ -64,27 +83,32 @@ class Tool {
         Tool.callback(callback, thisObject);
         Tool.timerManager[time.toString()].addEventListener(egret.TimerEvent.TIMER, callback, thisObject);
     }
+
     public static removeTimer(callback, thisObject, time: number = 1000) {
         if (Tool.timerManager[time.toString()]) {
             Tool.timerManager[time.toString()].removeEventListener(egret.TimerEvent.TIMER, callback, thisObject);
         }
     }
+
     public static removeArrayObj(array: any[], obj) {
         var idx = array.indexOf(obj);
         if (idx >= 0) {
             array.splice(idx, 1);
         }
     }
+
     // 计算两点间的距离
     public static pDisPoint(x1, y1, x2, y2) {
         return Math.pow(Math.abs((x1 - x2) * (x1 - x2)) + Math.abs((y1 - y2) * (y1 - y2)), 0.5);
     }
+
     public static angle(startx, starty, endx, endy) {
         var diff_x = endx - startx;
         var diff_y = endy - starty;
         // 返回角度，不是弧度
         return 360 * Math.atan(diff_y / diff_x) / (2 * Math.PI);
     }
+
     public static angleTo360(startPosx, startPosy, endPosx, endPosy) {
         var angle = this.angle(startPosx, startPosy, endPosx, endPosy);
         if (endPosy >= startPosy) {
@@ -102,9 +126,10 @@ class Tool {
         }
         return angle;
     }
+
     /**
      * 获取圆内坐标X
-     * 
+     *
      * @param r
      *            半径
      * @param ao
@@ -117,7 +142,7 @@ class Tool {
 
     /**
      * 获取圆内坐标Y
-     * 
+     *
      * @param r
      *            半径
      * @param ao
@@ -127,10 +152,12 @@ class Tool {
     public static getArcY(r, ao) {
         return r * Math.sin(ao * Math.PI / 180);
     }
+
     public static isNumber(num: number): boolean {
         if (num != null) return !isNaN(num);
         return false;
     }
+
     //根据角度和距离计算坐标   angle是从计算机坐标系 0 - 360;
     public static beelinePointByAngle(x: number, y: number, angle: number, distance: number): egret.Point {
         var targetPoint: egret.Point = new egret.Point();
@@ -158,24 +185,13 @@ class Tool {
         }
         return targetPoint;
     }
+
     //根据中心点 + 半径 + 角度 计算圆上的一点
     public static randomPosByDistance(x: number, y: number, distance: number, point: egret.Point = null): egret.Point {
         let angle: number = Math.floor(Math.random() * 360);
         return this.getPosByRadiiAndAngle(x, y, angle, distance, point);
     }
-    //根据角度算出圆上一点
-    public static getPosByRadiiAndAngle(x: number, y: number, angle: number, distance: number, point: egret.Point = null): egret.Point {
-        if (!point) point = new egret.Point();
-        point.x = Math.ceil(x + distance * Math.cos(angle * Math.PI / 180));
-        point.y = Math.ceil(y - distance * Math.sin(angle * Math.PI / 180));
-        return point;
-    }
-    //根据起始到终止点的方向 算出距离n的坐标
-    public static getPosByTwoPoint(startX: number, startY: number, endX: number, endY: number, distance: number): egret.Point {
-        let angle = (-(Math.atan2((endY - startY), (endX - startX))) * (180 / Math.PI));
-        angle = angle < 0 ? 360 + angle : angle;
-        return this.getPosByRadiiAndAngle(startX, startY, angle, distance);
-    }
+
     //解压ZIP
     // public static readZipToXml(xmlName: string): egret.XML {
     //     try {
@@ -188,6 +204,22 @@ class Tool {
     //         this.throwException();
     //     }
     // }
+
+    //根据角度算出圆上一点
+    public static getPosByRadiiAndAngle(x: number, y: number, angle: number, distance: number, point: egret.Point = null): egret.Point {
+        if (!point) point = new egret.Point();
+        point.x = Math.ceil(x + distance * Math.cos(angle * Math.PI / 180));
+        point.y = Math.ceil(y - distance * Math.sin(angle * Math.PI / 180));
+        return point;
+    }
+
+    //根据起始到终止点的方向 算出距离n的坐标
+    public static getPosByTwoPoint(startX: number, startY: number, endX: number, endY: number, distance: number): egret.Point {
+        let angle = (-(Math.atan2((endY - startY), (endX - startX))) * (180 / Math.PI));
+        angle = angle < 0 ? 360 + angle : angle;
+        return this.getPosByRadiiAndAngle(startX, startY, angle, distance);
+    }
+
     //异步加载配置文件内的资源
     public static getResAsync(key: string, compFunc, thisObject: any): void {
         if (RES.hasRes(key)) {
@@ -200,6 +232,7 @@ class Tool {
             Tool.callback(compFunc, thisObject);
         }
     }
+
     public static readZipToJson(jsonname: string) {
         // let config = RES.getRes('config_json');
         // if (jsonname) {
@@ -224,6 +257,7 @@ class Tool {
         rt.drawToTexture(obj, clipBounds, scale);
         return rt;
     }
+
     /**属性对象转数组**/
     public static Object2Ary(param) {
         var arr: number[] = [];
@@ -232,18 +266,20 @@ class Tool {
         }
         return arr;
     }
+
     /**拼接属性加成字符串提示**/
     public static jointHintAttributeAddStr(arr) {
         var len = arr.length;
         var ret: egret.ITextElement[] = [];
         for (var i = 0; i < len; i++) {
-            ret.push({ text: arr[i][0], style: { textColor: 0XFFFFFF } });
-            ret.push({ text: "+" + arr[i][1], style: { textColor: 0X00FF00 } });
-            ret.push({ text: "\n", style: {} });
+            ret.push({text: arr[i][0], style: {textColor: 0XFFFFFF}});
+            ret.push({text: "+" + arr[i][1], style: {textColor: 0X00FF00}});
+            ret.push({text: "\n", style: {}});
         }
         ret.pop();
         return ret;
     }
+
     //时间戳转时间
     public static getCurrDayTime(tim) {
         const date = new Date(tim);
@@ -260,12 +296,14 @@ class Tool {
         return date.getFullYear() + "-" + month + "-" + strDate + " "
             + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     }
+
     public static getCurrTime() {
         return new Date().getTime();
     }
+
     /**
      * 得到时间格式字符串
-     * @param time 秒数 
+     * @param time 秒数
      */
     public static getTimeStr(time: number): string {
         if (time > 0) {
@@ -276,9 +314,10 @@ class Tool {
         }
         return "00:00:00";
     }
+
     /**
      * 得到时间格式字符串
-     * @param time 秒数 
+     * @param time 秒数
      */
     public static getDayHourMinuteTimeStr(time: number): string {
         if (time > 0) {
@@ -290,10 +329,11 @@ class Tool {
         }
         return "00:00:00";
     }
+
     /**
-     * 
+     *
      * 时间归为今天0点毫秒数
-     * 
+     *
      */
     public static formatZeroDate(date: Date) {
         var str: string = date.toString();
@@ -302,22 +342,21 @@ class Tool {
         date = new Date(Date.parse(str));
         return date;
     }
+
     /***
      * 返回一个HTML颜色格式字符串
      */
     public static getHtmlColorStr(desc: string, color: string): string {
         return `<font color='#${color}'>${desc}</font>`;
     }
-    /***
-     * 将HTML文本格式转化成富文本
-     */
-    private static _htmlParser: egret.HtmlTextParser;
+
     public static getHtmlITextElement(htmlTxt: string): egret.ITextElement[] {
         if (!this._htmlParser) {
             this._htmlParser = new egret.HtmlTextParser();
         }
         return this._htmlParser.parse(htmlTxt);
     }
+
     /**
      * 判断地址是不是IP地址
      * */
@@ -326,6 +365,7 @@ class Tool {
         let matchStrAry = url.match(reg);
         return matchStrAry && matchStrAry.length > 0;
     }
+
     /**
      * 向下取整型
      */
@@ -333,6 +373,7 @@ class Tool {
         let floorvalue: number = Math.floor(num);
         return floorvalue > num ? floorvalue - 1 : floorvalue;
     }
+
     public static getChineseByImgNum(num): string {
         var chinese_digit: string = '' + (num);
         if (chinese_digit.length == 2) {
@@ -348,20 +389,7 @@ class Tool {
         }
         return chinese_digit;
     }
-    //转换成汉字格式数字
-    public static toChineseNum(num: number): string {
-        var chinese_digit: string = '' + num;
-        if (chinese_digit.length == 2) {
-            if (num < 20) {
-                chinese_digit = '0' + (chinese_digit[1] != '0' ? chinese_digit[1] : "");
-            } else if (num % 10 == 0) {
-                chinese_digit = chinese_digit;
-            } else {
-                chinese_digit = chinese_digit[0] + '0' + chinese_digit[1];
-            }
-        }
-        return chinese_digit;
-    }
+
     // public static getChineseByNum(num: number): string {
     //     if (num <= 0) {
     //         return GameDefine.Chinese_Company_Ary[0];
@@ -394,6 +422,22 @@ class Tool {
     //         lastChar = char;
     //     }
     //     return result;
+
+    //转换成汉字格式数字
+    public static toChineseNum(num: number): string {
+        var chinese_digit: string = '' + num;
+        if (chinese_digit.length == 2) {
+            if (num < 20) {
+                chinese_digit = '0' + (chinese_digit[1] != '0' ? chinese_digit[1] : "");
+            } else if (num % 10 == 0) {
+                chinese_digit = chinese_digit;
+            } else {
+                chinese_digit = chinese_digit[0] + '0' + chinese_digit[1];
+            }
+        }
+        return chinese_digit;
+    }
+
     // }
     public static currencyTo(sNum): string {
         var nNum = parseFloat(sNum);
@@ -401,12 +445,7 @@ class Tool {
             return nNum.toFixed(2);
         }
     }
-    private static colorMatrix = [
-        0.3, 0.6, 0, 0, 0,
-        0.3, 0.6, 0, 0, 0,
-        0.3, 0.6, 0, 0, 0,
-        0, 0, 0, 1, 0
-    ];
+
     public static setDisplayGray(disp: egret.DisplayObject, isGray: boolean = true) {
         if (disp) {
             if (isGray) {
@@ -416,6 +455,7 @@ class Tool {
             }
         }
     }
+
     /**
      * 获取video的缓冲进度
      * return 缓存的时间
@@ -431,6 +471,7 @@ class Tool {
         }
         return -1;
     }
+
     /**
      * 截取链接里的参数值
      * **/
@@ -441,8 +482,11 @@ class Tool {
             return r[2].toString();
         return null;
     }
+
     //The end
 }
-class ExceptionBase implements ExceptionInformation { }
+
+class ExceptionBase implements ExceptionInformation {
+}
 
 // class GameJSZipLoadOptions implements JSZipLoadOptions { }

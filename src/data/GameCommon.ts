@@ -5,33 +5,37 @@ class GameCommon {
     private layer: egret.DisplayObjectContainer;
     private isAnswer: boolean;
     private allChapter: Modelchapter[];
+    private check;
+    private sd: egret.Sound;
+
     private constructor() {
         if (!this.sd) {
             this.sd = new egret.Sound();
             this.sd.load('resource/sound/click_sound.mp3');
         }
     }
+
     public static getInstance(): GameCommon {
         if (this.instance == null) {
             this.instance = new GameCommon();
         }
         return this.instance;
     }
-    private check;
+
     public getEnvironment() {
         if (!this.check) {
             this.check = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
         }
         if (this.check) {
             return 'ios';
-        }
-        else {
+        } else {
             return 'android';
         }
     }
+
     public getAllChapter() {
         if (!this.allChapter) {
-            var d = JsonModelManager.instance.getModelchapter()
+            var d = JsonModelManager.instance.getModelchapter();
             this.allChapter = [];
             for (var k in d) {
                 this.allChapter.push(d[k])
@@ -39,13 +43,13 @@ class GameCommon {
         }
         return this.allChapter;
     }
+
     public getAnswerCfg(wentiId, ansId) {
         var str = wentiModels[wentiId].ans;
         var awardStrAry: string[];
         if (str.indexOf(",") >= 0) {
             awardStrAry = str.split(",");
-        }
-        else {
+        } else {
             awardStrAry.push(str);
         }
         var cfgs = answerModels[wentiId];
@@ -55,9 +59,11 @@ class GameCommon {
             }
         }
     }
+
     public async getUserInfo() {
         await platform.getUserInfo();
     }
+
     //存档成功返回
     public parseFiel(tp) {
         // if(tp)
@@ -77,6 +83,7 @@ class GameCommon {
                 break;
         }
     }
+
     /*数据存档*/
     public async setBookData(tp) { //存储数据文档
         // if(tp)
@@ -99,12 +106,12 @@ class GameCommon {
             }
             // GameCommon.getInstance().addLikeTips('村上了'+UserInfo.curBokData.main_Img)
             GameCommon.getInstance().parseFiel(data.data.slotId);
-        }
+        };
         var str = '';
         if (!UserInfo.curBokData) {
             UserInfo.curBokData = new BookData();
         }
-        UserInfo.curBokData.timestamp = new Date().getTime()
+        UserInfo.curBokData.timestamp = new Date().getTime();
         // UserInfo.curBokData.title = '存档';
         switch (tp) {
             //自动存档和手动存档
@@ -147,7 +154,7 @@ class GameCommon {
             //收藏存档
             case FILE_TYPE.COLLECTION_FILE:
                 UserInfo.curBokData.allCollectionDatas = UserInfo.allCollectionDatas;
-                str = JSON.stringify(UserInfo.allCollectionDatas)
+                str = JSON.stringify(UserInfo.allCollectionDatas);
                 break;
             case FILE_TYPE.HIDE_FILE:
                 // str = JSON.stringify(UserInfo.chapterDatas)
@@ -160,7 +167,7 @@ class GameCommon {
                 let shopInfoDict = {};
                 for (let id in ShopManager.getInstance().shopInfoDict) {
                     let shopinfo: ShopInfoData = ShopManager.getInstance().shopInfoDict[id];
-                    shopInfoDict[shopinfo.id] = { num: shopinfo.num };
+                    shopInfoDict[shopinfo.id] = {num: shopinfo.num};
                 }
                 // GameCommon.getInstance().addChengJiuTips(JSON.stringify(shopInfoDict))
                 str = JSON.stringify(shopInfoDict);
@@ -174,6 +181,7 @@ class GameCommon {
         await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str)
         // LocalStorageManager.getInstance().saveFile(tp);
     }
+
     /*所有数据存档*/
     public async getBookHistoryList() {//获取所有数据列表
         callbackGetBookHistoryList = function (data) {
@@ -202,18 +210,20 @@ class GameCommon {
                 // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH), str);
                 // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH));
             }
-        }
+        };
         platform.getBookHistoryList(GameDefine.BOOKID);
     }
+
     public deleteBookHistory(tp) {
         callbackdeleteBookHistory = function (data) {
             // alert('清档成功')
             GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
-        }
+        };
         egret.localStorage.clear();
         platform.deleteBookHistory(GameDefine.BOOKID, tp);
         // LocalStorageManager.getInstance().deleteBookHistory(tp);
     }
+
     public async getBookHistory(tp) { //获取指定存档
         // if(tp)
         // return;//暂时注掉
@@ -256,8 +266,7 @@ class GameCommon {
                 if (UserInfo.curBokData.tipsDick) {
                     UserInfo.tipsDick = UserInfo.curBokData.tipsDick;
                 }
-            }
-            else {
+            } else {
                 var bookData: BookData = info;
                 UserInfo.fileDatas[tp] = bookData;
             }
@@ -394,28 +403,12 @@ class GameCommon {
                     break;
             }
 
-        }
+        };
         platform.getBookHistory(GameDefine.BOOKID, tp);
 
         // LocalStorageManager.getInstance().getBookHistory(tp);
     }
-    public parseStr() {
-        let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2];
-        var str = wentiModels[wentiId].ans;
-        var awardStrAry: string[];
-        if (str.indexOf(",") >= 0) {
-            awardStrAry = str.split(",");
-        }
-        else {
-            awardStrAry.push(str);
-        }
-        var cfgs = answerModels[wentiId];
-        for (var k in cfgs) {
-            if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
-                return cfgs[k];
-            }
-        }
-    }
+
     // public getLike(model:Modelanswer):string{
     //     var str = model.like;
     //     var awardStrAry: string[];
@@ -427,6 +420,24 @@ class GameCommon {
     //             return i+'_'+awardStrAry[i];
     //         }
     //     }
+
+    public parseStr() {
+        let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2];
+        var str = wentiModels[wentiId].ans;
+        var awardStrAry: string[];
+        if (str.indexOf(",") >= 0) {
+            awardStrAry = str.split(",");
+        } else {
+            awardStrAry.push(str);
+        }
+        var cfgs = answerModels[wentiId];
+        for (var k in cfgs) {
+            if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
+                return cfgs[k];
+            }
+        }
+    }
+
     // }
     public addRoleLike(index) {
         var awardStrAry: string[];
@@ -438,41 +449,54 @@ class GameCommon {
         // awardStrAry.shift();
         let delTim = 0;
         if (Number(awardStrAry[0]) > 0) {
-            Tool.callbackTime(function () { GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[0] + ': 亲密度增加') }, {}, delTim);
+            Tool.callbackTime(function () {
+                GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[0] + ': 亲密度增加')
+            }, {}, delTim);
             delTim = delTim + 3000;
-        }
-        else if (Number(awardStrAry[0]) < 0) {
-            Tool.callbackTime(function () { GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[0] + ': 亲密度降低') }, {}, delTim);
+        } else if (Number(awardStrAry[0]) < 0) {
+            Tool.callbackTime(function () {
+                GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[0] + ': 亲密度降低')
+            }, {}, delTim);
             delTim = delTim + 3000;
         }
 
         if (Number(awardStrAry[1]) > 0) {
-            Tool.callbackTime(function () { GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[1] + ': 亲密度增加') }, {}, delTim);
+            Tool.callbackTime(function () {
+                GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[1] + ': 亲密度增加')
+            }, {}, delTim);
             delTim = delTim + 3000;
-        }
-        else if (Number(awardStrAry[1]) < 0) {
-            Tool.callbackTime(function () { GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[1] + ': 亲密度降低') }, {}, delTim);
+        } else if (Number(awardStrAry[1]) < 0) {
+            Tool.callbackTime(function () {
+                GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[1] + ': 亲密度降低')
+            }, {}, delTim);
             delTim = delTim + 3000;
         }
 
         if (Number(awardStrAry[2]) > 0) {
-            Tool.callbackTime(function () { GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[2] + ': 亲密度增加') }, {}, delTim);
+            Tool.callbackTime(function () {
+                GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[2] + ': 亲密度增加')
+            }, {}, delTim);
             delTim = delTim + 3000;
-        }
-        else if (Number(awardStrAry[2]) < 0) {
-            Tool.callbackTime(function () { GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[2] + ': 亲密度降低') }, {}, delTim);
+        } else if (Number(awardStrAry[2]) < 0) {
+            Tool.callbackTime(function () {
+                GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[2] + ': 亲密度降低')
+            }, {}, delTim);
             delTim = delTim + 3000;
         }
 
         if (Number(awardStrAry[3]) > 0) {
-            Tool.callbackTime(function () { GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[3] + ': 亲密度增加') }, {}, delTim);
+            Tool.callbackTime(function () {
+                GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[3] + ': 亲密度增加')
+            }, {}, delTim);
             delTim = delTim + 3000;
-        }
-        else if (Number(awardStrAry[3]) < 0) {
-            Tool.callbackTime(function () { GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[3] + ': 亲密度降低') }, {}, delTim);
+        } else if (Number(awardStrAry[3]) < 0) {
+            Tool.callbackTime(function () {
+                GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[3] + ': 亲密度降低')
+            }, {}, delTim);
             delTim = delTim + 3000;
         }
     }
+
     public getCurRoleLike(index, str): number {
         var awardStrAry: string[] = str.split(",");
         for (var i: number = 0; i < awardStrAry.length; i++) {
@@ -481,6 +505,7 @@ class GameCommon {
             }
         }
     }
+
     public getRoleLikeAll(index, chapter: number = 0): number {
         let likeData = UserInfo.curBokData.answerId;
         var likeNum = 0;
@@ -507,10 +532,11 @@ class GameCommon {
         }
         return likeNum;
     }
+
     public getSortLike(idx: number = 0) {
         var items = [];
         for (var i: number = 0; i < ROLE_INDEX.SIZE; i++) {
-            var data = { num: 0, id: i };
+            var data = {num: 0, id: i};
             data.num = this.getRoleLikeAll(i);
             items.push(data);
         }
@@ -529,10 +555,11 @@ class GameCommon {
         // }
         return items[idx];
     }
+
     public getSortLikeAry() {
         var items = [];
         for (var i: number = 0; i < ROLE_INDEX.SIZE; i++) {
-            var data = { num: 0, id: i };
+            var data = {num: 0, id: i};
             data.num = this.getRoleLikeAll(i);
             items.push(data);
         }
@@ -584,6 +611,7 @@ class GameCommon {
         }
         //
     }
+
     /** 获取某个存档当前剧情ID
      * 通过每个存档位上最后的一个问题的ID
      * 问题记录的视频ID 对应的剧情ID
@@ -635,8 +663,9 @@ class GameCommon {
         }
         return GameDefine.START_JUQING_KUAI;
     }
+
     /** 判断剧情块是否开启
-     * 返回结果为 参数1 是否比 参数2大  
+     * 返回结果为 参数1 是否比 参数2大
      * 注释： 大这个概念 初步的数据设计是 剧情块ID大的  剧情一定靠后
      * 接手项目后  为防止出现插入的情况  特意写了这么一个可修改的接口
      * By 修改  如果传入的剧情块 不在当前章节列表（章节列表与角色好感度有关） 则直接返回Flase
@@ -669,18 +698,23 @@ class GameCommon {
     public addAlert(text: string): void {
         // PromptPanel.getInstance().addPromptError(text);
     }
+
     public addChengJiuTips(text: string): void {
         PromptPanel.getInstance().addChengJiuTips(text);
     }
+
     public addLikeTips(text: string): void {
         PromptPanel.getInstance().addLikeTips(text);
     }
+
     public setTipsHuDong(): void {
         PromptPanel.getInstance().setTipsHuDong();
     }
+
     public hideTipsHuDong(): void {
         PromptPanel.getInstance().hideTipsHuDong();
     }
+
     public showCommomTips(str): void {
         PromptPanel.getInstance().showCommomTips(str);
     }
@@ -688,28 +722,35 @@ class GameCommon {
     public showActionTips(str) {
         PromptPanel.getInstance().showActionTips(str);
     }
+
     public hideActionTips() {
         PromptPanel.getInstance().hideActionTips();
     }
+
     public onShowQinMiGroup() {
         PromptPanel.getInstance().onShowQinMiGroup();
     }
+
     public onShowBuyTips(id, money, tp) {
         PromptPanel.getInstance().onShowBuyTips(id, money, tp);
     }
+
     public onShowBuyHaoGan(id: number = 0, onCallBack) {
         PromptPanel.getInstance().onShowBuyHaoGan(id, onCallBack);
     }
+
     public onShowResultTips(str: string, isRight: boolean = true, btnlabel?: string, callBack?: Function, ...arys) {
         PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }
+
     public showConfirmTips(desc: string, callBack: Function, desc2?: string): void {
         PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2);
     }
+
     public showErrorLog(logstr: string): void {
         PromptPanel.getInstance().showErrorLog(logstr);
     }
-    private sd: egret.Sound
+
     public shock(tp: number = 0, iswin: boolean = false) {
         // this.sd.play(0, 1);
 
@@ -719,12 +760,10 @@ class GameCommon {
                     navigator.vibrate([500, 300]);
                 }
                 SoundManager.getInstance().playSound('winMusic.mp3');
-            }
-            else {
+            } else {
                 SoundManager.getInstance().playSound('loseMusic.mp3');
             }
-        }
-        else {
+        } else {
             if (Tool.isAndroid()) {
                 navigator.vibrate([500, 300]);
             }
@@ -732,74 +771,85 @@ class GameCommon {
         }
         // PromptPanel.getInstance().hideActionTips();
     }
+
     public showLoading(): void {
         PromptPanel.getInstance().showLoading();
     }
+
     public removeLoading(): void {
         PromptPanel.getInstance().removeLoading();
     }
+
     public async report(evt, params) {
         callbackReport = function (data) {
             if (data.code == 0) {
                 GameCommon.getInstance().showCommomTips(JSON.stringify(data));
-            }
-            else {
+            } else {
                 GameCommon.getInstance().showCommomTips(JSON.stringify(data));
             }
-        }
+        };
         await platform.report(GameDefine.BOOKID, evt, params)
     }
+
     //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
     //50<n<=200、200<n<=500、500以上。这里返回对应的区间号，0(n=0),1(0<n<=50),2(...),3,4
     public async getUserPlatformData() {
         callbackGetUserPlatformData = function (data) {
 
-        }
+        };
         await platform.getUserPlatformData()
     }
-    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）  
+
+    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
     /*totalAmount	int	消费总额	消费总额
     totalTimes	int	消费次数	消费次数
     lastConsumeTime	int	上次消费时间	上次消费时间
     lastConsumeValue	int	上次消费额度	上次消费额度*/
     public async getBookConsumeData() {
         callbackGetBookConsumeData = function (data) {
-        }
+        };
         await platform.getBookConsumeData(GameDefine.BOOKID)
     }
+
     async reportBusinessEvent(bookId, evtId, optionId) {
         callbackReportBusinessEvent = function (data) {
             //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理）
             console.log('213');
-        }
+        };
         await platform.reportBusinessEvent(GameDefine.BOOKID, evtId, optionId)
     }
+
     async getBusinessEventData(bookId, evtId, optionId) {
         callbackGetBusinessEventData = function (data) {
             //多条查询统计结果
             GameCommon.getInstance().showCommomTips('获取上报' + JSON.stringify(data))
-        }
+        };
         await platform.getBusinessEventData(GameDefine.BOOKID, evtId, optionId)
     }
+
     async triggerEventNotify(evtId, str) {
         await platform.triggerEventNotify(evtId, str)
     }
+
     async openButton(str) {
         await platform.openButton(str)
     }
+
     async onCloseWebView() {
         if (window['StoryPlatform']) {
             await window['StoryPlatform']['exit']();
         }
     }
+
     public onunlockshoucang(id) {
         UserInfo.allCollectionDatas[id] = id;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UNLOCK_SHOUCANG), id);
         GameCommon.instance.setBookData(FILE_TYPE.COLLECTION_FILE);
     }
+
     public onCleanFile(data) {
         let cfg: Modeljuqingkuai = data;
-        let cfg1: Modeljuqingkuai
+        let cfg1: Modeljuqingkuai;
         if (cfg.BE == 1) {
             cfg1 = JsonModelManager.instance.getModeljuqingkuai()[cfg.show][cfg.id - 1];
         }
@@ -811,7 +861,7 @@ class GameCommon {
                 isClean = true;
             }
             if (cfg1 && cfg1.wentiId == id) {
-                UserInfo.curBokData.wentiId[i]
+                UserInfo.curBokData.wentiId[i];
                 UserInfo.curBokData.videoNames[id] = cfg1.videoId;
                 UserInfo.curBokData.times[id] = 1;
                 UserInfo.curBokData.answerId[id] = '';
@@ -825,7 +875,7 @@ class GameCommon {
             }
         }
         for (var k in UserInfo.curBokData.videoDic) {
-            let videoCfg: Modelshipin = JsonModelManager.instance.getModelshipin()[UserInfo.curBokData.videoDic[k]]
+            let videoCfg: Modelshipin = JsonModelManager.instance.getModelshipin()[UserInfo.curBokData.videoDic[k]];
             if (videoCfg) {
                 if (videoCfg.juqing >= cfg.id) {
                     UserInfo.curBokData.videoDic[k] = null;
@@ -835,6 +885,7 @@ class GameCommon {
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
     }
 }
+
 declare var callbackdeleteBookHistory;
 declare var callbackGetBookHistory;
 declare var callbackGetBookLastHistory;

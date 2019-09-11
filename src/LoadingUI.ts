@@ -29,22 +29,19 @@
 
 class LoadingUI extends egret.Sprite implements RES.PromiseTaskReporter {
 
+    private textField: egret.TextField;
+
     public constructor() {
         super();
         this.createView();
     }
 
-    private textField: egret.TextField;
-
-    private createView(): void {
-        // GameDispatcher.getInstance().addEventListener(GameEvent.INIT_DESC, this.onGetDataRefresh, this);
-        
-        this.textField = new egret.TextField();
-        this.addChild(this.textField);
-        this.textField.width = 480;
-        this.textField.height = 100;
-        this.textField.textAlign = "center";
+    // }
+    public onProgress(current: number, total: number): void {
+        this.textField.text = `Loading...${current}/${total}`;
+        GameCommon.getInstance().triggerEventNotify(GameEvent.GAME_LOADING, '');
     }
+
     // public onGetDataRefresh(data){
     //     var tx:egret.TextField = new egret.TextField();
     //     tx.text = data.data;
@@ -52,9 +49,14 @@ class LoadingUI extends egret.Sprite implements RES.PromiseTaskReporter {
     //     tx.height = 500;
     //     tx.y = 100;
     //     this.addChild(tx);
-    // }
-    public onProgress(current: number, total: number): void {
-        this.textField.text = `Loading...${current}/${total}`;
-        GameCommon.getInstance().triggerEventNotify(GameEvent.GAME_LOADING,'');
+
+    private createView(): void {
+        // GameDispatcher.getInstance().addEventListener(GameEvent.INIT_DESC, this.onGetDataRefresh, this);
+
+        this.textField = new egret.TextField();
+        this.addChild(this.textField);
+        this.textField.width = 480;
+        this.textField.height = 100;
+        this.textField.textAlign = "center";
     }
 }

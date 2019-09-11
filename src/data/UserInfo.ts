@@ -42,6 +42,7 @@ class UserInfo {
         UserInfo.tipsDick = {};
     }
 }
+
 class BookData {
     public ansWerData: AnswerData;
     public achievementDics = {};//所有成就
@@ -83,6 +84,7 @@ class BookData {
     public likes;
     //对应问题选择的答案
     public answerId;
+
     public constructor() {
         this.chapterDatas = [];
         this.shopDic = {};
@@ -101,17 +103,20 @@ class BookData {
         this.suipianMoney = 0;
     }
 }
+
 class AnswerData {
     //章节ID
     public chapterId: number;
     //问题ID
     public wentiId;
     public answerId;
+
     public constructor() {
         this.wentiId = {};
         this.answerId = {};
     }
 }
+
 class ChengJiuData {
     //成就ID
     public id: number;
@@ -123,10 +128,12 @@ class ChengJiuData {
     public iscomplete: number;
     //存档UNIX时间戳
     public timestamp: number;
+
     public constructor() {
         this.iscomplete = 0;
     }
 }
+
 class TitleData {
     //成就ID
     public id: number;
@@ -137,6 +144,7 @@ class TitleData {
     public iscomplete: boolean;
     //存档UNIX时间戳
     public timestamp: number;
+
     public constructor() {
 
     }

@@ -9,6 +9,7 @@ class ViewEnd extends eui.Component {
     private tiaozhuan: number;
     private isdie: boolean;
     private goMain: eui.Button;
+
     constructor(isDie, tiaozhuan) {
         super();
         // this.width = size.width;
@@ -18,15 +19,37 @@ class ViewEnd extends eui.Component {
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
+
+    public onTweenNext() {
+        if (this.curImgIdx < this.imgList.length - 1) {
+            ++this.curImgIdx;
+            this.onTweenStart();
+        } else {
+            this.onSetOver();
+        }
+    }
+
+    public onTweenFinish(idx: number) {
+        if (idx < this.imgList.length - 1) {
+            let img: eui.Image = this.imgList[idx];
+            egret.Tween.removeTweens(img);
+            this.group.removeChild(img);
+        } else {
+            this.onSetOver();
+        }
+    }
+
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
         // this.mainGroup.scaleX = GameDefine.SCALENUMX;
         // this.mainGroup.scaleY = GameDefine.SCALENUMY;
     }
+
     private onAddToStage(): void {
         this.skinName = skins.BadEndSkin;
     }
+
     private onLoadComplete(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         this.updateResize();
@@ -61,7 +84,7 @@ class ViewEnd extends eui.Component {
         // }
         // if (size.fillType!=FILL_TYPE_COVER) {
         // window['mainDiv'].style["object-fit"] = "contain";
-        // } 
+        // }
         // this.isOver = false;
         // this.curImgIdx = 0;
 
@@ -71,12 +94,12 @@ class ViewEnd extends eui.Component {
             this.mainGroup.visible = true;
             this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEvent, this);
             this.goMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGoMain, this);
-        }
-        else {
+        } else {
             this.mainGroup.visible = false;
             this.onEvent();
         }
     }
+
     private onTweenStart() {
         let tweens: TweenBody[] = TweenManager.tweenList[this.curImgIdx];
         if (!tweens)
@@ -85,40 +108,25 @@ class ViewEnd extends eui.Component {
         this.group.addChildAt(img, 0);
         this.tweenControler.setTweenInfo(img, tweens, this.curImgIdx);
     }
-    public onTweenNext() {
-        if (this.curImgIdx < this.imgList.length - 1) {
-            ++this.curImgIdx;
-            this.onTweenStart();
-        } else {
-            this.onSetOver();
-        }
-    }
-    public onTweenFinish(idx: number) {
-        if (idx < this.imgList.length - 1) {
-            let img: eui.Image = this.imgList[idx];
-            egret.Tween.removeTweens(img);
-            this.group.removeChild(img);
-        } else {
-            this.onSetOver();
-        }
-    }
+
     private onSetOver() {
         if (!this.isOver) {
             if (GameDefine.ISMAINVIEW == true) {
                 this.isOver = true;
                 this.parent.removeChild(this);
 
-            }
-            else {
+            } else {
                 this.onEvent();
             }
 
         }
     }
+
     private onGoMain() {
         this.parent.removeChild(this);
         VideoManager.getInstance().videoClose();
     }
+
     private onEvent() {
         // this.btn.visible = false;
         this.isOver = true;
@@ -144,19 +152,17 @@ class ViewEnd extends eui.Component {
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
                     break;
             }
-        }
-        else {
+        } else {
 
             var chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
             let videoSrc = '';
             if (chapCfg.videoSrc.indexOf(",") >= 0) {
                 let videoIds = chapCfg.videoSrc.split(",");
                 videoSrc = videoIds[0];
-            }
-            else {
+            } else {
                 videoSrc = chapCfg.videoSrc;
             }
-            VideoManager.getInstance().log('隐藏存档')
+            VideoManager.getInstance().log('隐藏存档');
             UserInfo.curBokData.wentiId.push(chapCfg.wenti);
             UserInfo.curBokData.videoNames[chapCfg.wenti] = videoSrc;
             UserInfo.curBokData.times[chapCfg.wenti] = 0;
@@ -170,9 +176,10 @@ class ViewEnd extends eui.Component {
         }
 
 
-        // 
+        //
     }
 }
+
 enum TIAOZHUAN_Type {
     WENTI = 1,//跳回视频
     MAINVIEW = 2,//回主界面

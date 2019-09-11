@@ -60,30 +60,32 @@ class GameDefine {
     public static CJ_LEVEL_NAME: string[] = ['全部', '普通', '简单', '中等', '困难', '究极'];
 
     public static START_CHAPTER: number = 9;
+    public static SOUND_RES: string = "resource/sound/";
+    // }
+    public static Currency_Icon = {
+        SUIPIAN: "common_suipian_png",
+        DIAMOND: "common_zuanshi_png"
+    };
 
     public static get sizeScaleX() {// 白鹭UI和视频的尺寸比（横向）
         return size.width / GameDefine.VIDEO_FULL_WIDTH;
     }
+
     public static get sizeScaleY() {// 白鹭UI和视频的尺寸比（纵向）
         return size.height / GameDefine.VIDEO_FULL_HEIGHT;
     }
+
     public static get sceneScaleX() {
         return size.width / wind.width;
     }
-    public static get sceneScaleY() {
-        return size.height / wind.height;
-    }
-
-    public static SOUND_RES: string = "resource/sound/";
     // public static get screenScaleX(){// 白鹭UI和视频的尺寸比（横向）
     //     return GameDefine.SCREEN_WIDTH / GameDefine.VIDEO_WIDTH;
     // }
     // public static get screenScaleY(){// 白鹭UI和视频的尺寸比（纵向）
     //     return GameDefine.SCREEN_HEIGHT / GameDefine.VIDEO_HEIGHT;
-    // }
-    public static Currency_Icon = {
-        SUIPIAN: "common_suipian_png",
-        DIAMOND: "common_zuanshi_png"
+
+    public static get sceneScaleY() {
+        return size.height / wind.height;
     }
 }
 
@@ -95,6 +97,7 @@ enum ROLE_INDEX {
     WanXun_Xiao = 3,
     SIZE = 4
 }
+
 enum FILE_TYPE {
     AUTO_FILE = 1,//自动存档
     // FILE1 = 1,//自动存档
@@ -112,11 +115,13 @@ enum FILE_TYPE {
     TIMESTAMP = 13,//时间戳
     SIZE = 14,
 }
+
 enum GOODS_TYPE {
     ITEM = 1,//
     SUIPIAN = 2,//碎片
     DIAMOND = 3,//钻石
 }
+
 enum SHOUCANG_TYPE {
     SHOUCANG_HANXIAOBAI = 1,//
     SHOUCANG_XIAOQIANYE = 2,//
@@ -125,8 +130,9 @@ enum SHOUCANG_TYPE {
     SHOUCANG_MUSIC = 5,//
     SHOUCANG_OTHER = 6,//
 }
+
 enum SHOUCANG_SUB_TYPE {//
     SHOUCANG_IMG = 1,//图片收藏
-    SHOUCANG_VIDEO = 2,//视频收藏    
+    SHOUCANG_VIDEO = 2,//视频收藏
     SHOUCANG_MUSIC = 3,//音乐收藏
 }

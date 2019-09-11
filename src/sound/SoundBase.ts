@@ -1,6 +1,6 @@
 /**
  *
- * @author 
+ * @author
  *
  */
 class SoundBase {
@@ -10,24 +10,29 @@ class SoundBase {
     public volume: number;
     public loop: number;
     private isPlay: boolean;
+
     public constructor(res: string) {
-        this.res = res; 
-	}
-    public play(volume: number = 0.4, loop: number): void {
-        
+        this.res = res;
     }
+
+    public play(volume: number = 0.4, loop: number): void {
+
+    }
+
     public stop() {
-        if(this.soundChannel) {
+        if (this.soundChannel) {
             this.soundChannel.stop();
         }
     }
-    public setVolume(volume: number){
+
+    public setVolume(volume: number) {
         this.volume = volume;
-        if(this.soundChannel) {
+        if (this.soundChannel) {
             this.soundChannel.volume = volume;
         }
     }
-    public getVolume(){
+
+    public getVolume() {
         return this.volume;
     }
 }

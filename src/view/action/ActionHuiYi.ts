@@ -15,13 +15,25 @@ class ActionHuiYi extends ActionSceneBase {
     private miaoshu: eui.Label;
     private qinmiGroup: eui.Group;
     private option_roles: number[] = [2, 3, 1, 4];
+    private share1: egret.Shape;
+    private share2: egret.Shape;
+    private share3: egret.Shape;
+    private share4: egret.Shape;
+    private ansId: number = 0;
 
     public constructor(model: Modelwenti, list: string[], idx: number) {
         super(model, list, idx);
     }
+
+    public exit() {
+        this.stopRun();
+        this.onExit();
+    }
+
     protected onSkinName(): void {
         this.skinName = skins.ActionHuiYiSkin;
     }
+
     protected onInit(): void {
         super.onInit();
         this.updateResize();
@@ -64,9 +76,31 @@ class ActionHuiYi extends ActionSceneBase {
             this['icon' + cfgs[k].ansid].source = 'huiyi_icon' + cfgs[k].ansid + '_png';
         }
     }
+
+    protected update(dt): void {
+        super.update(dt);
+        // for (var i: number = 1; i < 5; i++) {
+        //     this.drawArc(this['share' + i], this.maxTime - this.runTime, this.maxTime, 500)
+        // }
+        this.timeBar2.value = this.runTime;
+        this.timeBar1.value = this.runTime;
+        // this.timeBar.value = this.maxTime - this.runTime;
+    }
+
+    protected onBackFail() {
+        super.onBackFail();
+    }
+
+    protected onBackSuccess() {
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO),
+            {answerId: this.ansId, wentiId: this.model.id, click: 1});
+        this.exit();
+    }
+
     private onGuideTween() {
 
     }
+
     private onClick() {
         if (this.qinmiGroup.visible) {
             this.qinmiGroup.visible = false;
@@ -74,19 +108,17 @@ class ActionHuiYi extends ActionSceneBase {
         }
 
     }
+
     private onRefreshPos() {
         if (!this._posStr[this.idx])
             return;
         var posStr = this._posStr[this.idx].split("_");
         if (posStr.length > 1) {
-            this.lineGroup.x = Math.floor(this.width * (parseInt(posStr[0]) / 100)); //parseInt(posStr[0])); 
+            this.lineGroup.x = Math.floor(this.width * (parseInt(posStr[0]) / 100)); //parseInt(posStr[0]));
             this.lineGroup.y = Math.floor(this.height * (parseInt(posStr[1]) / 100)) - 557;
         }
     }
-    private share1: egret.Shape;
-    private share2: egret.Shape;
-    private share3: egret.Shape;
-    private share4: egret.Shape;
+
     private initTimeInfo() {
         // for (var i: number = 1; i < 5; i++) {
         //     this['share' + i] = new egret.Shape();
@@ -114,15 +146,7 @@ class ActionHuiYi extends ActionSceneBase {
         this.timeBar2.maximum = this.maxTime;
         this.timeBar2.value = this.maxTime;
     }
-    protected update(dt): void {
-        super.update(dt);
-        // for (var i: number = 1; i < 5; i++) {
-        //     this.drawArc(this['share' + i], this.maxTime - this.runTime, this.maxTime, 500)
-        // }
-        this.timeBar2.value = this.runTime;
-        this.timeBar1.value = this.runTime;
-        // this.timeBar.value = this.maxTime - this.runTime;
-    }
+
     private drawArc(shape: egret.Shape, value: number, max: number, wd: number) {
         var r = wd / 2 - 50;
         shape.graphics.clear();
@@ -133,7 +157,7 @@ class ActionHuiYi extends ActionSceneBase {
         shape.graphics.lineTo(0, 0);//从终点画线到圆形。到此扇形的封闭区域形成
         shape.graphics.endFill();
     }
-    private ansId: number = 0;
+
     private onEventClick(event: egret.Event) {
         if (this.qinmiGroup.visible) {
             this.qinmiGroup.visible = false;
@@ -151,21 +175,11 @@ class ActionHuiYi extends ActionSceneBase {
         this.ansId = name;
         this.onBackSuccess();
     }
+
     private onCallBack(data): void {
         this.onBackSuccess();
     }
-    protected onBackFail() {
-        super.onBackFail();
-    }
-    protected onBackSuccess() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO),
-            { answerId: this.ansId, wentiId: this.model.id, click: 1 });
-        this.exit();
-    }
-    public exit() {
-        this.stopRun();
-        this.onExit();
-    }
+
     private onExit() {
         if (this.parent)
             this.parent.removeChild(this);

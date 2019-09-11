@@ -1,12 +1,13 @@
 /**
  *
- * @author 
+ * @author
  *
  */
 abstract class ModelBase {
     public id;// 模板编号
 
-    public constructor() { }
+    public constructor() {
+    }
 
     public getXmlValue(xml: egret.XML, key) {
         return xml.attributes[key];

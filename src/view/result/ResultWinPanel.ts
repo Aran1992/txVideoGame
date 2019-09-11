@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * 胜利结算界面
- * @author	lzh	
- * 
- * 
+ * @author    lzh
+ *
+ *
  */
 class ResultWinPanel extends eui.Component {
     private btnMain: eui.Button;
@@ -30,6 +30,14 @@ class ResultWinPanel extends eui.Component {
     private roleInfoWidth: number = 358;
     private _isEnd: boolean;
     private cur_chapter: number;
+    private currIdx: number;
+    private curIndex: number = -1;
+    private colorMatrix = [
+        0.3, 0.6, 0, 0, 0,
+        0.3, 0.6, 0, 0, 0,
+        0.3, 0.6, 0, 0, 0,
+        0, 0, 0, 1, 0];
+    private flilter = new egret.ColorMatrixFilter(this.colorMatrix);
 
     public constructor(isEnd: boolean) {
         super();
@@ -37,14 +45,14 @@ class ResultWinPanel extends eui.Component {
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
-    private currIdx: number;
+
     private onLoadComplete(): void {
         this.width = this.stage.stageWidth;
         this.height = this.stage.stageHeight;
         // this.btnBuy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuy, this)
-        this.btnNext.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onContinue, this)
-        this.btnMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowMainView, this)
-        this.jixu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onjixu, this)
+        this.btnNext.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onContinue, this);
+        this.btnMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowMainView, this);
+        this.jixu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onjixu, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         for (var i: number = 1; i < 5; i++) {
             this['roleItem' + i].name = i;
@@ -82,7 +90,7 @@ class ResultWinPanel extends eui.Component {
         this.labState.textColor = 0xCB7ED3;
         //在这里做一下存档
     }
-    private curIndex: number = -1;
+
     private onClickRoleItem(event: egret.Event) {
         var name: number = Number(event.currentTarget.name);
         if (this.curIndex != -1) {
@@ -104,7 +112,7 @@ class ResultWinPanel extends eui.Component {
     private onShowWinEffect() {
         var data = GameCommon.getInstance().getSortLike();
         for (var i: number = 1; i < 5; i++) {
-            this['roleItem' + i].data = { idx: i - 1, xindong: data.id, chapter: this.cur_chapter }
+            this['roleItem' + i].data = {idx: i - 1, xindong: data.id, chapter: this.cur_chapter}
         }
         var item: ResultChengJiuItem;
         this.goodsLayer.removeChildren();
@@ -113,7 +121,7 @@ class ResultWinPanel extends eui.Component {
             var cfg: Modelchengjiu = JsonModelManager.instance.getModelchengjiu()[ChengJiuManager.getInstance().curChapterChengJiu[k]];
             if (cfg) {
                 item = new ResultChengJiuItem();
-                item.data = { id: ChengJiuManager.getInstance().curChapterChengJiu[k], roleId: cfg.tp2 };
+                item.data = {id: ChengJiuManager.getInstance().curChapterChengJiu[k], roleId: cfg.tp2};
                 this.goodsLayer.addChild(item);
                 cjNum = cjNum + 1;
             }
@@ -121,30 +129,26 @@ class ResultWinPanel extends eui.Component {
         }
         if (cjNum == 0) {
             this.noneCJ.visible = true;
-        }
-        else {
+        } else {
             this.noneCJ.visible = false;
         }
         var tw = egret.Tween.get(this.winEff);
-        tw.to({ alpha: 1 }, 1000);
+        tw.to({alpha: 1}, 1000);
 
     }
+
     private endWinEffect() {
         this.mainGroup.visible = true;
         this.winEff.visible = false;
     }
-    private colorMatrix = [
-        0.3, 0.6, 0, 0, 0,
-        0.3, 0.6, 0, 0, 0,
-        0.3, 0.6, 0, 0, 0,
-        0, 0, 0, 1, 0];
-    private flilter = new egret.ColorMatrixFilter(this.colorMatrix);
+
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
         // this.mainGroup.scaleX = GameDefine.SCALENUMX;
         // this.mainGroup.scaleY = GameDefine.SCALENUMY;
     }
+
     private onContinue() {
         // if (UserInfo.curchapter > 3) {
         //     return;
@@ -189,6 +193,7 @@ class ResultWinPanel extends eui.Component {
         this.touchEnabled = false;
         this.touchChildren = false;
     }
+
     private onjixu() {
         ChengJiuManager.getInstance().curChapterChengJiu = {};
         this.mainGroup.visible = true;
@@ -198,15 +203,17 @@ class ResultWinPanel extends eui.Component {
         var tw = egret.Tween.get(this.winEff);
         this.winEff.alpha = 1;
         var obj = this;
-        tw.to({ alpha: 0 }, 1000).call(function () {
+        tw.to({alpha: 0}, 1000).call(function () {
             obj.winEff.visible = false;
             tw = egret.Tween.get(obj.mainGroup);
-            tw.to({ alpha: 1 }, 1000);
+            tw.to({alpha: 1}, 1000);
         });
     }
+
     private onbuy() {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShopPanel')
     }
+
     private onShowMainView() {
         // if (UserInfo.curchapter > 2) {
         //     UserInfo.curchapter = 2;
@@ -219,14 +226,16 @@ class ResultWinPanel extends eui.Component {
         ChengJiuManager.getInstance().curChapterChengJiu = {};
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_CHAPTER_END));
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_WIN));
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ResultWinPanel')
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ResultWinPanel');
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
     }
+
     //添加到舞台
     private onAddToStage(): void {
         this.skinName = skins.ResultWinSkin;
     }
 }
+
 class ResultWinItem extends eui.Component {
     public xindong: eui.Group;
     private haogan1: eui.Group;
@@ -236,15 +245,18 @@ class ResultWinItem extends eui.Component {
     private roleName: eui.Image;
     private hide1: eui.Group;
     private desc1: eui.Label;
-    private _data;
     private roleType: eui.Label;
-    private roleTypeNams: string[] = ['主\n唱', '贝\n斯\n手', '吉\n他\n手', '键\n盘\n手']
+    private roleTypeNams: string[] = ['主\n唱', '贝\n斯\n手', '吉\n他\n手', '键\n盘\n手'];
+    private handAni: Animation;
+
     public constructor() {
         super();
         this.skinName = skins.ResultWinItemSkin;
         this.touchEnabled = false;
     }
-    private handAni: Animation;
+
+    private _data;
+
     public set data(info) {
         this._data = info;
         if (info.idx == info.xindong) {
@@ -253,12 +265,13 @@ class ResultWinItem extends eui.Component {
             this.handAni.scaleX = 1;
             this.handAni.scaleY = 1;
             this.handAni.x = this.haogan1.width / 2;// - this.groupClick.width / 2;
-            this.handAni.y = this.haogan1.height / 2;;// - this.groupClick.height / 2;
+            this.handAni.y = this.haogan1.height / 2;
+            // - this.groupClick.height / 2;
             this.haogan1.addChild(this.handAni);
             this.handAni.onPlay();
         }
         var des = JsonModelManager.instance.getModelchapter()[info.chapter].des;
-        var strs = des.split(';')
+        var strs = des.split(';');
         this.desc1.text = strs[info.idx];
         this.roleType.text = this.roleTypeNams[info.idx];
 
@@ -266,19 +279,21 @@ class ResultWinItem extends eui.Component {
         this.roleDi1.source = 'result_role_di' + (info.idx + 1) + '_png';
         this.role0.source = 'resultRoleImg' + info.idx + '_png';
     }
+
     public get getState(): number {
 
         return this._state
     }
+
     private _state: number = 0;
     public set state(st) {
         this._state = st;
         if (st == 1 && this._data.idx == this._data.xindong) {
             this.roleDi1.width = 298;
             var tw = egret.Tween.get(this);
-            tw.to({ width: 721 }, 500);
+            tw.to({width: 721}, 500);
             var tw1 = egret.Tween.get(this.roleDi1);
-            tw1.to({ width: 721 }, 500);
+            tw1.to({width: 721}, 500);
             var obj = this;
             Tool.callbackTime(function () {
                 obj.hide1.visible = true;
@@ -310,9 +325,9 @@ class ResultWinItem extends eui.Component {
 
             if (this.roleDi1.width != 298) {
                 var tw = egret.Tween.get(this);
-                tw.to({ width: 301 }, 500);
+                tw.to({width: 301}, 500);
                 var tw1 = egret.Tween.get(this.roleDi1);
-                tw1.to({ width: 298 }, 500);
+                tw1.to({width: 298}, 500);
                 var obj = this;
                 Tool.callbackTime(function () {
                     obj.roleDi1.source = 'result_role_di' + (obj._data.idx + 1) + '_png';
@@ -321,18 +336,21 @@ class ResultWinItem extends eui.Component {
 
         }
     }
+
+    public set shenmmidata(info) {
+
+    }
+
     /**设置是否有折扣**/
     private onDiscountHandler(saleRate: number): void {
 
     }
 
-    public set shenmmidata(info) {
-
-    }
     private onTouchBtn2() {
 
     }
 }
+
 class ResultChengJiuItem extends eui.Component {
     public xindong: eui.Group;
     private haogan1: eui.Group;
@@ -340,16 +358,19 @@ class ResultChengJiuItem extends eui.Component {
     private roleIcon: eui.Image;
     private cjName: eui.Label;
     private title: eui.Label;
-    private _data;
     private weijiesuo: eui.Group;
     private jiesuo: eui.Group;
     private icon: eui.Image;
     private nandu: eui.Group;
+
     public constructor() {
         super();
         this.skinName = skins.ChengJiuItemSkin;
         this.touchEnabled = false;
     }
+
+    private _data;
+
     public set data(info) {
         this.weijiesuo.visible = false;
         this.jiesuo.visible = false;

@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * 商店界面
- * @author	lzn	
- * 
- * 
+ * @author    lzn
+ *
+ *
  */
 class ShopPanel extends eui.Component {
     private mainGroup: eui.Group;
@@ -39,12 +39,18 @@ class ShopPanel extends eui.Component {
 
     private readonly TAB_2_SHOPTYPE: number[] = [SHOP_TYPE.IMAGES, SHOP_TYPE.VIDEOS, SHOP_TYPE.MUSICS, SHOP_TYPE.CHAPTER, SHOP_TYPE.DAOJU];
     private readonly TAB_GROUPs: string[] = ["image_shop_grp", "video_shop_grp", "music_shop_grp", "chapter_shop_grp", "daoju_shop_grp"];
+    private xinshou_select: boolean;
+    /**初始化新手包**/
+    private xinshoubaoData: ShopInfoData;
+    /**打开筛选**/
+    private showFilter: boolean;
 
     public constructor() {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
+
     private onLoadComplete() {
         // UserInfo.guideDic[6] = 6;
         // if (!UserInfo.guideDic[6])//关闭界面去进行商城引导
@@ -60,6 +66,7 @@ class ShopPanel extends eui.Component {
         this.updateTabIdx(0);
         this.updateCurrency();
     }
+
     private onRegistEvent(): void {
         for (var i: number = 0; i < this.tabGroup.numChildren; i++) {
             this['shopBtn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchItem, this);
@@ -71,6 +78,7 @@ class ShopPanel extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyRefresh, this);
     }
+
     private onRemoveEvent(): void {
         for (var i: number = 0; i < this.tabGroup.numChildren; i++) {
             this['shopBtn' + i].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchItem, this);
@@ -84,14 +92,16 @@ class ShopPanel extends eui.Component {
         this.cur_models = null;
         this.showFilter = null;
     }
+
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
     }
+
     private updateCurrency(): void {
         this.suipNum.text = UserInfo.suipianMoney + '';
     }
-    private xinshou_select: boolean;
+
     private onTouchXinshoubao(e: egret.Event): void {
         if (this.xinshou_select) return;
         this.xinshou_select = true;
@@ -103,11 +113,13 @@ class ShopPanel extends eui.Component {
         this.shopGroup.addChild(this.xinshoubao_grp);
         this.showGoods();
     }
+
     private onTouchItem(e: egret.Event) {
         let tabButton: eui.RadioButton = e.currentTarget as eui.RadioButton;
 
         this.updateTabIdx(tabButton.value);
     }
+
     private updateTabIdx(idx: number): void {
         this.xinshou_select = false;
         this.xinshoubao_btn.selected = false;
@@ -125,6 +137,7 @@ class ShopPanel extends eui.Component {
             this.onFilter();
         }
     }
+
     private onBuyRefresh() {
         this.showGoods();
         // if (!UserInfo.guideDic[6])//关闭界面去进行商城引导
@@ -139,6 +152,7 @@ class ShopPanel extends eui.Component {
         // }
         this.updateCurrency();
     }
+
     private showGoods() {
         if (this.xinshou_select) {
             this.cur_models = null;
@@ -165,8 +179,7 @@ class ShopPanel extends eui.Component {
             }
         }
     }
-    /**初始化新手包**/
-    private xinshoubaoData: ShopInfoData;
+
     private updateXinshoubaoShop() {
         if (!this.xinshoubaoData) {
             for (let idx in ShopManager.getInstance().shopInfoDict) {
@@ -176,8 +189,8 @@ class ShopPanel extends eui.Component {
                     break;
                 }
             }
-            if(!this.xinshoubaoData)
-            return;
+            if (!this.xinshoubaoData)
+                return;
             this.xinshoubao_buy_btn.enabled = true;
             // this.xinshoubao_buy_btn.label = xinshoubaoData.currPrice.toFixed(2);
             if (this.xinshoubaoData.origPrice > this.xinshoubaoData.currPrice) {
@@ -207,6 +220,7 @@ class ShopPanel extends eui.Component {
             this.xinshou_discountBar.visible = false;
         }
     }
+
     /**更新图集商城**/
     private updateImagesShop(): void {
         if (this.imgs_list.dataProvider) {
@@ -228,6 +242,7 @@ class ShopPanel extends eui.Component {
             this.imgs_list.dataProvider = new eui.ArrayCollection(this.cur_models);
         }
     }
+
     private updateVideoShop(): void {
         if (this.videos_list.dataProvider) {
             // this.video_shop_scroll.viewport.scrollV = 0;
@@ -249,6 +264,7 @@ class ShopPanel extends eui.Component {
             this.videos_list.dataProvider = new eui.ArrayCollection(this.cur_models);
         }
     }
+
     private updateMusicShop(): void {
         if (this.musics_list.dataProvider) {
             // this.musics_shop_scroll.viewport.scrollV = 0;
@@ -270,6 +286,7 @@ class ShopPanel extends eui.Component {
             this.musics_list.dataProvider = new eui.ArrayCollection(this.cur_models);
         }
     }
+
     private updateChapterShop(): void {
         if (this.chapter_list.dataProvider) {
             // this.chapter_shop_scroll.viewport.scrollV = 0;
@@ -291,6 +308,7 @@ class ShopPanel extends eui.Component {
             this.chapter_list.dataProvider = new eui.ArrayCollection(this.cur_models);
         }
     }
+
     private updateDaojuShop(): void {
         if (this.daoju_list.dataProvider) {
             // this.daoju_shop_scroll.viewport.scrollV = 0;
@@ -313,12 +331,14 @@ class ShopPanel extends eui.Component {
             this.daoju_list.dataProvider = new eui.ArrayCollection(this.cur_models);
         }
     }
+
     /**购买新手包**/
     private onBuyXinshoubao(event: egret.Event): void {
         if (this.xinshoubaoData) {
             GameCommon.getInstance().onShowBuyTips(this.xinshoubaoData.id, this.xinshoubaoData.model.currSuipian, GOODS_TYPE.SUIPIAN);
         }
     }
+
     /**返回数据数组**/
     private getShopDatas() {
         let cur_models;
@@ -335,14 +355,14 @@ class ShopPanel extends eui.Component {
         }
         return cur_models;
     }
-    /**打开筛选**/
-    private showFilter: boolean;
+
     private onFilter(): void {
         let cur_models = this.getShopDatas();
         if (!cur_models) return;
         this.showFilter = this.showFilter ? false : true;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("ShaixuanBar", new ShaixuanDataParam(cur_models, this.filterCallBack, this)));
     }
+
     private filterCallBack(datas): void {
         this.showFilter = false;
         if (this.currIdx == null) return;
@@ -370,6 +390,7 @@ class ShopPanel extends eui.Component {
         }
         this.showGoods();
     }
+
     private onClose() {
         this.onRemoveEvent();
         // if (!UserInfo.guideDic[7]) {//关闭界面去进行收藏引导
@@ -378,11 +399,13 @@ class ShopPanel extends eui.Component {
         // }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ShopPanel')
     }
+
     //添加到舞台
     private onAddToStage(): void {
         this.skinName = skins.ShopPanelSkin;
     }
 }
+
 // class ShopItem extends eui.Component {
 //     public group_price: eui.Group;
 //     public img_payIcon: eui.Image;
@@ -488,7 +511,7 @@ class ShopPanel extends eui.Component {
 // }
 /**
  * 图集商城Item
-**/
+ **/
 class ImagesShopItem extends eui.ItemRenderer {
     public banner_img: eui.Image;
     public imgs_num_lab: eui.Label;
@@ -503,10 +526,7 @@ class ImagesShopItem extends eui.ItemRenderer {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
     }
-    private onLoadComplete(): void {
-        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
-        this.banner_img.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpenPreview, this);
-    }
+
     protected dataChanged(): void {
         let shopInfoDt: ShopInfoData = this.data;
         let shoucangID: number = parseInt(shopInfoDt.model.params);
@@ -541,17 +561,25 @@ class ImagesShopItem extends eui.ItemRenderer {
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
     }
+
+    private onLoadComplete(): void {
+        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
+        this.banner_img.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpenPreview, this);
+    }
+
     private onBuy(): void {
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
+
     private onOpenPreview(): void {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ImageShopPreviewPanel', this.data));
     }
 }
+
 /**
  * 视频商城Item
-**/
+ **/
 class VideosShopItem extends eui.ItemRenderer {
     public banner_img: eui.Image;
     public name_lab: eui.Label;
@@ -564,10 +592,7 @@ class VideosShopItem extends eui.ItemRenderer {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
     }
-    private onLoadComplete(): void {
-        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
-        this.banner_img.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay, this);
-    }
+
     protected dataChanged(): void {
         let shopInfoDt: ShopInfoData = this.data;
         let shoucangID: number = parseInt(shopInfoDt.model.params);
@@ -599,17 +624,25 @@ class VideosShopItem extends eui.ItemRenderer {
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
     }
+
+    private onLoadComplete(): void {
+        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
+        this.banner_img.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay, this);
+    }
+
     private onBuy(): void {
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
+
     private onPlay(): void {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('VideoShopPreviewPanel', this.data));
     }
 }
+
 /**
  * 音乐商城Item
-**/
+ **/
 class MusicsShopItem extends eui.ItemRenderer {
     public banner_img: eui.Image;
     public name_lab: eui.Label;
@@ -623,11 +656,7 @@ class MusicsShopItem extends eui.ItemRenderer {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
     }
-    private onLoadComplete(): void {
-        this.discountBar_Grp = this.discount_bar.parent;
-        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
-        this.banner_img.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay, this);
-    }
+
     protected dataChanged(): void {
         let shopInfoDt: ShopInfoData = this.data;
         let shoucangID: number = parseInt(shopInfoDt.model.params);
@@ -666,17 +695,26 @@ class MusicsShopItem extends eui.ItemRenderer {
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
     }
+
+    private onLoadComplete(): void {
+        this.discountBar_Grp = this.discount_bar.parent;
+        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
+        this.banner_img.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay, this);
+    }
+
     private onBuy(): void {
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
+
     private onPlay(): void {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('MusicShopPreviewPanel', this.data));
     }
 }
+
 /**
  * 章节商城Item
-**/
+ **/
 class ChapterShopItem extends eui.ItemRenderer {
     public banner_img: eui.Image;
     public title_lab: eui.Label;
@@ -687,9 +725,7 @@ class ChapterShopItem extends eui.ItemRenderer {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
     }
-    private onLoadComplete(): void {
-        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
-    }
+
     protected dataChanged(): void {
         let shopInfoDt: ShopInfoData = this.data;
 
@@ -714,14 +750,20 @@ class ChapterShopItem extends eui.ItemRenderer {
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
     }
+
+    private onLoadComplete(): void {
+        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
+    }
+
     private onBuy(): void {
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 }
+
 /**
  * 道具商城Item
-**/
+ **/
 class DaojuShopItem extends eui.ItemRenderer {
     public banner_img: eui.Image;
     public title_lab: eui.Label;
@@ -735,10 +777,7 @@ class DaojuShopItem extends eui.ItemRenderer {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
     }
-    private onLoadComplete(): void {
-        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
-        this.discountBar_Grp = this.discount_bar.parent;
-    }
+
     protected dataChanged(): void {
         let shopInfoDt: ShopInfoData = this.data;
 
@@ -770,14 +809,21 @@ class DaojuShopItem extends eui.ItemRenderer {
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
     }
+
+    private onLoadComplete(): void {
+        this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
+        this.discountBar_Grp = this.discount_bar.parent;
+    }
+
     private onBuy(): void {
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 }
+
 /**
  * 新手包Item
-**/
+ **/
 class XinshoubaoShopItem extends eui.Component {
     public banner_img: eui.Image;
     public type_icon: eui.Image;
@@ -788,17 +834,13 @@ class XinshoubaoShopItem extends eui.Component {
     private isComplete: boolean;
     private _data;
     private _bannerImg;
+
     public constructor() {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.skinName = skins.XinshoubaoItemSkin;
     }
-    private onLoadComplete(): void {
-        this.isComplete = true;
-        if (this._data) {
-            this.updateInfo(this._data, this._bannerImg);
-        }
-    }
+
     public updateInfo(data, bannerImg): void {
         this._data = data;
         this._bannerImg = bannerImg;
@@ -841,5 +883,12 @@ class XinshoubaoShopItem extends eui.Component {
             }
         }
         this.title_lab.text = tpName;
+    }
+
+    private onLoadComplete(): void {
+        this.isComplete = true;
+        if (this._data) {
+            this.updateInfo(this._data, this._bannerImg);
+        }
     }
 }

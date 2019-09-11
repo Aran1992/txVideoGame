@@ -1,13 +1,18 @@
 class ShopManager {
     private static instance: ShopManager = null;
+    public debugShopInfos;
     private _shopDataDict;
     private _openShoucangIds: number[];
     private _openChapterIds: number[];
-    public debugShopInfos;
 
     private constructor() {
         this._openShoucangIds = [];
         this._openChapterIds = [];
+    }
+
+    /**获取商品总列表**/
+    public get shopInfoDict() {
+        return this._shopDataDict;
     }
 
     public static getInstance(): ShopManager {
@@ -16,6 +21,7 @@ class ShopManager {
         }
         return this.instance;
     }
+
     public takeOffBookValue(bookId, saleId, currentSlotId, num) {
         callbackTakeOffBookValue = function (data) {
             // var array = JSON.parse(data);
@@ -24,9 +30,10 @@ class ShopManager {
             //     var  d = array[k];
             //     this.items[array[k].saleId] = d;
             // }
-        }
+        };
         platform.takeOffBookValue(GameDefine.BOOKID, saleId, currentSlotId, num);
     }
+
     /**钻石购买商品**/
     public buyGoods(itemId, num: number = 1) {
         var shopdata: ShopInfoData = this._shopDataDict[itemId];
@@ -48,11 +55,12 @@ class ShopManager {
                 } else {
                     GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);
                 }
-            }
+            };
             var currentSlotId: number = 0;
             platform.buyGoods(GameDefine.BOOKID, itemId, num, currentSlotId);
         }
     }
+
     public buyGoodsSuip(itemId: number, num: number = 1): void {
         var shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
@@ -64,6 +72,75 @@ class ShopManager {
         this.addGoods(itemId, num);
         this.onBuySuccessHandler(shopdata);
     }
+
+    /**物品存储**/
+    public addGoods(itemId: number, num: number = 1) {
+        var shopdata: ShopInfoData = this._shopDataDict[itemId];
+        if (shopdata) {
+            shopdata.num += num;
+            GameCommon.getInstance().setBookData(FILE_TYPE.GOODS_FILE);
+        }
+    }
+
+    /**获取商品信息列表**/
+    public getShopInfos() {
+        // if (!this._shopDataDict) {
+        if (!0) {//测试版数据platform.isDebug
+            if (!this._shopDataDict) {
+                platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE);
+                let values = [];
+                for (let id in JsonModelManager.instance.getModelshop()) {
+                    let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
+                    let valueObj = {saleId: model.id, currPrice: model.currPrice, origPrice: model.origPrice};
+                    values.push(valueObj);
+                }
+                this.onInitShopInfos(values);
+            } else if (this.debugShopInfos) {
+                for (let id in this.debugShopInfos) {
+                    let valueObj = this.debugShopInfos[id];
+                    let shopData: ShopInfoData = this._shopDataDict[id];
+                    if (shopData) {
+                        shopData.num = valueObj.num;
+                        this.onUpdateMyGoods(shopData);
+                    }
+                }
+            }
+        } else {//正式版本数据
+            var self = this;
+            var callbackGetBookValues = function (data) {
+                if (data.code == 0) {
+                    let values = JSON.parse(data.data).value;
+                    this.onInitShopInfos(values);
+                } else {
+                    GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
+                }
+            };
+            var currentSlotId: number = 0;
+            platform.getBookValues(GameDefine.BOOKID, currentSlotId, callbackGetBookValues);
+        }
+        // }
+    }
+
+    /**获取ID商品信息**/
+    public getShopInfoData(id: number) {
+        return this._shopDataDict[id];
+    }
+
+    /**获取内购商品的ID**/
+    public getShopTP(id: number): number {
+        return Math.floor(id / GameDefine.SHOP_GOODS_STARTID);
+    }
+
+    /**判断某章节是否开通**/
+    public onCheckChapterOpen(chapterID: number): boolean {
+        return this._openChapterIds.indexOf(chapterID) >= 0;
+    }
+
+    /**判断某收藏是否开通**/
+    public onCheckShoucangOpen(shoucangID: number): boolean {
+        return this._openShoucangIds.indexOf(shoucangID) >= 0;
+    }
+
     private onBuySuccessHandler(shopdata: ShopInfoData): void {
         this.onUpdateMyGoods(shopdata);
         if (shopdata.id > GameDefine.SHOP_GOODS_STARTID) {//内购商品
@@ -92,52 +169,7 @@ class ShopManager {
         }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH));
     }
-    /**物品存储**/
-    public addGoods(itemId: number, num: number = 1) {
-        var shopdata: ShopInfoData = this._shopDataDict[itemId];
-        if (shopdata) {
-            shopdata.num += num;
-            GameCommon.getInstance().setBookData(FILE_TYPE.GOODS_FILE);
-        }
-    }
-    /**获取商品信息列表**/
-    public getShopInfos() {
-        // if (!this._shopDataDict) {
-        if (!0) {//测试版数据platform.isDebug
-            if (!this._shopDataDict) {
-                platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE);
-                let values = [];
-                for (let id in JsonModelManager.instance.getModelshop()) {
-                    let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
-                    let valueObj = { saleId: model.id, currPrice: model.currPrice, origPrice: model.origPrice };
-                    values.push(valueObj);
-                }
-                this.onInitShopInfos(values);
-            } else if (this.debugShopInfos) {
-                for (let id in this.debugShopInfos) {
-                    let valueObj = this.debugShopInfos[id];
-                    let shopData: ShopInfoData = this._shopDataDict[id];
-                    if (shopData) {
-                        shopData.num = valueObj.num;
-                        this.onUpdateMyGoods(shopData);
-                    }
-                }
-            }
-        } else {//正式版本数据
-            var self = this;
-            var callbackGetBookValues = function (data) {
-                if (data.code == 0) {
-                    let values = JSON.parse(data.data).value;
-                    this.onInitShopInfos(values);
-                } else {
-                    GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
-                }
-            }
-            var currentSlotId: number = 0;
-            platform.getBookValues(GameDefine.BOOKID, currentSlotId, callbackGetBookValues);
-        }
-        // }
-    }
+
     /**初始化商城数据**/
     private onInitShopInfos(values): void {
         this._shopDataDict = {};
@@ -152,18 +184,7 @@ class ShopManager {
             this.onUpdateMyGoods(shopData);
         }
     }
-    /**获取商品总列表**/
-    public get shopInfoDict() {
-        return this._shopDataDict;
-    }
-    /**获取ID商品信息**/
-    public getShopInfoData(id: number) {
-        return this._shopDataDict[id];
-    }
-    /**获取内购商品的ID**/
-    public getShopTP(id: number): number {
-        return Math.floor(id / GameDefine.SHOP_GOODS_STARTID);
-    }
+
     /**更新内购商品状态**/
     private onUpdateMyGoods(info: ShopInfoData): void {
         if (!info || info.num == 0) return;
@@ -208,16 +229,10 @@ class ShopManager {
             }
         }
     }
-    /**判断某章节是否开通**/
-    public onCheckChapterOpen(chapterID: number): boolean {
-        return this._openChapterIds.indexOf(chapterID) >= 0;
-    }
-    /**判断某收藏是否开通**/
-    public onCheckShoucangOpen(shoucangID: number): boolean {
-        return this._openShoucangIds.indexOf(shoucangID) >= 0;
-    }
+
     //The end
 }
+
 class ShopInfoData {
     public model: Modelshop;
     public id: number;
@@ -234,6 +249,7 @@ class ShopInfoData {
             this.onupdate(info);
         }
     }
+
     public onupdate(info): void {
         this.saleId = info.saleId;
         this.id = parseInt(this.saleId);
@@ -246,6 +262,7 @@ class ShopInfoData {
         this.model = JsonModelManager.instance.getModelshop()[this.id];
     }
 }
+
 enum SHOP_TYPE {
     IMAGES = 1,//图集
     VIDEOS = 2,//视频
@@ -254,5 +271,6 @@ enum SHOP_TYPE {
     DAOJU = 5,//道具
     XINSHOUBAO = 99,//新手包
 }
+
 declare var callbackBuyGoods;
 declare var callbackTakeOffBookValue;

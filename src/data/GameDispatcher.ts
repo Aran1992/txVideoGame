@@ -1,6 +1,7 @@
 class GameDispatcher extends egret.DisplayObjectContainer {
     private static instance: GameDispatcher;
     private eventDispatcher: egret.EventDispatcher;
+
     public constructor() {
         super();
         this.eventDispatcher = new egret.EventDispatcher(null);
@@ -33,5 +34,6 @@ class GameDispatcher extends egret.DisplayObjectContainer {
     public addEventListener(type: string, listener: Function, thisObject, useCapture: boolean = false, priority: number = 0) {
         this.eventDispatcher.addEventListener(type, listener, thisObject, useCapture, priority);
     }
+
     //The end
 }

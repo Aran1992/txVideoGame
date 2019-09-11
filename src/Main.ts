@@ -1,27 +1,29 @@
-var size = { width: 0, height: 0, fillType: 0 };
-var wind = { width: 0, height: 0 };
-var videoSize = { width: 0, height: 0 };
+var size = {width: 0, height: 0, fillType: 0};
+var wind = {width: 0, height: 0};
+var videoSize = {width: 0, height: 0};
 var FILL_TYPE_COVER = 0;// 覆盖
 var FILL_TYPE_FILL_H = 1;// 横向填充
 var FILL_TYPE_FILL_V = 2;// 纵向填充
 class Main extends eui.UILayer {
+    private textfield: egret.TextField;
+
     protected createChildren(): void {
         super.createChildren();
         this.stage.scaleMode = egret.StageScaleMode.FIXED_NARROW;
         this.stage.maxTouches = 100;//最大触摸点
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin
-        })
+        });
 
         egret.lifecycle.onPause = () => {
             // egret.ticker.pause();
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
-        }
+        };
 
         egret.lifecycle.onResume = () => {
             // egret.ticker.resume();
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'start');
-        }
+        };
 
         //inject the custom material parser
         //注入自定义的素材解析器
@@ -35,6 +37,21 @@ class Main extends eui.UILayer {
         this.runGame().catch(e => {
             console.log(e);
         })
+    }
+
+    /**
+     * 创建场景界面
+     * Create scene interface
+     */
+    protected createGameScene(): void {
+        Tool.getResAsync('config_bin', this.onLoadCompleteConfig, this);
+        if (egret.Capabilities.os.indexOf("android") > -1 || egret.Capabilities.os.indexOf("Android") > -1) {
+
+        } else {
+            this.stage.orientation = egret.OrientationMode.LANDSCAPE;
+        }
+
+
     }
 
     private resize() {
@@ -59,6 +76,7 @@ class Main extends eui.UILayer {
         }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATE_RESIZE));
     }
+
     private initRotation() {
         let div = window["videoDivMin"];
         let value = 0;
@@ -79,8 +97,9 @@ class Main extends eui.UILayer {
         div.style.height = videoSize.height + "px";
         // div.style.zoom = 1;
     }
+
     private async runGame() {
-        await this.loadResource()
+        await this.loadResource();
         this.createGameScene();
         // const result = await RES.getResAsync("description_json")
         // const userInfo = await storyPlatform.getUserInfo();
@@ -99,11 +118,10 @@ class Main extends eui.UILayer {
             await this.loadTheme();
             await RES.loadGroup("preload", 0, loadingView);
             this.stage.removeChild(loadingView);
-        }
-        catch (e) {
+        } catch (e) {
             console.error(e);
         }
-        // window['onEventNotify'] = function(1,1){ 
+        // window['onEventNotify'] = function(1,1){
 
         // }
 
@@ -120,29 +138,13 @@ class Main extends eui.UILayer {
         })
     }
 
-    private textfield: egret.TextField;
-    /**
-     * 创建场景界面
-     * Create scene interface
-     */
-    protected createGameScene(): void {
-        Tool.getResAsync('config_bin', this.onLoadCompleteConfig, this);
-        if (egret.Capabilities.os.indexOf("android") > -1 || egret.Capabilities.os.indexOf("Android") > -1) {
-
-        }
-        else {
-            this.stage.orientation = egret.OrientationMode.LANDSCAPE;
-        }
-
-
-    }
     //游戏数据下载完成
     private onLoadCompleteConfig(): void {
         window['jsonfileCount'] = 0;
         let _jsZip = new JSZip();
         try {
             GameDispatcher.getInstance().addEventListener(GameEvent.GAME_JSON_PARSE_OK, this.onParseJsonComplete, this);
-            _jsZip['loadAsync'](RES.getRes("config_bin"), { checkCRC32: true }).then(function (jszip: JSZip) {
+            _jsZip['loadAsync'](RES.getRes("config_bin"), {checkCRC32: true}).then(function (jszip: JSZip) {
                 for (let filename in jszip['files']) {
                     window['jsonfileCount']++;
                 }
@@ -162,13 +164,15 @@ class Main extends eui.UILayer {
         _jsZip = null;
         RES.destroyRes('config_bin');
     }
+
     //解析数据完成
     private onParseJsonComplete(): void {
         GameDispatcher.getInstance().removeEventListener(GameEvent.GAME_JSON_PARSE_OK, this.onParseJsonComplete, this);
         this.touchEnabled = false;
-        var gameWo: GameWorld = new GameWorld()
+        var gameWo: GameWorld = new GameWorld();
         this.addChild(gameWo);
     }
+
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
      * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
@@ -180,6 +184,9 @@ class Main extends eui.UILayer {
         return result;
     }
 }
+
 declare function showVideo(id, src);
+
 declare function videoSourceChoose(src);
+
 declare function share_game()

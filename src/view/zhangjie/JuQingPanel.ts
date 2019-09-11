@@ -21,16 +21,19 @@ class JuQingPanel extends eui.Component {
     private _idx: number = 0;
     private kuaiDatas;
     private guide_images: string[] = [];
+    private _videoData;
+    private starPos: number = 0;
+    private endPos: number = 0;
+    private imgIndx: number = 1;
+    private imgMaxNumb: number = 5;
+    private _playTween: boolean;
 
     constructor() {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
-    //添加到舞台
-    private onAddToStage(): void {
-        this.onSkinName();
-    }
+
     protected onRegist(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdata, this);
@@ -49,6 +52,7 @@ class JuQingPanel extends eui.Component {
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
     }
+
     protected onRemove(): void {
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdata, this);
@@ -67,14 +71,25 @@ class JuQingPanel extends eui.Component {
         this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
     }
 
+    protected onSkinName(): void {
+        this.skinName = skins.JuQingSkin;
+    }
+
+    //添加到舞台
+    private onAddToStage(): void {
+        this.onSkinName();
+    }
+
     private onRefresh() {
         this.onSwitchKuai(this._curIdx);
     }
+
     private onRefreshUpdata() {
         if (GameDefine.ISFILE_STATE) {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
         }
     }
+
     private onSaveCunChu() {
         if (this._curIdx != FILE_TYPE.AUTO_FILE && !this.noneFile.visible) {
             var self = this;
@@ -85,11 +100,12 @@ class JuQingPanel extends eui.Component {
             GameCommon.getInstance().setBookData(this._curIdx);
         }
     }
+
     private onShowVideo() {
         this.touchEnabled = false;
         this.touchChildren = false;
     }
-    private _videoData;
+
     private onShowConfirm(data) {
         if (this._curIdx == FILE_TYPE.AUTO_FILE) {
             var self = this;
@@ -100,12 +116,14 @@ class JuQingPanel extends eui.Component {
             }, "注：此处仅影响自动存档，不影响手动存档存储");
         }
     }
+
     private onFirmBtn() {
         // GameCommon.getInstance().addAlert('暂未接通支付接口');
         // ShopManager.getInstance().myShopData[1] = 1;
         ChengJiuManager.getInstance().onDlcChengJiu(1);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH))
     }
+
     private onClose() {
         this.onRemove();
         this.qiuGroup.removeChildren();
@@ -117,10 +135,12 @@ class JuQingPanel extends eui.Component {
         GameDefine.ISFILE_STATE = false;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel')
     }
+
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
     }
+
     private onShowChapterVideo(event: egret.Event) {
         var name: number = Number(event.currentTarget.name);
         if (this._curIdx == name)
@@ -135,6 +155,7 @@ class JuQingPanel extends eui.Component {
         this._curIdx = name;
         this.onSwitchKuai(name);
     }
+
     private onLoadComplete(): void {
         GameDefine.CUR_IS_MAINVIEW = true;
         this.touchEnabled = false;
@@ -149,36 +170,35 @@ class JuQingPanel extends eui.Component {
         this.onRefresh();
         this.onGuideHandler();
     }
-    private starPos: number = 0;
-    private endPos: number = 0;
-    private imgIndx: number = 1;
+
     private onEventDown(event: egret.TouchEvent) {
         this.starPos = event.stageX;
     }
+
     private onEventEnd(event: egret.TouchEvent) {
         if (this.starPos > event.stageX) {
             if (this.starPos - event.stageX > 20) {
                 this.onNextImg();
             }
-        }
-        else if (this.starPos < event.stageX) {
+        } else if (this.starPos < event.stageX) {
             if (event.stageX - this.starPos > 20) {
                 this.onLastImg();
             }
         }
     }
+
     private onLastImg() {
         if (this.imgIndx - 1 < 0)
             return;
         this.play(false);
     }
+
     private onNextImg() {
         if (this.imgIndx + 1 >= this.imgMaxNumb)
             return;
         this.play(true);
     }
-    private imgMaxNumb: number = 5;
-    private _playTween: boolean;
+
     private play(bo): void {
         if (this._playTween) return;
         this._playTween = true;
@@ -187,19 +207,19 @@ class JuQingPanel extends eui.Component {
         let tweenEnd = function (): void {
             self._playTween = false;
             egret.Tween.removeTweens(self.slideGroup);
-        }
+        };
         if (bo) {
             this.imgIndx++;
-            egret.Tween.get(this.slideGroup).to({ x: -(this.imgIndx * size.width) }, 150, egret.Ease.sineIn).call(tweenEnd, this);
-        }
-        else {
+            egret.Tween.get(this.slideGroup).to({x: -(this.imgIndx * size.width)}, 150, egret.Ease.sineIn).call(tweenEnd, this);
+        } else {
             this.imgIndx--;
-            egret.Tween.get(this.slideGroup).to({ x: -(this.imgIndx * size.width) }, 150, egret.Ease.sineIn).call(tweenEnd, this);
+            egret.Tween.get(this.slideGroup).to({x: -(this.imgIndx * size.width)}, 150, egret.Ease.sineIn).call(tweenEnd, this);
         }
 
         this.qiuImgs[currIndex].source = 'cundang_dian2_png';
         this.qiuImgs[this.imgIndx].source = 'cundang_dian1_png';
     }
+
     private onSwitchKuai(tp: number) {
         // this.slideGroup.removeChildren();
         // this.slideGroup.addChild(new PlotTreeItem(tp));
@@ -207,8 +227,7 @@ class JuQingPanel extends eui.Component {
         this._idx = 0;
         if (tp == 1) {
             this.cunchuBtn.visible = false;
-        }
-        else {
+        } else {
             this.cunchuBtn.visible = true;
         }
         this.timerLab.text = '';
@@ -291,8 +310,7 @@ class JuQingPanel extends eui.Component {
             this.noneFile.visible = true;
             this.slideGroup.visible = false;
             return;
-        }
-        else {
+        } else {
             this.noneFile.visible = false;
             this.slideGroup.visible = true;
         }
@@ -327,6 +345,7 @@ class JuQingPanel extends eui.Component {
         //     this.guide_grp.addEventListener(egret.TouchEvent.TOUCH_TAP, this.touchGuideHandler, this);
         // }
     }
+
     private touchGuideHandler(): void {
         if (this.guide_images.length == 0) {
             this.guide_grp.visible = false;
@@ -337,11 +356,8 @@ class JuQingPanel extends eui.Component {
         let step: string = this.guide_images.shift();
         this.xinshou_step_img.source = `cundagn_xinshou_step${step}_png`;
     }
-
-    protected onSkinName(): void {
-        this.skinName = skins.JuQingSkin;
-    }
 }
+
 /**剧情线树状图组件**/
 class PlotTreeItem extends egret.DisplayObjectContainer {
     public index: number;
@@ -368,63 +384,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         this.models = JsonModelManager.instance.getModeljuqingkuai()[this.index];
         this.onInitUI();
     }
-    private onInitUI(): void {
-        let tree_json = RES.getRes(`plotTree${this.index}_json`);
-        if (!tree_json) {
-            // Tool.error(`剧情树状：缺少plotTree${this.index}_json文件`);
-            return;
-        }
-        this.lockLayer = new egret.DisplayObjectContainer();
-        this.UIDict = {};
-        this.refreshUIAry = [];
-        let plot_slots = tree_json.armature[0].skin[0].slot;
-        for (let idx in plot_slots) {
-            let slotObj = plot_slots[idx];
-            let displayName: string = slotObj["name"];
-            let transform = slotObj["display"][0]["transform"];
-            let slotDisplay: eui.Image = new eui.Image();
-            if (displayName.indexOf("BE_") == -1) {
-                slotDisplay.source = displayName + "_png";
-            } else {
-                slotDisplay.source = "cundang_betu_png";
-            }
-            slotDisplay.x = transform.x;
-            slotDisplay.y = transform.y;
-            this.addChild(slotDisplay);
-            slotDisplay.visible = false;
-            this.UIDict[displayName] = slotDisplay;
-            if (this.refreshUIAry.indexOf(displayName) == -1) {
-                this.refreshUIAry.push(displayName);
-            }
-            /**剧情块点击事件**/
-            if (displayName.indexOf('plot') != -1 && displayName.indexOf('_image') != -1) {
-                slotDisplay.name = displayName.replace('plot', '').replace('_image', '');
-                slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
-            } else if (displayName.indexOf('plot') != -1 && displayName.indexOf('BE_') != -1) {
-                slotDisplay.name = displayName.replace('plot', '').replace('BE_', '');
-                slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
-            }
-        }
-        this.addEventListener(egret.Event.ENTER_FRAME, this.invalidateSize, this);
-    }
-    private invalidateSize(): void {
-        if (!this.refreshUIAry || this.refreshUIAry.length == 0) {
-            this.refreshUIAry = null;
-            this.removeEventListener(egret.Event.ENTER_FRAME, this.invalidateSize, this);
-            this.onUpdateStatus();
-        } else {
-            for (let i: number = this.refreshUIAry.length - 1; i >= 0; i--) {
-                let displayName: string = this.refreshUIAry[i];
-                let slotDisplay: eui.Image = this.UIDict[displayName];
-                if (slotDisplay.width != 0 && slotDisplay.height != 0) {
-                    // slotDisplay.visible = true;
-                    slotDisplay.x = slotDisplay.x - slotDisplay.width / 2;
-                    slotDisplay.y = slotDisplay.y - slotDisplay.height / 2;
-                    this.refreshUIAry.splice(i, 1);
-                }
-            }
-        }
-    }
+
     public onUpdateStatus(): void {
         if (!this.UIDict || this.refreshUIAry) return;
         let _status: number;
@@ -533,6 +493,66 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         }
         this.nextkuaiHandler();
     }
+
+    private onInitUI(): void {
+        let tree_json = RES.getRes(`plotTree${this.index}_json`);
+        if (!tree_json) {
+            // Tool.error(`剧情树状：缺少plotTree${this.index}_json文件`);
+            return;
+        }
+        this.lockLayer = new egret.DisplayObjectContainer();
+        this.UIDict = {};
+        this.refreshUIAry = [];
+        let plot_slots = tree_json.armature[0].skin[0].slot;
+        for (let idx in plot_slots) {
+            let slotObj = plot_slots[idx];
+            let displayName: string = slotObj["name"];
+            let transform = slotObj["display"][0]["transform"];
+            let slotDisplay: eui.Image = new eui.Image();
+            if (displayName.indexOf("BE_") == -1) {
+                slotDisplay.source = displayName + "_png";
+            } else {
+                slotDisplay.source = "cundang_betu_png";
+            }
+            slotDisplay.x = transform.x;
+            slotDisplay.y = transform.y;
+            this.addChild(slotDisplay);
+            slotDisplay.visible = false;
+            this.UIDict[displayName] = slotDisplay;
+            if (this.refreshUIAry.indexOf(displayName) == -1) {
+                this.refreshUIAry.push(displayName);
+            }
+            /**剧情块点击事件**/
+            if (displayName.indexOf('plot') != -1 && displayName.indexOf('_image') != -1) {
+                slotDisplay.name = displayName.replace('plot', '').replace('_image', '');
+                slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
+            } else if (displayName.indexOf('plot') != -1 && displayName.indexOf('BE_') != -1) {
+                slotDisplay.name = displayName.replace('plot', '').replace('BE_', '');
+                slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
+            }
+        }
+        this.addEventListener(egret.Event.ENTER_FRAME, this.invalidateSize, this);
+    }
+
+    private invalidateSize(): void {
+        if (!this.refreshUIAry || this.refreshUIAry.length == 0) {
+            this.refreshUIAry = null;
+            this.removeEventListener(egret.Event.ENTER_FRAME, this.invalidateSize, this);
+            this.onUpdateStatus();
+        } else {
+            for (let i: number = this.refreshUIAry.length - 1; i >= 0; i--) {
+                let displayName: string = this.refreshUIAry[i];
+                let slotDisplay: eui.Image = this.UIDict[displayName];
+                if (slotDisplay.width != 0 && slotDisplay.height != 0) {
+                    // slotDisplay.visible = true;
+                    slotDisplay.x = slotDisplay.x - slotDisplay.width / 2;
+                    slotDisplay.y = slotDisplay.y - slotDisplay.height / 2;
+                    this.refreshUIAry.splice(i, 1);
+                }
+            }
+        }
+    }
+
     /** 处理尾页划线 **/
     private nextkuaiHandler(): void {
         if (this.nextIdx == this.index) return; //最后一页了 不用处理了
@@ -567,6 +587,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             }
         }
     }
+
     /**
      * 0 是未开启
      * 1 代表有锁
@@ -578,7 +599,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         }
         /** 判断剧情块的开启
          * 自动存档  要求1.比当前正在看的问题小那些  如果看过视频则开启 没有则上锁  2.比问题大的章节如果用户层看过的视频  找出最高的剧情ID 向下锁定
-         * 存档位   只显示当前问题向下的状态 
+         * 存档位   只显示当前问题向下的状态
          *  **/
         let fileData;
         if (this._curFile == FILE_TYPE.AUTO_FILE) {
@@ -611,6 +632,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
 
         return this.NOT_SHOW;
     }
+
     private addLock(cfg: Modeljuqingkuai) {
         let heidiImg: eui.Image = new eui.Image();
         heidiImg.source = "cundang_iconhei_png";
@@ -630,15 +652,13 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                     heidiImg.y = juqingImg.y + 4;
                     lockImg.x = juqingImg.x + 38;
                     lockImg.y = juqingImg.y + 44;
-                }
-                else {
+                } else {
                     heidiImg.x = juqingImg.x + 8;
                     heidiImg.y = juqingImg.y + 8;
                     lockImg.x = juqingImg.x + 60;
                     lockImg.y = juqingImg.y + 70;
                 }
-            }
-            else {
+            } else {
                 heidiImg.source = 'cundang_iconhei1_png';
                 lockImg.scaleX = lockImg.scaleY = 0.7;
                 heidiImg.x = juqingImg.x + 1;
@@ -646,16 +666,14 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                 lockImg.x = juqingImg.x + 30;
                 lockImg.y = juqingImg.y + 28;
             }
-        }
-        else {
+        } else {
             let juqingImg: eui.Image = this.UIDict[`plot${cfg.id}_image`];
             if (cfg.scal == 0.58) {
                 heidiImg.x = juqingImg.x + 5;
                 heidiImg.y = juqingImg.y + 4;
                 lockImg.x = juqingImg.x + 38;
                 lockImg.y = juqingImg.y + 44;
-            }
-            else {
+            } else {
                 heidiImg.x = juqingImg.x + 8;
                 heidiImg.y = juqingImg.y + 8;
                 lockImg.x = juqingImg.x + 60;
@@ -663,6 +681,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             }
         }
     }
+
     private onTouchBtn(event: egret.Event) {
         var name: number = Number(event.currentTarget.name);
         var allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
@@ -673,21 +692,27 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                     if (this._curFile != FILE_TYPE.AUTO_FILE) {
                         UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
                     }
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), { cfg: allCfg[name], idx: this._curFile });
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+                        cfg: allCfg[name],
+                        idx: this._curFile
+                    });
                     return;
                 }
                 GameCommon.getInstance().showCommomTips('暂未开启');
-            }
-            else {
+            } else {
                 if (allCfg[name].videoId) {
                     GameCommon.getInstance().showLoading();
                     if (this.index != FILE_TYPE.AUTO_FILE) {
                         UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
                     }
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), { cfg: allCfg[name], idx: this._curFile });
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+                        cfg: allCfg[name],
+                        idx: this._curFile
+                    });
                 }
             }
         }
     }
+
     //The end
 }

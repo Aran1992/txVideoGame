@@ -15,6 +15,16 @@ class ShouCangImgPanel extends eui.Component {
     private datu: eui.Image;
     private info: Modelshoucang;
     private btnShare: eui.Button;
+    private moveUp: boolean;
+    private start_posX: number;
+    private starPos: number = 0;
+    private endPos: number = 0;
+    private isOne: boolean = false;
+    private animRecords: SCImageData[];
+    private imgIndx: number = 0;
+    private imgMaxNumb: number = 5;
+    private curImg;
+    private imgSound: string[] = [];
 
     constructor(data) {
         super();
@@ -22,10 +32,7 @@ class ShouCangImgPanel extends eui.Component {
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
-    //添加到舞台
-    private onAddToStage(): void {
-        this.onSkinName();
-    }
+
     protected onRegist(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         // this.btnNextImg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onNextImg, this);
@@ -38,6 +45,7 @@ class ShouCangImgPanel extends eui.Component {
         this.playSound.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlaySound, this);
         this.btnShare.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShare, this);
     }
+
     protected onRemove(): void {
         // this.btnNextImg.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onNextImg, this);
         // this.btnLastImg.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onLastImg, this);
@@ -49,6 +57,27 @@ class ShouCangImgPanel extends eui.Component {
         this.playSound.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlaySound, this);
         this.btnShare.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onShare, this);
     }
+
+    //供子类覆盖
+    protected onInit(): void {
+        this.onInitImg();
+        for (var i = 0; i < this.imgMaxNumb; i++) {
+            this['xindong' + i].visible = false;
+            if (UserInfo.main_Img == this['img' + i].source) {
+                this['xindong' + i].visible = true;
+            }
+        }
+    }
+
+    protected onSkinName(): void {
+        this.skinName = skins.ShouCangImgSkin;
+    }
+
+    //添加到舞台
+    private onAddToStage(): void {
+        this.onSkinName();
+    }
+
     private onSetXinDong() {
         for (var i = 0; i < this.imgMaxNumb; i++) {
             this['xindong' + i].visible = false;
@@ -59,13 +88,12 @@ class ShouCangImgPanel extends eui.Component {
         }
         this['xindong' + idx].visible = true;
         UserInfo.main_Img = this['img' + idx].source;
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.MAIN_IMG_REFRESH))
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.MAIN_IMG_REFRESH));
         if (UserInfo.curBokData)
             UserInfo.curBokData.main_Img = UserInfo.main_Img;
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
     }
-    private moveUp: boolean;
-    private start_posX: number;
+
     private onFrame() {
         if (!this.moveUp) {
             this.right_jiantou.x += 2;
@@ -81,6 +109,7 @@ class ShouCangImgPanel extends eui.Component {
             }
         }
     }
+
     private onInitImg() {
         this.animRecords = [];
         var _record: SCImageData;
@@ -93,6 +122,7 @@ class ShouCangImgPanel extends eui.Component {
         }
         this.imgIndx = 0;
     }
+
     private onClose() {
         this.onRemove();
         // if (!UserInfo.guideDic[7])//关闭引导图片
@@ -101,14 +131,15 @@ class ShouCangImgPanel extends eui.Component {
         // }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ShouCangImgPanel')
     }
+
     private onNextMp3() {
 
     }
-    private starPos: number = 0;
-    private endPos: number = 0;
+
     private onEventDown(event: egret.TouchEvent) {
         this.starPos = event.stageX;
     }
+
     private onEventEnd(event: egret.TouchEvent) {
         if (this.yindaoGroup.visible) {
             this.imgGroup.touchEnabled = false;
@@ -116,7 +147,7 @@ class ShouCangImgPanel extends eui.Component {
             this.yindaoGroup.removeEventListener(egret.Event.ENTER_FRAME, this.onFrame, this);
             this.yindaoGroup.visible = false;
             this.yindaoGroup1.visible = true;
-            GuideManager.getInstance().onShowImg(this.mainGroup, this.bgBtn, 'leftClose')
+            GuideManager.getInstance().onShowImg(this.mainGroup, this.bgBtn, 'leftClose');
             return;
         }
         if (this.starPos == event.stageX && this.curImg) {
@@ -127,7 +158,7 @@ class ShouCangImgPanel extends eui.Component {
                 let scaleX = size.width / 1600;
                 let scaleY = size.height / 900;
                 let scale = scaleX > scaleY ? scaleX : scaleY;
-                tw.to({ width: 1600 * scale, height: 900 * scale }, 100);
+                tw.to({width: 1600 * scale, height: 900 * scale}, 100);
                 return;
             }
 
@@ -141,8 +172,7 @@ class ShouCangImgPanel extends eui.Component {
                 // }
                 this.onNextImg();
             }
-        }
-        else if (this.starPos < event.stageX) {
+        } else if (this.starPos < event.stageX) {
             if (event.stageX - this.starPos > 30) {
                 //  if (this.isOne) {
                 //     this.imgIndx = 2;
@@ -154,12 +184,14 @@ class ShouCangImgPanel extends eui.Component {
         }
         this.curImg = null;
     }
+
     private onCloseDaTu() {
         var tw = egret.Tween.get(this.datu);
-        tw.to({ width: 1006, height: 537 }, 100);
-        tw.to({ visible: false }, 10);
+        tw.to({width: 1006, height: 537}, 100);
+        tw.to({visible: false}, 10);
         this.curImg = null;
     }
+
     private onPlaySound() {
         let idx = this.imgIndx;
         SoundManager.getInstance().stopMusicAll();
@@ -171,10 +203,7 @@ class ShouCangImgPanel extends eui.Component {
             SoundManager.getInstance().playSound(this.imgSound[idx] + '.mp3');
         }
     }
-    private isOne: boolean = false;
-    private animRecords: SCImageData[];
-    private imgIndx: number = 0;
-    private imgMaxNumb: number = 5;
+
     private onNextImg() {
         if (this.imgIndx + 1 >= 5)
             this.imgIndx = 0;
@@ -191,17 +220,18 @@ class ShouCangImgPanel extends eui.Component {
         }
         this.play();
     }
-    private curImg;
+
     private onClickImg(event: egret.Event) {
         this.curImg = event.currentTarget;
     }
+
     private onTouchQuXiao(event: egret.Event) {
         for (var i = 0; i < this.imgMaxNumb; i++) {
             this['xindong' + i].visible = false;
         }
         this['xindong' + this.imgIndx].visible = true;
         UserInfo.main_Img = this['img' + (this.imgIndx - 1)].source;
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.MAIN_IMG_REFRESH))
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.MAIN_IMG_REFRESH));
         if (UserInfo.curBokData)
             UserInfo.curBokData.main_Img = UserInfo.main_Img;
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
@@ -225,12 +255,15 @@ class ShouCangImgPanel extends eui.Component {
         // }
 
     }
+
     private onCloseImgGroup(): void {
         this.imgGroup.visible = false;
     }
+
     private onShowImgGroup(): void {
         this.imgGroup.visible = true;
     }
+
     private play(): void {
         let currIndex: number = this.imgIndx;
         let offset: number = 1;
@@ -241,12 +274,20 @@ class ShouCangImgPanel extends eui.Component {
             infySlot = (this[`img${j >= this.imgMaxNumb ? j - this.imgMaxNumb : j}Group`] as eui.Group);
             infySlot.name = (j - currIndex - offset >= 0 ? j - currIndex - offset : this.imgMaxNumb - offset - (j - currIndex)) + '';
             recordInfo = this.animRecords[Number(infySlot.name)];
-            egret.Tween.get(infySlot).to({}, 100).to({ x: recordInfo.posX, scaleX: recordInfo.scale, scaleY: recordInfo.scale, y: recordInfo.posY, width: recordInfo.width, height: recordInfo.height }, 150, egret.Ease.sineIn);//.call(this.playDone, this);
+            egret.Tween.get(infySlot).to({}, 100).to({
+                x: recordInfo.posX,
+                scaleX: recordInfo.scale,
+                scaleY: recordInfo.scale,
+                y: recordInfo.posY,
+                width: recordInfo.width,
+                height: recordInfo.height
+            }, 150, egret.Ease.sineIn);//.call(this.playDone, this);
             infySlot.parent.setChildIndex(infySlot, recordInfo.childNum);
             // this[`xindong${j >= this.imgMaxNumb ? j - this.imgMaxNumb : j}`].visible = false;
         }
         // this['xindong' + (param-currIndex-1)].visible = true;
     }
+
     private onLastImg() {
         if (this.imgIndx - 1 < 0)
             this.imgIndx = 4;
@@ -259,6 +300,7 @@ class ShouCangImgPanel extends eui.Component {
         this.width = size.width;
         this.height = size.height;
     }
+
     private onLoadComplete(): void {
         this.updateResize();
         this.touchEnabled = false;
@@ -347,17 +389,7 @@ class ShouCangImgPanel extends eui.Component {
         //     GuideManager.getInstance().onShowImg(this.img0Group, this.img0Group, 'xindong');
         // }
     }
-    private imgSound: string[] = [];
-    //供子类覆盖
-    protected onInit(): void {
-        this.onInitImg();
-        for (var i = 0; i < this.imgMaxNumb; i++) {
-            this['xindong' + i].visible = false;
-            if (UserInfo.main_Img == this['img' + i].source) {
-                this['xindong' + i].visible = true;
-            }
-        }
-    }
+
     private onShare(): void {
         var imgs: string[];
         if (this.info.src.indexOf(",") >= 0) {
@@ -369,8 +401,5 @@ class ShouCangImgPanel extends eui.Component {
         if (texture) {
             platform.shareImage(GameDefine.BOOKID, texture.toDataURL("image/png"));
         }
-    }
-    protected onSkinName(): void {
-        this.skinName = skins.ShouCangImgSkin;
     }
 }

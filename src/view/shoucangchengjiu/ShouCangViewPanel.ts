@@ -17,18 +17,21 @@ class ShouCangViewPanel extends eui.Component {
     private suipNum: eui.BitmapLabel;
     private filter_btn: eui.Button;
     private allCfgs = [
-        { id: 1, shaixuan_params: '收藏,图片' },
-        { id: 0, shaixuan_params: '收藏,视频' },
-    ]
+        {id: 1, shaixuan_params: '收藏,图片'},
+        {id: 0, shaixuan_params: '收藏,视频'},
+    ];
+    /**打开筛选**/
+    private showFilter: boolean;
+    private cur_models;
+    private tabIdx: number = 0;
+    private currIdx: number = 0;
+
     constructor() {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
-    //添加到舞台
-    private onAddToStage(): void {
-        this.onSkinName();
-    }
+
     protected onRegist(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UNLOCK_SHOUCANG, this.onRefresh, this);
@@ -39,6 +42,7 @@ class ShouCangViewPanel extends eui.Component {
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         // this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddVideo, this);
     }
+
     protected onRemove(): void {
 
         GameDispatcher.getInstance().removeEventListener(GameEvent.UNLOCK_SHOUCANG, this.onRefresh, this);
@@ -47,6 +51,21 @@ class ShouCangViewPanel extends eui.Component {
         GameDispatcher.getInstance().removeEventListener(GameEvent.GUIDE_COMPLETE, this.onCompleteGuide, this);
         this.filter_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onFilter, this);
         this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+    }
+
+    //供子类覆盖
+    protected onInit(): void {
+
+        this.showGoods();
+    }
+
+    protected onSkinName(): void {
+        this.skinName = skins.ShouCangViewSkin;
+    }
+
+    //添加到舞台
+    private onAddToStage(): void {
+        this.onSkinName();
     }
 
     private onClose() {
@@ -60,19 +79,24 @@ class ShouCangViewPanel extends eui.Component {
         //     widPlayer1 = null;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ShouCangViewPanel')
     }
+
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
     }
+
     private onShowView(): void {
         this.visible = true;
     }
+
     private onHide(): void {
         this.visible = false;
     }
+
     private onCompleteGuide() {
 
     }
+
     /**返回数据数组**/
     private getShopDatas() {
         let cur_models;
@@ -84,15 +108,14 @@ class ShouCangViewPanel extends eui.Component {
         }
         return cur_models;
     }
-    /**打开筛选**/
-    private showFilter: boolean;
+
     private onFilter(): void {
         let cur_models = this.getShopDatas();
         if (!cur_models) return;
         this.showFilter = this.showFilter ? false : true;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("ShaixuanBar", new ShaixuanDataParam(cur_models, this.filterCallBack, this)));
     }
-    private cur_models;
+
     private filterCallBack(datas): void {
         this.showFilter = false;
         if (this.currIdx == null) return;
@@ -103,6 +126,7 @@ class ShouCangViewPanel extends eui.Component {
         this.tabIdx = datas[0].id;
         this.showGoods();
     }
+
     private onRefresh() {
         this.goodsLayer.removeChildren();
         var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
@@ -115,7 +139,7 @@ class ShouCangViewPanel extends eui.Component {
                         curIdx = curIdx + 1;
                         var cg: ShouCangViewItem = new ShouCangViewItem();
                         this.goodsLayer.addChild(cg);
-                        cg.data = { data: cfgs[k], idx: curIdx };
+                        cg.data = {data: cfgs[k], idx: curIdx};
                         // }
                     }
                 }
@@ -123,8 +147,7 @@ class ShouCangViewPanel extends eui.Component {
         }
         this.scroll.viewport.scrollV = 0;
     }
-    private tabIdx: number = 0;
-    private currIdx: number = 0;
+
     private showGoods() {
         this.goodsLayer.removeChildren();
         var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
@@ -137,7 +160,7 @@ class ShouCangViewPanel extends eui.Component {
                         curIdx = curIdx + 1;
                         var cg: ShouCangViewItem = new ShouCangViewItem();
                         this.goodsLayer.addChild(cg);
-                        cg.data = { data: cfgs[k], idx: curIdx };
+                        cg.data = {data: cfgs[k], idx: curIdx};
                     }
                     // if (UserInfo.allCollectionDatas[cfgs[k].id]) {
                     // }
@@ -158,6 +181,7 @@ class ShouCangViewPanel extends eui.Component {
         }
         this.scroll.viewport.scrollV = 0;
     }
+
     private onLoadComplete(): void {
         this.touchEnabled = false;
         // this.jinruLab1.visible = false;
@@ -191,15 +215,8 @@ class ShouCangViewPanel extends eui.Component {
         this.updateResize();
 
     }
-    //供子类覆盖
-    protected onInit(): void {
-
-        this.showGoods();
-    }
-    protected onSkinName(): void {
-        this.skinName = skins.ShouCangViewSkin;
-    }
 }
+
 // declare var widPlayer1;
 
 class ShouCangViewItem extends eui.Component {
@@ -215,12 +232,14 @@ class ShouCangViewItem extends eui.Component {
     private pinji: eui.Image;
     private desc: eui.Label;
     private newPoint: eui.Image;
+
     public constructor() {
         super();
         this.skinName = skins.ShouCangViewItemSkin;
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlayVideo, this);
     }
+
     public set data(info) {
         this.info = info.data;
         this.title.text = info.data.name;
@@ -248,8 +267,7 @@ class ShouCangViewItem extends eui.Component {
             //     this.weijiesuo.visible = true;
             //     this.icon.source = 'sc_img_role1_png';
             // }
-        }
-        else if (this.info.mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
+        } else if (this.info.mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
             this.tubiao.source = 'sc_shipin_icon_png';
             this.icon.source = info.data.minipic;
             this.pinji.source = '';
@@ -269,6 +287,7 @@ class ShouCangViewItem extends eui.Component {
             // }
         }
     }
+
     private onPlayVideo() {
 
 
@@ -305,13 +324,12 @@ class ShouCangViewItem extends eui.Component {
             }
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("ShouCangImgPanel", this.info));
             // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangImgPanel')
-        }
-        else {
+        } else {
             if (widPlayer) {
                 GameDefine.CUR_PLAYER_VIDEO = 2;
                 widPlayer.play(videoModels[this.info.src].vid)
             }
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_VIDEO3))
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_VIDEO3));
             GameCommon.getInstance().showLoading();
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ControlTipsPanel')
         }

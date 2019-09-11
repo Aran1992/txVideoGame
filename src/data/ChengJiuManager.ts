@@ -1,16 +1,27 @@
 class ChengJiuManager {
     private static instance: ChengJiuManager = null;
-    private videoData: VideoData;
     public cjAllCfgs;
     public shoucangCfgs;
     public maxChengJiu: number;
     public curChapterChengJiu;
+    private videoData: VideoData;
+    //多个条件的
+    private isPush: boolean = false;
+
     private constructor() {
         this.cjAllCfgs = JsonModelManager.instance.getModelchengjiu();
         this.curChapterChengJiu = {};
 
         this.shoucangCfgs = JsonModelManager.instance.getModelshoucang();
     }
+
+    public static getInstance(): ChengJiuManager {
+        if (this.instance == null) {
+            this.instance = new ChengJiuManager();
+        }
+        return this.instance;
+    }
+
     public getMaxChengJiuMax(): number {
         this.maxChengJiu = 0;
         for (var k in this.cjAllCfgs) {
@@ -18,17 +29,7 @@ class ChengJiuManager {
         }
         return this.maxChengJiu;
     }
-    public static getInstance(): ChengJiuManager {
-        if (this.instance == null) {
-            this.instance = new ChengJiuManager();
-        }
-        return this.instance;
-    }
-    private onGetAllChengJiu() {
 
-    }
-    //多个条件的
-    private isPush: boolean = false;
     public parseChengJiu(cjId, wentiId, answerId, mod) {
         let cfgCanshu = mod.canshu;
         this.isPush = false;
@@ -46,18 +47,15 @@ class ChengJiuManager {
                     for (var j1: number = 0; j1 < wentiAry.length; j1++) {
                         if (wentiAry[j1] == answerId) {
                             if (canshu.length < cfgCanshu.length) {
-                                if(canshu=='')
-                                {
-                                canshu = wentiId + ',' + answerId;
-                                }
-                                else
-                                {
-                                canshu = canshu + ';' + wentiId + ',' + answerId;
+                                if (canshu == '') {
+                                    canshu = wentiId + ',' + answerId;
+                                } else {
+                                    canshu = canshu + ';' + wentiId + ',' + answerId;
                                 }
                                 cData.canshu = canshu;
                                 this.isPush = true;
                                 cData.iscomplete = 0;
-                                if (canshu.length >= cfgCanshu.length && cData.iscomplete == 0&&cfgCanshu==canshu) {
+                                if (canshu.length >= cfgCanshu.length && cData.iscomplete == 0 && cfgCanshu == canshu) {
                                     cData.iscomplete = 1;
                                     ChengJiuManager.getInstance().curChapterChengJiu[cjId] = cjId;
                                     GameCommon.getInstance().addChengJiuTips(mod.titleID);
@@ -71,8 +69,7 @@ class ChengJiuManager {
                     }
                 }
             }
-        }
-        else if (cfgCanshu.indexOf('|') >= 0) {
+        } else if (cfgCanshu.indexOf('|') >= 0) {
             let canshuArr: string[];
             canshuArr = cfgCanshu.split("|");
             for (var i: number = 0; i < canshuArr.length; i++) {
@@ -92,8 +89,7 @@ class ChengJiuManager {
                     }
                 }
             }
-        }
-        else {
+        } else {
             if (cfgCanshu.indexOf(',') >= 0) {
                 var wentiAry: string[];
                 wentiAry = cfgCanshu.split(",");
@@ -119,39 +115,9 @@ class ChengJiuManager {
         cData.chapterId = UserInfo.curchapter;
         UserInfo.achievementDics[cjId] = cData;
     }
-    private specialChengJiu(cjId, wentiId, answerId, cjwenti) {
-        let _constantDict = JsonModelManager.instance.getModelconstant();
-        let model: Modelconstant = _constantDict[cjwenti[0]];
-        let num: number = Number(cjwenti[1]);
-        let index: number = 0;
-        let ansData: AnswerData = UserInfo.ansWerData;
-        if (model.value.indexOf(';') >= 0) {
-            let allwentiAry: string[];
-            allwentiAry = model.value.split(";");
-            for (var j: number = 0; j < allwentiAry.length; j++) {
-                let wentiAry = allwentiAry[j].split(',');
-                if (ansData.wentiId[wentiAry[0]]) {
-                    if (ansData.answerId[wentiAry[0]].indexOf(',') >= 0)//检测存储的问题是不是存了多个答案 从答案中筛选是否符合当前成就问题
-                    {
-                        let wtAry = ansData.answerId[wentiAry[0]].split(',');
-                        for (var i: number = 0; i < wtAry.length; i++) {
-                            if (wtAry[i] == answerId) {
-                                index = index + 1;
-                            }
-                        }
-                    }
-                    else {
-                        if (ansData.answerId[wentiAry[0]] == answerId) {
-                            index = index + 1;
-                        }
-                    }
-                }
-            }
 
-        }
-    }
     public onDlcChengJiu(id) {
-        var cfgs = ChengJiuManager.getInstance().cjAllCfgs
+        var cfgs = ChengJiuManager.getInstance().cjAllCfgs;
         for (var k in cfgs) {
             if (cfgs[k].canshu == id && !UserInfo.achievementDics[cId]) {
                 var cId = cfgs[k].id;
@@ -168,6 +134,7 @@ class ChengJiuManager {
             }
         }
     }
+
     /*检测看视频成就逻辑*/
     public onCheckShiPinChengJiu(chengjiuId) {
         var callBackonCheckChengJiuShiPin = function (chengjiuId) {
@@ -191,7 +158,7 @@ class ChengJiuManager {
                 }
 
             }
-        }
+        };
         callBackonCheckChengJiuShiPin(chengjiuId);
     }
 
@@ -204,8 +171,7 @@ class ChengJiuManager {
                 if (UserInfo.achievementDics[cjId]) {
                     //多个条件的走这里
                     ChengJiuManager.getInstance().parseChengJiu(cjId, wentiId, answerId, mod);
-                }
-                else {
+                } else {
                     var cData1: ChengJiuData = new ChengJiuData();
                     cData1.id = cjId;
                     cData1.canshu = wentiId + ',' + answerId;
@@ -221,21 +187,21 @@ class ChengJiuManager {
                 // GameCommon.getInstance().setBookData(FILE_TYPE.CHENGJIU_FILE)
                 // GameCommon.getInstance().setBookData(FILE_TYPE.COLLECTION_FILE);
             }
-        }
+        };
         if (cjId.indexOf(',') >= 0) {
             var cjAry: string[];
             cjAry = cjId.split(",");
             for (var i: number = 0; i < cjAry.length; i++) {
                 callBackonCheckChengJiu(cjAry[i], wentiId, answerId);
             }
-        }
-        else {
+        } else {
             callBackonCheckChengJiu(cjId, wentiId, answerId);
         }
     }
+
     /*检测是不是新选择的问题答案*/
     public onCheckAnswer(wentiId, answerId) {
-        if (UserInfo.ansWerData)//先判断有没有存过  
+        if (UserInfo.ansWerData)//先判断有没有存过
         {
             var ansData: AnswerData = UserInfo.ansWerData;//存过的话
             if (wentiModels[wentiId]) {
@@ -264,14 +230,12 @@ class ChengJiuManager {
                                     }
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             return;
                         }
-                    }
-                    else {
+                    } else {
                         if (str1 != answerId) {
-                            ansData.answerId[wentiId] = ansData.answerId[wentiId] + ',' + answerId
+                            ansData.answerId[wentiId] = ansData.answerId[wentiId] + ',' + answerId;
                             UserInfo.ansWerData = ansData;
                             // GameCommon.getInstance().setBookData(FILE_TYPE.ANSWER_FILE);
                             //如果是成就问题  走一下成就存储逻辑// 暂时先主调
@@ -285,11 +249,10 @@ class ChengJiuManager {
                             }
                         }
                     }
-                }
-                else {
-                    //没存过这个问题  //检测是否有达成成就  
+                } else {
+                    //没存过这个问题  //检测是否有达成成就
                     ansData.answerId[wentiId] = answerId;
-                    UserInfo.ansWerData= ansData;
+                    UserInfo.ansWerData = ansData;
                     // GameCommon.getInstance().setBookData(FILE_TYPE.ANSWER_FILE);
                     //如果是成就问题  走一下成就存储逻辑// 暂时先主调
                     var cfgs = answerModels[wentiId];
@@ -303,8 +266,7 @@ class ChengJiuManager {
                     }
                 }
             }
-        }
-        else {   //没有存过数据的话走这里
+        } else {   //没有存过数据的话走这里
             var ansData: AnswerData = new AnswerData();
             VideoManager.getInstance().log(JSON.stringify(UserInfo.curBokData.wentiId));
             for (var key in UserInfo.curBokData.wentiId) {
@@ -327,12 +289,49 @@ class ChengJiuManager {
         }
         // GameCommon.getInstance().setBookData(FILE_TYPE.ANSWER_FILE);
     }
+
     /*解锁收藏*/
     public onParseShouCang(shouCangId) {
         UserInfo.allCollectionDatas[shouCangId] = shouCangId;
         // GameCommon.getInstance().setBookData(FILE_TYPE.ANSWER_FILE);
     }
+
+    private onGetAllChengJiu() {
+
+    }
+
+    private specialChengJiu(cjId, wentiId, answerId, cjwenti) {
+        let _constantDict = JsonModelManager.instance.getModelconstant();
+        let model: Modelconstant = _constantDict[cjwenti[0]];
+        let num: number = Number(cjwenti[1]);
+        let index: number = 0;
+        let ansData: AnswerData = UserInfo.ansWerData;
+        if (model.value.indexOf(';') >= 0) {
+            let allwentiAry: string[];
+            allwentiAry = model.value.split(";");
+            for (var j: number = 0; j < allwentiAry.length; j++) {
+                let wentiAry = allwentiAry[j].split(',');
+                if (ansData.wentiId[wentiAry[0]]) {
+                    if (ansData.answerId[wentiAry[0]].indexOf(',') >= 0)//检测存储的问题是不是存了多个答案 从答案中筛选是否符合当前成就问题
+                    {
+                        let wtAry = ansData.answerId[wentiAry[0]].split(',');
+                        for (var i: number = 0; i < wtAry.length; i++) {
+                            if (wtAry[i] == answerId) {
+                                index = index + 1;
+                            }
+                        }
+                    } else {
+                        if (ansData.answerId[wentiAry[0]] == answerId) {
+                            index = index + 1;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
 }
+
 enum CHENGJIU_TYPE {
     PLOT = 1,//剧情
     DLC = 2,//DLC

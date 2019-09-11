@@ -1,25 +1,75 @@
 /**
- * 
- * @author 
- * 
+ *
+ * @author
+ *
  */
 class GameWorld extends egret.DisplayObjectContainer {
     public stage: egret.Stage;
+    public PupoBar: egret.DisplayObjectContainer;//弹出面板层
     private sceneLayer: egret.DisplayObjectContainer;
     private promptLayer: egret.DisplayObjectContainer;
     private LoginSuccsess: boolean = false;//登录成功
     private isloginin: boolean = false;
-    public PupoBar: egret.DisplayObjectContainer;//弹出面板层
     private PupoBar1: egret.DisplayObjectContainer;//弹出面板层
     private panelDict;
     private setPanel: PlayerSettingPanel;
     private videoLayer: egret.DisplayObjectContainer;//视频层
+    private isAgaig: boolean = false;
+    private settingMain: PlayerSettingPanel;
+    private _isPause: string = '';
+    private videoData: VideoData;
+
     public constructor() {
         super();
         this.panelDict = {};
         this.init();
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
         this.onRegistEvent();
+    }
+
+    public readFiel(data) {
+        if (!GameDefine.ISFILE_STATE) {
+            return;
+        }
+        // GameDefine.ISFILE_STATE = false;
+        if (!this.videoData) {
+            this.videoData = new VideoData();
+            this.videoLayer.addChild(this.videoData);
+            this.touchEnabled = false;
+        } else {
+            this.videoData.visible = true;
+        }
+        if (this.isAgaig) {
+            this.videoLayer.addChild(this.videoData);
+        }
+        this.videoData.readFiel();
+    }
+
+    /**舞台尺寸发生变化**/
+    public onResize(): void {
+        // this.promptLayer.x = Globar_Pos.x;
+        // if (DataManager.IS_PC_Game) {
+        //     try {
+        //         this.gamescene.getModuleLayer().onStageResize();
+        //         this.gamescene.getMapLayer().onResizeLayer();
+        //     } catch (e) {
+        //     }
+        // }
+    }
+
+    public createGameScene(chapId: number = 0): void {
+        // if (this.isAgaig) {
+        // this.addChild(this.videoData);
+        // }
+        if (!this.videoData) {
+            this.videoData = new VideoData();
+            this.videoLayer.addChild(this.videoData);
+        } else {
+            this.videoData.visible = true;
+        }
+        this.touchEnabled = false;
+        var curSelf = this;
+        this.onButtonClick(chapId);
     }
 
     private onRegistEvent(): void {
@@ -33,28 +83,31 @@ class GameWorld extends egret.DisplayObjectContainer {
         GameDispatcher.getInstance().addEventListener(GameEvent.PLAY_VIDEO3, this.onHidePop, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.CLOSE_VIDEO3, this.onShowPop, this);
     }
-    private isAgaig: boolean = false;
+
     private onClose(): void {
         if (!this.videoData)
             return;
         this.isAgaig = true;
         // this.videoData = null;
     }
+
     private onHidePop() {
         this.PupoBar.visible = false;
     }
+
     private onShowPop() {
         this.PupoBar.visible = true;
     }
+
     private onCloseView(data): void {
         var windowName = data.data;
         if (this.panelDict[windowName]) {
             if (windowName == 'ControlTipsPanel') {
-                this.PupoBar1.removeChild(this.panelDict[windowName])
+                this.PupoBar1.removeChild(this.panelDict[windowName]);
                 this.panelDict[windowName] = null;
                 return;
             }
-            this.PupoBar.removeChild(this.panelDict[windowName])
+            this.PupoBar.removeChild(this.panelDict[windowName]);
             this.panelDict[windowName] = null;
             delete this.panelDict[windowName];
         }
@@ -72,27 +125,25 @@ class GameWorld extends egret.DisplayObjectContainer {
             }
         }
     }
+
     private onShowView(data): void {
         var windowName = data.data;
         if (this.panelDict[windowName]) {
-            this.PupoBar.removeChild(this.panelDict[windowName])
+            this.PupoBar.removeChild(this.panelDict[windowName]);
             this.panelDict[windowName] = null;
-        }
-        else {
+        } else {
             if (data.data.windowName) {
 
                 windowName = data.data.windowName;
                 var d;
                 if (data.data.data) {
                     d = new window[windowName](data.data.data);
-                }
-                else {
+                } else {
                     d = new window[windowName]();
                 }
                 this.panelDict[windowName] = d;
                 this.PupoBar.addChild(this.panelDict[windowName]);
-            }
-            else {
+            } else {
                 var d = new window[windowName](1);
                 this.panelDict[windowName] = d;
                 if (windowName == 'ControlTipsPanel') {
@@ -104,11 +155,12 @@ class GameWorld extends egret.DisplayObjectContainer {
 
         }
     }
+
     private onShowViewWithParam(event: egret.Event): void {
         var window_param: WindowParam = event.data as WindowParam;
         var windowName = window_param.windowname;
         if (this.panelDict[windowName]) {
-            this.PupoBar.removeChild(this.panelDict[windowName])
+            this.PupoBar.removeChild(this.panelDict[windowName]);
             this.panelDict[windowName] = null;
         } else {
             var panel = new window[windowName](window_param.data);
@@ -116,53 +168,25 @@ class GameWorld extends egret.DisplayObjectContainer {
             this.PupoBar.addChild(this.panelDict[windowName]);
         }
     }
+
     private init(): void {
         this.onResize();
     }
-    public readFiel(data) {
-        if (!GameDefine.ISFILE_STATE) {
-            return;
-        }
-        // GameDefine.ISFILE_STATE = false;
-        if (!this.videoData) {
-            this.videoData = new VideoData();
-            this.videoLayer.addChild(this.videoData);
-            this.touchEnabled = false;
-        }
-        else {
-            this.videoData.visible = true;
-        }
-        if (this.isAgaig) {
-            this.videoLayer.addChild(this.videoData);
-        }
-        this.videoData.readFiel();
-    }
-    /**舞台尺寸发生变化**/
-    public onResize(): void {
-        // this.promptLayer.x = Globar_Pos.x;
-        // if (DataManager.IS_PC_Game) {
-        //     try {
-        //         this.gamescene.getModuleLayer().onStageResize();
-        //         this.gamescene.getMapLayer().onResizeLayer();
-        //     } catch (e) {
-        //     }
-        // }
-    }
-    private settingMain: PlayerSettingPanel;
+
     private onAddToStage(event: egret.Event): void {
         this.onRegist();
 
         let view = new MainView(this);
-        GameCommon.getInstance().report('login', { num: 1 })
+        GameCommon.getInstance().report('login', {num: 1});
         this.addChild(view);
         this.videoLayer = new egret.DisplayObjectContainer();
-        this.addChild(this.videoLayer)
+        this.addChild(this.videoLayer);
         this.PupoBar = new egret.DisplayObjectContainer();
         this.addChild(this.PupoBar);
         this.PupoBar1 = new egret.DisplayObjectContainer();
         this.addChild(this.PupoBar1);
         CaptionView.getInstance().touchEnabled = false;
-        this.addChild(CaptionView.getInstance())
+        this.addChild(CaptionView.getInstance());
         this.addChild(PromptPanel.getInstance());
         PromptPanel.getInstance().touchEnabled = false;
         // PromptPanel.getInstance().touchChildren = false;
@@ -177,23 +201,6 @@ class GameWorld extends egret.DisplayObjectContainer {
         // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH));
     }
 
-    public createGameScene(chapId: number = 0): void {
-        // if (this.isAgaig) {
-        // this.addChild(this.videoData);
-        // }
-        if (!this.videoData) {
-            this.videoData = new VideoData();
-            this.videoLayer.addChild(this.videoData);
-        }
-        else {
-            this.videoData.visible = true;
-        }
-        this.touchEnabled = false;
-        var curSelf = this;
-        this.onButtonClick(chapId);
-    }
-    private _isPause: string = '';
-    private videoData: VideoData;
     private onButtonClick(chapId: number) {
         // GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
         GameDefine.CUR_IS_MAINVIEW = false;
@@ -203,6 +210,7 @@ class GameWorld extends egret.DisplayObjectContainer {
         this.videoData.setVideos(videoIds);
         this.videoData.starVideo(curChapterCfg.wenti);
     }
+
     private onStartVideo(data) {
         if (!data.data)
             return;
@@ -211,12 +219,11 @@ class GameWorld extends egret.DisplayObjectContainer {
         if (!this.videoData) {
             this.videoData = new VideoData();
             this.videoLayer.addChild(this.videoData);
-        }
-        else {
+        } else {
             this.videoData.visible = true;
         }
         let cfg: Modeljuqingkuai = data.data.cfg;
-        VideoManager.getInstance().log(JSON.stringify(UserInfo.curBokData.wentiId))
+        VideoManager.getInstance().log(JSON.stringify(UserInfo.curBokData.wentiId));
         if (VideoManager.getInstance().getVideoID() == cfg.videoId) {
             VideoManager.getInstance().videoResume();
             this.videoData.onInitVideoData();
@@ -305,17 +312,17 @@ class GameWorld extends egret.DisplayObjectContainer {
             if (obj.isAgaig) {
                 obj.isAgaig = false;
                 obj.videoData.againGame(wentiId);
-            }
-            else {
+            } else {
                 obj.videoData.starVideo(wentiId);
             }
         }, obj, 1000);
     }
+
     /**事件注册**/
     private onRegist(): void {
         window.onerror = function (message, url, line) {
             GameCommon.getInstance().showErrorLog("URL: " + url + "\n" + 'line' + line + '\n' + message);
-        }
+        };
 
         window['onEventNotify'] = function (event, json) {
             let data = JSON.parse(json);
@@ -337,19 +344,23 @@ class GameWorld extends egret.DisplayObjectContainer {
         };
     }
 }
+
 class WindowParam {
     public windowname: string;
     public data;
+
     public constructor(windowname: string, data?: any) {
         this.windowname = windowname;
         this.data = data;
     }
 }
+
 //层级类型
 enum PANEL_HIERARCHY_TYPE {
     I = 0,
     II = 1,
 }
+
 //web事件类型
 enum WEB_EVENT_NOTIFY {
     onCreate = 1,
@@ -361,4 +372,4 @@ enum WEB_EVENT_NOTIFY {
     onSaveFile = 7,
     wechat_Share = 1000,
     qq_Share = 1001,
-} 
+}

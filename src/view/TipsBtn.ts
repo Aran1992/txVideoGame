@@ -1,7 +1,7 @@
 // TypeScript file
 class TipsBtn extends eui.Component {
     public static Is_Guide_Bool: boolean;//是否要显示引导
-
+    public ren: eui.Image;
     private guide_img: eui.Image;
     private btn1: eui.Button;
     private btn2: eui.Button;
@@ -20,8 +20,8 @@ class TipsBtn extends eui.Component {
     private timeBar1: eui.ProgressBar;
     private timeBar3: eui.ProgressBar;
     private timeBar4: eui.ProgressBar;
-    private controlGroup: eui.Group;
     // private logLab: eui.Label;
+    private controlGroup: eui.Group;
     // private logLab1: eui.Label;
     private mainGroup: eui.Group;
     private fenxiangBtn: eui.Button;
@@ -31,7 +31,6 @@ class TipsBtn extends eui.Component {
     // private musicGroup: eui.Group;
     private mengban: eui.Image;
     private pauseGroup: eui.Group;
-    public ren: eui.Image;
     private videoD: VideoData;
     private redCircle: eui.Image;
     private proGroup: eui.Group;
@@ -44,14 +43,14 @@ class TipsBtn extends eui.Component {
 
     /** 特殊选项条件 chufa触发选项条件(没有则一定触发) conditions错误的选项字典  errorNum选择数量 **/
     private Option_Condition = {
-        "25": { conditions: { "20": 2, "22": 2, "24": 2 }, errorNum: 2 },
-        "48": { conditions: { "40": 2, "46": 5, "47": 2 }, errorNum: 3 },
-        "49": { chufa: { "41": 1, "47": 1 }, conditions: { "28": 2, "30": 1, "31": 1, "32": 2 }, errorNum: 1 }
-    }
+        "25": {conditions: {"20": 2, "22": 2, "24": 2}, errorNum: 2},
+        "48": {conditions: {"40": 2, "46": 5, "47": 2}, errorNum: 3},
+        "49": {chufa: {"41": 1, "47": 1}, conditions: {"28": 2, "30": 1, "31": 1, "32": 2}, errorNum: 1}
+    };
     /** 好感度解锁选项 option主角顺序对应的选项id  likeNum保留好感度前几个人 **/
     private Option_Like = {
-        "34": { option: [4, 1, 2, 3], likeNum: 2 },
-    }
+        "34": {option: [4, 1, 2, 3], likeNum: 2},
+    };
     /**选项对应的道具**/
     private Option_Goods = {
         "25": [500005, 500006, 0],
@@ -59,18 +58,291 @@ class TipsBtn extends eui.Component {
         "49": [500012, 500013, 0],
         "34": [500007, 500008, 500009, 500010],
     };
+    private spNames: string[] = ['', '1.5X', '1.25X', '1.0X'];
+    private pinzhiNames: string[] = ['', '1080P', '720P', '480P'];
+    private bmp: egret.Bitmap;
+    private pinzhi: number = 1;
+    private videoCurrentState: boolean = true;
+    private timer: egret.Timer;
+    private timerIdx: number = 0;
+    private fileState: boolean = false;
+    private starPosY: number = 0;
+    private starPosX: number = 0;
+    private isClick: boolean = true;
+    private light: number = 1;
+    private touchtime = new Date().getTime();
+    private direction: number = 0;
+    private isAddFlg: boolean = false;
+    private beisuGroup: eui.Group;
+    private pinzhiGroup: eui.Group;
+    private speedDic: number[] = [0, 1.5, 1.25, 1];
+    private sd: egret.Sound;
+    private isSelect: boolean = false;
+    private _isLock: boolean;
+    private wentiId: number = 0;//问题计时
+    private imgs: string[] = ['wentiA_png', 'wentiB_png', 'wentiC_png', 'wentiD_png'];
+    private tp: number = 0;
+    private modelHuDong: Modelhudong;
+    private _maxValue = 0;
+    private _maxTime = 0;
 
     public constructor() {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
-    //添加到舞台
-    private onAddToStage(): void {
-        this.onSkinName();
+
+    public get imStatus(): string {
+        return this.play_pauseBtn['iconDisplay'].source + '';
     }
-    private spNames: string[] = ['', '1.5X', '1.25X', '1.0X'];
-    private pinzhiNames: string[] = ['', '1080P', '720P', '480P'];
+
+    public set imStatus(str) {
+        if (str == 'pauseImg_png') {
+            this.mengban.visible = false;
+            this.pauseGroup.visible = false;
+            // this.cundangGroup.visible = false;
+        }
+        this.play_pauseBtn['iconDisplay'].source = str;
+    }
+
+    public onCloseMengBan() {
+        if (!this.mengban)
+            return;
+        this.mengban.visible = false;
+        this.pauseGroup.visible = false;
+        this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
+    }
+
+    public onSetCunDangState(bo) {
+
+        this.fileState = bo;
+        if (!this.fileState && !this.videoCurrentState) {
+            this.timerIdx = 3;
+            // this.controlGroup.alpha = 0;
+            this.controlGroup.visible = false;
+            if (this.timer) {
+                this.timerIdx = 0;
+                this.timer.stop();
+            }
+            this.videoCurrentState = true;
+        }
+    }
+
+    public onShowChengJiuComplete() {
+
+    }
+
+    public onShowLog(tim, endTime) {
+        // if(UserInfo.achievementDics)
+        // this.desc.text= 'star'+tim+'\n'+endTime;
+    }
+
+    public onShowAddTime() {
+        this.timeGroup.visible = true;
+        var obj = this;
+        Tool.callbackTime(function () {
+            obj.timeGroup.visible = false;
+        }, obj, 1000);
+    }
+
+    public setState(num: number = 1) {
+        if (num == 0) {
+            this.reduceBtn.visible = true;
+            this.addBtn.visible = true;
+            this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
+            this.controlGroup.visible = false;
+            if (this.timer) {
+                this.timerIdx = 0;
+                this.timer.stop();
+            }
+        }
+        return false;
+    }
+
+    public setPauseState() {
+        if (this.timer) {
+            this.timerIdx = 0;
+            this.timer.stop();
+            // this.timer.removeEventListener(egret.TimerEvent.TIMER, this.onTimer, this);
+            // this.timer = null;
+        }
+        this.play_pauseBtn.touchEnabled = true;
+        this.controlGroup.visible = true;
+        this.mengban.visible = true;
+        this.pauseGroup.visible = true;
+        this.play_pauseBtn['iconDisplay'].source = 'playImg_png';
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_PAUSE), false);
+    }
+
+    public onUpdateWenTi(id): void {
+        var button = this['btn' + id];
+        if (!button['lock_grp'].visible) {
+            this.onSelectWenTi(id);
+        }
+    }
+
+    public onCallBack() {
+        this.isSelect = false;
+        this.timerIdx = 3;
+        this.bottomBtn.alpha = 0;
+        this.bottomBtn.visible = false;
+        this.zimu.bottom = 100;
+        this._maxValue = 0;
+    }
+
+    public init(vData: VideoData) {
+        this.videoD = vData;
+    }
+
+    public onCreateBtn(model: Modelwenti) {
+        this.timerIdx = 0;
+        this.wentiId = model.id;
+        this.hideControl();
+        if (model.id == '19') {
+            this.desc.text = model.des;
+            this.desc.visible = true;
+        } else {
+            this.desc.visible = false;
+        }
+        this.tp = model.type;
+        this.isSelect = false;
+        if (model.type == ActionType.OPTION) {
+            this.showBtns.visible = true;
+            var awardStrAry: string[] = model.ans.split(",");
+            var cfgs = answerModels[this.wentiId];
+            var idx: number = 0;
+            for (var i: number = 0; i < 5; i++) {
+                if (awardStrAry.length > i) {
+                    this['btn' + (i + 1)].visible = true;
+                    this['btn' + (i + 1)].alpha = 1;
+                    this['btn' + (i + 1)].name = awardStrAry[i];
+                    this['btn' + (i + 1)].label = cfgs[i].des;
+                    this['btn' + (i + 1)]['iconDisplay'].source = 'wentikuang_png';
+                    this['btn' + (i + 1)]['labelDisplay'].textColor = '0xffffff';
+                    idx = i + 1;
+                }
+            }
+            this.currentState = 'index' + idx;
+            /**判断下问题是否带锁**/
+            this.onUpdateWentiBtnStatus();
+
+            var tw = egret.Tween.get(this.bottomBtn);
+            this.bottomBtn.alpha = 0;
+            this.timeBar3.visible = true;
+            this.bottomBtn.visible = true;
+            this.zimu.bottom = 335;
+            tw.to({alpha: 1}, 500);
+        } else {
+            this.modelHuDong = JsonModelManager.instance.getModelhudong()[model.type];
+            this.showBtns.visible = false;
+            this.gotoAction(model);
+            // if (this.modelHuDong && this.modelHuDong.des)
+            // GameCommon.getInstance().showActionTips(this.modelHuDong.des);
+
+        }
+    }
+
+    // }
+    public hideTips(): void {
+        this._maxValue = 0;
+        this._maxTime = 0;
+        this.bottomBtn.alpha = 0;
+        this.zimu.bottom = 100;
+        this.bottomBtn.visible = false;
+        if (this.videoD) {
+            if (this.videoD.getIsClick(this.videoD) == 3 && this.timerIdx > 0 && this.timerIdx < 4) {
+                this.timerIdx = 4;
+                // this.controlGroup.alpha = 0;
+                this.controlGroup.visible = false;
+                if (this.timer) {
+                    this.timerIdx = 0;
+                    this.timer.stop();
+                }
+                this.videoCurrentState = true;
+            }
+        }
+    }
+
+    public setTips(tim, bo): void {
+
+        if (this.tp != 0) {
+            // if (bo) {
+            //     this.onCallBack();
+            //     return;
+            // }
+            // if (!this.modelHuDong || this.modelHuDong.tp != ActionType.SLIDE) {
+            return;
+            // }
+        }
+        if (tim > 0 || this._maxTime != 0) {
+            if (tim < 0) {
+                this._maxTime = 0;
+                this._maxValue = 0;
+                return;
+            }
+            if (this._maxValue == 0 && this._maxTime == 0) {
+                if (!this.bottomBtn.visible) {
+                    var tw = egret.Tween.get(this.bottomBtn);
+                    this.timeBar3.visible = true;
+                    this.bottomBtn.alpha = 0;
+                    this.bottomBtn.visible = true;
+
+                    this.zimu.bottom = 335;
+                    tw.to({alpha: 1}, 500);
+                }
+                this._maxValue = tim - 1;
+                this._maxTime = tim;
+                var max = Math.floor(this._maxValue) * 20;
+                this.timeBar1.width = size.width / 2;
+                this.timeBar2.width = size.width / 2;
+                this.timeBar3.maximum = max;
+                this.timeBar3.value = max;
+                this.timeBar3.mask = this['mk'];
+                this.timeBar2.maximum = max;
+                this.timeBar1.maximum = max;
+                this.timeBar2.value = max;
+                this.timeBar1.value = max;
+            }
+            if (this._maxValue != tim) {
+                this.timeBar2.value = tim / this._maxTime * 100;
+                this.timeBar1.value = tim / this._maxTime * 100;
+                var tw = egret.Tween.get(this.timeBar1);
+                var tw1 = egret.Tween.get(this.timeBar2);
+                if ((tim - 1) <= 0) {
+
+                    tw.to({value: 0}, 1000);
+                    tw1.to({value: 0}, 1000);
+                } else {
+                    tw.to({value: (tim - 1) / this._maxTime * 100}, 900);
+                    tw1.to({value: (tim - 1) / this._maxTime * 100}, 900);
+                }
+                this._maxValue = tim;
+            }
+        } else {
+            this._maxTime = 0;
+            this._maxValue = 0;
+        }
+    }
+
+    public onShow(): void {
+
+    }
+
+    public log1(str) {
+        this.zimu.text = str;
+    }
+
+    // }
+    public log(str) {
+        // if (this.logLab.height > 700) {
+        //     this.logLab.text = '';
+        // }
+        // if (str == '') {
+        //     this.logLab.text = '';
+        // }
+        // this.logLab.text += "\n" + str;
+    }
+
     protected onRegist(): void {
         this.timeGroup.visible = false;
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
@@ -89,17 +361,53 @@ class TipsBtn extends eui.Component {
         this.reduceBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onReduceVideo, this);
         this.play_pauseBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay_Pause, this);
         this.playBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay, this);
-        this.cundang1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCunDang, this)
+        this.cundang1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCunDang, this);
         // GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_REFRESH, this.onShowLog, this);
-        this.goMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowMain, this)
+        this.goMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowMain, this);
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onShowBottomBtn, this);
-        this.speedBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSetSpeed, this)
-        this.qualityBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeQuality, this)
-        this.fenxiangBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFenXiang, this)
-        this.tiaoBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTiao, this)
+        this.speedBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSetSpeed, this);
+        this.qualityBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeQuality, this);
+        this.fenxiangBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFenXiang, this);
+        this.tiaoBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTiao, this);
         this.updateResize();
     }
-    private bmp: egret.Bitmap;
+
+    protected onRemove(): void {
+        for (var i = 1; i < 6; i++) {
+            this['btn' + i].name = i - 1;
+            this['btn' + i].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
+        }
+
+        this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onShowBottomBtn, this);
+        this.addBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddVideo, this);
+        this.reduceBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onReduceVideo, this);
+        this.cundang1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onCunDang, this);
+        this.speedBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onSetSpeed, this);
+        this.play_pauseBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay_Pause, this);
+
+    }
+
+    //供子类覆盖
+    protected onInit(): void {
+        //    this.bokData = new BookData;
+        this.onRefresh();
+    }
+
+    protected onRefresh(): void {
+        this.timeBar4.maximum = 100;
+        this.timeBar4.value = 50;
+        // SoundManager.volume = 50;
+    }
+
+    protected onSkinName(): void {
+        this.skinName = skins.TipsSkin;
+    }
+
+    //添加到舞台
+    private onAddToStage(): void {
+        this.onSkinName();
+    }
+
     private onFenXiang() {
         // this.bmp = new egret.Bitmap();
         // // var texture:egret.Texture = RES.getRes("run_png");
@@ -110,10 +418,11 @@ class TipsBtn extends eui.Component {
         // VideoManager.getInstance().dragImg();
         // this.addChild(this.bmp);
     }
+
     private onTiao() {
         this.videoD.onTiao();
     }
-    private pinzhi: number = 1;
+
     private onChangeQuality() {
         if (this.pinzhiGroup.visible) {
             this.pinzhiGroup.visible = false;
@@ -123,8 +432,7 @@ class TipsBtn extends eui.Component {
             this.pinzhi = 2;
             GameDefine.VIDEO_PINZHI = 2;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SWITCH_QUALITY));
-        }
-        else {
+        } else {
             this.pinzhi = 1;
             GameDefine.VIDEO_PINZHI = 1;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SWITCH_QUALITY));
@@ -135,6 +443,7 @@ class TipsBtn extends eui.Component {
 
         // VideoManager.getInstance().onSwitchQuality();
     }
+
     private onShowMain() {
         this.hideTips();
         this.videoD.onCloseVideo();
@@ -142,55 +451,11 @@ class TipsBtn extends eui.Component {
         this.mengban.visible = false;
         this.pauseGroup.visible = false;
     }
-    public onCloseMengBan() {
-        if (!this.mengban)
-            return;
-        this.mengban.visible = false;
-        this.pauseGroup.visible = false;
-        this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
-    }
-    protected onRemove(): void {
-        for (var i = 1; i < 6; i++) {
-            this['btn' + i].name = i - 1;
-            this['btn' + i].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
-        }
 
-        this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onShowBottomBtn, this);
-        this.addBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddVideo, this);
-        this.reduceBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onReduceVideo, this);
-        this.cundang1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onCunDang, this)
-        this.speedBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onSetSpeed, this)
-        this.play_pauseBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay_Pause, this);
-
-    }
-    private videoCurrentState: boolean = true;
-    private timer: egret.Timer;
-    private timerIdx: number = 0;
-    private fileState: boolean = false;
-    public onSetCunDangState(bo) {
-
-        this.fileState = bo;
-        if (!this.fileState && !this.videoCurrentState) {
-            this.timerIdx = 3;
-            // this.controlGroup.alpha = 0;
-            this.controlGroup.visible = false;
-            if (this.timer) {
-                this.timerIdx = 0;
-                this.timer.stop();
-            }
-            this.videoCurrentState = true;
-        }
-    }
-    public onShowChengJiuComplete() {
-
-    }
-    private starPosY: number = 0;
-    private starPosX: number = 0;
-    private isClick: boolean = true;
-    private light: number = 1;
     private onTouchMove(e: egret.TouchEvent) {
 
     }
+
     private onEnd() {
         this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
         this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEnd, this);
@@ -224,14 +489,13 @@ class TipsBtn extends eui.Component {
                         return;
                     }
                     this.timerIdx = 0;
-                    this.controlGroup.visible = true
+                    this.controlGroup.visible = true;
                     this.onTimer();
                     if (!this.timer) {
-                        this.timer = new egret.Timer(1000)
+                        this.timer = new egret.Timer(1000);
                         this.timer.addEventListener(egret.TimerEvent.TIMER, this.onTimer, this);
                         this.timer.start();
-                    }
-                    else {
+                    } else {
                         this.timer.start();
                     }
                     // if (!UserInfo.guideDic[1]) {//暂时注释
@@ -247,8 +511,7 @@ class TipsBtn extends eui.Component {
                     //     this.cundang1.touchEnabled = true;
                     //     this.xuanzecundang.visible = true;
                     // }
-                }
-                else {
+                } else {
                     this.addBtn.touchEnabled = true;
                     if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
                         return;
@@ -259,13 +522,14 @@ class TipsBtn extends eui.Component {
                     }
                     this.controlGroup.visible = false;
                     this.zimu.bottom = 100;
-                    this.videoCurrentState = true
+                    this.videoCurrentState = true;
                     this.timerIdx = 4;
                     return;
                 }
             }
         }
     }
+
     private hideControl() {
         this.timerIdx = 0;
         this.beisuGroup.visible = false;
@@ -274,6 +538,7 @@ class TipsBtn extends eui.Component {
         this.controlGroup.visible = false;
         this.zimu.bottom = 100;
     }
+
     private onHideGuide(e: egret.TouchEvent): void {
         this.guide_img.visible = false;
         this.mengban.visible = false;
@@ -281,8 +546,7 @@ class TipsBtn extends eui.Component {
         this.onShowBottomBtn(e);
         this.guide_img.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onHideGuide, this);
     }
-    private touchtime = new Date().getTime();
-    private direction: number = 0;
+
     private onShowBottomBtn(e: egret.TouchEvent) {
         if (TipsBtn.Is_Guide_Bool) {//新手引导 显示一张按钮指引的图
             this.setPauseState();
@@ -303,8 +567,7 @@ class TipsBtn extends eui.Component {
         this.direction = 0;
         if (this.starPosX > this.width / 2 - 150) {
             this.direction = 2;
-        }
-        else if (this.starPosX < this.width / 2 - 150) {
+        } else if (this.starPosX < this.width / 2 - 150) {
             this.direction = 1;
         }
         this.isClick = true;
@@ -323,24 +586,21 @@ class TipsBtn extends eui.Component {
         // var data = RES.getRes('dddd_json');
         // var txtr = RES.getRes('dddd_png');
         // var mcFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory( data, txtr );
-        // var mc1:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData('dddd')); 
+        // var mc1:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData('dddd'));
         // this.addChild(mc1);
         // mc1.gotoAndPlay(0,999999);
     }
-    public onShowLog(tim, endTime) {
-        // if(UserInfo.achievementDics)
-        // this.desc.text= 'star'+tim+'\n'+endTime;
-    }
+
     private onCunDang() {
         GameCommon.getInstance().hideTipsHuDong();
         VideoManager.getInstance().videoPause();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel')
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
         Tool.callbackTime(function () {
             GameDefine.IS_DUDANG = true;
         }, this, 200);
     }
-    private isAddFlg: boolean = false;
+
     private onAddVideo() {
         this.timerIdx = 0;
         // if (this.isAddFlg)
@@ -358,15 +618,7 @@ class TipsBtn extends eui.Component {
         this.timerIdx = 0;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.REDUCE_VIDEO_SPEED));
     }
-    public onShowAddTime() {
-        this.timeGroup.visible = true;
-        var obj = this;
-        Tool.callbackTime(function () {
-            obj.timeGroup.visible = false;
-        }, obj, 1000);
-    }
-    private beisuGroup: eui.Group;
-    private pinzhiGroup: eui.Group;
+
     private onSetSpeed() {
         this.timerIdx = 0;
         if (this.beisuGroup.visible) {
@@ -377,12 +629,13 @@ class TipsBtn extends eui.Component {
         this.beisuGroup.visible = true;
         this.pinzhiGroup.visible = false;
     }
+
     private onSelectPinZhi(event: egret.Event) {
         var id: number = Number(event.target.name);
         this.pinzhiGroup.visible = false;
         this.qualityBtn.label = event.target.label;
     }
-    private speedDic: number[] = [0, 1.5, 1.25, 1]
+
     private onSelectSpeed(event: egret.Event) {
         var id: number = Number(event.target.name);
         this.beisuGroup.visible = false;
@@ -391,22 +644,10 @@ class TipsBtn extends eui.Component {
         GameDefine.CUR_SPEED = this.speedDic[id];
     }
 
-    public setState(num: number = 1) {
-        if (num == 0) {
-            this.reduceBtn.visible = true;
-            this.addBtn.visible = true;
-            this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
-            this.controlGroup.visible = false;
-            if (this.timer) {
-                this.timerIdx = 0;
-                this.timer.stop();
-            }
-        }
-        return false;
-    }
     private onPlay() {
         this.onPlay_Pause();
     }
+
     private onPlay_Pause() {
         // if (this.setState())
         //     return;
@@ -434,8 +675,7 @@ class TipsBtn extends eui.Component {
             this.pauseGroup.visible = true;
             this.play_pauseBtn['iconDisplay'].source = 'playImg_png';
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_PAUSE), false);
-        }
-        else {
+        } else {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_PAUSE), true);
             this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
             this.mengban.visible = false;
@@ -443,22 +683,11 @@ class TipsBtn extends eui.Component {
         }
         this.onSetCunDangState(this.fileState);
     }
-    public setPauseState() {
-        if (this.timer) {
-            this.timerIdx = 0;
-            this.timer.stop();
-            // this.timer.removeEventListener(egret.TimerEvent.TIMER, this.onTimer, this);
-            // this.timer = null;
-        }
-        this.play_pauseBtn.touchEnabled = true;
-        this.controlGroup.visible = true;
-        this.mengban.visible = true;
-        this.pauseGroup.visible = true;
-        this.play_pauseBtn['iconDisplay'].source = 'playImg_png';
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_PAUSE), false);
-    }
-    private sd: egret.Sound
-    private isSelect: boolean = false;
+
+    // public endMusic() {
+    //     if (this.musicGroup.visible)
+    //         this.musicGroup.visible = false;
+
     private onTouchVideo(event: egret.Event) {
         if (this.isSelect)
             return;
@@ -482,12 +711,7 @@ class TipsBtn extends eui.Component {
             this.onSelectWenTi(id);
         }
     }
-    public onUpdateWenTi(id): void {
-        var button = this['btn' + id];
-        if (!button['lock_grp'].visible) {
-            this.onSelectWenTi(id);
-        }
-    }
+
     private onSelectWenTi(id) {
         this.isSelect = true;
         this.onUpdateLockStatus(false);
@@ -497,9 +721,8 @@ class TipsBtn extends eui.Component {
                 this['btn' + i]['iconDisplay'].source = 'common_select_png';
                 this['btn' + i]['labelDisplay'].textColor = '0x000000';
                 var tw = egret.Tween.get(this['btn' + i]);//.wait(0).call(this.onCallBtnState, this);
-                tw.to({ alpha: 1 }, 300);
-            }
-            else {
+                tw.to({alpha: 1}, 300);
+            } else {
                 this['btn' + i].visible = false;
             }
         }
@@ -536,9 +759,13 @@ class TipsBtn extends eui.Component {
         // }
         this.timeBar3.visible = false;
         if (this.wentiId > 0)
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO), { answerId: id, wentiId: this.wentiId, click: true });
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO), {
+                answerId: id,
+                wentiId: this.wentiId,
+                click: true
+            });
     }
-    private _isLock: boolean;
+
     private onUpdateLockStatus(isLock): void {
         if (this._isLock != isLock) {
             this._isLock = isLock;
@@ -549,29 +776,12 @@ class TipsBtn extends eui.Component {
             }
         }
     }
-    public onCallBack() {
-        this.isSelect = false;
-        this.timerIdx = 3;
-        this.bottomBtn.alpha = 0;
-        this.bottomBtn.visible = false;
-        this.zimu.bottom = 100;
-        this._maxValue = 0;
-    }
-    public set imStatus(str) {
-        if (str == 'pauseImg_png') {
-            this.mengban.visible = false;
-            this.pauseGroup.visible = false;
-            // this.cundangGroup.visible = false;
-        }
-        this.play_pauseBtn['iconDisplay'].source = str;
-    }
-    public get imStatus(): string {
-        return this.play_pauseBtn['iconDisplay'].source + '';
-    }
+
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
     }
+
     private onLoadComplete(): void {
         this.touchEnabled = false;
         this.cundang1.icon = 'cundang_png';
@@ -583,73 +793,7 @@ class TipsBtn extends eui.Component {
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
     }
-    //供子类覆盖
-    protected onInit(): void {
-        //    this.bokData = new BookData;
-        this.onRefresh();
-    }
-    public init(vData: VideoData) {
-        this.videoD = vData;
-    }
-    protected onRefresh(): void {
-        this.timeBar4.maximum = 100;
-        this.timeBar4.value = 50;
-        // SoundManager.volume = 50;
-    }
-    protected onSkinName(): void {
-        this.skinName = skins.TipsSkin;
-    }
-    private wentiId: number = 0;//问题计时
-    private imgs: string[] = ['wentiA_png', 'wentiB_png', 'wentiC_png', 'wentiD_png']
-    private tp: number = 0;
-    public onCreateBtn(model: Modelwenti) {
-        this.timerIdx = 0;
-        this.wentiId = model.id;
-        this.hideControl();
-        if (model.id == '19') {
-            this.desc.text = model.des;
-            this.desc.visible = true;
-        }
-        else {
-            this.desc.visible = false;
-        }
-        this.tp = model.type;
-        this.isSelect = false;
-        if (model.type == ActionType.OPTION) {
-            this.showBtns.visible = true;
-            var awardStrAry: string[] = model.ans.split(",");
-            var cfgs = answerModels[this.wentiId];
-            var idx: number = 0;
-            for (var i: number = 0; i < 5; i++) {
-                if (awardStrAry.length > i) {
-                    this['btn' + (i + 1)].visible = true;
-                    this['btn' + (i + 1)].alpha = 1;
-                    this['btn' + (i + 1)].name = awardStrAry[i];
-                    this['btn' + (i + 1)].label = cfgs[i].des;
-                    this['btn' + (i + 1)]['iconDisplay'].source = 'wentikuang_png';
-                    this['btn' + (i + 1)]['labelDisplay'].textColor = '0xffffff';
-                    idx = i + 1;
-                }
-            }
-            this.currentState = 'index' + idx;
-            /**判断下问题是否带锁**/
-            this.onUpdateWentiBtnStatus();
 
-            var tw = egret.Tween.get(this.bottomBtn);
-            this.bottomBtn.alpha = 0;
-            this.timeBar3.visible = true;
-            this.bottomBtn.visible = true;
-            this.zimu.bottom = 335;
-            tw.to({ alpha: 1 }, 500);
-        } else {
-            this.modelHuDong = JsonModelManager.instance.getModelhudong()[model.type];
-            this.showBtns.visible = false;
-            this.gotoAction(model);
-            // if (this.modelHuDong && this.modelHuDong.des)
-            // GameCommon.getInstance().showActionTips(this.modelHuDong.des);
-
-        }
-    }
     /**判断下问题是否带锁**/
     private onUpdateWentiBtnStatus(): void {
         for (var i: number = 0; i < 5; i++) {
@@ -719,7 +863,7 @@ class TipsBtn extends eui.Component {
             }
         }
     }
-    private modelHuDong: Modelhudong;
+
     private gotoAction(model: Modelwenti) {
         if (!this.modelHuDong)
             return;
@@ -735,93 +879,7 @@ class TipsBtn extends eui.Component {
         }
         ActionManager.getInstance().setAction(model, this);
     }
-    // public endMusic() {
-    //     if (this.musicGroup.visible)
-    //         this.musicGroup.visible = false;
-    // }
-    public hideTips(): void {
-        this._maxValue = 0;
-        this._maxTime = 0;
-        this.bottomBtn.alpha = 0;
-        this.zimu.bottom = 100;
-        this.bottomBtn.visible = false;
-        if (this.videoD) {
-            if (this.videoD.getIsClick(this.videoD) == 3 && this.timerIdx > 0 && this.timerIdx < 4) {
-                this.timerIdx = 4;
-                // this.controlGroup.alpha = 0;
-                this.controlGroup.visible = false;
-                if (this.timer) {
-                    this.timerIdx = 0;
-                    this.timer.stop();
-                }
-                this.videoCurrentState = true;
-            }
-        }
-    }
-    private _maxValue = 0;
-    private _maxTime = 0;
-    public setTips(tim, bo): void {
 
-        if (this.tp != 0) {
-            // if (bo) {
-            //     this.onCallBack();
-            //     return;
-            // }
-            // if (!this.modelHuDong || this.modelHuDong.tp != ActionType.SLIDE) {
-            return;
-            // }
-        }
-        if (tim > 0 || this._maxTime != 0) {
-            if (tim < 0) {
-                this._maxTime = 0;
-                this._maxValue = 0;
-                return;
-            }
-            if (this._maxValue == 0 && this._maxTime == 0) {
-                if (!this.bottomBtn.visible) {
-                    var tw = egret.Tween.get(this.bottomBtn);
-                    this.timeBar3.visible = true;
-                    this.bottomBtn.alpha = 0;
-                    this.bottomBtn.visible = true;
-
-                    this.zimu.bottom = 335;
-                    tw.to({ alpha: 1 }, 500);
-                }
-                this._maxValue = tim - 1;
-                this._maxTime = tim;
-                var max = Math.floor(this._maxValue) * 20;
-                this.timeBar1.width = size.width / 2;
-                this.timeBar2.width = size.width / 2;
-                this.timeBar3.maximum = max;
-                this.timeBar3.value = max;
-                this.timeBar3.mask = this['mk'];
-                this.timeBar2.maximum = max;
-                this.timeBar1.maximum = max;
-                this.timeBar2.value = max;
-                this.timeBar1.value = max;
-            }
-            if (this._maxValue != tim) {
-                this.timeBar2.value = tim / this._maxTime * 100;
-                this.timeBar1.value = tim / this._maxTime * 100;
-                var tw = egret.Tween.get(this.timeBar1);
-                var tw1 = egret.Tween.get(this.timeBar2);
-                if ((tim - 1) <= 0) {
-
-                    tw.to({ value: 0 }, 1000);
-                    tw1.to({ value: 0 }, 1000);
-                }
-                else {
-                    tw.to({ value: (tim - 1) / this._maxTime * 100 }, 900);
-                    tw1.to({ value: (tim - 1) / this._maxTime * 100 }, 900);
-                }
-                this._maxValue = tim;
-            }
-        }
-        else {
-            this._maxTime = 0;
-            this._maxValue = 0;
-        }
-    }
     private onTimer() {
         // let st = this.videoD.getIsClick(this.videoD);
         this.timerIdx = this.timerIdx + 1;
@@ -852,14 +910,15 @@ class TipsBtn extends eui.Component {
         //     // this.controlGroup.visible = false;
         // }
     }
+
     private callbackTime(callback, target, time, ...param) {
         var timeoutKey = -1;
         if (time > 0) {
-            var callbackObj = { intervalId: 0, callback: callback, target: target, time: time, args: param };
+            var callbackObj = {intervalId: 0, callback: callback, target: target, time: time, args: param};
             var callbackFunc = function (callbackObj): void {
                 target.callback(callbackObj.callback, callbackObj.target, ...callbackObj.args);
                 egret.clearTimeout(callbackObj.intervalId);
-            }
+            };
             callbackObj.intervalId = egret.setTimeout(callbackFunc, this, time, callbackObj);
             timeoutKey = callbackObj.intervalId;
         } else {
@@ -867,29 +926,15 @@ class TipsBtn extends eui.Component {
         }
         return timeoutKey;
     }
-    private callback(callback, target, ...param) {
-        param[0].alpha = 0;
-        // callback.call(target, ...param);
-    }
-    public onShow(): void {
 
-    }
-    public log1(str) {
-        this.zimu.text = str;
-    }
     // public showTime(str) {
     //     // if (this.logLab1.height > 500) {
     //     //     this.logLab1.text = '';
     //     // }
     //     this.logLab1.text += "\n" + str;
-    // }
-    public log(str) {
-        // if (this.logLab.height > 700) {
-        //     this.logLab.text = '';
-        // }
-        // if (str == '') {
-        //     this.logLab.text = '';
-        // }
-        // this.logLab.text += "\n" + str;
+
+    private callback(callback, target, ...param) {
+        param[0].alpha = 0;
+        // callback.call(target, ...param);
     }
 }

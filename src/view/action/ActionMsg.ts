@@ -16,15 +16,26 @@ class ActionMsg extends ActionSceneBase {
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
     private desc1: eui.Label;
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-    protected onSkinName(): void {
-        this.skinName = skins.ActionMsgSkin;
-    }
     private msg: string;
     private timer: egret.Timer;
     private timer1: egret.Timer;
+    private posNum: number[] = [181, 142, 90, 21, -108];
+    // private posNum:number[] = [88,87,82,149]
+    private curIndex: number = 0;
+    private lab: string = '';
+    private index: number = 0;
+    private posIdx: number = 0;
+    // }
+    private moveUp: boolean;
+
+    public constructor(model: Modelwenti, list: string[], idx: number) {
+        super(model, list, idx);
+    }
+
+    protected onSkinName(): void {
+        this.skinName = skins.ActionMsgSkin;
+    }
+
     protected onInit(): void {
         super.onInit();
         this.updateResize();
@@ -37,7 +48,7 @@ class ActionMsg extends ActionSceneBase {
         // this.up_Btn.visible = false;
         // this.down_Btn.visible = false;
         if (!this.timer1) {
-            this.timer1 = new egret.Timer(700)
+            this.timer1 = new egret.Timer(700);
             this.timer1.addEventListener(egret.TimerEvent.TIMER, this.onShowMsgEffect, this);
             this.timer1.start();
         }
@@ -61,15 +72,14 @@ class ActionMsg extends ActionSceneBase {
         this.btnSend.touchEnabled = false;
         this.msgInput.touchEnabled = false;
     }
+
     protected update(dt): void {
         super.update(dt);
         // this.timeBar.value = this.maxTime - this.runTime;
         this.timeBar2.value = this.runTime;
         this.timeBar1.value = this.runTime;
     }
-    private posNum: number[] = [181, 142, 90, 21, -108]
-    // private posNum:number[] = [88,87,82,149]
-    private curIndex: number = 0;
+
     private onShowMsgEffect() {
         // this.msg1.visible = true;
         // this.msg1.y = this.height/2-this.msg1.height/2;
@@ -84,7 +94,7 @@ class ActionMsg extends ActionSceneBase {
             this.timer1.removeEventListener(egret.TimerEvent.TIMER, this.onShowMsgEffect, this);
             this.timer1 = null;
             if (!this.timer) {
-                this.timer = new egret.Timer(50)
+                this.timer = new egret.Timer(50);
                 this.timer.addEventListener(egret.TimerEvent.TIMER, this.onShowLab, this);
                 this.timer.start();
             }
@@ -93,8 +103,6 @@ class ActionMsg extends ActionSceneBase {
         this.curIndex = this.curIndex + 1;
     }
 
-    private lab: string = '';
-    private index: number = 0;
     private onShowLab() {
         if (this.index >= this.msg.length - 1) {
             this.timer.stop();
@@ -104,11 +112,11 @@ class ActionMsg extends ActionSceneBase {
             // this.groupTouch.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
             // this.groupTouch.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this);
             // this.groupTouch.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onEventUp, this);
-            this.msgInput.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this)
+            this.msgInput.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this);
             this.btnSend.visible = true;
             this.msgInput.touchEnabled = true;
             this.btnSend.touchEnabled = true;
-            this.btnSend.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this)
+            this.btnSend.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this);
             // this.up_Btn.visible = true;
             // this.down_Btn.visible = true;
             // this.up_Btn.y = 200;
@@ -124,10 +132,15 @@ class ActionMsg extends ActionSceneBase {
         this.msg_input.height = this.msgLab.height + 30;
         this.msg_input1.height = this.msg_input.height;
     }
-    private posIdx: number = 0;
+
     private onEventDown(event: egret.TouchEvent) {
         this.posIdx = event.localY;
     }
+
+    // public updateResize() {
+    //     this.width = size.width;
+    //     this.height = size.height;
+
     private onEventUp(event: egret.TouchEvent) {
         // if (this.posIdx > event.localY) {
         this['msg' + 4].visible = true;
@@ -149,7 +162,7 @@ class ActionMsg extends ActionSceneBase {
         this.up_Btn.visible = false;
         this.down_Btn.visible = false;
         this.mainGroup.visible = false;
-        this.btnSend.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this)
+        this.btnSend.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this);
         this.msgInput.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this)
         // this.timeBar.visible = false;
         // this.removeEventListener(egret.Event.ENTER_FRAME, this.onFrame, this);
@@ -157,11 +170,6 @@ class ActionMsg extends ActionSceneBase {
         // this.groupTouch.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventUp, this);
         // this.groupTouch.removeEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onEventUp, this);
     }
-    // public updateResize() {
-    //     this.width = size.width;
-    //     this.height = size.height;
-    // }
-    private moveUp: boolean;
     // private start_posY: number;
     // private start_posY1: number;
     // private onFrame(): void {
