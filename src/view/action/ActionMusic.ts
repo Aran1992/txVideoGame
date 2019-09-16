@@ -12,10 +12,6 @@ class ActionMusic extends ActionSceneBase {
     private desc1: eui.Label;
     private heiping: eui.Image;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     public onSuccessItem(idx: number) {
         this.touchChecks[idx] = true;
         if (GuideManager.getInstance().isGuide) {

@@ -38,7 +38,11 @@ class ActionSceneBase extends eui.Component {
     }
 
     public get videoCurrTime() {
-        return VideoManager.getInstance().videoCurrTime() * 1000;
+        if (GameDefine.TEST_ACTION_SCENE_WENTI_ID) {
+            return new Date().getTime();
+        } else {
+            return VideoManager.getInstance().videoCurrTime() * 1000;
+        }
     }
 
     public get isVideoRun() {

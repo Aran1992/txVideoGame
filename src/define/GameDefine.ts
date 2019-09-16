@@ -60,6 +60,7 @@ class GameDefine {
     public static CJ_LEVEL_NAME: string[] = ['全部', '普通', '简单', '中等', '困难', '究极'];
 
     public static START_CHAPTER: number = 9;
+    public static TEST_ACTION_SCENE_WENTI_ID: number = 6;
     public static SOUND_RES: string = "resource/sound/";
     // }
     public static Currency_Icon = {

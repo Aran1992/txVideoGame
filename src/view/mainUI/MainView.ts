@@ -174,12 +174,25 @@ class MainView extends eui.Component {
     }
 
     private onDuDang() {
-        this.checkGuide8();
-        if (GameDefine.IS_DUDANG) {
-            this.curDuDang = true;
+        if (GameDefine.TEST_ACTION_SCENE_WENTI_ID) {
+            this.testActionScene(GameDefine.TEST_ACTION_SCENE_WENTI_ID);
+        } else {
+            this.checkGuide8();
+            if (GameDefine.IS_DUDANG) {
+                this.curDuDang = true;
+            }
+            GameDefine.IS_DUDANG = false;
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
         }
-        GameDefine.IS_DUDANG = false;
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
+    }
+
+    private testActionScene(wentiID: number) {
+        const actionIndex = 0;
+        const wentiModel = JsonModelManager.instance.getModelwenti()[wentiID.toString()];
+        const hudongModel = JsonModelManager.instance.getModelhudong()[wentiModel.type];
+        const paramList = hudongModel.pos.split(",");
+        const actionScene = new ActionMusic(wentiModel, paramList, actionIndex);
+        this.addChild(actionScene);
     }
 
     private onShowShowCang() {
