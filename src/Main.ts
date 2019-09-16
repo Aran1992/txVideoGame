@@ -107,24 +107,19 @@ class Main extends eui.UILayer {
     }
 
     private async loadResource() {
+        GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
+        const loadingView = new LoadingUI();
+        this.stage.addChild(loadingView);
+        loadingView.x = size.width / 2 - 240;
+        loadingView.y = size.height / 2;
         try {
-            // GameCommon.getInstance().getBookHistoryList();
-            GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
-            const loadingView = new LoadingUI();
-            this.stage.addChild(loadingView);
-            loadingView.x = size.width / 2 - 240;
-            loadingView.y = size.height / 2;
             await RES.loadConfig("resource/default.res.json", "resource/");
             await this.loadTheme();
             await RES.loadGroup("preload", 0, loadingView);
-            this.stage.removeChild(loadingView);
         } catch (e) {
             console.error(e);
         }
-        // window['onEventNotify'] = function(1,1){
-
-        // }
-
+        this.stage.removeChild(loadingView);
     }
 
     private loadTheme() {
