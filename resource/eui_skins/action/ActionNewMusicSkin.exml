@@ -7,9 +7,11 @@
 		<e:Group id="groupClick0" width="193" height="193" touchEnabled="true" alpha="1" bottom="80" left="274"
 		        >
 			<e:Image horizontalCenter="0" touchEnabled="false" scaleX="1" scaleY="1" source="action_Music_qiu1_png" y="23" />
-			<e:Image horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu4_png" />
-			<e:Image id="liangdi0" horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu2_png" />
-			<e:Image id="timeImg0" horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu3_png" />
+			<e:Image id="dark0" horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu4_png" />
+			<e:Image id="light0" touchEnabled="false" source="action_Music_qiu2_png"  anchorOffsetX="122.5" anchorOffsetY="95.5" x="96.5" y="96.5" height="190"/>
+			<e:Image id="good0" scaleX="1" scaleY="1" source="action_music_good_png" horizontalCenter="-6.5" verticalCenter="-160"/>
+			<e:Image id="miss0" scaleX="1" scaleY="1" source="action_music_miss_png" horizontalCenter="-5.5" verticalCenter="-160"/>
+
 		</e:Group>
 		<!--<e:Group id="groupClick1" width="193" height="193" touchEnabled="true" x="523" y="300" alpha="1" bottom="80" visible="false">
 		<e:Image horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="music_yuan_png" scaleX="1.4"
@@ -32,10 +34,12 @@
 	<e:Group id="groupClick1" width="193" height="193" touchEnabled="true" alpha="1" right="206" bottom="80"
 	        >
 		<e:Image horizontalCenter="0" touchEnabled="false" scaleX="1" scaleY="1" source="action_Music_qiu1_png" y="23" />
-		<e:Image horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu4_png" />
-		<e:Image id="liangdi1" horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu2_png"
-		         visible="false" />
-		<e:Image id="timeImg1" horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu3_png" />
+		<e:Image id="dark1" horizontalCenter="0" verticalCenter="0" touchEnabled="false" source="action_Music_qiu4_png" />
+		<e:Image id="light1" touchEnabled="false" source="action_Music_qiu2_png"
+		          anchorOffsetX="122.5" anchorOffsetY="95.5" x="96.5" y="96.5"/>
+		<e:Image scaleX="1" scaleY="1" source="action_music_good_png" horizontalCenter="-6.5" verticalCenter="-160" id="good1" x="-927" y="-85"/>
+		<e:Image scaleX="1" scaleY="1" source="action_music_miss_png" horizontalCenter="-5.5" verticalCenter="-160" id="miss1" x="-927" y="-79"/>
+
 	</e:Group>
 	<e:layout>
 		<e:BasicLayout/>
