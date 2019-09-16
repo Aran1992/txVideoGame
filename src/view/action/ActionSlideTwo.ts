@@ -28,10 +28,6 @@ class ActionSlideTwo extends ActionSceneBase {
     private x2_move_ok: boolean = false;
     private y2_move_ok: boolean = false;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     protected onSkinName(): void {
         this.skinName = skins.ActionSlideTwoSkin;
     }

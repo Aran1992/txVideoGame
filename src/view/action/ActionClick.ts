@@ -6,7 +6,7 @@ class ActionClick extends ActionSceneBase {
     private timeImg2: eui.Image;
     private share: egret.Shape;
     // private share1: egret.Shape;
-    private isTimeVisible: boolean;
+    private isTimeVisible: boolean = true;
     private mainGroup: eui.Group;
     private guideImg: eui.Group;
     private handImg: eui.Image;
@@ -27,11 +27,6 @@ class ActionClick extends ActionSceneBase {
     private handAni: my.Animation;
     private soundSrc: string[] = ['G4.mp3', 'D4.mp3', 'E4.mp3', 'D4.mp3', 'E4.mp3', 'G4.mp3', 'E4.mp3'];
     private isComp: boolean = false;
-
-    public constructor(model: Modelwenti, list: string[], idx: number, isTimeVisible: boolean) {
-        super(model, list, idx);
-        this.isTimeVisible = isTimeVisible;
-    }
 
     public exit() {
         this.groupClick.visible = false;

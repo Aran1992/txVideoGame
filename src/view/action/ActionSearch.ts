@@ -8,10 +8,6 @@ class ActionSearch extends ActionSceneBase {
     private ansId: number;
     private Before_ID: number = 57;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     public exit() {
         this.stopRun();
         this.onExit();

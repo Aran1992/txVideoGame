@@ -162,7 +162,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     }
                     isChapter = true;
                     this.curWentiId = wentiId;
-                    this.nextWentiId = this.nextWentiId;
                     this.isSelectVideo = false;
                     if (this.videoIdx == '') {
                         this.videoIdx = UserInfo.curBokData.videoNames[wentiId]
@@ -183,7 +182,6 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
             }
             this.curWentiId = wentiId;
-            this.nextWentiId = this.nextWentiId;
             this.curVIdeoIds = UserInfo.curBokData.videoIds;
             // this.curVideoIndex = UserInfo.curBokData.videoIndex;
             var cfgs = answerModels[wentiId];

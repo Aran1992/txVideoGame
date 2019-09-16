@@ -1,5 +1,18 @@
 class ActionManager {
     private static instance: ActionManager = null;
+    private static actionTypeClassMap: any = {
+        [ActionType.CLICK_TIME]: ActionClick,
+        [ActionType.CLICK]: ActionClickCount,
+        [ActionType.SLIDE]: ActionSlide,
+        [ActionType.SLIDE_RECT]: ActionSlideRect,
+        [ActionType.SLIDE_TWO]: ActionSlideTwo,
+        [ActionType.MUSIC]: ActionMusic,
+        [ActionType.SEND_MSG]: ActionMsg,
+        [ActionType.FULL_VIEW]: ActionFull,
+        [ActionType.HEAD_VIEW]: ActionHuiYi,
+        [ActionType.CHECK_DRINK]: ActionCheckDrink,
+        [ActionType.SEARCH]: ActionSearch,
+    };
     private videoData: VideoData;
     private currModel: Modelwenti;
     private currScene: ActionSceneBase;
@@ -17,6 +30,10 @@ class ActionManager {
             this.instance = new ActionManager();
         }
         return this.instance;
+    }
+
+    public static getActionSceneClassByActionType(actionType: ActionType): any {
+        return ActionManager.actionTypeClassMap[actionType];
     }
 
     public init(videoData: VideoData) {
@@ -76,46 +93,11 @@ class ActionManager {
             let scene: ActionSceneBase;
             let list = str.split(",");
             let type = parseInt(list[0]);
-            // if (ViewTouch.isTouch) {
-            // 	type = -1;
-            // }
-            switch (type) {
-                case ActionType.CLICK_TIME:
-                    scene = new ActionClick(this.currModel, list, this.actionIdx, true);
-                    break;
-                case ActionType.CLICK:
-                    scene = new ActionClickCount(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.SLIDE:
-                    scene = new ActionSlide(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.SLIDE_RECT://区域内重复滑动
-                    scene = new ActionSlideRect(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.SLIDE_TWO://双指滑动
-                    scene = new ActionSlideTwo(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.MUSIC:// 音乐游戏
-                    scene = new ActionMusic(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.SEND_MSG:// 发信息
-                    scene = new ActionMsg(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.FULL_VIEW:// 全景
-                    scene = new ActionFull(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.HEAD_VIEW:// 回忆
-                    scene = new ActionHuiYi(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.CHECK_DRINK:
-                    scene = new ActionCheckDrink(this.currModel, list, this.actionIdx);
-                    break;
-                case ActionType.SEARCH:
-                    scene = new ActionSearch(this.currModel, list, this.actionIdx);
-                    break;
-                default:
-                    Tool.error("createActionUI - type is error: " + type);
-                    break;
+            const actionSceneClass = ActionManager.getActionSceneClassByActionType(type);
+            if (actionSceneClass) {
+                scene = new actionSceneClass(this.currModel, list, this.actionIdx);
+            } else {
+                Tool.error("createActionUI - type is error: " + type);
             }
             if (scene) {
                 this.videoData.addActionScene(scene);

@@ -21,10 +21,6 @@ class ActionHuiYi extends ActionSceneBase {
     private share4: egret.Shape;
     private ansId: number = 0;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     public exit() {
         this.stopRun();
         this.onExit();

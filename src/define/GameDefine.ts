@@ -59,8 +59,8 @@ class GameDefine {
     public static CJ_LEVEL_COLOR: number[] = [0xFFFFFF, 0xffffff, 0x2ba663, 0x2697ff, 0xaf60b6, 0xe3d667];
     public static CJ_LEVEL_NAME: string[] = ['全部', '普通', '简单', '中等', '困难', '究极'];
 
-    public static START_CHAPTER: number = 0;
-    public static TEST_ACTION_SCENE_WENTI_ID: number = 6;
+    public static START_CHAPTER: number = 2;
+    public static TEST_ACTION_SCENE_WENTI_ID: number = 15;
     public static SOUND_RES: string = "resource/sound/";
     // }
     public static Currency_Icon = {

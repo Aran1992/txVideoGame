@@ -11,10 +11,6 @@ class ActionFull extends ActionSceneBase {
     // 	this.width = size.width;
     // 	this.height = size.height;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     // }
     public onSuccessItem(idx: number) {
 

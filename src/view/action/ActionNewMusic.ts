@@ -34,10 +34,6 @@ class ActionNewMusic extends ActionSceneBase {
     private moveUp: boolean;
     private start_posY: number;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     public onSuccessItem(idx: number) {
         this.touchChecks[idx] = true;
         if (GuideManager.getInstance().isGuide) {

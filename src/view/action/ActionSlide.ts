@@ -26,10 +26,6 @@ class ActionSlide extends ActionSceneBase {
     private x_move_ok: boolean = false;
     private y_move_ok: boolean = false;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     public exit() {
         egret.Tween.removeTweens(this.curGroup);
         super.exit();

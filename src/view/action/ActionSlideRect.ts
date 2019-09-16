@@ -29,10 +29,6 @@ class ActionSlideRect extends ActionSceneBase {
     // }
     private starPos: number = 0;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     protected onSkinName(): void {
         this.skinName = skins.ActionSlideRectSkin;
     }

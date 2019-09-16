@@ -6,10 +6,6 @@ class ActionCheckDrink extends ActionSceneBase {
     private timeBar2: eui.ProgressBar;
     private desc: eui.Label;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     public exit() {
         this.stopRun();
         this.onExit();

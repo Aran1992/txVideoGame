@@ -8,10 +8,6 @@ class ActionClickCount extends ActionSceneBase {
     private progress_img: eui.Image;
     private pro_mask: egret.Shape;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
-        super(model, list, idx);
-    }
-
     public exit() {
         super.exit();
         if (this.handAni) {

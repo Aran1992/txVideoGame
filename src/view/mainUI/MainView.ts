@@ -191,7 +191,8 @@ class MainView extends eui.Component {
         const wentiModel = JsonModelManager.instance.getModelwenti()[wentiID.toString()];
         const hudongModel = JsonModelManager.instance.getModelhudong()[wentiModel.type];
         const paramList = hudongModel.pos.split(",");
-        const actionScene = new ActionMusic(wentiModel, paramList, actionIndex);
+        const actionSceneClass = ActionManager.getActionSceneClassByActionType(wentiModel.type);
+        const actionScene = new actionSceneClass(wentiModel, paramList, actionIndex);
         this.addChild(actionScene);
     }
 
