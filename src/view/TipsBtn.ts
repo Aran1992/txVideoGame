@@ -691,10 +691,6 @@ class TipsBtn extends eui.Component {
     private onTouchVideo(event: egret.Event) {
         if (this.isSelect)
             return;
-        // this.sd.play(0, 1);
-        // if (Tool.isAndroid()) {
-        //     navigator.vibrate([500, 300]);
-        // }
         var button = event.currentTarget;
         var id: number = Number(button.name);
         if (button['lock_grp'].visible) {
@@ -715,48 +711,16 @@ class TipsBtn extends eui.Component {
     private onSelectWenTi(id) {
         this.isSelect = true;
         this.onUpdateLockStatus(false);
-        for (var i: number = 1; i < 6; i++) {
+        for (let i: number = 1; i < 6; i++) {
             if (i == id) {
                 this['btn' + i].alpha = 0.5;
                 this['btn' + i]['iconDisplay'].source = 'common_select_png';
                 this['btn' + i]['labelDisplay'].textColor = '0x000000';
-                var tw = egret.Tween.get(this['btn' + i]);//.wait(0).call(this.onCallBtnState, this);
-                tw.to({alpha: 1}, 300);
+                egret.Tween.get(this['btn' + i]).to({alpha: 1}, 300);
             } else {
                 this['btn' + i].visible = false;
             }
         }
-        // var cfgs = answerModels[this.wentiId];
-        // if (cfgs) {
-        //     let curAnswerCfg;
-        //     for (var k in cfgs) {
-        //         if (cfgs[k].ansid == id) {
-        //             curAnswerCfg = cfgs[k];
-        //             break;
-        //         }
-        //     }
-        //     let shipinId;
-        //     if (curAnswerCfg.videos.indexOf(",") >= 0) {
-        //         shipinId = curAnswerCfg.videos.split(",")[0];
-        //     }
-        //     else if (curAnswerCfg.videos.length > 0) {
-        //         shipinId = curAnswerCfg.videos
-        //     }
-        //     if (videoModels[shipinId] && videoModels[shipinId].haogandu) {
-        //         if (videoModels[shipinId].haogandu.indexOf(",") >= 0) {
-        //             let shipinIds = videoModels[shipinId].haogandu.split(",");
-        //             for (var j: number = 0; j < shipinIds.length; j++) {
-        //                 if (Number(shipinIds[j]) > 0) {
-        //                     if (Number(GameCommon.getInstance().getRoleLikeAll(j)) < Number(shipinIds[j])) {
-        //                         VideoManager.getInstance().videoPause();
-        //                         GameCommon.getInstance().onShowQinMiGroup();
-        //                         return;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
         this.timeBar3.visible = false;
         if (this.wentiId > 0)
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO), {

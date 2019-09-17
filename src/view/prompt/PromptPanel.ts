@@ -1,15 +1,8 @@
-/**
- * 提示面板
- */
 class PromptPanel extends egret.DisplayObjectContainer {
     private static _promptPanel: PromptPanel;
     private cjTips: CommonTips;
-    private loadpanel: LoadingPanel;
+    private loadPanel: LoadingPanel;
     private errTipsStrAry: string[] = [];
-    private _infoArray1: Array<PromptInfo> = new Array<PromptInfo>();
-    private _newestPromp1: PromptInfo = null;
-    private _infoArray2: Array<PromptInfo> = new Array<PromptInfo>();
-    private _newestPromp2: PromptInfo = null;
 
     public constructor() {
         super();
@@ -82,20 +75,20 @@ class PromptPanel extends egret.DisplayObjectContainer {
     }
 
     public showLoading() {
-        this.loadpanel.starLoading();
+        this.loadPanel.starLoading();
     }
 
     public removeLoading() {
-        this.loadpanel.endLoading();
+        this.loadPanel.endLoading();
     }
 
     private onAddToStage(event: egret.Event): void {
         this.cjTips = new CommonTips();
         this.addChild(this.cjTips);
         this.cjTips.touchEnabled = false;
-        this.loadpanel = new LoadingPanel();
-        this.loadpanel.touchEnabled = false;
-        this.addChild(this.loadpanel);
+        this.loadPanel = new LoadingPanel();
+        this.loadPanel.touchEnabled = false;
+        this.addChild(this.loadPanel);
     }
 }
 

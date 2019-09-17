@@ -1183,12 +1183,11 @@ class VideoData extends egret.DisplayObjectContainer {
         if (this.isSelectVideo && wentiModels[data.data.wentiId].type != ActionType.OPTION)
             return;
         this.tiaoState = false;
-        let cfgs = answerModels[data.data.wentiId];
-        let obj = this;
         Tool.callbackTime(function () {
             SoundManager.getInstance().stopMusicAll();
-        }, obj, 500);
+        }, this, 500);
         GameCommon.getInstance().hideActionTips();
+        let cfgs = answerModels[data.data.wentiId];
         if (!cfgs)
             return;
         this.curVideoIndex = 0;
@@ -1248,7 +1247,7 @@ class VideoData extends egret.DisplayObjectContainer {
         GameCommon.getInstance().addRoleLike(this.curAnswerCfg.like);
         Tool.callbackTime(function () {
             ChengJiuManager.getInstance().onCheckAnswer(data.data.wentiId, data.data.answerId);
-        }, obj, 100);
+        }, this, 100);
         UserInfo.curBokData.answerId[data.data.wentiId] = data.data.answerId;
         this.nextWentiId = this.curAnswerCfg.nextid;
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);

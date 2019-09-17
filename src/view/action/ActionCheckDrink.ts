@@ -1,7 +1,7 @@
 class ActionCheckDrink extends ActionSceneBase {
     private DRINK_MAX: number = 5;
     private ansId: number;
-    private isSeleted: boolean;
+    private isSelected: boolean;
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
     private desc: eui.Label;
@@ -12,7 +12,13 @@ class ActionCheckDrink extends ActionSceneBase {
     }
 
     protected onSkinName(): void {
-        this.skinName = skins.ActionCheckDrink;
+        if (this.paramList[3] === "0") {
+            this.skinName = skins.ActionCheckDrink;
+        } else if (this.paramList[3] === "1") {
+            this.skinName = skins.ActionImageSelectSkin;
+        } else {
+            this.skinName = skins.ActionCheckDrink;
+        }
     }
 
     protected onInit(): void {
@@ -63,9 +69,9 @@ class ActionCheckDrink extends ActionSceneBase {
     }
 
     private onSelectDrink(event: egret.Event): void {
-        if (!this.isSeleted) {
+        if (!this.isSelected) {
             this.ansId = (event.currentTarget as eui.RadioButton).value;
-            this.isSeleted = true;
+            this.isSelected = true;
             for (let i: number = 0; i < this.DRINK_MAX; i++) {
                 (this[`drink${i}_btn`] as eui.RadioButton).touchEnabled = false;
             }

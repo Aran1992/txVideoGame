@@ -92,20 +92,13 @@ class CommonTips extends eui.Component {
     public setLike(text: string): void {
         this.isLikeTime = true;
         this.grp1.x = -1000;
-        // this.desc1.x = -2000;
         this.grp1.alpha = 1;
         this.desc1.text = text;
         this.grp1.y = 148;
-        var tw = egret.Tween.get(this.grp1);//.wait(0).call(this.onCallBtnState, this);
-        tw.to({x: 43}, 800);
-        tw.to({alpha: 0.9}, 2000);
-        tw.to({alpha: 0}, 1500);
-        var obj = this;
-        // var tw1 = egret.Tween.get(this.desc1);//.wait(0).call(this.onCallBtnState, this);
-        // tw1.to({ x: 116 }, 1400)
-        // .call(function () {
-        //     obj.isLikeTime = false
-        // }, obj);
+        egret.Tween.get(this.grp1)
+            .to({x: 43}, 800)
+            .to({alpha: 0.9}, 2000)
+            .to({alpha: 0}, 1500);
     }
 
     //互动即将到来提示
