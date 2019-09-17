@@ -8,12 +8,11 @@ class VideoData extends egret.DisplayObjectContainer {
     public videoUpDataHandle: Function;
     public videoEndHandle: Function;
     public videoErrorHandle: Function;
-    public videoReadyHandle: Function;
     public videoNodeChangeHandle: Function;
     public isLoadSrc = false;
     public videoPauseTime: number = 0;
     public curWentiId: number = 0;
-    private actionScene: egret.DisplayObjectContainer;// 互动UI层
+    private actionScene: egret.DisplayObjectContainer;
     private videoTouch: ViewTouch;
     /**下一个视频需要好感度才能播放的 否则进BE规则
      *  视频ID对应数组 是每个角色的好感度值
@@ -31,40 +30,25 @@ class VideoData extends egret.DisplayObjectContainer {
         "VY1204": {options: {"68": 2, "69": 2, "70": 2}, errorNum: 2, nextVideoId: "VY1205"},
         "VW1201": {options: {"71": 2, "72": 2, "73": 2}, errorNum: 2, nextVideoId: "VW1202"},
     };
-    private daanCfg: Modelanswer;
     private againTime: number = 0;
     private againFlg: boolean = false;
-    private curTime: number = 0;
     private touchId: string;
     private isSetDiv: boolean = false;
-    private fileTime: egret.Timer;
     private fileTimerIdx: number = 0;
-    private models: Modelshipin[];
-    private workNum: number = 0;
-    private delayTim: number = 0;
     private oldVideoTimer: number = 0;
-    private isEnd: boolean = false;
-    private textIdx: number = 0;
     private _curSelf;
     private isDie = false;
     private isEndChapter: boolean = false;
-    private isError: boolean = false;
     private videoState: string;
     private isHuDong = false;
-    private _endHandle;
     private isPlay: boolean = false;
-    private _zimuCfgs;
-    //快进2秒
     private touchtime: number = 0;
-    //暂停播放
     private current: boolean = true;
     private isSelectVideo: boolean = false;
-    private curVideoId: number;
     private curAnswerCfg: Modelanswer;
     private curVIdeoIds: string[];
-    private curVideoIndex: number = 0;//当前答案中视频播放到了第几个
+    private curVideoIndex: number = 0;
     private nextWentiId: number = 0;
-    // private setVid: string = '';
     private _nextVid: string = '';
     private tiaoState: boolean = false;
 
@@ -84,6 +68,10 @@ class VideoData extends egret.DisplayObjectContainer {
         VideoManager.getInstance().updateVideoData(videoid);
     }
 
+    private static isVideoTouch(id) {
+        return id == 'V4111';
+    }
+
     public onCloseMengBan() {
         this.tipsPanel.onCloseMengBan();
     }
@@ -94,8 +82,6 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     public againGame(nextid): void {
-        // if (this.tipsPanel)
-        //     this.tipsPanel.onInitState();
         this.tiaoState = false;
         this.onCreateData();
         this.visible = true;
@@ -105,20 +91,16 @@ class VideoData extends egret.DisplayObjectContainer {
         this.againFlg = true;
         GameDefine.IS_READ_PLAY = true;
         VideoManager.getInstance().onAgainGame(this.videoIdx);
-        // egret.Ticker.getInstance().register(this.onfileTimer, this);
     }
 
-    //读档的话走这里   包括继续游戏  和  读取手动存档1-6
     public readFiel() {
         this.curAnswerCfg = null;
         if (!UserInfo.curBokData) {
-            // GameCommon.getInstance().showCommomTips('null')
             return;
         }
         this.tiaoState = false;
-        // GameCommon.getInstance().showCommomTips(JSON.stringify(UserInfo.curBokData.wentiId) + '---' + GameDefine.IS_DUDANG)
         if (GameDefine.IS_DUDANG && GameDefine.CUR_PLAYER_VIDEO == 1) {
-            var src = '';
+            let src = '';
             if (UserInfo.curBokData.wentiId.length > 0) {
                 src = UserInfo.curBokData.videoNames[UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1]]
             }
@@ -135,23 +117,11 @@ class VideoData extends egret.DisplayObjectContainer {
         GameCommon.getInstance().showLoading();
         this._nextVid = '';
         if (UserInfo.curBokData.wentiId.length > 0 && UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1]) {
-            // this.tipsPanel.onInitState();
 
-            // this.tipsPanel.setState(0);
             let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
-            var isChapter: boolean = false;
             if (UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]) {
-                // if (wentiModels[wentiId].chapter == 0) {
-                //     wentiId = 8;
-                //     this.onContinue();
-                //     return;
-                // }
                 if (wentiModels[wentiId].chapter > wentiModels[UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]].chapter) {
-                    // if (VideoManager.getInstance().getVideoData() && widPlayer) {
-                    //     this.onContinue();
-                    //     return;
-                    // }
-                    var curChapterCfg = JsonModelManager.instance.getModelchapter()[wentiModels[wentiId].chapter];
+                    let curChapterCfg = JsonModelManager.instance.getModelchapter()[wentiModels[wentiId].chapter];
                     if (curChapterCfg.videoSrc.indexOf(",") >= 0) {
                         let videoIds = curChapterCfg.videoSrc.split(",");
                         this.videoIdx = videoIds[0];
@@ -160,7 +130,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     } else {
                         this.videoIdx = curChapterCfg.videoSrc;
                     }
-                    isChapter = true;
                     this.curWentiId = wentiId;
                     this.isSelectVideo = false;
                     if (this.videoIdx == '') {
@@ -169,11 +138,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     this.againFlg = true;
                     GameDefine.IS_READ_PLAY = true;
                     if (VideoManager.getInstance().getVideoData() && widPlayer) {
-                        // var obj = this;
-                        // Tool.callbackTime(function () {
-                        //     VideoManager.getInstance().onAgainGame(videoIdx);
-                        //     // VideoManager.getInstance().onPlayVideo(videoIdx);
-                        // }, obj, 1000);
                         this.onContinue();
                     } else {
                         VideoManager.getInstance().onPlay(this.videoIdx);
@@ -183,17 +147,18 @@ class VideoData extends egret.DisplayObjectContainer {
             }
             this.curWentiId = wentiId;
             this.curVIdeoIds = UserInfo.curBokData.videoIds;
-            // this.curVideoIndex = UserInfo.curBokData.videoIndex;
-            var cfgs = answerModels[wentiId];
+            let cfgs = answerModels[wentiId];
             this.curVideoIndex = 0;
             this.videoIdx = UserInfo.curBokData.videoNames[wentiId];
             this.isSelectVideo = false;
             if (UserInfo.curBokData.answerId[wentiId]) {
                 this.isSelectVideo = true;
-                for (var k in cfgs) {
-                    if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
-                        this.curAnswerCfg = cfgs[k];
-                        break;
+                for (let k in cfgs) {
+                    if (cfgs.hasOwnProperty(k)) {
+                        if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
+                            this.curAnswerCfg = cfgs[k];
+                            break;
+                        }
                     }
                 }
                 this.curWentiId = this.curAnswerCfg.nextid;
@@ -204,7 +169,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (this.curAnswerCfg.videos.indexOf(",") >= 0) {
                     this.curVIdeoIds = this.curAnswerCfg.videos.split(",");
                     this.videoIdx = '';
-                    for (var i: number = 0; i < this.curVIdeoIds.length; i++) {
+                    for (let i: number = 0; i < this.curVIdeoIds.length; i++) {
                         if (this.curVIdeoIds[i] == UserInfo.curBokData.videoNames[wentiId]) {
                             if (i < this.curVIdeoIds.length - 1) {
                                 this.isSelectVideo = false;
@@ -229,10 +194,12 @@ class VideoData extends egret.DisplayObjectContainer {
                 wentiId = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2];
                 this.isSelectVideo = true;
                 cfgs = answerModels[wentiId];
-                for (var k in cfgs) {
-                    if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
-                        this.curAnswerCfg = cfgs[k];
-                        break;
+                for (let k in cfgs) {
+                    if (cfgs.hasOwnProperty(k)) {
+                        if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
+                            this.curAnswerCfg = cfgs[k];
+                            break;
+                        }
                     }
                 }
                 this.curWentiId = this.curAnswerCfg.nextid;
@@ -243,7 +210,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (this.curAnswerCfg.videos.indexOf(",") >= 0) {
                     this.curVIdeoIds = this.curAnswerCfg.videos.split(",");
                     this.videoIdx = '';
-                    for (var i: number = 0; i < this.curVIdeoIds.length; i++) {
+                    for (let i: number = 0; i < this.curVIdeoIds.length; i++) {
                         if (this.curVIdeoIds[i] == UserInfo.curBokData.videoNames[wentiId]) {
                             this.curVideoIndex = i + 1;
                             if (i < this.curVIdeoIds.length - 1) {
@@ -268,18 +235,15 @@ class VideoData extends egret.DisplayObjectContainer {
             if (this.videoIdx == '') {
                 this.videoIdx = UserInfo.curBokData.videoNames[wentiId];
             }
-            // this.againTime = UserInfo.curBokData.times[wentiId];
             this.againFlg = true;
             GameDefine.IS_READ_PLAY = true;
             if (VideoManager.getInstance().getVideoData() && widPlayer) {
-                var obj = this;
+                let obj = this;
                 VideoManager.getInstance().clear();
                 Tool.callbackTime(function () {
                     VideoManager.getInstance().onAgainGame(obj.videoIdx);
-                    // VideoManager.getInstance().onPlayVideo(videoIdx);
                 }, obj, 1000);
 
-                // VideoManager.getInstance().iosPlay(this.curTime);
             } else {
                 VideoManager.getInstance().onPlay(this.videoIdx);
             }
@@ -291,29 +255,15 @@ class VideoData extends egret.DisplayObjectContainer {
     public addActionScene(ui: egret.DisplayObjectContainer) {
         this.actionScene.addChild(ui);
     }
-    // private onEndChapter() {
-    //     var chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
-    //     if (chapCfg.videoSrc.indexOf(",") >= 0) {
-    //         let videoIds = chapCfg.videoSrc.split(",");
-    //         videoIdx = videoIds[0];
-    //         this.curVideoIndex = 1;
-    //     }
-    //     else {
-    //         videoIdx = chapCfg.videoSrc;
-    //     }
-    //     // this.onShowNextVideo();
-    // }
 
     public onWaitin() {
-        // this.tipsPanel.log('当前网速不好')
     }
 
     public setVideoTouch(id: string) {
         if (id && id != this.touchId) {
             this.touchId = id;
             let div = window["videoDivMin"];
-            if (this.isVideoTouch(id)) {
-                // video.style["object-fit"] = "none";
+            if (VideoData.isVideoTouch(id)) {
                 div.style["width"] = GameDefine.VIDEO_FULL_WIDTH + 'px';
                 div.style["height"] = size.height + 'px';
                 if (!this.videoTouch) {
@@ -328,8 +278,6 @@ class VideoData extends egret.DisplayObjectContainer {
                 this.isSetDiv = true;
                 div.style["width"] = wind.width + 'px';
                 div.style["height"] = wind.height + 'px';
-                // div.style.width = "100%";
-                // div.style.height = "100%";
                 if (size.fillType == FILL_TYPE_COVER) {
                     div.style["object-fit"] = "cover";
                 } else {
@@ -367,8 +315,6 @@ class VideoData extends egret.DisplayObjectContainer {
         if (topStr.length > 0) {
             top = parseInt(topStr.substring(0, topStr.length - 2));
         }
-        // body.style.left = (left + offx) + "px";
-        // body.style.top = (top + offy) + "px";
         this.resetPoint(left + offx * GameDefine.sizeScaleX, top + offy * GameDefine.sizeScaleY, true);
     }
 
@@ -383,10 +329,6 @@ class VideoData extends egret.DisplayObjectContainer {
             moveH = GameDefine.VIDEO_HEIGHT - wind.height;
         }
 
-        // x = x < -moveW / 2 ? -moveW / 2 : x;
-        // x = x > moveW / 2 ? moveW / 2 : x;
-        // y = y < -moveH / 2 ? -moveH / 2 : y;
-        // y = y > moveH / 2 ? moveH / 2 : y;
         x = x > 0 ? 0 : x;
         x = x < -moveW ? -moveW : x;
         if (isTouch) {
@@ -395,12 +337,10 @@ class VideoData extends egret.DisplayObjectContainer {
             y = y > 0 ? 0 : y;
             y = y < -moveH ? -moveH : y;
         }
-        // let body = window[this.curId];
         let body = window["videoDiv"];
         body.style.left = x + "px";
         body.style.top = y + "px";
         if (this.videoTouch) {
-            // this.videoTouch.setVideoPoint(x - moveW / 2, y - moveH / 2);
             this.videoTouch.setVideoPoint(x, y);
         }
     }
@@ -417,12 +357,6 @@ class VideoData extends egret.DisplayObjectContainer {
             this.curVIdeoIds = [];
         }
         VideoManager.getInstance().onPlay(this.videoIdx);
-        // if (!this.fileTime) {
-        //     this.fileTime = new egret.Timer(1000)
-        //     this.fileTime.addEventListener(egret.TimerEvent.TIMER, this.onfileTimer, this);
-        //     this.fileTime.start()
-        // }
-        // egret.Ticker.getInstance().register(this.onfileTimer, this);
 
     }
 
@@ -432,15 +366,11 @@ class VideoData extends egret.DisplayObjectContainer {
         videoAdvanceLoad = false;
         videoNextFlg = true;
         videoNextFlg1 = true;
-        var tips = this.tipsPanel;
+        let tips = this.tipsPanel;
         this.isPlay = false;
-        var curTim = 0;
         if (!videoModels[this.videoIdx]) return;
         this.isLoadSrc = false;
-        var zimuCfgs = JsonModelManager.instance.getModelzimu()[this.videoIdx];
-        var zimuIdx = 0;
-        var curSlef = this._curSelf;
-        var cdTime: number = 0;
+        let curSlef = this._curSelf;
         this.isHuDong = false;
         if (this.videoTouch) {
             this.videoTouch.onExit();
@@ -450,37 +380,16 @@ class VideoData extends egret.DisplayObjectContainer {
             curSlef.setVideoTouch(this.videoIdx, window[curSlef.curId]);
         }
         curSlef.fileTimerIdx = 6500;
-        var likeTime: number = 0;
-        if (videoModels[this.videoIdx].haogandu != '') {
-            let likes = videoModels[this.videoIdx].haogandu.split(",");
-            likeTime = Number(likes[0]);
-        }
-        // window.onerror = function (error) {
-        //     tips.showTime(error);
-        // }
-        // window.onerror = function (message, url, line) {
-        //     tips.showTime("URL: " + url + "\n" + 'line' + line + '\n' + message)
-        // }
-        var isShowRes: boolean = false;
-        var isShowEnd: boolean = false;
-        // var isShowLike: boolean = false;
-        var isShowHuDong: boolean = false;
-        var isShowChengJiu: boolean = false;
-        var isLoadBe: boolean = false;
-        var isResult: boolean = false;
-        var isFile: boolean = false;
-        // if (widPlayer) {
-        //         this.log('创建成功');
-        // }
-        // else
-        // {
-        //     this.log('创建失败')
-        // }
+        let isShowRes: boolean = false;
+        let isShowEnd: boolean = false;
+        let isShowHuDong: boolean = false;
+        let isShowChengJiu: boolean = false;
+        let isResult: boolean = false;
+        let isFile: boolean = false;
         if (!this.videoUpDataHandle) {
             this.videoUpDataHandle = new function () {
             };
-            //视频update事件
-            widPlayer.on('timeupdate', (data) => {
+            widPlayer.on('timeupdate', () => {
                 if (GameDefine.CUR_PLAYER_VIDEO == 2) {
                     return;
                 }
@@ -517,7 +426,6 @@ class VideoData extends egret.DisplayObjectContainer {
                         curSlef.againTime = 0;
                     }
                 }
-                // tips.showTime(VideoManager.getInstance().videoCurrTime());
                 if (videoModels[curSlef.videoIdx].jtime) {
                     if (videoModels[curSlef.videoIdx].tiaozhuan != TIAOZHUAN_Type.RESULT) {
                         if (VideoManager.getInstance().videoCurrTime() >= Number(videoModels[curSlef.videoIdx].jtime) && !isShowEnd) {
@@ -526,17 +434,11 @@ class VideoData extends egret.DisplayObjectContainer {
                             curSlef.curVideoIndex = 0;
                             curSlef.fileTimerIdx = 0;
                             curSlef.tipsPanel.hideTips();
-                            // egret.Ticker.getInstance().unregister(curSlef.onfileTimer, curSlef);
                             let vd = new ViewEnd(true, videoModels[curSlef.videoIdx].tiaozhuan);
                             curSlef.addChild(vd);
                             isShowEnd = true;
                             return;
                         }
-                        // else if (!isLoadBe&&videoModels[videoIdx].tiaozhuan == TIAOZHUAN_Type.WENTI) {
-                        //     let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
-                        //     VideoManager.getInstance().onLoad(UserInfo.curBokData.videoNames[wentiId]);
-                        //     isLoadBe = true;
-                        // }
                         if (VideoManager.getInstance().videoCurrTime() >= Math.round(VideoManager.getInstance().getVideoDuration()) - 3) {
                             widPlayer.seek(Number(videoModels[curSlef.videoIdx].jtime) + 3);
                         }
@@ -544,12 +446,6 @@ class VideoData extends egret.DisplayObjectContainer {
                             return;
                         }
                     } else {
-                        //     if (!isResult) {
-                        //         let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
-                        //         var chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
-                        //         VideoManager.getInstance().onLoad(chapCfg.videoSrc);
-                        //         isResult = true;
-                        //     }
                         if (videoModels[curSlef.videoIdx].tiaozhuan == TIAOZHUAN_Type.RESULT) {
                             if (VideoManager.getInstance().videoCurrTime() >= Number(videoModels[curSlef.videoIdx].jtime) && !isShowRes) {
                                 curSlef.onShowResult();
@@ -576,10 +472,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     curSlef.tipsPanel.touchChildren = false;
                     return;
                 }
-                // if (likeTime > 0 && VideoManager.getInstance().videoCurrTime() >= likeTime && !isShowLike) {
-                //     // isShowLike = true;
-                //     GameCommon.getInstance().addRoleLike(videoModels[videoIdx].haogandu)
-                // }
                 if (curSlef && VideoManager.getInstance().getVideoDuration() > 0) {
                     if (curSlef.curWentiId >= 1) {
 
@@ -594,7 +486,7 @@ class VideoData extends egret.DisplayObjectContainer {
                                 VideoManager.getInstance().setSpeed(1);
                             }
 
-                            var lastTime: number = Number(wentiModels[curSlef.curWentiId].time) + Number(videoModels[curSlef.videoIdx].time);
+                            let lastTime: number = Number(wentiModels[curSlef.curWentiId].time) + Number(videoModels[curSlef.videoIdx].time);
                             if (VideoManager.getInstance().videoCurrTime() >= lastTime - 10 && !videoAdvanceLoad) {
                                 videoAdvanceLoad = true;
                                 VideoManager.getInstance().onLoad(curSlef.curWentiId)
@@ -604,8 +496,6 @@ class VideoData extends egret.DisplayObjectContainer {
                             }
 
                             if (Math.floor(VideoManager.getInstance().videoCurrTime()) >= lastTime - 0.5) {
-                                // tips.hideTips();
-                                var wId = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
                                 if (videoNextFlg1 && !curSlef.isSelectVideo && wentiModels[curSlef.curWentiId].type == ActionType.OPTION) {
                                     videoNextFlg1 = false;
                                     curSlef.isSelectVideo = true;
@@ -618,7 +508,7 @@ class VideoData extends egret.DisplayObjectContainer {
                             if (VideoManager.getInstance().videoCurrTime() >= Number(videoModels[curSlef.videoIdx].time) && VideoManager.getInstance().videoCurrTime() < lastTime) {
                                 if (videoNextFlg) {
                                     GameCommon.getInstance().hideTipsHuDong();
-                                    tips.onCreateBtn(wentiModels[curSlef.curWentiId]);//出现问题
+                                    tips.onCreateBtn(wentiModels[curSlef.curWentiId]);
                                     curSlef.isHuDong = true;
                                     videoNextFlg = false;
                                 }
@@ -628,7 +518,6 @@ class VideoData extends egret.DisplayObjectContainer {
                                     curSlef.isDie = true;
                                     videoNextFlg1 = false;
                                 } else {
-                                    //如果视频结束前两秒还没选择 默认自动选择
                                     if (videoNextFlg1 && !curSlef.isSelectVideo && wentiModels[curSlef.curWentiId].type == ActionType.OPTION) {
                                         videoNextFlg1 = false;
                                         curSlef.isSelectVideo = true;
@@ -637,7 +526,6 @@ class VideoData extends egret.DisplayObjectContainer {
                                 }
                             }
                         } else {
-                            //如果是连续播放的视频 在当前视频结束前10秒开始加载下一个视频
                             if (VideoManager.getInstance().videoCurrTime() >= Math.round(VideoManager.getInstance().getVideoDuration()) / 2 - 10 && !curSlef.isSelectVideo) {
                                 curSlef.isSelectVideo = true;
                                 VideoManager.getInstance().isReadySet = true;
@@ -657,22 +545,24 @@ class VideoData extends egret.DisplayObjectContainer {
                                         curSlef.tipsPanel.hideTips();
                                     }
                                 }
-                                let optConditonData = this.Video_Opt_Condition[curSlef.videoIdx];
-                                if (optConditonData) {
+                                let optConditionData = this.Video_Opt_Condition[curSlef.videoIdx];
+                                if (optConditionData) {
                                     let errorNum: number = 0;
-                                    for (let condWentiID in optConditonData.options) {
-                                        let cond_optID: number = optConditonData.options[condWentiID];
-                                        let select_optID: number = UserInfo.curBokData.answerId[condWentiID];
-                                        if (!select_optID || select_optID == cond_optID) {
-                                            errorNum++;
+                                    for (let condWentiID in optConditionData.options) {
+                                        if (optConditionData.options.hasOwnProperty(condWentiID)) {
+                                            let cond_optID: number = optConditionData.options[condWentiID];
+                                            let select_optID: number = UserInfo.curBokData.answerId[condWentiID];
+                                            if (!select_optID || select_optID == cond_optID) {
+                                                errorNum++;
+                                            }
                                         }
                                     }
-                                    if (errorNum >= optConditonData.errorNum) {
-                                        curSlef.curVIdeoIds = [optConditonData.nextVideoId];
+                                    if (errorNum >= optConditionData.errorNum) {
+                                        curSlef.curVIdeoIds = [optConditionData.nextVideoId];
                                         curSlef.curVideoIndex = 0;
                                     }
                                 }
-                                if (curSlef.videoIdx == 'VY1206') {//这个视频后续比较特殊 需要算10章前的肖家兄弟的好感度是否相同
+                                if (curSlef.videoIdx == 'VY1206') {
                                     let like_wanxun: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao, 30);
                                     let like_qianye: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao, 30);
                                     if (like_wanxun == like_qianye) {
@@ -698,16 +588,6 @@ class VideoData extends egret.DisplayObjectContainer {
                                 return;
                             }
                         }
-                        // else if (videoModels[videoIdx].tiaozhuan == TIAOZHUAN_Type.RESULT) {
-                        //     if (VideoManager.getInstance().videoCurrTime() >= Number(videoModels[videoIdx].jtime) && !isShowRes) {
-                        //         curSlef.onShowResult();
-                        //         isShowRes = true;
-                        //         return;
-                        //     }
-                        //     if (!videoNextFlg || isShowRes) {
-                        //         return;
-                        //     }
-                        // }
                     }
                 }
             })
@@ -717,9 +597,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (GameDefine.CUR_PLAYER_VIDEO == 2) {
                     return;
                 }
-                // widPlayer = window['player'];
                 curSlef.log(data.old + '-----------' + data.new);
-                // 事件参数｛new: xx, old: xx｝，其中state有：  idle, loadStart, canplay, playing, pause, seeking, seeked, buffering, end
                 if (data.new == 'buffering' || data.new == 'seeking') {
                     GameCommon.getInstance().showLoading();
                 } else if (data.new == 'end') {
@@ -735,8 +613,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     return;
                 }
                 if (curSlef) {
-                    // curSlef.log('代码结束');
-                    // window['curSlef.curId'].enbed
 
                     curSlef.onShowNextVideo();
                 }
@@ -745,28 +621,12 @@ class VideoData extends egret.DisplayObjectContainer {
         if (!this.videoErrorHandle) {
             widPlayer.on('error', (error) => {
                 if (error.code == 14001) {
-                    // if (tips.visible) {
                     GameCommon.getInstance().showErrorLog(JSON.stringify(error));
-                    // if (VideoManager.getInstance().videoCurrTime() - 12 > 0) {
-                    //     VideoManager.getInstance().videoPause();
-                    //     widPlayer.seek(VideoManager.getInstance().videoCurrTime() - 10);// vd['currentTime']= Math.min(vd['currentTime'] + 10, vd['duration'] - 0.5);
-                    //     VideoManager.getInstance().videoResume();
-                    // }
-                    // VideoManager.getInstance().onLoad(curSlef.curWentiId)
-                    // curSlef.log('set失败重新加载' + curSlef.setVid)
-                    // VideoManager.getInstance().onLoadSrc(curSlef.setVid)
                     GameCommon.getInstance().showCommomTips('preload失败请重新进入游戏');
                     VideoManager.getInstance().clear();
                     curSlef.touchEnabled = false;
                     curSlef.touchChildren = false;
-                    // Tool.callbackTime(function () {
-                    //     VideoManager.getInstance().onAgainGame(videoIdx);
-                    // }, curSlef, 500);
-                    // }
-                    // else {
-                    //     console.log('shibai');
 
-                    // }
                 }
             })
         }
@@ -775,9 +635,8 @@ class VideoData extends egret.DisplayObjectContainer {
             widPlayer.on('videoNodeChange', () => {
                 GameCommon.getInstance().removeLoading();
                 if (!widPlayer) {
-                    widPlayer = widPlayer;
-                    var ps = document.getElementsByTagName('video');
-                    for (var i: number = 0; i < ps.length; i++) {
+                    let ps = document.getElementsByTagName('video');
+                    for (let i: number = 0; i < ps.length; i++) {
                         if (size.fillType == FILL_TYPE_COVER) {
                             ps[i].style["object-fit"] = "cover";
                         } else {
@@ -792,7 +651,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     isShowEnd = false;
                     isResult = false;
                     isFile = false;
-                    // isShowLike = false;
                     isShowHuDong = false;
                     videoAdvanceLoad = false;
                     videoNextFlg = true;
@@ -801,9 +659,7 @@ class VideoData extends egret.DisplayObjectContainer {
 
                     if (curSlef.againFlg) {
                         if (curSlef.againTime > 0) {
-                            // VideoManager.getInstance().videoPause();
                             widPlayer.seek(curSlef.againTime);
-                            // curSlef.againTime = 0;
                         }
                         curSlef.againFlg = false;
                     } else {
@@ -818,7 +674,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     curSlef.isPlay = false;
                     curSlef.log('videoNodeChange切换视频');
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ResultWinPanel');
-                    // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ChapterPanel')
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.HIDE_MAIN_GROUP));
                 }
@@ -831,10 +686,8 @@ class VideoData extends egret.DisplayObjectContainer {
                 VideoManager.getInstance().againInit();
             }
         }, this, 5000);
-
     }
 
-    //返回主界面
     public onCloseVideo() {
         if (this.curWentiId > 0) {
             this.fileTimerIdx = 0;
@@ -857,7 +710,6 @@ class VideoData extends egret.DisplayObjectContainer {
             }
         }
         GameCommon.getInstance().removeLoading();
-        // egret.Ticker.getInstance().unregister(this.onfileTimer, this);
         VideoManager.getInstance().videoPause();
         this.tipsPanel.hideTips();
         this.tipsPanel.visible = false;
@@ -868,7 +720,6 @@ class VideoData extends egret.DisplayObjectContainer {
         GameCommon.getInstance().hideTipsHuDong();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-        // VideoManager.getInstance().clear();
 
     }
 
@@ -893,12 +744,10 @@ class VideoData extends egret.DisplayObjectContainer {
             this.curVideoIndex = 0;
             this.fileTimerIdx = 0;
             this.tipsPanel.visible = false;
-            // egret.Ticker.getInstance().unregister(this.onfileTimer, this);
             let vd = new ViewEnd(true, videoModels[this.videoIdx].tiaozhuan);
             this.addChild(vd);
         } else {
             if (this.curVideoIndex >= this.curVIdeoIds.length || this.curVIdeoIds.length == 0) {
-                //这里存一下章节信息 更新章节
                 this.onShowResult();
                 return;
             }
@@ -912,17 +761,9 @@ class VideoData extends egret.DisplayObjectContainer {
         }
     }
 
-    //检测是否可以呼出回退按钮
-    public getReduceState() {
-        if (VideoManager.getInstance().videoCurrTime() - 12 <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public getVideoPause() { //结尾不允许暂停
-        var endTim = VideoManager.getInstance().getVideoDuration();
-        var curTim = VideoManager.getInstance().videoCurrTime();
+    public getVideoPause() {
+        let endTim = VideoManager.getInstance().getVideoDuration();
+        let curTim = VideoManager.getInstance().videoCurrTime();
         if (endTim > 0 && curTim > 1 && curTim < endTim - 1) {
             let curT = Tool.getCurrTime();
             if (curT > this.videoPauseTime + 1000) {
@@ -937,29 +778,8 @@ class VideoData extends egret.DisplayObjectContainer {
         this.curVIdeoIds = videos;
     }
 
-    public setAnsCfg(cfg, src) {
-        this.curVideoIndex = 1;
-        if (cfg.nextid == 0 && cfg.isdie == 0) {
-            VideoManager.getInstance().updateGameChapter(cfg.nextChapterId);
-        }
-        if (cfg.videos.indexOf(",") >= 0) {
-            this.curVIdeoIds = cfg.videos.split(",");
-            for (var i: number = 0; i < this.curVIdeoIds.length; i++) {
-                if (this.curVIdeoIds[i] == src) {
-                    this.curVideoIndex = i + 1;
-                }
-            }
-        } else if (cfg.videos.length > 0) {
-            this.curVIdeoIds = [];
-            this.curVIdeoIds.push(cfg.videos);
-        } else {
-            this.curVIdeoIds = [];
-        }
-        this.curWentiId = cfg.nextid;
-    }
-
     public onTiao() {
-        var wentiTime: number = 0;
+        let wentiTime: number = 0;
         if (VideoManager.getInstance().videoCurrTime() < 1)
             return;
         if (Number(videoModels[this.videoIdx].time) > 0) {
@@ -968,7 +788,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (wentiTime > 0) {
             if (!this.isSelectVideo && VideoManager.getInstance().videoCurrTime() < wentiTime - 3 && VideoManager.getInstance().getVideoDuration() > wentiTime - 3 && !this.tiaoState) {
                 this.tiaoState = true;
-                widPlayer.seek(wentiTime - 2);// vd['currentTime']= Math.min(vd['currentTime'] + 10, vd['duration'] - 0.5);
+                widPlayer.seek(wentiTime - 2);
             } else if (VideoManager.getInstance().videoCurrTime() + 5 < VideoManager.getInstance().getVideoDuration() && !this.tiaoState) {
                 this.tiaoState = true;
                 widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4)
@@ -991,14 +811,12 @@ class VideoData extends egret.DisplayObjectContainer {
         ActionManager.getInstance().setAction(wentiModels[wentId], this.tipsPanel);
     }
 
-    //检测是否在互动中 是否可以呼出快进界面
-    public getIsClick(vd: VideoData) { // 1 正常状态 2互动前5秒状态 //0是视频结尾不显示快进  3是互动状态
-
+    public getIsClick(vd: VideoData) {
         if (!widPlayer || !videoModels[this.videoIdx]) {
             return 0;
         }
         let tim = Math.floor(VideoManager.getInstance().videoCurrTime());
-        var tim1 = Number(videoModels[this.videoIdx].time);//问题出现时间
+        let tim1 = Number(videoModels[this.videoIdx].time);
         this.curWentiId;
         let wentiTime = 0;
         if (wentiModels[this.curWentiId]) {
@@ -1009,19 +827,6 @@ class VideoData extends egret.DisplayObjectContainer {
             }
         }
         if (tim1 > 0) {
-            // if (vd.isSelectVideo && tim > Number(tim1)) {
-            // if (tim < (VideoManager.getInstance().getVideoDuration() - 12)) {
-            //     return 1;
-            // }
-            // else {
-            //     return 0;
-            // }
-            // }
-            // else {
-            // if (tim > (tim1 - 12) && tim < (tim1 - 1)) {
-            //     return 2;
-            // }
-            // else
             if (wentiTime > 0) {
                 if (tim >= (tim1 - 1) && tim <= Number(tim1) + wentiTime) {
                     return 3;
@@ -1032,20 +837,8 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
             }
 
-            // else {
-            //     return 1;
-            // }
-            // }
         }
         return 0;
-        // else {
-        //     if (tim < (VideoManager.getInstance().getVideoDuration() - 12)) {
-        //         return 1;
-        //     }
-        //     else {
-        //         return 0;
-        //     }
-        // }
     }
 
     protected createGameScene(): void {
@@ -1066,8 +859,6 @@ class VideoData extends egret.DisplayObjectContainer {
         GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_CHAPTER_END, this.onStopVideo, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.GAME_CONTINUE, this.onContinue, this);
 
-        // GameDispatcher.getInstance().addEventListener(GameEvent.GAME_GO_MAINVIEW, this.onCloseVideo, this)
-        // GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.readFiel, this);
     }
 
     private onCompleteChengJiu() {
@@ -1082,41 +873,33 @@ class VideoData extends egret.DisplayObjectContainer {
         this.onCreateData();
         this.tiaoState = false;
         GameDefine.IS_READ_PLAY = true;
-        var chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
+        let chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         if (!this.isEndChapter) {
             VideoManager.getInstance().onSetSrc1(UserInfo.curBokData.videoNames[chapCfg.wenti]);
         } else {
             this.againFlg = true;
             videoNextFlg1 = true;
 
-            var obj = this;
-            // this.tipsPanel.log('');
             this.curWentiId = chapCfg.wenti;
             this.nextWentiId = chapCfg.wenti;
             this.isSelectVideo = false;
             this._nextVid = '';
             this.videoIdx = UserInfo.curBokData.videoNames[this.curWentiId];
             VideoManager.getInstance().onAgainGame(this.videoIdx);
-            // egret.Ticker.getInstance().register(this.onfileTimer, this);
             return;
         }
         this.againFlg = true;
         videoNextFlg1 = true;
 
-        var obj = this;
-        // VideoManager.getInstance().clear();
-        // VideoManager.getInstance().onLoad(videoIdx);
+        let obj = this;
         this.tipsPanel.log('');
-        Tool.callbackTime(function () {
+        Tool.callbackTime(() => {
             obj.curWentiId = chapCfg.wenti;
             obj.nextWentiId = chapCfg.wenti;
             obj.isSelectVideo = false;
             obj._nextVid = '';
             this.videoIdx = UserInfo.curBokData.videoNames[obj.curWentiId];
-            // VideoManager.getInstance().onLoad(videoIdx);
-            // VideoManager.getInstance().onAgainGame(videoIdx);
         }, obj, 1000);
-        // egret.Ticker.getInstance().register(this.onfileTimer, this);
     }
 
     private onGameOver(): void {
@@ -1130,15 +913,17 @@ class VideoData extends egret.DisplayObjectContainer {
             this.tipsPanel.setState(0);
             let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2];
             let curWentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
-            var cfgs = answerModels[wentiId];
+            let cfgs = answerModels[wentiId];
             this.curWentiId = curWentiId;
             this.nextWentiId = curWentiId;
             this.curVideoIndex = 0;
             if (UserInfo.curBokData.answerId[wentiId]) {
-                for (var k in cfgs) {
-                    if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
-                        this.curAnswerCfg = cfgs[k];
-                        break;
+                for (let k in cfgs) {
+                    if (cfgs.hasOwnProperty(k)) {
+                        if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
+                            this.curAnswerCfg = cfgs[k];
+                            break;
+                        }
                     }
                 }
                 if (this.curAnswerCfg.videos.indexOf(",") >= 0) {
@@ -1155,17 +940,8 @@ class VideoData extends egret.DisplayObjectContainer {
             this._nextVid = '';
             this.isSelectVideo = false;
             GameDefine.IS_READ_PLAY = true;
-            // widPlayer.setNextVideoNode(videoModels[videoIdx].vid,true);
-            // widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 0.5);
-            //, { inerrupt: true });
-            // VideoManager.getInstance().onLoad(videoIdx)
             VideoManager.getInstance().onSetSrc1(this.videoIdx);
             this.againTime = Number(videoModels[this.videoIdx].time) - 5;
-            // if (VideoManager.getInstance().getVideoData()) {
-            // }
-            // else {
-            //     VideoManager.getInstance().init(this);
-            // }
         }
     }
 
@@ -1175,128 +951,31 @@ class VideoData extends egret.DisplayObjectContainer {
 
     private onCreateData(): void {
         if (!this.tipsPanel) {
-            // if (!this.fileTime) {
-            //     this.fileTime = new egret.Timer(1000)
-            //     this.fileTime.addEventListener(egret.TimerEvent.TIMER, this.onfileTimer, this);
-            //     this.fileTime.start()
-            // }
             this.width = size.width;
             this.height = size.height;
             this.tipsPanel = new TipsBtn();
             this.addChild(this.tipsPanel);
             this.tipsPanel.init(this);
-            // if(this.actionScene)
-            // {
             this.actionScene = new egret.DisplayObjectContainer();
             this.addChild(this.actionScene);
             ActionManager.getInstance().init(this);
         }
-        // else {
-        // this.tipsPanel.setState();
-        // }
         this.tipsPanel.visible = true;
         this.touchEnabled = false;
         this.tipsPanel.onCloseMengBan();
         this._curSelf = this;
     }
 
-    private isVideoTouch(id) {// TODO 判断是否为全景视频（id为视频表id，写死）
-        if (id == 'V4111') {
-            return true;
-        }
-        // return id == "00003A";
-        return false;
-        // return true;
-    }
-
-    private onfileTimer(dt) {//暂时作废
-        // VideoManager.getInstance().log("isSwitchVideo: " + VideoManager.getInstance().isSwitchVideo);
-        // let video = VideoManager.getInstance().getCurrVideo();
-        if (widPlayer) {
-            this.fileTimerIdx += dt;
-            if (this.isEnd) {
-
-            }
-            // this.workNum = this.workNum + 1;
-            // if (VideoManager.getInstance().videoCurrTime() > 0) {
-            // if (this.oldVideoTimer != VideoManager.getInstance().videoCurrTime()) {
-            //     this.delayTim = 0;
-            //     this.oldVideoTimer = VideoManager.getInstance().videoCurrTime();
-            //     GameCommon.getInstance().removeLoading();
-            //     return;
-            // }
-            // else {
-            // if (this.current) {
-            //     this.delayTim += dt;
-            //     if (this.delayTim > 150) {
-            //         if (this.delayTim > 5000 && !this.isSelectVideo) {
-            //             video.pauseVideo();
-            //             video.playVideo();
-            //             this.delayTim = 0;
-            //         }
-            //         GameCommon.getInstance().showLoading();
-            //     }
-            // }
-            //     }
-            // }
-            // if(this.delayTim<this.workNum-1)
-            // {
-            //     if(window[this.curId].currentTime>=this.oldVideoTimer&&window[this.curId].currentTime<this.oldVideoTimer+0.5)
-            //     {
-            //         GameCommon.getInstance().showLoading();
-            //         this.log(window[this.curId].currentTime+'===='+this.oldVideoTimer)
-            //     }
-            //     else
-            //     {
-            //         // this.log('clean');
-            //        GameCommon.getInstance().removeLoading();
-            //     }
-            //     this.oldVideoTimer = window[this.curId].currentTime;
-            //     this.delayTim = this.workNum;
-            // }
-        }
-    }
-
     private onPlayIos() {
-        // VideoManager.getInstance().log('videoId')
-        // if (videoIdx) {
-        //     window['video1'].src = LoadManager.getVideoUrl(videoIdx);
-        //     window['video2'].src = LoadManager.getVideoUrl(videoIdx);
-        //     VideoManager.getInstance().iosPlay();
-        // }
-    }
-
-    private egretError(error) {
-        this.log('123')
     }
 
     private onStopVideo() {
-        // this.actionScene.touchEnabled = true;
-        // this.actionScene.touchChildren = true;
-        // if (!this.isPlay) {
-        //     // VideoManager.getInstance().videoPause();
-        //     // this.onEndChapter();
-        //     this.isPlay = false;
-        // }
     }
 
-    //显示结算界面
     private onShowResult() {
         let isEnd: boolean = false;
         let isFindNext: boolean = false;
-        let curWentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];//用最后一个问题有问题，有的剧情块根本没有问题
-        // if (UserInfo.curchapter == 0 || curWentiId > 0) {
-        //     var answCfgs = answerModels[curWentiId];
-        //     for (let ansqid in answCfgs) {
-        //         let anscfg: Modelanswer = answCfgs[ansqid];
-        //         if (anscfg.nextChapterId > 0) {
-        //             isFindNext = true;
-        //             isEnd = VideoManager.getInstance().updateGameChapter(anscfg.nextChapterId);
-        //             break;
-        //         }
-        //     }
-        // }
-        //通過视频来找问题是哪一个
+        let curWentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
         if (!isFindNext) {
             for (let qid in answerModels) {
                 let answCfgs = answerModels[qid];
@@ -1318,10 +997,9 @@ class VideoData extends egret.DisplayObjectContainer {
             let likeData = GameCommon.getInstance().getSortLike();
             let roleIdx: number = likeData.id;
             let juqingAry: number[] = GameDefine.ROLE_JUQING_TREE[roleIdx];
-            if (juqingAry[juqingAry.length - 1] == UserInfo.curchapter || UserInfo.curchapter == 0) {//代表已经全部结束章节
+            if (juqingAry[juqingAry.length - 1] == UserInfo.curchapter || UserInfo.curchapter == 0) {
                 this.isEndChapter = true;
                 GameCommon.getInstance().removeLoading();
-                // egret.Ticker.getInstance().unregister(this.onfileTimer, this);
                 VideoManager.getInstance().videoPause();
                 this.tipsPanel.hideTips();
                 this.tipsPanel.visible = false;
@@ -1346,21 +1024,16 @@ class VideoData extends egret.DisplayObjectContainer {
         this.isSelectVideo = false;
         this.curVIdeoIds = [];
         this.curVideoIndex = 0;
-        var chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
-        let videoSrc = '';
+        let chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         let videoIds = chapCfg.videoSrc.split(",");
         this.setVideos(videoIds);
         this.curVideoIndex = 1;
-        videoSrc = videoIds[0];
+        let videoSrc = videoIds[0];
         UserInfo.curBokData.wentiId.push(chapCfg.wenti);
         UserInfo.curBokData.videoDic[videoSrc] = videoSrc;
-        // UserInfo.allVideos[videoSrc] = videoSrc;
         UserInfo.curBokData.videoNames[chapCfg.wenti] = videoSrc;
         UserInfo.curBokData.times[chapCfg.wenti] = 0;
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
-        // GameCommon.getInstance().setBookData(FILE_TYPE.GUIDE_TP);
-        // GameCommon.getInstance().setBookData(FILE_TYPE.HIDE_FILE);
-        // egret.Ticker.getInstance().unregister(this.onfileTimer, this);
         this.fileTimerIdx = 0;
         this.tipsPanel.hideTips();
         this.tipsPanel.visible = false;
@@ -1373,7 +1046,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 GameCommon.getInstance().onShowBuyTips(shop400001.id, shop400001.model.currPrice, GOODS_TYPE.DIAMOND);
                 ChengJiuManager.getInstance().curChapterChengJiu = {};
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-                var onBuy400001Complte = function (): void {
+                let onBuy400001Complte = function (): void {
                     GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, onBuy400001Complte, this);
                     let shop400001: ShopInfoData = ShopManager.getInstance().getShopInfoData(400001);
                     if (shop400001.num > 0) {
@@ -1391,7 +1064,7 @@ class VideoData extends egret.DisplayObjectContainer {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
     }
 
-    private onLoadNextVideo(id = 0) {//加载下一个视频
+    private onLoadNextVideo(id = 0) {
         if (id != 0) {
             this.tipsPanel.onUpdateWenTi(id);
         } else {
@@ -1399,11 +1072,6 @@ class VideoData extends egret.DisplayObjectContainer {
         }
     }
 
-    private onVideoEnd(): void {
-
-    }
-
-    //回退2秒
     private onReduceVideo() {
         if (VideoManager.getInstance().videoCurrTime() < 1) {
             GameCommon.getInstance().showCommomTips('视频初始不可回退');
@@ -1411,7 +1079,7 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         if (VideoManager.getInstance().videoCurrTime() - 12 > 0) {
             VideoManager.getInstance().videoPause();
-            widPlayer.seek(VideoManager.getInstance().videoCurrTime() - 10);// vd['currentTime']= Math.min(vd['currentTime'] + 10, vd['duration'] - 0.5);
+            widPlayer.seek(VideoManager.getInstance().videoCurrTime() - 10);
             VideoManager.getInstance().videoResume();
             this.tipsPanel.onShowAddTime();
         } else {
@@ -1423,10 +1091,8 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     private onAddVideo() {
-        // if (!videoModels[videoIdx])
-        //     return;
-        var lastTime: number = 0;
-        var wentiTime: number = 0;
+        let lastTime: number = 0;
+        let wentiTime: number = 0;
         if (Number(videoModels[this.videoIdx].time > 0)) {
             wentiTime = Number(videoModels[this.videoIdx].time);
             if (wentiModels[this.curWentiId]) {
@@ -1440,23 +1106,14 @@ class VideoData extends egret.DisplayObjectContainer {
             GameCommon.getInstance().showCommomTips('操作太频繁');
             return;
         }
-        // this.log(VideoManager.getInstance().videoCurrTime());
         if (lastTime > 0) {
             if (this.videoState != 'buffering' && this.videoState != 'end' && this.videoState != 'idle' && this.videoState != 'loadStart') {
                 if (VideoManager.getInstance().videoCurrTime() + 12 < wentiTime) {
-                    // VideoManager.getInstance().videoPause();
-                    widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);// vd['currentTime']= Math.min(vd['currentTime'] + 10, vd['duration'] - 0.5);
-                    // VideoManager.getInstance().videoResume();
+                    widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);
                     this.tipsPanel.onShowAddTime();
-                    // if (!videoAdvanceLoad) {
-                    //     videoAdvanceLoad = true;
-                    // VideoManager.getInstance().onLoad(this.curWentiId)
-                    // }
                 } else if (videoNextFlg1 && this.isSelectVideo) {
                     if (VideoManager.getInstance().videoCurrTime() + 12 < VideoManager.getInstance().getVideoDuration()) {
-                        // VideoManager.getInstance().videoPause();
-                        widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);// vd['currentTime']= Math.min(vd['currentTime'] + 10, vd['duration'] - 0.5);
-                        // VideoManager.getInstance().videoResume();
+                        widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);
                         this.tipsPanel.onShowAddTime();
                     } else {
                         GameCommon.getInstance().showCommomTips('别着急有惊喜')
@@ -1472,14 +1129,8 @@ class VideoData extends egret.DisplayObjectContainer {
         } else {
             if (VideoManager.getInstance().videoCurrTime() + 12 < VideoManager.getInstance().getVideoDuration()) {
                 if (this.videoState != 'buffering' && this.videoState != 'end' && this.videoState != 'idle' && this.videoState != 'loadStart') {
-                    // VideoManager.getInstance().videoPause();
-                    widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);// vd['currentTime']= Math.min(vd['currentTime'] + 10, vd['duration'] - 0.5);
-                    // VideoManager.getInstance().videoResume();
+                    widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);
                     this.tipsPanel.onShowAddTime();
-                    // if (!videoAdvanceLoad) {
-                    //     videoAdvanceLoad = true;
-                    //     VideoManager.getInstance().onLoad(this.curWentiId)
-                    // }
 
                 } else {
                     GameCommon.getInstance().showCommomTips('别着急有惊喜')
@@ -1488,25 +1139,18 @@ class VideoData extends egret.DisplayObjectContainer {
                 GameCommon.getInstance().showCommomTips('别着急有惊喜')
             }
         }
-        // {
-        // }
-        //  }
     }
 
     private onPlay_Pause(bo) {
-        let boo = VideoManager.getInstance().getPause();
         if (!widPlayer) {
             return;
         }
         if (!bo.data) {
-            // egret.Ticker.getInstance().unregister(this.onfileTimer, this);
             this.current = false;
             VideoManager.getInstance().videoPause()
         } else {
             this.oldVideoTimer = 0;
             this.current = true;
-            // egret.Ticker.getInstance().unregister(this.onfileTimer, this);
-            // egret.Ticker.getInstance().register(this.onfileTimer, this);
             VideoManager.getInstance().videoResume()
         }
     }
@@ -1517,12 +1161,8 @@ class VideoData extends egret.DisplayObjectContainer {
         if (ViewTouch.isTouch == true || GameDefine.IS_DUDANG) {
             return;
         }
-        // if (GameDefine.CUR_IS_MAINVIEW) {
-        //     return;
-        // }
         if (data.data == 'stop') {
             this.current = false;
-            // egret.Ticker.getInstance().unregister(this.onfileTimer, this);
             VideoManager.getInstance().videoPause();
         } else {
             if (this.tipsPanel) {
@@ -1534,18 +1174,17 @@ class VideoData extends egret.DisplayObjectContainer {
                 return;
             }
             this.current = true;
-            // egret.Ticker.getInstance().register(this.onfileTimer, this);
             this.oldVideoTimer = 0;
             VideoManager.getInstance().videoResume();
         }
     }
 
-    private onRefreshVideo(data) {// 选择视频          传过来的是问题id
+    private onRefreshVideo(data) {
         if (this.isSelectVideo && wentiModels[data.data.wentiId].type != ActionType.OPTION)
             return;
         this.tiaoState = false;
-        var cfgs = answerModels[data.data.wentiId];
-        var obj = this;
+        let cfgs = answerModels[data.data.wentiId];
+        let obj = this;
         Tool.callbackTime(function () {
             SoundManager.getInstance().stopMusicAll();
         }, obj, 500);
@@ -1553,10 +1192,12 @@ class VideoData extends egret.DisplayObjectContainer {
         if (!cfgs)
             return;
         this.curVideoIndex = 0;
-        for (var k in cfgs) {
-            if (cfgs[k].ansid == data.data.answerId) {
-                this.curAnswerCfg = cfgs[k];
-                break;
+        for (let k in cfgs) {
+            if (cfgs.hasOwnProperty(k)) {
+                if (cfgs[k].ansid == data.data.answerId) {
+                    this.curAnswerCfg = cfgs[k];
+                    break;
+                }
             }
         }
         if (wentiModels[data.data.wentiId].type != ActionType.OPTION) {
@@ -1571,16 +1212,13 @@ class VideoData extends egret.DisplayObjectContainer {
             this.isSelectVideo = true;
             UserInfo.curBokData.answerId[data.data.wentiId] = data.data.answerId;
             this.nextWentiId = this.curAnswerCfg.nextid;
-            // let isXuzhang: boolean = false;
             if (this.curAnswerCfg.nextid == 0 && this.curAnswerCfg.isdie == 0) {
                 VideoManager.getInstance().updateGameChapter(this.curAnswerCfg.nextChapterId);
                 this.curVIdeoIds = [];
                 this.curVideoIndex = 0;
-                // if (UserInfo.curchapter == 1)
-                //     isXuzhang = true;
             }
             GameCommon.getInstance().addRoleLike(this.curAnswerCfg.like);
-            var obj = this;
+            let obj = this;
             Tool.callbackTime(function () {
                 ChengJiuManager.getInstance().onCheckAnswer(data.data.wentiId, data.data.answerId);
             }, obj, 100);
@@ -1598,11 +1236,6 @@ class VideoData extends egret.DisplayObjectContainer {
                 UserInfo.curBokData.videoNames[data.data.wentiId] = this.videoIdx;
             }
 
-            // Tool.callbackTime(function () {
-            //     if (isXuzhang) {
-            //         obj.onShowResult();
-            //     }
-            // }, obj, 3000);
 
             return;
         }
@@ -1616,7 +1249,6 @@ class VideoData extends egret.DisplayObjectContainer {
         Tool.callbackTime(function () {
             ChengJiuManager.getInstance().onCheckAnswer(data.data.wentiId, data.data.answerId);
         }, obj, 100);
-        // ChengJiuManager.getInstance().onCheckAnswer(data.data.wentiId, data.data.answerId);
         UserInfo.curBokData.answerId[data.data.wentiId] = data.data.answerId;
         this.nextWentiId = this.curAnswerCfg.nextid;
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
@@ -1641,33 +1273,28 @@ class VideoData extends egret.DisplayObjectContainer {
             }
         }
         if (!this.curVIdeoIds[this.curVideoIndex]) {
-            //     this.tipsPanel.endMusic();
             return;
         }
-        // this.log('this.curVIdeoIds[this.curVideoIndex]' + this.curVIdeoIds[this.curVideoIndex])
-        // this.setVid = this.curVIdeoIds[this.curVideoIndex];
         VideoManager.getInstance().onLoadSrc(this.curVIdeoIds[this.curVideoIndex]);
         this._nextVid = this.curVIdeoIds[this.curVideoIndex];
-        // this.tipsPanel.endMusic();
     }
 
     private onVideo_Full_End(data) {
-        // ViewTouch.isTouch = false;
-
         let wentiId = this.curWentiId;
         let morenId = data.data - 3;
-        var cfgs = answerModels[this.curWentiId];
+        let cfgs = answerModels[this.curWentiId];
         if (!cfgs)
             return;
         this.curVideoIndex = 0;
-        for (var k in cfgs) {
-            if (cfgs[k].ansid == morenId) {
-                this.curAnswerCfg = cfgs[k];
-                break;
+        for (let k in cfgs) {
+            if (cfgs.hasOwnProperty(k)) {
+                if (cfgs[k].ansid == morenId) {
+                    this.curAnswerCfg = cfgs[k];
+                    break;
+                }
             }
         }
         GameCommon.getInstance().shock();
-        // VideoManager.getInstance().setSpeed(GameDefine.CUR_SPEED);
         if (UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1] != wentiId) {
             UserInfo.curBokData.wentiId.push(wentiId);
         }
@@ -1683,7 +1310,6 @@ class VideoData extends egret.DisplayObjectContainer {
         this.curVIdeoIds = this.curAnswerCfg.videos.split(",");
         this.isSelectVideo = true;
         if (!this.curVIdeoIds[this.curVideoIndex]) {
-            // this.tipsPanel.endMusic();
             return;
         }
         this.videoIdx = this.curVIdeoIds[this.curVideoIndex];
@@ -1694,26 +1320,25 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 }
 
-declare var widPlayer;
-declare var videoModels: Modelshipin[];
-declare var wentiModels: Modelwenti[];
-declare var answerModels: Modelanswer[];
-// declare var videoIdx: string;
-declare var videoNextFlg: boolean;//出现问题或者互动
-declare var videoNextFlg1: boolean;//加载下一个视频
-declare var videoAdvanceLoad: boolean;//提前加载可能播放的视频
+declare let widPlayer;
+declare let videoModels: Modelshipin[];
+declare let wentiModels: Modelwenti[];
+declare let answerModels: Modelanswer[];
+declare let videoNextFlg: boolean;
+declare let videoNextFlg1: boolean;
+declare let videoAdvanceLoad: boolean;
+
 enum ActionType {
-    OPTION = 0,// 按钮选项
-    CLICK_TIME = 1,// 点击屏幕(有倒计时)
-    CLICK = 2,// 点击屏幕
-    SLIDE = 3,// 轨迹滑动
-    SLIDE_RECT = 4,// 区域内重复滑动
-    SLIDE_TWO = 5,// 双指滑动
-    MUSIC = 6,// 音乐游戏
-    SEND_MSG = 7,// 发信息
-    FULL_VIEW = 8,// 全景
-    TAB = 9,
-    HEAD_VIEW = 10,//
-    CHECK_DRINK = 11,//选酒
-    SEARCH = 12,//探查
+    OPTION = 0,
+    CLICK_TIME = 1,
+    CLICK = 2,
+    SLIDE = 3,
+    SLIDE_RECT = 4,
+    SLIDE_TWO = 5,
+    MUSIC = 6,
+    SEND_MSG = 7,
+    FULL_VIEW = 8,
+    HEAD_VIEW = 10,
+    CHECK_DRINK = 11,
+    SEARCH = 12,
 }

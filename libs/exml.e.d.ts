@@ -39,10 +39,6 @@ declare module skins{
 	}
 }
 declare module skins{
-	class ActionMusicSkin extends eui.Skin{
-	}
-}
-declare module skins{
 	class ActionNewMusicSkin extends eui.Skin{
 	}
 }
