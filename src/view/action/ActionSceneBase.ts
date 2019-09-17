@@ -3,7 +3,7 @@ class ActionSceneBase extends eui.Component {
     protected runTime: number;
     protected delTime: number;
     protected isRunTime: boolean;
-    private videoStartTime: number;
+    protected videoStartTime: number;
     private videoRunTime: number;
 
     public constructor(model: Modelwenti, list: string[], idx: number) {
@@ -60,11 +60,9 @@ class ActionSceneBase extends eui.Component {
             return;
         }
         if (this.model.type == 3) {
-            var tw = egret.Tween.get(this);
-            tw.to({alpha: 0}, 1000).call(function () {
-                this.parent.removeChild(this)
-            });
-
+            egret.Tween.get(this)
+                .to({alpha: 0}, 1000)
+                .call(() => this.parent.removeChild(this));
         } else {
             this.parent.removeChild(this);
         }
@@ -79,14 +77,9 @@ class ActionSceneBase extends eui.Component {
     }
 
     protected onSkinName(): void {
-
     }
 
     protected onInit(): void {
-        // this.x = (size.width - this.width) / 2;
-        // this.y = (size.height - this.height) / 2;
-        // this.width = size.width;
-        // this.height = size.height;
     }
 
     protected update(dt): void {

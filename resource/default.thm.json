@@ -24,6 +24,8 @@
 		"resource/eui_skins/action/ActionClickSkin.exml",
 		"resource/eui_skins/action/ActionFullSkin.exml",
 		"resource/eui_skins/action/ActionHuiYiSkin.exml",
+		"resource/eui_skins/action/ActionMsgItemSelfSkin.exml",
+		"resource/eui_skins/action/ActionMsgItemYourSkin.exml",
 		"resource/eui_skins/action/ActionMsgSkin.exml",
 		"resource/eui_skins/action/ActionMusicSkin.exml",
 		"resource/eui_skins/action/ActionNewMusicSkin.exml",

@@ -67,8 +67,8 @@ class MainView extends eui.Component {
         // this.btnContinueGame1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowXuZhang, this);
         this.btnDuQu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onDuDang, this);
         this.btnChengjiu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChengJiu, this);
-        this.btnShouCang.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShowCang, this);
-        this.xindong.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShowCang, this);
+        this.btnShouCang.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
+        this.xindong.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
         this.btnHuodong.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowActivity, this);
         this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCleanCache, this);
         this.wallet.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowWallet, this);
@@ -191,14 +191,12 @@ class MainView extends eui.Component {
         const wentiModel = JsonModelManager.instance.getModelwenti()[wentiID.toString()];
         const hudongModel = JsonModelManager.instance.getModelhudong()[wentiModel.type];
         const paramList = hudongModel.pos.split(",");
-        const actionSceneClass = ActionManager.getActionSceneClassByActionType(wentiModel.type);
+        const actionSceneClass = ActionManager.getActionSceneClassByActionType(parseInt(hudongModel.tp));
         const actionScene = new actionSceneClass(wentiModel, paramList, actionIndex);
         this.addChild(actionScene);
     }
 
-    private onShowShowCang() {
-        // this.scLab.visible = false;
-        // this.checkGuide8();
+    private static onShowShowCang() {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangListPanel');
     }
 
