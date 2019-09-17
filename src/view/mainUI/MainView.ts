@@ -43,6 +43,10 @@ class MainView extends eui.Component {
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
+    private static onShowShowCang() {
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangListPanel');
+    }
+
     //添加到舞台
     private onAddToStage(): void {
         this.skinName = skins.GameMainSkin;
@@ -174,7 +178,8 @@ class MainView extends eui.Component {
     }
 
     private onDuDang() {
-        if (GameDefine.TEST_ACTION_SCENE_WENTI_ID) {
+        const httpurl: string = window ? window.location.href : "";
+        if (httpurl.indexOf("192.168.") != -1 || httpurl.indexOf("127.0.0") != -1 && GameDefine.TEST_ACTION_SCENE_WENTI_ID) {
             this.testActionScene(GameDefine.TEST_ACTION_SCENE_WENTI_ID);
         } else {
             this.checkGuide8();
@@ -194,10 +199,6 @@ class MainView extends eui.Component {
         const actionSceneClass = ActionManager.getActionSceneClassByActionType(parseInt(hudongModel.tp));
         const actionScene = new actionSceneClass(wentiModel, paramList, actionIndex);
         this.addChild(actionScene);
-    }
-
-    private static onShowShowCang() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangListPanel');
     }
 
     private onShowWallet() {
