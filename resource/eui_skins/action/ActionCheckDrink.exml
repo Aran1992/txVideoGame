@@ -10,11 +10,46 @@
 			         horizontalCenter="0" />
 		</e:Group>
 		<e:Group id="tabGroup" width="100%" height="100%">
-			<e:RadioButton id="drink0_btn" groupName="tabGroup" value="1" skinName="skins.Common_TabButtonSkin3" x="910" y="182" />
-			<e:RadioButton id="drink1_btn" groupName="tabGroup" skinName="skins.Common_TabButtonSkin3" value="2" y="308" x="910" />
-			<e:RadioButton id="drink2_btn" groupName="tabGroup" skinName="skins.Common_TabButtonSkin3" value="3" y="432" x="910" />
-			<e:RadioButton id="drink3_btn" groupName="tabGroup" skinName="skins.Common_TabButtonSkin3" value="4" y="573" x="910" />
-			<e:RadioButton id="drink4_btn" groupName="tabGroup" skinName="skins.Common_TabButtonSkin3" value="5" y="714" x="910" />
+			<e:RadioButton id="drink0_btn" groupName="tabGroup" value="1"  bottom="250" horizontalCenter="-500">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_check_drink_1_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+			<e:RadioButton id="drink1_btn" groupName="tabGroup" value="2"  bottom="250" horizontalCenter="-250">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_check_drink_2_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+			<e:RadioButton id="drink2_btn" groupName="tabGroup" value="3"  bottom="250" horizontalCenter="0">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_check_drink_3_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+			<e:RadioButton id="drink3_btn" groupName="tabGroup" value="4"  bottom="250" horizontalCenter="250">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_check_drink_4_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+			<e:RadioButton id="drink4_btn" groupName="tabGroup" value="5"  bottom="250" horizontalCenter="500">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_check_drink_5_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
 		</e:Group>
 	</e:Group>
 </e:Skin>

@@ -18,7 +18,6 @@
 	"exmls": [
 		"resource/eui_skins/action/ActionBar1Skin.exml",
 		"resource/eui_skins/action/ActionBarSkin.exml",
-		"resource/eui_skins/button/Common_TabButtonSkin3.exml",
 		"resource/eui_skins/action/ActionCheckDrink.exml",
 		"resource/eui_skins/action/ActionClickCountSkin.exml",
 		"resource/eui_skins/action/ActionClickSkin.exml",
@@ -47,6 +46,7 @@
 		"resource/eui_skins/button/Common_ButtonWenTiSkin.exml",
 		"resource/eui_skins/button/Common_TabButtonSkin1.exml",
 		"resource/eui_skins/button/Common_TabButtonSkin2.exml",
+		"resource/eui_skins/button/Common_TabButtonSkin3.exml",
 		"resource/eui_skins/chapter/FileBar.exml",
 		"resource/eui_skins/chapter/JuQingItemSkin.exml",
 		"resource/eui_skins/chapter/JuQingSkin.exml",

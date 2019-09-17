@@ -24,6 +24,7 @@ class ActionCheckDrink extends ActionSceneBase {
         this.timeBar2.slideDuration = 0;
         this.timeBar2.maximum = this.maxTime;
         this.timeBar2.value = this.maxTime;
+        this.initTimeInfo();
         this.ansId = this.model.moren;
         for (let i: number = 0; i < this.DRINK_MAX; i++) {
             let checkBtn: eui.RadioButton = (this[`drink${i}_btn`] as eui.RadioButton);
@@ -33,7 +34,6 @@ class ActionCheckDrink extends ActionSceneBase {
             checkBtn.y = Math.floor(size.height * rate_y);
             checkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectDrink, this);
         }
-        this.initTimeInfo();
     }
 
     protected update(dt): void {
@@ -56,7 +56,7 @@ class ActionCheckDrink extends ActionSceneBase {
     }
 
     private initTimeInfo() {
-        var hdCfg: Modelhudong = JsonModelManager.instance.getModelhudong()[this.model.type];
+        const hdCfg: Modelhudong = JsonModelManager.instance.getModelhudong()[this.model.type];
         if (hdCfg && hdCfg.des) {
             this.desc.text = hdCfg.des;
         }
@@ -82,6 +82,4 @@ class ActionCheckDrink extends ActionSceneBase {
         GuideManager.getInstance().isGuide = false;
         GuideManager.getInstance().curState = false;
     }
-
-    //The end
 }
