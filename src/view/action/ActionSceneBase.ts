@@ -5,12 +5,14 @@ class ActionSceneBase extends eui.Component {
     protected isRunTime: boolean;
     protected videoStartTime: number;
     private videoRunTime: number;
+    private test: boolean;
 
-    public constructor(model: Modelwenti, list: string[], idx: number) {
+    public constructor(model: Modelwenti, list: string[], idx: number, test: boolean = false) {
         super();
         this._model = model;
         this._paramList = list;
         this._idx = idx;
+        this.test = test;
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onSkinName, this);
     }
@@ -38,7 +40,7 @@ class ActionSceneBase extends eui.Component {
     }
 
     public get videoCurrTime() {
-        if (GameDefine.TEST_ACTION_SCENE_WENTI_ID) {
+        if (this.test) {
             return new Date().getTime();
         } else {
             return VideoManager.getInstance().videoCurrTime() * 1000;
