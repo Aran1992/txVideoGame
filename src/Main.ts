@@ -82,7 +82,6 @@ class Main extends eui.UILayer {
         let value = 0;
         let tx = 0;
         let ty = 0;
-        let transformStr = "";
         if (videoSize.width < videoSize.height) {
             let cha = (videoSize.height - videoSize.width) / 2;
             videoSize.width = wind.width;

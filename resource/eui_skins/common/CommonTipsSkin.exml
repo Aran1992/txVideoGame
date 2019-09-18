@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <e:Skin class="skins.CommonTipsSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
         height="900">
-    <e:Group id="grp" x="43" y="148" touchChildren="false" touchEnabled="false">
-        <e:Image x="83" y="14" source="chengjiu_tips_di_png" scale9Grid="144,13,61,24" />
-        <e:Image x="0" y="0" source="common_chengjiu_icon_png" />
+    <e:Group id="grp" x="43" y="148" touchChildren="false" touchEnabled="false" visible="false">
+			<e:Image x="-1" y="-8" source="common_chengjiu_png"/>
+
+
         <e:Label id="desc" size="32" textColor="0xFFFFFF" verticalAlign="middle" textAlign="left" height="55" text="加油"
                  width="310" x="119" y="17" fontFamily="SimHei" anchorOffsetX="0" anchorOffsetY="0" />
     </e:Group>
     <e:Group id="grp1" x="43" y="148" touchChildren="false" touchEnabled="false">
-        <e:Image x="83" y="13" source="chengjiu_tips_di_png" scale9Grid="144,13,61,24" />
-        <e:Image x="0" y="0" source="common_like_icon_png" />
+			<e:Image x="-1" y="-8" source="common_qinmi_png" scaleX="1" scaleY="1"/>
+
+
         <e:Label id="desc1" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="" width="310" x="116"
                  textAlign="left" verticalCenter="0" fontFamily="SimHei" />
     </e:Group>
