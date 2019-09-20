@@ -11,6 +11,7 @@ class ActionMusic extends ActionSceneBase {
     private guideImg: eui.Group;
     private desc1: eui.Label;
     private heiping: eui.Image;
+    private hand: eui.Image;
 
     public onSuccessItem(idx: number) {
         this.touchChecks[idx] = true;
@@ -55,6 +56,14 @@ class ActionMusic extends ActionSceneBase {
         this.timeBar2.slideDuration = 0;
         this.timeBar2.maximum = this.maxTime;
         this.timeBar2.value = this.maxTime;
+
+        const f = () => {
+            egret.Tween.get(this.hand)
+                .to({y: this.hand.y + 50}, 500, egret.Ease.sineIn)
+                .to({y: this.hand.y}, 500, egret.Ease.sineInOut)
+                .call(f);
+        };
+        f();
     }
 
     protected update(dt): void {
@@ -85,12 +94,11 @@ class ActionMusic extends ActionSceneBase {
                 ++count;
             }
         }
-        // if (count < this.successCount) {
-        //     super.onBackFail();
-        // } else {
-        //     super.onBackSuccess();
-        // }
-        super.onBackSuccess();
+        if (count < this.successCount) {
+            super.onBackFail();
+        } else {
+            super.onBackSuccess();
+        }
     }
 
     private setMusic(groupIndex: number, duration: number, clickIndex: number) {
@@ -122,7 +130,6 @@ class MusicController {
     private readonly miss: eui.Image;
     private mcFactory: egret.MovieClipDataFactory;
     private mcResult: egret.MovieClip;
-    private handAni: my.Animation;
     private isActive: boolean = false;
     private runIdx: number;
     private isMcResult: boolean = false;
@@ -161,8 +168,6 @@ class MusicController {
         this.dark.visible = false;
         this.light.visible = true;
         this.light.y = this.lightStartY;
-
-        this.createHandAni();
     }
 
     public update(dt) {
@@ -170,7 +175,6 @@ class MusicController {
             this.curTime += dt;
             if (this.curTime >= this.duration) {
                 this.isActive = false;
-                this.removeHandAni();
                 this.playMCResult();
                 this.playPopupAni(this.miss);
             } else {
@@ -182,7 +186,6 @@ class MusicController {
     private onEventMusic() {
         if (this.isActive) {
             this.isActive = false;
-            this.removeHandAni();
             this.playMCResult();
             egret.Tween.get(this.light)
                 .to({y: this.lightStartY + 20}, 100, egret.Ease.sineInOut)
@@ -193,22 +196,6 @@ class MusicController {
                 });
             this.playPopupAni(this.good);
             this.actionMusic.onSuccessItem(this.runIdx);
-        }
-    }
-
-    private createHandAni() {
-        this.handAni = new my.Animation('music_kuosan', -1);
-        this.handAni.scaleX = this.handAni.scaleY = 1;
-        this.handAni.x = this.handAni.y = 100;
-        this.groupClick.addChild(this.handAni);
-        this.handAni.onPlay();
-    }
-
-    private removeHandAni() {
-        if (this.handAni) {
-            this.handAni.parent.removeChild(this.handAni);
-            this.handAni.onDestroy();
-            this.handAni = null;
         }
     }
 
