@@ -3,7 +3,7 @@
 	<w:Config id="16d3d248442"/>
 	<e:Group width="0" height="0" y="0" x="0" scaleX="1" scaleY="1">
 		<e:Image id="bg" source="action_msg_bg_your_png" y="0" scaleX="1" scaleY="1" horizontalCenter="0" scale9Grid="70,40,231,7" width="350" height="76"/>
-		<e:Image source="action_msg_head_your_png" scaleX="1" scaleY="1" horizontalCenter="-225" top="0"/>
+		<e:Image id="head" source="action_msg_head_your_png" scaleX="1" scaleY="1" horizontalCenter="-225" top="0"/>
 		<e:Label id="label" text="怎么了，薄荷？" scaleX="1" scaleY="1" textColor="0x000000" left="-130" top="23" width="280" multiline="true" wordWrap="true"/>
 	</e:Group>
 </e:Skin>

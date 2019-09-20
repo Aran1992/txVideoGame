@@ -12,13 +12,7 @@ class ActionMsg extends ActionSceneBase {
     private static readonly TYPE_INTERVAL: number = 50;
     private static readonly BREATH_DURATION: number = 1500;
     private static readonly BREATH_MIN_ALPHA: number = 0.5;
-    private static readonly msgList: string[] = [
-        "江雪!ㄒoㄒ",
-        "怎么了，薄荷？",
-        "你在哪啊？出事了！",
-        "我在社联这呢，你快说，怎么了啊？",
-        "我们的排练厅被Mad-max的人给占了,没有排练厅用了怎么办啊？",
-    ];
+    private msgList: string[] = [];
 
     private readonly msgItemGroup: eui.Group;
     private readonly msgItemContainer: eui.Group;
@@ -39,6 +33,8 @@ class ActionMsg extends ActionSceneBase {
         super.onInit();
         this.updateResize();
 
+        this.msgList = this.paramList[3].split("|");
+
         this.desc1.text = JsonModelManager.instance.getModelhudong()[this.model.type].des;
 
         this.timeBar1.slideDuration = 0;
@@ -51,6 +47,7 @@ class ActionMsg extends ActionSceneBase {
 
         this.msgItemContainer.mask = new eui.Rect(this.msgItemContainer.width, this.msgItemContainer.height);
         this.sendButton.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onClickSendButton, this);
+
         this.play().catch(e => console.log(e));
     }
 
@@ -66,13 +63,15 @@ class ActionMsg extends ActionSceneBase {
         this.input.visible = false;
         this.inputBg.visible = false;
         const itemList: ActionMsgItem[] = [];
-        for (let i = 0; i < ActionMsg.msgList.length; i++) {
-            const msg = ActionMsg.msgList[i];
-            if (i === ActionMsg.msgList.length - 1) {
+        for (let i = 0; i < this.msgList.length; i++) {
+            const list = this.msgList[i].split(":");
+            const msg = list[1];
+            const role = parseInt(list[0]);
+            const isSelf = role === GameDefine.SELF_ROLE_HEAD_INDEX;
+            if (i === this.msgList.length - 1 && isSelf) {
                 await this.playInput(msg);
             }
-            const isSelf = i % 2 === 0;
-            const item = new ActionMsgItem(msg, isSelf);
+            const item = new ActionMsgItem(msg, isSelf, role);
             itemList.push(item);
             this.msgItemGroup.addChild(item);
             await this.playShow(itemList);
@@ -136,10 +135,12 @@ class ActionMsg extends ActionSceneBase {
 class ActionMsgItem extends eui.Component {
     private readonly label: eui.Label;
     private readonly bg: eui.Image;
+    private readonly head: eui.Image;
 
-    constructor(msg: string, isSelf: boolean) {
+    constructor(msg: string, isSelf: boolean, role: number) {
         super();
         this.skinName = isSelf ? skins.ActionMsgItemSelfSkin : skins.ActionMsgItemYourSkin;
+        this.head.source = GameDefine.ROLE_HEAD[role];
         setLabelTextWithBgAdapt(this.label, this.bg, msg,);
     }
 
