@@ -9,6 +9,7 @@ class ActionManager {
         [ActionType.MUSIC]: ActionMusic,
         [ActionType.SEND_MSG]: ActionMsg,
         [ActionType.FULL_VIEW]: ActionFull,
+        [ActionType.LISTEN]: ActionListen,
         [ActionType.HEAD_VIEW]: ActionHuiYi,
         [ActionType.CHECK_DRINK]: ActionCheckDrink,
         [ActionType.SEARCH]: ActionSearch,
@@ -75,7 +76,6 @@ class ActionManager {
     }
 
     public onActionFinish() {
-
         if (this.successType) {
             this.actionFinish(this.currModel.moren);
         } else

@@ -85,11 +85,12 @@ class ActionMusic extends ActionSceneBase {
                 ++count;
             }
         }
-        if (count < this.successCount) {
-            super.onBackFail();
-        } else {
-            super.onBackSuccess();
-        }
+        // if (count < this.successCount) {
+        //     super.onBackFail();
+        // } else {
+        //     super.onBackSuccess();
+        // }
+        super.onBackSuccess();
     }
 
     private setMusic(groupIndex: number, duration: number, clickIndex: number) {

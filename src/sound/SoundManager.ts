@@ -27,17 +27,16 @@ class SoundManager {
         // this.stopMusicAll();
     }
 
-    public playSound(key: string): void {
+    public playSound(key: string, callback?: Function): void {
         if (!this.musicMap[key]) {
             if (this.musicDataMap[key]) {
                 this.musicMap[key] = new MusicBody(this.musicDataMap[key]);
             } else {
                 this.musicMap[key] = new MusicBody("resource/sound/" + key);
             }
-
             VideoManager.getInstance().log('没有预加载')
         }
-        this.musicMap[key].play(1, 1);
+        this.musicMap[key].play(1, 1, callback);
     }
 
     public playMusic(key: string, volume: number = 0.4): MusicBody {
@@ -78,5 +77,4 @@ class SoundManager {
             this.musicDataMap[SoundManager.musicList[i]] = "resource/sound/" + SoundManager.musicList[i];
         }
     }
-
 }

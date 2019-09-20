@@ -113,7 +113,6 @@ class ViewTouch extends egret.DisplayObjectContainer {
 
     private onMove(offx: number, offy: number) {
         if (this.view) {
-            this.view.onMoveTouch(offx, offy);
         }
     }
 

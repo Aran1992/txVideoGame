@@ -13,7 +13,6 @@ class VideoData extends egret.DisplayObjectContainer {
     public videoPauseTime: number = 0;
     public curWentiId: number = 0;
     private actionScene: egret.DisplayObjectContainer;
-    private videoTouch: ViewTouch;
     /**下一个视频需要好感度才能播放的 否则进BE规则
      *  视频ID对应数组 是每个角色的好感度值
      * **/
@@ -33,7 +32,6 @@ class VideoData extends egret.DisplayObjectContainer {
     private againTime: number = 0;
     private againFlg: boolean = false;
     private touchId: string;
-    private isSetDiv: boolean = false;
     private fileTimerIdx: number = 0;
     private oldVideoTimer: number = 0;
     private _curSelf;
@@ -262,37 +260,9 @@ class VideoData extends egret.DisplayObjectContainer {
     public setVideoTouch(id: string) {
         if (id && id != this.touchId) {
             this.touchId = id;
-            let div = window["videoDivMin"];
             if (VideoData.isVideoTouch(id)) {
-                div.style["width"] = GameDefine.VIDEO_FULL_WIDTH + 'px';
-                div.style["height"] = size.height + 'px';
-                if (!this.videoTouch) {
-                    ActionManager.getInstance().setAction(wentiModels[this.curWentiId], this.tipsPanel);
-                    this.videoTouch = new ViewTouch(this);
-                    this.addChild(this.videoTouch);
-                    ViewTouch.isTouch = true;
-                }
-                this.resetPoint(-GameDefine.VIDEO_FULL_WIDTH / 2 + 500, 0, true);
-                this.isSetDiv = false;
-            } else if (!this.isSetDiv) {
-                this.isSetDiv = true;
-                div.style["width"] = wind.width + 'px';
-                div.style["height"] = wind.height + 'px';
-                if (size.fillType == FILL_TYPE_COVER) {
-                    div.style["object-fit"] = "cover";
-                } else {
-                    div.style["object-fit"] = "contain";
-                }
-                if (this.videoTouch) {
-                    this.videoTouch.onExit();
-                    this.videoTouch = null;
-                    this.resetPoint(0, 0, false);
-                    ViewTouch.isTouch = false;
-                }
-                this.actionScene.touchEnabled = true;
-                this.actionScene.touchChildren = true;
-                this.tipsPanel.touchEnabled = true;
-                this.tipsPanel.touchChildren = true;
+                ActionManager.getInstance().setAction(wentiModels[this.curWentiId], this.tipsPanel);
+                ViewTouch.isTouch = true;
             }
         }
     }
@@ -300,48 +270,6 @@ class VideoData extends egret.DisplayObjectContainer {
     public log(str) {
         if (this.tipsPanel) {
             this.tipsPanel.log(str);
-        }
-    }
-
-    public onMoveTouch(offx: number, offy: number) {
-        let body = window["videoDiv"];
-        let leftStr: string = body.style.left;
-        let left: number = 0;
-        if (leftStr.length > 0) {
-            left = parseInt(leftStr.substring(0, leftStr.length - 2));
-        }
-        let topStr: string = body.style.top;
-        let top: number = 0;
-        if (topStr.length > 0) {
-            top = parseInt(topStr.substring(0, topStr.length - 2));
-        }
-        this.resetPoint(left + offx * GameDefine.sizeScaleX, top + offy * GameDefine.sizeScaleY, true);
-    }
-
-    public resetPoint(x: number, y: number, isTouch: boolean) {
-        let moveW;
-        let moveH;
-        if (ViewTouch.isTouch) {
-            moveW = GameDefine.VIDEO_FULL_WIDTH - wind.width;
-            moveH = GameDefine.VIDEO_FULL_HEIGHT - wind.height;
-        } else {
-            moveW = GameDefine.VIDEO_WIDTH - wind.width;
-            moveH = GameDefine.VIDEO_HEIGHT - wind.height;
-        }
-
-        x = x > 0 ? 0 : x;
-        x = x < -moveW ? -moveW : x;
-        if (isTouch) {
-            y = -moveH / 2;
-        } else {
-            y = y > 0 ? 0 : y;
-            y = y < -moveH ? -moveH : y;
-        }
-        let body = window["videoDiv"];
-        body.style.left = x + "px";
-        body.style.top = y + "px";
-        if (this.videoTouch) {
-            this.videoTouch.setVideoPoint(x, y);
         }
     }
 
@@ -372,10 +300,6 @@ class VideoData extends egret.DisplayObjectContainer {
         this.isLoadSrc = false;
         let curSlef = this._curSelf;
         this.isHuDong = false;
-        if (this.videoTouch) {
-            this.videoTouch.onExit();
-            this.videoTouch = null;
-        }
         if (!ViewTouch.isTouch) {
             curSlef.setVideoTouch(this.videoIdx, window[curSlef.curId]);
         }
@@ -464,12 +388,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     if (VideoManager.getInstance().videoCurrTime() > VideoManager.getInstance().getVideoDuration() - 10 && !curSlef.isSelectVideo) {
                         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_FULL_END), wentiModels[curSlef.curWentiId].moren + 3);
                     }
-                    if (!ViewTouch.isTouch || curSlef.isSetDiv == true)
-                        return;
-                    curSlef.actionScene.touchEnabled = false;
-                    curSlef.actionScene.touchChildren = false;
-                    curSlef.tipsPanel.touchEnabled = false;
-                    curSlef.tipsPanel.touchChildren = false;
                     return;
                 }
                 if (curSlef && VideoManager.getInstance().getVideoDuration() > 0) {
@@ -635,14 +553,6 @@ class VideoData extends egret.DisplayObjectContainer {
             widPlayer.on('videoNodeChange', () => {
                 GameCommon.getInstance().removeLoading();
                 if (!widPlayer) {
-                    let ps = document.getElementsByTagName('video');
-                    for (let i: number = 0; i < ps.length; i++) {
-                        if (size.fillType == FILL_TYPE_COVER) {
-                            ps[i].style["object-fit"] = "cover";
-                        } else {
-                            ps[i].style["object-fit"] = "contain";
-                        }
-                    }
                     curSlef.isPlay = false;
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.HIDE_MAIN_GROUP));
@@ -1336,7 +1246,8 @@ enum ActionType {
     SLIDE_TWO = 5,
     MUSIC = 6,
     SEND_MSG = 7,
-    FULL_VIEW = 8,
+    LISTEN = 8,
+    FULL_VIEW = 9,
     HEAD_VIEW = 10,
     CHECK_DRINK = 11,
     SEARCH = 12,

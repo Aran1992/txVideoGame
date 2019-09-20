@@ -31,6 +31,10 @@ declare module skins{
 	}
 }
 declare module skins{
+	class ActionListen extends eui.Skin{
+	}
+}
+declare module skins{
 	class ActionMsgItemSelfSkin extends eui.Skin{
 	}
 }
