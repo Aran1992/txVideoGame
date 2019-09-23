@@ -16,13 +16,13 @@ class GameDefine {
     public static SLIDE_RECT = 300;
     public static ROLE_NAME: string[] = ['韩小白', '肖千也', '夏子豪', '肖万寻'];
     public static ROLE_HEAD: string[] = [
-        "action_msg_head_your_png",// 韩小白
-        "action_msg_head_your_png",// 肖千也
-        "action_msg_head_your_png",// 夏子豪
-        "action_msg_head_your_png",// 肖万寻
-        "action_msg_head_your_png",// 江雪
-        "action_msg_head_self_png",// 林薄荷
-        "action_msg_head_your_png",// 艾黎柯
+        "action_msg_head_0_png",// 韩小白
+        "action_msg_head_1_png",// 肖千也
+        "action_msg_head_2_png",// 夏子豪
+        "action_msg_head_3_png",// 肖万寻
+        "action_msg_head_4_png",// 江雪
+        "action_msg_head_5_png",// 林薄荷
+        "action_msg_head_6_png",// 艾黎柯
     ];
     public static SELF_ROLE_HEAD_INDEX: number = 5;
     public static SHOUCANG_NAME: string[] = ['韩小白', '肖千也', '夏子豪', '肖万寻', '音乐', '其他'];
@@ -51,7 +51,7 @@ class GameDefine {
     public static CJ_LEVEL_COLOR: number[] = [0xFFFFFF, 0xffffff, 0x2ba663, 0x2697ff, 0xaf60b6, 0xe3d667];
     public static CJ_LEVEL_NAME: string[] = ['全部', '普通', '简单', '中等', '困难', '究极'];
 
-    public static START_CHAPTER: number = 3;
+    public static START_CHAPTER: number = 0;
     public static TEST_ACTION_SCENE_WENTI_ID: number = 15;
     public static Currency_Icon = {
         SUIPIAN: "common_suipian_png",

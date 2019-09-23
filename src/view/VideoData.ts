@@ -708,7 +708,6 @@ class VideoData extends egret.DisplayObjectContainer {
                 this.tiaoState = true;
                 widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4)
             }
-
         }
     }
 
