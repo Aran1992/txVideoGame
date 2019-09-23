@@ -1,12 +1,7 @@
 // TypeScript file
 class TipsBtn extends eui.Component {
     public static Is_Guide_Bool: boolean;//是否要显示引导
-    public ren: eui.Image;
     private guide_img: eui.Image;
-    private btn1: eui.Button;
-    private btn2: eui.Button;
-    private btn3: eui.Button;
-    private btn4: eui.Button;
     private addBtn: eui.Button;
     private reduceBtn: eui.Button;
     private play_pauseBtn: eui.Button;
@@ -15,28 +10,19 @@ class TipsBtn extends eui.Component {
     private bgBtn: eui.Button;
     private desc: eui.Label;
     private cundang1: eui.Button;
-    private cundang2: eui.Button;
     private timeBar2: eui.ProgressBar;
     private timeBar1: eui.ProgressBar;
     private timeBar3: eui.ProgressBar;
     private timeBar4: eui.ProgressBar;
-    // private logLab: eui.Label;
     private controlGroup: eui.Group;
-    // private logLab1: eui.Label;
-    private mainGroup: eui.Group;
     private fenxiangBtn: eui.Button;
     private qualityBtn: eui.Button;
     private speedBtn: eui.Button;
     private zimu: eui.Label;
-    // private musicGroup: eui.Group;
     private mengban: eui.Image;
     private pauseGroup: eui.Group;
     private videoD: VideoData;
-    private redCircle: eui.Image;
-    private proGroup: eui.Group;
     private goMain: eui.Button;
-    private cundangGroup: eui.Group;
-    private xuanzecundang: eui.Group;
     private tiaoBtn: eui.Button;
     private timeGroup: eui.Group;
     private playBtn: eui.Button;
@@ -85,15 +71,12 @@ class TipsBtn extends eui.Component {
     private modelHuDong: Modelhudong;
     private _maxValue = 0;
     private _maxTime = 0;
+    private hideTipTimer: number;
 
     public constructor() {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-    }
-
-    public get imStatus(): string {
-        return this.play_pauseBtn['iconDisplay'].source + '';
     }
 
     public set imStatus(str) {
@@ -130,11 +113,6 @@ class TipsBtn extends eui.Component {
 
     public onShowChengJiuComplete() {
 
-    }
-
-    public onShowLog(tim, endTime) {
-        // if(UserInfo.achievementDics)
-        // this.desc.text= 'star'+tim+'\n'+endTime;
     }
 
     public onShowAddTime() {
@@ -181,15 +159,6 @@ class TipsBtn extends eui.Component {
         }
     }
 
-    public onCallBack() {
-        this.isSelect = false;
-        this.timerIdx = 3;
-        this.bottomBtn.alpha = 0;
-        this.bottomBtn.visible = false;
-        this.zimu.bottom = 100;
-        this._maxValue = 0;
-    }
-
     public init(vData: VideoData) {
         this.videoD = vData;
     }
@@ -226,23 +195,23 @@ class TipsBtn extends eui.Component {
             /**判断下问题是否带锁**/
             this.onUpdateWentiBtnStatus();
 
-            var tw = egret.Tween.get(this.bottomBtn);
+            const tw = egret.Tween.get(this.bottomBtn);
             this.bottomBtn.alpha = 0;
             this.timeBar3.visible = true;
             this.bottomBtn.visible = true;
             this.zimu.bottom = 335;
             tw.to({alpha: 1}, 500);
+
+            this.hideTipTimer = undefined;
         } else {
             this.modelHuDong = JsonModelManager.instance.getModelhudong()[model.type];
             this.showBtns.visible = false;
             this.gotoAction(model);
             // if (this.modelHuDong && this.modelHuDong.des)
             // GameCommon.getInstance().showActionTips(this.modelHuDong.des);
-
         }
     }
 
-    // }
     public hideTips(): void {
         this._maxValue = 0;
         this._maxTime = 0;
@@ -252,7 +221,6 @@ class TipsBtn extends eui.Component {
         if (this.videoD) {
             if (this.videoD.getIsClick(this.videoD) == 3 && this.timerIdx > 0 && this.timerIdx < 4) {
                 this.timerIdx = 4;
-                // this.controlGroup.alpha = 0;
                 this.controlGroup.visible = false;
                 if (this.timer) {
                     this.timerIdx = 0;
@@ -261,10 +229,13 @@ class TipsBtn extends eui.Component {
                 this.videoCurrentState = true;
             }
         }
+        if (this.hideTipTimer) {
+            clearTimeout(this.hideTipTimer);
+        }
     }
 
     public setTips(tim, bo): void {
-
+        let tw;
         if (this.tp != 0) {
             // if (bo) {
             //     this.onCallBack();
@@ -281,18 +252,17 @@ class TipsBtn extends eui.Component {
                 return;
             }
             if (this._maxValue == 0 && this._maxTime == 0) {
-                if (!this.bottomBtn.visible) {
-                    var tw = egret.Tween.get(this.bottomBtn);
+                if (!this.bottomBtn.visible && this.hideTipTimer === undefined) {
+                    tw = egret.Tween.get(this.bottomBtn);
                     this.timeBar3.visible = true;
                     this.bottomBtn.alpha = 0;
                     this.bottomBtn.visible = true;
-
                     this.zimu.bottom = 335;
                     tw.to({alpha: 1}, 500);
                 }
                 this._maxValue = tim - 1;
                 this._maxTime = tim;
-                var max = Math.floor(this._maxValue) * 20;
+                const max = Math.floor(this._maxValue) * 20;
                 this.timeBar1.width = size.width / 2;
                 this.timeBar2.width = size.width / 2;
                 this.timeBar3.maximum = max;
@@ -306,7 +276,7 @@ class TipsBtn extends eui.Component {
             if (this._maxValue != tim) {
                 this.timeBar2.value = tim / this._maxTime * 100;
                 this.timeBar1.value = tim / this._maxTime * 100;
-                var tw = egret.Tween.get(this.timeBar1);
+                tw = egret.Tween.get(this.timeBar1);
                 var tw1 = egret.Tween.get(this.timeBar2);
                 if ((tim - 1) <= 0) {
 
@@ -324,15 +294,6 @@ class TipsBtn extends eui.Component {
         }
     }
 
-    public onShow(): void {
-
-    }
-
-    public log1(str) {
-        this.zimu.text = str;
-    }
-
-    // }
     public log(str) {
         // if (this.logLab.height > 700) {
         //     this.logLab.text = '';
@@ -631,13 +592,12 @@ class TipsBtn extends eui.Component {
     }
 
     private onSelectPinZhi(event: egret.Event) {
-        var id: number = Number(event.target.name);
         this.pinzhiGroup.visible = false;
         this.qualityBtn.label = event.target.label;
     }
 
     private onSelectSpeed(event: egret.Event) {
-        var id: number = Number(event.target.name);
+        const id: number = Number(event.target.name);
         this.beisuGroup.visible = false;
         this.speedBtn.label = event.target.label;
         VideoManager.getInstance().setSpeed(this.speedDic[id]);
@@ -649,8 +609,6 @@ class TipsBtn extends eui.Component {
     }
 
     private onPlay_Pause() {
-        // if (this.setState())
-        //     return;
         if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_PAUSE), true);
             this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
@@ -683,10 +641,6 @@ class TipsBtn extends eui.Component {
         }
         this.onSetCunDangState(this.fileState);
     }
-
-    // public endMusic() {
-    //     if (this.musicGroup.visible)
-    //         this.musicGroup.visible = false;
 
     private onTouchVideo(event: egret.Event) {
         if (this.isSelect)
@@ -728,6 +682,7 @@ class TipsBtn extends eui.Component {
                 wentiId: this.wentiId,
                 click: true
             });
+        this.hideTipTimer = setTimeout(() => this.hideTips(), 1000);
     }
 
     private onUpdateLockStatus(isLock): void {
@@ -836,69 +791,17 @@ class TipsBtn extends eui.Component {
             if (this.modelHuDong.id != 3) {
                 GuideManager.getInstance().isGuide = false;
             }
-            // this.musicGroup.alpha = 0;
-            // this.musicGroup.visible = true;
-            // var tw = egret.Tween.get(this.musicGroup);
-            // tw.to({ alpha: 1 }, 1000);
         }
         ActionManager.getInstance().setAction(model, this);
     }
 
     private onTimer() {
-        // let st = this.videoD.getIsClick(this.videoD);
         this.timerIdx = this.timerIdx + 1;
-        // if (!this.videoD.getReduceState()) {
-        //     this.reduceBtn.visible = false;
-        // }
-        // else {
-        //     this.reduceBtn.visible = true;
-        // }
         if (this.timerIdx > 3 && this.play_pauseBtn['iconDisplay'].source != 'playImg_png') {
             this.timerIdx = 0;
             this.timer.stop();
             this.hideControl();
             return;
         }
-        // if (st == 1) {
-        //     this.addBtn.visible = true;
-        //     this.addBtn.touchEnabled = true;
-        //     this.controlGroup.touchChildren = true;
-        //     this.controlGroup.visible = true;
-        // }
-        // else if (st == 2 || st == 0) {
-        //     this.controlGroup.visible = true;
-        //     this.addBtn.visible = false;
-        //     this.addBtn.touchEnabled = false;
-        // }
-        // else if (st == 0) {
-        //     // this.controlGroup.visible = false;
-        // }
-    }
-
-    private callbackTime(callback, target, time, ...param) {
-        var timeoutKey = -1;
-        if (time > 0) {
-            var callbackObj = {intervalId: 0, callback: callback, target: target, time: time, args: param};
-            var callbackFunc = function (callbackObj): void {
-                target.callback(callbackObj.callback, callbackObj.target, ...callbackObj.args);
-                egret.clearTimeout(callbackObj.intervalId);
-            };
-            callbackObj.intervalId = egret.setTimeout(callbackFunc, this, time, callbackObj);
-            timeoutKey = callbackObj.intervalId;
-        } else {
-            target.callback(callback, target, ...param);
-        }
-        return timeoutKey;
-    }
-
-    // public showTime(str) {
-    //     // if (this.logLab1.height > 500) {
-    //     //     this.logLab1.text = '';
-    //     // }
-    //     this.logLab1.text += "\n" + str;
-
-    private callback(callback, target, ...param) {
-        param[0].alpha = 0;
-        // callback.call(target, ...param);
     }
 }
