@@ -80,7 +80,6 @@ class ResultWinPanel extends eui.Component {
     }
 
     private onContinue() {
-        debugger;
         if (!this._isEnd) {
             GameCommon.getInstance().showLoading();
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_CHAPTER_END));

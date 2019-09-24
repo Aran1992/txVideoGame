@@ -1,5 +1,5 @@
 ######导入模块#####
-from xml.etree import ElementTree as et;
+from xml.etree import ElementTree as et
 import json
 import glob
 import sys
@@ -7,17 +7,17 @@ import os
 
 ######变量#######
 XmlDataPath = sys.argv[1]  # XML表路径 修改项
-XmlActivityDataPath = XmlDataPath+'activity\\' #Activity单独整理到一个路径内
+XmlActivityDataPath = XmlDataPath + 'activity\\'  # Activity单独整理到一个路径内
 if sys.platform.startswith('linux'):
-	XmlActivityDataPath = XmlDataPath+'activity/' #Activity单独整理到一个路径内
-	
+    XmlActivityDataPath = XmlDataPath + 'activity/'  # Activity单独整理到一个路径内
+
 OntJsonPath = sys.argv[2]  # Json的输出路径
 OutTsPath = sys.argv[3]  # TS的输出路径
 
 ModelMangerClass = "JsonModelManager"  # 数据结构管理类名称
 ModelBaseClass = 'ModelJsonBase'  # 数据结构父类名称
 
-allDict = {};
+allDict = {}
 
 
 # 判断是不是可以转成数字类型
@@ -34,7 +34,7 @@ def xml_to_json(file_name, dataPath):
     # print('read node from xmlfile, transfer them to json, and save into jsonFile:')
     f = open("{}{}.json".format(OntJsonPath, file_name), 'w', encoding="utf8")
     f.write('[')
-    root = et.parse("{}{}.xml".format(dataPath, file_name));
+    root = et.parse("{}{}.xml".format(dataPath, file_name))
     index = 0
     for each in root.getroot():
         if index > 0:
@@ -54,9 +54,9 @@ def xml_to_json(file_name, dataPath):
 def xml_to_json_map(file_name, auto, dataPath):
     print('read node from xmlfile, transfer them to json, and save into jsonFile:')
     f = open("{}{}.json".format(OntJsonPath, file_name), 'w', encoding="utf8")
-    root = et.parse("{}{}.xml".format(dataPath, file_name));
+    root = et.parse("{}{}.xml".format(dataPath, file_name))
     index = 0
-    tempDict = {};
+    tempDict = {}
     for each in root.getroot():
         if auto == '1':
             tempDict[each.get('id')] = each.attrib
@@ -72,11 +72,13 @@ def xml_to_json_map(file_name, auto, dataPath):
     f.write(tempJson)
     f.close()
 
+
 def xml_to_json_all():
     f = open("{}config.json".format(OntJsonPath), 'w', encoding="utf8")
     tempJson = json.dumps(allDict, ensure_ascii=False)
     f.write(tempJson)
     f.close()
+
 
 # XML转换JSON结束
 
@@ -89,14 +91,16 @@ model_manager = open("{}{}.ts".format(OutTsPath, ModelMangerClass), 'w', encodin
 # 如果没有发现ID字段则用数组索引做Key值
 # 发现groupID 字典中套字典 或 二维Array
 def create_base(json_name):
-    modelName = 'Model' + json_name;
+    modelName = 'Model' + json_name
     dictName = '_model{json}Dict'.format(json=json_name)
     model_manager.write('\n\t' + 'private {dict};'.format(dict=dictName) + "\n")
     model_manager.write('\t' + 'public get' + modelName + '(): any {' + "\n")
     model_manager.write('\t\t' + 'if (!this.{dict}) {'.replace("{dict}", dictName) + "\n")
     model_manager.write('\t\t\t' + 'this.' + dictName + ' = {};' + "\n")
     model_manager.write('\t\t\t' + 'var json = Tool.readZipToJson("{json}.json");'.replace('{json}', json_name) + "\n")
-    model_manager.write('\t\t\t' + 'var groupID:string = ModelManager.getInstance().JOSN_GID["{json}"];'.replace('{json}', json_name) + "\n")
+    model_manager.write(
+        '\t\t\t' + 'var groupID:string = ModelManager.getInstance().JOSN_GID["{json}"];'.replace('{json}',
+                                                                                                 json_name) + "\n")
     model_manager.write('\t\t\t' + 'this.Length["{json}"] = groupID ? {} : 0;'.replace('{json}', json_name) + "\n")
     model_manager.write('\t\t\t' + '''var _dictKey;
             var _Idx: number = 0;
@@ -151,7 +155,7 @@ def json_to_TSmodel(json_name):
             return_param = 'return parseFloat(this._json["${key}"])'.replace('${key}', key)
         else:
             datatype = 'string'
-            return_param = 'if (this._json["${key}"] == "*") { return ""; }'+'\n\t\t'+'return this._json["${key}"]'
+            return_param = 'if (this._json["${key}"] == "*") { return ""; }' + '\n\t\t' + 'return this._json["${key}"]'
             return_param = return_param.replace('${key}', key)
 
         ts_model_file.write('\n\n\t' + '''private _${key};
@@ -167,24 +171,29 @@ def json_to_TSmodel(json_name):
 
 
 def gen(dataPath):
-	print('开始解析目录'+dataPath)
-	for filename in glob.glob(r'{}*.xml'.format(dataPath)):
-	    print('开始读取'+ filename)
-	    jsonName = filename.replace('{}'.format(dataPath), "")
-	    jsonName = jsonName.replace('.xml', "")
-	    xml_to_json(jsonName, dataPath)
-	    if not filename.endswith('fighter.xml') and not filename.endswith('mount0.xml') and not filename.endswith('mount1.xml')\
-	            and not filename.endswith('mount2.xml') and not filename.endswith('mount3.xml') and not filename.endswith('mount4.xml'):
-	    	create_base(jsonName)  # 创建数据管理类
-	    if not filename.endswith('mount0.xml') and not filename.endswith('mount1.xml')\
-	            and not filename.endswith('mount2.xml') and not filename.endswith('mount3.xml') and not filename.endswith('mount4.xml'):
-	        json_to_TSmodel(jsonName)
-	    if filename.endswith('fighter.xml') or filename.endswith('mount0.xml') or filename.endswith('mount1.xml')\
-	            or filename.endswith('mount2.xml') or filename.endswith('mount3.xml') or filename.endswith('mount4.xml'):
-	        xml_to_json_map(jsonName, '1', dataPath)
-	    else:
-	        xml_to_json_map(jsonName, '0', dataPath)
-	    print(filename + '.json生成成功！')
+    print('开始解析目录' + dataPath)
+    for filename in glob.glob(r'{}*.xml'.format(dataPath)):
+        print('开始读取' + filename)
+        jsonName = filename.replace('{}'.format(dataPath), "")
+        jsonName = jsonName.replace('.xml', "")
+        xml_to_json(jsonName, dataPath)
+        if not filename.endswith('fighter.xml') and not filename.endswith('mount0.xml') and not filename.endswith(
+                'mount1.xml') \
+                and not filename.endswith('mount2.xml') and not filename.endswith(
+            'mount3.xml') and not filename.endswith('mount4.xml'):
+            create_base(jsonName)  # 创建数据管理类
+        if not filename.endswith('mount0.xml') and not filename.endswith('mount1.xml') \
+                and not filename.endswith('mount2.xml') and not filename.endswith(
+            'mount3.xml') and not filename.endswith('mount4.xml'):
+            json_to_TSmodel(jsonName)
+        if filename.endswith('fighter.xml') or filename.endswith('mount0.xml') or filename.endswith('mount1.xml') \
+                or filename.endswith('mount2.xml') or filename.endswith('mount3.xml') or filename.endswith(
+            'mount4.xml'):
+            xml_to_json_map(jsonName, '1', dataPath)
+        else:
+            xml_to_json_map(jsonName, '0', dataPath)
+        print(filename + '.json生成成功！')
+
 
 ########## 数据结构管理类 （类头）TS脚本
 model_manager.write('''/**

@@ -699,10 +699,10 @@ class VideoData extends egret.DisplayObjectContainer {
                 widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4)
             }
         } else if (VideoManager.getInstance().videoCurrTime() + 5 < VideoManager.getInstance().getVideoDuration() && !this.tiaoState) {
-            if (Number(videoModels[this.videoIdx].jtime) > 0 && videoModels[this.videoIdx].tiaozhuan == 4) {
-                if (VideoManager.getInstance().videoCurrTime() + 5 < Number(videoModels[this.videoIdx].jtime)) {
+            if (Number(videoModels[this.videoIdx].stime) > 0 && videoModels[this.videoIdx].tiaozhuan == 4) {
+                if (VideoManager.getInstance().videoCurrTime() + 5 < Number(videoModels[this.videoIdx].stime)) {
                     this.tiaoState = true;
-                    widPlayer.seek(Number(videoModels[this.videoIdx].jtime))
+                    widPlayer.seek(Number(videoModels[this.videoIdx].stime))
                 }
             } else {
                 this.tiaoState = true;
