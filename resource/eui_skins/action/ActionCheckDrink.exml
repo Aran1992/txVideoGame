@@ -50,6 +50,11 @@
 					</e:Skin>
 				</e:skinName>
 			</e:RadioButton>
+			<e:Rect id="selected0" width="200" height="450" fillAlpha="0" strokeAlpha="1" strokeWeight="5" strokeColor="0xff0000" horizontalCenter="-500" bottom="225"/>
+			<e:Rect id="selected1" width="200" height="450" fillAlpha="0" strokeAlpha="1" strokeWeight="5" strokeColor="0xFF0000" horizontalCenter="-250" bottom="225"/>
+			<e:Rect id="selected2" width="200" height="450" fillAlpha="0" strokeAlpha="1" strokeWeight="5" strokeColor="0xFF0000" horizontalCenter="0" bottom="225"/>
+			<e:Rect id="selected3" width="200" height="450" fillAlpha="0" strokeAlpha="1" strokeWeight="5" strokeColor="0xFF0000" horizontalCenter="250" bottom="225"/>
+			<e:Rect id="selected4" width="200" height="450" fillAlpha="0" strokeAlpha="1" strokeWeight="5" strokeColor="0xFF0000" horizontalCenter="500" bottom="225"/>
 		</e:Group>
 	</e:Group>
 </e:Skin>

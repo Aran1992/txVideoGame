@@ -1,7 +1,7 @@
 {
   "global": {
-    "globalAutoLayerMarkEnable": false,
-    "globalRulerEnable": true,
+    "globalAutoLayerMarkEnable": true,
+    "globalRulerEnable": false,
     "globalAdsorbEnable": true
   },
   "16c47b075bb": {

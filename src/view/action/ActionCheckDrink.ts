@@ -5,6 +5,7 @@ class ActionCheckDrink extends ActionSceneBase {
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
     private desc: eui.Label;
+    private timer: number;
 
     public exit() {
         this.stopRun();
@@ -24,12 +25,6 @@ class ActionCheckDrink extends ActionSceneBase {
     protected onInit(): void {
         super.onInit();
         this.updateResize();
-        this.timeBar1.maximum = this.maxTime;
-        this.timeBar1.slideDuration = 0;
-        this.timeBar1.value = this.maxTime;
-        this.timeBar2.slideDuration = 0;
-        this.timeBar2.maximum = this.maxTime;
-        this.timeBar2.value = this.maxTime;
         this.initTimeInfo();
         this.ansId = this.model.moren;
         for (let i: number = 0; i < this.DRINK_MAX; i++) {
@@ -39,6 +34,7 @@ class ActionCheckDrink extends ActionSceneBase {
             checkBtn.x = Math.floor(size.width * rate_X);
             checkBtn.y = Math.floor(size.height * rate_y);
             checkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectDrink, this);
+            (this[`selected${i}`] as eui.Rect).visible = false;
         }
     }
 
@@ -53,28 +49,42 @@ class ActionCheckDrink extends ActionSceneBase {
     }
 
     protected onBackSuccess() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO), {
-            answerId: this.ansId,
-            wentiId: this.model.id,
-            click: 1
-        });
+        if (this.timer) {
+            egret.clearTimeout(this.timer);
+        }
+        GameDispatcher.getInstance().dispatchEvent(
+            new egret.Event(GameEvent.ONSHOW_VIDEO),
+            {
+                answerId: this.ansId,
+                wentiId: this.model.id,
+                click: 1
+            }
+        );
         this.exit();
     }
 
     private initTimeInfo() {
-        const hdCfg: Modelhudong = JsonModelManager.instance.getModelhudong()[this.model.type];
-        if (hdCfg && hdCfg.des) {
-            this.desc.text = hdCfg.des;
-        }
+        this.timeBar1.slideDuration = 0;
+        this.timeBar1.maximum = this.maxTime;
+        this.timeBar1.value = this.maxTime;
+        this.timeBar2.slideDuration = 0;
+        this.timeBar2.maximum = this.maxTime;
+        this.timeBar2.value = this.maxTime;
+        this.desc.text = JsonModelManager.instance.getModelhudong()[this.model.type].des;
     }
 
     private onSelectDrink(event: egret.Event): void {
         if (!this.isSelected) {
-            this.ansId = (event.currentTarget as eui.RadioButton).value;
+            const button = event.currentTarget as eui.RadioButton;
+            (this[`selected${button.value - 1}`] as eui.Rect).visible = true;
+            this.ansId = button.value;
             this.isSelected = true;
             for (let i: number = 0; i < this.DRINK_MAX; i++) {
                 (this[`drink${i}_btn`] as eui.RadioButton).touchEnabled = false;
             }
+            this.timer = egret.setTimeout(() => {
+                this.onBackSuccess();
+            }, this, 1000);
         }
     }
 
