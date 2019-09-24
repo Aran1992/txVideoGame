@@ -1,0 +1,86 @@
+{
+  "0": {
+    "id": "1",
+    "mulu1": "3",
+    "mulu2": "1",
+    "level": "sr",
+    "name": "梦想的模样",
+    "time": "*",
+    "minipic": "sc_role3_imgIcon_1_png",
+    "src": "sc_role3_img_4_jpg,sc_role3_img_5_jpg,sc_role3_img_3_jpg,sc_role3_img_1_jpg,sc_role3_img_2_jpg",
+    "kuozhan": "这是我送你的礼物;这是我和你的梦想;唱吧,如果你也有梦想;;",
+    "shengyin": "shengyin_1;shengyin_2;shengyin_3;;"
+  },
+  "1": {
+    "id": "2",
+    "mulu1": "3",
+    "mulu2": "2",
+    "level": "sr",
+    "name": "如果你也有梦想",
+    "time": "2:10",
+    "minipic": "sc_role3_imgIcon_1_png",
+    "src": "S001",
+    "kuozhan": "0",
+    "shengyin": "0"
+  },
+  "2": {
+    "id": "3",
+    "mulu1": "5",
+    "mulu2": "3",
+    "level": "sr",
+    "name": "如果你也有梦想",
+    "time": "*",
+    "minipic": "sc_music_icon_1",
+    "src": "mp3_music1_1",
+    "kuozhan": "如果你也有梦想",
+    "shengyin": "0"
+  },
+  "3": {
+    "id": "4",
+    "mulu1": "1",
+    "mulu2": "1",
+    "level": "sr",
+    "name": "隐藏高手",
+    "time": "*",
+    "minipic": "sc_role1_imgIcon_1_png",
+    "src": "sc_role1_img_4_jpg,sc_role1_img_5_jpg,sc_role1_img_3_jpg,sc_role1_img_2_jpg,sc_role1_img_1_jpg",
+    "kuozhan": "三、二、一，表演时间到;你的事我拼尽全力都要完成;你的梦想就是我的目标;;",
+    "shengyin": "shengyin_4;shengyin_5;shengyin_6;;"
+  },
+  "4": {
+    "id": "5",
+    "mulu1": "4",
+    "mulu2": "1",
+    "level": "sr",
+    "name": "斯人垂目",
+    "time": "*",
+    "minipic": "sc_role4_imgIcon_1_png",
+    "src": "sc_role4_img_4_jpg,sc_role4_img_5_jpg,sc_role4_img_2_jpg,sc_role4_img_3_jpg,sc_role4_img_1_jpg",
+    "kuozhan": "为什么，你还不来;快坐下，来的这么晚;你不知道，我会担心么",
+    "shengyin": "shengyin_7;shengyin_8;shengyin_9;;"
+  },
+  "5": {
+    "id": "6",
+    "mulu1": "5",
+    "mulu2": "3",
+    "level": "sr",
+    "name": "you cool",
+    "time": "*",
+    "minipic": "sc_music_icon_1",
+    "src": "mp3_music2_1",
+    "kuozhan": "you cool",
+    "shengyin": "0"
+  },
+  "6": {
+    "id": "7",
+    "mulu1": "2",
+    "mulu2": "2",
+    "level": "sr",
+    "name": "雨后湿温",
+    "time": "1:09",
+    "minipic": "sc_role2_imgIcon_1_png",
+    "src": "S002",
+    "kuozhan": "0",
+    "shengyin": "0"
+  }
+}

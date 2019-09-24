@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<chengjiu>
+    <chengjiu id="1" tp1="1" tp2="*" level="1" chengjiuTP="1" titleID="初动心弦" jianglisuipian="300" canshu="1,1;3,1;6,1" des="完成序章全部互动"/>
+    <chengjiu id="2" tp1="1" tp2="3" level="1" chengjiuTP="1" titleID="和弦初起" jianglisuipian="300" canshu="9,1;10,1" des="第一次与夏子豪达成好感度满分"/>
+    <chengjiu id="13" tp1="1" tp2="4" level="1" chengjiuTP="1" titleID="合奏前音" jianglisuipian="300" canshu="11,2;75,1;12,1" des="第一次与肖万寻达成好感度满分"/>
+    <chengjiu id="15" tp1="1" tp2="2" level="1" chengjiuTP="1" titleID="低音浅拨" jianglisuipian="300" canshu="16,1;17,1" des="第一次与肖千也达成好感度满分"/>
+    <chengjiu id="16" tp1="1" tp2="1" level="1" chengjiuTP="1" titleID="初啼之声" jianglisuipian="300" canshu="13,2;14,1" des="第一次与韩小白达成好感度满分"/>
+    <chengjiu id="17" tp1="1" tp2="*" level="1" chengjiuTP="3" titleID="开始四重奏" jianglisuipian="300" canshu="V019" des="完成序章剧情"/>
+    <chengjiu id="18" tp1="1" tp2="*" level="1" chengjiuTP="1" titleID="拳击女皇" jianglisuipian="300" canshu="1,1" des="完成第一次互动"/>
+</chengjiu>
