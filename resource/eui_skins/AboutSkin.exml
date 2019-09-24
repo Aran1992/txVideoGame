@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.AboutSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="16d615f8c43"/>
+	<e:Image source="zhezhao_png" x="0" y="0" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0"/>
+	<e:Group id="idPage1" y="0" x="0" width="100%" height="100%" touchEnabled="false">
+		<e:Group id="slideGroup" touchEnabled="false" x="320" y="160" includeInLayout="true" anchorOffsetX="0" width="1228" anchorOffsetY="0" height="572">
+			<e:layout>
+				<e:HorizontalLayout/>
+			</e:layout>
+		</e:Group>
+		<e:Group id="qiuGroup" width="1282" horizontalCenter="161" bottom="160" height="591.21" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
+			<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
+			<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
+			<e:layout>
+			<e:HorizontalLayout horizontalAlign="center" verticalAlign="bottom"/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
+	<e:Group id="idPage2" y="0" x="0" width="100%" height="100%" touchEnabled="false"/>
+	<e:Group id="idPage3" y="0" x="0" width="100%" height="100%" touchEnabled="false"/>
+	<e:Group top="170" right="1303" width="253" anchorOffsetX="0" anchorOffsetY="0" height="594">
+		<e:Button id="idTab1" label="帮助" x="48" y="93.03" skinName="skins.Common_TabButtonSkin2" scaleX="1" scaleY="1" name="1" blendMode="normal" touchEnabled="true"/>
+		<e:Button id="idTab2" label="关于我们" x="48" y="190" skinName="skins.Common_TabButtonSkin2" scaleX="1" scaleY="1" name="2" blendMode="normal"/>
+		<e:Button id="idTab3" label="用户协议" x="48" y="286" skinName="skins.Common_TabButtonSkin2" scaleX="1" scaleY="1" name="3"/>
+		<e:layout>
+		<e:BasicLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Button id="idClose" label="帮助" width="200" x="44" y="29.5" height="62" scaleX="1" scaleY="1" touchEnabled="true" touchChildren="true" enabled="true">
+		<e:skinName>
+		<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
+			<e:Group width="100%" height="100%"/>
+			<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png" verticalCenter="0" left="0" locked="true"/>
+			<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9" left="50" text=""/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

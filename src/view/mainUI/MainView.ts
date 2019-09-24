@@ -264,7 +264,8 @@ class MainView extends eui.Component {
     private onShowbtnSetting() {
         this.checkGuide8();
         // GameCommon.getInstance().addAlert('zanweikaifang');
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'PlayerSettingPanel');
+        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'PlayerSettingPanel');
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'AboutPanel');
     }
 
     private onRefreshUser() {
@@ -278,7 +279,7 @@ class MainView extends eui.Component {
         this.mainGroup.visible = true;
         this.btnChengjiu.touchEnabled = true;
         this.btnShouCang.touchEnabled = true;
-        this.btnSetting.touchEnabled = false;
+        this.btnSetting.touchEnabled = true;
         // this.desc.text = JSON.stringify(UserInfo.guideDic);
         // if (!UserInfo.guideDic[5])//先检测成就引导是否OK
         // {
