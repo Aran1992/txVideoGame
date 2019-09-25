@@ -27,10 +27,6 @@ declare module skins{
 	}
 }
 declare module skins{
-	class ActionImageSelectSkin extends eui.Skin{
-	}
-}
-declare module skins{
 	class ActionListen extends eui.Skin{
 	}
 }
@@ -52,6 +48,10 @@ declare module skins{
 }
 declare module skins{
 	class ActionSearchSkin extends eui.Skin{
+	}
+}
+declare module skins{
+	class ActionSelectWho extends eui.Skin{
 	}
 }
 declare module skins{

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionSelectWho" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+    <e:Group horizontalCenter="0" top="32" x="549" y="32" scaleX="1" scaleY="1">
+        <e:Image source="action_timedi_png" horizontalCenter="0" top="0" locked="true"/>
+        <e:ProgressBar id="timeBar1" skinName="skins.ActionBar1Skin" scaleX="-1" horizontalCenter="-125" value="100"/>
+        <e:ProgressBar id="timeBar2" skinName="skins.ActionBar1Skin" horizontalCenter="125" value="100"/>
+        <e:Label id="desc" text="" fontFamily="SimHei" size="40" height="60" verticalAlign="middle" verticalCenter="0" horizontalCenter="0"/>
+    </e:Group>
+    <e:Group width="250" height="250" horizontalCenter="-600" bottom="150">
+			<e:Button id="button0" label="" horizontalCenter="0" verticalCenter="0" x="307" y="7" scaleX="1" scaleY="1">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected0" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_1_png" touchEnabled="false"/>
+        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
+        <e:Label text="肖千也" horizontalCenter="0" bottom="-31.5" size="28"/>
+    </e:Group>
+    <e:Group width="250" height="250" horizontalCenter="-300" bottom="150">
+			<e:Button label="" id="button1" horizontalCenter="0" verticalCenter="0">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected1" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_2_png" touchEnabled="false"/>
+        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
+        <e:Label text="夏子豪" horizontalCenter="0" bottom="-31.5" size="28"/>
+    </e:Group>
+    <e:Group width="250" height="250" horizontalCenter="0" bottom="150">
+			<e:Button label="" id="button2" horizontalCenter="0" verticalCenter="0">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected2" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_3_png" touchEnabled="false"/>
+        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
+        <e:Label text="肖万寻" horizontalCenter="0" bottom="-31.5" size="28"/>
+    </e:Group>
+    <e:Group width="250" height="250" horizontalCenter="300" bottom="150">
+			<e:Button label="" id="button3" horizontalCenter="0" verticalCenter="0">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected3" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_4_png" touchEnabled="false"/>
+        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35"/>
+        <e:Label text="韩小白" horizontalCenter="0" bottom="-31.5" size="28"/>
+    </e:Group>
+    <e:Group width="250" height="250" horizontalCenter="600" bottom="150">
+			<e:Button label="" id="button4" horizontalCenter="0" verticalCenter="0">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected4" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_5_png" touchEnabled="false"/>
+        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
+        <e:Label text="江雪" horizontalCenter="0" bottom="-31.5" size="28"/>
+    </e:Group>
+</e:Skin>

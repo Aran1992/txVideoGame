@@ -1120,10 +1120,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 this.curVideoIndex = 0;
             }
             GameCommon.getInstance().addRoleLike(this.curAnswerCfg.like);
-            let obj = this;
-            Tool.callbackTime(function () {
-                ChengJiuManager.getInstance().onCheckAnswer(data.data.wentiId, data.data.answerId);
-            }, obj, 100);
+            Tool.callbackTime(() => ChengJiuManager.getInstance().onCheckAnswer(data.data.wentiId, data.data.answerId), this, 100);
 
             if (this.videoIdx == 'V019') {
                 if (videoModels[this.videoIdx].chengjiuId != '') {
@@ -1242,6 +1239,6 @@ enum ActionType {
     LISTEN = 8,
     FULL_VIEW = 9,
     HEAD_VIEW = 10,
-    CHECK_DRINK = 11,
+    SELECT = 11,
     SEARCH = 12,
 }

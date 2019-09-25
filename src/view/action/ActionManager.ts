@@ -11,7 +11,7 @@ class ActionManager {
         [ActionType.FULL_VIEW]: ActionFull,
         [ActionType.LISTEN]: ActionListen,
         [ActionType.HEAD_VIEW]: ActionHuiYi,
-        [ActionType.CHECK_DRINK]: ActionCheckDrink,
+        [ActionType.SELECT]: ActionSelect,
         [ActionType.SEARCH]: ActionSearch,
     };
     private videoData: VideoData;
