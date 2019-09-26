@@ -633,10 +633,6 @@ class GameCommon {
         PromptPanel.getInstance().onShowBuyTips(id, money, tp);
     }
 
-    public onShowBuyHaoGan(id: number = 0, onCallBack) {
-        PromptPanel.getInstance().onShowBuyHaoGan(id, onCallBack);
-    }
-
     public onShowResultTips(str: string, isRight: boolean = true, btnlabel?: string, callBack?: Function, ...arys) {
         PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }

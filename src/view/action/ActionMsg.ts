@@ -51,7 +51,6 @@ class ActionMsg extends ActionSceneBase {
         this.play().catch(e => console.log(e));
     }
 
-
     protected update(dt): void {
         super.update(dt);
         this.timeBar2.value = this.runTime;

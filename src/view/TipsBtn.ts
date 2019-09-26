@@ -117,7 +117,7 @@ class TipsBtn extends eui.Component {
 
     public onShowAddTime() {
         this.timeGroup.visible = true;
-        var obj = this;
+        let obj = this;
         Tool.callbackTime(function () {
             obj.timeGroup.visible = false;
         }, obj, 1000);
@@ -153,7 +153,7 @@ class TipsBtn extends eui.Component {
     }
 
     public onUpdateWenTi(id): void {
-        var button = this['btn' + id];
+        let button = this['btn' + id];
         if (!button['lock_grp'].visible) {
             this.onSelectWenTi(id);
         }
@@ -177,10 +177,10 @@ class TipsBtn extends eui.Component {
         this.isSelect = false;
         if (model.type == ActionType.OPTION) {
             this.showBtns.visible = true;
-            var awardStrAry: string[] = model.ans.split(",");
-            var cfgs = answerModels[this.wentiId];
-            var idx: number = 0;
-            for (var i: number = 0; i < 5; i++) {
+            let awardStrAry: string[] = model.ans.split(",");
+            let cfgs = answerModels[this.wentiId];
+            let idx: number = 0;
+            for (let i: number = 0; i < 5; i++) {
                 if (awardStrAry.length > i) {
                     this['btn' + (i + 1)].visible = true;
                     this['btn' + (i + 1)].alpha = 1;
@@ -213,6 +213,9 @@ class TipsBtn extends eui.Component {
     }
 
     public hideTips(): void {
+        if (this.hideTipTimer) {
+            return;
+        }
         this._maxValue = 0;
         this._maxTime = 0;
         this.bottomBtn.alpha = 0;
@@ -228,9 +231,6 @@ class TipsBtn extends eui.Component {
                 }
                 this.videoCurrentState = true;
             }
-        }
-        if (this.hideTipTimer) {
-            clearTimeout(this.hideTipTimer);
         }
     }
 
@@ -277,7 +277,7 @@ class TipsBtn extends eui.Component {
                 this.timeBar2.value = tim / this._maxTime * 100;
                 this.timeBar1.value = tim / this._maxTime * 100;
                 tw = egret.Tween.get(this.timeBar1);
-                var tw1 = egret.Tween.get(this.timeBar2);
+                let tw1 = egret.Tween.get(this.timeBar2);
                 if ((tim - 1) <= 0) {
 
                     tw.to({value: 0}, 1000);
@@ -307,10 +307,10 @@ class TipsBtn extends eui.Component {
     protected onRegist(): void {
         this.timeGroup.visible = false;
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
-        for (var i = 1; i < 6; i++) {
+        for (let i = 1; i < 6; i++) {
             this['btn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }
-        for (var k = 1; k < 4; k++) {
+        for (let k = 1; k < 4; k++) {
             this['pinzhi' + k].name = k + '';
             this['sp' + k].name = k + '';
             this['pinzhi' + k].label = this.pinzhiNames[k];
@@ -334,7 +334,7 @@ class TipsBtn extends eui.Component {
     }
 
     protected onRemove(): void {
-        for (var i = 1; i < 6; i++) {
+        for (let i = 1; i < 6; i++) {
             this['btn' + i].name = i - 1;
             this['btn' + i].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }
@@ -371,8 +371,8 @@ class TipsBtn extends eui.Component {
 
     private onFenXiang() {
         // this.bmp = new egret.Bitmap();
-        // // var texture:egret.Texture = RES.getRes("run_png");
-        // var texture:egret.RenderTexture =Tool.onDrawDisObjToTexture(window['video1'],new egret.Rectangle(0, 0, size.width, size.height));
+        // // let texture:egret.Texture = RES.getRes("run_png");
+        // let texture:egret.RenderTexture =Tool.onDrawDisObjToTexture(window['video1'],new egret.Rectangle(0, 0, size.width, size.height));
         // // texture.toDataURL("image/png",  new egret.Rectangle(0, 0, size.width, size.height));
         // // texture.saveToFile("image/png", "a/down.png", new egret.Rectangle(0, 0, size.width, size.height));
         // this.bmp.texture = texture;
@@ -544,10 +544,10 @@ class TipsBtn extends eui.Component {
         // }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_END, this.onEnd, this);
-        // var data = RES.getRes('dddd_json');
-        // var txtr = RES.getRes('dddd_png');
-        // var mcFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory( data, txtr );
-        // var mc1:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData('dddd'));
+        // let data = RES.getRes('dddd_json');
+        // let txtr = RES.getRes('dddd_png');
+        // let mcFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory( data, txtr );
+        // let mc1:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData('dddd'));
         // this.addChild(mc1);
         // mc1.gotoAndPlay(0,999999);
     }
@@ -567,7 +567,7 @@ class TipsBtn extends eui.Component {
         // if (this.isAddFlg)
         //     return;
         // this.isAddFlg = true;
-        var obj = this;
+        let obj = this;
         // Tool.callbackTime(function () {
         //    obj.isAddFlg = false;
         // }, obj, 1000);
@@ -643,10 +643,9 @@ class TipsBtn extends eui.Component {
     }
 
     private onTouchVideo(event: egret.Event) {
-        if (this.isSelect)
-            return;
-        var button = event.currentTarget;
-        var id: number = Number(button.name);
+        if (this.isSelect) return;
+        let button = event.currentTarget;
+        let id: number = Number(button.name);
         if (button['lock_grp'].visible) {
             let optGoodsAry: number[] = this.Option_Goods[this.wentiId];
             let goodsid: number = optGoodsAry[id - 1];
@@ -677,12 +676,18 @@ class TipsBtn extends eui.Component {
         }
         this.timeBar3.visible = false;
         if (this.wentiId > 0)
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO), {
-                answerId: id,
-                wentiId: this.wentiId,
-                click: true
-            });
-        this.hideTipTimer = setTimeout(() => this.hideTips(), 1000);
+            GameDispatcher.getInstance().dispatchEvent(
+                new egret.Event(GameEvent.ONSHOW_VIDEO),
+                {
+                    answerId: id,
+                    wentiId: this.wentiId,
+                    click: true
+                }
+            );
+        this.hideTipTimer = egret.setTimeout(() => {
+            this.hideTipTimer = undefined;
+            this.hideTips();
+        }, this, 1000);
     }
 
     private onUpdateLockStatus(isLock): void {
@@ -715,7 +720,7 @@ class TipsBtn extends eui.Component {
 
     /**判断下问题是否带锁**/
     private onUpdateWentiBtnStatus(): void {
-        for (var i: number = 0; i < 5; i++) {
+        for (let i: number = 0; i < 5; i++) {
             this['btn' + (i + 1)]['lock_grp'].visible = false;
         }
         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);

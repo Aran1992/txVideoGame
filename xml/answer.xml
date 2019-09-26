@@ -52,7 +52,6 @@
     <answer qid="21" chengjiuId="*" ansid="2" des="去左边（滑板场）" like="0,1,0,-1" videos="V306,V307" nextid="0" isdie="0" nextChapterId="4" shanhuiid="*"/>
     <answer qid="22" chengjiuId="*" ansid="1" des="成功" like="0,0,0,0" videos="V402,V404A,V404B" nextid="24" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="22" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="V403,V404A,V404B" nextid="24" isdie="0" nextChapterId="0" shanhuiid="*"/>
-    <answer qid="23" chengjiuId="*" ansid="1" des="失败" like="0,0,0,0" videos="3-11_3-12_Q3-5" nextid="24" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="24" chengjiuId="*" ansid="1" des="是我的错" like="0,0,1,0" videos="V405,V407" nextid="25" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="24" chengjiuId="*" ansid="2" des="我……" like="0,0,-1,0" videos="V406,V407" nextid="25" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="25" chengjiuId="*" ansid="1" des="我还得多练习" like="0,0,0,0" videos="V409,V411,V4111" nextid="26" isdie="0" nextChapterId="0" shanhuiid="*"/>
