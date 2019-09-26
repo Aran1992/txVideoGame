@@ -43,17 +43,16 @@ class ResultWinPanel extends eui.Component {
         this.touchChildren = true;
         if (!this._isEnd) {
             this.cur_chapter = 0;
-            for (let i: number = 0; i < GameDefine.ROLE_JUQING_TREE.length; i++) {
-                let ary: number[] = GameDefine.ROLE_JUQING_TREE[i];
-                for (let n: number = 0; n < ary.length; n++) {
-                    if (ary[n] == UserInfo.curchapter) {
-                        this.cur_chapter = n > 0 ? ary[n - 1] : 1;
+            for (let role: number = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
+                let roleChapters: number[] = GameDefine.ROLE_JUQING_TREE[role];
+                for (let index: number = 0; index < roleChapters.length; index++) {
+                    if (roleChapters[index] == UserInfo.curchapter) {
+                        this.cur_chapter = index > 0 ? roleChapters[index - 1] : 1;
                         break;
                     }
                 }
                 if (this.cur_chapter) break;
             }
-
             this.chapterName1.text = JsonModelManager.instance.getModelchapter()[this.cur_chapter].name;
         } else {
             this.cur_chapter = UserInfo.curchapter;

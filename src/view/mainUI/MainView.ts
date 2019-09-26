@@ -232,14 +232,6 @@ class MainView extends eui.Component {
     }
 
     private onXinkaishi(): void {
-        // GameDefine.CUR_PLAYER_VIDEO = 2;
-        // if (widPlayer) {
-        //     widPlayer.play("t0031vzg0ch");
-        // }
-        // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_VIDEO3));
-        // GameCommon.getInstance().showLoading();
-        // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ControlTipsPanel');
-
         let httpurl: string = window ? window.location.href : "";
         if (httpurl.indexOf("192.168.") != -1 || httpurl.indexOf("127.0.0") != -1 || !0) {
             let chapter: number = parseInt(Tool.getQueryString("chapter")) ? parseInt(Tool.getQueryString("chapter")) : GameDefine.START_CHAPTER;
@@ -247,11 +239,6 @@ class MainView extends eui.Component {
         } else {
             this.gameWorld.createGameScene();
         }
-        // VideoManager.getInstance().textHudong(46);
-
-        // let id: number = 21;
-        // let chaptermodels: Modeljuqingkuai = JsonModelManager.instance.getModeljuqingkuai()[chapter];
-        // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), { cfg: chaptermodels[id], idx: FILE_TYPE.AUTO_FILE });
     }
 
     private onShowShop() {

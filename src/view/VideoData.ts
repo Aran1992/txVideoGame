@@ -477,14 +477,6 @@ class VideoData extends egret.DisplayObjectContainer {
                                         this.curVideoIndex = 0;
                                     }
                                 }
-                                if (this.videoIdx == 'VY1206') {
-                                    let like_wanxun: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao, 30);
-                                    let like_qianye: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao, 30);
-                                    if (like_wanxun == like_qianye) {
-                                        this.curVIdeoIds = ['VY1207'];
-                                        this.curVideoIndex = 0;
-                                    }
-                                }
 
                                 let nextVideoSrc: string = this.curVIdeoIds[this.curVideoIndex];
                                 Tool.callbackTime(function () {
