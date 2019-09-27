@@ -1,12 +1,6 @@
 class GameCommon {
     private static instance: GameCommon = null;
-    private videoData: VideoData;
-    private currModel: Modelwenti;
-    private layer: egret.DisplayObjectContainer;
-    private isAnswer: boolean;
-    private allChapter: Modelchapter[];
-    private check;
-    private sd: egret.Sound;
+    private readonly sd: egret.Sound;
 
     private constructor() {
         if (!this.sd) {
@@ -22,53 +16,14 @@ class GameCommon {
         return this.instance;
     }
 
-    public getEnvironment() {
-        if (!this.check) {
-            this.check = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
-        }
-        if (this.check) {
-            return 'ios';
-        } else {
-            return 'android';
-        }
-    }
-
-    public getAllChapter() {
-        if (!this.allChapter) {
-            var d = JsonModelManager.instance.getModelchapter();
-            this.allChapter = [];
-            for (var k in d) {
-                this.allChapter.push(d[k])
-            }
-        }
-        return this.allChapter;
-    }
-
-    public getAnswerCfg(wentiId, ansId) {
-        var str = wentiModels[wentiId].ans;
-        var awardStrAry: string[];
-        if (str.indexOf(",") >= 0) {
-            awardStrAry = str.split(",");
-        } else {
-            awardStrAry.push(str);
-        }
-        var cfgs = answerModels[wentiId];
-        for (var k in cfgs) {
-            if (cfgs[k].ansid == ansId) {
-                return cfgs[k];
-            }
-        }
-    }
-
     public async getUserInfo() {
         await platform.getUserInfo();
     }
 
     //存档成功返回
-    public parseFiel(tp) {
+    public parseFile(tp) {
         // if(tp)
         // return;//暂时注释掉
-        var awardStrAry: string[];
         switch (tp) {
             case FILE_TYPE.AUTO_FILE: //自动存档 和手动存档
                 UserInfo.fileDatas[tp] = UserInfo.curBokData;
@@ -105,9 +60,9 @@ class GameCommon {
                 // GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
             }
             // GameCommon.getInstance().addLikeTips('村上了'+UserInfo.curBokData.main_Img)
-            GameCommon.getInstance().parseFiel(data.data.slotId);
+            GameCommon.getInstance().parseFile(data.data.slotId);
         };
-        var str = '';
+        let str = '';
         if (!UserInfo.curBokData) {
             UserInfo.curBokData = new BookData();
         }
@@ -173,8 +128,8 @@ class GameCommon {
                 str = JSON.stringify(shopInfoDict);
                 break;
         }
-        var curChapterCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
-        var cundangTitle: string = '存档';
+        let curChapterCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
+        let cundangTitle: string = '存档';
         if (curChapterCfg) {
             cundangTitle = curChapterCfg.name;
         }
@@ -186,21 +141,21 @@ class GameCommon {
     public async getBookHistoryList() {//获取所有数据列表
         callbackGetBookHistoryList = function (data) {
             let documentList = [];
-            var slots = data.data.slots;
+            let slots = data.data.slots;
 
             // GameCommon.getInstance().getBookHistory(FILE_TYPE.HIDE_FILE);
             if (slots && slots.length > 0) {
                 documentList = slots;
-                var str: string = slots.length + 'bibibi';
+                let str: string = slots.length + 'bibibi';
                 str += '\n';//+// JSON.stringify(slots)
                 for (let i = 0, n = documentList.length; i < n; ++i) {
-                    var item = documentList[i];
+                    let item = documentList[i];
                     if (item && item.slotId) {
                         str += '\n' + JSON.stringify(item);
                         GameCommon.getInstance().parseChapter(item.slotId, item);
                     }
                 }
-                // for (var i:number=0;i<slots.lenth;i++) {
+                // for (let i:number=0;i<slots.lenth;i++) {
                 //     if(slots[i]&&slots[i].content)
                 //     {
                 //         str +='\n'+JSON.stringify(item);
@@ -228,7 +183,7 @@ class GameCommon {
         // if(tp)
         // return;//暂时注掉
         if (egret.Capabilities.os == 'Windows PC') {
-            var info = JSON.parse(egret.localStorage.getItem(tp.toString()));
+            let info = JSON.parse(egret.localStorage.getItem(tp.toString()));
             if (!info)
                 return;
             if (tp == 1) {
@@ -267,7 +222,7 @@ class GameCommon {
                     UserInfo.tipsDick = UserInfo.curBokData.tipsDick;
                 }
             } else {
-                var bookData: BookData = info;
+                let bookData: BookData = info;
                 UserInfo.fileDatas[tp] = bookData;
             }
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), tp);
@@ -373,7 +328,7 @@ class GameCommon {
 
 
                     }
-                    var bookData: BookData = JSON.parse(data.data.content);
+                    let bookData: BookData = JSON.parse(data.data.content);
                     UserInfo.fileDatas[data.data.slotId] = bookData;
                     // UserInfo.fileDatas[data.data.slotId].timestamp = UserInfo.curBokData.timestamp;
                     // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), tp);
@@ -392,7 +347,6 @@ class GameCommon {
                     break;
                 //引导存档
                 case FILE_TYPE.GUIDE_TP:
-
                     // UserInfo.guideDic = JSON.parse(data.data.content);
                     // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH), JSON.stringify(UserInfo.guideDic));
                     break;
@@ -405,48 +359,15 @@ class GameCommon {
 
         };
         platform.getBookHistory(GameDefine.BOOKID, tp);
-
-        // LocalStorageManager.getInstance().getBookHistory(tp);
     }
 
-    // public getLike(model:Modelanswer):string{
-    //     var str = model.like;
-    //     var awardStrAry: string[];
-    //     awardStrAry = str.split(",");
-    //     for(var i:number = 0 ;i<awardStrAry.length;i++)
-    //     {
-    //         if(Number(awardStrAry[i])>0)
-    //         {
-    //             return i+'_'+awardStrAry[i];
-    //         }
-    //     }
-
-    public parseStr() {
-        let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2];
-        var str = wentiModels[wentiId].ans;
-        var awardStrAry: string[];
-        if (str.indexOf(",") >= 0) {
-            awardStrAry = str.split(",");
-        } else {
-            awardStrAry.push(str);
-        }
-        var cfgs = answerModels[wentiId];
-        for (var k in cfgs) {
-            if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
-                return cfgs[k];
-            }
-        }
-    }
-
-    // }
     public addRoleLike(index) {
-        var awardStrAry: string[];
+        let awardStrAry: string[];
         if (index.indexOf(",") >= 0) {
             awardStrAry = index.split(",");
         }
         if (!awardStrAry || !awardStrAry.length)
             return;
-        // awardStrAry.shift();
         let delTim = 0;
         if (Number(awardStrAry[0]) > 0) {
             Tool.callbackTime(function () {
@@ -498,35 +419,27 @@ class GameCommon {
     }
 
     public getCurRoleLike(index, str): number {
-        var awardStrAry: string[] = str.split(",");
-        for (var i: number = 0; i < awardStrAry.length; i++) {
-            if (index == i) {
-                return Number(awardStrAry[i]);
-            }
-        }
+        return Number(str.split(",")[index]) || 0;
     }
 
-    public getRoleLikeAll(index, chapter: number = 0): number {
+    public getRoleLikeAll(index): number {
         let likeData = UserInfo.curBokData.answerId;
-        var likeNum = 0;
-        var ansCfg: Modelanswer;
-        for (var k in likeData) {
-            var awardStrAry: string[] = likeData[k].toString().split(",");
-            for (var i: number = 0; i < awardStrAry.length; i++) {
-                let optIndex: number = Number(awardStrAry[i]) - 1;
-                if (JsonModelManager.instance.getModelanswer()[k]) {
-                    ansCfg = JsonModelManager.instance.getModelanswer()[k][optIndex];
-                } else {
-                    ansCfg = null;
-                }
-
-                if (ansCfg) {
-                    if (chapter > 0) {
-                        let wentiCfg: Modelwenti = JsonModelManager.instance.getModelwenti()[k];
-                        if (chapter >= wentiCfg.chapter) continue;
+        let likeNum = 0;
+        for (let wentiID in likeData) {
+            if (likeData.hasOwnProperty(wentiID)) {
+                const wentiModel: Modelwenti = JsonModelManager.instance.getModelwenti()[wentiID];
+                if (GameCommon.isChapterInRoleJuqingTree(wentiModel.chapter, UserInfo.curchapter)) {
+                    let wentiAnswerModels = JsonModelManager.instance.getModelanswer()[wentiID];
+                    if (wentiAnswerModels) {
+                        let answerList: string[] = likeData[wentiID].toString().split(",");
+                        for (let i: number = 0; i < answerList.length; i++) {
+                            let answerID: number = Number(answerList[i]) - 1;
+                            let ansCfg: Modelanswer = wentiAnswerModels[answerID];
+                            if (ansCfg) {
+                                likeNum = likeNum + this.getCurRoleLike(index, ansCfg.like);
+                            }
+                        }
                     }
-
-                    likeNum = likeNum + this.getCurRoleLike(index, ansCfg.like);
                 }
             }
         }
@@ -534,13 +447,14 @@ class GameCommon {
     }
 
     public getSortLike(idx: number = 0) {
-        var items = [];
-        for (var i: number = 0; i < ROLE_INDEX.SIZE; i++) {
-            var data = {num: 0, id: i};
-            data.num = this.getRoleLikeAll(i);
-            items.push(data);
+        let items = [];
+        for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
+            items.push({
+                id: i,
+                num: this.getRoleLikeAll(i),
+            });
         }
-        items.sort(function (arg1, arg2) {
+        items.sort((arg1, arg2) => {
             if (arg2.num > arg1.num) {
                 return 1;
             } else if (arg2.num < arg1.num) {
@@ -549,17 +463,13 @@ class GameCommon {
                 return arg1.id - arg2.id;
             }
         });
-        // if (items[0].num == 0) {
-        //     items[1].id = items[0].id;
-        //     items[0].id = 2;
-        // }
         return items[idx];
     }
 
     public getSortLikeAry() {
-        var items = [];
-        for (var i: number = 0; i < ROLE_INDEX.SIZE; i++) {
-            var data = {num: 0, id: i};
+        let items = [];
+        for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
+            let data = {num: 0, id: i};
             data.num = this.getRoleLikeAll(i);
             items.push(data);
         }
@@ -572,16 +482,12 @@ class GameCommon {
                 return arg1.id - arg2.id;
             }
         });
-        // if (items[0].num == 0) {
-        //     items[1].id = items[0].id;
-        //     items[0].id = 2;
-        // }
         return items;
     }
 
     public parseChapter(tp, data) {
-        var str = data;
-        var awardStrAry: string[];
+        let str = data;
+        let awardStrAry: string[];
         switch (tp) {
             case FILE_TYPE.ANSWER_FILE:  //问题存档
                 // UserInfo.allWenTiAnswer = JSON.parse(data);
@@ -671,7 +577,7 @@ class GameCommon {
      * By 修改  如果传入的剧情块 不在当前章节列表（章节列表与角色好感度有关） 则直接返回Flase
      * **/
     public checkJuqingKuaiOpen(kuaiID1: number, kuaiID2: number): boolean {
-        var compare: boolean = kuaiID1 >= kuaiID2;
+        let compare: boolean = kuaiID1 >= kuaiID2;
 
         if (compare) {
             switch (kuaiID2) {
@@ -719,24 +625,12 @@ class GameCommon {
         PromptPanel.getInstance().showCommomTips(str);
     }
 
-    public showActionTips(str) {
-        PromptPanel.getInstance().showActionTips(str);
-    }
-
     public hideActionTips() {
         PromptPanel.getInstance().hideActionTips();
     }
 
-    public onShowQinMiGroup() {
-        PromptPanel.getInstance().onShowQinMiGroup();
-    }
-
     public onShowBuyTips(id, money, tp) {
         PromptPanel.getInstance().onShowBuyTips(id, money, tp);
-    }
-
-    public onShowBuyHaoGan(id: number = 0, onCallBack) {
-        PromptPanel.getInstance().onShowBuyHaoGan(id, onCallBack);
     }
 
     public onShowResultTips(str: string, isRight: boolean = true, btnlabel?: string, callBack?: Function, ...arys) {
@@ -841,12 +735,6 @@ class GameCommon {
         }
     }
 
-    public onunlockshoucang(id) {
-        UserInfo.allCollectionDatas[id] = id;
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UNLOCK_SHOUCANG), id);
-        GameCommon.instance.setBookData(FILE_TYPE.COLLECTION_FILE);
-    }
-
     public onCleanFile(data) {
         let cfg: Modeljuqingkuai = data;
         let cfg1: Modeljuqingkuai;
@@ -855,7 +743,7 @@ class GameCommon {
         }
         let curWenId = cfg.wentiId;
         let isClean = false;
-        for (var i: number = 0; i < UserInfo.curBokData.wentiId.length; i++) {
+        for (let i: number = 0; i < UserInfo.curBokData.wentiId.length; i++) {
             let id = UserInfo.curBokData.wentiId[i];
             if (UserInfo.curBokData.wentiId[i] == curWenId) {
                 isClean = true;
@@ -874,7 +762,7 @@ class GameCommon {
                 i = i - 1;
             }
         }
-        for (var k in UserInfo.curBokData.videoDic) {
+        for (let k in UserInfo.curBokData.videoDic) {
             let videoCfg: Modelshipin = JsonModelManager.instance.getModelshipin()[UserInfo.curBokData.videoDic[k]];
             if (videoCfg) {
                 if (videoCfg.juqing >= cfg.id) {
@@ -884,15 +772,27 @@ class GameCommon {
         }
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
     }
+
+    private static isChapterInRoleJuqingTree(chapter: number, curChapter: number): boolean {
+        for (let role = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
+            const roleTree = GameDefine.ROLE_JUQING_TREE[role];
+            const curIndex = roleTree.indexOf(curChapter);
+            if (curIndex !== -1) {
+                const index = roleTree.indexOf(chapter);
+                return index !== -1 && index <= curIndex;
+            }
+        }
+        return false;
+    }
 }
 
-declare var callbackdeleteBookHistory;
-declare var callbackGetBookHistory;
-declare var callbackGetBookLastHistory;
-declare var callbackGetBookHistoryList;
-declare var callbackSaveBookHistory;
-declare var callbackReport;
-declare var callbackGetUserPlatformData;
-declare var callbackGetBookConsumeData;
-declare var callbackReportBusinessEvent;
-declare var callbackGetBusinessEventData;//查询上报事件
+declare let callbackdeleteBookHistory;
+declare let callbackGetBookHistory;
+declare let callbackGetBookLastHistory;
+declare let callbackGetBookHistoryList;
+declare let callbackSaveBookHistory;
+declare let callbackReport;
+declare let callbackGetUserPlatformData;
+declare let callbackGetBookConsumeData;
+declare let callbackReportBusinessEvent;
+declare let callbackGetBusinessEventData;//查询上报事件

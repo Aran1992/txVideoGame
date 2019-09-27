@@ -24,5 +24,19 @@
 				</e:skinName>
 			</e:Button>
 
+
+
+
+
+			<e:Group id="resGroup" width="200" height="200" x="296" y="624" visible="false">
+				<e:Image source="action_msg_head_4_png" x="196" y="-126" scaleX="1" scaleY="1"/>
+				<e:Image source="action_msg_head_3_png" x="196" y="-126" scaleX="1" scaleY="1"/>
+				<e:Image source="action_msg_head_1_png" x="196" y="-126" scaleX="1" scaleY="1"/>
+				<e:Image source="action_msg_head_0_png" x="196" y="-126" scaleX="1" scaleY="1"/>
+				<e:Image source="action_msg_head_2_png" x="196" y="-126" scaleX="1" scaleY="1"/>
+				<e:Image source="action_msg_head_5_png" x="196" y="-126" scaleX="1" scaleY="1"/>
+				<e:Image source="action_msg_head_6_png" x="-52" y="164" scaleX="1" scaleY="1"/>
+			</e:Group>
+
     </e:Group>
 </e:Skin>

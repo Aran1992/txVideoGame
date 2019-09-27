@@ -389,8 +389,9 @@ class VideoManager {
     }
 
     public onwaiting() {
-        if (this.videoData && this.videoData.onWaitin())
+        if (this.videoData && this.videoData.onWaitin) {
             this.videoData.onWaitin();
+        }
     }
 
     //切换视频清晰度

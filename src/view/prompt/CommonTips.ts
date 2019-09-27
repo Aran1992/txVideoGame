@@ -12,7 +12,6 @@ class CommonTips extends eui.Component {
     private grp4: eui.Group;
     private desc4: eui.BitmapLabel;
     private grp5: eui.Group;
-    private desc5: eui.Label;
     private qinmiGroup: eui.Group;
     private buyGrp: eui.Group;
     private buyGroup1: eui.Group;
@@ -42,7 +41,6 @@ class CommonTips extends eui.Component {
     private isLikeTime: boolean = false;
     private itemTp: number;
     private itemId: number;
-    private _showBuyCall;
     private _buyId: number = 0;
     /**二级确认框**/
     private _confirmFunc: Function;
@@ -58,32 +56,31 @@ class CommonTips extends eui.Component {
 
     public setText(text: string): void {
         this.addChengJiuArr.push(text);
-        var obj = this;
         if (this.isLikeTime == true) {
-            Tool.callbackTime(function () {
-                if (obj.addChengJiuArr.length == 1) {
-                    obj.grp.x = -2000;
-                    obj.grp.visible = true;
-                    obj.desc.text = '成就: ' + text;
-                    obj.grp.alpha = 0.7;
-                    var tw = egret.Tween.get(obj.grp);//.wait(0).call(this.onCallBtnState, this);
+            Tool.callbackTime(() => {
+                if (this.addChengJiuArr.length == 1) {
+                    this.grp.x = -2000;
+                    this.grp.visible = true;
+                    this.desc.text = '成就: ' + text;
+                    this.grp.alpha = 0.7;
+                    let tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
                     tw.to({x: 43}, 1500);
                     tw.to({alpha: 1}, 2000);
-                    tw.to({alpha: 0}, 2000).wait(0).call(obj.onCallBtnState, obj);
-                    var tw1 = egret.Tween.get(obj.grp1);//.wait(0).call(this.onCallBtnState, this);
+                    tw.to({alpha: 0}, 2000).wait(0).call(this.onCallBtnState, this);
+                    let tw1 = egret.Tween.get(this.grp1);//.wait(0).call(this.onCallBtnState, this);
                     tw1.to({y: 257}, 500);
                 }
-            }, obj, 1000);
+            }, this, 1000);
         } else {
             if (this.addChengJiuArr.length == 1) {
-                obj.grp.x = -2000;
-                obj.grp.visible = true;
-                obj.desc.text = '成就: ' + text;
-                obj.grp.alpha = 0.7;
-                var tw = egret.Tween.get(obj.grp);//.wait(0).call(this.onCallBtnState, this);
+                this.grp.x = -2000;
+                this.grp.visible = true;
+                this.desc.text = '成就: ' + text;
+                this.grp.alpha = 0.7;
+                let tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
                 tw.to({x: 43}, 1500);
                 tw.to({alpha: 1}, 2000);
-                tw.to({alpha: 0}, 2000).wait(0).call(obj.onCallBtnState, obj);
+                tw.to({alpha: 0}, 2000).wait(0).call(this.onCallBtnState, this);
             }
         }
         this.isLikeTime = false;
@@ -135,12 +132,11 @@ class CommonTips extends eui.Component {
         // this.grp3.y = 50;
         this.desc3.text = str;
         this.grp3.visible = true;
-        var obj = this;
         if (str == 'preload失败请重新进入游戏')
             return;
-        Tool.callbackTime(function () {
-            obj.grp3.visible = false;
-        }, obj, 1000);
+        Tool.callbackTime(() => {
+            this.grp3.visible = false;
+        }, this, 1000);
     }
 
     //互动操作提示
@@ -151,18 +147,6 @@ class CommonTips extends eui.Component {
 
     public hideActionTips() {
         this.grp4.visible = false;
-    }
-
-    //功能开启提示
-    public onShowOpenTips(str) {
-        this.grp3.x = size.width - 350;
-        this.grp3.y = 50;
-        this.desc3.text = str;
-        this.grp3.visible = true;
-        var obj = this;
-        Tool.callbackTime(function () {
-            obj.grp3.visible = false;
-        }, obj, 1000);
     }
 
     public onShowQinMiGroup() {
@@ -187,13 +171,11 @@ class CommonTips extends eui.Component {
         this.onshowMaskBG();
     }
 
-    public onShowBuyHaoGan(id: number = 0, onCallBtnState) {
+    public onShowBuyHaoGan(id: number = 0) {
         if (id > 0) {
-            var spCfg: Modelshop = JsonModelManager.instance.getModelshop()[id];
             this.btnConfirm2['money'].text = 10;
         }
         this._buyId = id;
-        this._showBuyCall = onCallBtnState;
         this.buyGrp1.visible = true;
         this.onshowMaskBG();
     }
@@ -203,30 +185,29 @@ class CommonTips extends eui.Component {
         this.buyResultLab.text = str;
         this.buyResultImg.source = isRight ? "common_close2_png" : "common_close3_png";
         this.buyResult.alpha = 0;
-        var obj = this;
-        var tw = egret.Tween.get(this.buyResult);
+        let tw = egret.Tween.get(this.buyResult);
         tw.to({alpha: 1}, 1000);
         if (btnlabel) {
             this.result_closebtn.visible = true;
             this.btn_qianwang.visible = true;
-            var btnClickFunc = function (): void {
-                obj.btn_qianwang.removeEventListener(egret.TouchEvent.TOUCH_TAP, btnClickFunc, this);
-                obj.buyResult.visible = false;
+            let btnClickFunc = (): void => {
+                this.btn_qianwang.removeEventListener(egret.TouchEvent.TOUCH_TAP, btnClickFunc, this);
+                this.buyResult.visible = false;
                 callBack.call(null, arys);
             };
             this.btn_qianwang.label = btnlabel;
             this.btn_qianwang.addEventListener(egret.TouchEvent.TOUCH_TAP, btnClickFunc, this);
-            var btnCloseClick = function (): void {
-                obj.result_closebtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, btnCloseClick, this);
-                obj.buyResult.visible = false;
+            let btnCloseClick = (): void => {
+                this.result_closebtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, btnCloseClick, this);
+                this.buyResult.visible = false;
             };
             this.result_closebtn.addEventListener(egret.TouchEvent.TOUCH_TAP, btnCloseClick, this);
         } else {
             this.result_closebtn.visible = false;
             this.btn_qianwang.visible = false;
             tw.to({alpha: 0.8}, 500);
-            tw.to({alpha: 0}, 100).wait(0).call(function () {
-                obj.buyResult.visible = false;
+            tw.to({alpha: 0}, 100).wait(0).call(() => {
+                this.buyResult.visible = false;
             });
         }
     }
@@ -306,7 +287,7 @@ class CommonTips extends eui.Component {
         }
     }
 
-    private onAddToStage(event: egret.Event): void {
+    private onAddToStage(): void {
         this.onSkinName();
     }
 
@@ -318,7 +299,7 @@ class CommonTips extends eui.Component {
             this.grp.x = -2000;
             this.desc.text = '成就: ' + this.addChengJiuArr[0];
             this.grp.alpha = 0.7;
-            var tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
+            let tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
             tw.to({x: 43}, 1500);
             tw.to({alpha: 1}, 2000);
             tw.to({alpha: 0}, 2000).wait(0).call(this.onCallBtnState, this);
@@ -352,11 +333,7 @@ class CommonTips extends eui.Component {
     private onbtnConfirm2() {
         this.buyGrp1.visible = false;
         VideoManager.getInstance().videoResume();
-        // if (this._showBuyCall) {
-        // 	Tool.callback(this._showBuyCall, this._buyId, this._buyId);
-        // }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_HAOGAN));
-
         this.onShowResultTips('解锁成功');
         this.onhideMaskBG();
     }

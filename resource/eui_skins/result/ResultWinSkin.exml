@@ -1,72 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <e:Skin class="skins.ResultWinSkin" xmlns:e="http://ns.egret.com/eui" xmlns:n1s='*' xmlns:w="http://ns.egret.com/wing"
         width="1600" height="900">
-	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
-		<e:Image left="0" right="0" top="0" bottom="0"  source="cundang_bj_jpg"/>
 
-		<e:Label id="chapterName" horizontalCenter="0" verticalCenter="-241" size="36" fontFamily="SimHei"  visible="false"/>
-		<e:Group width="100%" verticalCenter="0" left="0" touchChildren="true" touchEnabled="false">
-		<e:Group id="noneCJ" touchChildren="true" height="100%" horizontalCenter="0" verticalCenter="0">
-                <e:Label text="一暂无成就一" size="35" fontFamily="SimHei" textAlign="center" strokeColor="0x3E0909"
-                         height="40" touchEnabled="false" horizontalCenter="0" verticalCenter="0" textColor="0xffffff" />
-
-
-            </e:Group>
-		<e:Scroller id="scroll" height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">
-					<e:Group id="goodsLayer">
-						<e:layout>
-							<e:HorizontalLayout horizontalAlign="center"  gap="31"/>
-						</e:layout>
-					</e:Group>
-				</e:Scroller>
-		</e:Group>
-<e:Button id="btnMain" label="返回主界面" width="251" height="71" scaleX="1" scaleY="1" bottom="56" horizontalCenter="-250">
-	<e:skinName>
-		<e:Skin states="up,down,disabled" width="109">
-			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png"
-			         source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0" />
-			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9"
-			         scaleY.down="0.9" />
-		</e:Skin>
-	</e:skinName>
-</e:Button>
-<e:Button id="btnBuy" width="317" height="129" scaleX="1" scaleY="1" label="商城" bottom="40" right="605" x="678" y="731"
-          visible="false">
-	<e:skinName>
-		<e:Skin states="up,down,disabled" width="109">
-			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="317" height="129" source="result_biaoqian_png"
-			         source.down="result_biaoqian_png" horizontalCenter="0" verticalCenter="0" />
-			<e:Label id="labelDisplay" text="" horizontalCenter="0" verticalCenter="0" size="45" fontFamily="SimHei"
-			         scaleX.down="0.9" scaleY.down="0.9" />
-		</e:Skin>
-	</e:skinName>
-</e:Button>
-<e:Button id="btnNext" label="前往下一章" width="251" height="71" scaleX="1" scaleY="1" horizontalCenter="250" bottom="56">
-	<e:skinName>
-		<e:Skin states="up,down,disabled" width="109">
-			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png"
-			         source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0" />
-			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9"
-			         scaleY.down="0.9" />
-		</e:Skin>
-	</e:skinName>
-</e:Button>
-</e:Group>
-<e:Group id='winEff' height="100%" width="100%" touchEnabled="false" touchChildren="true"  visible="false">
+<e:Group id='winEff' height="100%" width="100%" touchEnabled="false" touchChildren="true" >
 <e:Image width="100%" height="100%"  y="-1.52" source="cundang_bj_jpg"/>
 
 
 
-<e:Button id="jixu" label="继续" width="251" height="71" scaleX="1" scaleY="1" horizontalCenter="0" bottom="40">
-	<e:skinName>
-		<e:Skin states="up,down,disabled" width="109">
-			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png"
-			         source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0" />
-			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9"
-			         scaleY.down="0.9" />
-		</e:Skin>
-	</e:skinName>
-</e:Button>
+
 <e:Group width="100%" verticalCenter="18" left="0" touchChildren="true" touchEnabled="false">
 	<n1s:ResultWinItem id="roleItem1" skinName="skins.ResultWinItemSkin"  touchEnabled="true" />
 	<n1s:ResultWinItem id="roleItem2" skinName="skins.ResultWinItemSkin"  touchChildren="true"  x="482.94"/>
@@ -76,6 +17,22 @@
 		<e:HorizontalLayout gap="20" horizontalAlign="center" verticalAlign="middle" />
 	</e:layout>
 </e:Group>
+	<e:Button id="btnMain" label="返回主界面" width="251" height="71" scaleX="1" scaleY="1" bottom="56" horizontalCenter="-250" x="425" y="773">
+		<e:skinName>
+		<e:Skin states="up,down,disabled" width="109">
+			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png" source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btnNext" label="前往下一章" width="251" height="71" scaleX="1" scaleY="1" horizontalCenter="250" bottom="56" x="925" y="773">
+		<e:skinName>
+		<e:Skin states="up,down,disabled" width="109">
+			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png" source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
 </e:Group>
 	<e:Group horizontalCenter="0" top="81">
 		<e:Group horizontalCenter="0" top="91">

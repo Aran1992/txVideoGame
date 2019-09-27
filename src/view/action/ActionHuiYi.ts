@@ -1,10 +1,10 @@
-class ActionHuiYi extends ActionSceneBase {
-    private timeBar1: eui.ProgressBar;
-    private timeBar2: eui.ProgressBar;
-    private miaoshu: eui.Label;
+class ActionHuiYi extends ActionTimerSceneBase {
     private qinmiGroup: eui.Group;
     private option_roles: number[] = [2, 3, 1, 4];
     private ansId: number = 0;
+    private exitTimer: number;
+    private defaultAnswerID: number;
+    private isSelected: boolean;
 
     public exit() {
         this.stopRun();
@@ -19,16 +19,16 @@ class ActionHuiYi extends ActionSceneBase {
         super.onInit();
         this.updateResize();
 
-        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onCallBack, this);
-        this.initTimeInfo();
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
         for (let i: number = 1; i < 5; i++) {
             this['groupHand' + i].touchEnabled = true;
             this['groupHand' + i].name = i;
             this['groupHand' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventClick, this);
             this['timeImg' + i].visible = true;
             this['suo' + i].visible = true;
+            this['selected' + i].visible = false;
         }
-        this.qinmiGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+        this.qinmiGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickQinmiGroup, this);
         if (!UserInfo.tipsDick[this.model.id]) {
             UserInfo.tipsDick[this.model.id] = this.model.id;
             this.qinmiGroup.visible = true;
@@ -39,6 +39,7 @@ class ActionHuiYi extends ActionSceneBase {
         let data1 = GameCommon.getInstance().getSortLike(0);
         let data2 = GameCommon.getInstance().getSortLike(1);
         let idx1: number = this.option_roles[data1.id];
+        this.defaultAnswerID = idx1;
         let idx2: number = this.option_roles[data2.id];
         this['timeImg' + idx1].visible = false;
         this['suo' + idx1].visible = false;
@@ -55,31 +56,23 @@ class ActionHuiYi extends ActionSceneBase {
         }
     }
 
-    protected update(dt): void {
-        super.update(dt);
-        this.timeBar2.value = this.runTime;
-        this.timeBar1.value = this.runTime;
-    }
-
-    private initTimeInfo() {
-        this.miaoshu.text = JsonModelManager.instance.getModelhudong()[this.model.type].des;
-
-        this.timeBar1.slideDuration = 0;
-        this.timeBar1.maximum = this.maxTime;
-        this.timeBar1.value = this.maxTime;
-
-        this.timeBar2.slideDuration = 0;
-        this.timeBar2.maximum = this.maxTime;
-        this.timeBar2.value = this.maxTime;
-    }
-
     protected onBackSuccess() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO),
-            {answerId: this.ansId, wentiId: this.model.id, click: 1});
+        if (this.exitTimer) {
+            egret.clearTimeout(this.exitTimer);
+        }
+        GameDispatcher.getInstance().dispatchEvent(
+            new egret.Event(GameEvent.ONSHOW_VIDEO),
+            {answerId: this.ansId, wentiId: this.model.id, click: 1}
+        );
         this.exit();
     }
 
-    private onClick() {
+    protected onBackFail() {
+        this.ansId = this.defaultAnswerID;
+        this.onBackSuccess();
+    }
+
+    private onClickQinmiGroup() {
         if (this.qinmiGroup.visible) {
             this.qinmiGroup.visible = false;
             VideoManager.getInstance().videoResume();
@@ -87,6 +80,9 @@ class ActionHuiYi extends ActionSceneBase {
     }
 
     private onEventClick(event: egret.Event) {
+        if (this.isSelected) {
+            return;
+        }
         if (this.qinmiGroup.visible) {
             this.qinmiGroup.visible = false;
             VideoManager.getInstance().videoResume();
@@ -97,15 +93,17 @@ class ActionHuiYi extends ActionSceneBase {
         this.ansId = name;
         if (this['timeImg' + name].visible) {
             VideoManager.getInstance().videoPause();
-            GameCommon.getInstance().onShowBuyHaoGan(name, this.onCallBack);
-            return;
+            PromptPanel.getInstance().onShowBuyHaoGan(name);
+        } else {
+            this['selected' + name].visible = true;
+            this.exitTimer = egret.setTimeout(() => this.onBackSuccess(), this, 1000);
+            this.isSelected = true;
         }
-        this.ansId = name;
-        this.onBackSuccess();
     }
 
-    private onCallBack() {
-        this.onBackSuccess();
+    private onBuySuccessCallback() {
+        this['timeImg' + this.ansId].visible = false;
+        this['suo' + this.ansId].visible = false;
     }
 
     private onExit() {

@@ -6,17 +6,10 @@
 class GameWorld extends egret.DisplayObjectContainer {
     public stage: egret.Stage;
     public PupoBar: egret.DisplayObjectContainer;//弹出面板层
-    private sceneLayer: egret.DisplayObjectContainer;
-    private promptLayer: egret.DisplayObjectContainer;
-    private LoginSuccsess: boolean = false;//登录成功
-    private isloginin: boolean = false;
     private PupoBar1: egret.DisplayObjectContainer;//弹出面板层
-    private panelDict;
-    private setPanel: PlayerSettingPanel;
+    private readonly panelDict;
     private videoLayer: egret.DisplayObjectContainer;//视频层
     private isAgaig: boolean = false;
-    private settingMain: PlayerSettingPanel;
-    private _isPause: string = '';
     private videoData: VideoData;
 
     public constructor() {
@@ -27,11 +20,10 @@ class GameWorld extends egret.DisplayObjectContainer {
         this.onRegistEvent();
     }
 
-    public readFiel(data) {
+    public readFile() {
         if (!GameDefine.ISFILE_STATE) {
             return;
         }
-        // GameDefine.ISFILE_STATE = false;
         if (!this.videoData) {
             this.videoData = new VideoData();
             this.videoLayer.addChild(this.videoData);
@@ -58,9 +50,6 @@ class GameWorld extends egret.DisplayObjectContainer {
     }
 
     public createGameScene(chapId: number = 0): void {
-        // if (this.isAgaig) {
-        // this.addChild(this.videoData);
-        // }
         if (!this.videoData) {
             this.videoData = new VideoData();
             this.videoLayer.addChild(this.videoData);
@@ -68,12 +57,11 @@ class GameWorld extends egret.DisplayObjectContainer {
             this.videoData.visible = true;
         }
         this.touchEnabled = false;
-        var curSelf = this;
         this.onButtonClick(chapId);
     }
 
     private onRegistEvent(): void {
-        GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.readFiel, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.readFile, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SHOW_VIEW, this.onShowView, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SHOW_VIEW_WITH_PARAM, this.onShowViewWithParam, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.CLOSE_VIEW, this.onCloseView, this);
@@ -100,7 +88,7 @@ class GameWorld extends egret.DisplayObjectContainer {
     }
 
     private onCloseView(data): void {
-        var windowName = data.data;
+        let windowName = data.data;
         if (this.panelDict[windowName]) {
             if (windowName == 'ControlTipsPanel') {
                 this.PupoBar1.removeChild(this.panelDict[windowName]);
@@ -127,7 +115,7 @@ class GameWorld extends egret.DisplayObjectContainer {
     }
 
     private onShowView(data): void {
-        var windowName = data.data;
+        let windowName = data.data;
         if (this.panelDict[windowName]) {
             this.PupoBar.removeChild(this.panelDict[windowName]);
             this.panelDict[windowName] = null;
@@ -135,16 +123,19 @@ class GameWorld extends egret.DisplayObjectContainer {
             if (data.data.windowName) {
 
                 windowName = data.data.windowName;
-                var d;
+                let d;
                 if (data.data.data) {
+                    // @ts-ignore
                     d = new window[windowName](data.data.data);
                 } else {
+                    // @ts-ignore
                     d = new window[windowName]();
                 }
                 this.panelDict[windowName] = d;
                 this.PupoBar.addChild(this.panelDict[windowName]);
             } else {
-                var d = new window[windowName](1);
+                // @ts-ignore
+                let d = new window[windowName](1);
                 this.panelDict[windowName] = d;
                 if (windowName == 'ControlTipsPanel') {
                     this.PupoBar1.addChild(this.panelDict[windowName]);
@@ -157,14 +148,13 @@ class GameWorld extends egret.DisplayObjectContainer {
     }
 
     private onShowViewWithParam(event: egret.Event): void {
-        var window_param: WindowParam = event.data as WindowParam;
-        var windowName = window_param.windowname;
+        let window_param: WindowParam = event.data as WindowParam;
+        let windowName = window_param.windowname;
         if (this.panelDict[windowName]) {
             this.PupoBar.removeChild(this.panelDict[windowName]);
             this.panelDict[windowName] = null;
         } else {
-            var panel = new window[windowName](window_param.data);
-            this.panelDict[windowName] = panel;
+            this.panelDict[windowName] = new window[windowName](window_param.data);
             this.PupoBar.addChild(this.panelDict[windowName]);
         }
     }
@@ -202,9 +192,8 @@ class GameWorld extends egret.DisplayObjectContainer {
     }
 
     private onButtonClick(chapId: number) {
-        // GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
         GameDefine.CUR_IS_MAINVIEW = false;
-        var curChapterCfg = JsonModelManager.instance.getModelchapter()[chapId];
+        const curChapterCfg = JsonModelManager.instance.getModelchapter()[chapId];
         let videoIds = curChapterCfg.videoSrc.split(",");
         VideoManager.getInstance().updateVideoData(videoIds[0]);
         this.videoData.setVideos(videoIds);
@@ -230,9 +219,9 @@ class GameWorld extends egret.DisplayObjectContainer {
             GameCommon.getInstance().removeLoading();
             return;
         }
-        var src = cfg.videoId;
+        let src = cfg.videoId;
 
-        var wentiId = data.data.cfg.wentiId;
+        let wentiId = data.data.cfg.wentiId;
         if (VideoManager.getInstance().loadSrc == cfg.videoId && GameDefine.CUR_PLAYER_VIDEO == 1) {
             GameCommon.getInstance().showLoading();
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
@@ -307,7 +296,7 @@ class GameWorld extends egret.DisplayObjectContainer {
         VideoManager.getInstance().updateVideoData(src);
         let wentiCfg: Modelwenti = wentiModels[wentiId];
         VideoManager.getInstance().updateGameChapter(wentiCfg.chapter);
-        var obj = this;
+        let obj = this;
         Tool.callbackTime(function () {
             if (obj.isAgaig) {
                 obj.isAgaig = false;

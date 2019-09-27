@@ -1,5 +1,5 @@
-class ActionCheckDrink extends ActionSceneBase {
-    private DRINK_MAX: number = 5;
+class ActionListen extends ActionSceneBase {
+    private DRINK_MAX: number = 4;
     private ansId: number;
     private isSelected: boolean;
     private timeBar1: eui.ProgressBar;
@@ -12,13 +12,7 @@ class ActionCheckDrink extends ActionSceneBase {
     }
 
     protected onSkinName(): void {
-        if (this.paramList[3] === "0") {
-            this.skinName = skins.ActionCheckDrink;
-        } else if (this.paramList[3] === "1") {
-            this.skinName = skins.ActionImageSelectSkin;
-        } else {
-            this.skinName = skins.ActionCheckDrink;
-        }
+        this.skinName = skins.ActionListen;
     }
 
     protected onInit(): void {
@@ -40,25 +34,13 @@ class ActionCheckDrink extends ActionSceneBase {
             checkBtn.y = Math.floor(size.height * rate_y);
             checkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectDrink, this);
         }
+        GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_FULL_END, this.exit, this);
     }
 
     protected update(dt): void {
         super.update(dt);
         this.timeBar1.value = this.runTime;
         this.timeBar2.value = this.runTime;
-    }
-
-    protected onBackFail() {
-        this.onBackSuccess();
-    }
-
-    protected onBackSuccess() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO), {
-            answerId: this.ansId,
-            wentiId: this.model.id,
-            click: 1
-        });
-        this.exit();
     }
 
     private initTimeInfo() {
@@ -70,11 +52,26 @@ class ActionCheckDrink extends ActionSceneBase {
 
     private onSelectDrink(event: egret.Event): void {
         if (!this.isSelected) {
-            this.ansId = (event.currentTarget as eui.RadioButton).value;
             this.isSelected = true;
+            const button = (event.currentTarget as eui.RadioButton);
+            this.ansId = parseInt(button.value);
             for (let i: number = 0; i < this.DRINK_MAX; i++) {
                 (this[`drink${i}_btn`] as eui.RadioButton).touchEnabled = false;
             }
+            SoundManager.getInstance().playSound(`music${this.ansId}.mp3`);
+            const DURATION = 100;
+            button.enabled = true;
+            egret.Tween.get(button)
+                .to({alpha: 0}, DURATION)
+                .to({alpha: 1}, DURATION)
+                .call(() => button.enabled = false)
+                .wait(10000)
+                .call(() => {
+                    GameDispatcher.getInstance().dispatchEvent(
+                        new egret.Event(GameEvent.VIDEO_FULL_END),
+                        (this.ansId + 3).toString()
+                    );
+                });
         }
     }
 

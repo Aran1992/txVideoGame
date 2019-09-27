@@ -52,10 +52,10 @@ class Tool {
     }
 
     public static callbackTime(callback, target, time, ...param) {
-        var timeoutKey = -1;
+        let timeoutKey = -1;
         if (time > 0) {
-            var callbackObj = {intervalId: 0, callback: callback, target: target, time: time, args: param};
-            var callbackFunc = function (callbackObj): void {
+            let callbackObj = {intervalId: 0, callback: callback, target: target, time: time, args: param};
+            let callbackFunc = (callbackObj): void => {
                 this.callback(callbackObj.callback, callbackObj.target, ...callbackObj.args);
                 egret.clearTimeout(callbackObj.intervalId);
             };
@@ -76,7 +76,7 @@ class Tool {
 
     public static addTimer(callback, thisObject, time: number = 1000) {
         if (!Tool.timerManager[time.toString()]) {
-            var timer: egret.Timer = new egret.Timer(time);
+            let timer: egret.Timer = new egret.Timer(time);
             timer.start();
             Tool.timerManager[time.toString()] = timer;
         }
@@ -91,7 +91,7 @@ class Tool {
     }
 
     public static removeArrayObj(array: any[], obj) {
-        var idx = array.indexOf(obj);
+        let idx = array.indexOf(obj);
         if (idx >= 0) {
             array.splice(idx, 1);
         }
@@ -103,14 +103,14 @@ class Tool {
     }
 
     public static angle(startx, starty, endx, endy) {
-        var diff_x = endx - startx;
-        var diff_y = endy - starty;
+        let diff_x = endx - startx;
+        let diff_y = endy - starty;
         // 返回角度，不是弧度
         return 360 * Math.atan(diff_y / diff_x) / (2 * Math.PI);
     }
 
     public static angleTo360(startPosx, startPosy, endPosx, endPosy) {
-        var angle = this.angle(startPosx, startPosy, endPosx, endPosy);
+        let angle = this.angle(startPosx, startPosy, endPosx, endPosy);
         if (endPosy >= startPosy) {
             if (endPosx >= startPosx) {
                 angle = 180 - angle;
@@ -160,8 +160,8 @@ class Tool {
 
     //根据角度和距离计算坐标   angle是从计算机坐标系 0 - 360;
     public static beelinePointByAngle(x: number, y: number, angle: number, distance: number): egret.Point {
-        var targetPoint: egret.Point = new egret.Point();
-        var radian: number = 0;
+        let targetPoint: egret.Point = new egret.Point();
+        let radian: number = 0;
         if (angle <= 90) {
             radian = angle * (Math.PI / 180);
             targetPoint.x = x + Math.sin(radian) * distance;
@@ -195,8 +195,8 @@ class Tool {
     //解压ZIP
     // public static readZipToXml(xmlName: string): egret.XML {
     //     try {
-    //         var zip = new JSZip().load(RES.getRes("model_bin"), new GameJSZipLoadOptions());
-    //         var xml = zip.file(xmlName).asText();
+    //         let zip = new JSZip().load(RES.getRes("model_bin"), new GameJSZipLoadOptions());
+    //         let xml = zip.file(xmlName).asText();
     //         xml = xml.replace(/\<?.*?\/?>/, "");
     //         return egret.XML.parse(xml);
     //     } catch (e) {
@@ -253,15 +253,15 @@ class Tool {
 
     //截屏绘制
     public static onDrawDisObjToTexture(obj: egret.DisplayObject, clipBounds?: egret.Rectangle, scale: number = 1): egret.RenderTexture {
-        var rt: egret.RenderTexture = new egret.RenderTexture;
+        let rt: egret.RenderTexture = new egret.RenderTexture;
         rt.drawToTexture(obj, clipBounds, scale);
         return rt;
     }
 
     /**属性对象转数组**/
     public static Object2Ary(param) {
-        var arr: number[] = [];
-        for (var key in param) {
+        let arr: number[] = [];
+        for (let key in param) {
             arr.push(param[key]);
         }
         return arr;
@@ -269,9 +269,9 @@ class Tool {
 
     /**拼接属性加成字符串提示**/
     public static jointHintAttributeAddStr(arr) {
-        var len = arr.length;
-        var ret: egret.ITextElement[] = [];
-        for (var i = 0; i < len; i++) {
+        let len = arr.length;
+        let ret: egret.ITextElement[] = [];
+        for (let i = 0; i < len; i++) {
             ret.push({text: arr[i][0], style: {textColor: 0XFFFFFF}});
             ret.push({text: "+" + arr[i][1], style: {textColor: 0X00FF00}});
             ret.push({text: "\n", style: {}});
@@ -307,9 +307,9 @@ class Tool {
      */
     public static getTimeStr(time: number): string {
         if (time > 0) {
-            var hour = Math.floor(time / 3600);
-            var minute = Math.floor((time % 3600) / 60);
-            var second = Math.floor(time % 60);
+            let hour = Math.floor(time / 3600);
+            let minute = Math.floor((time % 3600) / 60);
+            let second = Math.floor(time % 60);
             return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute) + ":" + (second < 10 ? "0" + second : second);
         }
         return "00:00:00";
@@ -321,10 +321,10 @@ class Tool {
      */
     public static getDayHourMinuteTimeStr(time: number): string {
         if (time > 0) {
-            var day = Math.floor(time / 86400);
-            var hour = Math.floor((time % 86400) / 3600);
-            var minute = Math.floor((time % 3600) / 60);
-            var second = Math.floor(time % 60);
+            let day = Math.floor(time / 86400);
+            let hour = Math.floor((time % 86400) / 3600);
+            let minute = Math.floor((time % 3600) / 60);
+            let second = Math.floor(time % 60);
             return day + "天" + (hour < 10 ? "0" + hour : hour) + "时" + (minute < 10 ? "0" + minute : minute) + "分";
         }
         return "00:00:00";
@@ -336,8 +336,8 @@ class Tool {
      *
      */
     public static formatZeroDate(date: Date) {
-        var str: string = date.toString();
-        var reg = /[0-9]{2}:[0-9]{2}:[0-9]{2}/g;
+        let str: string = date.toString();
+        let reg = /[0-9]{2}:[0-9]{2}:[0-9]{2}/g;
         str = str.replace(reg, "00:00:00");
         date = new Date(Date.parse(str));
         return date;
@@ -375,7 +375,7 @@ class Tool {
     }
 
     public static getChineseByImgNum(num): string {
-        var chinese_digit: string = '' + (num);
+        let chinese_digit: string = '' + (num);
         if (chinese_digit.length == 2) {
             if (chinese_digit[0] == '1') {
                 if (chinese_digit[1] != '9')
@@ -425,7 +425,7 @@ class Tool {
 
     //转换成汉字格式数字
     public static toChineseNum(num: number): string {
-        var chinese_digit: string = '' + num;
+        let chinese_digit: string = '' + num;
         if (chinese_digit.length == 2) {
             if (num < 20) {
                 chinese_digit = '0' + (chinese_digit[1] != '0' ? chinese_digit[1] : "");
@@ -440,7 +440,7 @@ class Tool {
 
     // }
     public static currencyTo(sNum): string {
-        var nNum = parseFloat(sNum);
+        let nNum = parseFloat(sNum);
         if (!isNaN(nNum)) {
             return nNum.toFixed(2);
         }
@@ -476,8 +476,8 @@ class Tool {
      * 截取链接里的参数值
      * **/
     public static getQueryString(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        let r = window.location.search.substr(1).match(reg);
         if (r != null)
             return r[2].toString();
         return null;

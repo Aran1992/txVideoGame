@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.ActionListen" width="1600" height="900" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<e:Group touchChildren="true" width="100%" height="100%">
+		<e:Group horizontalCenter="0" top="32">
+			<e:Image source="action_timedi_png" horizontalCenter="0" top="0" locked="true" />
+			<e:ProgressBar id="timeBar1" skinName="skins.ActionBar1Skin" scaleX="-1" horizontalCenter="-125" value="100" />
+			<e:ProgressBar id="timeBar2" skinName="skins.ActionBar1Skin" horizontalCenter="125" value="100" />
+			<e:Label id="desc" text="" fontFamily="SimHei" size="40" height="60" verticalAlign="middle" verticalCenter="0"
+			         horizontalCenter="0" />
+		</e:Group>
+		<e:Group id="tabGroup" width="100%" height="100%">
+			<e:RadioButton id="drink0_btn" groupName="tabGroup" value="1"  verticalCenter="0" horizontalCenter="-600">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_listen_1_png" source.down="action_listen_1_png" source.disabled="action_listen_2_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+			<e:RadioButton id="drink1_btn" groupName="tabGroup" value="2" verticalCenter="0" horizontalCenter="-200">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_listen_1_png" source.down="action_listen_1_png" source.disabled="action_listen_2_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+			<e:RadioButton id="drink2_btn" groupName="tabGroup" value="3" verticalCenter="0" horizontalCenter="200">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_listen_1_png" source.down="action_listen_1_png" source.disabled="action_listen_2_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+			<e:RadioButton id="drink3_btn" groupName="tabGroup" value="4" verticalCenter="0" horizontalCenter="600">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="action_listen_1_png" source.down="action_listen_1_png" source.disabled="action_listen_2_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+		</e:Group>
+	</e:Group>
+</e:Skin>

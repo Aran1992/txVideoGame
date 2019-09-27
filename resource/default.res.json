@@ -287,6 +287,11 @@
 			"name": "music_yuan_png"
 		},
 		{
+			"url": "assets/action/music/action_music_hand.png",
+			"type": "image",
+			"name": "action_music_hand_png"
+		},
+		{
 			"url": "assets/action/perfect.png?v=734",
 			"type": "image",
 			"name": "perfect_png"
@@ -4402,99 +4407,164 @@
 			"name": "action_music_good_png"
 		},
 		{
-			"name": "action_msg_bg_self_png",
+			"url": "assets/action/msg/action_msg_bg_self.png",
 			"type": "image",
-			"url": "assets/action/msg/action_msg_bg_self.png"
+			"name": "action_msg_bg_self_png"
 		},
 		{
-			"name": "action_msg_bg_your_png",
+			"url": "assets/action/msg/action_msg_bg_your.png",
 			"type": "image",
-			"url": "assets/action/msg/action_msg_bg_your.png"
+			"name": "action_msg_bg_your_png"
 		},
 		{
-			"name": "action_msg_head_self_png",
+			"url": "assets/action/msg/action_msg_head_self.png",
 			"type": "image",
-			"url": "assets/action/msg/action_msg_head_self.png"
+			"name": "action_msg_head_self_png"
 		},
 		{
-			"name": "action_msg_head_your_png",
+			"url": "assets/action/msg/action_msg_head_your.png",
 			"type": "image",
-			"url": "assets/action/msg/action_msg_head_your.png"
+			"name": "action_msg_head_your_png"
 		},
 		{
-			"name": "action_msg_input_png",
+			"url": "assets/action/msg/action_msg_input.png",
 			"type": "image",
-			"url": "assets/action/msg/action_msg_input.png"
+			"name": "action_msg_input_png"
 		},
 		{
-			"name": "action_msg_send_png",
+			"url": "assets/action/msg/action_msg_send.png",
 			"type": "image",
-			"url": "assets/action/msg/action_msg_send.png"
+			"name": "action_msg_send_png"
 		},
 		{
-			"name": "msg_shurukuang_png",
+			"url": "assets/action/msg/msg_shurukuang.png",
 			"type": "image",
-			"url": "assets/action/msg/msg_shurukuang.png"
+			"name": "msg_shurukuang_png"
 		},
 		{
-			"name": "action_check_drink_5_png",
+			"url": "assets/action/check_drink/action_check_drink_5.png",
 			"type": "image",
-			"url": "assets/action/check_drink/action_check_drink_5.png"
+			"name": "action_check_drink_5_png"
 		},
 		{
-			"name": "action_check_drink_1_png",
+			"url": "assets/action/check_drink/action_check_drink_1.png",
 			"type": "image",
-			"url": "assets/action/check_drink/action_check_drink_1.png"
+			"name": "action_check_drink_1_png"
 		},
 		{
-			"name": "action_check_drink_2_png",
+			"url": "assets/action/check_drink/action_check_drink_2.png",
 			"type": "image",
-			"url": "assets/action/check_drink/action_check_drink_2.png"
+			"name": "action_check_drink_2_png"
 		},
 		{
-			"name": "action_check_drink_3_png",
+			"url": "assets/action/check_drink/action_check_drink_3.png",
 			"type": "image",
-			"url": "assets/action/check_drink/action_check_drink_3.png"
+			"name": "action_check_drink_3_png"
 		},
 		{
-			"name": "action_check_drink_4_png",
+			"url": "assets/action/check_drink/action_check_drink_4.png",
 			"type": "image",
-			"url": "assets/action/check_drink/action_check_drink_4.png"
+			"name": "action_check_drink_4_png"
 		},
 		{
-			"name": "action_image_select_1_png",
+			"url": "assets/common/common_chengjiu.png",
 			"type": "image",
-			"url": "assets/action/image_select/action_image_select_1.png"
+			"name": "common_chengjiu_png"
 		},
 		{
-			"name": "action_image_select_2_png",
+			"url": "assets/common/common_qinmi.png",
 			"type": "image",
-			"url": "assets/action/image_select/action_image_select_2.png"
+			"name": "common_qinmi_png"
 		},
 		{
-			"name": "action_image_select_3_png",
+			"url": "assets/action/listen/action_listen_1.png",
 			"type": "image",
-			"url": "assets/action/image_select/action_image_select_3.png"
+			"name": "action_listen_1_png"
 		},
 		{
-			"name": "action_image_select_4_png",
+			"url": "assets/action/listen/action_listen_2.png",
 			"type": "image",
-			"url": "assets/action/image_select/action_image_select_4.png"
+			"name": "action_listen_2_png"
 		},
 		{
-			"name": "action_image_select_5_png",
+			"url": "assets/action/msg/action_msg_head_0.png",
 			"type": "image",
-			"url": "assets/action/image_select/action_image_select_5.png"
+			"name": "action_msg_head_0_png"
 		},
 		{
-			"name": "common_chengjiu_png",
+			"url": "assets/action/msg/action_msg_head_1.png",
 			"type": "image",
-			"url": "assets/common/common_chengjiu.png"
+			"name": "action_msg_head_1_png"
 		},
 		{
-			"name": "common_qinmi_png",
+			"url": "assets/action/msg/action_msg_head_2.png",
 			"type": "image",
-			"url": "assets/common/common_qinmi.png"
+			"name": "action_msg_head_2_png"
+		},
+		{
+			"url": "assets/action/msg/action_msg_head_3.png",
+			"type": "image",
+			"name": "action_msg_head_3_png"
+		},
+		{
+			"url": "assets/action/msg/action_msg_head_4.png",
+			"type": "image",
+			"name": "action_msg_head_4_png"
+		},
+		{
+			"url": "assets/action/msg/action_msg_head_5.png",
+			"type": "image",
+			"name": "action_msg_head_5_png"
+		},
+		{
+			"url": "assets/action/msg/action_msg_head_6.png",
+			"type": "image",
+			"name": "action_msg_head_6_png"
+		},
+		{
+			"url": "assets/action/check_drink/1.png",
+			"type": "image",
+			"name": "action_select_1_png"
+		},
+		{
+			"url": "assets/action/check_drink/2.png",
+			"type": "image",
+			"name": "action_select_2_png"
+		},
+		{
+			"url": "assets/action/check_drink/3.png",
+			"type": "image",
+			"name": "action_select_3_png"
+		},
+		{
+			"url": "assets/action/check_drink/4.png",
+			"type": "image",
+			"name": "action_select_4_png"
+		},
+		{
+			"url": "assets/action/check_drink/5.png",
+			"type": "image",
+			"name": "action_select_5_png"
+		},
+		{
+			"url": "assets/action/check_drink/line.png",
+			"type": "image",
+			"name": "action_select_line_png"
+		},
+		{
+			"url": "assets/action/check_drink/name-bg.png",
+			"type": "image",
+			"name": "action_select_name_bg_png"
+		},
+		{
+			"url": "assets/action/check_drink/white.png",
+			"type": "image",
+			"name": "action_select_white_png"
+		},
+		{
+			"url": "assets/action/action_huyi_buy.png",
+			"type": "image",
+			"name": "action_huyi_buy_png"
 		},
 		{
 			"name": "shop_shaixuan2_toggle2_png",
