@@ -1,4 +1,8 @@
 declare module skins{
+	class AboutSkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class ActionBar1Skin extends eui.Skin{
 	}
 }
@@ -120,6 +124,10 @@ declare module skins{
 }
 declare module skins{
 	class Common_TabButtonSkin3 extends eui.Skin{
+	}
+}
+declare module skins{
+	class Common_TabButtonSkin4 extends eui.Skin{
 	}
 }
 declare module skins{

@@ -2,7 +2,7 @@
   "global": {
     "globalAutoLayerMarkEnable": false,
     "globalRulerEnable": true,
-    "globalAdsorbEnable": true
+    "globalAdsorbEnable": false
   },
   "16c47b075bb": {
     "backgroundX": 0,
@@ -12,5 +12,8 @@
     "useBgImage": true,
     "useBgColor": true,
     "backgroundAlpha": 100
+  },
+  "16d615f8c43": {
+    "guideLinesEnabled": false
   }
 }

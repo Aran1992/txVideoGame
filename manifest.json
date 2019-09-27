@@ -72,6 +72,7 @@
 		"bin-debug/view/action/SoundTrackBody.js",
 		"bin-debug/view/activity/ActivityPanel.js",
 		"bin-debug/view/control/ControlTipsPanel.js",
+		"bin-debug/view/mainUI/AboutPanel.js",
 		"bin-debug/view/mainUI/MainView.js",
 		"bin-debug/view/mainUI/PlayerSettingPanel.js",
 		"bin-debug/view/prompt/BuyTipsPanel.js",

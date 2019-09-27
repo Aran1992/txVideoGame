@@ -9,6 +9,10 @@ class AboutPanel extends eui.Component{
     private qiuGroup:eui.Group;
     private slideGroup:eui.Group;
 
+    private idScroller:eui.Scroller;
+    private idViewPort:eui.Group;
+    private idProtcalText:eui.Label
+
     private _selectIndex:number = 1;
     private _subSelectIndex:number = 1;
     private qiuImgs:eui.Image[];
@@ -16,7 +20,7 @@ class AboutPanel extends eui.Component{
     private starPos: number = 0;
     private endPos: number = 0;
     private imgIndx: number = 1;
-    private imgMaxNumb: number = 5;
+    private imgMaxNumb: number = 4;
     private _playTween: boolean;
     private _imageWidth:number =0;
 
@@ -31,6 +35,11 @@ class AboutPanel extends eui.Component{
         this.skinName = skins.AboutSkin;
     }
     
+    
+    private updateResize() {
+        this.width = size.width;
+        this.height = size.height;
+    }
     private onLoadComplete(){          
         for (let i=1;i<=3;i++){
             this["idTab"+i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTabClick, this);
@@ -40,7 +49,13 @@ class AboutPanel extends eui.Component{
         this.qiuGroup.addEventListener(egret.TouchEvent.TOUCH_END, this.onEventSliderEnd, this);
 
         this.idClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseClick, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         this.updateTab();
+        this.updateResize();
+
+        //this.idScroller.viewport = this.idViewPort;
+        //this.idViewPort.setContentSize(this.idProtcalText.width,this.idProtcalText.height);
+        //this.idViewPort.contentHeight = this.idProtcalText.height;
     }
     private onAddToStage(){
         this.onSkinName();
@@ -58,13 +73,9 @@ class AboutPanel extends eui.Component{
         }
     }
     private onCloseClick(event:egret.TouchEvent):void{        
-        // this.slideGroup.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventSliderDown, this);
-        // this.slideGroup.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEventSliderEnd, this);
-        // this.qiuGroup.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventSliderDown, this);
-        // this.qiuGroup.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEventSliderEnd, this);
         this.qiuGroup.removeChildren();
         this.slideGroup.removeChildren();
-        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+        GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'AboutPanel')
     }
     private onTabClick(event:egret.TouchEvent):void{
@@ -76,7 +87,7 @@ class AboutPanel extends eui.Component{
         this.showImgs=[];
         this.qiuGroup.removeChildren();
         this.slideGroup.removeChildren();
-        this._imageWidth = 1282;
+        this._imageWidth = 1068;
 
         for (let i=1;i<=this.imgMaxNumb;i++){
             let img:eui.Image = new eui.Image;
@@ -88,19 +99,11 @@ class AboutPanel extends eui.Component{
             this.qiuImgs.push(img);
 
             let showimg:eui.Image = new eui.Image;
-            showimg.source = 'zhezhao_png';
+            showimg.source = `guide_${i}_jpg`;
             this.slideGroup.addChild(showimg);
         }
         this.slideGroup.x = -((this.imgIndx-1)*this._imageWidth);
-        //this.updateGroupPoint();
-        //this.updateGroupPageView();
     }
-    // private updateGroupPoint(){
-
-    // }
-    // private updateGroupPageView(){
-
-    // }    
     private onLastImg() {
         if (this.imgIndx - 1 < 1)
             return;

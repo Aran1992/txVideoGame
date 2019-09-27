@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="skins.AboutSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<w:Config id="16d615f8c43"/>
-	<e:Image source="zhezhao_png" x="0" y="0" scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0"/>
-	<e:Group id="idPage1" y="0" x="0" width="100%" height="100%" touchEnabled="false">
-		<e:Group id="slideGroup" touchEnabled="false" x="320" y="160" includeInLayout="true" anchorOffsetX="0" width="1228" anchorOffsetY="0" height="572">
-			<e:layout>
-				<e:HorizontalLayout/>
-			</e:layout>
-		</e:Group>
-		<e:Group id="qiuGroup" width="1282" horizontalCenter="161" bottom="160" height="591.21" anchorOffsetX="0" anchorOffsetY="0">
-			<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
-			<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
-			<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
-			<e:layout>
-			<e:HorizontalLayout horizontalAlign="center" verticalAlign="bottom"/>
-			</e:layout>
+	<e:Image scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" width="100%" height="100%" y="0" source="cundang_bj_jpg" left="0"/>
+	<e:Group id="idPage1" touchEnabled="false" width="100%" height="100%" x="0" y="0">
+		<e:Group width="1068" height="600" scrollEnabled="true" verticalCenter="10" x="435">
+			<e:Group id="slideGroup" touchEnabled="false" x="0" y="0" includeInLayout="true" anchorOffsetX="0" width="1068" anchorOffsetY="0" height="600" scaleX="1" scaleY="1">
+				<e:layout>
+				<e:HorizontalLayout gap="0"/>
+				</e:layout>
+			</e:Group>
+			<e:Group id="qiuGroup" width="1068" height="600" anchorOffsetX="0" anchorOffsetY="0" x="0" y="0" scaleX="1" scaleY="1">
+				<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
+				<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
+				<e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0"/>
+				<e:layout>
+				<e:HorizontalLayout horizontalAlign="center" verticalAlign="bottom" paddingBottom="20"/>
+				</e:layout>
+			</e:Group>
 		</e:Group>
 	</e:Group>
-	<e:Group id="idPage2" y="0" x="0" width="100%" height="100%" touchEnabled="false"/>
-	<e:Group id="idPage3" y="0" x="0" width="100%" height="100%" touchEnabled="false"/>
-	<e:Group top="170" right="1303" width="253" anchorOffsetX="0" anchorOffsetY="0" height="594">
-		<e:Button id="idTab1" label="帮助" x="48" y="93.03" skinName="skins.Common_TabButtonSkin2" scaleX="1" scaleY="1" name="1" blendMode="normal" touchEnabled="true"/>
-		<e:Button id="idTab2" label="关于我们" x="48" y="190" skinName="skins.Common_TabButtonSkin2" scaleX="1" scaleY="1" name="2" blendMode="normal"/>
-		<e:Button id="idTab3" label="用户协议" x="48" y="286" skinName="skins.Common_TabButtonSkin2" scaleX="1" scaleY="1" name="3"/>
+	<e:Group id="idPage2" touchEnabled="false" width="100%" height="100%" x="0" y="0" visible="false">
+		<e:Image width="1068" height="600" scaleX="1" scaleY="1" source="common_scalebk1_png" scale9Grid="18,17,34,19" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="22" x="440"/>
+		<e:Label text="腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧..." scaleX="1" scaleY="1" anchorOffsetX="0" width="866.57" anchorOffsetY="0" height="394.24" size="33" verticalCenter="-22" lineSpacing="18" x="493"/>
+	</e:Group>
+	<e:Group id="idPage3" touchEnabled="false" width="100%" height="100%" x="0" y="0" visible="false">
+		<e:Image width="1068" height="600" scaleX="1" scaleY="1" source="common_scalebk1_png" scale9Grid="18,17,34,19" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="22" x="440"/>
+		<e:Scroller id="idScroller" width="1042.43" height="569.7" x="450" y="188.39" anchorOffsetX="0" anchorOffsetY="0" scrollPolicyV="on" scrollPolicyH="off" bounces="false">
+			<e:Group id="idViewPort">
+				<e:Label id="idProtcalText" text="2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧..." scaleX="1" scaleY="1" anchorOffsetX="0" width="999.91" anchorOffsetY="0" height="1176.05" size="33" verticalCenter="328.15" lineSpacing="18" x="23.3" y="38.76000000000002"/>
+			</e:Group>
+		</e:Scroller>
+	</e:Group>
+	<e:Group top="170" width="253" anchorOffsetX="0" anchorOffsetY="0" height="594" left="44">
+		<e:Button id="idTab1" label="帮    助" x="48" y="8.18" scaleX="1" scaleY="1" name="1" blendMode="normal" touchEnabled="true" skinName="skins.Common_TabButtonSkin4" width="260" height="80"/>
+		<e:Button id="idTab2" label="关于我们" x="48" y="133" scaleX="1" scaleY="1" name="2" blendMode="normal" skinName="skins.Common_TabButtonSkin4" width="260" height="80"/>
+		<e:Button id="idTab3" label="用户协议" x="48" y="258.73" scaleX="1" scaleY="1" name="3" skinName="skins.Common_TabButtonSkin4" width="260" height="80"/>
 		<e:layout>
 		<e:BasicLayout/>
 		</e:layout>
