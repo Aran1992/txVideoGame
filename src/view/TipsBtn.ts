@@ -1,4 +1,3 @@
-// TypeScript file
 class TipsBtn extends eui.Component {
     public static Is_Guide_Bool: boolean;//是否要显示引导
     private guide_img: eui.Image;
@@ -26,27 +25,8 @@ class TipsBtn extends eui.Component {
     private tiaoBtn: eui.Button;
     private timeGroup: eui.Group;
     private playBtn: eui.Button;
-
-    /** 特殊选项条件 chufa触发选项条件(没有则一定触发) conditions错误的选项字典  errorNum选择数量 **/
-    private Option_Condition = {
-        "25": {conditions: {"20": 2, "22": 2, "24": 2}, errorNum: 2},
-        "48": {conditions: {"40": 2, "46": 5, "47": 2}, errorNum: 3},
-        "49": {chufa: {"41": 1, "47": 1}, conditions: {"28": 2, "30": 1, "31": 1, "32": 2}, errorNum: 1}
-    };
-    /** 好感度解锁选项 option主角顺序对应的选项id  likeNum保留好感度前几个人 **/
-    private Option_Like = {
-        "34": {option: [4, 1, 2, 3], likeNum: 2},
-    };
-    /**选项对应的道具**/
-    private Option_Goods = {
-        "25": [500005, 500006, 0],
-        "48": [500011, 0],
-        "49": [500012, 500013, 0],
-        "34": [500007, 500008, 500009, 500010],
-    };
     private spNames: string[] = ['', '1.5X', '1.25X', '1.0X'];
     private pinzhiNames: string[] = ['', '1080P', '720P', '480P'];
-    private bmp: egret.Bitmap;
     private pinzhi: number = 1;
     private videoCurrentState: boolean = true;
     private timer: egret.Timer;
@@ -55,23 +35,27 @@ class TipsBtn extends eui.Component {
     private starPosY: number = 0;
     private starPosX: number = 0;
     private isClick: boolean = true;
-    private light: number = 1;
     private touchtime = new Date().getTime();
     private direction: number = 0;
-    private isAddFlg: boolean = false;
     private beisuGroup: eui.Group;
     private pinzhiGroup: eui.Group;
     private speedDic: number[] = [0, 1.5, 1.25, 1];
     private sd: egret.Sound;
     private isSelect: boolean = false;
-    private _isLock: boolean;
-    private wentiId: number = 0;//问题计时
-    private imgs: string[] = ['wentiA_png', 'wentiB_png', 'wentiC_png', 'wentiD_png'];
+    private wentiId: number = 0;
     private tp: number = 0;
     private modelHuDong: Modelhudong;
     private _maxValue = 0;
     private _maxTime = 0;
     private hideTipTimer: number;
+
+    /**选项对应的道具**/
+    private Option_Goods = {
+        "25": [500005, 500006, 0],
+        "48": [500011, 0],
+        "49": [500012, 500013, 0],
+        "34": [500007, 500008, 500009, 500010],
+    };
 
     public constructor() {
         super();
@@ -83,7 +67,6 @@ class TipsBtn extends eui.Component {
         if (str == 'pauseImg_png') {
             this.mengban.visible = false;
             this.pauseGroup.visible = false;
-            // this.cundangGroup.visible = false;
         }
         this.play_pauseBtn['iconDisplay'].source = str;
     }
@@ -101,7 +84,6 @@ class TipsBtn extends eui.Component {
         this.fileState = bo;
         if (!this.fileState && !this.videoCurrentState) {
             this.timerIdx = 3;
-            // this.controlGroup.alpha = 0;
             this.controlGroup.visible = false;
             if (this.timer) {
                 this.timerIdx = 0;
@@ -141,8 +123,6 @@ class TipsBtn extends eui.Component {
         if (this.timer) {
             this.timerIdx = 0;
             this.timer.stop();
-            // this.timer.removeEventListener(egret.TimerEvent.TIMER, this.onTimer, this);
-            // this.timer = null;
         }
         this.play_pauseBtn.touchEnabled = true;
         this.controlGroup.visible = true;
@@ -207,13 +187,11 @@ class TipsBtn extends eui.Component {
             this.modelHuDong = JsonModelManager.instance.getModelhudong()[model.type];
             this.showBtns.visible = false;
             this.gotoAction(model);
-            // if (this.modelHuDong && this.modelHuDong.des)
-            // GameCommon.getInstance().showActionTips(this.modelHuDong.des);
         }
     }
 
-    public hideTips(): void {
-        if (this.hideTipTimer) {
+    public hideTips(force?: boolean): void {
+        if (this.hideTipTimer && !force) {
             return;
         }
         this._maxValue = 0;
@@ -234,16 +212,10 @@ class TipsBtn extends eui.Component {
         }
     }
 
-    public setTips(tim, bo): void {
+    public setTips(tim): void {
         let tw;
         if (this.tp != 0) {
-            // if (bo) {
-            //     this.onCallBack();
-            //     return;
-            // }
-            // if (!this.modelHuDong || this.modelHuDong.tp != ActionType.SLIDE) {
             return;
-            // }
         }
         if (tim > 0 || this._maxTime != 0) {
             if (tim < 0) {
@@ -295,18 +267,13 @@ class TipsBtn extends eui.Component {
     }
 
     public log(str) {
-        // if (this.logLab.height > 700) {
-        //     this.logLab.text = '';
-        // }
-        // if (str == '') {
-        //     this.logLab.text = '';
-        // }
-        // this.logLab.text += "\n" + str;
+        console.log(str);
     }
 
     protected onRegist(): void {
         this.timeGroup.visible = false;
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
         for (let i = 1; i < 6; i++) {
             this['btn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }
@@ -323,7 +290,6 @@ class TipsBtn extends eui.Component {
         this.play_pauseBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay_Pause, this);
         this.playBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay, this);
         this.cundang1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCunDang, this);
-        // GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_REFRESH, this.onShowLog, this);
         this.goMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowMain, this);
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onShowBottomBtn, this);
         this.speedBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSetSpeed, this);
@@ -350,14 +316,12 @@ class TipsBtn extends eui.Component {
 
     //供子类覆盖
     protected onInit(): void {
-        //    this.bokData = new BookData;
         this.onRefresh();
     }
 
     protected onRefresh(): void {
         this.timeBar4.maximum = 100;
         this.timeBar4.value = 50;
-        // SoundManager.volume = 50;
     }
 
     protected onSkinName(): void {
@@ -370,14 +334,6 @@ class TipsBtn extends eui.Component {
     }
 
     private onFenXiang() {
-        // this.bmp = new egret.Bitmap();
-        // // let texture:egret.Texture = RES.getRes("run_png");
-        // let texture:egret.RenderTexture =Tool.onDrawDisObjToTexture(window['video1'],new egret.Rectangle(0, 0, size.width, size.height));
-        // // texture.toDataURL("image/png",  new egret.Rectangle(0, 0, size.width, size.height));
-        // // texture.saveToFile("image/png", "a/down.png", new egret.Rectangle(0, 0, size.width, size.height));
-        // this.bmp.texture = texture;
-        // VideoManager.getInstance().dragImg();
-        // this.addChild(this.bmp);
     }
 
     private onTiao() {
@@ -401,8 +357,6 @@ class TipsBtn extends eui.Component {
         this.timerIdx = 0;
         this.pinzhiGroup.visible = true;
         this.beisuGroup.visible = false;
-
-        // VideoManager.getInstance().onSwitchQuality();
     }
 
     private onShowMain() {
@@ -413,12 +367,7 @@ class TipsBtn extends eui.Component {
         this.pauseGroup.visible = false;
     }
 
-    private onTouchMove(e: egret.TouchEvent) {
-
-    }
-
     private onEnd() {
-        this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
         this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEnd, this);
         this.timerIdx = 0;
         if (!this.isClick) {
@@ -459,19 +408,6 @@ class TipsBtn extends eui.Component {
                     } else {
                         this.timer.start();
                     }
-                    // if (!UserInfo.guideDic[1]) {//暂时注释
-                    //     this.timer.stop();
-                    //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
-                    //     GuideManager.getInstance().onShowImg(this, this.cundang1, 'tip');
-                    //     this.bgBtn.touchEnabled = false;
-                    //     this.addBtn.touchEnabled = false;
-                    //     this.reduceBtn.touchEnabled = false;
-                    //     this.play_pauseBtn.touchEnabled = false;
-                    //     this.goMain.touchEnabled = false;
-                    //     this.qualityBtn.touchEnabled = false;
-                    //     this.cundang1.touchEnabled = true;
-                    //     this.xuanzecundang.visible = true;
-                    // }
                 } else {
                     this.addBtn.touchEnabled = true;
                     if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
@@ -535,21 +471,7 @@ class TipsBtn extends eui.Component {
         if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
             this.play_pauseBtn.touchEnabled = true;
         }
-        // else {
-        // if (!this.videoD.getVideoPause()) {
-        //     this.hideControl();
-        //     this.isClick = false;
-        //     return;
-        // }
-        // }
-        this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_END, this.onEnd, this);
-        // let data = RES.getRes('dddd_json');
-        // let txtr = RES.getRes('dddd_png');
-        // let mcFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory( data, txtr );
-        // let mc1:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData('dddd'));
-        // this.addChild(mc1);
-        // mc1.gotoAndPlay(0,999999);
     }
 
     private onCunDang() {
@@ -564,14 +486,6 @@ class TipsBtn extends eui.Component {
 
     private onAddVideo() {
         this.timerIdx = 0;
-        // if (this.isAddFlg)
-        //     return;
-        // this.isAddFlg = true;
-        let obj = this;
-        // Tool.callbackTime(function () {
-        //    obj.isAddFlg = false;
-        // }, obj, 1000);
-
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ADD_VIDEO_SPEED));
     }
 
@@ -623,7 +537,6 @@ class TipsBtn extends eui.Component {
             return;
         }
         if (!this.videoD.getVideoPause()) {
-            // this.log('结尾不允许暂停')
             return;
         }
         this.timerIdx = 0;
@@ -647,15 +560,8 @@ class TipsBtn extends eui.Component {
         let button = event.currentTarget;
         let id: number = Number(button.name);
         if (button['lock_grp'].visible) {
-            let optGoodsAry: number[] = this.Option_Goods[this.wentiId];
-            let goodsid: number = optGoodsAry[id - 1];
-            if (goodsid) {
-                let goodsInfo: ShopInfoData = ShopManager.getInstance().getShopInfoData(goodsid);
-                if (goodsInfo) {
-                    GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);
-                    GameCommon.getInstance().onShowBuyTips(goodsInfo.id, goodsInfo.model.currPrice, GOODS_TYPE.DIAMOND);
-                }
-            }
+            VideoManager.getInstance().videoPause();
+            PromptPanel.getInstance().onShowBuyHaoGan(id);
         } else {
             this.onSelectWenTi(id);
         }
@@ -663,7 +569,6 @@ class TipsBtn extends eui.Component {
 
     private onSelectWenTi(id) {
         this.isSelect = true;
-        this.onUpdateLockStatus(false);
         for (let i: number = 1; i < 6; i++) {
             if (i == id) {
                 this['btn' + i].alpha = 0.5;
@@ -685,20 +590,8 @@ class TipsBtn extends eui.Component {
                 }
             );
         this.hideTipTimer = egret.setTimeout(() => {
-            this.hideTipTimer = undefined;
-            this.hideTips();
+            this.hideTips(true);
         }, this, 1000);
-    }
-
-    private onUpdateLockStatus(isLock): void {
-        if (this._isLock != isLock) {
-            this._isLock = isLock;
-            if (this._isLock) {
-                VideoManager.getInstance().videoPause();
-            } else {
-                VideoManager.getInstance().videoResume();
-            }
-        }
     }
 
     private updateResize() {
@@ -720,70 +613,15 @@ class TipsBtn extends eui.Component {
 
     /**判断下问题是否带锁**/
     private onUpdateWentiBtnStatus(): void {
-        for (let i: number = 0; i < 5; i++) {
-            this['btn' + (i + 1)]['lock_grp'].visible = false;
+        for (let i: number = 1; i <= 5; i++) {
+            this[`btn${i}`].lock_grp.visible = false;
         }
         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);
-        let lockOptIDs: number[] = [];
-        let conditionData = this.Option_Condition[this.wentiId];
-        if (conditionData) {
-            let isChufa: boolean = true;
-            if (conditionData.chufa) {
-                for (let chufaWentiID in conditionData.chufa) {
-                    let chufa_optID: number = conditionData.chufa[chufaWentiID];
-                    let select_optID: number = UserInfo.curBokData.answerId[chufaWentiID];
-                    if (!select_optID || select_optID != chufa_optID) {
-                        isChufa = false;
-                        break;
-                    }
-                }
-            }
-            if (isChufa) {
-                let errorNum: number = 0;
-                for (let condWentiID in conditionData.conditions) {
-                    let cond_optID: number = conditionData.conditions[condWentiID];
-                    let select_optID: number = UserInfo.curBokData.answerId[condWentiID];
-                    if (!select_optID || select_optID == cond_optID) {
-                        errorNum++;
-                    }
-                }
-                if (errorNum >= conditionData.errorNum) {
-                    let optGoodsAry: number[] = this.Option_Goods[this.wentiId];
-                    for (let idx: number = 0; idx < optGoodsAry.length; idx++) {
-                        let cur_optID: number = idx + 1;
-                        let goodsid: number = optGoodsAry[idx];
-                        if (goodsid) {
-                            let goodsInfo: ShopInfoData = ShopManager.getInstance().getShopInfoData(goodsid);
-                            if (goodsInfo && goodsInfo.num == 0 && lockOptIDs.indexOf(cur_optID) == -1) {
-                                lockOptIDs.push(cur_optID);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        let likeCondiData = this.Option_Like[this.wentiId];
-        if (likeCondiData) {
-            let likeShowNum: number = likeCondiData.likeNum;
-            let likesAry = GameCommon.getInstance().getSortLikeAry();
-            for (let i: number = ROLE_INDEX.SIZE - 1; i >= 0; i--) {
-                let likeRData = likesAry[i];
-                let like_opt_id: number = likeCondiData.option[likeRData.id];
-                if (i < ROLE_INDEX.SIZE - likeShowNum) {
-                    let optGoodsAry: number[] = this.Option_Goods[this.wentiId];
-                    let goodsid: number = optGoodsAry[like_opt_id - 1];
-                    let goodsInfo: ShopInfoData = ShopManager.getInstance().getShopInfoData(goodsid);
-                    if (goodsInfo && goodsInfo.num == 0 && lockOptIDs.indexOf(like_opt_id) == -1) {
-                        lockOptIDs.push(like_opt_id);
-                    }
-                }
-            }
-        }
-        if (lockOptIDs.length > 0) {
-            this.onUpdateLockStatus(true);
-            for (let i: number = 0; i < lockOptIDs.length; i++) {
-                let lockOptId: number = lockOptIDs[i];
-                this['btn' + lockOptId]['lock_grp'].visible = true;
+        const func = GameCommon.getInstance().getLockedOptionIDs[this.wentiId];
+        if (func) {
+            let lockOptIDs: number[] = func() || [];
+            if (lockOptIDs.length > 0) {
+                lockOptIDs.forEach(id => this[`btn${id}`].lock_grp.visible = true);
             }
         }
     }
@@ -807,6 +645,12 @@ class TipsBtn extends eui.Component {
             this.timer.stop();
             this.hideControl();
             return;
+        }
+    }
+
+    private onBuySuccessCallback() {
+        for (let i: number = 1; i <= 5; i++) {
+            this[`btn${i}`].lock_grp.visible = false;
         }
     }
 }

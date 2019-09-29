@@ -24,10 +24,10 @@ class ShopManager {
 
     public takeOffBookValue(bookId, saleId, currentSlotId, num) {
         callbackTakeOffBookValue = function (data) {
-            // var array = JSON.parse(data);
-            // for(var k in array)
+            // let array = JSON.parse(data);
+            // for(let k in array)
             // {
-            //     var  d = array[k];
+            //     let  d = array[k];
             //     this.items[array[k].saleId] = d;
             // }
         };
@@ -36,33 +36,33 @@ class ShopManager {
 
     /**钻石购买商品**/
     public buyGoods(itemId, num: number = 1) {
-        var shopdata: ShopInfoData = this._shopDataDict[itemId];
+        let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (!0) {//platform.isDebug
             this.addGoods(itemId, num);
             this.onBuySuccessHandler(shopdata);
         } else {
-            var self = this;
-            callbackBuyGoods = function (data) {
+            let self = this;
+            callbackBuyGoods = (data) => {
                 let recData = JSON.parse(data.data);
-                let shopinfo = JSON.parse(recData.value);
+                let shopInfo = JSON.parse(recData.value);
                 if (data.code == 0) {
                     shopdata = self._shopDataDict[recData.saleId];
                     if (shopdata) {
-                        shopdata.onupdate(shopinfo);
+                        shopdata.onupdate(shopInfo);
                         this.onBuySuccessHandler(shopdata);
                     }
                 } else {
                     GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);
                 }
             };
-            var currentSlotId: number = 0;
+            let currentSlotId: number = 0;
             platform.buyGoods(GameDefine.BOOKID, itemId, num, currentSlotId);
         }
     }
 
     public buyGoodsSuip(itemId: number, num: number = 1): void {
-        var shopdata: ShopInfoData = this._shopDataDict[itemId];
+        let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (UserInfo.suipianMoney < shopdata.model.currSuipian) {
             GameCommon.getInstance().onShowResultTips('碎片不足，购买失败！', false);
@@ -75,7 +75,7 @@ class ShopManager {
 
     /**物品存储**/
     public addGoods(itemId: number, num: number = 1) {
-        var shopdata: ShopInfoData = this._shopDataDict[itemId];
+        let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (shopdata) {
             shopdata.num += num;
             GameCommon.getInstance().setBookData(FILE_TYPE.GOODS_FILE);
@@ -106,8 +106,8 @@ class ShopManager {
                 }
             }
         } else {//正式版本数据
-            var self = this;
-            var callbackGetBookValues = function (data) {
+            let self = this;
+            let callbackGetBookValues = function (data) {
                 if (data.code == 0) {
                     let values = JSON.parse(data.data).value;
                     this.onInitShopInfos(values);
@@ -115,7 +115,7 @@ class ShopManager {
                     GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
                 }
             };
-            var currentSlotId: number = 0;
+            let currentSlotId: number = 0;
             platform.getBookValues(GameDefine.BOOKID, currentSlotId, callbackGetBookValues);
         }
         // }
@@ -272,5 +272,5 @@ enum SHOP_TYPE {
     XINSHOUBAO = 99,//新手包
 }
 
-declare var callbackBuyGoods;
-declare var callbackTakeOffBookValue;
+declare let callbackBuyGoods;
+declare let callbackTakeOffBookValue;

@@ -13,21 +13,29 @@ class VideoData extends egret.DisplayObjectContainer {
     public videoPauseTime: number = 0;
     public curWentiId: number = 0;
     private actionScene: egret.DisplayObjectContainer;
-    /**下一个视频需要好感度才能播放的 否则进BE规则
-     *  视频ID对应数组 是每个角色的好感度值
-     * **/
+    /**
+     * 下一个视频需要好感度才能播放的 否则进BE规则
+     * 视频ID对应数组 是每个角色的好感度值
+     */
     private Video_Like_Condition = {
-        "V801": {likes: [2, 1, 3, 1], BEVideo: "V802"},
-        "V907": {likes: [5, 1, 6, 2], BEVideo: "V908"},
+        "V801": {
+            check: () => [0, 1, 2, 3].some(roleIndex => GameCommon.getInstance().getRoleLikeAll(roleIndex) < 7),
+            BEVideo: "V802"
+        },
+        "V907": {
+            check: () => {
+                return [0, 1, 2, 3].some(roleIndex => GameCommon.getInstance().getRoleLikeAll(roleIndex) < 9)
+                    && GameCommon.getQuestionAnswer(27) === 5
+                    && GameCommon.getQuestionAnswer(46) === 5;
+            },
+            BEVideo: "V908"
+        },
     };
-    /**下一个视频需要选项按照条件判断
-     *  options选择的条件  errorNum打到条件的数量  nextVideoId达成的视频
-     * **/
     private Video_Opt_Condition = {
-        "VH1116": {options: {"54": 2, "55": 2, "56": 2}, errorNum: 2, nextVideoId: "VH1117"},
-        "VX1204": {options: {"59": 1, "61": 1, "62": 1, "63": 1}, errorNum: 4, nextVideoId: "VX1205"},
-        "VY1204": {options: {"68": 2, "69": 2, "70": 2}, errorNum: 2, nextVideoId: "VY1205"},
-        "VW1201": {options: {"71": 2, "72": 2, "73": 2}, errorNum: 2, nextVideoId: "VW1202"},
+        "VH1116": {options: {"54": 1, "55": 1, "56": 1}, nextVideoId: "VH1117"},
+        "VX1204": {options: {"59": 1, "61": 1, "62": 1, "63": 1}, nextVideoId: "VX1205"},
+        "VY1204": {options: {"68": 1, "69": 1, "70": 1}, nextVideoId: "VY1205"},
+        "VW1201": {options: {"71": 1, "72": 1}, nextVideoId: "VW1202"},
     };
     private againTime: number = 0;
     private againFlg: boolean = false;
@@ -427,7 +435,7 @@ class VideoData extends egret.DisplayObjectContainer {
                                     this.isHuDong = true;
                                     videoNextFlg = false;
                                 }
-                                tips.setTips(Math.floor(lastTime) - Math.floor(VideoManager.getInstance().videoCurrTime()), this.isSelectVideo);
+                                tips.setTips(Math.floor(lastTime) - Math.floor(VideoManager.getInstance().videoCurrTime()));
                             } else if (VideoManager.getInstance().videoCurrTime() >= lastTime - 1 && videoNextFlg1) {
                                 if (this.curAnswerCfg && this.curAnswerCfg.isdie == 1) {
                                     this.isDie = true;
@@ -448,8 +456,8 @@ class VideoData extends egret.DisplayObjectContainer {
                                 if (likeConditionData) {
                                     let isBeCond: boolean = true;
                                     for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
-                                        let curRlike_num: number = GameCommon.getInstance().getRoleLikeAll(i);
-                                        if (curRlike_num > likeConditionData.likes[i]) {
+                                        let roleLike: number = GameCommon.getInstance().getRoleLikeAll(i);
+                                        if (roleLike > likeConditionData.likes[i]) {
                                             isBeCond = false;
                                             break;
                                         }
@@ -462,24 +470,26 @@ class VideoData extends egret.DisplayObjectContainer {
                                 }
                                 let optConditionData = this.Video_Opt_Condition[this.videoIdx];
                                 if (optConditionData) {
-                                    let errorNum: number = 0;
+                                    let rightNum: number = 0;
+                                    let totalNum: number = 0;
                                     for (let condWentiID in optConditionData.options) {
                                         if (optConditionData.options.hasOwnProperty(condWentiID)) {
-                                            let cond_optID: number = optConditionData.options[condWentiID];
-                                            let select_optID: number = UserInfo.curBokData.answerId[condWentiID];
-                                            if (!select_optID || select_optID == cond_optID) {
-                                                errorNum++;
+                                            totalNum++;
+                                            let condOptID: number = optConditionData.options[condWentiID];
+                                            let selectOptID: number = UserInfo.curBokData.answerId[condWentiID];
+                                            if (selectOptID == condOptID) {
+                                                rightNum++;
                                             }
                                         }
                                     }
-                                    if (errorNum >= optConditionData.errorNum) {
+                                    if (rightNum < totalNum) {
                                         this.curVIdeoIds = [optConditionData.nextVideoId];
                                         this.curVideoIndex = 0;
                                     }
                                 }
 
                                 let nextVideoSrc: string = this.curVIdeoIds[this.curVideoIndex];
-                                Tool.callbackTime(function () {
+                                Tool.callbackTime(() => {
                                     VideoManager.getInstance().onLoadSrc(nextVideoSrc);
                                 }, this, 1000);
                                 this._nextVid = nextVideoSrc;

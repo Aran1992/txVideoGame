@@ -88,7 +88,7 @@ class MainView extends eui.Component {
         platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE);
         GameCommon.getInstance().getUserInfo();
         // GameCommon.getInstance().getBookHistory(FILE_TYPE.GUIDE_TP);
-        var cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
+        let cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         this.chapterName.text = cpCfg.name;
         VideoManager.getInstance().updateVideoData('');
         this.play_Btn.visible = true;
@@ -110,7 +110,7 @@ class MainView extends eui.Component {
             GameDefine.ISFILE_STATE = false;
             this.onRefreshUpdata({data: 1});
         }
-        var player = new window['Txiplayer']({
+        let player = new window['Txiplayer']({
             container: '#videoDivMin',
             vid: 'a0031tzescw',
             width: "100%",
@@ -120,17 +120,15 @@ class MainView extends eui.Component {
         player.on('ready', () => {
             // window['player'] = player;
             widPlayer = player;
-            var ps = document.getElementsByTagName('video');
-            for (var i: number = 0; i < ps.length; i++) {
+            let ps = document.getElementsByTagName('video');
+            for (let i: number = 0; i < ps.length; i++) {
                 if (size.fillType == FILL_TYPE_COVER) {
                     ps[i].style["object-fit"] = "cover";
                 } else {
                     ps[i].style["object-fit"] = "contain";
                 }
             }
-        })
-        // this.loadpanel = new LoadingPanel();
-        // this.addChild(this.loadpanel);
+        });
     }
 
     // private loadpanel:LoadingPanel;
@@ -212,7 +210,7 @@ class MainView extends eui.Component {
     }
 
     private onCleanCache() {
-        for (var i: number = 1; i < FILE_TYPE.SIZE; i++) {
+        for (let i: number = 1; i < FILE_TYPE.SIZE; i++) {
             GameCommon.getInstance().deleteBookHistory(i);
         }
         GameCommon.getInstance().addLikeTips('清档成功');
@@ -331,7 +329,7 @@ class MainView extends eui.Component {
     private onGameWin() {
         GameCommon.getInstance().getBookHistoryList();
         this.mainGroup.visible = true;
-        var cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
+        let cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         this.chapterName.text = cpCfg.name;
     }
 

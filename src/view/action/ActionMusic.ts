@@ -5,8 +5,8 @@ class ActionMusic extends ActionSceneBase {
     private touchChecks: boolean[];
     private clickList: { groupIndex: number, startTime: number, duration: number }[];
     private clickIndex: number;
-    private successCount: number;
     private timeAll: number;
+    private totalCount: number;
     private isFinish: boolean;
     private guideImg: eui.Group;
     private desc1: eui.Label;
@@ -37,10 +37,10 @@ class ActionMusic extends ActionSceneBase {
             this.controllers[i] = new MusicController(this, i);
         }
 
-        this.successCount = parseInt(this.paramList[3]);
+        this.totalCount = this.paramList.length - 3;
         this.clickList = [];
         this.touchChecks = [];
-        for (let i = 4; i < this.paramList.length; ++i) {
+        for (let i = 3; i < this.paramList.length; ++i) {
             let params = this.paramList[i].split("_").map(i => parseInt(i));
             this.clickList.push({startTime: params[0], groupIndex: params[1], duration: params[2],});
             this.touchChecks.push(false);
@@ -88,17 +88,24 @@ class ActionMusic extends ActionSceneBase {
     }
 
     protected onBackFail() {
-        let count = 0;
-        for (let i = 0; i < this.touchChecks.length; ++i) {
-            if (this.touchChecks[i]) {
-                ++count;
-            }
-        }
-        if (count < this.successCount) {
-            super.onBackFail();
+        let count = this.touchChecks.filter(check => check).length;
+        let answerID = 0;
+        if (count === 0) {
+            answerID = 3
+        } else if (count === this.totalCount) {
+            answerID = 1;
         } else {
-            super.onBackSuccess();
+            answerID = 2;
         }
+        GameDispatcher.getInstance().dispatchEvent(
+            new egret.Event(GameEvent.ONSHOW_VIDEO),
+            {
+                answerId: answerID,
+                wentiId: this.model.id,
+                click: 1
+            }
+        );
+        this.exit();
     }
 
     private setMusic(groupIndex: number, duration: number, clickIndex: number) {

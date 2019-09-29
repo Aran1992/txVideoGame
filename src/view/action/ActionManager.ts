@@ -43,16 +43,10 @@ class ActionManager {
 
     public setAction(model: Modelwenti, layer: egret.DisplayObjectContainer) {
         let modelHuDong: Modelhudong = JsonModelManager.instance.getModelhudong()[model.type];
-        // if (!modelHuDong)
-        // 	return;
         this.isAnswer = false;
         this.currModel = model;
         this.layer = layer;
         this.actionList = modelHuDong ? modelHuDong.pos.split("#") : [];
-        // let test = "3,3,3,200_200,500_200";
-        // let test = "5,3,3,200_200,300_200,600_200,500_200";
-        // let test = "6,12,12,9,1_1,4_1,7_1,10_2,13_2,16_2,19_2,22_1,25_2,28_2";
-        // this.actionList = test.split("#");
         this.actionIdx = 0;
         this.successType = 2;
         this.createActionUI();
@@ -78,12 +72,9 @@ class ActionManager {
     public onActionFinish() {
         if (this.successType) {
             this.actionFinish(this.currModel.moren);
-        } else
+        } else {
             this.actionFinish(parseInt(this.currModel.ans.split(",")[this.successType]));
-    }
-
-    public addEffect(ani: my.Animation) {
-        this.videoData.addChild(ani);
+        }
     }
 
     private createActionUI() {
@@ -121,17 +112,13 @@ class ActionManager {
         if (!this.isAnswer) {
             this.isAnswer = true;
             if (this.currModel.id == '15') {
-                var obj = this;
-                Tool.callbackTime(function () {
-                    obj.clearCurrScene();
-                }, obj, 3000);
-                // this.successType=0;
+                Tool.callbackTime(() => this.clearCurrScene(), this, 3000);
             } else {
                 this.clearCurrScene();
             }
             if (this.currModel.id == 19) {
                 if (this.successType) {
-                    var data = GameCommon.getInstance().getSortLike(0);
+                    let data = GameCommon.getInstance().getSortLike(0);
                     ansId = data.id + 1;
                     this.successType = 0;
                 }
