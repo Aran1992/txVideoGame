@@ -453,20 +453,10 @@ class VideoData extends egret.DisplayObjectContainer {
                                 this.isSelectVideo = true;
                                 VideoManager.getInstance().isReadySet = true;
                                 let likeConditionData = this.Video_Like_Condition[this.videoIdx];
-                                if (likeConditionData) {
-                                    let isBeCond: boolean = true;
-                                    for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
-                                        let roleLike: number = GameCommon.getInstance().getRoleLikeAll(i);
-                                        if (roleLike > likeConditionData.likes[i]) {
-                                            isBeCond = false;
-                                            break;
-                                        }
-                                    }
-                                    if (isBeCond) {
-                                        this.curVIdeoIds = [likeConditionData.BEVideo];
-                                        this.curVideoIndex = 0;
-                                        this.tipsPanel.hideTips();
-                                    }
+                                if (likeConditionData && likeConditionData.check()) {
+                                    this.curVIdeoIds = [likeConditionData.BEVideo];
+                                    this.curVideoIndex = 0;
+                                    this.tipsPanel.hideTips();
                                 }
                                 let optConditionData = this.Video_Opt_Condition[this.videoIdx];
                                 if (optConditionData) {
