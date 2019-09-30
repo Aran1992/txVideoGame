@@ -78,7 +78,8 @@ class ShouCangImgPanel extends eui.Component {
         this.onSkinName();
     }
 
-    private onSetXinDong() {
+    private onSetXinDong() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         for (var i = 0; i < this.imgMaxNumb; i++) {
             this['xindong' + i].visible = false;
         }
@@ -123,7 +124,8 @@ class ShouCangImgPanel extends eui.Component {
         this.imgIndx = 0;
     }
 
-    private onClose() {
+    private onClose() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.onRemove();
         // if (!UserInfo.guideDic[7])//关闭引导图片
         // {
@@ -390,7 +392,8 @@ class ShouCangImgPanel extends eui.Component {
         // }
     }
 
-    private onShare(): void {
+    private onShare(): void {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         var imgs: string[];
         if (this.info.src.indexOf(",") >= 0) {
             imgs = this.info.src.split(",");

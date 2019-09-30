@@ -44,6 +44,7 @@ class MainView extends eui.Component {
     }
 
     private static onShowShowCang() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangListPanel');
     }
 
@@ -178,6 +179,7 @@ class MainView extends eui.Component {
     }
 
     private onDuDang() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         const httpurl: string = window ? window.location.href : "";
         if (httpurl.indexOf("192.168.") != -1 || httpurl.indexOf("127.0.0") != -1 && GameDefine.TEST_ACTION_SCENE_WENTI_ID) {
             this.testActionScene(GameDefine.TEST_ACTION_SCENE_WENTI_ID);
@@ -202,6 +204,7 @@ class MainView extends eui.Component {
     }
 
     private onShowWallet() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.checkGuide8();
         GameCommon.getInstance().openButton("story://wallet");
     }
@@ -212,6 +215,7 @@ class MainView extends eui.Component {
     }
 
     private onCleanCache() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         for (var i: number = 1; i < FILE_TYPE.SIZE; i++) {
             GameCommon.getInstance().deleteBookHistory(i);
         }
@@ -220,11 +224,13 @@ class MainView extends eui.Component {
     }
 
     private onShowActivity() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.checkGuide8();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ActivityPanel');
     }
 
     private onShowChengJiu() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         // GameCommon.getInstance().addAlert('zanweikaifang');
         this.cjLab.visible = false;
         this.checkGuide8();
@@ -232,6 +238,7 @@ class MainView extends eui.Component {
     }
 
     private onXinkaishi(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         let httpurl: string = window ? window.location.href : "";
         if (httpurl.indexOf("192.168.") != -1 || httpurl.indexOf("127.0.0") != -1 || !0) {
             let chapter: number = parseInt(Tool.getQueryString("chapter")) ? parseInt(Tool.getQueryString("chapter")) : GameDefine.START_CHAPTER;
@@ -242,6 +249,7 @@ class MainView extends eui.Component {
     }
 
     private onShowShop() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.checkGuide8();
         // GameCommon.getInstance().addAlert('zanweikaifang');
         this.shopLab.visible = false;
@@ -249,6 +257,7 @@ class MainView extends eui.Component {
     }
 
     private onShowbtnSetting() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.checkGuide8();
         // GameCommon.getInstance().addAlert('zanweikaifang');
         //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'PlayerSettingPanel');
@@ -256,6 +265,7 @@ class MainView extends eui.Component {
     }
 
     private onRefreshUser() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.checkGuide8();
         this.icon.source = UserInfo.avatar;
         // this.desc.text = UserInfo.avatar;
@@ -336,6 +346,7 @@ class MainView extends eui.Component {
     }
 
     private onShowXuZhang() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.gameWorld.createGameScene();
         SoundManager.getInstance().initMusic(SoundManager.musicList);
         this.mainGroup.visible = false;
@@ -343,6 +354,7 @@ class MainView extends eui.Component {
     }
 
     private onEventPlay() {
+        //SoundManager.getInstance().playSound("ope_click.mp3")
         this.play_Btn.visible = false;
         this.play_zi.visible = false;
 
@@ -366,6 +378,7 @@ class MainView extends eui.Component {
     }
 
     private onEventPlay1() {
+        //SoundManager.getInstance().playSound("ope_click.mp3")
         if (this.curDuDang) {
             this.curDuDang = false;
             GameDefine.IS_DUDANG = true;

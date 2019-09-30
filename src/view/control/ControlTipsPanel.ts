@@ -184,7 +184,8 @@ class ControlTipsPanel extends eui.Component {
         widPlayer.setPlaybackRate(this.speedDic[id]);
     }
 
-    private onChangeQuality() {
+    private onChangeQuality() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         // if (this.pinzhi == 1) {
         //     this.pinzhi = 2;
         //     GameDefine.VIDEO_PINZHI = 2;
@@ -291,7 +292,8 @@ class ControlTipsPanel extends eui.Component {
         // mc1.gotoAndPlay(0,999999);
     }
 
-    private onSetSpeed() {
+    private onSetSpeed() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.timerIdx = 0;
         if (this.beisuGroup.visible) {
             this.beisuGroup.visible = false;
@@ -302,7 +304,8 @@ class ControlTipsPanel extends eui.Component {
         this.pinzhiGroup.visible = false;
     }
 
-    private onShowMain() {
+    private onShowMain() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         if (!widPlayer)
             return;
         widPlayer.clear();
@@ -312,11 +315,13 @@ class ControlTipsPanel extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ControlTipsPanel')
     }
 
-    private onPlay() {
+    private onPlay() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.onPlay_Pause();
     }
 
-    private onPlay_Pause() {
+    private onPlay_Pause() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         if (!this.isReady)
             return;
         if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {

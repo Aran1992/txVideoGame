@@ -115,6 +115,7 @@ class GameWorld extends egret.DisplayObjectContainer {
     }
 
     private onShowView(data): void {
+        //SoundManager.getInstance().playSound("ope_click.mp3")
         let windowName = data.data;
         if (this.panelDict[windowName]) {
             this.PupoBar.removeChild(this.panelDict[windowName]);
@@ -147,7 +148,8 @@ class GameWorld extends egret.DisplayObjectContainer {
         }
     }
 
-    private onShowViewWithParam(event: egret.Event): void {
+    private onShowViewWithParam(event: egret.Event): void {        
+        //SoundManager.getInstance().playSound("ope_ask.mp3")
         let window_param: WindowParam = event.data as WindowParam;
         let windowName = window_param.windowname;
         if (this.panelDict[windowName]) {

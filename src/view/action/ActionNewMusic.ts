@@ -172,7 +172,7 @@ class ActionNewMusic extends ActionSceneBase {
                 tw.to({alpha: 0}, 500);
             }
             this.mcResult = this.getMC(isSuccess ? "music_effect" : "miss", this.onMCFinishResult, this);
-            SoundManager.getInstance().playSound(isSuccess?"hudong_bingo":"budong_miss")
+            SoundManager.getInstance().playSound(isSuccess?"hudong_bingo.mp3":"budong_miss.mp3")
             if (this.mcResult) {
                 this.mcResult.gotoAndPlay(1, 1);
                 this.mcResult.visible = true;

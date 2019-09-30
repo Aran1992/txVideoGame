@@ -651,7 +651,7 @@ class GameCommon {
     }
 
     public onShowResultTips(str: string, isRight: boolean = true, btnlabel?: string, callBack?: Function, ...arys) {
-        PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
+    PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }
 
     public showConfirmTips(desc: string, callBack: Function, desc2?: string): void {

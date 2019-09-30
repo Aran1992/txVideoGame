@@ -370,6 +370,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onFenXiang() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         // this.bmp = new egret.Bitmap();
         // // let texture:egret.Texture = RES.getRes("run_png");
         // let texture:egret.RenderTexture =Tool.onDrawDisObjToTexture(window['video1'],new egret.Rectangle(0, 0, size.width, size.height));
@@ -381,6 +382,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onTiao() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.videoD.onTiao();
     }
 
@@ -406,6 +408,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onShowMain() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.hideTips();
         this.videoD.onCloseVideo();
         GameCommon.getInstance().hideTipsHuDong();
@@ -509,6 +512,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onShowBottomBtn(e: egret.TouchEvent) {
+        //SoundManager.getInstance().playSound("ope_click.mp3")
         if (TipsBtn.Is_Guide_Bool) {//新手引导 显示一张按钮指引的图
             this.setPauseState();
             TipsBtn.Is_Guide_Bool = false;
@@ -553,6 +557,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onCunDang() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameCommon.getInstance().hideTipsHuDong();
         VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
@@ -563,6 +568,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onAddVideo() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.timerIdx = 0;
         // if (this.isAddFlg)
         //     return;
@@ -576,6 +582,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onReduceVideo() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.timerIdx = 0;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.REDUCE_VIDEO_SPEED));
     }
@@ -592,11 +599,13 @@ class TipsBtn extends eui.Component {
     }
 
     private onSelectPinZhi(event: egret.Event) {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.pinzhiGroup.visible = false;
         this.qualityBtn.label = event.target.label;
     }
 
     private onSelectSpeed(event: egret.Event) {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         const id: number = Number(event.target.name);
         this.beisuGroup.visible = false;
         this.speedBtn.label = event.target.label;
@@ -609,6 +618,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onPlay_Pause() {
+        //SoundManager.getInstance().playSound("ope_click.mp3")
         if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_PAUSE), true);
             this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
@@ -652,11 +662,13 @@ class TipsBtn extends eui.Component {
             if (goodsid) {
                 let goodsInfo: ShopInfoData = ShopManager.getInstance().getShopInfoData(goodsid);
                 if (goodsInfo) {
+                    SoundManager.getInstance().playSound("ope_ask.mp3")
                     GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);
                     GameCommon.getInstance().onShowBuyTips(goodsInfo.id, goodsInfo.model.currPrice, GOODS_TYPE.DIAMOND);
                 }
             }
-        } else {
+        } else {            
+            SoundManager.getInstance().playSound("ope_select_tab.mp3")
             this.onSelectWenTi(id);
         }
     }

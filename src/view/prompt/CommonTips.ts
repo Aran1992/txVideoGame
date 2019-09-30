@@ -154,7 +154,8 @@ class CommonTips extends eui.Component {
         this.onshowMaskBG();
     }
 
-    public onShowBuyTips(id, money, tp) {
+    public onShowBuyTips(id, money, tp) {        
+        SoundManager.getInstance().playSound("ope_ask.mp3")
         switch (tp) {
             case GOODS_TYPE.DIAMOND:
                 this.moneyIcon.source = 'common_zuanshi1_png';
@@ -191,6 +192,7 @@ class CommonTips extends eui.Component {
             this.result_closebtn.visible = true;
             this.btn_qianwang.visible = true;
             let btnClickFunc = (): void => {
+                SoundManager.getInstance().playSound("ope_click.mp3")
                 this.btn_qianwang.removeEventListener(egret.TouchEvent.TOUCH_TAP, btnClickFunc, this);
                 this.buyResult.visible = false;
                 callBack.call(null, arys);
@@ -198,6 +200,7 @@ class CommonTips extends eui.Component {
             this.btn_qianwang.label = btnlabel;
             this.btn_qianwang.addEventListener(egret.TouchEvent.TOUCH_TAP, btnClickFunc, this);
             let btnCloseClick = (): void => {
+                SoundManager.getInstance().playSound("ope_click.mp3")
                 this.result_closebtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, btnCloseClick, this);
                 this.buyResult.visible = false;
             };
@@ -307,6 +310,7 @@ class CommonTips extends eui.Component {
     }
 
     private onbtnConfirm() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.buyGrp.visible = false;
         switch (this.itemTp) {
             case GOODS_TYPE.DIAMOND:
@@ -320,17 +324,20 @@ class CommonTips extends eui.Component {
     }
 
     private onbtnConfirm1() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.qinmiGroup.visible = false;
         this.onhideMaskBG();
         VideoManager.getInstance().videoResume();
     }
 
     private onCancel() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.buyGrp.visible = false;
         this.onhideMaskBG();
     }
 
     private onbtnConfirm2() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.buyGrp1.visible = false;
         VideoManager.getInstance().videoResume();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_HAOGAN));
@@ -339,12 +346,14 @@ class CommonTips extends eui.Component {
     }
 
     private onCancel1() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.buyGrp1.visible = false;
         VideoManager.getInstance().videoResume();
         this.onhideMaskBG();
     }
 
     private onConfirm(event: egret.TouchEvent): void {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         let name: string = event.currentTarget.name;
         if (name == "sure") {
             if (this._confirmFunc) this._confirmFunc.call(null, null);

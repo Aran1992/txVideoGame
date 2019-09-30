@@ -102,6 +102,7 @@ class ChengJiuPanel extends eui.Component {
         //     UserInfo.guideDic[5] = 5;
         //     GuideManager.getInstance().onCloseImg();
         // }
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ChengJiuPanel')
     }
@@ -137,7 +138,7 @@ class ChengJiuPanel extends eui.Component {
 
     private onChangeTab(event: egret.Event) {
         // var index: number = Number(event.target.name);
-
+        SoundManager.getInstance().playSound("ope_click.mp3")
         let tabButton: eui.RadioButton = event.currentTarget as eui.RadioButton;
         var index: number = tabButton.value;//Number(event.target.name);
 
@@ -180,7 +181,8 @@ class ChengJiuPanel extends eui.Component {
 
     }
 
-    private onHideList() {
+    private onHideList() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.closeGroup1.visible = true;
         this.closeGroup2.visible = false;
         this.goodsLayer2.removeChildren();
@@ -189,6 +191,7 @@ class ChengJiuPanel extends eui.Component {
     }
 
     private onShowRoleItemList(event: egret.Event) {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         var index: number = Number(event.currentTarget.name);
         this.closeGroup1.visible = false;
         this.closeGroup2.visible = true;
@@ -225,7 +228,8 @@ class ChengJiuPanel extends eui.Component {
         }
     }
 
-    private onShowChengJiu(event: egret.Event) {
+    private onShowChengJiu(event: egret.Event) {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         var index: number = Number(event.target.name);
         if (this.currIdx == index)
             return;
@@ -382,7 +386,8 @@ class ChengJiuItem extends eui.Component {
         this.icon.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
     }
 
-    private onGet() {
+    private onGet() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         if (UserInfo.achievementDics[this.info.id].iscomplete == 2) {
             this.onTouchBtn();
             return;
@@ -413,6 +418,7 @@ class ChengJiuItem extends eui.Component {
         //     }
         // }
         // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CHENGJIU_REFRESH));
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
             windowName: 'ChengJiuItemPanel',
             data: this.info

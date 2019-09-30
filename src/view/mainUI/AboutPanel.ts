@@ -64,7 +64,7 @@ class AboutPanel extends eui.Component{
         for (let i=1;i<=3;i++){
             this["idTab"+i].enable = this._selectIndex != i;
             this["idTab"+i].currentState = this._selectIndex == i && "down" || "up"
-        }
+    }
         for (let i=1;i<=3;i++){
             this["idPage"+i].visible = this._selectIndex == i;
         }
@@ -72,13 +72,15 @@ class AboutPanel extends eui.Component{
             this.updateHelpPage()
         }
     }
-    private onCloseClick(event:egret.TouchEvent):void{        
-        this.qiuGroup.removeChildren();
-        this.slideGroup.removeChildren();
+    private onCloseClick(event:egret.TouchEvent):void{ 
+        SoundManager.getInstance().playSound("ope_click.mp3")       
+        //this.qiuGroup.removeChildren();
+        //this.slideGroup.removeChildren();
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'AboutPanel')
     }
     private onTabClick(event:egret.TouchEvent):void{
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this._selectIndex = Number(event.currentTarget.name);
         this.updateTab()
     }

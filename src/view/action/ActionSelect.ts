@@ -49,7 +49,11 @@ class ActionSelect extends ActionTimerSceneBase {
         this.exit();
     }
 
-    private onClickButton(event: egret.Event): void {
+    private onClickButton(event: egret.Event): void {        
+        if (this.skinName == skins.ActionSelectWho)
+            SoundManager.getInstance().playSound("ope_select_head.mp3")
+        else
+            SoundManager.getInstance().playSound("ope_select_tab.mp3")
         if (!this.isSelected) {
             this.isSelected = true;
             const button = event.currentTarget;
