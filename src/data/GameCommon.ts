@@ -1,5 +1,73 @@
 class GameCommon {
     private static instance: GameCommon = null;
+    public getLockedOptionIDs = {
+        5: () => {
+            if (GameCommon.getRoleLike(2) === 1) {
+                return [];
+            } else {
+                const q1a = GameCommon.getQuestionAnswer(1);
+                const q3a = GameCommon.getQuestionAnswer(3);
+                if (q1a === 1 && q3a === 1) {
+                    return [];
+                } else if (q1a === 1 || q3a === 1) {
+                    return [2];
+                } else if (q1a !== 1 && q3a !== 1) {
+                    return [1, 2];
+                }
+            }
+        },
+        18: () => {
+            if (
+                GameCommon.getRoleLike(2) < 3
+                && GameCommon.getRoleLike(0) < 2
+                && GameCommon.getRoleLike(3) < 2
+                && GameCommon.getRoleLike(1) < 1
+            ) {
+                return [2];
+            }
+        },
+        19: () => {
+            const list = [];
+            if (GameCommon.getRoleLike(2) < 3) {
+                list.push(1);
+            }
+            if (GameCommon.getRoleLike(0) < 2) {
+                list.push(2);
+            }
+            if (GameCommon.getRoleLike(3) < 2) {
+                list.push(4);
+            }
+            if (GameCommon.getRoleLike(1) < 1) {
+                list.push(3);
+            }
+            return list;
+        },
+        25: () => {
+            if (GameCommon.getQuestionAnswer(22) !== 1
+                && GameCommon.getQuestionAnswer(24) === 2) {
+                return [1, 2];
+            }
+        },
+        34: () => {
+            const list = [1, 2, 3, 4];
+            if (GameCommon.getRoleLike(2) >= 2) {
+                list.splice(list.indexOf(2), 1);
+            }
+            if (GameCommon.getRoleLike(0) >= 5) {
+                list.splice(list.indexOf(4), 1);
+            }
+            if (GameCommon.getRoleLike(3) >= 6) {
+                list.splice(list.indexOf(3), 1);
+            }
+            if (GameCommon.getRoleLike(1) >= 6) {
+                list.splice(list.indexOf(1), 1);
+            }
+            if (list.length === 4) {
+                list.splice(list.indexOf(3), 1);
+            }
+            return list;
+        },
+    };
     private readonly sd: egret.Sound;
 
     private constructor() {
@@ -14,6 +82,18 @@ class GameCommon {
             this.instance = new GameCommon();
         }
         return this.instance;
+    }
+
+    private static isChapterInRoleJuqingTree(chapter: number, curChapter: number): boolean {
+        for (let role = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
+            const roleTree = GameDefine.ROLE_JUQING_TREE[role];
+            const curIndex = roleTree.indexOf(curChapter);
+            if (curIndex !== -1) {
+                const index = roleTree.indexOf(chapter);
+                return index !== -1 && index <= curIndex;
+            }
+        }
+        return false;
     }
 
     public async getUserInfo() {
@@ -687,9 +767,13 @@ class GameCommon {
         PromptPanel.getInstance().showLoading();
     }
 
+    //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
+
     public removeLoading(): void {
         PromptPanel.getInstance().removeLoading();
     }
+
+    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
 
     public async report(evt, params) {
         callbackReport = function (data) {
@@ -702,7 +786,6 @@ class GameCommon {
         await platform.report(GameDefine.BOOKID, evt, params)
     }
 
-    //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
     //50<n<=200、200<n<=500、500以上。这里返回对应的区间号，0(n=0),1(0<n<=50),2(...),3,4
     public async getUserPlatformData() {
         callbackGetUserPlatformData = function (data) {
@@ -711,7 +794,6 @@ class GameCommon {
         await platform.getUserPlatformData()
     }
 
-    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
     /*totalAmount	int	消费总额	消费总额
     totalTimes	int	消费次数	消费次数
     lastConsumeTime	int	上次消费时间	上次消费时间
@@ -790,16 +872,12 @@ class GameCommon {
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
     }
 
-    private static isChapterInRoleJuqingTree(chapter: number, curChapter: number): boolean {
-        for (let role = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
-            const roleTree = GameDefine.ROLE_JUQING_TREE[role];
-            const curIndex = roleTree.indexOf(curChapter);
-            if (curIndex !== -1) {
-                const index = roleTree.indexOf(chapter);
-                return index !== -1 && index <= curIndex;
-            }
-        }
-        return false;
+    private static getRoleLike(roleIndex) {
+        return GameCommon.getInstance().getRoleLikeAll(roleIndex);
+    }
+
+    public static getQuestionAnswer(qid) {
+        return parseInt(UserInfo.curBokData.answerId[qid]);
     }
 }
 

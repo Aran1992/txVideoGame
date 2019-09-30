@@ -279,8 +279,6 @@ class CommonTips extends eui.Component {
         }
         this.mask_BG.width = size.width;
         this.mask_BG.height = size.height;
-        // this.x = -parnetGrp.x;
-        // this.y = -parnetGrp.y;
         this.addChildAt(this.mask_BG, 0);
     }
 

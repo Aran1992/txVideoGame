@@ -52,7 +52,7 @@ class GameDefine {
     public static CJ_LEVEL_NAME: string[] = ['全部', '普通', '简单', '中等', '困难', '究极'];
 
     public static START_CHAPTER: number = 4;
-    public static TEST_ACTION_SCENE_WENTI_ID: number = 46;
+    public static TEST_ACTION_SCENE_WENTI_ID: number = 5;
     public static Currency_Icon = {
         SUIPIAN: "common_suipian_png",
         DIAMOND: "common_zuanshi_png"

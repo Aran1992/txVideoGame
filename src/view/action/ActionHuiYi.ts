@@ -1,7 +1,7 @@
 class ActionHuiYi extends ActionTimerSceneBase {
     private qinmiGroup: eui.Group;
-    private option_roles: number[] = [2, 3, 1, 4];
-    private ansId: number = 0;
+    private optionRoles: number[] = [2, 3, 1, 4];
+    private answerID: number = 0;
     private exitTimer: number;
     private defaultAnswerID: number;
     private isSelected: boolean;
@@ -24,8 +24,8 @@ class ActionHuiYi extends ActionTimerSceneBase {
             this['groupHand' + i].touchEnabled = true;
             this['groupHand' + i].name = i;
             this['groupHand' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventClick, this);
-            this['timeImg' + i].visible = true;
-            this['suo' + i].visible = true;
+            this['timeImg' + i].visible = false;
+            this['suo' + i].visible = false;
             this['selected' + i].visible = false;
         }
         this.qinmiGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickQinmiGroup, this);
@@ -37,14 +37,15 @@ class ActionHuiYi extends ActionTimerSceneBase {
             GuideManager.getInstance().curState = true;
         }
         let data1 = GameCommon.getInstance().getSortLike(0);
-        let data2 = GameCommon.getInstance().getSortLike(1);
-        let idx1: number = this.option_roles[data1.id];
-        this.defaultAnswerID = idx1;
-        let idx2: number = this.option_roles[data2.id];
-        this['timeImg' + idx1].visible = false;
-        this['suo' + idx1].visible = false;
-        this['timeImg' + idx2].visible = false;
-        this['suo' + idx2].visible = false;
+        this.defaultAnswerID = this.optionRoles[data1.id];
+        const func = GameCommon.getInstance().getLockedOptionIDs[this.model.id];
+        if (func) {
+            const lockedIDs = func() || [];
+            lockedIDs.forEach(id => {
+                this['timeImg' + id].visible = true;
+                this['suo' + id].visible = true;
+            });
+        }
         let cfgs = answerModels[this.model.id];
         if (!cfgs)
             return;
@@ -62,13 +63,13 @@ class ActionHuiYi extends ActionTimerSceneBase {
         }
         GameDispatcher.getInstance().dispatchEvent(
             new egret.Event(GameEvent.ONSHOW_VIDEO),
-            {answerId: this.ansId, wentiId: this.model.id, click: 1}
+            {answerId: this.answerID, wentiId: this.model.id, click: 1}
         );
         this.exit();
     }
 
     protected onBackFail() {
-        this.ansId = this.defaultAnswerID;
+        this.answerID = this.defaultAnswerID;
         this.onBackSuccess();
     }
 
@@ -91,7 +92,7 @@ class ActionHuiYi extends ActionTimerSceneBase {
         let name: number = Number(event.currentTarget.name);
         GuideManager.getInstance().isGuide = true;
         GuideManager.getInstance().curState = true;
-        this.ansId = name;
+        this.answerID = name;
         if (this['timeImg' + name].visible) {
             VideoManager.getInstance().videoPause();
             PromptPanel.getInstance().onShowBuyHaoGan(name);
@@ -103,8 +104,8 @@ class ActionHuiYi extends ActionTimerSceneBase {
     }
 
     private onBuySuccessCallback() {
-        this['timeImg' + this.ansId].visible = false;
-        this['suo' + this.ansId].visible = false;
+        this['timeImg' + this.answerID].visible = false;
+        this['suo' + this.answerID].visible = false;
     }
 
     private onExit() {
