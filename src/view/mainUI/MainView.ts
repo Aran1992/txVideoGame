@@ -176,17 +176,18 @@ class MainView extends eui.Component {
     }
 
     private onDuDang() {
-        const httpurl: string = window ? window.location.href : "";
-        if (httpurl.indexOf("192.168.") != -1 || httpurl.indexOf("127.0.0") != -1 && GameDefine.TEST_ACTION_SCENE_WENTI_ID) {
-            this.testActionScene(GameDefine.TEST_ACTION_SCENE_WENTI_ID);
-        } else {
-            this.checkGuide8();
-            if (GameDefine.IS_DUDANG) {
-                this.curDuDang = true;
+        if (DEBUG) {
+            if (typeof GameDefine.TEST_ACTION_SCENE_WENTI_ID === "number") {
+                this.testActionScene(GameDefine.TEST_ACTION_SCENE_WENTI_ID);
+                return;
             }
-            GameDefine.IS_DUDANG = false;
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
         }
+        this.checkGuide8();
+        if (GameDefine.IS_DUDANG) {
+            this.curDuDang = true;
+        }
+        GameDefine.IS_DUDANG = false;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
     }
 
     private testActionScene(wentiID: number) {
@@ -229,14 +230,14 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ChengJiuPanel');
     }
 
-    private onXinkaishi(): void {
-        let httpurl: string = window ? window.location.href : "";
-        if (httpurl.indexOf("192.168.") != -1 || httpurl.indexOf("127.0.0") != -1 || !0) {
-            let chapter: number = parseInt(Tool.getQueryString("chapter")) ? parseInt(Tool.getQueryString("chapter")) : GameDefine.START_CHAPTER;
-            this.gameWorld.createGameScene(chapter);
-        } else {
-            this.gameWorld.createGameScene();
+    private onXinkaishi() {
+        if (DEBUG) {
+            if (typeof GameDefine.START_CHAPTER === "number") {
+                this.gameWorld.createGameScene(GameDefine.START_CHAPTER);
+                return;
+            }
         }
+        this.gameWorld.createGameScene();
     }
 
     private onShowShop() {
