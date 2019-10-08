@@ -36,10 +36,9 @@ class ActionSelect extends ActionTimerSceneBase {
             for (let i: number = 0; i < this.ITEM_COUNT; i++) {
                 this[`timeImg${i}`].visible = false;
                 this[`suo${i}`].visible = false;
-    }
+            }
             const lockedIDs = func() || [];
             lockedIDs.forEach(id => {
-                id--;
                 this['timeImg' + id].visible = true;
                 this['suo' + id].visible = true;
             });
@@ -65,16 +64,16 @@ class ActionSelect extends ActionTimerSceneBase {
         this.exit();
     }
 
-    private onClickButton(event: egret.Event): void {        
+    private onClickButton(event: egret.Event): void {
         if (this.skinName == skins.ActionSelectWho)
-            SoundManager.getInstance().playSound("ope_select_head.mp3")
+            SoundManager.getInstance().playSound("ope_select_head.mp3");
         else
-            SoundManager.getInstance().playSound("ope_select_tab.mp3")
+            SoundManager.getInstance().playSound("ope_select_tab.mp3");
         if (this.isSelected) {
             return;
         }
-            const button = event.currentTarget;
-            const index = button["index"];
+        const button = event.currentTarget;
+        const index = button["index"];
         this.answerID = index + 1;
         if (this.checkLocked && this['timeImg' + index].visible) {
             VideoManager.getInstance().videoPause();
@@ -90,7 +89,7 @@ class ActionSelect extends ActionTimerSceneBase {
     }
 
     private onBuySuccessCallback() {
-        let index = this.answerID - 1
+        let index = this.answerID - 1;
         this['timeImg' + index].visible = false;
         this['suo' + index].visible = false;
     }

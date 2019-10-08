@@ -4660,6 +4660,46 @@
 			"name": "guide_bg_jpg",
 			"type": "image",
 			"url": "eui_skins/about/guide_bg.jpg"
+		},
+		{
+			"url": "assets/action/check_drink/1.png",
+			"type": "image",
+			"name": "action_select_1_png"
+		},
+		{
+			"url": "assets/action/check_drink/2.png",
+			"type": "image",
+			"name": "action_select_2_png"
+		},
+		{
+			"url": "assets/action/check_drink/3.png",
+			"type": "image",
+			"name": "action_select_3_png"
+		},
+		{
+			"url": "assets/action/check_drink/4.png",
+			"type": "image",
+			"name": "action_select_4_png"
+		},
+		{
+			"url": "assets/action/check_drink/5.png",
+			"type": "image",
+			"name": "action_select_5_png"
+		},
+		{
+			"url": "assets/action/check_drink/line.png",
+			"type": "image",
+			"name": "action_select_line_png"
+		},
+		{
+			"url": "assets/action/check_drink/name-bg.png",
+			"type": "image",
+			"name": "action_select_name_bg_png"
+		},
+		{
+			"url": "assets/action/check_drink/white.png",
+			"type": "image",
+			"name": "action_select_white_png"
 		}
 	]
 }
