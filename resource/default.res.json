@@ -4635,6 +4635,31 @@
 			"name": "ope_select_head_mp3",
 			"type": "sound",
 			"url": "sound/ope_select_head.mp3"
+		},
+		{
+			"name": "guide_4_jpg",
+			"type": "image",
+			"url": "eui_skins/about/guide_4.jpg"
+		},
+		{
+			"name": "guide_1_jpg",
+			"type": "image",
+			"url": "eui_skins/about/guide_1.jpg"
+		},
+		{
+			"name": "guide_2_jpg",
+			"type": "image",
+			"url": "eui_skins/about/guide_2.jpg"
+		},
+		{
+			"name": "guide_3_jpg",
+			"type": "image",
+			"url": "eui_skins/about/guide_3.jpg"
+		},
+		{
+			"name": "guide_bg_jpg",
+			"type": "image",
+			"url": "eui_skins/about/guide_bg.jpg"
 		}
 	]
 }
