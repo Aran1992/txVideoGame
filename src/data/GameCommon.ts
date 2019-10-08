@@ -449,7 +449,24 @@ class GameCommon {
         if (!awardStrAry || !awardStrAry.length)
             return;
         let delTim = 0;
-        if (Number(awardStrAry[0]) > 0) {
+
+        for(let i=0;i<=3;i++){
+            let tipStr = ": 亲密度增加"
+            let sound = "likeadd.mp3"
+            let like = Number(awardStrAry[i])
+            if (like<0){
+                tipStr = ": 亲密度减少"
+                sound = "likesub.mp3"
+            } 
+            if(like != 0){
+                Tool.callbackTime(function () {
+                    GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[i] + tipStr)
+                    SoundManager.getInstance().playSound(sound);
+                }, {}, delTim);       
+                delTim = delTim + 3000;                  
+            }   
+        }
+        /*if (Number(awardStrAry[0]) > 0) {
             Tool.callbackTime(function () {
                 GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[0] + ': 亲密度增加')
             }, {}, delTim);
@@ -495,7 +512,7 @@ class GameCommon {
                 GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[3] + ': 亲密度降低')
             }, {}, delTim);
             delTim = delTim + 3000;
-        }
+        }*/
     }
 
     public getCurRoleLike(index, str): number {
@@ -714,7 +731,7 @@ class GameCommon {
     }
 
     public onShowResultTips(str: string, isRight: boolean = true, btnlabel?: string, callBack?: Function, ...arys) {
-        PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
+    PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }
 
     public showConfirmTips(desc: string, callBack: Function, desc2?: string): void {

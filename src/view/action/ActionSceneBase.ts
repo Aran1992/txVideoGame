@@ -109,10 +109,12 @@ class ActionSceneBase extends eui.Component {
             this.idx = 0;
         }
         ActionManager.getInstance().onActionSuccess(this.idx, this.delTime, false);
+        SoundManager.getInstance().playSound("hudong_end_fail")
     }
 
     protected onBackSuccess() {
         ActionManager.getInstance().onActionSuccess(this.idx, this.delTime);
+        SoundManager.getInstance().playSound("hudong_end_success")
     }
 
     private onLoadComplete() {

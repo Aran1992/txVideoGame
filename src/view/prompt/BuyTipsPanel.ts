@@ -84,7 +84,7 @@ class BuyTipsPanel extends eui.Component {
         this.y = (size.height - this.height) / 2;
     }
 
-    private onZuanShi() {
+    private onZuanShi() {        
         GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currPrice, GOODS_TYPE.DIAMOND);
         // this.moneyIcon.source = 'common_zuanshi1_png';
         this.onclose();
@@ -114,6 +114,7 @@ class BuyTipsPanel extends eui.Component {
     }
 
     private onclose() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
         this.onhideMaskBG();
     }

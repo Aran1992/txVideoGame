@@ -90,6 +90,7 @@ class ShouCangListPanel extends eui.Component {
     }
 
     private onClose() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         if (!UserInfo.guideDic[7])//关闭界面去进行商城引导
         {
             UserInfo.guideDic[7] = 7;
@@ -175,11 +176,13 @@ class ShouCangListItem extends eui.Component {
         }
     }
 
-    private onTouchImg() {
+    private onTouchImg() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_IMG_TOUCH))
     }
 
     private onPlayVideo() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         if (!UserInfo.guideDic[7])//关闭界面去进行商城引导
         {
             if (this.info != 3 && this.info != 5)

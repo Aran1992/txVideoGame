@@ -90,7 +90,8 @@ class JuQingPanel extends eui.Component {
         }
     }
 
-    private onSaveCunChu() {
+    private onSaveCunChu() {        
+        SoundManager.getInstance().playSound("ope_ask.mp3")
         if (this._curIdx != FILE_TYPE.AUTO_FILE && !this.noneFile.visible) {
             var self = this;
             GameCommon.getInstance().showConfirmTips("是否存储？", function (): void {
@@ -108,7 +109,8 @@ class JuQingPanel extends eui.Component {
 
     private onShowConfirm(data) {
         if (this._curIdx == FILE_TYPE.AUTO_FILE) {
-            var self = this;
+            var self = this;            
+            SoundManager.getInstance().playSound("ope_ask.mp3")
             GameCommon.getInstance().showConfirmTips("清空记忆，从这里从新开始？", function (): void {
                 self._videoData = data.data;
                 GameCommon.getInstance().showLoading();
@@ -124,7 +126,8 @@ class JuQingPanel extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH))
     }
 
-    private onClose() {
+    private onClose() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.onRemove();
         this.qiuGroup.removeChildren();
         this.slideGroup.removeChildren();
@@ -141,7 +144,8 @@ class JuQingPanel extends eui.Component {
         this.height = size.height;
     }
 
-    private onShowChapterVideo(event: egret.Event) {
+    private onShowChapterVideo(event: egret.Event) {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         var name: number = Number(event.currentTarget.name);
         if (this._curIdx == name)
             return;
@@ -346,7 +350,8 @@ class JuQingPanel extends eui.Component {
         // }
     }
 
-    private touchGuideHandler(): void {
+    private touchGuideHandler(): void {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         if (this.guide_images.length == 0) {
             this.guide_grp.visible = false;
             this.mengban.mask = null;
@@ -682,7 +687,8 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         }
     }
 
-    private onTouchBtn(event: egret.Event) {
+    private onTouchBtn(event: egret.Event) {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         var name: number = Number(event.currentTarget.name);
         var allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
         if (allCfg[name]) {

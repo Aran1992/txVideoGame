@@ -23,9 +23,9 @@
 		<e:Image width="1068" height="600" scaleX="1" scaleY="1" source="common_scalebk1_png" scale9Grid="18,17,34,19" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="22" x="440"/>
 		<e:Label text="腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧..." scaleX="1" scaleY="1" anchorOffsetX="0" width="866.57" anchorOffsetY="0" height="394.24" size="33" verticalCenter="-22" lineSpacing="18" x="493"/>
 	</e:Group>
-	<e:Group id="idPage3" touchEnabled="false" width="100%" height="100%" x="0" y="0" visible="false">
+	<e:Group id="idPage3" touchEnabled="false" width="100%" height="100%" x="0" y="0">
 		<e:Image width="1068" height="600" scaleX="1" scaleY="1" source="common_scalebk1_png" scale9Grid="18,17,34,19" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="22" x="440"/>
-		<e:Scroller id="idScroller" width="1042.43" height="569.7" x="450" y="188.39" anchorOffsetX="0" anchorOffsetY="0" scrollPolicyV="on" scrollPolicyH="off" bounces="false">
+		<e:Scroller id="idScroller" width="1042.43" height="569.7" x="450" anchorOffsetX="0" anchorOffsetY="0" scrollPolicyV="on" scrollPolicyH="off" bounces="false" verticalCenter="23">
 			<e:Group id="idViewPort">
 				<e:Label id="idProtcalText" text="2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧...2腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧..." scaleX="1" scaleY="1" anchorOffsetX="0" width="999.91" anchorOffsetY="0" height="1176.05" size="33" verticalCenter="328.15" lineSpacing="18" x="23.3" y="38.76000000000002"/>
 			</e:Group>

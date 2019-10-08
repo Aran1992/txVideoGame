@@ -70,12 +70,13 @@ class ChengJiuItemPanel extends eui.Component {
         this.onSkinName();
     }
 
-    private onClose() {
+    private onClose() {        
+        SoundManager.getInstance().playSound("ope_click.mp3")
         this.onRemove();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ChengJiuItemPanel')
     }
 
-    private onGet() {
+    private onGet() {        
         if (UserInfo.achievementDics[this._info.id]) {
             if (UserInfo.achievementDics[this._info.id].iscomplete == 1) {
                 UserInfo.achievementDics[this._info.id].iscomplete = 2;
@@ -83,7 +84,8 @@ class ChengJiuItemPanel extends eui.Component {
                 if (this._info.jianglisuipian > 0) {
                     UserInfo.suipianMoney += this._info.jianglisuipian;
                 }
-                GameCommon.getInstance().onShowResultTips('领取成功');
+                GameCommon.getInstance().onShowResultTips('领取成功');                
+                SoundManager.getInstance().playSound("ope_gain.mp3")
                 if (UserInfo.achievementDics[this._info.id] && UserInfo.achievementDics[this._info.id].iscomplete == 2) {
                     this.yilingqu.text = '已获得碎片' + 'X' + this._info.jianglisuipian;
                     Tool.setDisplayGray(this.btnGet, true);
@@ -94,9 +96,11 @@ class ChengJiuItemPanel extends eui.Component {
                 }
             }
         } else {
-            GameCommon.getInstance().onShowResultTips('未达成条件', false);
+            GameCommon.getInstance().onShowResultTips('未达成条件', false);            
+            SoundManager.getInstance().playSound("ope_fail.mp3")
             return;
         }
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CHENGJIU_REFRESH));
     }
 

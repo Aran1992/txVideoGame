@@ -69,7 +69,7 @@ class ShouCangViewPanel extends eui.Component {
     }
 
     private onClose() {
-
+        SoundManager.getInstance().playSound("ope_click.mp3")
         if (!UserInfo.guideDic[7])//关闭引导图片
         {
             GuideManager.getInstance().onCloseImg();
@@ -110,6 +110,7 @@ class ShouCangViewPanel extends eui.Component {
     }
 
     private onFilter(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         let cur_models = this.getShopDatas();
         if (!cur_models) return;
         this.showFilter = this.showFilter ? false : true;
@@ -289,8 +290,7 @@ class ShouCangViewItem extends eui.Component {
     }
 
     private onPlayVideo() {
-
-
+        SoundManager.getInstance().playSound("ope_click.mp3")
         // if (!UserInfo.allCollectionDatas[this.info.id]) {
         //     return;
         // var item = ShopManager.getInstance().getItem(this.needId);

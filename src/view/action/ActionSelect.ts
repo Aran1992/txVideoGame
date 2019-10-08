@@ -36,7 +36,7 @@ class ActionSelect extends ActionTimerSceneBase {
             for (let i: number = 0; i < this.ITEM_COUNT; i++) {
                 this[`timeImg${i}`].visible = false;
                 this[`suo${i}`].visible = false;
-            }
+    }
             const lockedIDs = func() || [];
             lockedIDs.forEach(id => {
                 id--;
@@ -65,12 +65,16 @@ class ActionSelect extends ActionTimerSceneBase {
         this.exit();
     }
 
-    private onClickButton(event: egret.Event): void {
+    private onClickButton(event: egret.Event): void {        
+        if (this.skinName == skins.ActionSelectWho)
+            SoundManager.getInstance().playSound("ope_select_head.mp3")
+        else
+            SoundManager.getInstance().playSound("ope_select_tab.mp3")
         if (this.isSelected) {
             return;
         }
-        const button = event.currentTarget;
-        const index = button["index"];
+            const button = event.currentTarget;
+            const index = button["index"];
         this.answerID = index + 1;
         if (this.checkLocked && this['timeImg' + index].visible) {
             VideoManager.getInstance().videoPause();
