@@ -44,7 +44,7 @@ class MainView extends eui.Component {
     }
 
     private static onShowShowCang() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangListPanel');
     }
 
@@ -177,32 +177,29 @@ class MainView extends eui.Component {
     }
 
     private onDuDang() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
-        const httpurl: string = window ? window.location.href : "";
-        if (httpurl.indexOf("192.168.") != -1 || httpurl.indexOf("127.0.0") != -1 && GameDefine.TEST_ACTION_SCENE_WENTI_ID) {
-            this.testActionScene(GameDefine.TEST_ACTION_SCENE_WENTI_ID);
-        } else {
-            this.checkGuide8();
-            if (GameDefine.IS_DUDANG) {
-                this.curDuDang = true;
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        if (DEBUG) {
+            if (typeof GameDefine.TEST_ACTION_SCENE_WENTI_ID === "number") {
+                const actionIndex = 0;
+                const wentiModel = JsonModelManager.instance.getModelwenti()[GameDefine.TEST_ACTION_SCENE_WENTI_ID.toString()];
+                const hudongModel = JsonModelManager.instance.getModelhudong()[wentiModel.type];
+                const paramList = hudongModel.pos.split(",");
+                const actionSceneClass = ActionManager.getActionSceneClassByActionType(parseInt(hudongModel.tp));
+                const actionScene = new actionSceneClass(wentiModel, paramList, actionIndex, true);
+                this.addChild(actionScene);
+                return;
             }
-            GameDefine.IS_DUDANG = false;
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
         }
-    }
-
-    private testActionScene(wentiID: number) {
-        const actionIndex = 0;
-        const wentiModel = JsonModelManager.instance.getModelwenti()[wentiID.toString()];
-        const hudongModel = JsonModelManager.instance.getModelhudong()[wentiModel.type];
-        const paramList = hudongModel.pos.split(",");
-        const actionSceneClass = ActionManager.getActionSceneClassByActionType(parseInt(hudongModel.tp));
-        const actionScene = new actionSceneClass(wentiModel, paramList, actionIndex, true);
-        this.addChild(actionScene);
+        this.checkGuide8();
+        if (GameDefine.IS_DUDANG) {
+            this.curDuDang = true;
+        }
+        GameDefine.IS_DUDANG = false;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
     }
 
     private onShowWallet() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.checkGuide8();
         GameCommon.getInstance().openButton("story://wallet");
     }
@@ -213,7 +210,7 @@ class MainView extends eui.Component {
     }
 
     private onCleanCache() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         for (var i: number = 1; i < FILE_TYPE.SIZE; i++) {
             GameCommon.getInstance().deleteBookHistory(i);
         }
@@ -222,13 +219,13 @@ class MainView extends eui.Component {
     }
 
     private onShowActivity() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.checkGuide8();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ActivityPanel');
     }
 
     private onShowChengJiu() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         // GameCommon.getInstance().addAlert('zanweikaifang');
         this.cjLab.visible = false;
         this.checkGuide8();
@@ -236,18 +233,18 @@ class MainView extends eui.Component {
     }
 
     private onXinkaishi(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
-        let httpurl: string = window ? window.location.href : "";
-        if (httpurl.indexOf("192.168.") != -1 || httpurl.indexOf("127.0.0") != -1 || !0) {
-            let chapter: number = parseInt(Tool.getQueryString("chapter")) ? parseInt(Tool.getQueryString("chapter")) : GameDefine.START_CHAPTER;
-            this.gameWorld.createGameScene(chapter);
-        } else {
-            this.gameWorld.createGameScene();
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        if (DEBUG) {
+            if (typeof GameDefine.START_CHAPTER === "number") {
+                this.gameWorld.createGameScene(GameDefine.START_CHAPTER);
+                return;
+            }
         }
+        this.gameWorld.createGameScene();
     }
 
     private onShowShop() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.checkGuide8();
         // GameCommon.getInstance().addAlert('zanweikaifang');
         this.shopLab.visible = false;
@@ -255,7 +252,7 @@ class MainView extends eui.Component {
     }
 
     private onShowbtnSetting() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.checkGuide8();
         // GameCommon.getInstance().addAlert('zanweikaifang');
         //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'PlayerSettingPanel');
@@ -263,7 +260,7 @@ class MainView extends eui.Component {
     }
 
     private onRefreshUser() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.checkGuide8();
         this.icon.source = UserInfo.avatar;
         // this.desc.text = UserInfo.avatar;
@@ -344,7 +341,7 @@ class MainView extends eui.Component {
     }
 
     private onShowXuZhang() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.gameWorld.createGameScene();
         SoundManager.getInstance().initMusic(SoundManager.musicList);
         this.mainGroup.visible = false;
