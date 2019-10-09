@@ -19,8 +19,6 @@
         <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_1_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="肖千也" horizontalCenter="0" bottom="-31.5" size="28"/>
-			<e:Image id="timeImg0" source="sc_music_icondi_png" alpha="0.5" scaleX="1" scaleY="1" width="174" height="174" horizontalCenter="0" verticalCenter="0"/>
-			<e:Image id="suo0" source="action_huyi_buy_png" horizontalCenter="0" verticalCenter="0"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="-300" bottom="150">
 			<e:Button label="" id="button1" horizontalCenter="0" verticalCenter="0">
@@ -35,8 +33,6 @@
         <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_2_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="夏子豪" horizontalCenter="0" bottom="-31.5" size="28"/>
-			<e:Image id="timeImg1" source="sc_music_icondi_png" alpha="0.5" scaleX="1" scaleY="1" width="174" height="174" horizontalCenter="0" verticalCenter="0" x="-262" y="38"/>
-			<e:Image id="suo1" source="action_huyi_buy_png" horizontalCenter="0" verticalCenter="0" x="-205" y="94" scaleX="1" scaleY="1"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="0" bottom="150">
 			<e:Button label="" id="button2" horizontalCenter="0" verticalCenter="0">
@@ -51,8 +47,6 @@
         <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_3_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="肖万寻" horizontalCenter="0" bottom="-31.5" size="28"/>
-			<e:Image id="timeImg2" source="sc_music_icondi_png" alpha="0.5" scaleX="1" scaleY="1" width="174" height="174" horizontalCenter="0" verticalCenter="0" x="38" y="-137"/>
-			<e:Image id="suo2" source="action_huyi_buy_png" horizontalCenter="0" verticalCenter="0" x="95" y="-81" scaleX="1" scaleY="1"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="300" bottom="150">
 			<e:Button label="" id="button3" horizontalCenter="0" verticalCenter="0">
@@ -67,8 +61,6 @@
         <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_4_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35"/>
         <e:Label text="韩小白" horizontalCenter="0" bottom="-31.5" size="28"/>
-			<e:Image id="timeImg3" source="sc_music_icondi_png" alpha="0.5" scaleX="1" scaleY="1" width="174" height="174" horizontalCenter="0" verticalCenter="0" x="-862" y="38"/>
-			<e:Image id="suo3" source="action_huyi_buy_png" horizontalCenter="0" verticalCenter="0" x="-805" y="94" scaleX="1" scaleY="1"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="600" bottom="150">
 			<e:Button label="" id="button4" horizontalCenter="0" verticalCenter="0">
@@ -83,7 +75,5 @@
         <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_5_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="江雪" horizontalCenter="0" bottom="-31.5" size="28"/>
-			<e:Image id="timeImg4" source="sc_music_icondi_png" alpha="0.5" scaleX="1" scaleY="1" width="174" height="174" horizontalCenter="0" verticalCenter="0" x="-562" y="-137"/>
-			<e:Image id="suo4" source="action_huyi_buy_png" horizontalCenter="0" verticalCenter="0" x="-505" y="-81" scaleX="1" scaleY="1"/>
     </e:Group>
 </e:Skin>
