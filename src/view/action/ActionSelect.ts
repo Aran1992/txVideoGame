@@ -10,11 +10,9 @@ class ActionSelect extends ActionTimerSceneBase {
     }
 
     protected onSkinName(): void {
-        if (this.paramList[3] === "0") {
-            this.skinName = skins.ActionCheckDrink;
-        } else if (this.paramList[3] === "1") {
+        if (this.paramList[3] === "1") {
             this.skinName = skins.ActionSelectWho;
-        } else {
+        } else if (this.paramList[3] === "0") {
             this.skinName = skins.ActionCheckDrink;
         }
     }
@@ -61,7 +59,20 @@ class ActionSelect extends ActionTimerSceneBase {
         const index = button["index"];
         this.answerID = index + 1;
         this.isSelected = true;
-        this[`selected${index}`].visible = true;
+        const selected = this[`selected${index}`];
+        selected.visible = true;
+        if (this.paramList[3] === "0") {
+            const mc = new egret.MovieClip();
+            const mcFactory = new egret.MovieClipDataFactory();
+            mcFactory.clearCache();
+            mcFactory.mcDataSet = RES.getRes("music_effect_json");
+            mcFactory.texture = RES.getRes("music_effect_png");
+            mc.movieClipData = mcFactory.generateMovieClipData("action");
+            mc.gotoAndPlay(1, -1);
+            mc.x = selected.width / 2;
+            mc.y = selected.height / 2;
+            selected.addChild(mc);
+        }
         for (let i: number = 0; i < this.ITEM_COUNT; i++) {
             this[`button${i}`].touchEnabled = false;
         }
