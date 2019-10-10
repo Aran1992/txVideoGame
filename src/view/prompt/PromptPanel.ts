@@ -17,11 +17,12 @@ class PromptPanel extends egret.DisplayObjectContainer {
     }
 
     public addChengJiuTips(str) {
-        this.cjTips.setText(str);
+        this.cjTips.setText(str,false);
     }
 
     public addLikeTips(str) {
-        this.cjTips.setLike(str);
+        this.cjTips.setText(str,true);
+        //this.cjTips.setLike(str);
     }
 
     public setTipsHuDong() {

@@ -3,6 +3,8 @@
  */
 class CommonTips extends eui.Component {
     private grp: eui.Group;
+    private idLike:eui.Image;
+    private idChengjiu:eui.Image;
     private desc: eui.Label;
     private grp1: eui.Group;
     private desc1: eui.Label;
@@ -54,28 +56,30 @@ class CommonTips extends eui.Component {
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
-    public setText(text: string): void {
-        this.addChengJiuArr.push(text);
+    public setText(text: string,bLike:boolean): void {
+        this.addChengJiuArr.push({'text':text,'bLike':bLike});        
         if (this.isLikeTime == true) {
-            Tool.callbackTime(() => {
-                if (this.addChengJiuArr.length == 1) {
-                    this.grp.x = -2000;
-                    this.grp.visible = true;
-                    this.desc.text = '成就: ' + text;
-                    this.grp.alpha = 0.7;
-                    let tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
-                    tw.to({x: 43}, 1500);
-                    tw.to({alpha: 1}, 2000);
-                    tw.to({alpha: 0}, 2000).wait(0).call(this.onCallBtnState, this);
-                    let tw1 = egret.Tween.get(this.grp1);//.wait(0).call(this.onCallBtnState, this);
-                    tw1.to({y: 257}, 500);
-                }
-            }, this, 1000);
+            // Tool.callbackTime(() => {
+            //     if (this.addChengJiuArr.length == 1) {
+            //         this.grp.x = -2000;
+            //         this.grp.visible = true;
+            //         this.desc.text = '成就: ' + text;
+            //         this.grp.alpha = 0.7;
+            //         let tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
+            //         tw.to({x: 43}, 1500);
+            //         tw.to({alpha: 1}, 2000);
+            //         tw.to({alpha: 0}, 2000).wait(0).call(this.onCallBtnState, this);
+            //         let tw1 = egret.Tween.get(this.grp1);//.wait(0).call(this.onCallBtnState, this);
+            //         tw1.to({y: 257}, 500);
+            //     }
+            // }, this, 1000);
         } else {
             if (this.addChengJiuArr.length == 1) {
                 this.grp.x = -2000;
                 this.grp.visible = true;
-                this.desc.text = '成就: ' + text;
+                this.desc.text = (bLike ? '' : '成就: ') + text;
+                this.idChengjiu.visible = !bLike;
+                this.idLike.visible = bLike;
                 this.grp.alpha = 0.7;
                 let tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
                 tw.to({x: 43}, 1500);
@@ -86,17 +90,18 @@ class CommonTips extends eui.Component {
         this.isLikeTime = false;
     }
 
-    public setLike(text: string): void {
-        this.isLikeTime = true;
-        this.grp1.x = -1000;
-        this.grp1.alpha = 1;
-        this.desc1.text = text;
-        this.grp1.y = 148;
-        egret.Tween.get(this.grp1)
-            .to({x: 43}, 800)
-            .to({alpha: 0.9}, 2000)
-            .to({alpha: 0}, 1500);
-    }
+    // public setLike(text: string): void {
+    //     this.isLikeTime = true;
+    //     this.grp1.x = -1000;
+    //     this.grp1.alpha = 1;
+    //     this.desc1.text = text;
+    //     this.grp1.y = 148;
+    //     egret.Tween.get(this.grp1)
+    //         .to({x: 43}, 800)
+    //         .to({alpha: 0.9}, 2000)
+    //         .to({alpha: 0}, 1500);
+    // }
+
 
     //互动即将到来提示
     public setTipsHuDong() {
@@ -298,7 +303,10 @@ class CommonTips extends eui.Component {
         this.addChengJiuArr.shift();
         if (this.addChengJiuArr.length > 0) {
             this.grp.x = -2000;
-            this.desc.text = '成就: ' + this.addChengJiuArr[0];
+            let t = this.addChengJiuArr[0]
+            this.desc.text = (t.bLike?'':'成就: ') + t.text;
+            this.idChengjiu.visible = !t.bLike;
+            this.idLike.visible = t.bLike;
             this.grp.alpha = 0.7;
             let tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
             tw.to({x: 43}, 1500);
