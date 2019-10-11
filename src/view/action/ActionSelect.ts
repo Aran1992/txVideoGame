@@ -2,7 +2,6 @@ class ActionSelect extends ActionTimerSceneBase {
     private ITEM_COUNT: number = 5;
     private answerID: number;
     private isSelected: boolean;
-    private checkLocked: boolean = false;
     private exitTimer: number;
 
     public exit() {
@@ -11,37 +10,21 @@ class ActionSelect extends ActionTimerSceneBase {
     }
 
     protected onSkinName(): void {
-        if (this.paramList[3] === "0") {
-            this.skinName = skins.ActionCheckDrink;
-        } else if (this.paramList[3] === "1") {
+        if (this.paramList[3] === "1") {
             this.skinName = skins.ActionSelectWho;
-        } else {
+        } else if (this.paramList[3] === "0") {
             this.skinName = skins.ActionCheckDrink;
         }
     }
 
     protected onInit(): void {
         super.onInit();
-        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
         this.answerID = this.model.moren;
         for (let i: number = 0; i < this.ITEM_COUNT; i++) {
             const button: eui.Component = this[`button${i}`];
             button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickButton, this);
             button["index"] = i;
             this[`selected${i}`].visible = false;
-        }
-        const func = GameCommon.getInstance().getLockedOptionIDs[this.model.id];
-        if (func) {
-            this.checkLocked = true;
-            for (let i: number = 0; i < this.ITEM_COUNT; i++) {
-                this[`timeImg${i}`].visible = false;
-                this[`suo${i}`].visible = false;
-            }
-            const lockedIDs = func() || [];
-            lockedIDs.forEach(id => {
-                this['timeImg' + id].visible = true;
-                this['suo' + id].visible = true;
-            });
         }
     }
 
@@ -75,23 +58,25 @@ class ActionSelect extends ActionTimerSceneBase {
         const button = event.currentTarget;
         const index = button["index"];
         this.answerID = index + 1;
-        if (this.checkLocked && this['timeImg' + index].visible) {
-            VideoManager.getInstance().videoPause();
-            PromptPanel.getInstance().onShowBuyHaoGan(index);
-        } else {
-            this.isSelected = true;
-            this[`selected${index}`].visible = true;
-            for (let i: number = 0; i < this.ITEM_COUNT; i++) {
-                this[`button${i}`].touchEnabled = false;
-            }
-            this.exitTimer = egret.setTimeout(() => this.onBackSuccess(), this, 1000);
+        this.isSelected = true;
+        const selected = this[`selected${index}`];
+        selected.visible = true;
+        if (this.paramList[3] === "0") {
+            const mc = new egret.MovieClip();
+            const mcFactory = new egret.MovieClipDataFactory();
+            mcFactory.clearCache();
+            mcFactory.mcDataSet = RES.getRes("music_effect_json");
+            mcFactory.texture = RES.getRes("music_effect_png");
+            mc.movieClipData = mcFactory.generateMovieClipData("action");
+            mc.gotoAndPlay(1, -1);
+            mc.x = selected.width / 2;
+            mc.y = selected.height / 2;
+            selected.addChild(mc);
         }
-    }
-
-    private onBuySuccessCallback() {
-        let index = this.answerID - 1;
-        this['timeImg' + index].visible = false;
-        this['suo' + index].visible = false;
+        for (let i: number = 0; i < this.ITEM_COUNT; i++) {
+            this[`button${i}`].touchEnabled = false;
+        }
+        this.exitTimer = egret.setTimeout(() => this.onBackSuccess(), this, 1000);
     }
 
     private onExit() {
