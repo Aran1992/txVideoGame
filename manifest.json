@@ -60,7 +60,6 @@
 		"bin-debug/view/action/ActionManager.js",
 		"bin-debug/data/GameCommon.js",
 		"bin-debug/data/GameDispatcher.js",
-		"bin-debug/view/action/ActionNewMusic.js",
 		"bin-debug/data/GameWorld.js",
 		"bin-debug/data/GuideManager.js",
 		"bin-debug/data/LocalStorageManager.js",
