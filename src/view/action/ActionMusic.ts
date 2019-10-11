@@ -70,17 +70,16 @@ class ActionMusic extends ActionSceneBase {
         if (this.isVideoRun) {
             super.update(dt);
             this.updateData(dt);
-            for (let i = 0; i < this.controllers.length; ++i) {
-                this['groupClick0'].visible = true;
-                this['groupClick1'].visible = true;
-                if (this.clickIndex > 0 && GuideManager.getInstance().isGuide && !GuideManager.getInstance().isComPleteMusic) {
-                    this.guideImg.visible = true;
-                    this.heiping.visible = true;
-                    GuideManager.getInstance().curState = true;
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
-                    super.stopRun();
-                    GuideManager.getInstance().isComPleteMusic = true;
-                } else {
+            if (this.clickIndex > 0 && GuideManager.getInstance().isGuide && !GuideManager.getInstance().isCompleteMusic) {
+                this.guideImg.visible = true;
+                this.heiping.visible = true;
+                GuideManager.getInstance().curState = true;
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
+                super.stopRun();
+                GuideManager.getInstance().isCompleteMusic = true;
+            } else {
+                for (let i = 0; i < this.controllers.length; ++i) {
+                    this['groupClick' + i].visible = true;
                     this.controllers[i].update(dt);
                 }
             }

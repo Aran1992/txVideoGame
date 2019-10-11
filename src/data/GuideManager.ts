@@ -22,11 +22,11 @@ class GuideManager {
         this._isGuide = boolean;
     }
 
-    public get isComPleteMusic() {
+    public get isCompleteMusic() {
         return this._musicGuide;
     }
 
-    public set isComPleteMusic(bo) {
+    public set isCompleteMusic(bo) {
         this._musicGuide = bo;
     }
 
