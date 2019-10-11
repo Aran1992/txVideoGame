@@ -183,7 +183,7 @@ class MusicController {
                 this.isActive = false;
                 this.playMCResult();
                 this.playPopupAni(this.miss);
-                SoundManager.getInstance().playSound('hudong_miss.mp3')
+                SoundManager.getInstance().playSound('hudong_miss.mp3');
             } else {
                 this.actionMusic.timeBar1.value = this.actionMusic.timeBar2.value = this.duration - this.curTime;
             }
@@ -202,7 +202,7 @@ class MusicController {
                     this.dark.visible = true;
                 });
             this.playPopupAni(this.good);
-            SoundManager.getInstance().playSound('hudong_bingo.mp3')
+            SoundManager.getInstance().playSound('hudong_bingo.mp3');
             this.actionMusic.onSuccessItem(this.runIdx);
         }
     }
