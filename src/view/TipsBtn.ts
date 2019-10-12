@@ -48,8 +48,7 @@ class TipsBtn extends eui.Component {
     private _maxValue = 0;
     private _maxTime = 0;
     private hideTipTimer: number;
-    private idGuideBuyLock:eui.Group;
-    private _delayTipTime:number=-1;//默认值为0
+    private idGuideBuyLock: eui.Group;
 
     /**选项对应的道具**/
     private Option_Goods = {
@@ -187,12 +186,12 @@ class TipsBtn extends eui.Component {
             this.hideTipTimer = undefined;
 
             //新手引导问题
-            if (this.wentiId == 5 && !UserInfo.guideJson["buyLock"]){
+            if (this.wentiId == 5 && !UserInfo.guideJson["buyLock"]) {
                 UserInfo.guideJson["buyLock"] = 100;
                 VideoManager.getInstance().videoPause();
                 this.idGuideBuyLock.visible = true;
-                this.idGuideBuyLock.touchEnabled=true;
-                this.idGuideBuyLock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchGuideBuyLock, this);                
+                this.idGuideBuyLock.touchEnabled = true;
+                this.idGuideBuyLock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchGuideBuyLock, this);
                 GuideManager.getInstance().isGuide = true;
                 GuideManager.getInstance().curState = true;
             }
@@ -203,15 +202,7 @@ class TipsBtn extends eui.Component {
             this.gotoAction(model);
         }
     }
-    private onTouchGuideBuyLock(){
-        this.idGuideBuyLock.visible = false;
-        GuideManager.getInstance().isGuide = false;
-        GuideManager.getInstance().curState = false;
 
-        VideoManager.getInstance().videoResume();
-        if (this._delayTipTime>0)//从引导回来动画继续调用setTips
-            this.setTips(this._delayTipTime);
-    }
     public hideTips(force?: boolean): void {
         if (this.hideTipTimer && !force) {
             return;
@@ -239,12 +230,6 @@ class TipsBtn extends eui.Component {
         if (this.tp != 0) {
             return;
         }
-        //如果是新手引导的问题。不倒计时
-        if (this.wentiId == 5 && this.idGuideBuyLock.visible){
-            this._delayTipTime = tim;
-            return;
-        }
-        this._delayTipTime = -1;
         if (tim > 0 || this._maxTime != 0) {
             if (tim < 0) {
                 this._maxTime = 0;
@@ -354,6 +339,14 @@ class TipsBtn extends eui.Component {
 
     protected onSkinName(): void {
         this.skinName = skins.TipsSkin;
+    }
+
+    private onTouchGuideBuyLock() {
+        this.idGuideBuyLock.visible = false;
+        GuideManager.getInstance().isGuide = false;
+        GuideManager.getInstance().curState = false;
+
+        VideoManager.getInstance().videoResume();
     }
 
     //添加到舞台
