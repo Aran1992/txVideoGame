@@ -23,7 +23,9 @@ class VideoData extends egret.DisplayObjectContainer {
             BEVideo: "V802"
         },
         "V907": {
-            check: () => true,
+            check: () => !([0, 1, 2, 3].some(roleIndex => GameCommon.getInstance().getRoleLikeAll(roleIndex) > 9))
+                && GameCommon.getQuestionAnswer(27) === 5
+                && GameCommon.getQuestionAnswer(46) === 5,
             BEVideo: "V908"
         },
     };
