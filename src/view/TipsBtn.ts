@@ -569,7 +569,7 @@ class TipsBtn extends eui.Component {
         let button = event.currentTarget;
         let id: number = Number(button.name);
         if (button['lock_grp'].visible) {
-                    SoundManager.getInstance().playSound("ope_ask.mp3");
+            SoundManager.getInstance().playSound("ope_ask.mp3");
             VideoManager.getInstance().videoPause();
             PromptPanel.getInstance().onShowBuyHaoGan(id);
         } else {
@@ -631,7 +631,7 @@ class TipsBtn extends eui.Component {
         const func = GameCommon.getInstance().getLockedOptionIDs[this.wentiId];
         if (func) {
             let lockOptIDs: number[] = func() || [];
-        if (lockOptIDs.length > 0) {
+            if (lockOptIDs.length > 0) {
                 lockOptIDs.forEach(id => this[`btn${id}`].lock_grp.visible = true);
             }
         }

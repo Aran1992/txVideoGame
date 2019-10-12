@@ -23,9 +23,7 @@ class VideoData extends egret.DisplayObjectContainer {
             BEVideo: "V802"
         },
         "V907": {
-            check: () => !([0, 1, 2, 3].some(roleIndex => GameCommon.getInstance().getRoleLikeAll(roleIndex) > 9))
-                && GameCommon.getQuestionAnswer(27) === 5
-                && GameCommon.getQuestionAnswer(46) === 5,
+            check: () => true,
             BEVideo: "V908"
         },
     };
@@ -321,7 +319,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (GameDefine.CUR_PLAYER_VIDEO == 2) {
                     return;
                 }
-                if (!widPlayer || !videoModels[this.videoIdx] || widPlayer.getDuration() == 0) {
+                if (!widPlayer || !videoModels[this.videoIdx] || VideoManager.getInstance().getVideoDuration() == 0) {
                     return;
                 }
                 if (this.videoIdx == 'V019' && VideoManager.getInstance().videoCurrTime() >= VideoManager.getInstance().getVideoDuration() - 10 && !isShowChengJiu) {
@@ -876,20 +874,17 @@ class VideoData extends egret.DisplayObjectContainer {
         let isEnd: boolean = false;
         let isFindNext: boolean = false;
         let curWentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
-        if (!isFindNext) {
-            for (let qid in answerModels) {
-                let answCfgs = answerModels[qid];
-                let optionID: number = UserInfo.curBokData.answerId[qid];
-                if (optionID && answCfgs[optionID - 1]) {
-                    let ansCfg: Modelanswer = answCfgs[optionID - 1];
-                    if (ansCfg.videos.indexOf(this.videoIdx) != -1 && ansCfg.nextChapterId > 0) {
-                        isFindNext = true;
-                        curWentiId = ansCfg.qid;
-                        isEnd = VideoManager.getInstance().updateGameChapter(ansCfg.nextChapterId);
-                        break;
-                    }
+        for (let qid in answerModels) {
+            let answerModel = answerModels[qid];
+            let optionID: number = UserInfo.curBokData.answerId[qid];
+            if (optionID && answerModel[optionID - 1]) {
+                let ansCfg: Modelanswer = answerModel[optionID - 1];
+                if (ansCfg.videos.indexOf(this.videoIdx) != -1 && ansCfg.nextChapterId > 0) {
+                    isFindNext = true;
+                    curWentiId = ansCfg.qid;
+                    isEnd = VideoManager.getInstance().updateGameChapter(ansCfg.nextChapterId);
+                    break;
                 }
-                if (isFindNext) break;
             }
         }
 
