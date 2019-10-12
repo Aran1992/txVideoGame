@@ -1,5 +1,6 @@
 class SoundManager {
     public static musicList: string[] = ["D4.mp3", "G4.mp3", "E4.mp3", 'music1.mp3', 'music2.mp3', 'music3.mp3', 'music4.mp3', 'loseMusic.mp3', 'winMusic.mp3'];
+    public static musicLengthTable = {'music1.mp3': 4000, 'music2.mp3': 9000, 'music3.mp3': 5000, 'music4.mp3': 10000};
     public static volume: number = 1;
     private static instance = null;
     private soundDataMap;
@@ -61,6 +62,10 @@ class SoundManager {
         //     this.currMusic.stop();
         // }
 
+    }
+
+    public getMusicLength(name: string): number {
+        return SoundManager.musicLengthTable[name];
     }
 
     private init() {

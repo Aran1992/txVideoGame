@@ -506,7 +506,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onCunDang() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameCommon.getInstance().hideTipsHuDong();
         VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
@@ -517,13 +517,13 @@ class TipsBtn extends eui.Component {
     }
 
     private onAddVideo() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.timerIdx = 0;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ADD_VIDEO_SPEED));
     }
 
     private onReduceVideo() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.timerIdx = 0;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.REDUCE_VIDEO_SPEED));
     }
@@ -597,11 +597,11 @@ class TipsBtn extends eui.Component {
         let button = event.currentTarget;
         let id: number = Number(button.name);
         if (button['lock_grp'].visible) {
-                    SoundManager.getInstance().playSound("ope_ask.mp3")
+                    SoundManager.getInstance().playSound("ope_ask.mp3");
             VideoManager.getInstance().videoPause();
             PromptPanel.getInstance().onShowBuyHaoGan(id);
         } else {
-            SoundManager.getInstance().playSound("ope_select_tab.mp3")
+            SoundManager.getInstance().playSound("ope_select_tab.mp3");
             this.onSelectWenTi(id);
         }
     }

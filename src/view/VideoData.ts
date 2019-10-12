@@ -673,8 +673,8 @@ class VideoData extends egret.DisplayObjectContainer {
         this.curVIdeoIds = videos;
     }
 
-    public onTiao() {        
-        let isChapterLastVideo = Number(videoModels[this.videoIdx].jtime) == 0 ? false:true;  
+    public onTiao() {
+        let isChapterLastVideo = Number(videoModels[this.videoIdx].jtime) == 0 ? false : true;
         let wentiTime: number = 0;
         if (VideoManager.getInstance().videoCurrTime() < 1)
             return;
@@ -695,12 +695,11 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (VideoManager.getInstance().videoCurrTime() + 5 < Number(videoModels[this.videoIdx].stime)) {
                     this.tiaoState = true;
                     widPlayer.seek(Number(videoModels[this.videoIdx].stime))
-                }
-                else{                    
+                } else {
                     if (isChapterLastVideo)
                         GameCommon.getInstance().showCommomTips('章节结尾')
                     else
-                        GameCommon.getInstance().showCommomTips('别着急有惊喜')             
+                        GameCommon.getInstance().showCommomTips('别着急有惊喜')
                 }
             } else {
                 this.tiaoState = true;
@@ -962,7 +961,7 @@ class VideoData extends egret.DisplayObjectContainer {
 
         VideoManager.getInstance().onLoad(videoSrc);
         VideoManager.getInstance().loadSrc = videoSrc;
-        if (UserInfo.curchapter == 1) 
+        if (UserInfo.curchapter == 1)
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         else
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
@@ -1011,7 +1010,7 @@ class VideoData extends egret.DisplayObjectContainer {
             return;
         }
 
-        let isChapterLastVideo = Number(videoModels[this.videoIdx].jtime) == 0 ? false:true;
+        let isChapterLastVideo = Number(videoModels[this.videoIdx].jtime) == 0 ? false : true;
         if (lastTime > 0) {
             if (this.videoState != 'buffering' && this.videoState != 'end' && this.videoState != 'idle' && this.videoState != 'loadStart') {
                 if (VideoManager.getInstance().videoCurrTime() + 12 < wentiTime) {
@@ -1021,7 +1020,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     if (VideoManager.getInstance().videoCurrTime() + 12 < VideoManager.getInstance().getVideoDuration()) {
                         widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);
                         this.tipsPanel.onShowAddTime();
-                    } else {                        
+                    } else {
                         if (isChapterLastVideo)
                             GameCommon.getInstance().showCommomTips('章节结尾')
                         else
