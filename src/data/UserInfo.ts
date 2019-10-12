@@ -29,6 +29,7 @@ class UserInfo {
     public static tipsDick = {};//所有提示过的问题
     public static curFileTp: number = 0;
     public static guideDic = {};
+    public static guideJson = {};
     public static main_Img: string = '';
     public static timestamp: number;//存档UNIX时间戳
 
@@ -37,6 +38,10 @@ class UserInfo {
         UserInfo.allCollectionDatas = {};
         UserInfo.achievementDics = {};
         UserInfo.guideDic = {};
+        //0，或者undefine表示引导未开始，100表示引导已结束
+        UserInfo.guideJson = {
+            "buyLock":0//首次购买选项引导，发生在问题：0-5;
+        };
         UserInfo.shopDic = {};
         UserInfo.allVideos = {};
         UserInfo.tipsDick = {};
@@ -79,6 +84,7 @@ class BookData {
     public tipsDick = {};
     public videoIds;
     public guideDic = {};
+    public guideJson = {};
     public allVideos = {};
     //好感度
     public likes;
