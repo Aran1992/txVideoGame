@@ -433,7 +433,7 @@ class VideoData extends egret.DisplayObjectContainer {
                                     this.isHuDong = true;
                                     videoNextFlg = false;
                                 }
-                                tips.setTips(Math.floor(lastTime) - Math.floor(VideoManager.getInstance().videoCurrTime()));
+                                tips.setTips(lastTime - VideoManager.getInstance().videoCurrTime());
                             } else if (VideoManager.getInstance().videoCurrTime() >= lastTime - 1 && videoNextFlg1) {
                                 if (this.curAnswerCfg && this.curAnswerCfg.isdie == 1) {
                                     this.isDie = true;
@@ -512,6 +512,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     GameCommon.getInstance().removeLoading();
                 }
                 this.videoState = data.new;
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_STATE_CHANGE), data);
             });
             this.videoEndHandle = () => {
                 if (GameDefine.CUR_PLAYER_VIDEO == 2) {
