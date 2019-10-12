@@ -161,6 +161,7 @@ class GameCommon {
                 UserInfo.curBokData.achievementDics = UserInfo.achievementDics;
                 UserInfo.curBokData.allCollectionDatas = UserInfo.allCollectionDatas;
                 UserInfo.curBokData.guideDic = UserInfo.guideDic;
+                UserInfo.curBokData.guideJson = UserInfo.guideJson;
                 // UserInfo.curBokData.chapterDatas = UserInfo.chapterDatas;
                 UserInfo.curBokData.curchapter = UserInfo.curchapter;
                 UserInfo.curBokData.main_Img = UserInfo.main_Img;
@@ -282,6 +283,9 @@ class GameCommon {
                 }
                 if (UserInfo.curBokData.guideDic) {
                     UserInfo.guideDic = UserInfo.curBokData.guideDic;
+                }
+                if (UserInfo.curBokData.guideJson) {
+                    UserInfo.guideJson = UserInfo.curBokData.guideJson;
                 }
                 // if (UserInfo.curBokData.chapterDatas) {
                 //     UserInfo.chapterDatas = UserInfo.curBokData.chapterDatas;
