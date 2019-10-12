@@ -142,4 +142,8 @@
                      stroke="2" right="0" bottom="0" width="600" />
         </e:Group>
     </e:Scroller>
+	<e:Group id="roleChapterNoticeGroup" left="0" right="0" bottom="0" top="0" visible="false">
+		<e:Rect scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" strokeColor="0x000000"/>
+		<e:Label id="roleChapterNoticeLabel" text="—— 由于肖家兄弟的好感度最高，您即将进入肖家兄弟的故事 ——" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" size="40"/>
+	</e:Group>
 </e:Skin>

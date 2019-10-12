@@ -3,8 +3,8 @@
  */
 class CommonTips extends eui.Component {
     private grp: eui.Group;
-    private idLike:eui.Image;
-    private idChengjiu:eui.Image;
+    private idLike: eui.Image;
+    private idChengjiu: eui.Image;
     private desc: eui.Label;
     private grp1: eui.Group;
     private desc1: eui.Label;
@@ -49,6 +49,8 @@ class CommonTips extends eui.Component {
     private mcFactory1: egret.MovieClipDataFactory;
     private img_mc: egret.MovieClip;
     private ldState: boolean = false;
+    private roleChapterNoticeGroup: eui.Group;
+    private roleChapterNoticeLabel: eui.Label;
 
     constructor() {
         super();
@@ -56,8 +58,8 @@ class CommonTips extends eui.Component {
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
-    public setText(text: string,bLike:boolean): void {
-        this.addChengJiuArr.push({'text':text,'bLike':bLike});        
+    public setText(text: string, bLike: boolean): void {
+        this.addChengJiuArr.push({'text': text, 'bLike': bLike});
         if (this.isLikeTime == true) {
             // Tool.callbackTime(() => {
             //     if (this.addChengJiuArr.length == 1) {
@@ -144,6 +146,31 @@ class CommonTips extends eui.Component {
         }, this, 1000);
     }
 
+    public showRoleChapterNotice() {
+        let str: string;
+        switch (UserInfo.curchapter) {
+            case 10:
+                str = `—— 由于${GameDefine.ROLE_NAME[ROLE_INDEX.XiaoBai_Han]}的好感度最高，您即将进入${GameDefine.ROLE_NAME[ROLE_INDEX.XiaoBai_Han]}的故事 ——`;
+                break;
+            case 20:
+                str = `—— 由于${GameDefine.ROLE_NAME[ROLE_INDEX.ZiHao_Xia]}的好感度最高，您即将进入${GameDefine.ROLE_NAME[ROLE_INDEX.ZiHao_Xia]}的故事 ——`;
+                break;
+            case 30:
+                str = `—— 由于肖家兄弟的好感度最高，您即将进入肖家兄弟的故事 ——`;
+                break;
+        }
+        this.roleChapterNoticeLabel.text = str;
+        this.roleChapterNoticeGroup.visible = true;
+        egret.Tween.get(this.roleChapterNoticeGroup)
+            .wait(3000)
+            .call(() => {
+                this.roleChapterNoticeGroup.visible = false;
+                GameCommon.getInstance().showLoading();
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_CHAPTER_END));
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
+            });
+    }
+
     //互动操作提示
     public showActionTips(str) {
         this.desc4.text = str;
@@ -159,8 +186,8 @@ class CommonTips extends eui.Component {
         this.onshowMaskBG();
     }
 
-    public onShowBuyTips(id, money, tp) {        
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+    public onShowBuyTips(id, money, tp) {
+        SoundManager.getInstance().playSound("ope_ask.mp3");
         switch (tp) {
             case GOODS_TYPE.DIAMOND:
                 this.moneyIcon.source = 'common_zuanshi1_png';
@@ -304,7 +331,7 @@ class CommonTips extends eui.Component {
         if (this.addChengJiuArr.length > 0) {
             this.grp.x = -2000;
             let t = this.addChengJiuArr[0]
-            this.desc.text = (t.bLike?'':'成就: ') + t.text;
+            this.desc.text = (t.bLike ? '' : '成就: ') + t.text;
             this.idChengjiu.visible = !t.bLike;
             this.idLike.visible = t.bLike;
             this.grp.alpha = 0.7;

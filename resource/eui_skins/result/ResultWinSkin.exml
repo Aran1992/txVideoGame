@@ -33,8 +33,7 @@
 		</e:Skin>
 		</e:skinName>
 	</e:Button>
-</e:Group>
-	<e:Group horizontalCenter="0" top="81">
+	<e:Group horizontalCenter="0" top="81" x="715" y="81" scaleX="1" scaleY="1">
 		<e:Group horizontalCenter="0" top="91">
 		<e:Image source="resule_dian_png" x="0" y="9"/>
 		</e:Group>
@@ -46,5 +45,8 @@
 		<e:HorizontalLayout gap="10"/>
 		</e:layout>
 	</e:Group>
-	<e:Label id="labState" text="一完成章节一" size="30" fontFamily="SimHei" textAlign="left" strokeColor="0x3E0909" height="32" touchEnabled="false" horizontalCenter="0" top="130" textColor="0x60c0d1"/>
+	<e:Label id="labState" text="一完成章节一" size="30" fontFamily="SimHei" textAlign="left" strokeColor="0x3E0909" height="32" touchEnabled="false" horizontalCenter="0" top="130" textColor="0x60c0d1" x="710" y="130" scaleX="1" scaleY="1"/>
+</e:Group>
+
+
 </e:Skin>

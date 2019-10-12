@@ -80,20 +80,7 @@ class ResultWinPanel extends eui.Component {
 
     private onContinue() {
         if (!this._isEnd) {
-            GameCommon.getInstance().showLoading();
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_CHAPTER_END));
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
-            switch (UserInfo.curchapter) {
-                case 10:
-                    GameCommon.getInstance().showCommomTips(`由于${GameDefine.ROLE_NAME[ROLE_INDEX.XiaoBai_Han]}的好感度最高，您即将进入${GameDefine.ROLE_NAME[ROLE_INDEX.XiaoBai_Han]}的故事`);
-                    break;
-                case 20:
-                    GameCommon.getInstance().showCommomTips(`由于${GameDefine.ROLE_NAME[ROLE_INDEX.ZiHao_Xia]}的好感度最高，您即将进入${GameDefine.ROLE_NAME[ROLE_INDEX.ZiHao_Xia]}的故事`);
-                    break;
-                case 30:
-                    GameCommon.getInstance().showCommomTips(`由于肖家兄弟的好感度最高，您即将进入肖家兄弟的故事`);
-                    break;
-            }
+            PromptPanel.getInstance().showRoleChapterNotice();
         } else {
             ResultWinPanel.onShowMainView();
             GameCommon.getInstance().showCommomTips("好感度不足，无法继续进行");

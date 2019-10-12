@@ -71,40 +71,21 @@ class VideoManager {
         let isComplete: boolean = true;
         let chapterCfg: Modelchapter = JsonModelManager.instance.getModelchapter()[chapterID];
         if (!chapterCfg) return isComplete;
-        let xiaobai_like: number;
-        let zihao_like: number;
-        let qianye_like: number;
-        let wanxun_like: number;
         switch (chapterID) {
             case 10:
-                let likeDatas = GameCommon.getInstance().getSortLikeAry();
-                for (let i: number = 0; i < likeDatas.length; i++) {
-                    let data = likeDatas[i];
-                    if (data.id == ROLE_INDEX.XiaoBai_Han && data.num >= 11) {
-                        UserInfo.curchapter = 10;
-                        isComplete = false;
-                        break;
-                    }
-                    if (data.id == ROLE_INDEX.ZiHao_Xia && data.num >= 9) {
-                        UserInfo.curchapter = 20;
-                        isComplete = false;
-                        break;
-                    }
-                    if (data.id == ROLE_INDEX.QianYe_Xiao && data.num >= 9) {
-                        UserInfo.curchapter = 30;
-                        isComplete = false;
-                        break;
-                    }
-                    if (data.id == ROLE_INDEX.QianYe_Xiao && data.num >= 10) {
-                        UserInfo.curchapter = 30;
-                        isComplete = false;
-                        break;
-                    }
-                }
+                const likeDataList = GameCommon.getInstance().getSortLikeAry();
+                const map = {
+                    [ROLE_INDEX.XiaoBai_Han]: 10,
+                    [ROLE_INDEX.ZiHao_Xia]: 20,
+                    [ROLE_INDEX.QianYe_Xiao]: 30,
+                    [ROLE_INDEX.WanXun_Xiao]: 30,
+                };
+                UserInfo.curchapter = map[likeDataList[0].id];
+                isComplete = false;
                 break;
             case 30:
-                qianye_like = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
-                wanxun_like = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
+                let qianye_like: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
+                let wanxun_like: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
                 if (qianye_like >= wanxun_like) {
                     UserInfo.curchapter = 31;
                 } else {
