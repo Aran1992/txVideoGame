@@ -7,8 +7,7 @@ function setLabelTextWithBgAdapt(label: eui.Label, bg: eui.Image, text: string) 
 
 class ActionMsg extends ActionSceneBase {
     private static readonly MOVE_DURATION: number = 500;
-    private static readonly MSG_INTERVAL: number = 2000;
-    private static readonly ITEM_INTERVAL: number = 20;
+    private static readonly ITEM_INTERVAL: number = 30;
     private static readonly TYPE_INTERVAL: number = 50;
     private static readonly BREATH_DURATION: number = 1500;
     private static readonly BREATH_MIN_ALPHA: number = 0.5;
@@ -21,6 +20,7 @@ class ActionMsg extends ActionSceneBase {
     private readonly sendButton: eui.Button;
     private sendButtonClickCallback: Function;
     private needClickSend: boolean;
+    private msgInterval: number;
 
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
@@ -35,7 +35,8 @@ class ActionMsg extends ActionSceneBase {
         this.updateResize();
 
         this.needClickSend = this.paramList[3] === "1";
-        this.msgList = this.paramList[4].split("|");
+        this.msgInterval = parseInt(this.paramList[4]);
+        this.msgList = this.paramList[5].split("|");
 
         this.desc1.text = JsonModelManager.instance.getModelhudong()[this.model.type].des;
 
@@ -57,6 +58,14 @@ class ActionMsg extends ActionSceneBase {
         super.update(dt);
         this.timeBar2.value = this.runTime;
         this.timeBar1.value = this.runTime;
+    }
+
+    protected onBackFail() {
+        if (this.needClickSend) {
+            super.onBackFail();
+        } else {
+            this.onBackSuccess();
+        }
     }
 
     private async play() {
@@ -85,7 +94,7 @@ class ActionMsg extends ActionSceneBase {
             const newItem = itemList[itemList.length - 1];
             const newItemHeight = newItem.getHeight();
             newItem.alpha = 0;
-            egret.Tween.get(newItem).to({alpha: 1}, ActionMsg.MOVE_DURATION).wait(ActionMsg.MSG_INTERVAL).call(resolve);
+            egret.Tween.get(newItem).to({alpha: 1}, ActionMsg.MOVE_DURATION).wait(this.msgInterval).call(resolve);
             itemList.forEach(item => {
                 egret.Tween.get(item).to({y: item.y - newItemHeight - ActionMsg.ITEM_INTERVAL}, ActionMsg.MOVE_DURATION);
             });

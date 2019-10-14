@@ -108,8 +108,6 @@ class ActionSceneBase extends eui.Component {
         if (this.model.id == '75') {
             this.idx = 0;
         }
-        ActionManager.getInstance().onActionSuccess(this.idx, this.delTime, false);
-        SoundManager.getInstance().playSound("hudong_end_fail.mp3")
     }
 
     protected onBackSuccess() {
