@@ -86,6 +86,7 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     public againGame(nextid): void {
+        console.log("againGame>>>>",this.videoIdx);
         this.tiaoState = false;
         this.onCreateData();
         this.visible = true;
@@ -97,11 +98,12 @@ class VideoData extends egret.DisplayObjectContainer {
         VideoManager.getInstance().onAgainGame(this.videoIdx);
     }
 
-    public readFiel() {
+    public readFiel() {        
         this.curAnswerCfg = null;
         if (!UserInfo.curBokData) {
             return;
         }
+        console.log("readFiel>>>>",this.videoIdx);
         this.tiaoState = false;
         if (GameDefine.IS_DUDANG && GameDefine.CUR_PLAYER_VIDEO == 1) {
             let src = '';
@@ -510,6 +512,8 @@ class VideoData extends egret.DisplayObjectContainer {
                     this.onShowNextVideo();
                 } else {
                     GameCommon.getInstance().removeLoading();
+                    if(data.new == 'playing' && this.tiaoState)//强行修复BUG
+                        this.tiaoState = false;
                 }
                 this.videoState = data.new;
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_STATE_CHANGE), data);
@@ -569,7 +573,8 @@ class VideoData extends egret.DisplayObjectContainer {
                         }
                     }
                     this.isPlay = false;
-                    this.log('videoNodeChange切换视频');
+                    console.log('videoNodeChange切换视频',this.videoIdx);
+
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ResultWinPanel');
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.HIDE_MAIN_GROUP));
@@ -620,16 +625,17 @@ class VideoData extends egret.DisplayObjectContainer {
 
     }
 
-    public onShowNextVideo() {
+    public onShowNextVideo() {        
         if (this.isPlay) {
             return;
         }
+        console.log("onShowNextVideo>>>>",this.videoIdx);
         this.tiaoState = false;
         UserInfo.allVideos[this.videoIdx] = this.videoIdx;
         UserInfo.curBokData.allVideos[this.videoIdx] = this.videoIdx;
         UserInfo.curBokData.videoDic[this.videoIdx] = this.videoIdx;
         this.isLoadSrc = false;
-        if (this.videoIdx != 'V019' && videoModels[this.videoIdx].chengjiuId != '') {
+        if (this.videoIdx != 'V019' && videoModels[this.videoIdx].chengjiuId != '' && VideoManager.getInstance().videoCurrTime() >= VideoManager.getInstance().getVideoDuration() - 10) {
             ChengJiuManager.getInstance().onCheckShiPinChengJiu(videoModels[this.videoIdx].chengjiuId);
         }
         if (videoModels[this.videoIdx].tiaozhuan == TIAOZHUAN_Type.RESULT) {
@@ -675,38 +681,63 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     public onTiao() {
-        let isChapterLastVideo = Number(videoModels[this.videoIdx].jtime) == 0 ? false : true;
+        let isChapterLastVideo = this.videoIdx == 'V019' || (Number(videoModels[this.videoIdx].jtime) == 0 ? false : true);
         let wentiTime: number = 0;
+        console.log("===",this.videoIdx,VideoManager.getInstance().videoCurrTime() ,VideoManager.getInstance().getVideoDuration());
         if (VideoManager.getInstance().videoCurrTime() < 1)
             return;
         if (Number(videoModels[this.videoIdx].time) > 0) {
             wentiTime = Number(videoModels[this.videoIdx].time);
         }
         if (wentiTime > 0) {
+            //如果有问题：问题时间还差3秒以上并且问题时间离结束<3秒，就跳到问题的前2秒，
+            //如果剩余时间大于5秒。跳到倒数5秒
+            //如果是最后5秒。出提示
             if (!this.isSelectVideo && VideoManager.getInstance().videoCurrTime() < wentiTime - 3 && VideoManager.getInstance().getVideoDuration() > wentiTime - 3 && !this.tiaoState) {
                 this.tiaoState = true;
+                console.log("tiao1",wentiTime - 2);
                 widPlayer.seek(wentiTime - 2);
             } else if (VideoManager.getInstance().videoCurrTime() + 5 < VideoManager.getInstance().getVideoDuration() && !this.tiaoState) {
                 this.tiaoState = true;
+                console.log("tiao2",VideoManager.getInstance().getVideoDuration() - 4);
                 widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4)
             }
+            else if(VideoManager.getInstance().videoCurrTime() + 5 > VideoManager.getInstance().getVideoDuration()){                
+                if (isChapterLastVideo)
+                    GameCommon.getInstance().showCommomTips('章节结尾')
+                else
+                    GameCommon.getInstance().showCommomTips('别着急有惊喜')
+            }
         } else if (VideoManager.getInstance().videoCurrTime() + 5 < VideoManager.getInstance().getVideoDuration() && !this.tiaoState) {
-            //末尾要跳转，并且seektime>0,
+            //没有问题。但离结束还有5秒以上，stime=seektime.表示大跳跳到的时间
+            //时间没到stime,就跳到stime,如果已经快到stime，则出提示
             if (Number(videoModels[this.videoIdx].stime) > 0 && videoModels[this.videoIdx].tiaozhuan == 4) {
                 if (VideoManager.getInstance().videoCurrTime() + 5 < Number(videoModels[this.videoIdx].stime)) {
                     this.tiaoState = true;
+                    console.log("tiao3",Number(videoModels[this.videoIdx].stime));
                     widPlayer.seek(Number(videoModels[this.videoIdx].stime))
                 } else {
                     if (isChapterLastVideo)
-                        GameCommon.getInstance().showCommomTips('章节结尾')
+                        GameCommon.getInstance().showCommomTips('章节结尾');
                     else
-                        GameCommon.getInstance().showCommomTips('别着急有惊喜')
+                        GameCommon.getInstance().showCommomTips('别着急有惊喜');
                 }
             } else {
                 this.tiaoState = true;
-                widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4)
+                console.log("tiao4",VideoManager.getInstance().getVideoDuration() - 4);
+                widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4);
             }
+        }else if(VideoManager.getInstance().videoCurrTime() + 5 > VideoManager.getInstance().getVideoDuration() && !this.tiaoState){
+            //最后5秒，出提示
+            if (isChapterLastVideo)
+                GameCommon.getInstance().showCommomTips('章节结尾');
+            else
+                GameCommon.getInstance().showCommomTips('别着急有惊喜');
+        }else if(this.tiaoState)
+        {
+            console.log("tiaoing=true");
         }
+
     }
 
     public testHudong(wentId: number): void {
@@ -773,6 +804,7 @@ class VideoData extends egret.DisplayObjectContainer {
         this.curAnswerCfg = null;
         VideoManager.getInstance().loadSrc = '';
         this.onCreateData();
+        console.log("onContinue>>>>",this.videoIdx);
         this.tiaoState = false;
         GameDefine.IS_READ_PLAY = true;
         let chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
@@ -808,6 +840,7 @@ class VideoData extends egret.DisplayObjectContainer {
         this.againFlg = true;
         videoNextFlg1 = true;
         this.tipsPanel.visible = true;
+        console.log("onGameOver>>>>",this.videoIdx);
         this.tiaoState = false;
         if (UserInfo.curBokData.wentiId.length > 0 && UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]) {
             this.onCreateData();
@@ -1008,7 +1041,7 @@ class VideoData extends egret.DisplayObjectContainer {
             return;
         }
 
-        let isChapterLastVideo = Number(videoModels[this.videoIdx].jtime) == 0 ? false : true;
+        let isChapterLastVideo = this.videoIdx == 'V019' || (Number(videoModels[this.videoIdx].jtime) == 0 ? false : true);
         if (lastTime > 0) {
             if (this.videoState != 'buffering' && this.videoState != 'end' && this.videoState != 'idle' && this.videoState != 'loadStart') {
                 if (VideoManager.getInstance().videoCurrTime() + 12 < wentiTime) {
@@ -1088,7 +1121,8 @@ class VideoData extends egret.DisplayObjectContainer {
         }
     }
 
-    private onRefreshVideo(data) {
+    private onRefreshVideo(data) {        
+        console.log("onRefreshVideo>>>>",this.videoIdx);
         if (this.isSelectVideo && wentiModels[data.data.wentiId].type != ActionType.OPTION)
             return;
         this.tiaoState = false;
@@ -1129,7 +1163,7 @@ class VideoData extends egret.DisplayObjectContainer {
             Tool.callbackTime(() => ChengJiuManager.getInstance().onCheckAnswer(data.data.wentiId, data.data.answerId), this, 100);
 
             if (this.videoIdx == 'V019') {
-                if (videoModels[this.videoIdx].chengjiuId != '') {
+                if (videoModels[this.videoIdx].chengjiuId != '' && VideoManager.getInstance().videoCurrTime() >= VideoManager.getInstance().getVideoDuration() - 10) {
                     ChengJiuManager.getInstance().onCheckShiPinChengJiu(videoModels[this.videoIdx].chengjiuId);
                 }
             }
