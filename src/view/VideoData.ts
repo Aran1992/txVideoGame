@@ -23,7 +23,9 @@ class VideoData extends egret.DisplayObjectContainer {
             BEVideo: "V802"
         },
         "V907": {
-            check: () => true,
+            check: () => !([0, 1, 2, 3].some(roleIndex => GameCommon.getInstance().getRoleLikeAll(roleIndex) > 9))
+                && GameCommon.getQuestionAnswer(27) === 5
+                && GameCommon.getQuestionAnswer(46) === 5,
             BEVideo: "V908"
         },
     };
@@ -433,7 +435,7 @@ class VideoData extends egret.DisplayObjectContainer {
                                     this.isHuDong = true;
                                     videoNextFlg = false;
                                 }
-                                tips.setTips(Math.floor(lastTime) - Math.floor(VideoManager.getInstance().videoCurrTime()));
+                                tips.setTips(lastTime - VideoManager.getInstance().videoCurrTime());
                             } else if (VideoManager.getInstance().videoCurrTime() >= lastTime - 1 && videoNextFlg1) {
                                 if (this.curAnswerCfg && this.curAnswerCfg.isdie == 1) {
                                     this.isDie = true;
@@ -514,6 +516,7 @@ class VideoData extends egret.DisplayObjectContainer {
                         this.tiaoState = false;
                 }
                 this.videoState = data.new;
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_STATE_CHANGE), data);
             });
             this.videoEndHandle = () => {
                 if (GameDefine.CUR_PLAYER_VIDEO == 2) {

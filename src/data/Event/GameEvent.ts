@@ -16,6 +16,7 @@ class GameEvent {
     public static SHOW_VIEW_WITH_PARAM: string = 'show.view.with.param';
     public static CLOSE_VIEW: string = 'close.view';
     public static GAME_CONTINUE: string = 'game.continue';
+    public static GAME_STATE_CHANGE: string = 'game.statechange';
     public static BUY_REFRESH: string = 'buy.refresh';
     public static STARTCHAPTER: string = 'start.chapter';
     public static SHOUCANG_IMG_TOUCH: string = 'shoucang.img.touch';
