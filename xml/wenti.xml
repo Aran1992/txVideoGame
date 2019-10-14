@@ -13,7 +13,7 @@
     <wenti id="12" chapter="1" des="挣扎吗" ans="1,2" moren="2" time="4" type="0"/>
     <wenti id="13" chapter="2" des="反驳路人" ans="1,2,3" moren="3" time="4" type="0"/>
     <wenti id="14" chapter="2" des="如何帮助韩小白" ans="1,2,3" moren="3" time="4" type="0"/>
-    <wenti id="15" chapter="2" des="发短信" ans="1,2" moren="2" time="11" type="12"/>
+    <wenti id="15" chapter="2" des="发短信" ans="1,2" moren="2" time="15" type="12"/>
     <wenti id="16" chapter="2" des="要不要进去帮忙" ans="1,2" moren="2" time="4.5" type="0"/>
     <wenti id="17" chapter="2" des="挡住一拳" ans="1,2" moren="2" time="1.5" type="8"/>
     <wenti id="18" chapter="2" des="坚持自己的想法么" ans="1,2" moren="2" time="4.5" type="0"/>
@@ -73,5 +73,5 @@
     <wenti id="75" chapter="1" des="弹琴" ans="1,2,3" moren="2" time="9.5" type="13"/>
     <wenti id="76" chapter="11" des="看看哪里2" ans="1,2,3,4" moren="3" time="6" type="35"/>
     <wenti id="77" chapter="3" des="发短信" ans="1,2" moren="2" time="11" type="38"/>
-    <wenti id="78" chapter="3" des="发短信" ans="1,2" moren="2" time="11" type="39"/>
+    <wenti id="78" chapter="3" des="发短信" ans="1,2" moren="2" time="22" type="39"/>
 </wenti>

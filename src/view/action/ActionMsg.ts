@@ -7,7 +7,7 @@ function setLabelTextWithBgAdapt(label: eui.Label, bg: eui.Image, text: string) 
 
 class ActionMsg extends ActionSceneBase {
     private static readonly MOVE_DURATION: number = 500;
-    private static readonly MSG_INTERVAL: number = 500;
+    private static readonly MSG_INTERVAL: number = 2000;
     private static readonly ITEM_INTERVAL: number = 20;
     private static readonly TYPE_INTERVAL: number = 50;
     private static readonly BREATH_DURATION: number = 1500;
@@ -20,6 +20,7 @@ class ActionMsg extends ActionSceneBase {
     private readonly input: eui.Label;
     private readonly sendButton: eui.Button;
     private sendButtonClickCallback: Function;
+    private needClickSend: boolean;
 
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
@@ -33,7 +34,8 @@ class ActionMsg extends ActionSceneBase {
         super.onInit();
         this.updateResize();
 
-        this.msgList = this.paramList[3].split("|");
+        this.needClickSend = this.paramList[3] === "1";
+        this.msgList = this.paramList[4].split("|");
 
         this.desc1.text = JsonModelManager.instance.getModelhudong()[this.model.type].des;
 
@@ -67,7 +69,7 @@ class ActionMsg extends ActionSceneBase {
             const msg = list[1];
             const role = parseInt(list[0]);
             const isSelf = role === GameDefine.SELF_ROLE_HEAD_INDEX;
-            if (i === this.msgList.length - 1 && isSelf) {
+            if (i === this.msgList.length - 1 && isSelf && this.needClickSend) {
                 await this.playInput(msg);
             }
             const item = new ActionMsgItem(msg, isSelf, role);
