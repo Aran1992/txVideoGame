@@ -163,8 +163,8 @@
     <answer qid="73" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VW1204,VW1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="74" chengjiuId="*" ansid="1" des="二次开门成功" like="0,0,0,0" videos="V010,V011" nextid="4" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="74" chengjiuId="*" ansid="2" des="二次开门失败" like="0,0,0,0" videos="V010,V011" nextid="4" isdie="0" nextChapterId="0" shanhuiid="*"/>
-    <answer qid="75" chengjiuId="13" ansid="1" des="弹琴combo全连" like="0,0,2,0" videos="V116" nextid="12" isdie="0" nextChapterId="0" shanhuiid="*"/>
-    <answer qid="75" chengjiuId="*" ansid="2" des="弹琴点了部分" like="0,0,1,0" videos="V116" nextid="12" isdie="0" nextChapterId="0" shanhuiid="*"/>
+    <answer qid="75" chengjiuId="13" ansid="1" des="弹琴combo全连" like="0,0,0,2" videos="V116" nextid="12" isdie="0" nextChapterId="0" shanhuiid="*"/>
+    <answer qid="75" chengjiuId="*" ansid="2" des="弹琴点了部分" like="0,0,0,1" videos="V116" nextid="12" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="75" chengjiuId="*" ansid="2" des="弹琴一个都没点到" like="0,0,0,0" videos="V116" nextid="12" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="76" chengjiuId="*" ansid="1" des="桌子" like="0,0,0,0" videos="VH1110,VH1114,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
     <answer qid="76" chengjiuId="*" ansid="2" des="书架" like="0,0,0,0" videos="VH1111,VH1114,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
