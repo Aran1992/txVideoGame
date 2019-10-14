@@ -81,7 +81,7 @@ class ActionHuiYi extends ActionTimerSceneBase {
     }
 
     private onEventClick(event: egret.Event) {
-        SoundManager.getInstance().playSound('ope_select_head');
+        SoundManager.getInstance().playSound('ope_select_head.mp3');
         if (this.isSelected) {
             return;
         }
