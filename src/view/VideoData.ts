@@ -86,7 +86,7 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     public againGame(nextid): void {
-        console.log("againGame>>>>",this.videoIdx)
+        console.log("againGame>>>>",this.videoIdx);
         this.tiaoState = false;
         this.onCreateData();
         this.visible = true;
@@ -103,7 +103,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (!UserInfo.curBokData) {
             return;
         }
-        console.log("readFiel>>>>",this.videoIdx)
+        console.log("readFiel>>>>",this.videoIdx);
         this.tiaoState = false;
         if (GameDefine.IS_DUDANG && GameDefine.CUR_PLAYER_VIDEO == 1) {
             let src = '';
@@ -573,7 +573,7 @@ class VideoData extends egret.DisplayObjectContainer {
                         }
                     }
                     this.isPlay = false;
-                    console.log('videoNodeChange切换视频',this.videoIdx)
+                    console.log('videoNodeChange切换视频',this.videoIdx);
 
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ResultWinPanel');
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
@@ -629,7 +629,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (this.isPlay) {
             return;
         }
-        console.log("onShowNextVideo>>>>",this.videoIdx)
+        console.log("onShowNextVideo>>>>",this.videoIdx);
         this.tiaoState = false;
         UserInfo.allVideos[this.videoIdx] = this.videoIdx;
         UserInfo.curBokData.allVideos[this.videoIdx] = this.videoIdx;
@@ -683,7 +683,7 @@ class VideoData extends egret.DisplayObjectContainer {
     public onTiao() {
         let isChapterLastVideo = this.videoIdx == 'V019' || (Number(videoModels[this.videoIdx].jtime) == 0 ? false : true);
         let wentiTime: number = 0;
-        console.log("===",this.videoIdx,VideoManager.getInstance().videoCurrTime() ,VideoManager.getInstance().getVideoDuration())
+        console.log("===",this.videoIdx,VideoManager.getInstance().videoCurrTime() ,VideoManager.getInstance().getVideoDuration());
         if (VideoManager.getInstance().videoCurrTime() < 1)
             return;
         if (Number(videoModels[this.videoIdx].time) > 0) {
@@ -695,11 +695,11 @@ class VideoData extends egret.DisplayObjectContainer {
             //如果是最后5秒。出提示
             if (!this.isSelectVideo && VideoManager.getInstance().videoCurrTime() < wentiTime - 3 && VideoManager.getInstance().getVideoDuration() > wentiTime - 3 && !this.tiaoState) {
                 this.tiaoState = true;
-                console.log("tiao1",wentiTime - 2)
+                console.log("tiao1",wentiTime - 2);
                 widPlayer.seek(wentiTime - 2);
             } else if (VideoManager.getInstance().videoCurrTime() + 5 < VideoManager.getInstance().getVideoDuration() && !this.tiaoState) {
                 this.tiaoState = true;
-                console.log("tiao2",VideoManager.getInstance().getVideoDuration() - 4)
+                console.log("tiao2",VideoManager.getInstance().getVideoDuration() - 4);
                 widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4)
             }
             else if(VideoManager.getInstance().videoCurrTime() + 5 > VideoManager.getInstance().getVideoDuration()){                
@@ -718,24 +718,24 @@ class VideoData extends egret.DisplayObjectContainer {
                     widPlayer.seek(Number(videoModels[this.videoIdx].stime))
                 } else {
                     if (isChapterLastVideo)
-                        GameCommon.getInstance().showCommomTips('章节结尾')
+                        GameCommon.getInstance().showCommomTips('章节结尾');
                     else
-                        GameCommon.getInstance().showCommomTips('别着急有惊喜')
+                        GameCommon.getInstance().showCommomTips('别着急有惊喜');
                 }
             } else {
                 this.tiaoState = true;
-                console.log("tiao4",VideoManager.getInstance().getVideoDuration() - 4)
-                widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4)
+                console.log("tiao4",VideoManager.getInstance().getVideoDuration() - 4);
+                widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 4);
             }
         }else if(VideoManager.getInstance().videoCurrTime() + 5 > VideoManager.getInstance().getVideoDuration() && !this.tiaoState){
             //最后5秒，出提示
             if (isChapterLastVideo)
-                GameCommon.getInstance().showCommomTips('章节结尾')
+                GameCommon.getInstance().showCommomTips('章节结尾');
             else
-                GameCommon.getInstance().showCommomTips('别着急有惊喜')
+                GameCommon.getInstance().showCommomTips('别着急有惊喜');
         }else if(this.tiaoState)
         {
-            console.log("tiaoing=true")
+            console.log("tiaoing=true");
         }
 
     }
@@ -804,7 +804,7 @@ class VideoData extends egret.DisplayObjectContainer {
         this.curAnswerCfg = null;
         VideoManager.getInstance().loadSrc = '';
         this.onCreateData();
-        console.log("onContinue>>>>",this.videoIdx)
+        console.log("onContinue>>>>",this.videoIdx);
         this.tiaoState = false;
         GameDefine.IS_READ_PLAY = true;
         let chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
@@ -840,7 +840,7 @@ class VideoData extends egret.DisplayObjectContainer {
         this.againFlg = true;
         videoNextFlg1 = true;
         this.tipsPanel.visible = true;
-        console.log("onGameOver>>>>",this.videoIdx)
+        console.log("onGameOver>>>>",this.videoIdx);
         this.tiaoState = false;
         if (UserInfo.curBokData.wentiId.length > 0 && UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]) {
             this.onCreateData();
@@ -1122,7 +1122,7 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     private onRefreshVideo(data) {        
-        console.log("onRefreshVideo>>>>",this.videoIdx)
+        console.log("onRefreshVideo>>>>",this.videoIdx);
         if (this.isSelectVideo && wentiModels[data.data.wentiId].type != ActionType.OPTION)
             return;
         this.tiaoState = false;
