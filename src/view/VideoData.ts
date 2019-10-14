@@ -626,7 +626,7 @@ class VideoData extends egret.DisplayObjectContainer {
         UserInfo.curBokData.allVideos[this.videoIdx] = this.videoIdx;
         UserInfo.curBokData.videoDic[this.videoIdx] = this.videoIdx;
         this.isLoadSrc = false;
-        if (this.videoIdx != 'V019' && videoModels[this.videoIdx].chengjiuId != '') {
+        if (this.videoIdx != 'V019' && videoModels[this.videoIdx].chengjiuId != '' && VideoManager.getInstance().videoCurrTime() >= VideoManager.getInstance().getVideoDuration() - 10) {
             ChengJiuManager.getInstance().onCheckShiPinChengJiu(videoModels[this.videoIdx].chengjiuId);
         }
         if (videoModels[this.videoIdx].tiaozhuan == TIAOZHUAN_Type.RESULT) {
@@ -1126,7 +1126,7 @@ class VideoData extends egret.DisplayObjectContainer {
             Tool.callbackTime(() => ChengJiuManager.getInstance().onCheckAnswer(data.data.wentiId, data.data.answerId), this, 100);
 
             if (this.videoIdx == 'V019') {
-                if (videoModels[this.videoIdx].chengjiuId != '') {
+                if (videoModels[this.videoIdx].chengjiuId != '' && VideoManager.getInstance().videoCurrTime() >= VideoManager.getInstance().getVideoDuration() - 10) {
                     ChengJiuManager.getInstance().onCheckShiPinChengJiu(videoModels[this.videoIdx].chengjiuId);
                 }
             }
