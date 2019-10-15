@@ -19,7 +19,7 @@
     <juqingkuai id="17" show="3" scal="0.58" wentiId="19" videoId="V225" openVideo="V221B" lastKuai="14" BE="0"/>
     <juqingkuai id="18" show="3" scal="0.58" wentiId="19" videoId="V222" openVideo="V221B" lastKuai="14" BE="0"/>
     <juqingkuai id="19" show="4" scal="1" wentiId="20" videoId="V301" openVideo="V226" lastKuai="15,16,17,18" BE="0"/>
-    <juqingkuai id="20" show="4" scal="1" wentiId="21" videoId="V304" openVideo="V302,V303" lastKuai="19" BE="0"/>
+    <juqingkuai id="20" show="4" scal="1" wentiId="21" videoId="V304" openVideo="V303" lastKuai="19" BE="0"/>
     <juqingkuai id="21" show="4" scal="1" wentiId="22" videoId="V401" openVideo="V307" lastKuai="20" BE="0"/>
     <juqingkuai id="22" show="4" scal="1" wentiId="24" videoId="V404B" openVideo="V404A" lastKuai="21" BE="0"/>
     <juqingkuai id="23" show="4" scal="1" wentiId="0" videoId="V408" openVideo="V407" lastKuai="22" BE="1"/>

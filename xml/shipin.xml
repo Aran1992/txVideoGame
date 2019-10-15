@@ -70,8 +70,8 @@
     <shipin id="V301" chengjiuId="*" juqing="19" vid="p003167abd0" time="552" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V302" chengjiuId="*" juqing="19" vid="i0032ih1dcw" time="15" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V303" chengjiuId="*" juqing="19" vid="f0032zgjd2a" time="-1" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
-    <shipin id="V304" chengjiuId="*" juqing="20" vid="l0032nnz6lu" time="30" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
-    <shipin id="V304B" chengjiuId="*" juqing="20" vid="s00328vrtj5" time="133" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
+    <shipin id="V304A" chengjiuId="*" juqing="20" vid="l0032nnz6lu" time="30" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
+    <shipin id="V304" chengjiuId="*" juqing="20" vid="s00328vrtj5" time="133" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V305" chengjiuId="*" juqing="20" vid="j0031b1u8rz" time="0" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V306" chengjiuId="*" juqing="20" vid="j0031s61qcc" time="0" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V307" chengjiuId="*" juqing="20" vid="d0031nzi2rs" time="0" dlc="0" shanhuiid="*" weight="1" tiaozhuan="4" subtitle="0" payTime="0" haogandu="*" jtime="144" stime="118"/>

@@ -214,8 +214,7 @@ class GameCommon {
         if (curChapterCfg) {
             cundangTitle = curChapterCfg.name;
         }
-        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str)
-        // LocalStorageManager.getInstance().saveFile(tp);
+        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str);
     }
 
     /*所有数据存档*/
@@ -461,14 +460,14 @@ class GameCommon {
             if (like<0){
                 tipStr = ": 亲密度减少"
                 sound = "likesub.mp3"
-            } 
+            }
             if(like != 0){
                 Tool.callbackTime(function () {
                     GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[i] + tipStr)
                     SoundManager.getInstance().playSound(sound);
-                }, {}, delTim);       
-                delTim = delTim + 3000;                  
-            }   
+                }, {}, delTim);
+                delTim = delTim + 3000;
+            }
         }
         /*if (Number(awardStrAry[0]) > 0) {
             Tool.callbackTime(function () {
