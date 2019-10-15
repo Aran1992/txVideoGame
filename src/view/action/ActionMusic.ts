@@ -159,7 +159,7 @@ class MusicController {
         this.lightStartY = this.light.y;
         this.resultImageStartY = this.good.y;
         this.index = idx;
-        this.groupClick.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventMusic, this);
+        this.groupClick.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onClickGroup, this);
     }
 
     public setRun(idx: number, duration: number) {
@@ -174,6 +174,7 @@ class MusicController {
         this.dark.visible = false;
         this.light.visible = true;
         this.light.y = this.lightStartY;
+        egret.Tween.removeTweens(this.light);
     }
 
     public update(dt) {
@@ -184,18 +185,20 @@ class MusicController {
                 this.playMCResult();
                 this.playPopupAni(this.miss);
                 SoundManager.getInstance().playSound('hudong_miss.mp3');
+                this.dark.visible = true;
+                this.light.visible = false;
             } else {
                 this.actionMusic.timeBar1.value = this.actionMusic.timeBar2.value = this.duration - this.curTime;
             }
         }
     }
 
-    private onEventMusic() {
+    private onClickGroup() {
         if (this.isActive) {
             this.isActive = false;
             this.playMCResult();
             egret.Tween.get(this.light)
-                .to({y: this.lightStartY + 20}, 100, egret.Ease.sineInOut)
+                .to({y: this.lightStartY + 20}, 50, egret.Ease.sineInOut)
                 .to({y: this.lightStartY}, 50, egret.Ease.quartOut)
                 .call(() => {
                     this.light.visible = false;
