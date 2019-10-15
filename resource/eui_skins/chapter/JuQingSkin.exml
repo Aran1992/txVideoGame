@@ -114,4 +114,7 @@
             </e:Skin>
         </e:skinName>
     </e:Button>
+	<e:Group id="idGuideGroup" width="100%" height="100%" x="0" y="0" touchEnabled="false" visible="false">
+		<e:Image id="idGuideImage" width="100%" height="100%" x="0" y="0" source="guide_cundang_1_jpg" anchorOffsetX="0" anchorOffsetY="0" fillMode="scale" scaleX="1" scaleY="1"/>
+	</e:Group>
 </e:Skin>

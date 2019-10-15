@@ -325,6 +325,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onFenXiang() {
+        this.videoD.onShowDetail();
     }
 
     private onTiao() {

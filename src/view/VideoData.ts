@@ -72,6 +72,19 @@ class VideoData extends egret.DisplayObjectContainer {
         VideoManager.getInstance().updateVideoData(videoid);
     }
 
+    public onShowDetail(){
+        console.log("curVideoIndex=",this.curVideoIndex);
+        console.log(this.curVIdeoIds)
+        console.log("tiaoState="+String(this.tiaoState)+";videoState="+String(this.videoState))
+        console.log("curWentiId="+String(this.curWentiId)+";nextWentiId="+String(this.nextWentiId))
+        console.log("===",this.videoIdx,VideoManager.getInstance().videoCurrTime() ,VideoManager.getInstance().getVideoDuration());
+        console.log(this.curAnswerCfg)
+        console.log("isSelectVideo="+String(this.isSelectVideo)+";isHuDong="+String(this.isHuDong)+";isDie="+String(this.isDie)+";isEndChapter="+String(this.isEndChapter))
+        console.log("UserInfo.curchapter="+String(UserInfo.curchapter))
+        console.log(UserInfo.curBokData)
+        
+    }
+
     private static isVideoTouch(id) {
         return id == 'V4111';
     }

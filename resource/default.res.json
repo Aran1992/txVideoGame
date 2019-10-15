@@ -4705,6 +4705,31 @@
 			"url": "assets/guide/buylock.png",
 			"type": "image",
 			"name": "buylock_png"
+		},
+		{
+			"url": "assets/about/guide_cundang_1.jpg",
+			"type": "image",
+			"name": "guide_cundang_1_jpg"
+		},
+		{
+			"url": "assets/about/guide_cundang_2.jpg",
+			"type": "image",
+			"name": "guide_cundang_2_jpg"
+		},
+		{
+			"url": "assets/about/guide_cundang_3.jpg",
+			"type": "image",
+			"name": "guide_cundang_3_jpg"
+		},
+		{
+			"url": "assets/about/guide_cundang_4.jpg",
+			"type": "image",
+			"name": "guide_cundang_4_jpg"
+		},
+		{
+			"url": "assets/about/guide_5.jpg",
+			"type": "image",
+			"name": "guide_5_jpg"
 		}
 	]
 }

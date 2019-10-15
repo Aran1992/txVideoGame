@@ -20,7 +20,7 @@ class AboutPanel extends eui.Component{
     private starPos: number = 0;
     private endPos: number = 0;
     private imgIndx: number = 1;
-    private imgMaxNumb: number = 4;
+    private imgMaxNumb: number = 5;
     private _playTween: boolean;
     private _imageWidth:number =0;
 

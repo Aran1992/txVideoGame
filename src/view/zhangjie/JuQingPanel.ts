@@ -14,6 +14,8 @@ class JuQingPanel extends eui.Component {
     private guide_grp: eui.Group;
     private mengban: eui.Image;
     private xinshou_step_img: eui.Image;
+    private idGuideGroup:eui.Group;
+    private idGuideImage:eui.Image;
 
     private _curIdx: number = FILE_TYPE.AUTO_FILE;
     private animRecords: PlotTreeItem[];
@@ -27,6 +29,7 @@ class JuQingPanel extends eui.Component {
     private imgIndx: number = 1;
     private imgMaxNumb: number = 5;
     private _playTween: boolean;
+    private _guideIndex:number = 0;
 
     constructor() {
         super();
@@ -173,6 +176,24 @@ class JuQingPanel extends eui.Component {
         GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE6);
         this.onRefresh();
         this.onGuideHandler();
+        
+        if (!UserInfo.guideJson["juQing"]) {
+            UserInfo.guideJson["juQing"] = 100;
+            this.idGuideGroup.visible = true;
+            this.idGuideGroup.touchEnabled = true;
+            this.idGuideGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchGuideGroup, this);
+            this._guideIndex=1;
+            this.idGuideImage.source = `guide_cundang_${this._guideIndex}_jpg`;
+        }
+    }
+    private onTouchGuideGroup(){
+        this._guideIndex = this._guideIndex+1
+        //四张后关闭引导 
+        if (this._guideIndex>=5){
+            this.idGuideGroup.visible = false;
+        }else{
+            this.idGuideImage.source = `guide_cundang_${this._guideIndex}_jpg`;
+        }
     }
 
     private onEventDown(event: egret.TouchEvent) {

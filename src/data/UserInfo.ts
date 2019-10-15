@@ -40,7 +40,8 @@ class UserInfo {
         UserInfo.guideDic = {};
         //0，或者undefine表示引导未开始，100表示引导已结束
         UserInfo.guideJson = {
-            "buyLock":0//首次购买选项引导，发生在问题：0-5;
+            "buyLock":0,//首次购买选项引导，发生在问题：0-5;
+            "juQing":0//首次购买选项引导，发生在问题：0-5;
         };
         UserInfo.shopDic = {};
         UserInfo.allVideos = {};
