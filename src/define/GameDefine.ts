@@ -51,7 +51,7 @@ class GameDefine {
     public static CJ_LEVEL_COLOR: number[] = [0xFFFFFF, 0xffffff, 0x2ba663, 0x2697ff, 0xaf60b6, 0xe3d667];
     public static CJ_LEVEL_NAME: string[] = ['全部', '普通', '简单', '中等', '困难', '究极'];
 
-    public static START_CHAPTER: number = 4;
+    public static START_CHAPTER: number = 0;
     public static TEST_ACTION_SCENE_WENTI_ID: number = null;
     public static Currency_Icon = {
         SUIPIAN: "common_suipian_png",
