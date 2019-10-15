@@ -2,8 +2,8 @@
 <e:Skin class="skins.ActionMsgSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
         height="900">
     <e:Group id="mainGroup" height="100%" width="100%" y="0" x="0">
-        <e:Group horizontalCenter="0" top="32">
-            <e:Image source="action_timedi_png" horizontalCenter="0" top="0" locked="true"/>
+        <e:Group id="timeBar" horizontalCenter="0" top="32">
+            <e:Image source="action_timedi_png" horizontalCenter="0" top="0"/>
             <e:ProgressBar id="timeBar1" skinName="skins.ActionBar1Skin" scaleX="-1" horizontalCenter="-125"
                            value="100"/>
             <e:ProgressBar id="timeBar2" skinName="skins.ActionBar1Skin" horizontalCenter="125" value="100"/>
