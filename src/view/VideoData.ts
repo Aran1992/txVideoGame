@@ -123,10 +123,10 @@ class VideoData extends egret.DisplayObjectContainer {
         GameCommon.getInstance().showLoading();
         this._nextVid = '';
         if (UserInfo.curBokData.wentiId.length > 0 && UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1]) {
-
             let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
             if (UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]) {
                 if (wentiModels[wentiId].chapter > wentiModels[UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]].chapter) {
+                    //当前问题的章节大于前一个问题的章节，即当前的问题已经是跨章节了。
                     let curChapterCfg = JsonModelManager.instance.getModelchapter()[wentiModels[wentiId].chapter];
                     if (curChapterCfg.videoSrc.indexOf(",") >= 0) {
                         let videoIds = curChapterCfg.videoSrc.split(",");
@@ -707,6 +707,8 @@ class VideoData extends egret.DisplayObjectContainer {
                     GameCommon.getInstance().showCommomTips('章节结尾')
                 else
                     GameCommon.getInstance().showCommomTips('别着急有惊喜')
+            }else{
+                console.log("tiaoState="+this.tiaoState)
             }
         } else if (VideoManager.getInstance().videoCurrTime() + 5 < VideoManager.getInstance().getVideoDuration() && !this.tiaoState) {
             //没有问题。但离结束还有5秒以上，stime=seektime.表示大跳跳到的时间
@@ -995,6 +997,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (UserInfo.curchapter == 1)
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         else
+            console.error("open ResultWinPanel")
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
     }
 
