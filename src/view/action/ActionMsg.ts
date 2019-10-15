@@ -22,6 +22,7 @@ class ActionMsg extends ActionSceneBase {
     private needClickSend: boolean;
     private msgInterval: number;
 
+    private timeBar: eui.Group;
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
     private desc1: eui.Label;
@@ -39,6 +40,8 @@ class ActionMsg extends ActionSceneBase {
         this.msgList = this.paramList[5].split("|");
 
         this.desc1.text = JsonModelManager.instance.getModelhudong()[this.model.type].des;
+
+        this.timeBar.visible = this.needClickSend;
 
         this.timeBar1.slideDuration = 0;
         this.timeBar1.maximum = this.maxTime;
@@ -66,6 +69,10 @@ class ActionMsg extends ActionSceneBase {
         } else {
             this.onBackSuccess();
         }
+    }
+
+    protected onBackSuccess() {
+        ActionManager.getInstance().onActionSuccess(this.idx, this.delTime);
     }
 
     private async play() {
