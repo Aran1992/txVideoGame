@@ -98,7 +98,6 @@
 		"bin-debug/view/view/TweenManager.js",
 		"bin-debug/view/view/ViewEnd.js",
 		"bin-debug/view/view/ViewTouch.js",
-		"bin-debug/view/zhangjie/ChapterPanel.js",
 		"bin-debug/view/zhangjie/CunDangPanel.js",
 		"bin-debug/view/zhangjie/JuQingPanel.js"
 	]

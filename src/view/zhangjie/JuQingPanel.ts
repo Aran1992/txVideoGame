@@ -14,8 +14,8 @@ class JuQingPanel extends eui.Component {
     private guide_grp: eui.Group;
     private mengban: eui.Image;
     private xinshou_step_img: eui.Image;
-    private idGuideGroup:eui.Group;
-    private idGuideImage:eui.Image;
+    private idGuideGroup: eui.Group;
+    private idGuideImage: eui.Image;
 
     private _curIdx: number = FILE_TYPE.AUTO_FILE;
     private animRecords: PlotTreeItem[];
@@ -29,7 +29,7 @@ class JuQingPanel extends eui.Component {
     private imgIndx: number = 1;
     private imgMaxNumb: number = 5;
     private _playTween: boolean;
-    private _guideIndex:number = 0;
+    private _guideIndex: number = 0;
 
     constructor() {
         super();
@@ -93,7 +93,7 @@ class JuQingPanel extends eui.Component {
         }
     }
 
-    private onSaveCunChu() {        
+    private onSaveCunChu() {
         SoundManager.getInstance().playSound("ope_ask.mp3")
         if (this._curIdx != FILE_TYPE.AUTO_FILE && !this.noneFile.visible) {
             var self = this;
@@ -112,7 +112,7 @@ class JuQingPanel extends eui.Component {
 
     private onShowConfirm(data) {
         if (this._curIdx == FILE_TYPE.AUTO_FILE) {
-            var self = this;            
+            var self = this;
             SoundManager.getInstance().playSound("ope_ask.mp3")
             GameCommon.getInstance().showConfirmTips("清空记忆，从这里从新开始？", function (): void {
                 self._videoData = data.data;
@@ -129,7 +129,7 @@ class JuQingPanel extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH))
     }
 
-    private onClose() {        
+    private onClose() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.onRemove();
         this.qiuGroup.removeChildren();
@@ -147,7 +147,7 @@ class JuQingPanel extends eui.Component {
         this.height = size.height;
     }
 
-    private onShowChapterVideo(event: egret.Event) {        
+    private onShowChapterVideo(event: egret.Event) {
         SoundManager.getInstance().playSound("ope_click.mp3")
         var name: number = Number(event.currentTarget.name);
         if (this._curIdx == name)
@@ -176,22 +176,23 @@ class JuQingPanel extends eui.Component {
         GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE6);
         this.onRefresh();
         this.onGuideHandler();
-        
+
         if (!UserInfo.guideJson["juQing"]) {
             UserInfo.guideJson["juQing"] = 100;
             this.idGuideGroup.visible = true;
             this.idGuideGroup.touchEnabled = true;
             this.idGuideGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchGuideGroup, this);
-            this._guideIndex=1;
+            this._guideIndex = 1;
             this.idGuideImage.source = `guide_cundang_${this._guideIndex}_jpg`;
         }
     }
-    private onTouchGuideGroup(){
-        this._guideIndex = this._guideIndex+1
-        //四张后关闭引导 
-        if (this._guideIndex>=5){
+
+    private onTouchGuideGroup() {
+        this._guideIndex = this._guideIndex + 1
+        //四张后关闭引导
+        if (this._guideIndex >= 5) {
             this.idGuideGroup.visible = false;
-        }else{
+        } else {
             this.idGuideImage.source = `guide_cundang_${this._guideIndex}_jpg`;
         }
     }
@@ -371,7 +372,7 @@ class JuQingPanel extends eui.Component {
         // }
     }
 
-    private touchGuideHandler(): void {        
+    private touchGuideHandler(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
         if (this.guide_images.length == 0) {
             this.guide_grp.visible = false;
@@ -708,7 +709,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         }
     }
 
-    private onTouchBtn(event: egret.Event) {        
+    private onTouchBtn(event: egret.Event) {
         SoundManager.getInstance().playSound("ope_click.mp3")
         var name: number = Number(event.currentTarget.name);
         var allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
