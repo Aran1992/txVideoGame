@@ -107,17 +107,20 @@ class Main extends eui.UILayer {
 
     private async loadResource() {
         GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
+        await RES.loadConfig("resource/default.res.json", "resource/");
+        await this.loadTheme();
         const loadingView = new LoadingUI();
         this.stage.addChild(loadingView);
-        loadingView.x = size.width / 2 - 240;
+        loadingView.anchorOffsetX = loadingView.width / 2;
+        loadingView.anchorOffsetY = loadingView.height / 2;
+        loadingView.x = size.width / 2;
         loadingView.y = size.height / 2;
         try {
-            await RES.loadConfig("resource/default.res.json", "resource/");
-            await this.loadTheme();
             await RES.loadGroup("preload", 0, loadingView);
         } catch (e) {
             console.error(e);
         }
+        await new Promise(resolve => setTimeout(resolve, 1000));
         this.stage.removeChild(loadingView);
     }
 
