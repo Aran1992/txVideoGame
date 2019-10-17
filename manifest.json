@@ -75,6 +75,7 @@
 		"bin-debug/view/mainUI/AboutPanel.js",
 		"bin-debug/view/mainUI/MainView.js",
 		"bin-debug/view/mainUI/PlayerSettingPanel.js",
+		"bin-debug/view/mainUI/TicketPanel.js",
 		"bin-debug/view/prompt/BuyTipsPanel.js",
 		"bin-debug/view/prompt/CommonTips.js",
 		"bin-debug/view/prompt/PromptInfo.js",

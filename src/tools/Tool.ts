@@ -296,6 +296,15 @@ class Tool {
         return date.getFullYear() + "-" + month + "-" + strDate + " "
             + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     }
+    public static formatZero(num, length) {
+        return (Array(length).join('0') + num).slice(-length);
+    }
+    //把日期格式化为整数
+    public static formatTimeDay2Num(time:number=undefined){
+        const date = new Date(time);
+        return Number(String(date.getFullYear())+String(Tool.formatZero(date.getMonth(),2))+String(Tool.formatZero(date.getDay(),2)))
+    }
+
 
     public static getCurrTime() {
         return new Date().getTime();

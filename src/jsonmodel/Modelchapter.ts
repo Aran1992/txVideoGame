@@ -33,6 +33,22 @@ class Modelchapter extends ModelJsonBase {
 		return this._json["name"];
 	}
 
+	private _saleTime;
+	public set saleTime(value){
+		this._saleTime = value;
+	}
+	public get saleTime():number{
+		return parseFloat(this._json["saleTime"]);
+	}
+
+	private _next;
+	public set next(value){
+		this._next = value;
+	}
+	public get next():number{
+		return parseFloat(this._json["next"]);
+	}
+
 	private _des;
 	public set des(value){
 		this._des = value;

@@ -229,7 +229,10 @@ class MainView extends eui.Component {
         // GameCommon.getInstance().addAlert('zanweikaifang');
         this.cjLab.visible = false;
         this.checkGuide8();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ChengJiuPanel');
+        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ChengJiuPanel');
+        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'TicketPanel');
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"mainview"});
+        
     }
 
     private onXinkaishi(): void {
