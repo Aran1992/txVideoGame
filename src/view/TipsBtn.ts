@@ -681,12 +681,12 @@ class TipsBtn extends eui.Component {
     private updateChapterLockInfo(){
         let curChapterId = UserInfo.curchapter;
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
-        let nextChapterId = curChapterCfg.next;
+        let nextChapterId = String(curChapterCfg.next);
         var arr = nextChapterId.split(";");
-        nextChapterId = Number(arr[0]);
+        let nnextChapterId = Number(arr[0]);
         //是否付费用户，下一章是否已上架
-        let onSale = this.isChapterOnSale(nextChapterId);
-        if(this.isVip || nextChapterId==0 || !onSale){
+        let onSale = this.isChapterOnSale(nnextChapterId);
+        if(this.isVip || nnextChapterId==0 || !onSale){
             this.idBtnClock.visible=false;
             this.idBtnShopCar.visible=false;
         }else{

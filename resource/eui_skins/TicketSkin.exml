@@ -51,9 +51,9 @@
 		<e:RadioButton id="idTab1" groupName="tabGroup" label="激活码" skinName="skins.Common_TabButtonSkin1" width="260"
 						height="90" value="0" selected="true"  name="1"/>
 		<e:RadioButton id="idTab2" groupName="tabGroup" label="关于" skinName="skins.Common_TabButtonSkin1" width="260"
-						height="90" value="1"  name="2"/>
+						height="90" value="1"  name="2" visible="false"/>
 		<e:RadioButton id="idTab3" groupName="tabGroup" label="test" skinName="skins.Common_TabButtonSkin1" width="260"
-						height="90" value="2"  name="3"/>
+						height="90" value="2"  name="3" visible="false"/>
 		<e:layout>
 			<e:VerticalLayout gap="15" />
 		</e:layout>
