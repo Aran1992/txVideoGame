@@ -1,31 +1,21 @@
 // TypeScript file
 class JuQingPanel extends eui.Component {
-    private mainGroup: eui.Group;
-    private chapterGroup: eui.Group;
-    private juqingDatas: PlotTreeItem[];
     private bgBtn: eui.Button;
     private slideGroup: eui.Group;
     private noneFile: eui.Group;
     private qiuGroup: eui.Group;
-    private rightmask: eui.Image;
-    private leftmask: eui.Image;
     private timerLab: eui.Label;
     private cunchuBtn: eui.Button;
     private guide_grp: eui.Group;
-    private mengban: eui.Image;
-    private xinshou_step_img: eui.Image;
     private idGuideGroup: eui.Group;
     private idGuideImage: eui.Image;
 
     private _curIdx: number = FILE_TYPE.AUTO_FILE;
-    private animRecords: PlotTreeItem[];
     private qiuImgs: eui.Image[];
     private _idx: number = 0;
     private kuaiDatas;
-    private guide_images: string[] = [];
     private _videoData;
     private starPos: number = 0;
-    private endPos: number = 0;
     private imgIndx: number = 1;
     private imgMaxNumb: number = 5;
     private _playTween: boolean;
@@ -37,9 +27,15 @@ class JuQingPanel extends eui.Component {
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
+    private static onRefreshUpdata() {
+        if (GameDefine.ISFILE_STATE) {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
+        }
+    }
+
     protected onRegist(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdata, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, JuQingPanel.onRefreshUpdata, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.REFRESH_JUQING, this.onRefresh, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onShowVideo, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SELECT_JUQING, this.onShowConfirm, this);
@@ -49,7 +45,7 @@ class JuQingPanel extends eui.Component {
         this.slideGroup.addEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
         this.qiuGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
         this.qiuGroup.addEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
-        for (var i: number = 1; i <= GameDefine.MAX_CUNDAGN_NUM; i++) {
+        for (let i: number = 1; i <= GameDefine.MAX_CUNDAGN_NUM; i++) {
             this['fileBtn' + i].name = i;
             this['fileBtn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
         }
@@ -58,7 +54,7 @@ class JuQingPanel extends eui.Component {
 
     protected onRemove(): void {
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
-        GameDispatcher.getInstance().removeEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdata, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.AUTO_UPDATA, JuQingPanel.onRefreshUpdata, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.REFRESH_JUQING, this.onRefresh, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.STARTCHAPTER, this.onShowVideo, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.SELECT_JUQING, this.onShowConfirm, this);
@@ -68,7 +64,7 @@ class JuQingPanel extends eui.Component {
         this.slideGroup.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
         this.qiuGroup.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
         this.qiuGroup.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
-        for (var i: number = 1; i <= GameDefine.MAX_CUNDAGN_NUM; i++) {
+        for (let i: number = 1; i <= GameDefine.MAX_CUNDAGN_NUM; i++) {
             this['fileBtn' + i].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
         }
         this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
@@ -87,16 +83,10 @@ class JuQingPanel extends eui.Component {
         this.onSwitchKuai(this._curIdx);
     }
 
-    private onRefreshUpdata() {
-        if (GameDefine.ISFILE_STATE) {
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
-        }
-    }
-
     private onSaveCunChu() {
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+        SoundManager.getInstance().playSound("ope_ask.mp3");
         if (this._curIdx != FILE_TYPE.AUTO_FILE && !this.noneFile.visible) {
-            var self = this;
+            let self = this;
             GameCommon.getInstance().showConfirmTips("是否存储？", function (): void {
                 GameCommon.getInstance().setBookData(self._curIdx);
             }, "注：存储会覆盖原来的存档");
@@ -112,8 +102,8 @@ class JuQingPanel extends eui.Component {
 
     private onShowConfirm(data) {
         if (this._curIdx == FILE_TYPE.AUTO_FILE) {
-            var self = this;
-            SoundManager.getInstance().playSound("ope_ask.mp3")
+            let self = this;
+            SoundManager.getInstance().playSound("ope_ask.mp3");
             GameCommon.getInstance().showConfirmTips("清空记忆，从这里从新开始？", function (): void {
                 self._videoData = data.data;
                 GameCommon.getInstance().showLoading();
@@ -122,15 +112,8 @@ class JuQingPanel extends eui.Component {
         }
     }
 
-    private onFirmBtn() {
-        // GameCommon.getInstance().addAlert('暂未接通支付接口');
-        // ShopManager.getInstance().myShopData[1] = 1;
-        ChengJiuManager.getInstance().onDlcChengJiu(1);
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH))
-    }
-
     private onClose() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.onRemove();
         this.qiuGroup.removeChildren();
         this.slideGroup.removeChildren();
@@ -148,8 +131,8 @@ class JuQingPanel extends eui.Component {
     }
 
     private onShowChapterVideo(event: egret.Event) {
-        SoundManager.getInstance().playSound("ope_click.mp3")
-        var name: number = Number(event.currentTarget.name);
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        let name: number = Number(event.currentTarget.name);
         if (this._curIdx == name)
             return;
         this['fileBtn' + this._curIdx].icon = '';
@@ -188,7 +171,7 @@ class JuQingPanel extends eui.Component {
     }
 
     private onTouchGuideGroup() {
-        this._guideIndex = this._guideIndex + 1
+        this._guideIndex = this._guideIndex + 1;
         //四张后关闭引导
         if (this._guideIndex >= 5) {
             this.idGuideGroup.visible = false;
@@ -251,11 +234,7 @@ class JuQingPanel extends eui.Component {
         // this.slideGroup.addChild(new PlotTreeItem(tp));
         this['fileBtn' + tp].touchEnabled = false;
         this._idx = 0;
-        if (tp == 1) {
-            this.cunchuBtn.visible = false;
-        } else {
-            this.cunchuBtn.visible = true;
-        }
+        this.cunchuBtn.visible = tp != 1;
         this.timerLab.text = '';
         // UserInfo.curBokData.allVideos['V019'] = 'V019'
         // UserInfo.curBokData.videoDic['V019'] = 'V019'
@@ -279,27 +258,29 @@ class JuQingPanel extends eui.Component {
         let likeData = GameCommon.getInstance().getSortLike();
         let roleIdx: number = likeData.id;
         let juqingAry: number[] = GameDefine.ROLE_JUQING_TREE[roleIdx];
-        for (var i: number = 0; i < juqingAry.length; i++) {
+        for (let i: number = 0; i < juqingAry.length; i++) {
             let juqing_page: number = juqingAry[i];
             let bool: boolean = true;
             let allCfg = JsonModelManager.instance.getModeljuqingkuai()[juqing_page];
             if (!allCfg) break;
-            for (var k in allCfg) {
-                if (allCfg[k].openVideo) {
-                    if (GameCommon.getInstance().checkJuqingKuaiOpen(juqingKuaiMax, allCfg[k].id)) {
-                        if (!this.kuaiDatas[allCfg[k].show]) {
-                            this._idx = this._idx + 1;
-                            this.kuaiDatas[allCfg[k].show] = allCfg[k];
+            for (let k in allCfg) {
+                if (allCfg.hasOwnProperty(k)) {
+                    if (allCfg[k].openVideo) {
+                        if (GameCommon.getInstance().checkJuqingKuaiOpen(juqingKuaiMax, allCfg[k].id)) {
+                            if (!this.kuaiDatas[allCfg[k].show]) {
+                                this._idx = this._idx + 1;
+                                this.kuaiDatas[allCfg[k].show] = allCfg[k];
+                            }
+                        } else {
+                            bool = false;
+                            break;
                         }
                     } else {
-                        bool = false;
-                        break;
-                    }
-                } else {
-                    if (this._curIdx == FILE_TYPE.AUTO_FILE) {
-                        if (!this.kuaiDatas[allCfg[k].show]) {
-                            this._idx = this._idx + 1;
-                            this.kuaiDatas[allCfg[k].show] = allCfg[k];
+                        if (this._curIdx == FILE_TYPE.AUTO_FILE) {
+                            if (!this.kuaiDatas[allCfg[k].show]) {
+                                this._idx = this._idx + 1;
+                                this.kuaiDatas[allCfg[k].show] = allCfg[k];
+                            }
                         }
                     }
                 }
@@ -307,20 +288,20 @@ class JuQingPanel extends eui.Component {
             if (!bool) break;
         }
 
-        this.animRecords = [];
-        var _record: PlotTreeItem;
         this.imgIndx = 0;
         this.qiuImgs = [];
         this.qiuGroup.removeChildren();
         this.slideGroup.removeChildren();
 
         let models: Modeljuqingkuai[] = [];
-        for (var k in this.kuaiDatas) {
-            models.push(this.kuaiDatas[k]);
-            var img: eui.Image = new eui.Image;
-            img.source = 'cundang_dian2_png';
-            this.qiuGroup.addChild(img);
-            this.qiuImgs.push(img);
+        for (let k in this.kuaiDatas) {
+            if (this.kuaiDatas.hasOwnProperty(k)) {
+                models.push(this.kuaiDatas[k]);
+                let img: eui.Image = new eui.Image;
+                img.source = 'cundang_dian2_png';
+                this.qiuGroup.addChild(img);
+                this.qiuImgs.push(img);
+            }
         }
         let item: PlotTreeItem;
         for (let i: number = models.length - 1; i >= 0; i--) {
@@ -329,7 +310,6 @@ class JuQingPanel extends eui.Component {
             item = new PlotTreeItem(cfg.show, nextkuaiID, tp);
             item.x = i * size.width + ((size.width - GameDefine.GAME_VIEW_WIDTH) / 2);
             this.slideGroup.addChild(item);
-            this.animRecords.push(item);
         }
 
         if (this._curIdx != 1 && models.length < 1) {
@@ -350,38 +330,10 @@ class JuQingPanel extends eui.Component {
         this.slideGroup.x = -(this.imgIndx * size.width);
 
         this.imgMaxNumb = this._idx;
-
-        // // GameCommon.getInstance().showCommomTips(curItemIdx)
     }
 
     private onGuideHandler(): void {
         this.guide_grp.visible = false;
-        // let isguide: boolean = true;
-        // for (let idx in UserInfo.fileDatas) {
-        //     if (parseInt(idx) != FILE_TYPE.AUTO_FILE && UserInfo.fileDatas[idx]) {
-        //         isguide = false;
-        //         break;
-        //     }
-        // }
-        // this.guide_grp.visible = isguide;
-        // if (isguide) {
-        //     this.guide_images = ["1", "2", "3", "4", "5"];
-        //     this.mengban.mask = this.xinshou_step_img;
-        //     this.touchGuideHandler();
-        //     this.guide_grp.addEventListener(egret.TouchEvent.TOUCH_TAP, this.touchGuideHandler, this);
-        // }
-    }
-
-    private touchGuideHandler(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
-        if (this.guide_images.length == 0) {
-            this.guide_grp.visible = false;
-            this.mengban.mask = null;
-            this.guide_grp.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.touchGuideHandler, this);
-            return;
-        }
-        let step: string = this.guide_images.shift();
-        this.xinshou_step_img.source = `cundagn_xinshou_step${step}_png`;
     }
 }
 
@@ -389,7 +341,7 @@ class JuQingPanel extends eui.Component {
 class PlotTreeItem extends egret.DisplayObjectContainer {
     public index: number;
     public nextIdx: number;
-    private models: Modeljuqingkuai[];
+    private readonly models: Modeljuqingkuai[];
     private UIDict;
     private refreshUIAry: string[];
     private handAni: my.Animation;
@@ -398,7 +350,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
     private readonly NOT_SHOW: number = 0;
     private readonly HAS_LOCK: number = 2;
     private readonly IS_OPEN: number = 1;
-    private _curFile: number = 0;
+    private readonly _curFile: number = 0;
     private statusData = {};
 
     public constructor(index: number, nextIdx: number, tp) {
@@ -531,33 +483,33 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         this.UIDict = {};
         this.refreshUIAry = [];
         let plot_slots = tree_json.armature[0].skin[0].slot;
-        for (let idx in plot_slots) {
-            let slotObj = plot_slots[idx];
-            let displayName: string = slotObj["name"];
-            let transform = slotObj["display"][0]["transform"];
-            let slotDisplay: eui.Image = new eui.Image();
-            if (displayName.indexOf("BE_") == -1) {
-                slotDisplay.source = displayName + "_png";
-            } else {
-                slotDisplay.source = "cundang_betu_png";
+        plot_slots.forEach(slotObj => {
+                let displayName: string = slotObj["name"];
+                let transform = slotObj["display"][0]["transform"];
+                let slotDisplay: eui.Image = new eui.Image();
+                if (displayName.indexOf("BE_") == -1) {
+                    slotDisplay.source = displayName + "_png";
+                } else {
+                    slotDisplay.source = "cundang_betu_png";
+                }
+                slotDisplay.x = transform.x;
+                slotDisplay.y = transform.y;
+                this.addChild(slotDisplay);
+                slotDisplay.visible = false;
+                this.UIDict[displayName] = slotDisplay;
+                if (this.refreshUIAry.indexOf(displayName) == -1) {
+                    this.refreshUIAry.push(displayName);
+                }
+                /**剧情块点击事件**/
+                if (displayName.indexOf('plot') != -1 && displayName.indexOf('_image') != -1) {
+                    slotDisplay.name = displayName.replace('plot', '').replace('_image', '');
+                    slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
+                } else if (displayName.indexOf('plot') != -1 && displayName.indexOf('BE_') != -1) {
+                    slotDisplay.name = displayName.replace('plot', '').replace('BE_', '');
+                    slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
+                }
             }
-            slotDisplay.x = transform.x;
-            slotDisplay.y = transform.y;
-            this.addChild(slotDisplay);
-            slotDisplay.visible = false;
-            this.UIDict[displayName] = slotDisplay;
-            if (this.refreshUIAry.indexOf(displayName) == -1) {
-                this.refreshUIAry.push(displayName);
-            }
-            /**剧情块点击事件**/
-            if (displayName.indexOf('plot') != -1 && displayName.indexOf('_image') != -1) {
-                slotDisplay.name = displayName.replace('plot', '').replace('_image', '');
-                slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
-            } else if (displayName.indexOf('plot') != -1 && displayName.indexOf('BE_') != -1) {
-                slotDisplay.name = displayName.replace('plot', '').replace('BE_', '');
-                slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
-            }
-        }
+        );
         this.addEventListener(egret.Event.ENTER_FRAME, this.invalidateSize, this);
     }
 
@@ -584,9 +536,12 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
     private nextkuaiHandler(): void {
         if (this.nextIdx == this.index) return; //最后一页了 不用处理了
         let nextmodel: Modeljuqingkuai;
-        for (let id in JsonModelManager.instance.getModeljuqingkuai()[this.nextIdx]) {
-            nextmodel = JsonModelManager.instance.getModeljuqingkuai()[this.nextIdx][id];
-            break;
+        const table = JsonModelManager.instance.getModeljuqingkuai()[this.nextIdx];
+        for (let id in table) {
+            if (table.hasOwnProperty(id)) {
+                nextmodel = table[id];
+                break;
+            }
         }
         if (!nextmodel) return;
         let grayLineImg: eui.Image;
@@ -610,7 +565,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                 grayLineImg = this.UIDict[`page${this.index}_last${lastKuaiId}_grayLine`];//暗线
                 lightLineImg = this.UIDict[`page${this.index}_last${lastKuaiId}_lightLine`];//明线
                 if (grayLineImg) grayLineImg.visible = _status != this.NOT_SHOW;
-                if (lightLineImg) lightLineImg.visible = _status == this.IS_OPEN && this.statusData[lastKuaiId] && this.statusData[lastKuaiId] == this.IS_OPEN ? true : false;
+                if (lightLineImg) lightLineImg.visible = _status == this.IS_OPEN && this.statusData[lastKuaiId] && this.statusData[lastKuaiId] == this.IS_OPEN;
             }
         }
     }
@@ -646,10 +601,12 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                 if (juqingCfg.show == this.index) models = this.models;
                 else models = JsonModelManager.instance.getModeljuqingkuai()[juqingCfg.show];
                 for (let id in models) {
-                    let model: Modeljuqingkuai = models[id];
-                    if (UserInfo.curBokData.allVideos[model.videoId]) {
-                        if (curJuqingID == 0 || GameCommon.getInstance().checkJuqingKuaiOpen(model.id, curJuqingID)) {
-                            curJuqingID = model.id;
+                    if (models.hasOwnProperty(id)) {
+                        let model: Modeljuqingkuai = models[id];
+                        if (UserInfo.curBokData.allVideos[model.videoId]) {
+                            if (curJuqingID == 0 || GameCommon.getInstance().checkJuqingKuaiOpen(model.id, curJuqingID)) {
+                                curJuqingID = model.id;
+                            }
                         }
                     }
                 }
@@ -710,9 +667,9 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
     }
 
     private onTouchBtn(event: egret.Event) {
-        SoundManager.getInstance().playSound("ope_click.mp3")
-        var name: number = Number(event.currentTarget.name);
-        var allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        let name: number = Number(event.currentTarget.name);
+        let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
         if (allCfg[name]) {
             if (allCfg[name].openVideo) {
                 if (this.getOpen(allCfg[name]) == this.IS_OPEN) {
