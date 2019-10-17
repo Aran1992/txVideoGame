@@ -24,7 +24,7 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
                         .call(func);
                 };
                 func();
-            }, i * interval);
+            }, (i - 1) * interval);
         }
     }
 
