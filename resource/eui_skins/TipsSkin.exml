@@ -170,26 +170,26 @@
 			<e:Button id="idBtnTicket" width="65" height="58" x="1473" y="132">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="control_ticket_png"/>
-					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_ticket_png" horizontalCenter="0" verticalCenter="0" />
 					</e:Skin>
 				</e:skinName>
+
 			</e:Button>
 			<e:Button id="idBtnShopCar" width="65" height="58" x="1473" y="225">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="control_shopcar_png"/>
-					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_shopcar_png" horizontalCenter="0" verticalCenter="0" />
 					</e:Skin>
 				</e:skinName>
+
 			</e:Button>
 			<e:Button id="idBtnClock" width="65" height="58" x="1473" y="317">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="control_clock_png"/>
-					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_clock_png" horizontalCenter="0" verticalCenter="0" />
 					</e:Skin>
 				</e:skinName>
+
 			</e:Button>
 			<e:Button id="fenxiangBtn" icon="control_jietu_png" width="65" height="58" x="1477" y="502">
 				<e:skinName>

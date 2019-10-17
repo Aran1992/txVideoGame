@@ -329,8 +329,9 @@ class TipsBtn extends eui.Component {
         this.onSkinName();
     }
 
-    private onFenXiang() {
-        this.videoD.onShowDetail();
+    private onFenXiang() {        
+        this.updateChapterLockInfo()
+        //this.videoD.onShowDetail();
     }
 
     private onTiao() {
