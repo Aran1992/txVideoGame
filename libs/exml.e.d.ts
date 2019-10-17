@@ -315,6 +315,10 @@ declare module skins{
 	}
 }
 declare module skins{
+	class TicketSkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class TimerProSkin extends eui.Skin{
 	}
 }

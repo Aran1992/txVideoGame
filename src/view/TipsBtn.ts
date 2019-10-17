@@ -48,6 +48,11 @@ class TipsBtn extends eui.Component {
     private hideTipTimer: number;
     private idGuideBuyLock: eui.Group;
     private tipsTotalTime: number;
+    private isVip:boolean = false;
+    private idBtnClock:eui.Button;
+    private idBtnShopCar:eui.Button;
+    private idBtnTicket:eui.Button;
+
 
     /**选项对应的道具**/
     private Option_Goods = {
@@ -663,5 +668,43 @@ class TipsBtn extends eui.Component {
                 egret.Tween.removeTweens(timeBar);
             }
         }
+        //这里更新章节解锁信息
+        this.updateChapterLockInfo();
+    }
+    //章节是否已上架
+    private isChapterOnSale(chaperId){
+        const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
+        let saleTime = chapterCfg.saleTime;
+        let curDay = Tool.formatTimeDay2Num();
+        return curDay>=saleTime;
+    }
+    private updateChapterLockInfo(){
+        let curChapterId = UserInfo.curchapter;
+        const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
+        let nextChapterId = curChapterCfg.next;
+        var arr = nextChapterId.split(";");
+        nextChapterId = Number(arr[0]);
+        //是否付费用户，下一章是否已上架
+        let onSale = this.isChapterOnSale(nextChapterId);
+        if(this.isVip || nextChapterId==0 || !onSale){
+            this.idBtnClock.visible=false;
+            this.idBtnShopCar.visible=false;
+        }else{
+            this.idBtnClock.visible=true;
+            this.idBtnShopCar.visible=true;
+        }
+        this.idBtnClock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnClockClick, this);
+        this.idBtnShopCar.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShopCarClick, this);
+        this.idBtnTicket.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnTicketClick, this);
+        //VideoManager.getInstance().
+    }
+    private idBtnClockClick(){
+        GameCommon.getInstance().showCommomTips("下一章X天后免费")
+    }
+    private idBtnShopCarClick(){
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"tipsbtnshopcar"});
+    }
+    private idBtnTicketClick(){
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"tipsbtnticket"});
     }
 }
