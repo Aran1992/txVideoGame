@@ -1,14 +1,9 @@
-/**
- * 提示信息
- */
 class LoadingPanel extends eui.Component {
     private grp: eui.Group;
     private share: egret.Shape;
     private mcFactory1: egret.MovieClipDataFactory;
     private img_mc: egret.MovieClip;
     private ldState: boolean = false;
-    private runTime: number;
-    private maxTime: number;
 
     constructor() {
         super();
@@ -49,8 +44,6 @@ class LoadingPanel extends eui.Component {
             }
 
             this.ldState = false;
-            // this.mk.visible = false;
-            // egret.Ticker.getInstance().unregister(this.onFrame, this);
         }
     }
 

@@ -1,5 +1,4 @@
 class ActionHuiYi extends ActionTimerSceneBase {
-    private qinmiGroup: eui.Group;
     private optionRoles: number[] = [2, 3, 1, 4];
     private answerID: number = 0;
     private exitTimer: number;
@@ -27,14 +26,6 @@ class ActionHuiYi extends ActionTimerSceneBase {
             this['timeImg' + i].visible = false;
             this['suo' + i].visible = false;
             this['selected' + i].visible = false;
-        }
-        this.qinmiGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickQinmiGroup, this);
-        if (!UserInfo.tipsDick[this.model.id]) {
-            UserInfo.tipsDick[this.model.id] = this.model.id;
-            this.qinmiGroup.visible = true;
-            VideoManager.getInstance().videoPause();
-            GuideManager.getInstance().isGuide = true;
-            GuideManager.getInstance().curState = true;
         }
         let data1 = GameCommon.getInstance().getSortLike(0);
         this.defaultAnswerID = this.optionRoles[data1.id];
@@ -73,21 +64,10 @@ class ActionHuiYi extends ActionTimerSceneBase {
         this.onBackSuccess();
     }
 
-    private onClickQinmiGroup() {
-        if (this.qinmiGroup.visible) {
-            this.qinmiGroup.visible = false;
-            VideoManager.getInstance().videoResume();
-        }
-    }
-
     private onEventClick(event: egret.Event) {
         SoundManager.getInstance().playSound('ope_select_head.mp3');
         if (this.isSelected) {
             return;
-        }
-        if (this.qinmiGroup.visible) {
-            this.qinmiGroup.visible = false;
-            VideoManager.getInstance().videoResume();
         }
         let name: number = Number(event.currentTarget.name);
         GuideManager.getInstance().isGuide = true;

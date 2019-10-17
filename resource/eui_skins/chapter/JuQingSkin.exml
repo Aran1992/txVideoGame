@@ -87,6 +87,7 @@
                 </e:layout>
             </e:Group>
         </e:Group>
+			<e:Image source="ad_icon_png" left="77" bottom="62"/>
         <e:Button id="bgBtn" left="40" top="35" label="剧情线" width="300" height="62">
             <e:skinName>
                 <e:Skin states="up,down,disabled" width="190" height="62">
@@ -98,7 +99,7 @@
                 </e:Skin>
             </e:skinName>
         </e:Button>
-        <e:Group id="guide_grp" width="100%" height="100%">
+        <e:Group id="guide_grp" width="100%" height="100%" visible="false">
             <e:Image id="mengban" alpha="0.8" width="100%" height="100%" x="0" y="-2" touchEnabled="false"
                      source="video_heidi1_png" visible="true" />
             <e:Image id="xinshou_step_img" horizontalCenter="0"  verticalCenter="0"/>
@@ -114,7 +115,8 @@
             </e:Skin>
         </e:skinName>
     </e:Button>
-	<e:Group id="idGuideGroup" width="100%" height="100%" x="0" y="0" touchEnabled="false" visible="false">
-		<e:Image id="idGuideImage" width="100%" height="100%" x="0" y="0" source="guide_cundang_1_jpg" anchorOffsetX="0" anchorOffsetY="0" fillMode="scale" scaleX="1" scaleY="1"/>
+	<e:Group id="idGuideGroup" touchEnabled="false" left="0" right="0" top="0" bottom="0" visible="false">
+		<e:Rect strokeAlpha="0" fillAlpha="0.9" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="idGuideImage" source="guide_cundang_1_jpg" anchorOffsetX="0" anchorOffsetY="0" fillMode="scale" scaleX="0.9" scaleY="0.9" horizontalCenter="0" verticalCenter="0"/>
 	</e:Group>
 </e:Skin>

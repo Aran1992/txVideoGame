@@ -1,8 +1,3 @@
-/**
- *
- * @author
- *
- */
 class GameWorld extends egret.DisplayObjectContainer {
     public stage: egret.Stage;
     public PupoBar: egret.DisplayObjectContainer;//弹出面板层
@@ -122,7 +117,6 @@ class GameWorld extends egret.DisplayObjectContainer {
             this.panelDict[windowName] = null;
         } else {
             if (data.data.windowName) {
-
                 windowName = data.data.windowName;
                 let d;
                 if (data.data.data) {
@@ -136,19 +130,17 @@ class GameWorld extends egret.DisplayObjectContainer {
                 this.PupoBar.addChild(this.panelDict[windowName]);
             } else {
                 // @ts-ignore
-                let d = new window[windowName](1);
-                this.panelDict[windowName] = d;
+                this.panelDict[windowName] = new window[windowName](1);
                 if (windowName == 'ControlTipsPanel') {
                     this.PupoBar1.addChild(this.panelDict[windowName]);
-                    return;
+                } else {
+                    this.PupoBar.addChild(this.panelDict[windowName]);
                 }
-                this.PupoBar.addChild(this.panelDict[windowName]);
             }
-
         }
     }
 
-    private onShowViewWithParam(event: egret.Event): void {        
+    private onShowViewWithParam(event: egret.Event): void {
         //SoundManager.getInstance().playSound("ope_ask.mp3")
         let window_param: WindowParam = event.data as WindowParam;
         let windowName = window_param.windowname;

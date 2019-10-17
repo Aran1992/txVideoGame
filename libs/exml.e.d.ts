@@ -175,6 +175,10 @@ declare module skins{
 	}
 }
 declare module skins{
+	class LoadingUISkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class Mp3BarSkin extends eui.Skin{
 	}
 }

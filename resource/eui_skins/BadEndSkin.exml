@@ -4,6 +4,7 @@
 	<e:Group id="group" y="0" x="0">
 	</e:Group>
 	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
+		<e:Image source="ad_icon_png" right="150" bottom="40"/>
 
 
 	<e:Button id="goMain"  label="返回主界面" width="251" height="71" scaleX="1" scaleY="1" right="434" bottom="141">

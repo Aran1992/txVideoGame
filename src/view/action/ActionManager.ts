@@ -1,6 +1,6 @@
 class ActionManager {
     private static instance: ActionManager = null;
-    private static actionTypeClassMap: any = {
+    private actionTypeClassMap: any = {
         [ActionType.CLICK_TIME]: ActionClick,
         [ActionType.CLICK]: ActionClickCount,
         [ActionType.SLIDE]: ActionSlide,
@@ -34,7 +34,7 @@ class ActionManager {
     }
 
     public static getActionSceneClassByActionType(actionType: ActionType): any {
-        return ActionManager.actionTypeClassMap[actionType];
+        return ActionManager.instance.actionTypeClassMap[actionType];
     }
 
     public init(videoData: VideoData) {
