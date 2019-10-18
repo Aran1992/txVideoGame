@@ -894,3 +894,6 @@ declare let callbackGetUserPlatformData;
 declare let callbackGetBookConsumeData;
 declare let callbackReportBusinessEvent;
 declare let callbackGetBusinessEventData;//查询上报事件
+
+
+declare let callbackGetBookValues;

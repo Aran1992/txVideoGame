@@ -38,7 +38,7 @@ class ShopManager {
     public buyGoods(itemId, num: number = 1) {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
-        if (!0) {//platform.isDebug
+        if (!1) {//platform.isDebug
             this.addGoods(itemId, num);
             this.onBuySuccessHandler(shopdata);
         } else {
@@ -57,6 +57,7 @@ class ShopManager {
                 }
             };
             let currentSlotId: number = 0;
+            console.log("buy:"+itemId+";"+num+";slot="+currentSlotId);
             platform.buyGoods(GameDefine.BOOKID, itemId, num, currentSlotId);
         }
     }
@@ -85,7 +86,7 @@ class ShopManager {
     /**获取商品信息列表**/
     public getShopInfos() {
         // if (!this._shopDataDict) {
-        if (!0) {//测试版数据platform.isDebug
+        if (!1) {//测试版数据platform.isDebug
             if (!this._shopDataDict) {
                 platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE);
                 let values = [];
@@ -107,16 +108,16 @@ class ShopManager {
             }
         } else {//正式版本数据
             let self = this;
-            let callbackGetBookValues = function (data) {
+            callbackGetBookValues = function (data) {
                 if (data.code == 0) {
-                    let values = JSON.parse(data.data).value;
-                    this.onInitShopInfos(values);
+                    let values = data.data.values;//JSON.parse(data.data).value;
+                    ShopManager.getInstance().onInitShopInfos(values);
                 } else {
                     GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
                 }
             };
             let currentSlotId: number = 0;
-            platform.getBookValues(GameDefine.BOOKID, currentSlotId, callbackGetBookValues);
+            platform.getBookValues(GameDefine.BOOKID, currentSlotId);//, callbackGetBookValues);
         }
         // }
     }
@@ -171,7 +172,7 @@ class ShopManager {
     }
 
     /**初始化商城数据**/
-    private onInitShopInfos(values): void {
+    public onInitShopInfos(values): void {
         this._shopDataDict = {};
         for (let idx in values) {
             let info = values[idx];

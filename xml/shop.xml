@@ -23,4 +23,5 @@
     <shop id="500011" name="问题48锁死" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
     <shop id="500012" name="问题49锁死A" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
     <shop id="500013" name="问题49锁死B" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="600001" name="观礼凭证" banner="*" banner2="*" desc="*" params="*" currPrice="100" origPrice="100" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
 </shop>

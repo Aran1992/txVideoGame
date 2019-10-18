@@ -702,10 +702,12 @@ class TipsBtn extends eui.Component {
     private idBtnClockClick(){
         GameCommon.getInstance().showCommomTips("下一章X天后免费")
     }
-    private idBtnShopCarClick(){
+    private idBtnShopCarClick(){        
+        VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"tipsbtnshopcar"});
     }
-    private idBtnTicketClick(){
+    private idBtnTicketClick(){        
+        VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"tipsbtnticket"});
     }
 }

@@ -14,7 +14,7 @@ declare interface Platform {
     deleteBookHistory(bookId, slotId): Promise<any>;//删除制定存档
     getBookHistory(bookId, slotId): Promise<any>;//获取制定存档
     getBookLastHistory(bookId): Promise<any>;//读取最近一次阅读进度，继续阅读。 在开始阅读前可通过该接口获得最近一次进度继续阅读。
-    getBookValues(bookId, slotId, callback): Promise<any>;//获取管理端配置的可购买的物品信息，包括章节，物品。
+    getBookValues(bookId, slotId): Promise<any>;//获取管理端配置的可购买的物品信息，包括章节，物品。
     buyGoods(bookId, itemId, num, curSlotId)
 
     takeOffBookValue(bookId, saleId, currentSlotId, num): Promise<any>;//消耗后台已购买物品（管理配置）
@@ -101,9 +101,9 @@ class DebugPlatform implements Platform {
     }
 
     //获取商业化数值
-    async getBookValues(bookId, slotId, callback) {
+    async getBookValues(bookId, slotId) {
         if (window['StoryPlatform']) {
-            await window['StoryPlatform']['getBookValues'](bookId, slotId, callback);
+            await window['StoryPlatform']['getBookValues'](bookId, slotId, "callbackGetBookValues");
         }
     }
 

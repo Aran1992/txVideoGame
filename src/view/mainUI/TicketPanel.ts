@@ -102,12 +102,18 @@ class TicketPanel extends eui.Component{
         this.idGroupShareTicket.visible = false;
     }
     private onBtnBuyTicketClick(event:egret.TouchEvent):void{
+        var params = {"bookId":"123",cmd:"exchangeCDKey","CDKey":"123456"};
+        //sendReuest (params, callback);
         console.log("buy");
     }
     private onCloseClick(event:egret.TouchEvent=null):void{ 
         SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'TicketPanel')
+          
+        if (this._openParam == "tipsbtnshopcar" || this._openParam == "tipsbtnticket") {            
+            VideoManager.getInstance().videoResume();
+        }
     }
     private onTabClick(event:egret.TouchEvent):void{
         SoundManager.getInstance().playSound("ope_click.mp3")

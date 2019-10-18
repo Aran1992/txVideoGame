@@ -4,11 +4,11 @@
 	<e:Image scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" width="100%" height="100%" y="0" source="cundang_bj_jpg" left="0"/>
 	<e:Rect width="100%" height="100%" x="0" y="0" fillAlpha="0.6"/>
 	<e:Group id="idPage1" touchEnabled="false" width="100%" height="100%" x="0" y="0">
-		<e:Group id="idGroupCDKey" width="1132" height="780" scrollEnabled="true" verticalCenter="0" x="403" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group id="idGroupCDKey" width="1132" height="780" scrollEnabled="true" verticalCenter="0" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="169">
 			<e:Image width="509" height="619" x="14" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Image width="509" height="619" x="586.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Label text="与好友同享" x="173.15" y="149.46" size="34"/>
-			<e:Label id="idNoCode" text="暂未获得激活码" x="129.15" y="345.21" size="40" textColor="0x898686"/>
+			<e:Label id="idNoCode" text="暂未获得激活码" x="129.15" y="345.21" size="40" textColor="0x898686" visible="false"/>
 			<e:Label id="idCode" text="" size="40" textColor="0xffffff" anchorOffsetX="0" width="297.64" textAlign="center" x="119.85" y="345.72"/>
 			<e:Rect width="392" height="120" x="649" y="306" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5"/>
 			<e:Button id="idBtnUseCode" label="激活" y="532" horizontalCenter="278" x="841" scaleX="1" scaleY="1" enabled="true">

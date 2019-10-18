@@ -175,8 +175,33 @@ class MainView extends eui.Component {
         // this.mainGroup.scaleX = GameDefine.SCALENUMX;
         // this.mainGroup.scaleY = GameDefine.SCALENUMY;
     }
-
+    private onBuy600001Complte(){
+        console.log("buyed")
+    }
     private onDuDang() {
+        //ShopManager.getInstance().getShopInfos()
+        // let render = new egret.RenderTexture();
+        // render.drawToTexture(this.mainGroup);//rootLayer是当前显示层的总容器，或者用this.stage
+        // let base64Str = render.toDataURL("image/png");
+        // platform.shareImage(GameDefine.BOOKID, base64Str);
+        // render.saveToFile("image/png", "aa.png");//也可以保存下来
+        // let shop400001: ShopInfoData = ShopManager.getInstance().getShopInfoData(600001);
+        // if (shop400001.num == 0) {
+        //     VideoManager.getInstance().clear();
+        //     GameCommon.getInstance().onShowBuyTips(shop400001.id, shop400001.model.currPrice, GOODS_TYPE.DIAMOND);
+        //     ChengJiuManager.getInstance().curChapterChengJiu = {};
+        //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+        //     let onBuy600001Complte = function (): void {
+        //         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, onBuy600001Complte, this);
+        //         let shop400001: ShopInfoData = ShopManager.getInstance().getShopInfoData(600001);
+        //         if (shop400001.num > 0) {
+        //             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
+        //         }
+        //     };
+        //     GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, onBuy600001Complte, this);
+        //     return;
+        // }
+
         SoundManager.getInstance().playSound("ope_click.mp3");
         if (DEBUG) {
             if (typeof GameDefine.TEST_ACTION_SCENE_WENTI_ID === "number") {
