@@ -388,6 +388,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             let txtImg: eui.Image = this.UIDict[`plot${cfg.id}_txt`];//文字
             if (!slotImg)
                 return;
+            _status = this.IS_OPEN;
             switch (_status) {
                 case this.NOT_SHOW:
                     slotImg.visible = false;
@@ -486,28 +487,51 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         plot_slots.forEach(slotObj => {
                 let displayName: string = slotObj["name"];
                 let transform = slotObj["display"][0]["transform"];
-                let slotDisplay: eui.Image = new eui.Image();
-                if (displayName.indexOf("BE_") == -1) {
-                    slotDisplay.source = displayName + "_png";
+                let slotDisplay: eui.UIComponent;
+                if (displayName.indexOf("txt") !== -1) {
+                    const id = displayName.replace('plot', '').replace('_txt', '');
+                    const juqing = JsonModelManager.instance.getModeljuqingkuai();
+                    for (let line in juqing) {
+                        if (juqing.hasOwnProperty(line)) {
+                            if (juqing[line][id]) {
+                                const label: eui.Label = new eui.Label(juqing[line][id].name);
+                                if (id === "70") {
+                                    label.size = 25;
+                                }
+                                slotDisplay = label;
+                                break;
+                            }
+                        }
+                    }
+                    this.addChild(slotDisplay);
                 } else {
-                    slotDisplay.source = "cundang_betu_png";
+                    let slotImage: eui.Image = new eui.Image();
+                    if (displayName === "BE_plot56") {
+                        slotImage.source = "cundang_betu_jiang_png";
+                    } else if (displayName.indexOf("BE_") === -1) {
+                        slotImage.source = displayName + "_png";
+                    } else {
+                        slotImage.source = "cundang_betu_png";
+                    }
+                    slotImage.x = transform.x;
+                    slotImage.y = transform.y;
+                    if (displayName.indexOf('plot') != -1 && displayName.indexOf('_image') != -1) {
+                        slotImage.name = displayName.replace('plot', '').replace('_image', '');
+                        slotImage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
+                    } else if (displayName.indexOf('plot') != -1 && displayName.indexOf('BE_') != -1) {
+                        slotImage.name = displayName.replace('plot', '').replace('BE_', '');
+                        slotImage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
+                    }
+                    slotDisplay = slotImage;
                 }
                 slotDisplay.x = transform.x;
                 slotDisplay.y = transform.y;
-                this.addChild(slotDisplay);
-                slotDisplay.visible = false;
-                this.UIDict[displayName] = slotDisplay;
                 if (this.refreshUIAry.indexOf(displayName) == -1) {
                     this.refreshUIAry.push(displayName);
                 }
-                /**剧情块点击事件**/
-                if (displayName.indexOf('plot') != -1 && displayName.indexOf('_image') != -1) {
-                    slotDisplay.name = displayName.replace('plot', '').replace('_image', '');
-                    slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
-                } else if (displayName.indexOf('plot') != -1 && displayName.indexOf('BE_') != -1) {
-                    slotDisplay.name = displayName.replace('plot', '').replace('BE_', '');
-                    slotDisplay.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
-                }
+                this.UIDict[displayName] = slotDisplay;
+                slotDisplay.visible = false;
+                this.addChild(slotDisplay);
             }
         );
         this.addEventListener(egret.Event.ENTER_FRAME, this.invalidateSize, this);

@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <juqingkuai>
-    <juqingkuai id="1" show="1" scal="1" wentiId="1" videoId="V001" openVideo="*" lastKuai="*" BE="0"/>
-    <juqingkuai id="2" show="1" scal="1" wentiId="4" videoId="V011" openVideo="V008,V010" lastKuai="1" BE="0"/>
-    <juqingkuai id="3" show="1" scal="1" wentiId="4" videoId="V012B" openVideo="V012A" lastKuai="2" BE="1"/>
-    <juqingkuai id="4" show="1" scal="1" wentiId="5" videoId="V015" openVideo="V013,V014" lastKuai="2" BE="0"/>
-    <juqingkuai id="5" show="1" scal="1" wentiId="5" videoId="V016B" openVideo="V016A" lastKuai="4" BE="1"/>
-    <juqingkuai id="6" show="1" scal="1" wentiId="6" videoId="V019" openVideo="V017,V018" lastKuai="4" BE="0"/>
-    <juqingkuai id="7" show="2" scal="1" wentiId="8" videoId="V101" openVideo="V019" lastKuai="6" BE="0"/>
-    <juqingkuai id="8" show="2" scal="1" wentiId="9" videoId="V104" openVideo="V102,V103" lastKuai="7" BE="0"/>
-    <juqingkuai id="9" show="2" scal="1" wentiId="11" videoId="V112" openVideo="V110,V111" lastKuai="8" BE="0"/>
-    <juqingkuai id="10" show="2" scal="1" wentiId="13" videoId="V201" openVideo="V119" lastKuai="9" BE="0"/>
-    <juqingkuai id="11" show="3" scal="1" wentiId="16" videoId="V213" openVideo="V211,V212" lastKuai="10" BE="0"/>
-    <juqingkuai id="12" show="3" scal="1" wentiId="18" videoId="V219" openVideo="V215,V218" lastKuai="11" BE="0"/>
-    <juqingkuai id="13" show="3" scal="1" wentiId="18" videoId="V220" openVideo="V219" lastKuai="12" BE="1"/>
-    <juqingkuai id="14" show="3" scal="1" wentiId="19" videoId="V221B" openVideo="V221A" lastKuai="12" BE="0"/>
-    <juqingkuai id="15" show="3" scal="0.58" wentiId="19" videoId="V223" openVideo="V221B" lastKuai="14" BE="0"/>
-    <juqingkuai id="16" show="3" scal="0.58" wentiId="19" videoId="V224" openVideo="V221B" lastKuai="14" BE="0"/>
-    <juqingkuai id="17" show="3" scal="0.58" wentiId="19" videoId="V225" openVideo="V221B" lastKuai="14" BE="0"/>
-    <juqingkuai id="18" show="3" scal="0.58" wentiId="19" videoId="V222" openVideo="V221B" lastKuai="14" BE="0"/>
-    <juqingkuai id="19" show="4" scal="1" wentiId="20" videoId="V301" openVideo="V226" lastKuai="15,16,17,18" BE="0"/>
-    <juqingkuai id="20" show="4" scal="1" wentiId="21" videoId="V304" openVideo="V303" lastKuai="19" BE="0"/>
-    <juqingkuai id="21" show="4" scal="1" wentiId="22" videoId="V401" openVideo="V307" lastKuai="20" BE="0"/>
-    <juqingkuai id="22" show="4" scal="1" wentiId="24" videoId="V404B" openVideo="V404A" lastKuai="21" BE="0"/>
-    <juqingkuai id="23" show="4" scal="1" wentiId="0" videoId="V408" openVideo="V407" lastKuai="22" BE="1"/>
-    <juqingkuai id="24" show="5" scal="1" wentiId="26" videoId="V411" openVideo="V409,V410" lastKuai="22" BE="0"/>
-    <juqingkuai id="25" show="5" scal="0.58" wentiId="26" videoId="V412" openVideo="V411" lastKuai="24" BE="0"/>
-    <juqingkuai id="26" show="5" scal="0.58" wentiId="26" videoId="V413" openVideo="V411" lastKuai="24" BE="0"/>
-    <juqingkuai id="27" show="5" scal="0.58" wentiId="26" videoId="V414" openVideo="V411" lastKuai="24" BE="0"/>
-    <juqingkuai id="28" show="5" scal="0.58" wentiId="26" videoId="V415" openVideo="V411" lastKuai="24" BE="0"/>
-    <juqingkuai id="29" show="5" scal="1" wentiId="27" videoId="V501" openVideo="V416" lastKuai="25,26,27,28" BE="0"/>
-    <juqingkuai id="30" show="6" scal="0.58" wentiId="28" videoId="V502" openVideo="V501" lastKuai="27" BE="0"/>
-    <juqingkuai id="31" show="6" scal="0.58" wentiId="30" videoId="V508" openVideo="V501" lastKuai="27" BE="0"/>
-    <juqingkuai id="32" show="6" scal="0.58" wentiId="31" videoId="V511" openVideo="V501" lastKuai="27" BE="0"/>
-    <juqingkuai id="33" show="6" scal="0.58" wentiId="32" videoId="V514" openVideo="V501" lastKuai="27" BE="0"/>
-    <juqingkuai id="34" show="6" scal="0.58" wentiId="0" videoId="V517" openVideo="V501" lastKuai="27" BE="0"/>
-    <juqingkuai id="35" show="6" scal="1" wentiId="33" videoId="V601" openVideo="V518" lastKuai="30,31,32,33,34" BE="0"/>
-    <juqingkuai id="36" show="6" scal="0.58" wentiId="35" videoId="V605" openVideo="V604" lastKuai="35" BE="0"/>
-    <juqingkuai id="37" show="6" scal="0.58" wentiId="36" videoId="V608" openVideo="V604" lastKuai="35" BE="0"/>
-    <juqingkuai id="38" show="6" scal="0.58" wentiId="36" videoId="V612" openVideo="V604" lastKuai="35" BE="0"/>
-    <juqingkuai id="39" show="6" scal="0.58" wentiId="38" videoId="V613" openVideo="V604" lastKuai="35" BE="0"/>
-    <juqingkuai id="40" show="7" scal="1" wentiId="40" videoId="V701" openVideo="V619" lastKuai="36,37,38,39" BE="0"/>
-    <juqingkuai id="41" show="7" scal="1" wentiId="42" videoId="V707B1" openVideo="V707A" lastKuai="40" BE="0"/>
-    <juqingkuai id="42" show="7" scal="1" wentiId="46" videoId="V707C" openVideo="V707B3" lastKuai="41" BE="0"/>
-    <juqingkuai id="43" show="7" scal="1" wentiId="47" videoId="V713B" openVideo="V713A" lastKuai="42" BE="0"/>
-    <juqingkuai id="44" show="7" scal="1" wentiId="48" videoId="V717" openVideo="V716" lastKuai="42" BE="1"/>
-    <juqingkuai id="45" show="8" scal="1" wentiId="0" videoId="V801" openVideo="V718" lastKuai="44" BE="0"/>
-    <juqingkuai id="46" show="8" scal="1" wentiId="0" videoId="V802" openVideo="V801" lastKuai="45" BE="1"/>
-    <juqingkuai id="47" show="8" scal="1" wentiId="49" videoId="V803" openVideo="V801" lastKuai="45" BE="0"/>
-    <juqingkuai id="48" show="8" scal="1" wentiId="49" videoId="V804" openVideo="V803" lastKuai="47" BE="1"/>
-    <juqingkuai id="49" show="8" scal="1" wentiId="50" videoId="V806" openVideo="V803" lastKuai="47" BE="0"/>
-    <juqingkuai id="50" show="9" scal="0.58" wentiId="0" videoId="V808" openVideo="V807" lastKuai="49" BE="0"/>
-    <juqingkuai id="51" show="9" scal="0.58" wentiId="0" videoId="V809" openVideo="V807" lastKuai="49" BE="0"/>
-    <juqingkuai id="52" show="9" scal="0.58" wentiId="0" videoId="V810" openVideo="V807" lastKuai="49" BE="0"/>
-    <juqingkuai id="53" show="9" scal="0.58" wentiId="0" videoId="V811" openVideo="V807" lastKuai="49" BE="0"/>
-    <juqingkuai id="54" show="9" scal="1" wentiId="51" videoId="V901" openVideo="V812" lastKuai="50,51,52,53" BE="0"/>
-    <juqingkuai id="55" show="9" scal="1" wentiId="53" videoId="V907" openVideo="V905,V906" lastKuai="54" BE="0"/>
-    <juqingkuai id="56" show="9" scal="1" wentiId="0" videoId="V908" openVideo="V907" lastKuai="54" BE="1"/>
-    <juqingkuai id="57" show="10" scal="1" wentiId="0" videoId="*" openVideo="*" lastKuai="55" BE="0"/>
-    <juqingkuai id="58" show="10" scal="1" wentiId="54" videoId="VH1001" openVideo="V912" lastKuai="55" BE="0"/>
-    <juqingkuai id="59" show="10" scal="1" wentiId="0" videoId="VH1007" openVideo="VH1005,VH1006" lastKuai="58" BE="0"/>
-    <juqingkuai id="60" show="10" scal="1" wentiId="56" videoId="VH1101" openVideo="VH1007" lastKuai="59" BE="0"/>
-    <juqingkuai id="61" show="11" scal="1" wentiId="57" videoId="VH1104" openVideo="VH1102,VH1103" lastKuai="60" BE="0"/>
-    <juqingkuai id="62" show="11" scal="0.58" wentiId="0" videoId="VH1117" openVideo="VH1116" lastKuai="61" BE="1"/>
-    <juqingkuai id="63" show="11" scal="0.58" wentiId="58" videoId="VH1201" openVideo="VH1118" lastKuai="61" BE="0"/>
-    <juqingkuai id="64" show="11" scal="1" wentiId="0" videoId="VH1204" openVideo="VH1202,VH1203" lastKuai="63" BE="0"/>
-    <juqingkuai id="65" show="20" scal="1" wentiId="0" videoId="*" openVideo="*" lastKuai="55" BE="0"/>
-    <juqingkuai id="66" show="20" scal="1" wentiId="59" videoId="VX1001" openVideo="V912" lastKuai="55" BE="0"/>
-    <juqingkuai id="67" show="20" scal="1" wentiId="60" videoId="VX1004" openVideo="VX1002,VX1003" lastKuai="66" BE="0"/>
-    <juqingkuai id="68" show="20" scal="1" wentiId="62" videoId="VX1107" openVideo="VX1105,VX1106" lastKuai="67" BE="0"/>
-    <juqingkuai id="69" show="21" scal="0.58" wentiId="0" videoId="VX1111" openVideo="VX1110" lastKuai="68" BE="1"/>
-    <juqingkuai id="70" show="21" scal="0.58" wentiId="63" videoId="VX1201" openVideo="VX1112" lastKuai="68" BE="0"/>
-    <juqingkuai id="71" show="21" scal="1" wentiId="0" videoId="VX1204" openVideo="VX1202,VX1203" lastKuai="70" BE="0"/>
-    <juqingkuai id="72" show="30" scal="1" wentiId="0" videoId="*" openVideo="*" lastKuai="55" BE="0"/>
-    <juqingkuai id="73" show="30" scal="1" wentiId="64" videoId="VWY1001" openVideo="V912" lastKuai="55" BE="0"/>
-    <juqingkuai id="74" show="30" scal="1" wentiId="65" videoId="VWY1004" openVideo="VWY1002,VWY1003" lastKuai="73" BE="0"/>
-    <juqingkuai id="75" show="30" scal="1" wentiId="68" videoId="VY1101" openVideo="VWY1013" lastKuai="74" BE="0"/>
-    <juqingkuai id="76" show="31" scal="1" wentiId="70" videoId="VY1201" openVideo="VY1107" lastKuai="75" BE="0"/>
-    <juqingkuai id="77" show="31" scal="0.58" wentiId="0" videoId="VY1205" openVideo="VY1204" lastKuai="76" BE="1"/>
-    <juqingkuai id="78" show="31" scal="0.58" wentiId="0" videoId="VY1206" openVideo="VY1204" lastKuai="76" BE="0"/>
-    <juqingkuai id="82" show="30" scal="1" wentiId="71" videoId="VW1101" openVideo="VWY1013" lastKuai="81" BE="0"/>
-    <juqingkuai id="83" show="41" scal="1" wentiId="0" videoId="VW1201" openVideo="VW1107" lastKuai="82" BE="0"/>
-    <juqingkuai id="84" show="41" scal="0.58" wentiId="0" videoId="VW1202" openVideo="VW1201" lastKuai="83" BE="1"/>
-    <juqingkuai id="85" show="41" scal="0.58" wentiId="73" videoId="VW1203" openVideo="VW1201" lastKuai="83" BE="0"/>
-    <juqingkuai id="86" show="41" scal="1" wentiId="0" videoId="VW1206" openVideo="VW1204,VW1205" lastKuai="85" BE="0"/>
+    <juqingkuai id="1" show="1" scal="1" wentiId="1" videoId="V001" openVideo="*" lastKuai="*" BE="0" name="0-1 开学之初"/>
+    <juqingkuai id="2" show="1" scal="1" wentiId="4" videoId="V011" openVideo="V008,V010" lastKuai="1" BE="0" name="0-2 夏子豪的计划"/>
+    <juqingkuai id="3" show="1" scal="1" wentiId="4" videoId="V012B" openVideo="V012A" lastKuai="2" BE="1" name="*"/>
+    <juqingkuai id="4" show="1" scal="1" wentiId="5" videoId="V015" openVideo="V013,V014" lastKuai="2" BE="0" name="0-3 夏子豪的建议"/>
+    <juqingkuai id="5" show="1" scal="1" wentiId="5" videoId="V016B" openVideo="V016A" lastKuai="4" BE="1" name="*"/>
+    <juqingkuai id="6" show="1" scal="1" wentiId="6" videoId="V019" openVideo="V017,V018" lastKuai="4" BE="0" name="0-4 首次登台演出"/>
+    <juqingkuai id="7" show="2" scal="1" wentiId="8" videoId="V101" openVideo="V019" lastKuai="6" BE="0" name="1-1 蓝加仑的传单"/>
+    <juqingkuai id="8" show="2" scal="1" wentiId="9" videoId="V104" openVideo="V102,V103" lastKuai="7" BE="0" name="1-2 夏子豪的惊喜"/>
+    <juqingkuai id="9" show="2" scal="1" wentiId="11" videoId="V112" openVideo="V110,V111" lastKuai="8" BE="0" name="1-3 记录的旋律"/>
+    <juqingkuai id="10" show="2" scal="1" wentiId="13" videoId="V201" openVideo="V119" lastKuai="9" BE="0" name="2-1 韩小白的危机"/>
+    <juqingkuai id="11" show="3" scal="1" wentiId="16" videoId="V213" openVideo="V211,V212" lastKuai="10" BE="0" name="2-2 肖千也与MM的争执"/>
+    <juqingkuai id="12" show="3" scal="1" wentiId="18" videoId="V219" openVideo="V215,V218" lastKuai="11" BE="0" name="2-3 讨论参加蓝加仑"/>
+    <juqingkuai id="13" show="3" scal="1" wentiId="18" videoId="V220" openVideo="V219" lastKuai="12" BE="1" name="*"/>
+    <juqingkuai id="14" show="3" scal="1" wentiId="19" videoId="V221B" openVideo="V221A" lastKuai="12" BE="0" name="2-4 想起了谁"/>
+    <juqingkuai id="15" show="3" scal="0.58" wentiId="19" videoId="V223" openVideo="V221B" lastKuai="14" BE="0" name="想起韩小白"/>
+    <juqingkuai id="16" show="3" scal="0.58" wentiId="19" videoId="V224" openVideo="V221B" lastKuai="14" BE="0" name="想起肖千也"/>
+    <juqingkuai id="17" show="3" scal="0.58" wentiId="19" videoId="V225" openVideo="V221B" lastKuai="14" BE="0" name="想起肖万寻"/>
+    <juqingkuai id="18" show="3" scal="0.58" wentiId="19" videoId="V222" openVideo="V221B" lastKuai="14" BE="0" name="想起夏子豪"/>
+    <juqingkuai id="19" show="4" scal="1" wentiId="20" videoId="V301" openVideo="V226" lastKuai="15,16,17,18" BE="0" name="3-1 夏迪的帮助"/>
+    <juqingkuai id="20" show="4" scal="1" wentiId="21" videoId="V304" openVideo="V303" lastKuai="19" BE="0" name="3-2 万寻与千也的争吵"/>
+    <juqingkuai id="21" show="4" scal="1" wentiId="22" videoId="V401" openVideo="V307" lastKuai="20" BE="0" name="4-1 希亚小舞台的试演"/>
+    <juqingkuai id="22" show="4" scal="1" wentiId="24" videoId="V404B" openVideo="V404A" lastKuai="21" BE="0" name="4-2 乐队争执"/>
+    <juqingkuai id="23" show="4" scal="1" wentiId="0" videoId="V408" openVideo="V407" lastKuai="22" BE="1" name="*"/>
+    <juqingkuai id="24" show="5" scal="1" wentiId="26" videoId="V411" openVideo="V409,V410" lastKuai="22" BE="0" name="4-3 观众的议论"/>
+    <juqingkuai id="25" show="5" scal="0.58" wentiId="26" videoId="V412" openVideo="V411" lastKuai="24" BE="0" name="区域A"/>
+    <juqingkuai id="26" show="5" scal="0.58" wentiId="26" videoId="V413" openVideo="V411" lastKuai="24" BE="0" name="区域B"/>
+    <juqingkuai id="27" show="5" scal="0.58" wentiId="26" videoId="V414" openVideo="V411" lastKuai="24" BE="0" name="区域C"/>
+    <juqingkuai id="28" show="5" scal="0.58" wentiId="26" videoId="V415" openVideo="V411" lastKuai="24" BE="0" name="区域D"/>
+    <juqingkuai id="29" show="5" scal="1" wentiId="27" videoId="V501" openVideo="V416" lastKuai="25,26,27,28" BE="0" name="5-1 合宿练习"/>
+    <juqingkuai id="30" show="6" scal="0.58" wentiId="28" videoId="V502" openVideo="V501" lastKuai="27" BE="0" name="肖千也的游乐场"/>
+    <juqingkuai id="31" show="6" scal="0.58" wentiId="30" videoId="V508" openVideo="V501" lastKuai="27" BE="0" name="夏子豪的篮球场"/>
+    <juqingkuai id="32" show="6" scal="0.58" wentiId="31" videoId="V511" openVideo="V501" lastKuai="27" BE="0" name="肖万寻的西餐厅"/>
+    <juqingkuai id="33" show="6" scal="0.58" wentiId="32" videoId="V514" openVideo="V501" lastKuai="27" BE="0" name="韩小白的蛋糕店"/>
+    <juqingkuai id="34" show="6" scal="0.58" wentiId="0" videoId="V517" openVideo="V501" lastKuai="27" BE="0" name="江雪的探班"/>
+    <juqingkuai id="35" show="6" scal="1" wentiId="33" videoId="V601" openVideo="V518" lastKuai="30,31,32,33,34" BE="0" name="6-1 停电危机"/>
+    <juqingkuai id="36" show="6" scal="0.58" wentiId="35" videoId="V605" openVideo="V604" lastKuai="35" BE="0" name="寻找肖千也"/>
+    <juqingkuai id="37" show="6" scal="0.58" wentiId="36" videoId="V608" openVideo="V604" lastKuai="35" BE="0" name="寻找夏子豪"/>
+    <juqingkuai id="38" show="6" scal="0.58" wentiId="36" videoId="V612" openVideo="V604" lastKuai="35" BE="0" name="陪伴肖万寻"/>
+    <juqingkuai id="39" show="6" scal="0.58" wentiId="38" videoId="V613" openVideo="V604" lastKuai="35" BE="0" name="寻找韩小白"/>
+    <juqingkuai id="40" show="7" scal="1" wentiId="40" videoId="V701" openVideo="V619" lastKuai="36,37,38,39" BE="0" name="7-1 反常的乐队成员"/>
+    <juqingkuai id="41" show="7" scal="1" wentiId="42" videoId="V707B1" openVideo="V707A" lastKuai="40" BE="0" name="7-2 大家纷纷离开"/>
+    <juqingkuai id="42" show="7" scal="1" wentiId="46" videoId="V707C" openVideo="V707B3" lastKuai="41" BE="0" name="7-3 夏迪的开导"/>
+    <juqingkuai id="43" show="7" scal="1" wentiId="47" videoId="V713B" openVideo="V713A" lastKuai="42" BE="0" name="7-4 乐队要解散了吗"/>
+    <juqingkuai id="44" show="7" scal="1" wentiId="48" videoId="V717" openVideo="V716" lastKuai="42" BE="1" name="*"/>
+    <juqingkuai id="45" show="8" scal="1" wentiId="0" videoId="V801" openVideo="V718" lastKuai="44" BE="0" name="8-1 蓝加仑的初赛"/>
+    <juqingkuai id="46" show="8" scal="1" wentiId="0" videoId="V802" openVideo="V801" lastKuai="45" BE="1" name="*"/>
+    <juqingkuai id="47" show="8" scal="1" wentiId="49" videoId="V803" openVideo="V801" lastKuai="45" BE="0" name="8-2 众人登台"/>
+    <juqingkuai id="48" show="8" scal="1" wentiId="49" videoId="V804" openVideo="V803" lastKuai="47" BE="1" name="*"/>
+    <juqingkuai id="49" show="8" scal="1" wentiId="50" videoId="V806" openVideo="V803" lastKuai="47" BE="0" name="8-3 开始表演"/>
+    <juqingkuai id="50" show="9" scal="0.58" wentiId="0" videoId="V808" openVideo="V807" lastKuai="49" BE="0" name="看向夏子豪"/>
+    <juqingkuai id="51" show="9" scal="0.58" wentiId="0" videoId="V809" openVideo="V807" lastKuai="49" BE="0" name="看向韩小白"/>
+    <juqingkuai id="52" show="9" scal="0.58" wentiId="0" videoId="V810" openVideo="V807" lastKuai="49" BE="0" name="看向肖万寻"/>
+    <juqingkuai id="53" show="9" scal="0.58" wentiId="0" videoId="V811" openVideo="V807" lastKuai="49" BE="0" name="看向肖千也"/>
+    <juqingkuai id="54" show="9" scal="1" wentiId="51" videoId="V901" openVideo="V812" lastKuai="50,51,52,53" BE="0" name="9-1 大家冰释前嫌"/>
+    <juqingkuai id="55" show="9" scal="1" wentiId="53" videoId="V907" openVideo="V905,V906" lastKuai="54" BE="0" name="9-2 准备迎接决战"/>
+    <juqingkuai id="56" show="9" scal="1" wentiId="0" videoId="V908" openVideo="V907" lastKuai="54" BE="1" name="Ge：江雪结局"/>
+    <juqingkuai id="57" show="10" scal="1" wentiId="0" videoId="*" openVideo="*" lastKuai="55" BE="0" name="韩小白线"/>
+    <juqingkuai id="58" show="10" scal="1" wentiId="54" videoId="VH1001" openVideo="V912" lastKuai="55" BE="0" name="10-1 做蛋糕"/>
+    <juqingkuai id="59" show="10" scal="1" wentiId="0" videoId="VH1007" openVideo="VH1005,VH1006" lastKuai="58" BE="0" name="10-2 记者包围学校"/>
+    <juqingkuai id="60" show="10" scal="1" wentiId="56" videoId="VH1101" openVideo="VH1007" lastKuai="59" BE="0" name="11-1 韩小白退出乐队"/>
+    <juqingkuai id="61" show="11" scal="1" wentiId="57" videoId="VH1104" openVideo="VH1102,VH1103" lastKuai="60" BE="0" name="11-2 寻找证据"/>
+    <juqingkuai id="62" show="11" scal="0.58" wentiId="0" videoId="VH1117" openVideo="VH1116" lastKuai="61" BE="1" name="韩小白结局HGE"/>
+    <juqingkuai id="63" show="11" scal="0.58" wentiId="58" videoId="VH1201" openVideo="VH1118" lastKuai="61" BE="0" name="11-3 乐队签约"/>
+    <juqingkuai id="64" show="11" scal="1" wentiId="0" videoId="VH1204" openVideo="VH1202,VH1203" lastKuai="63" BE="0" name="韩小白结局HTE"/>
+    <juqingkuai id="65" show="20" scal="1" wentiId="0" videoId="*" openVideo="*" lastKuai="55" BE="0" name="夏子豪线"/>
+    <juqingkuai id="66" show="20" scal="1" wentiId="59" videoId="VX1001" openVideo="V912" lastKuai="55" BE="0" name="10-1 拳击比赛"/>
+    <juqingkuai id="67" show="20" scal="1" wentiId="60" videoId="VX1004" openVideo="VX1002,VX1003" lastKuai="66" BE="0" name="11-1 拳击比赛"/>
+    <juqingkuai id="68" show="20" scal="1" wentiId="62" videoId="VX1107" openVideo="VX1105,VX1106" lastKuai="67" BE="0" name="11-2 蓝加仑决赛"/>
+    <juqingkuai id="69" show="21" scal="0.58" wentiId="0" videoId="VX1111" openVideo="VX1110" lastKuai="68" BE="1" name="夏子豪结局XGE"/>
+    <juqingkuai id="70" show="21" scal="0.58" wentiId="63" videoId="VX1201" openVideo="VX1112" lastKuai="68" BE="0" name="11-3 篮球馆的约会"/>
+    <juqingkuai id="71" show="21" scal="1" wentiId="0" videoId="VX1204" openVideo="VX1202,VX1203" lastKuai="70" BE="0" name="夏子豪结局XTE"/>
+    <juqingkuai id="72" show="30" scal="1" wentiId="0" videoId="*" openVideo="*" lastKuai="55" BE="0" name="肖家兄弟线"/>
+    <juqingkuai id="73" show="30" scal="1" wentiId="64" videoId="VWY1001" openVideo="V912" lastKuai="55" BE="0" name="10-1 排练厅的抉择"/>
+    <juqingkuai id="74" show="30" scal="1" wentiId="65" videoId="VWY1004" openVideo="VWY1002,VWY1003" lastKuai="73" BE="0" name="10-2 肖家兄弟的争执"/>
+    <juqingkuai id="75" show="30" scal="1" wentiId="68" videoId="VY1101" openVideo="VWY1013" lastKuai="74" BE="0" name="10-3 肖千也：圣兰奇的考试"/>
+    <juqingkuai id="76" show="31" scal="1" wentiId="70" videoId="VY1201" openVideo="VY1107" lastKuai="75" BE="0" name="10-4 蓝加仑决赛"/>
+    <juqingkuai id="77" show="31" scal="0.58" wentiId="0" videoId="VY1205" openVideo="VY1204" lastKuai="76" BE="1" name="肖千也结局YGE"/>
+    <juqingkuai id="78" show="31" scal="0.58" wentiId="0" videoId="VY1206" openVideo="VY1204" lastKuai="76" BE="0" name="肖千也结局YTE"/>
+    <juqingkuai id="82" show="30" scal="1" wentiId="71" videoId="VW1101" openVideo="VWY1013" lastKuai="81" BE="0" name="11-1 肖万寻：圣兰奇的考试"/>
+    <juqingkuai id="83" show="41" scal="1" wentiId="0" videoId="VW1201" openVideo="VW1107" lastKuai="82" BE="0" name="11-3 肖梁对决"/>
+    <juqingkuai id="84" show="41" scal="0.58" wentiId="0" videoId="VW1202" openVideo="VW1201" lastKuai="83" BE="1" name="肖万寻结局WGE"/>
+    <juqingkuai id="85" show="41" scal="0.58" wentiId="73" videoId="VW1203" openVideo="VW1201" lastKuai="83" BE="0" name="11-3 晚宴"/>
+    <juqingkuai id="86" show="41" scal="1" wentiId="0" videoId="VW1206" openVideo="VW1204,VW1205" lastKuai="85" BE="0" name="肖万寻结局WTE"/>
 </juqingkuai>

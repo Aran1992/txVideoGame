@@ -677,28 +677,7 @@ class GameCommon {
      * By 修改  如果传入的剧情块 不在当前章节列表（章节列表与角色好感度有关） 则直接返回Flase
      * **/
     public checkJuqingKuaiOpen(kuaiID1: number, kuaiID2: number): boolean {
-        let compare: boolean = kuaiID1 >= kuaiID2;
-
-        if (compare) {
-            switch (kuaiID2) {
-                case 75:
-                    let qianxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
-                    let wanxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
-                    if (qianxunlike75 < wanxunlike75) {
-                        compare = false;
-                    }
-                    break;
-                case 82:
-                    let qianxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
-                    let wanxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
-                    if (qianxunlike82 >= wanxunlike82) {
-                        compare = false;
-                    }
-                    break;
-            }
-        }
-
-        return compare;
+        return true;
     }
 
     public addAlert(text: string): void {
