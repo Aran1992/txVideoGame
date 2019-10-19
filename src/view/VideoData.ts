@@ -30,10 +30,10 @@ class VideoData extends egret.DisplayObjectContainer {
         },
     };
     private Video_Opt_Condition = {
-        "VH1116": {options: {"54": 1, "55": 1, "56": 1}, nextVideoId: "VH1117"},
-        "VX1204": {options: {"59": 1, "61": 1, "62": 1, "63": 1}, nextVideoId: "VX1205"},
-        "VY1204": {options: {"68": 1, "69": 1, "70": 1}, nextVideoId: "VY1205"},
-        "VW1201": {options: {"71": 1, "72": 1}, nextVideoId: "VW1202"},
+        "VH1116": { options: { "54": 1, "55": 1, "56": 1 }, nextVideoId: "VH1117" },
+        "VX1204": { options: { "59": 1, "61": 1, "62": 1, "63": 1 }, nextVideoId: "VX1205" },
+        "VY1204": { options: { "68": 1, "69": 1, "70": 1 }, nextVideoId: "VY1205" },
+        "VW1201": { options: { "71": 1, "72": 1 }, nextVideoId: "VW1202" },
     };
     private againTime: number = 0;
     private againFlg: boolean = false;
@@ -50,8 +50,8 @@ class VideoData extends egret.DisplayObjectContainer {
     private current: boolean = true;
     private isSelectVideo: boolean = false;
     private curAnswerCfg: Modelanswer;
-    private curVIdeoIds: string[];
-    private curVideoIndex: number = 0;
+    private _curVIdeoIds: string[];
+    private _curVideoIndex: number = 0;
     private nextWentiId: number = 0;
     private _nextVid: string = '';
     private tiaoState: boolean = false;
@@ -63,6 +63,21 @@ class VideoData extends egret.DisplayObjectContainer {
         this.onRegistEvent();
     }
 
+    private get curVIdeoIds() {
+        return this._curVIdeoIds;
+    }
+    private set curVIdeoIds(x) {
+        this._curVIdeoIds = x;
+    }
+
+    private get curVideoIndex() {
+        return this._curVideoIndex;
+    }
+
+    private set curVideoIndex(index) {
+        this._curVideoIndex = index;
+    }
+
     public get videoIdx(): string {
         return VideoManager.getInstance().getVideoID();
     }
@@ -72,17 +87,17 @@ class VideoData extends egret.DisplayObjectContainer {
         VideoManager.getInstance().updateVideoData(videoid);
     }
 
-    public onShowDetail(){
-        console.log("curVideoIndex=",this.curVideoIndex);
+    public onShowDetail() {
+        console.log("curVideoIndex=", this.curVideoIndex);
         console.log(this.curVIdeoIds)
-        console.log("tiaoState="+String(this.tiaoState)+";videoState="+String(this.videoState))
-        console.log("curWentiId="+String(this.curWentiId)+";nextWentiId="+String(this.nextWentiId))
-        console.log("===",this.videoIdx,VideoManager.getInstance().videoCurrTime() ,VideoManager.getInstance().getVideoDuration());
+        console.log("tiaoState=" + String(this.tiaoState) + ";videoState=" + String(this.videoState))
+        console.log("curWentiId=" + String(this.curWentiId) + ";nextWentiId=" + String(this.nextWentiId))
+        console.log("===", this.videoIdx, VideoManager.getInstance().videoCurrTime(), VideoManager.getInstance().getVideoDuration());
         console.log(this.curAnswerCfg)
-        console.log("isSelectVideo="+String(this.isSelectVideo)+";isHuDong="+String(this.isHuDong)+";isDie="+String(this.isDie)+";isEndChapter="+String(this.isEndChapter))
-        console.log("UserInfo.curchapter="+String(UserInfo.curchapter))
+        console.log("isSelectVideo=" + String(this.isSelectVideo) + ";isHuDong=" + String(this.isHuDong) + ";isDie=" + String(this.isDie) + ";isEndChapter=" + String(this.isEndChapter))
+        console.log("UserInfo.curchapter=" + String(UserInfo.curchapter))
         console.log(UserInfo.curBokData)
-        
+
     }
 
     private static isVideoTouch(id) {
@@ -720,8 +735,8 @@ class VideoData extends egret.DisplayObjectContainer {
                     GameCommon.getInstance().showCommomTips('章节结尾')
                 else
                     GameCommon.getInstance().showCommomTips('别着急有惊喜')
-            }else{
-                console.log("tiaoState="+this.tiaoState)
+            } else {
+                console.log("tiaoState=" + this.tiaoState)
             }
         } else if (VideoManager.getInstance().videoCurrTime() + 5 < VideoManager.getInstance().getVideoDuration() && !this.tiaoState) {
             //没有问题。但离结束还有5秒以上，stime=seektime.表示大跳跳到的时间
@@ -987,14 +1002,14 @@ class VideoData extends egret.DisplayObjectContainer {
         if (UserInfo.curchapter == 1) {
             let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(600001);
             item.num = 0;
-            if(item.num == 0){
+            if (item.num == 0) {
                 VideoManager.getInstance().clear();
                 ChengJiuManager.getInstance().curChapterChengJiu = {};
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-                var callback=function(){
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"confirm"});
+                var callback = function () {
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), { windowName: 'TicketPanel', data: "confirm" });
                 }
-                GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！",callback,"","购买凭证","等待");
+                GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
             }
             // let shop400001: ShopInfoData = ShopManager.getInstance().getShopInfoData(400001);
             // if (shop400001.num == 0) {
@@ -1021,7 +1036,7 @@ class VideoData extends egret.DisplayObjectContainer {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         else
             console.error("open ResultWinPanel")
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
     }
 
     private onLoadNextVideo(id = 0) {
