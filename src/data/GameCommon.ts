@@ -716,8 +716,8 @@ class GameCommon {
     PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }
 
-    public showConfirmTips(desc: string, callBack: Function, desc2?: string): void {
-        PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2);
+    public showConfirmTips(desc: string, callBack: Function, desc2?: string,textYes:string="是",textNo:string="否"): void {
+        PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2,textYes,textNo);
     }
 
     public showErrorLog(logstr: string): void {

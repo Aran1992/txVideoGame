@@ -38,14 +38,14 @@ class ShopManager {
     public buyGoods(itemId, num: number = 1) {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
-        if (!1) {//platform.isDebug
+        if (!1 || egret.Capabilities.os == 'Windows PC') {//platform.isDebug
             this.addGoods(itemId, num);
             this.onBuySuccessHandler(shopdata);
         } else {
             let self = this;
             callbackBuyGoods = (data) => {
-                let recData = JSON.parse(data.data);
-                let shopInfo = JSON.parse(recData.value);
+                let recData = data.data;//JSON.parse(data.data);
+                let shopInfo = data.data.value;//JSON.parse(recData.value);
                 if (data.code == 0) {
                     shopdata = self._shopDataDict[recData.saleId];
                     if (shopdata) {
@@ -86,7 +86,7 @@ class ShopManager {
     /**获取商品信息列表**/
     public getShopInfos() {
         // if (!this._shopDataDict) {
-        if (!1) {//测试版数据platform.isDebug
+        if (!1 || egret.Capabilities.os == 'Windows PC') {//测试版数据platform.isDebug
             if (!this._shopDataDict) {
                 platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE);
                 let values = [];
@@ -220,6 +220,8 @@ class ShopManager {
                         this.onUpdateMyGoods(shopData);
                     }
                     break;
+                case SHOP_TYPE.GUANGLIPINGZHENG:
+                    break;
             }
         } else if (info.id > GameDefine.SHOP_CHAPTER_STARTID) {//章节
             if (info.num > 0 || info.currPrice == 0) {
@@ -270,6 +272,7 @@ enum SHOP_TYPE {
     MUSICS = 3,//音乐
     CHAPTER = 4,//章节
     DAOJU = 5,//道具
+    GUANGLIPINGZHENG = 6,//观礼凭证
     XINSHOUBAO = 99,//新手包
 }
 

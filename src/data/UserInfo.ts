@@ -16,7 +16,7 @@ class UserInfo {
     // public static chapterDatas = {};//章节存档 通关章节后才会存储该存档
     public static autoDatas = {};//自动存档
     public static fileDatas = {};//
-    public static curchapter: number = 0;
+    private static _curchapter: number = 0;
     public static ansWerData: AnswerData;
     public static curTitle: number;//当前穿戴称号
     public static achievementDics = {};//所有成就
@@ -32,6 +32,13 @@ class UserInfo {
     public static guideJson = {};
     public static main_Img: string = '';
     public static timestamp: number;//存档UNIX时间戳
+
+    public static get curchapter(){
+        return UserInfo._curchapter;
+    }
+    public static set curchapter(n){
+        UserInfo._curchapter = n;
+    }
 
     public constructor() {
         // UserInfo.chapterDatas = {};

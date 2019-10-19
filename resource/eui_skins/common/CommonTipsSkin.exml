@@ -69,9 +69,9 @@
             </e:layout>
         </e:Group>
     </e:Group>
-	<e:Group id="confirmGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false" height="390" width="760" visible="false">
+	<e:Group id="confirmGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false" height="390" width="760">
 		<e:Image scale9Grid="128,6,117,33" source="common_heidi2_png" left="0" right="0" top="0" bottom="0" locked="true"/>
-		<e:Label id="confirm_desc_lab" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="" textAlign="center" fontFamily="SimHei" horizontalCenter="0" width="690" height="200" verticalCenter="-45"/>
+		<e:Label id="confirm_desc_lab" size="32" textColor="0xFFFFFF" verticalAlign="middle" textAlign="center" fontFamily="SimHei" horizontalCenter="0" width="690" height="200" verticalCenter="-45" lineSpacing="25"/>
 		<e:Label id="confirm_desc2_lab" size="28" text="" fontFamily="SimHei" horizontalCenter="0" y="345" textColor="0xffbe56"/>
 		<e:Group horizontalCenter="0" y="260">
 		<e:Button id="confirm_btn" label="是" bottom="1" horizontalCenter="-127" touchEnabled="true" width="217" height="53" skinName="skins.Common_Button2Skin"/>

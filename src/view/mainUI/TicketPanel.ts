@@ -10,7 +10,6 @@ class TicketPanel extends eui.Component{
     private idShareTicketClose:eui.Button;
     private idGroupBuyTicket:eui.Group;
     private idGroupShareTicket:eui.Group;
-    private idBtnBuyTicket:eui.Button;//购买
     private idBtnUseCode:eui.Button;
     private idBtnCopyCode:eui.Button;
     private idBtnShareCode:eui.Button;
@@ -18,11 +17,16 @@ class TicketPanel extends eui.Component{
     private idGroupDescCommon:eui.Group;//日常观礼描述
     private idGroupDescSpecial:eui.Group;//活动观礼描述
 
+    private idBtnBuyTicketOriPrize:eui.Button;
+    private idBtnBuyTicketSpecailPrize:eui.Button;
+
     private idCode:eui.Label;
     private idShareCode:eui.Label;
 
     private _selectIndex:number = 1;
     private _openParam:string;
+
+    private bSpecail:boolean = false;
     
     constructor(openParam){
         super();
@@ -47,7 +51,8 @@ class TicketPanel extends eui.Component{
         
         this.idClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseClick, this);
         this.idBuyTicketClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseBuyTicketClick, this);
-        this.idBtnBuyTicket.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnBuyTicketClick, this);
+        this.idBtnBuyTicketSpecailPrize.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnBuyTicketSpecailPrizeClick, this);
+        this.idBtnBuyTicketOriPrize.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnBuyTicketOriPrizeClick, this);
         
         this.idShareTicketClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idShareTicketCloseClick, this); 
         
@@ -55,14 +60,27 @@ class TicketPanel extends eui.Component{
         this.idBtnCopyCode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnCopyCodeClick, this);
         this.idBtnShareCode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShareCodeClick, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         this.updateTab();
         this.updateResize();
 
         this.idCode.text = "123456789"
-        this.idShareCode.text="456789"   
+        this.idShareCode.text="456789"
         //从购物车按纽进来
-        if (this._openParam == "tipsbtnshopcar")
+        if (this._openParam == "tipsbtnshopcar" || this._openParam == "confirm")
             this.idGroupBuyTicket.visible = true;
+
+        let today = Tool.formatTimeDay2Num();
+        let cfg = JsonModelManager.instance.getModelshop()[600001];
+        let discountDay = Number(cfg.params);
+        this.bSpecail = today <= discountDay;//是否在优惠期间
+        this.idGroupDescCommon.visible = !this.bSpecail;
+        this.idGroupDescSpecial.visible = this.bSpecail;
+    }
+    private onBuy600001Complte(){
+        if (this._openParam == "confirm")//从弹窗进来的。购买成功后需要继续播放视频
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
+        this.onCloseClick()
     }
     private idBtnUseCodeClick(){
 
@@ -92,7 +110,7 @@ class TicketPanel extends eui.Component{
         }
     }
     private onCloseBuyTicketClick(event:egret.TouchEvent):void{        
-        if (this._openParam == "tipsbtnshopcar") {
+        if (this._openParam == "tipsbtnshopcar" || this._openParam == "confirm") {
             this.onCloseClick();
             return;
         }            
@@ -101,13 +119,20 @@ class TicketPanel extends eui.Component{
     private idShareTicketCloseClick(){
         this.idGroupShareTicket.visible = false;
     }
-    private onBtnBuyTicketClick(event:egret.TouchEvent):void{
-        var params = {"bookId":"123",cmd:"exchangeCDKey","CDKey":"123456"};
-        //sendReuest (params, callback);
-        console.log("buy");
+    private idBtnBuyTicketOriPrizeClick(event:egret.TouchEvent):void{
+        this.idBtnBuyTicketSpecailPrizeClick(event);
+    }
+    private idBtnBuyTicketSpecailPrizeClick(event:egret.TouchEvent):void{
+        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(600001);
+        if(item.num>0){
+            GameCommon.getInstance().showCommomTips("已购买");
+            //return;
+        }
+        ShopManager.getInstance().buyGoods(600001);
     }
     private onCloseClick(event:egret.TouchEvent=null):void{ 
         SoundManager.getInstance().playSound("ope_click.mp3")
+        GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'TicketPanel')
           

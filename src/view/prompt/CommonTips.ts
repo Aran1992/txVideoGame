@@ -247,7 +247,7 @@ class CommonTips extends eui.Component {
         }
     }
 
-    public showConfirmTips(desc: string, callBack: Function, desc2?: string): void {
+    public showConfirmTips(desc: string, callBack: Function, desc2?: string,textYes:string="是",textNo:string="否"): void {
         this.confirm_desc_lab.text = desc;
         if (desc2) this.confirm_desc2_lab.text = desc2;
         this._confirmFunc = callBack;
@@ -255,6 +255,8 @@ class CommonTips extends eui.Component {
             this.confirmGrp.visible = true;
             this.confirm_btn.name = "sure";
             this.cancel_btn.name = "cancel";
+            this.confirm_btn.label = textYes;
+            this.cancel_btn.label = textNo;
             this.confirm_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
             this.cancel_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
         }
