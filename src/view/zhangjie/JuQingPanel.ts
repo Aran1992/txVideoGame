@@ -85,14 +85,9 @@ class JuQingPanel extends eui.Component {
 
     private onSaveCunChu() {
         SoundManager.getInstance().playSound("ope_ask.mp3");
-        if (this._curIdx != FILE_TYPE.AUTO_FILE && !this.noneFile.visible) {
-            let self = this;
-            GameCommon.getInstance().showConfirmTips("是否存储？", function (): void {
-                GameCommon.getInstance().setBookData(self._curIdx);
-            }, "注：存储会覆盖原来的存档");
-        } else {
+        GameCommon.getInstance().showConfirmTips("是否存储？", () => {
             GameCommon.getInstance().setBookData(this._curIdx);
-        }
+        }, "注：存储会覆盖原来的存档");
     }
 
     private onShowVideo() {
@@ -388,7 +383,6 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             let txtImg: eui.Image = this.UIDict[`plot${cfg.id}_txt`];//文字
             if (!slotImg)
                 return;
-            _status = this.IS_OPEN;
             switch (_status) {
                 case this.NOT_SHOW:
                     slotImg.visible = false;

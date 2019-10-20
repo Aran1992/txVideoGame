@@ -84,6 +84,10 @@ class GameCommon {
         return this.instance;
     }
 
+    public static getQuestionAnswer(qid) {
+        return parseInt(UserInfo.curBokData.answerId[qid]);
+    }
+
     private static isChapterInRoleJuqingTree(chapter: number, curChapter: number): boolean {
         for (let role = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
             const roleTree = GameDefine.ROLE_JUQING_TREE[role];
@@ -94,6 +98,10 @@ class GameCommon {
             }
         }
         return false;
+    }
+
+    private static getRoleLike(roleIndex) {
+        return GameCommon.getInstance().getRoleLikeAll(roleIndex);
     }
 
     public async getUserInfo() {
@@ -453,15 +461,15 @@ class GameCommon {
             return;
         let delTim = 0;
 
-        for(let i=0;i<=3;i++){
+        for (let i = 0; i <= 3; i++) {
             let tipStr = ": 亲密度增加"
             let sound = "likeadd.mp3"
             let like = Number(awardStrAry[i])
-            if (like<0){
+            if (like < 0) {
                 tipStr = ": 亲密度减少"
                 sound = "likesub.mp3"
             }
-            if(like != 0){
+            if (like != 0) {
                 Tool.callbackTime(function () {
                     GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[i] + tipStr)
                     SoundManager.getInstance().playSound(sound);
@@ -677,7 +685,28 @@ class GameCommon {
      * By 修改  如果传入的剧情块 不在当前章节列表（章节列表与角色好感度有关） 则直接返回Flase
      * **/
     public checkJuqingKuaiOpen(kuaiID1: number, kuaiID2: number): boolean {
-        return true;
+        let compare: boolean = kuaiID1 >= kuaiID2;
+
+        if (compare) {
+            switch (kuaiID2) {
+                case 75:
+                    let qianxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
+                    let wanxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
+                    if (qianxunlike75 < wanxunlike75) {
+                        compare = false;
+                    }
+                    break;
+                case 82:
+                    let qianxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
+                    let wanxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
+                    if (qianxunlike82 >= wanxunlike82) {
+                        compare = false;
+                    }
+                    break;
+            }
+        }
+
+        return compare;
     }
 
     public addAlert(text: string): void {
@@ -713,16 +742,18 @@ class GameCommon {
     }
 
     public onShowResultTips(str: string, isRight: boolean = true, btnlabel?: string, callBack?: Function, ...arys) {
-    PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
+        PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }
 
-    public showConfirmTips(desc: string, callBack: Function, desc2?: string,textYes:string="是",textNo:string="否"): void {
-        PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2,textYes,textNo);
+    public showConfirmTips(desc: string, callBack: Function, desc2?: string, textYes: string = "是", textNo: string = "否"): void {
+        PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2, textYes, textNo);
     }
 
     public showErrorLog(logstr: string): void {
         PromptPanel.getInstance().showErrorLog(logstr);
     }
+
+    //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
 
     public shock(tp: number = 0, iswin: boolean = false) {
         // this.sd.play(0, 1);
@@ -745,17 +776,15 @@ class GameCommon {
         // PromptPanel.getInstance().hideActionTips();
     }
 
+    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
+
     public showLoading(): void {
         PromptPanel.getInstance().showLoading();
     }
 
-    //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
-
     public removeLoading(): void {
         PromptPanel.getInstance().removeLoading();
     }
-
-    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
 
     public async report(evt, params) {
         callbackReport = function (data) {
@@ -852,14 +881,6 @@ class GameCommon {
             }
         }
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
-    }
-
-    private static getRoleLike(roleIndex) {
-        return GameCommon.getInstance().getRoleLikeAll(roleIndex);
-    }
-
-    public static getQuestionAnswer(qid) {
-        return parseInt(UserInfo.curBokData.answerId[qid]);
     }
 }
 
