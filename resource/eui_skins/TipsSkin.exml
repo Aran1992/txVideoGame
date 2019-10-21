@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <e:Skin class="skins.TipsSkin" currentState="index2" xmlns:e="http://ns.egret.com/eui"
         xmlns:w="http://ns.egret.com/wing" width="1600" height="900" states="index1,index2,index3,index4,index5">
+	<e:Image id="ad1" source="yapin_1_png" right="80" bottom="80" scaleX="0.83" scaleY="0.83" visible="false"/>
+	<e:Image id="ad2" source="yapin_2_png" right="80" bottom="80" scaleX="0.83" scaleY="0.83" visible="false"/>
 	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" x="0" y="0" alpha="1">
 		<e:Image id="mengban" alpha="0.8" width="100%" height="100%" x="0" y="-2" touchEnabled="false"
 		         source="video_heidi1_png"  visible="false"/>
