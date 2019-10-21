@@ -812,8 +812,8 @@ class GameCommon {
         await platform.getBusinessEventData(GameDefine.BOOKID, evtId, optionId)
     }
 
-    async triggerEventNotify(evtId, str) {
-        await platform.triggerEventNotify(evtId, str)
+    async onEventNotify(evtId, str) {
+        await platform.onEventNotify(evtId, str)
     }
 
     async openButton(str) {

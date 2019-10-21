@@ -1015,25 +1015,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (UserInfo.curchapter == 1) {
             if (!GameCommon.checkChapterLocked())
                 return;
-            }
-            // let shop400001: ShopInfoData = ShopManager.getInstance().getShopInfoData(400001);
-            // if (shop400001.num == 0) {
-            //     VideoManager.getInstance().clear();
-            //     GameCommon.getInstance().onShowBuyTips(shop400001.id, shop400001.model.currPrice, GOODS_TYPE.DIAMOND);
-            //     ChengJiuManager.getInstance().curChapterChengJiu = {};
-            //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-            //     let onBuy400001Complte = function (): void {
-            //         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, onBuy400001Complte, this);
-            //         let shop400001: ShopInfoData = ShopManager.getInstance().getShopInfoData(400001);
-            //         if (shop400001.num > 0) {
-            //             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
-            //         }
-            //     };
-            //     GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, onBuy400001Complte, this);
-            //     return;
-            // }
-        } else {
-        }
+        } 
 
         VideoManager.getInstance().onLoad(videoSrc);
         VideoManager.getInstance().loadSrc = videoSrc;
