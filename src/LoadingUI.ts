@@ -2,6 +2,7 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
     private percent: eui.Label;
     private progress: eui.Image;
     private progressGroup: eui.Group;
+    private bg: eui.Image;
 
     public constructor() {
         super();
@@ -13,7 +14,6 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
         const upTime = 500;
         const downTime = 500;
         const interval = 250;
-        let i = 0;
         for (let i = 1; i <= 4; i++) {
             setTimeout(() => {
                 const func = () => {
@@ -38,5 +38,11 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
     public updateResize() {
         this.width = size.width;
         this.height = size.height;
+        this.bg.height = this.height;
+        this.bg.width = this.height / 9 * 16;
+        if (this.bg.width > this.width) {
+            this.bg.width = this.width;
+            this.bg.height = this.bg.width / 16 * 9;
+        }
     }
 }
