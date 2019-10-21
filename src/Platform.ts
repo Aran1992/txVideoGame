@@ -88,7 +88,7 @@ class DebugPlatform implements Platform {
     //删除制定存档
     async deleteBookHistory(bookId, slotId) {
         if (window['StoryPlatform']) {
-            await window['StoryPlatform']['deleteBookHistory'](bookId, slotId, 'callbackdeleteBookHistory');
+            await window['StoryPlatform']['deleteBookHistory'](bookId, slotId, 'callbackDeleteBookHistory');
         }
     }
 

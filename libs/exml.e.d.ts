@@ -346,5 +346,3 @@ declare module skins{
 	class VScrollBarSkin extends eui.Skin{
 	}
 }
-declare class x extends eui.Skin{
-}

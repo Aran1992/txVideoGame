@@ -1,3 +1,16 @@
+callbackSaveBookHistory = data => {
+    if (data.code !== 0) {
+        GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储失败！错误id==${data.code}`);
+    } else {
+        GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
+        GameCommon.getInstance().parseFile(data.data.slotId);
+    }
+};
+
+callbackDeleteBookHistory = data => {
+    GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
+};
+
 class GameCommon {
     private static instance: GameCommon = null;
     public getLockedOptionIDs = {
@@ -127,29 +140,7 @@ class GameCommon {
         }
     }
 
-    /*数据存档*/
-    public async setBookData(tp) { //存储数据文档
-        // if(tp)
-        // return;//暂时注释掉
-        // GameCommon.getInstance().showCommomTips('存储'+tp)
-        // console.log('存储' + tp);
-        callbackSaveBookHistory = function (data) {
-            // VideoManager.getInstance().log(JSON.stringify(data));
-            if (data.code != 0) {
-                // GameCommon.getInstance().addLikeTips(JSON.stringify(data));
-                // if (data.data && data.data.slotId != 1) {
-                // Tool.callbackTime(function () {
-                //     GameCommon.getInstance().setBookData(data.data.slotId);
-                // }, {}, 3000);
-                // }
-                // GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储失败！错误id==` + data.code);
-                return;
-            } else {
-                // GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
-            }
-            // GameCommon.getInstance().addLikeTips('村上了'+UserInfo.curBokData.main_Img)
-            GameCommon.getInstance().parseFile(data.data.slotId);
-        };
+    public async setBookData(tp) {
         let str = '';
         if (!UserInfo.curBokData) {
             UserInfo.curBokData = new BookData();
@@ -258,18 +249,12 @@ class GameCommon {
     }
 
     public deleteBookHistory(tp) {
-        callbackdeleteBookHistory = function (data) {
-            // alert('清档成功')
-            GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
-        };
         egret.localStorage.clear();
         platform.deleteBookHistory(GameDefine.BOOKID, tp);
         // LocalStorageManager.getInstance().deleteBookHistory(tp);
     }
 
     public async getBookHistory(tp) { //获取指定存档
-        // if(tp)
-        // return;//暂时注掉
         if (egret.Capabilities.os == 'Windows PC') {
             let info = JSON.parse(egret.localStorage.getItem(tp.toString()));
             if (!info)
@@ -313,8 +298,7 @@ class GameCommon {
                     UserInfo.tipsDick = UserInfo.curBokData.tipsDick;
                 }
             } else {
-                let bookData: BookData = info;
-                UserInfo.fileDatas[tp] = bookData;
+                UserInfo.fileDatas[tp] = info;
             }
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), tp);
             return;
@@ -323,11 +307,8 @@ class GameCommon {
         // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), tp);
         callbackGetBookHistory = function (data) {
             if (data.code != 0) {
-                // GameCommon.getInstance().showCommomTips(JSON.stringify(data))
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.INIT_DESC), JSON.stringify(data));
             }
-            // GameCommon.getInstance().addLikeTips(JSON.stringify(data));
-            // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.INIT_DESC), JSON.stringify(data));
             switch (data.data.slotId) {
                 //自动存档和手动存档
                 case FILE_TYPE.AUTO_FILE:
@@ -462,16 +443,16 @@ class GameCommon {
         let delTim = 0;
 
         for (let i = 0; i <= 3; i++) {
-            let tipStr = ": 亲密度增加"
-            let sound = "likeadd.mp3"
-            let like = Number(awardStrAry[i])
+            let tipStr = ": 亲密度增加";
+            let sound = "likeadd.mp3";
+            let like = Number(awardStrAry[i]);
             if (like < 0) {
-                tipStr = ": 亲密度减少"
-                sound = "likesub.mp3"
+                tipStr = ": 亲密度减少";
+                sound = "likesub.mp3";
             }
             if (like != 0) {
                 Tool.callbackTime(function () {
-                    GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[i] + tipStr)
+                    GameCommon.getInstance().addLikeTips(GameDefine.ROLE_NAME[i] + tipStr);
                     SoundManager.getInstance().playSound(sound);
                 }, {}, delTim);
                 delTim = delTim + 3000;
@@ -884,7 +865,7 @@ class GameCommon {
     }
 }
 
-declare let callbackdeleteBookHistory;
+declare let callbackDeleteBookHistory;
 declare let callbackGetBookHistory;
 declare let callbackGetBookLastHistory;
 declare let callbackGetBookHistoryList;
@@ -894,6 +875,4 @@ declare let callbackGetUserPlatformData;
 declare let callbackGetBookConsumeData;
 declare let callbackReportBusinessEvent;
 declare let callbackGetBusinessEventData;//查询上报事件
-
-
 declare let callbackGetBookValues;

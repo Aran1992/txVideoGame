@@ -86,7 +86,7 @@ class JuQingPanel extends eui.Component {
     private onSaveCunChu() {
         SoundManager.getInstance().playSound("ope_ask.mp3");
         GameCommon.getInstance().showConfirmTips("是否存储？", () => {
-            GameCommon.getInstance().setBookData(this._curIdx);
+            GameCommon.getInstance().setBookData(this._curIdx).then(r => r);
         }, "注：存储会覆盖原来的存档");
     }
 
@@ -135,8 +135,6 @@ class JuQingPanel extends eui.Component {
         this['fileBtn' + this._curIdx].touchEnabled = true;
         this['fileBtn' + name].icon = 'cundang_kuang1_png';
         this['fileBtn' + name]['labelDisplay']['textColor'] = '0xffffff';
-        // this['fileBtn' + name].parent.setChildIndex(this['fileBtn' + this._curIdx], 1);
-        // this['fileBtn' + name].parent.setChildIndex(this['fileBtn' + name], 0);
         this._curIdx = name;
         this.onSwitchKuai(name);
     }
