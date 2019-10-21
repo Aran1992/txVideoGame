@@ -84,7 +84,7 @@ class JuQingPanel extends eui.Component {
     }
 
     private onSaveCunChu() {
-        SoundManager.getInstance().playSound("ope_ask.mp3");
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameCommon.getInstance().showConfirmTips("是否存储？", () => {
             GameCommon.getInstance().setBookData(this._curIdx).then(r => r);
         }, "注：存储会覆盖原来的存档");
@@ -98,7 +98,7 @@ class JuQingPanel extends eui.Component {
     private onShowConfirm(data) {
         if (this._curIdx == FILE_TYPE.AUTO_FILE) {
             let self = this;
-            SoundManager.getInstance().playSound("ope_ask.mp3");
+            SoundManager.getInstance().playSound("ope_click.mp3");
             GameCommon.getInstance().showConfirmTips("清空记忆，从这里从新开始？", function (): void {
                 self._videoData = data.data;
                 GameCommon.getInstance().showLoading();

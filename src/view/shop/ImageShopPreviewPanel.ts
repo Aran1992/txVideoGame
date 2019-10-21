@@ -81,13 +81,13 @@ class ImageShopPreviewPanel extends eui.Component {
         this.skinName = skins.ImageShopPreviewSkin;
     }
 
-    private onBuy(): void {        
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+    private onBuy(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, this.shoucangModel.minipic)));
 
     }
 
-    private onClose() {        
+    private onClose() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.onRemoveEvent();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ImageShopPreviewPanel');

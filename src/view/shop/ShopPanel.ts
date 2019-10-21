@@ -115,7 +115,7 @@ class ShopPanel extends eui.Component {
         this.showGoods();
     }
 
-    private onTouchItem(e: egret.Event) {        
+    private onTouchItem(e: egret.Event) {
         SoundManager.getInstance().playSound("ope_click.mp3")
         let tabButton: eui.RadioButton = e.currentTarget as eui.RadioButton;
 
@@ -359,7 +359,7 @@ class ShopPanel extends eui.Component {
         return cur_models;
     }
 
-    private onFilter(): void {        
+    private onFilter(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
         let cur_models = this.getShopDatas();
         if (!cur_models) return;
@@ -395,7 +395,7 @@ class ShopPanel extends eui.Component {
         this.showGoods();
     }
 
-    private onClose() {        
+    private onClose() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.onRemoveEvent();
         // if (!UserInfo.guideDic[7]) {//关闭界面去进行收藏引导
@@ -574,12 +574,12 @@ class ImagesShopItem extends eui.ItemRenderer {
 
     private onBuy(): void {
         // ShopManager.getInstance().buyGoods(this.data.id);
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 
     private onOpenPreview(): void {
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ImageShopPreviewPanel', this.data));
     }
 }
@@ -637,8 +637,8 @@ class VideosShopItem extends eui.ItemRenderer {
         this.banner_img.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay, this);
     }
 
-    private onBuy(): void {        
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+    private onBuy(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
@@ -711,13 +711,13 @@ class MusicsShopItem extends eui.ItemRenderer {
         this.banner_img.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlay, this);
     }
 
-    private onBuy(): void {        
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+    private onBuy(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 
-    private onPlay(): void {        
+    private onPlay(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('MusicShopPreviewPanel', this.data));
     }
@@ -766,8 +766,8 @@ class ChapterShopItem extends eui.ItemRenderer {
         this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
     }
 
-    private onBuy(): void {        
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+    private onBuy(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
@@ -827,8 +827,8 @@ class DaojuShopItem extends eui.ItemRenderer {
         this.discountBar_Grp = this.discount_bar.parent;
     }
 
-    private onBuy(): void {        
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+    private onBuy(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3")
         // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }

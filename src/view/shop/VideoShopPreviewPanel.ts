@@ -96,12 +96,12 @@ class VideoShopPreviewPanel extends eui.Component {
     }
 
     private onBuy(): void {
-        // ShopManager.getInstance().buyGoods(this.data.id);        
-        SoundManager.getInstance().playSound("ope_ask.mp3")
+        // ShopManager.getInstance().buyGoods(this.data.id);
+        SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, this.shoucangModel.minipic)));
     }
 
-    private onPlay(): void {        
+    private onPlay(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
         GameDefine.CUR_PLAYER_VIDEO = 2;
         if (widPlayer) {
@@ -113,7 +113,7 @@ class VideoShopPreviewPanel extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ControlTipsPanel');
     }
 
-    private onClose() {        
+    private onClose() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.onRemoveEvent();
         // if(widPlayer1)

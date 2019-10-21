@@ -141,7 +141,7 @@ class GameWorld extends egret.DisplayObjectContainer {
     }
 
     private onShowViewWithParam(event: egret.Event): void {
-        //SoundManager.getInstance().playSound("ope_ask.mp3")
+        //SoundManager.getInstance().playSound("ope_click.mp3")
         let window_param: WindowParam = event.data as WindowParam;
         let windowName = window_param.windowname;
         if (this.panelDict[windowName]) {

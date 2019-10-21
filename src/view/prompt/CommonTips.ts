@@ -187,7 +187,7 @@ class CommonTips extends eui.Component {
     }
 
     public onShowBuyTips(id, money, tp) {
-        SoundManager.getInstance().playSound("ope_ask.mp3");
+        SoundManager.getInstance().playSound("ope_click.mp3");
         switch (tp) {
             case GOODS_TYPE.DIAMOND:
                 this.moneyIcon.source = 'common_zuanshi1_png';

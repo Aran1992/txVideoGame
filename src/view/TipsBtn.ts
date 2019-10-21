@@ -329,13 +329,12 @@ class TipsBtn extends eui.Component {
         this.onSkinName();
     }
 
-    private onFenXiang() {        
+    private onFenXiang() {
         this.updateChapterLockInfo()
         //this.videoD.onShowDetail();
     }
 
     private onTiao() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
         this.videoD.onTiao();
     }
 
@@ -359,7 +358,7 @@ class TipsBtn extends eui.Component {
     }
 
     private onShowMain() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.hideTips();
         this.videoD.onCloseVideo();
         GameCommon.getInstance().hideTipsHuDong();
@@ -444,7 +443,6 @@ class TipsBtn extends eui.Component {
     }
 
     private onShowBottomBtn(e: egret.TouchEvent) {
-        //SoundManager.getInstance().playSound("ope_click.mp3")
         if (TipsBtn.Is_Guide_Bool) {//新手引导 显示一张按钮指引的图
             this.setPauseState();
             TipsBtn.Is_Guide_Bool = false;
@@ -486,13 +484,11 @@ class TipsBtn extends eui.Component {
     }
 
     private onAddVideo() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
         this.timerIdx = 0;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ADD_VIDEO_SPEED));
     }
 
     private onReduceVideo() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
         this.timerIdx = 0;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.REDUCE_VIDEO_SPEED));
     }
@@ -509,13 +505,11 @@ class TipsBtn extends eui.Component {
     }
 
     private onSelectPinZhi(event: egret.Event) {
-        SoundManager.getInstance().playSound("ope_click.mp3")
         this.pinzhiGroup.visible = false;
         this.qualityBtn.label = event.target.label;
     }
 
     private onSelectSpeed(event: egret.Event) {
-        SoundManager.getInstance().playSound("ope_click.mp3")
         const id: number = Number(event.target.name);
         this.beisuGroup.visible = false;
         this.speedBtn.label = event.target.label;
@@ -528,7 +522,6 @@ class TipsBtn extends eui.Component {
     }
 
     private onPlay_Pause() {
-        //SoundManager.getInstance().playSound("ope_click.mp3")
         if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_PAUSE), true);
             this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
@@ -566,7 +559,7 @@ class TipsBtn extends eui.Component {
         let button = event.currentTarget;
         let id: number = Number(button.name);
         if (button['lock_grp'].visible) {
-            SoundManager.getInstance().playSound("ope_ask.mp3");
+            SoundManager.getInstance().playSound("ope_click.mp3");
             VideoManager.getInstance().videoPause();
             PromptPanel.getInstance().onShowBuyHaoGan(id);
         } else {
@@ -702,11 +695,11 @@ class TipsBtn extends eui.Component {
     private idBtnClockClick(){
         GameCommon.getInstance().showCommomTips("下一章X天后免费")
     }
-    private idBtnShopCarClick(){        
+    private idBtnShopCarClick(){
         VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"tipsbtnshopcar"});
     }
-    private idBtnTicketClick(){        
+    private idBtnTicketClick(){
         VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"tipsbtnticket"});
     }
