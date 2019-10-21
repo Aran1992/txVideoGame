@@ -29,7 +29,7 @@ class ActionManager {
     public static getInstance(): ActionManager {
         if (this.instance == null) {
             this.instance = new ActionManager();
-        }
+        }        
         return this.instance;
     }
 

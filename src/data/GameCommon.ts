@@ -862,6 +862,44 @@ class GameCommon {
             }
         }
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
+    }    
+
+    public static isChapterOnSale(chaperId){
+        const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
+        let saleTime = chapterCfg.saleTime;
+        let curDay = Tool.formatTimeDay2Num();
+        return curDay>=saleTime;
+    }    
+    //确定章节是否已开启
+    public static checkChapterLocked(){
+        let curChapterId = UserInfo.curchapter;
+        if (curChapterId==0)
+            return true;
+        const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
+        //let nextChapterId = String(curChapterCfg.next);
+        //var arr = nextChapterId.split(";");
+        //let nnextChapterId = Number(arr[0]);
+        //是否付费用户，下一章是否已上架
+        let nnextChapterId = curChapterId
+        let onSale = this.isChapterOnSale(nnextChapterId);
+        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
+        //item.num=0;
+        let isVip = item.num > 0;
+        if(!onSale){
+            GameCommon.getInstance().showCommomTips("下一章节未上架，敬请期待。")
+            return false;
+        }
+        if(!isVip){
+            VideoManager.getInstance().clear();
+            ChengJiuManager.getInstance().curChapterChengJiu = {};
+            var callback = function () {
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), { windowName: 'TicketPanel', data: "confirm" });
+            }
+            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            return false;
+        }
+        return true;
     }
 }
 
@@ -875,4 +913,5 @@ declare let callbackGetUserPlatformData;
 declare let callbackGetBookConsumeData;
 declare let callbackReportBusinessEvent;
 declare let callbackGetBusinessEventData;//查询上报事件
+
 declare let callbackGetBookValues;

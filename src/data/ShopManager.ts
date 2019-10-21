@@ -1,3 +1,4 @@
+
 class ShopManager {
     private static instance: ShopManager = null;
     public debugShopInfos;

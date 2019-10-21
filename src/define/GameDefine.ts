@@ -24,6 +24,7 @@ class GameDefine {
         "action_msg_head_5_png",// 林薄荷
         "action_msg_head_6_png",// 艾黎柯
     ];
+    public static GUANGLIPINGZHENG = 600001;
     public static SELF_ROLE_HEAD_INDEX: number = 5;
     public static SHOUCANG_NAME: string[] = ['韩小白', '肖千也', '夏子豪', '肖万寻', '音乐', '其他'];
     public static ROLE_OCCUPATION: string[] = ['主唱', '贝斯手', '吉他手', '键盘手', '音乐', '其他'];

@@ -1013,19 +1013,8 @@ class VideoData extends egret.DisplayObjectContainer {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
 
         if (UserInfo.curchapter == 1) {
-            let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(600001);
-            item.num = 0;
-            if (item.num == 0) {
-                VideoManager.getInstance().clear();
-                ChengJiuManager.getInstance().curChapterChengJiu = {};
-                var callback = function () {
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
-                        windowName: 'TicketPanel',
-                        data: "confirm"
-                    });
-                }
-                GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            if (!GameCommon.checkChapterLocked())
+                return;
             }
             // let shop400001: ShopInfoData = ShopManager.getInstance().getShopInfoData(400001);
             // if (shop400001.num == 0) {

@@ -15,7 +15,8 @@ declare interface Platform {
     getBookHistory(bookId, slotId): Promise<any>;//获取制定存档
     getBookLastHistory(bookId): Promise<any>;//读取最近一次阅读进度，继续阅读。 在开始阅读前可通过该接口获得最近一次进度继续阅读。
     getBookValues(bookId, slotId): Promise<any>;//获取管理端配置的可购买的物品信息，包括章节，物品。
-    buyGoods(bookId, itemId, num, curSlotId)
+    buyGoods(bookId, itemId, num, curSlotId):Promise<any>;
+    sendRequest(params):Promise<any>;
 
     takeOffBookValue(bookId, saleId, currentSlotId, num): Promise<any>;//消耗后台已购买物品（管理配置）
     report(bookId, evt, params): Promise<any>;//统计类接口
@@ -23,7 +24,7 @@ declare interface Platform {
     getBookConsumeData(bookId): Promise<any>;//获取书籍消费数据
     reportBusinessEvent(bookId, evtId, optionId): Promise<any>;//上报事件选项
     getBusinessEventData(bookId, evtId, optionId): Promise<any>;//查询上报的事件选项统计
-    triggerEventNotify(evt, str): Promise<any>;//事件通知（web主动通知app）
+    onEventNotify(evt, str): Promise<any>;//事件通知（web主动通知app）
     finishPage();
 
     isDebug(): boolean;
@@ -112,6 +113,11 @@ class DebugPlatform implements Platform {
             await window['StoryPlatform']['buyGoods'](bookId, itemId, num, curSlotId, 'callbackBuyGoods');
         }
     }
+    async sendRequest(params){
+        if(window['StoryPlatform']){
+            await window['StoryPlatform']['sendRequest'](params,'callbackSendRequest');
+        }
+    }
 
     async takeOffBookValue(bookId, saleId, currentSlotId, num) {
         if (window['StoryPlatform']) {
@@ -149,9 +155,9 @@ class DebugPlatform implements Platform {
         }
     }
 
-    async triggerEventNotify(evt, str) {
+    async onEventNotify(evt, str) {
         if (window['StoryPlatform']) {
-            await window['StoryPlatform']['triggerEventNotify'](evt, str);
+            await window['StoryPlatform']['onEventNotify'](evt, str);
         }
     }
 

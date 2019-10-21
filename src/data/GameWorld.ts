@@ -18,7 +18,12 @@ class GameWorld extends egret.DisplayObjectContainer {
     public readFile() {
         if (!GameDefine.ISFILE_STATE) {
             return;
+        }        
+        if (!UserInfo.curBokData) {
+            return;
         }
+        if(!GameCommon.checkChapterLocked())
+            return;
         if (!this.videoData) {
             this.videoData = new VideoData();
             this.videoLayer.addChild(this.videoData);
@@ -308,7 +313,8 @@ class GameWorld extends egret.DisplayObjectContainer {
         };
 
         window['onEventNotify'] = function (event, json) {
-            let data = JSON.parse(json);
+            console.log(json);
+            let data = json;
             switch (event) {
                 case WEB_EVENT_NOTIFY.onPause:
                     VideoManager.getInstance().videoPause();

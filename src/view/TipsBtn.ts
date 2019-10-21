@@ -665,13 +665,6 @@ class TipsBtn extends eui.Component {
         //这里更新章节解锁信息
         this.updateChapterLockInfo();
     }
-    //章节是否已上架
-    private isChapterOnSale(chaperId){
-        const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
-        let saleTime = chapterCfg.saleTime;
-        let curDay = Tool.formatTimeDay2Num();
-        return curDay>=saleTime;
-    }
     private updateChapterLockInfo(){
         let curChapterId = UserInfo.curchapter;
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
@@ -679,7 +672,7 @@ class TipsBtn extends eui.Component {
         var arr = nextChapterId.split(";");
         let nnextChapterId = Number(arr[0]);
         //是否付费用户，下一章是否已上架
-        let onSale = this.isChapterOnSale(nnextChapterId);
+        let onSale = GameCommon.isChapterOnSale(nnextChapterId);
         if(this.isVip || nnextChapterId==0 || !onSale){
             this.idBtnClock.visible=false;
             this.idBtnShopCar.visible=false;
