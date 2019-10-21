@@ -177,44 +177,25 @@ class MainView extends eui.Component {
         // this.mainGroup.scaleY = GameDefine.SCALENUMY;
     }
     private onDuDang() {
-        //ShopManager.getInstance().getShopInfos()
-        // let render = new egret.RenderTexture();
-        // render.drawToTexture(this.mainGroup);//rootLayer是当前显示层的总容器，或者用this.stage
-        // let base64Str = render.toDataURL("image/png");
-        // platform.shareImage(GameDefine.BOOKID, base64Str);
-        // render.saveToFile("image/png", "aa.png");//也可以保存下来
-        // var callback=function(){            
-        //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"confirm"});
-        // }
-        // GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！",callback,"","购买凭证","等待");
-        callbackSendRequest=function(data){
-            console.log(data);
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        if (DEBUG) {
+            if (typeof GameDefine.TEST_ACTION_SCENE_WENTI_ID === "number") {
+                const actionIndex = 0;
+                const wentiModel = JsonModelManager.instance.getModelwenti()[GameDefine.TEST_ACTION_SCENE_WENTI_ID.toString()];
+                const hudongModel = JsonModelManager.instance.getModelhudong()[wentiModel.type];
+                const paramList = hudongModel.pos.split(",");
+                const actionSceneClass = ActionManager.getActionSceneClassByActionType(parseInt(hudongModel.tp));
+                const actionScene = new actionSceneClass(wentiModel, paramList, actionIndex, true);
+                this.addChild(actionScene);
+                return;
+            }
         }
-        var params = {"bookId":GameDefine.BOOKID,"cmd":"getMyCDKey","saleId":GameDefine.GUANGLIPINGZHENG}
-        window['sendRequest'](params,(data)=>{console.log(data)});
-        //platform.sendRequest(params);
-        //window['StoryPlatform']['sendRequest'](params,(data)=>{console.log(data);});
-        // let func = window['StoryPlatform']['sendRequest']
-        // func(params,(data)=>{console.log(data);});
-        // SoundManager.getInstance().playSound("ope_click.mp3");
-        // if (DEBUG) {
-        //     if (typeof GameDefine.TEST_ACTION_SCENE_WENTI_ID === "number") {
-        //         const actionIndex = 0;
-        //         const wentiModel = JsonModelManager.instance.getModelwenti()[GameDefine.TEST_ACTION_SCENE_WENTI_ID.toString()];
-        //         const hudongModel = JsonModelManager.instance.getModelhudong()[wentiModel.type];
-        //         const paramList = hudongModel.pos.split(",");
-        //         const actionSceneClass = ActionManager.getActionSceneClassByActionType(parseInt(hudongModel.tp));
-        //         const actionScene = new actionSceneClass(wentiModel, paramList, actionIndex, true);
-        //         this.addChild(actionScene);
-        //         return;
-        //     }
-        // }
-        // this.checkGuide8();
-        // if (GameDefine.IS_DUDANG) {
-        //     this.curDuDang = true;
-        // }
-        // GameDefine.IS_DUDANG = false;
-        // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
+        this.checkGuide8();
+        if (GameDefine.IS_DUDANG) {
+            this.curDuDang = true;
+        }
+        GameDefine.IS_DUDANG = false;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
     }
 
     private onShowWallet() {

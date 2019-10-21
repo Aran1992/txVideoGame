@@ -554,6 +554,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (data.new == 'buffering' || data.new == 'seeking') {
                     GameCommon.getInstance().showLoading();
                 } else if (data.new == 'end') {
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_PLAY_END), data);
                     this.isEndChapter = true;
                     this.onShowNextVideo();
                 } else {
