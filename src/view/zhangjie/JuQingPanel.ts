@@ -152,6 +152,8 @@ class JuQingPanel extends eui.Component {
         GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE6);
         this.onRefresh();
         this.onGuideHandler();
+        
+        this.idGuideGroup.visible = false;
 
         if (!UserInfo.guideJson["juQing"]) {
             UserInfo.guideJson["juQing"] = 100;
