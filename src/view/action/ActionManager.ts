@@ -22,7 +22,7 @@ class ActionManager {
     private actionIdx: number;
     private successType: number;// 0-成功，1-失败，2-未选择
     private isAnswer: boolean;
-    private _actionFinished:boolean;
+    private _actionFinished: boolean = true;
 
     private constructor() {
     }
@@ -31,19 +31,20 @@ class ActionManager {
         if (this.instance == null) {
             this.instance = new ActionManager();
             GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_PLAY_END, ActionManager.instance.VIDEO_PLAY_END, ActionManager.instance);
-        }        
-        return this.instance;
-    }
-    public VIDEO_PLAY_END(){
-        if (!this._actionFinished){
-            console.error("action is not finished actionId = "+String(this.actionIdx));
-            this.clearCurrScene();
-            this.onActionFinish()
         }
+        return this.instance;
     }
 
     public static getActionSceneClassByActionType(actionType: ActionType): any {
         return ActionManager.instance.actionTypeClassMap[actionType];
+    }
+
+    public VIDEO_PLAY_END() {
+        if (!this._actionFinished) {
+            console.error("action is not finished actionId = " + String(this.actionIdx));
+            this.clearCurrScene();
+            this.onActionFinish()
+        }
     }
 
     public init(videoData: VideoData) {
@@ -80,7 +81,7 @@ class ActionManager {
     }
 
     public onActionFinish() {
-        this._actionFinished = true
+        this._actionFinished = true;
         if (this.successType) {
             this.actionFinish(this.currModel.moren);
         } else {
@@ -138,7 +139,7 @@ class ActionManager {
             }
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO),
                 {answerId: ansId, wentiId: this.currModel.id, click: this.successType == 0});
-        }else{
+        } else {
             console.log("this.isAnswer is true");
         }
     }
