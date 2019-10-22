@@ -22,6 +22,7 @@ class ActionManager {
     private actionIdx: number;
     private successType: number;// 0-成功，1-失败，2-未选择
     private isAnswer: boolean;
+    private _actionFinished:boolean;
 
     private constructor() {
     }
@@ -29,8 +30,16 @@ class ActionManager {
     public static getInstance(): ActionManager {
         if (this.instance == null) {
             this.instance = new ActionManager();
+            GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_PLAY_END, ActionManager.instance.VIDEO_PLAY_END, ActionManager.instance);
         }        
         return this.instance;
+    }
+    public VIDEO_PLAY_END(){
+        if (!this._actionFinished){
+            console.error("action is not finished actionId = "+String(this.actionIdx));
+            this.clearCurrScene();
+            this.onActionFinish()
+        }
     }
 
     public static getActionSceneClassByActionType(actionType: ActionType): any {
@@ -49,6 +58,7 @@ class ActionManager {
         this.actionList = modelHuDong ? modelHuDong.pos.split("#") : [];
         this.actionIdx = 0;
         this.successType = 2;
+        this._actionFinished = false;
         this.createActionUI();
     }
 
@@ -70,6 +80,7 @@ class ActionManager {
     }
 
     public onActionFinish() {
+        this._actionFinished = true
         if (this.successType) {
             this.actionFinish(this.currModel.moren);
         } else {
@@ -78,6 +89,8 @@ class ActionManager {
     }
 
     private createActionUI() {
+        if (this._actionFinished)//互动已结束，就不再创建互动界面了
+            return;
         this.clearCurrScene();
         let str = this.actionList[this.actionIdx];
         if (str && str.concat(",")) {
@@ -125,6 +138,8 @@ class ActionManager {
             }
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO),
                 {answerId: ansId, wentiId: this.currModel.id, click: this.successType == 0});
+        }else{
+            console.log("this.isAnswer is true");
         }
     }
 

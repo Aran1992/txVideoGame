@@ -14,11 +14,8 @@ class ActionSceneBase extends eui.Component {
         this._paramList = list;
         this._idx = idx;
         this.test = test;
-        this._result = false;//是否已经出来结果
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onSkinName, this);
-        
-        GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_PLAY_END, this.VIDEO_PLAY_END, this);
     }
 
     protected _model: Modelwenti;
@@ -73,12 +70,6 @@ class ActionSceneBase extends eui.Component {
             this.parent.removeChild(this);
         }
         
-        GameDispatcher.getInstance().removeEventListener(GameEvent.VIDEO_PLAY_END, this.VIDEO_PLAY_END, this);
-    }
-    private VIDEO_PLAY_END(){
-        if (!this._result){
-            this.onBackFail();
-        }
     }
 
     protected startRun() {
@@ -121,13 +112,11 @@ class ActionSceneBase extends eui.Component {
         }
         ActionManager.getInstance().onActionSuccess(this.idx, this.delTime, false);
         SoundManager.getInstance().playSound("hudong_end_fail.mp3");
-        this._result= true;
     }
 
     protected onBackSuccess() {
         ActionManager.getInstance().onActionSuccess(this.idx, this.delTime);
         SoundManager.getInstance().playSound("hudong_end_success.mp3");
-        this._result= true;
     }
 
     private onLoadComplete() {
