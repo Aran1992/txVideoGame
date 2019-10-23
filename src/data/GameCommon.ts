@@ -101,6 +101,44 @@ class GameCommon {
         return parseInt(UserInfo.curBokData.answerId[qid]);
     }
 
+    public static isChapterOnSale(chaperId) {
+        const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
+        let saleTime = chapterCfg.saleTime;
+        let curDay = Tool.formatTimeDay2Num();
+        return curDay >= saleTime;
+    }
+
+    //确定章节是否已开启
+    public static checkChapterLocked() {
+        let curChapterId = UserInfo.curchapter;
+        if (curChapterId == 0)
+            return true;
+        //是否付费用户，下一章是否已上架
+        let nextChapterID = JsonModelManager.instance.getModelchapter()[curChapterId];
+        let onSale = this.isChapterOnSale(nextChapterID);
+        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
+        //item.num=0;
+        let isVip = item.num > 0;
+        if (!onSale) {
+            GameCommon.getInstance().showCommomTips("下一章节未上架，敬请期待。");
+            return false;
+        }
+        if (!isVip) {
+            VideoManager.getInstance().clear();
+            ChengJiuManager.getInstance().curChapterChengJiu = {};
+            const callback = function () {
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
+                    windowName: 'TicketPanel',
+                    data: "confirm"
+                });
+            };
+            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            return false;
+        }
+        return true;
+    }
+
     private static isChapterInRoleJuqingTree(chapter: number, curChapter: number): boolean {
         for (let role = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
             const roleTree = GameDefine.ROLE_JUQING_TREE[role];
@@ -726,15 +764,17 @@ class GameCommon {
         PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }
 
+    //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
+
     public showConfirmTips(desc: string, callBack: Function, desc2?: string, textYes: string = "是", textNo: string = "否"): void {
         PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2, textYes, textNo);
     }
 
+    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
+
     public showErrorLog(logstr: string): void {
         PromptPanel.getInstance().showErrorLog(logstr);
     }
-
-    //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
 
     public shock(tp: number = 0, iswin: boolean = false) {
         // this.sd.play(0, 1);
@@ -756,8 +796,6 @@ class GameCommon {
         }
         // PromptPanel.getInstance().hideActionTips();
     }
-
-    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
 
     public showLoading(): void {
         PromptPanel.getInstance().showLoading();
@@ -862,44 +900,6 @@ class GameCommon {
             }
         }
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
-    }    
-
-    public static isChapterOnSale(chaperId){
-        const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
-        let saleTime = chapterCfg.saleTime;
-        let curDay = Tool.formatTimeDay2Num();
-        return curDay>=saleTime;
-    }    
-    //确定章节是否已开启
-    public static checkChapterLocked(){
-        let curChapterId = UserInfo.curchapter;
-        if (curChapterId==0)
-            return true;
-        const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
-        //let nextChapterId = String(curChapterCfg.next);
-        //var arr = nextChapterId.split(";");
-        //let nnextChapterId = Number(arr[0]);
-        //是否付费用户，下一章是否已上架
-        let nnextChapterId = curChapterId
-        let onSale = this.isChapterOnSale(nnextChapterId);
-        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
-        //item.num=0;
-        let isVip = item.num > 0;
-        if(!onSale){
-            GameCommon.getInstance().showCommomTips("下一章节未上架，敬请期待。")
-            return false;
-        }
-        if(!isVip){
-            VideoManager.getInstance().clear();
-            ChengJiuManager.getInstance().curChapterChengJiu = {};
-            var callback = function () {
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), { windowName: 'TicketPanel', data: "confirm" });
-            }
-            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-            return false;
-        }
-        return true;
     }
 }
 

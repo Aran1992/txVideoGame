@@ -22,8 +22,6 @@ class GameWorld extends egret.DisplayObjectContainer {
         if (!UserInfo.curBokData) {
             return;
         }
-        if(!GameCommon.checkChapterLocked())
-            return;
         if (!this.videoData) {
             this.videoData = new VideoData();
             this.videoLayer.addChild(this.videoData);
