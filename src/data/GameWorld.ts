@@ -18,7 +18,7 @@ class GameWorld extends egret.DisplayObjectContainer {
     public readFile() {
         if (!GameDefine.ISFILE_STATE) {
             return;
-        }        
+        }
         if (!UserInfo.curBokData) {
             return;
         }
@@ -34,7 +34,7 @@ class GameWorld extends egret.DisplayObjectContainer {
         if (this.isAgaig) {
             this.videoLayer.addChild(this.videoData);
         }
-        this.videoData.readFiel();
+        this.videoData.readFile();
     }
 
     /**舞台尺寸发生变化**/
