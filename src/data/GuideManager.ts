@@ -168,9 +168,4 @@ class GuideManager {
         }
     }
 
-    // public async getBookData(){
-    //    var data =  await platform.getBookHistoryList(UserInfo.curchapter)
-    //    UserInfo.chapterDatas[UserInfo.curchapter]  = data;
-    // }
-
 }

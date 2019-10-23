@@ -139,7 +139,7 @@
     <e:Scroller width="600" height="400" right="47" bottom="93" touchEnabled="false" touchChildren="false">
         <e:Group x="-33">
             <e:Label id="logLab" size="30" fontFamily="SimHei" textAlign="right" textColor="0xFFFFFF" lineSpacing="3"
-                     stroke="2" right="0" bottom="0" width="600"  alpha="0.6"/>
+                     stroke="2" right="11" bottom="6" width="589"  alpha="0.6" anchorOffsetX="0"/>
         </e:Group>
     </e:Scroller>
 	<e:Group id="roleChapterNoticeGroup" left="0" right="0" bottom="0" top="0" visible="false">

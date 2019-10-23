@@ -89,7 +89,8 @@ class ShopManager {
         // if (!this._shopDataDict) {
         if (!1 || egret.Capabilities.os == 'Windows PC') {//测试版数据platform.isDebug
             if (!this._shopDataDict) {
-                platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE,callbackGetBookHistory);
+                //platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE,callbackGetBookHistory);
+                GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
                 let values = [];
                 for (let id in JsonModelManager.instance.getModelshop()) {
                     let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
