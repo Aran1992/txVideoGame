@@ -87,7 +87,8 @@ class MainView extends eui.Component {
         // this.onGetDataRefresh();
         // LocalStorageManager.getInstance().onInit();
         ShopManager.getInstance().getShopInfos();
-        platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE);
+        //platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE,callbackGetBookHistory);
+        GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
         GameCommon.getInstance().getUserInfo();
         // GameCommon.getInstance().getBookHistory(FILE_TYPE.GUIDE_TP);
         let cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];

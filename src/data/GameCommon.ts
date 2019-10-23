@@ -1,6 +1,6 @@
 callbackSaveBookHistory = data => {
     if (data.code !== 0) {
-        GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储失败！错误id==${data.code}`);
+        GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储失败！错误id==${data.data.msg}`);
     } else {
         GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
         GameCommon.getInstance().parseFile(data.data.slotId);
@@ -99,44 +99,6 @@ class GameCommon {
 
     public static getQuestionAnswer(qid) {
         return parseInt(UserInfo.curBokData.answerId[qid]);
-    }
-
-    public static isChapterOnSale(chaperId) {
-        const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
-        let saleTime = chapterCfg.saleTime;
-        let curDay = Tool.formatTimeDay2Num();
-        return curDay >= saleTime;
-    }
-
-    //确定章节是否已开启
-    public static checkChapterLocked() {
-        let curChapterId = UserInfo.curchapter;
-        if (curChapterId == 0)
-            return true;
-        //是否付费用户，下一章是否已上架
-        let nextChapterID = JsonModelManager.instance.getModelchapter()[curChapterId];
-        let onSale = this.isChapterOnSale(nextChapterID);
-        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
-        //item.num=0;
-        let isVip = item.num > 0;
-        if (!onSale) {
-            GameCommon.getInstance().showCommomTips("下一章节未上架，敬请期待。");
-            return false;
-        }
-        if (!isVip) {
-            VideoManager.getInstance().clear();
-            ChengJiuManager.getInstance().curChapterChengJiu = {};
-            const callback = function () {
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
-                    windowName: 'TicketPanel',
-                    data: "confirm"
-                });
-            };
-            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-            return false;
-        }
-        return true;
     }
 
     private static isChapterInRoleJuqingTree(chapter: number, curChapter: number): boolean {
@@ -251,7 +213,7 @@ class GameCommon {
         if (curChapterCfg) {
             cundangTitle = curChapterCfg.name;
         }
-        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str);
+        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str,callbackSaveBookHistory);
     }
 
     /*所有数据存档*/
@@ -283,12 +245,12 @@ class GameCommon {
                 // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH));
             }
         };
-        platform.getBookHistoryList(GameDefine.BOOKID);
+        platform.getBookHistoryList(GameDefine.BOOKID,callbackGetBookHistoryList);
     }
 
     public deleteBookHistory(tp) {
         egret.localStorage.clear();
-        platform.deleteBookHistory(GameDefine.BOOKID, tp);
+        platform.deleteBookHistory(GameDefine.BOOKID, tp,callbackDeleteBookHistory);
         // LocalStorageManager.getInstance().deleteBookHistory(tp);
     }
 
@@ -468,7 +430,7 @@ class GameCommon {
             }
 
         };
-        platform.getBookHistory(GameDefine.BOOKID, tp);
+        platform.getBookHistory(GameDefine.BOOKID, tp,callbackGetBookHistory);
     }
 
     public addRoleLike(index) {
@@ -764,17 +726,15 @@ class GameCommon {
         PromptPanel.getInstance().onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }
 
-    //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
-
     public showConfirmTips(desc: string, callBack: Function, desc2?: string, textYes: string = "是", textNo: string = "否"): void {
         PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2, textYes, textNo);
     }
 
-    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
-
     public showErrorLog(logstr: string): void {
         PromptPanel.getInstance().showErrorLog(logstr);
     }
+
+    //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
 
     public shock(tp: number = 0, iswin: boolean = false) {
         // this.sd.play(0, 1);
@@ -797,6 +757,8 @@ class GameCommon {
         // PromptPanel.getInstance().hideActionTips();
     }
 
+    //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理），data（具体的业务数据，具体见案例）
+
     public showLoading(): void {
         PromptPanel.getInstance().showLoading();
     }
@@ -813,7 +775,7 @@ class GameCommon {
                 GameCommon.getInstance().showCommomTips(JSON.stringify(data));
             }
         };
-        await platform.report(GameDefine.BOOKID, evt, params)
+        await platform.report(GameDefine.BOOKID, evt, params,callbackReport)
     }
 
     //50<n<=200、200<n<=500、500以上。这里返回对应的区间号，0(n=0),1(0<n<=50),2(...),3,4
@@ -831,7 +793,7 @@ class GameCommon {
     public async getBookConsumeData() {
         callbackGetBookConsumeData = function (data) {
         };
-        await platform.getBookConsumeData(GameDefine.BOOKID)
+        await platform.getBookConsumeData(GameDefine.BOOKID,callbackGetBookConsumeData)
     }
 
     async reportBusinessEvent(bookId, evtId, optionId) {
@@ -839,7 +801,7 @@ class GameCommon {
             //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理）
             console.log('213');
         };
-        await platform.reportBusinessEvent(GameDefine.BOOKID, evtId, optionId)
+        await platform.reportBusinessEvent(GameDefine.BOOKID, evtId, optionId,callbackReportBusinessEvent)
     }
 
     async getBusinessEventData(bookId, evtId, optionId) {
@@ -847,11 +809,11 @@ class GameCommon {
             //多条查询统计结果
             GameCommon.getInstance().showCommomTips('获取上报' + JSON.stringify(data))
         };
-        await platform.getBusinessEventData(GameDefine.BOOKID, evtId, optionId)
+        await platform.getBusinessEventData(GameDefine.BOOKID, evtId, optionId,callbackGetBusinessEventData)
     }
 
-    async onEventNotify(evtId, str) {
-        await platform.onEventNotify(evtId, str)
+    async triggerEventNotify(evtId, str) {
+        await platform.triggerEventNotify(evtId, str)
     }
 
     async openButton(str) {
@@ -900,6 +862,86 @@ class GameCommon {
             }
         }
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
+    }    
+
+    public getChapterIdByVideoName(videoName){
+        //先在chapter中找，找到videoSrc中包含videoName的
+        let chapters = JsonModelManager.instance.getModelchapter();
+        for(let k in chapters){
+            let videos = chapters[k].videoSrc.split(",")            
+            for (let video of videos){
+                if (video == videoName){
+                    return chapters[k].id;
+                }
+            }
+        }
+        let tqid = -1;
+        let func = (videoName)=>{
+                        let answers = JsonModelManager.instance.getModelanswer();
+                        for (let k in answers){                       
+                            let find = false;
+                            let answer = answers[k];
+                            for (let y in answer){
+                                let ans = answer[y]
+                                let videos = ans.videos.split(",")     
+                                for (let video of videos){
+                                    if (video == videoName){
+                                        return Number(k)
+                                    }
+                                }
+                            }
+                        }
+                    }
+        tqid = func(videoName);
+        let wentis = JsonModelManager.instance.getModelwenti();
+        if (wentis[tqid])
+            return wentis[tqid].chapter
+        return null;
+    }
+    public isChapterOnSale(chaperId){
+        const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
+        let saleTime = chapterCfg.saleTime;
+        let curDay = Tool.formatTimeDay2Num();
+        return curDay>=saleTime;
+    }    
+    public getNextChapterId(curChapterId){        
+        const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
+        let nextChapterId = String(curChapterCfg.next);
+        var arr = nextChapterId.split(";");
+        return Number(arr[0]);
+    }
+    //确定章节是否已开启
+    public checkChapterLocked(){
+        let videoName = VideoManager.getInstance().getVideoID()
+        let curChapterId = this.getChapterIdByVideoName(videoName)
+        if (!curChapterId)
+            curChapterId = UserInfo.curchapter;
+
+        //let curChapterId = UserInfo.curchapter;
+        //let nnextChapterId =  curChapterId
+        if (curChapterId == 0)
+            return true;
+        let nnextChapterId = this.getNextChapterId(curChapterId);
+        let onSale = this.isChapterOnSale(nnextChapterId);
+        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
+        let isVip = item.num > 0;
+        if(!onSale){
+            GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。")
+            return false;
+        }
+        if(!isVip){
+            //获得当前章节完成时间，计算是出下个章节是否可以阅读。       
+            //每个章节完成时，需要永久记录每个章节的首次完成时间
+            VideoManager.getInstance().clear();
+            ChengJiuManager.getInstance().curChapterChengJiu = {};
+            var callback = function () {
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), { windowName: 'TicketPanel', data: "confirm" });
+            }
+            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            return false;
+        }
+        return true;
     }
 }
 

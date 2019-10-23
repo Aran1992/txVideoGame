@@ -31,7 +31,7 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
     public onProgress(current: number, total: number): void {
         let rate = current / total;
         this.percent.text = `${Math.floor(rate * 100)}%`;
-        GameCommon.getInstance().onEventNotify(GameEvent.GAME_LOADING, '');
+        GameCommon.getInstance().triggerEventNotify(GameEvent.GAME_LOADING, '');
         this.progress.width = this.progressGroup.width * rate;
     }
 

@@ -21,7 +21,7 @@ class VideoData extends egret.DisplayObjectContainer {
     public videoNodeChangeHandle: Function;
     public isLoadSrc = false;
     public videoPauseTime: number = 0;
-    public curWentiId: number = 0;
+    private _curWentiId: number = 0;
     private actionScene: egret.DisplayObjectContainer;
     /**
      * 下一个视频需要好感度才能播放的 否则进BE规则
@@ -81,6 +81,12 @@ class VideoData extends egret.DisplayObjectContainer {
 
     private _curVideoIDs: string[];
 
+    private get curWentiId(){
+        return this._curWentiId;
+    }
+    private set curWentiId(n){
+        this._curWentiId = n
+    }
     private get curVideoIDs() {
         return this._curVideoIDs;
     }
@@ -101,6 +107,18 @@ class VideoData extends egret.DisplayObjectContainer {
 
     private static isVideoTouch(id) {
         return id == 'V4111';
+    }
+    public onShowDetail() {
+        console.log("curVideoIndex=", this.curVideoIndex);
+        console.log(this.curVideoIDs)
+        console.log("tiaoState=" + String(this.tiaoState) + ";videoState=" + String(this.videoState))
+        console.log("curWentiId=" + String(this.curWentiId) + ";nextWentiId=" + String(this.nextWentiId))
+        console.log("===", this.videoIdx, VideoManager.getInstance().videoCurrTime(), VideoManager.getInstance().getVideoDuration());
+        console.log(this.curAnswerCfg)
+        console.log("isSelectVideo=" + String(this.isSelectVideo) + ";isHuDong=" + String(this.isHuDong) + ";isDie=" + String(this.isDie) + ";isEndChapter=" + String(this.isEndChapter))
+        console.log("UserInfo.curchapter=" + String(UserInfo.curchapter))
+        console.log(UserInfo.curBokData)
+
     }
 
     public onCloseMengBan() {
@@ -998,7 +1016,7 @@ class VideoData extends egret.DisplayObjectContainer {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
 
         if (UserInfo.curchapter == 1) {
-            if (!GameCommon.checkChapterLocked())
+            if (!GameCommon.getInstance().checkChapterLocked())
                 return;
         }
 

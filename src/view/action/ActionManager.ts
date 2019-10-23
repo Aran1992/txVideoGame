@@ -40,7 +40,7 @@ class ActionManager {
     }
 
     public VIDEO_PLAY_END() {
-        if (!this._actionFinished) {
+        if (!this._actionFinished){
             console.error("action is not finished actionId = " + String(this.actionIdx));
             this.clearCurrScene();
             this.onActionFinish()
