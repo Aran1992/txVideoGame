@@ -79,7 +79,7 @@ class VideoData extends egret.DisplayObjectContainer {
         VideoManager.getInstance().updateVideoData(id);
     }
 
-    private _curVIdeoIds: string[];
+    private _curVideoIDs: string[];
 
     private get curWentiId(){
         return this._curWentiId;
@@ -110,7 +110,7 @@ class VideoData extends egret.DisplayObjectContainer {
     }
     public onShowDetail() {
         console.log("curVideoIndex=", this.curVideoIndex);
-        console.log(this.curVIdeoIds)
+        console.log(this.curVideoIDs)
         console.log("tiaoState=" + String(this.tiaoState) + ";videoState=" + String(this.videoState))
         console.log("curWentiId=" + String(this.curWentiId) + ";nextWentiId=" + String(this.nextWentiId))
         console.log("===", this.videoIdx, VideoManager.getInstance().videoCurrTime(), VideoManager.getInstance().getVideoDuration());
@@ -1018,7 +1018,7 @@ class VideoData extends egret.DisplayObjectContainer {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
 
         if (UserInfo.curchapter == 1) {
-            if (!GameCommon.checkChapterLocked())
+            if (!GameCommon.getInstance().checkChapterLocked())
                 return;
         }
 
