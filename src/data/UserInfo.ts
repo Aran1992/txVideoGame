@@ -17,6 +17,7 @@ class UserInfo {
     public static autoDatas = {};//自动存档
     public static fileDatas = {};//
     private static _curchapter: number = 0;
+    private static _playingChapter:number = 0;
     public static ansWerData: AnswerData;
     public static curTitle: number;//当前穿戴称号
     public static achievementDics = {};//所有成就
@@ -37,8 +38,18 @@ class UserInfo {
         return UserInfo._curchapter;
     }
     public static set curchapter(n){
+        console.log('set curchapter '+n)
         UserInfo._curchapter = n;
     }
+    
+    public static get playingChapter(){
+        return UserInfo._playingChapter;
+    }
+    public static set playingChapter(n){
+        console.log('set playingChapter '+n)
+        UserInfo._playingChapter = n;
+    }
+
 
     public constructor() {
         // UserInfo.chapterDatas = {};

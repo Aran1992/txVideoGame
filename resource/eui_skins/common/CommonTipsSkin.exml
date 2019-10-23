@@ -136,10 +136,10 @@
         <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="读取失败" textAlign="center"
                  fontFamily="SimHei" horizontalCenter="0" verticalCenter="0" />
     </e:Group>
-    <e:Scroller width="600" height="400" right="0" bottom="10" touchEnabled="false" touchChildren="false">
-        <e:Group>
-            <e:Label id="logLab" size="20" fontFamily="SimHei" textAlign="right" textColor="0xFFFFFF" lineSpacing="3"
-                     stroke="2" right="0" bottom="0" width="600" />
+    <e:Scroller width="600" height="400" right="47" bottom="93" touchEnabled="false" touchChildren="false">
+        <e:Group x="-33">
+            <e:Label id="logLab" size="30" fontFamily="SimHei" textAlign="right" textColor="0xFFFFFF" lineSpacing="3"
+                     stroke="2" right="0" bottom="0" width="600"  alpha="0.6"/>
         </e:Group>
     </e:Scroller>
 	<e:Group id="roleChapterNoticeGroup" left="0" right="0" bottom="0" top="0" visible="false">

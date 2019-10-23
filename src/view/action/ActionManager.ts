@@ -30,12 +30,12 @@ class ActionManager {
     public static getInstance(): ActionManager {
         if (this.instance == null) {
             this.instance = new ActionManager();
-            GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_PLAY_END, ActionManager.instance.VIDEO_PLAY_END, ActionManager.instance);
+            GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_PLAY_END, this.instance.VIDEO_PLAY_END, this.instance);
         }        
         return this.instance;
     }
     public VIDEO_PLAY_END(){
-        if (!this._actionFinished){
+        if (!this._actionFinished && this.currModel){
             console.error("action is not finished actionId = "+String(this.actionIdx));
             this.clearCurrScene();
             this.onActionFinish()
@@ -69,6 +69,7 @@ class ActionManager {
             if (this.actionIdx < this.actionList.length) {
                 this.clearCurrScene();
                 if (delTime > 0) {
+                    //不管视频播没播，到期都会执行，视频暂停也不影响，这里坑爹的只是不允许弹出暂停按纽处理，其他手段暂停就会出问题
                     Tool.callbackTime(this.createActionUI, this, delTime);
                 } else {
                     this.createActionUI();

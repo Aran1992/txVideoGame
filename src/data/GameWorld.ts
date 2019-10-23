@@ -22,7 +22,7 @@ class GameWorld extends egret.DisplayObjectContainer {
         if (!UserInfo.curBokData) {
             return;
         }
-        if(!GameCommon.checkChapterLocked())
+        if(!GameCommon.getInstance().checkChapterLocked())
             return;
         if (!this.videoData) {
             this.videoData = new VideoData();
@@ -309,10 +309,11 @@ class GameWorld extends egret.DisplayObjectContainer {
     /**事件注册**/
     private onRegist(): void {
         window.onerror = function (message, url, line) {
-            GameCommon.getInstance().showErrorLog("URL: " + url + "\n" + 'line' + line + '\n' + message);
+            console.trace();
+            GameCommon.getInstance().showErrorLog("URL: " + url + "\n" + 'line' + line + '    \n' + message);
         };
 
-        window['onEventNotify'] = function (event, json) {
+        window['triggerEventNotify'] = function (event, json) {
             console.log(json);
             let data = json;
             switch (event) {

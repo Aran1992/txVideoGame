@@ -52,14 +52,15 @@
 			</e:Group>
 		</e:Group>
 		<e:Group id="controlGroup" touchEnabled="false" left="0" width="100%" height="100%" y="0" alpha="1" x="0"
-		         visible="false">
-			<e:Button id="goMain" width="62" height="62" left="63" top="58">
+		        >
+			<e:Button id="goMain" width="88" height="112" left="63" top="52" anchorOffsetX="0" anchorOffsetY="0">
 				<e:skinName>
-					<e:Skin states="up,down,disabled" width="62">
-						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="sc_shipin_close_png" source.down="sc_shipin_close_png"
-						         horizontalCenter="0" verticalCenter="0" />
+					<e:Skin states="up,down,disabled">
+					<e:Image width="50%" height="50%" left="25%" top="25%" source="common_close1_png" source.down="common_close1_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 					</e:Skin>
 				</e:skinName>
+
 			</e:Button>
 			<e:Image horizontalCenter="0" source="video_heidi_png" bottom="0" width="100%" />
 			<e:Group id="xuanzecundang" touchEnabled="false" left="0" width="100%" height="0" y="-244" alpha="1" x="0"
@@ -162,14 +163,14 @@
 					<e:HorizontalLayout gap="66" />
 				</e:layout>
 			</e:Group>
-			<e:Button id="cundang1" width="65" height="58" right="62" verticalCenter="-11">
+			<e:Button id="cundang1" width="65" height="58" right="478" verticalCenter="383">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
 						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_cundang_png" horizontalCenter="0" verticalCenter="0" />
 					</e:Skin>
 				</e:skinName>
 			</e:Button>
-			<e:Button id="idBtnTicket" width="65" height="58" right="62" verticalCenter="-289">
+			<e:Button id="idBtnTicket" width="65" height="58" right="60" verticalCenter="-31" visible="false">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
 						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_ticket_png" horizontalCenter="0" verticalCenter="0" />
@@ -177,7 +178,7 @@
 				</e:skinName>
 
 			</e:Button>
-			<e:Button id="idBtnShopCar" width="65" height="58" right="62" verticalCenter="-196">
+			<e:Button id="idBtnShopCar" width="65" height="58" right="62" verticalCenter="-196" visible="false">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
 						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_shopcar_png" horizontalCenter="0" verticalCenter="0" />
@@ -185,7 +186,7 @@
 				</e:skinName>
 
 			</e:Button>
-			<e:Button id="idBtnClock" width="65" height="58" right="62" verticalCenter="-104">
+			<e:Button id="idBtnClock" width="65" height="58" right="62" verticalCenter="-132">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
 						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_clock_png" horizontalCenter="0" verticalCenter="0" />
@@ -193,7 +194,7 @@
 				</e:skinName>
 
 			</e:Button>
-			<e:Button id="fenxiangBtn" icon="control_jietu_png" width="65" height="58" right="58" verticalCenter="81">
+			<e:Button id="fenxiangBtn" icon="control_jietu_png" width="65" height="58" right="58" verticalCenter="81" visible="false">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
 						<e:Image scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" id="iconDisplay" />

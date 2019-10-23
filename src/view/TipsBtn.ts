@@ -672,20 +672,27 @@ class TipsBtn extends eui.Component {
         var arr = nextChapterId.split(";");
         let nnextChapterId = Number(arr[0]);
         //是否付费用户，下一章是否已上架
-        let onSale = GameCommon.isChapterOnSale(nnextChapterId);
+        if (platform.getPlatform() == "plat_txsp"){
+            this.idBtnTicket.visible=true;
+        }else {
+            this.idBtnTicket.visible=false;
+        }
+        let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
         if(this.isVip || nnextChapterId==0 || !onSale){
             this.idBtnClock.visible=false;
-            this.idBtnShopCar.visible=false;
+            this.idBtnTicket.visible=false;
         }else{
             this.idBtnClock.visible=true;
-            this.idBtnShopCar.visible=true;
         }
         this.idBtnClock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnClockClick, this);
         this.idBtnShopCar.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShopCarClick, this);
         this.idBtnTicket.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnTicketClick, this);
+
+        
         //VideoManager.getInstance().
     }
     private idBtnClockClick(){
+        
         GameCommon.getInstance().showCommomTips("下一章X天后免费")
     }
     private idBtnShopCarClick(){

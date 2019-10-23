@@ -32,7 +32,7 @@ class ShopManager {
             //     this.items[array[k].saleId] = d;
             // }
         };
-        platform.takeOffBookValue(GameDefine.BOOKID, saleId, currentSlotId, num);
+        platform.takeOffBookValue(GameDefine.BOOKID, saleId, currentSlotId, num,callbackTakeOffBookValue);
     }
 
     /**钻石购买商品**/
@@ -59,7 +59,7 @@ class ShopManager {
             };
             let currentSlotId: number = 0;
             console.log("buy:"+itemId+";"+num+";slot="+currentSlotId);
-            platform.buyGoods(GameDefine.BOOKID, itemId, num, currentSlotId);
+            platform.buyGoods(GameDefine.BOOKID, itemId, num, currentSlotId,callbackBuyGoods);
         }
     }
 
@@ -89,7 +89,7 @@ class ShopManager {
         // if (!this._shopDataDict) {
         if (!1 || egret.Capabilities.os == 'Windows PC') {//测试版数据platform.isDebug
             if (!this._shopDataDict) {
-                platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE);
+                platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE,callbackGetBookHistory);
                 let values = [];
                 for (let id in JsonModelManager.instance.getModelshop()) {
                     let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
@@ -118,7 +118,7 @@ class ShopManager {
                 }
             };
             let currentSlotId: number = 0;
-            platform.getBookValues(GameDefine.BOOKID, currentSlotId);//, callbackGetBookValues);
+            platform.getBookValues(GameDefine.BOOKID, currentSlotId,callbackGetBookValues);//, callbackGetBookValues);
         }
         // }
     }

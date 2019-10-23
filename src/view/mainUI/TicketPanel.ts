@@ -123,8 +123,14 @@ class TicketPanel extends eui.Component{
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
         this.onCloseClick();
     }
-    private idBtnUseCodeClick(){        
+    private idBtnUseCodeClick(){
         SoundManager.getInstance().playSound("ope_click.mp3")
+        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
+        let isVip = item.num > 0;
+        if(isVip){
+            GameCommon.getInstance().showCommomTips("你已购买观礼凭证，不可以激活。")
+            return;
+        }
         let code = this.idEditText.text;
         var params = {"bookId":GameDefine.BOOKID,"cmd":"exchangeCDKey","CDKey":code}    
         window['sendRequest'](params,(data)=>{
