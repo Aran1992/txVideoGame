@@ -26,6 +26,7 @@ class TicketPanel extends eui.Component{
     private idCode:eui.Label;
     private idNoCode:eui.Label;
     private idShareCode:eui.Label;
+    private idHasCodeText:eui.Label;
 
     private _selectIndex:number = 1;
     private _openParam:string;
@@ -105,11 +106,13 @@ class TicketPanel extends eui.Component{
                 this.idShareCode.text=cdk
                 this.idBtnCopyCode.visible = true;
                 this.idBtnShareCode.visible = true;
+                this.idHasCodeText.visible = true;
             }else{                
                 this.idCode.visible = false;
                 this.idNoCode.visible = true;
                 this.idBtnCopyCode.visible = false;
                 this.idBtnShareCode.visible = false;
+                this.idHasCodeText.visible = false;
             }
             //console.log(data)
         });
