@@ -311,7 +311,7 @@ class GameWorld extends egret.DisplayObjectContainer {
             GameCommon.getInstance().showErrorLog("URL: " + url + "\n" + 'line' + line + '    \n' + message);
         };
 
-        window['triggerEventNotify'] = function (event, json) {
+        window['onEventNotify'] = function (event, json) {
             console.log(json);
             let data = json;
             switch (event) {
