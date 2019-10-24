@@ -206,6 +206,9 @@ class GameCommon {
                 }
                 // GameCommon.getInstance().addChengJiuTips(JSON.stringify(shopInfoDict))
                 str = JSON.stringify(shopInfoDict);
+                if (egret.Capabilities.os == 'Windows PC') {
+                    egret.localStorage.setItem(tp.toString(), str);
+                }
                 break;
         }
         let curChapterCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
@@ -213,7 +216,7 @@ class GameCommon {
         if (curChapterCfg) {
             cundangTitle = curChapterCfg.name;
         }
-        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str,callbackSaveBookHistory);
+        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str, callbackSaveBookHistory);
     }
 
     /*所有数据存档*/
@@ -245,12 +248,12 @@ class GameCommon {
                 // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH));
             }
         };
-        platform.getBookHistoryList(GameDefine.BOOKID,callbackGetBookHistoryList);
+        platform.getBookHistoryList(GameDefine.BOOKID, callbackGetBookHistoryList);
     }
 
     public deleteBookHistory(tp) {
         egret.localStorage.clear();
-        platform.deleteBookHistory(GameDefine.BOOKID, tp,callbackDeleteBookHistory);
+        platform.deleteBookHistory(GameDefine.BOOKID, tp, callbackDeleteBookHistory);
         // LocalStorageManager.getInstance().deleteBookHistory(tp);
     }
 
@@ -430,7 +433,7 @@ class GameCommon {
             }
 
         };
-        platform.getBookHistory(GameDefine.BOOKID, tp,callbackGetBookHistory);
+        platform.getBookHistory(GameDefine.BOOKID, tp, callbackGetBookHistory);
     }
 
     public addRoleLike(index) {
@@ -775,7 +778,7 @@ class GameCommon {
                 GameCommon.getInstance().showCommomTips(JSON.stringify(data));
             }
         };
-        await platform.report(GameDefine.BOOKID, evt, params,callbackReport)
+        await platform.report(GameDefine.BOOKID, evt, params, callbackReport)
     }
 
     //50<n<=200、200<n<=500、500以上。这里返回对应的区间号，0(n=0),1(0<n<=50),2(...),3,4
@@ -793,7 +796,7 @@ class GameCommon {
     public async getBookConsumeData() {
         callbackGetBookConsumeData = function (data) {
         };
-        await platform.getBookConsumeData(GameDefine.BOOKID,callbackGetBookConsumeData)
+        await platform.getBookConsumeData(GameDefine.BOOKID, callbackGetBookConsumeData)
     }
 
     async reportBusinessEvent(bookId, evtId, optionId) {
@@ -801,7 +804,7 @@ class GameCommon {
             //回调函数返回的数据中code（0表示成功处理；非0表示没有成功处理）
             console.log('213');
         };
-        await platform.reportBusinessEvent(GameDefine.BOOKID, evtId, optionId,callbackReportBusinessEvent)
+        await platform.reportBusinessEvent(GameDefine.BOOKID, evtId, optionId, callbackReportBusinessEvent)
     }
 
     async getBusinessEventData(bookId, evtId, optionId) {
@@ -809,7 +812,7 @@ class GameCommon {
             //多条查询统计结果
             GameCommon.getInstance().showCommomTips('获取上报' + JSON.stringify(data))
         };
-        await platform.getBusinessEventData(GameDefine.BOOKID, evtId, optionId,callbackGetBusinessEventData)
+        await platform.getBusinessEventData(GameDefine.BOOKID, evtId, optionId, callbackGetBusinessEventData)
     }
 
     async triggerEventNotify(evtId, str) {
@@ -862,58 +865,61 @@ class GameCommon {
             }
         }
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
-    }    
+    }
 
-    public getChapterIdByVideoName(videoName){
+    public getChapterIdByVideoName(videoName) {
         //先在chapter中找，找到videoSrc中包含videoName的
         let chapters = JsonModelManager.instance.getModelchapter();
-        for(let k in chapters){
-            let videos = chapters[k].videoSrc.split(",")            
-            for (let video of videos){
-                if (video == videoName){
+        for (let k in chapters) {
+            let videos = chapters[k].videoSrc.split(",")
+            for (let video of videos) {
+                if (video == videoName) {
                     return chapters[k].id;
                 }
             }
         }
         let tqid = -1;
-        let func = (videoName)=>{
-                        let answers = JsonModelManager.instance.getModelanswer();
-                        for (let k in answers){                       
-                            let find = false;
-                            let answer = answers[k];
-                            for (let y in answer){
-                                let ans = answer[y]
-                                let videos = ans.videos.split(",")     
-                                for (let video of videos){
-                                    if (video == videoName){
-                                        return Number(k)
-                                    }
-                                }
-                            }
+        let func = (videoName) => {
+            let answers = JsonModelManager.instance.getModelanswer();
+            for (let k in answers) {
+                let find = false;
+                let answer = answers[k];
+                for (let y in answer) {
+                    let ans = answer[y]
+                    let videos = ans.videos.split(",")
+                    for (let video of videos) {
+                        if (video == videoName) {
+                            return Number(k)
                         }
                     }
+                }
+            }
+        };
         tqid = func(videoName);
         let wentis = JsonModelManager.instance.getModelwenti();
         if (wentis[tqid])
-            return wentis[tqid].chapter
+            return wentis[tqid].chapter;
         return null;
     }
-    public isChapterOnSale(chaperId){
+
+    public isChapterOnSale(chaperId) {
         const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
         let saleTime = chapterCfg.saleTime;
         let curDay = Tool.formatTimeDay2Num();
-        return curDay>=saleTime;
-    }    
-    public getNextChapterId(curChapterId){        
+        return curDay >= saleTime;
+    }
+
+    public getNextChapterId(curChapterId) {
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
         let nextChapterId = String(curChapterCfg.next);
         var arr = nextChapterId.split(";");
         return Number(arr[0]);
     }
+
     //确定章节是否已开启
-    public checkChapterLocked(){
-        let videoName = VideoManager.getInstance().getVideoID()
-        let curChapterId = this.getChapterIdByVideoName(videoName)
+    public checkChapterLocked() {
+        let videoName = VideoManager.getInstance().getVideoID();
+        let curChapterId = this.getChapterIdByVideoName(videoName);
         if (!curChapterId)
             curChapterId = UserInfo.curchapter;
 
@@ -925,17 +931,20 @@ class GameCommon {
         let onSale = this.isChapterOnSale(nnextChapterId);
         let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         let isVip = item.num > 0;
-        if(!onSale){
-            GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。")
+        if (!onSale) {
+            GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。");
             return false;
         }
-        if(!isVip){
-            //获得当前章节完成时间，计算是出下个章节是否可以阅读。       
+        if (!isVip) {
+            //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
             VideoManager.getInstance().clear();
             ChengJiuManager.getInstance().curChapterChengJiu = {};
             var callback = function () {
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), { windowName: 'TicketPanel', data: "confirm" });
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
+                    windowName: 'TicketPanel',
+                    data: "confirm"
+                });
             }
             GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));

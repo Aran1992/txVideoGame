@@ -21,7 +21,6 @@ class VideoData extends egret.DisplayObjectContainer {
     public videoNodeChangeHandle: Function;
     public isLoadSrc = false;
     public videoPauseTime: number = 0;
-    private _curWentiId: number = 0;
     private actionScene: egret.DisplayObjectContainer;
     /**
      * 下一个视频需要好感度才能播放的 否则进BE规则
@@ -50,7 +49,6 @@ class VideoData extends egret.DisplayObjectContainer {
     private touchId: string;
     private fileTimerIdx: number = 0;
     private oldVideoTimer: number = 0;
-    private _curSelf;
     private isDie = false;
     private isEndChapter: boolean = false;
     private videoState: string;
@@ -79,14 +77,18 @@ class VideoData extends egret.DisplayObjectContainer {
         VideoManager.getInstance().updateVideoData(id);
     }
 
-    private _curVideoIDs: string[];
+    private _curWentiId: number = 0;
 
-    private get curWentiId(){
+    private get curWentiId() {
         return this._curWentiId;
     }
-    private set curWentiId(n){
+
+    private set curWentiId(n) {
         this._curWentiId = n
     }
+
+    private _curVideoIDs: string[];
+
     private get curVideoIDs() {
         return this._curVideoIDs;
     }
@@ -108,6 +110,7 @@ class VideoData extends egret.DisplayObjectContainer {
     private static isVideoTouch(id) {
         return id == 'V4111';
     }
+
     public onShowDetail() {
         console.log("curVideoIndex=", this.curVideoIndex);
         console.log(this.curVideoIDs)
@@ -192,7 +195,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
             }
             this.curWentiId = wentiId;
-            this.curVideoIDs = UserInfo.curBokData.videoIds;
+            this.curVideoIDs = [UserInfo.curBokData.curVideoID];
             this.curVideoIndex = 0;
             this.videoIdx = UserInfo.curBokData.videoNames[wentiId];
             let cfgs = answerModels[wentiId];
@@ -226,15 +229,14 @@ class VideoData extends egret.DisplayObjectContainer {
                     }
                     if (this.videoIdx == '') {
                         this.isSelectVideo = false;
-                        this.videoIdx = this.curVideoIDs[0];
-                        this.curVideoIndex = 1;
+                        this.curVideoIndex = 0;
+                        this.videoIdx = this.curVideoIDs[this.curVideoIndex];
                     }
                 } else {
                     this.isSelectVideo = false;
-                    this.curVideoIDs = [];
-                    this.curVideoIDs.push(this.curAnswerCfg.videos);
-                    this.curVideoIndex = 1;
-                    this.videoIdx = this.curAnswerCfg.videos;
+                    this.curVideoIDs = this.curAnswerCfg.videos.split(",");
+                    this.curVideoIndex = 0;
+                    this.videoIdx = this.curVideoIDs[this.curVideoIndex];
                 }
             } else if (UserInfo.curBokData.answerId[UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]]) {
                 wentiId = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2];
@@ -284,17 +286,13 @@ class VideoData extends egret.DisplayObjectContainer {
             this.againFlg = true;
             GameDefine.IS_READ_PLAY = true;
             if (VideoManager.getInstance().getVideoData() && widPlayer) {
-                let obj = this;
                 VideoManager.getInstance().clear();
-                Tool.callbackTime(function () {
-                    VideoManager.getInstance().onAgainGame(obj.videoIdx);
-                }, obj, 1000);
-
+                Tool.callbackTime(() => {
+                    VideoManager.getInstance().onAgainGame(this.videoIdx);
+                }, this, 1000);
             } else {
                 VideoManager.getInstance().onPlay(this.videoIdx);
             }
-        } else {
-
         }
     }
 
@@ -324,7 +322,6 @@ class VideoData extends egret.DisplayObjectContainer {
     public starVideo(wenti) {
         if (!UserInfo.curBokData)
             UserInfo.curBokData = new BookData();
-        GameDefine.CUR_PLAYER_VIDEO == 1;
         this.curWentiId = wenti;
         this.nextWentiId = wenti;
         this.onCreateData();
@@ -548,6 +545,12 @@ class VideoData extends egret.DisplayObjectContainer {
             widPlayer.on('statechange', (data) => {
                 if (GameDefine.CUR_PLAYER_VIDEO == 2) {
                     return;
+                }
+                if (data.old === "seeked" && data.new === "canplay") {
+                    widPlayer.play();
+                }
+                if (data.new === "playing") {
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.HIDE_MAIN_GROUP), data);
                 }
                 this.log(data.old + '-----------' + data.new);
                 if (data.new == 'buffering' || data.new == 'seeking') {
@@ -942,7 +945,6 @@ class VideoData extends egret.DisplayObjectContainer {
         this.tipsPanel.visible = true;
         this.touchEnabled = false;
         this.tipsPanel.onCloseMengBan();
-        this._curSelf = this;
     }
 
     private onPlayIos() {
@@ -1025,7 +1027,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (UserInfo.curchapter == 1)
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         else
-            console.error("open ResultWinPanel")
+            console.error("open ResultWinPanel");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
     }
 

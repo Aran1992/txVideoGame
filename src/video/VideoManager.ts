@@ -107,61 +107,24 @@ class VideoManager {
     }
 
     public onAgainGame(src) {
-        // if (!this.videoLoadNode) {
-        // 	this.videoLoadNode = function (vids) {
-        // 		// console.log('123');
-        // 		return vids;
-        // 	}
-        // }
         GameDefine.CUR_PLAYER_VIDEO = 1;
         if (this.first) {
             this.onPlay(src);
         } else {
-            widPlayer.play(videoModels[src].vid);
+            VideoManager.play(videoModels[src].vid);
         }
-
-        // this.videoData.checkVideoTime(src);
     }
 
-    public onPlay(param, tim: number = 0) {
+    public onPlay(param) {
         if (this.first) {
-            // let di = window['videoDivMin'];
-            // di.style.width = videoSize.width + "px";
-            // di.style.height = videoSize.height + "px";
-            // var video1;
-
-            // var obj = this;
-            // window['player'].on('ready', () => {
-            // 	// window['player'] = player;
-            // 	widPlayer = player;
-            // 	var btn: eui.Button = new eui.Button();
-            // 	btn.addEventListener(egret.TouchEvent.TOUCH_TAP, obj.onClick, obj);
-            // 	btn.dispatchEvent(new egret.Event(egret.TouchEvent.TOUCH_TAP,true,true))
-            // 	VideoManager.getInstance().videoData.checkVideoTime(param);
-            // })
-            // param
             if (widPlayer) {
-                widPlayer.play(videoModels[param].vid);
+                VideoManager.play(videoModels[param].vid);
                 VideoManager.getInstance().videoData.checkVideoTime(param);
                 this.first = false;
             }
-
-            // window['player'].play();
-            // Tool.callbackTime(function () {
-            // 	widPlayer = window['player'];
-            // 	var ps = document.getElementsByTagName('video');
-            // 	for (var i: number = 0; i < ps.length; i++) {
-            // 		if (size.fillType == FILL_TYPE_COVER) {
-            // 			ps[i].style["object-fit"] = "cover";
-            // 		} else {
-            // 			ps[i].style["object-fit"] = "contain";
-            // 		}
-            // }
-            // }, this, 1000);
-            // return;
         } else {
             if (widPlayer) {
-                widPlayer.play(videoModels[param].vid);
+                VideoManager.play(videoModels[param].vid);
             }
         }
     }
@@ -301,32 +264,6 @@ class VideoManager {
         // }
     }
 
-    public onPlayVideo(param, tim: number = 0, isPlay: boolean = false) {
-        if (!widPlayer)
-            return;
-        // this._isRead = isPlay;
-        // if (isPlay) {
-        // 	if (this.isReadySet) {
-        // 		widPlayer.setNextVideoNode(videoModels[param].vid,{ inerrupt: true });
-        // 		return;
-        // 	}
-        // 	this.setVid = videoModels[param].vid;
-        // }
-
-        VideoManager.getInstance().log('开始播放' + param);
-        widPlayer.play(videoModels[param].vid);
-        if (tim > 0) {
-            var obj = this;
-            Tool.callbackTime(function () {
-                if (VideoManager.getInstance().videoCurrTime() < tim) {
-                    widPlayer.seek(tim);
-                    widPlayer.resume();
-                }
-            }, obj, 1000);
-
-        }
-    }
-
     public onLoadSrc(src) {
         if (!widPlayer)
             return;
@@ -410,5 +347,13 @@ class VideoManager {
 
     public textHudong(wentId: number) {
         this.videoData.testHudong(wentId);
+    }
+
+    private static play(vid) {
+        if (vid === widPlayer.getVid()) {
+            widPlayer.seek(0);
+        } else {
+            widPlayer.play(vid);
+        }
     }
 }
