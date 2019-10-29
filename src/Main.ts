@@ -1,39 +1,45 @@
-var size = {width: 0, height: 0, fillType: 0};
-var wind = {width: 0, height: 0};
-var videoSize = {width: 0, height: 0};
-var FILL_TYPE_COVER = 0;// 覆盖
-var FILL_TYPE_FILL_H = 1;// 横向填充
-var FILL_TYPE_FILL_V = 2;// 纵向填充
+const size = {width: 0, height: 0, fillType: 0};
+const wind = {width: 0, height: 0};
+const videoSize = {width: 0, height: 0};
+const FILL_TYPE_COVER = 0;// 覆盖
+const FILL_TYPE_FILL_H = 1;// 横向填充
+const FILL_TYPE_FILL_V = 2;// 纵向填充
 class Main extends eui.UILayer {
-    private textfield: egret.TextField;
+    private static initRotation() {
+        let div = window["videoDivMin"];
+        let value = 0;
+        let tx = 0;
+        let ty = 0;
+        if (videoSize.width < videoSize.height) {
+            let cha = (videoSize.height - videoSize.width) / 2;
+            videoSize.width = wind.width;
+            videoSize.height = wind.height;
+            value = 90;
+            tx = -cha;
+            ty = cha;
+        }
+        div.style["transform"] = 'translate3d(' + tx + 'px, ' + ty + 'px, 0px) rotate3d(0, 0, 1, ' + value + 'deg) scale3d(1, 1, 1)';
+        div.style["-webkit-transform"] = 'translate3d(' + tx + 'px, ' + ty + 'px, 0px) rotate3d(0, 0, 1, ' + value + 'deg) scale3d(1, 1, 1)';
+        div.style.width = videoSize.width + "px";
+        div.style.height = videoSize.height + "px";
+        // div.style.zoom = 1;
+    }
 
     protected createChildren(): void {
         super.createChildren();
         this.stage.scaleMode = egret.StageScaleMode.FIXED_NARROW;
-        this.stage.maxTouches = 100;//最大触摸点
-        egret.lifecycle.addLifecycleListener((context) => {
-            // custom lifecycle plugin
-        });
-
+        this.stage.maxTouches = 100;
         egret.lifecycle.onPause = () => {
-            // egret.ticker.pause();
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
         };
-
         egret.lifecycle.onResume = () => {
-            // egret.ticker.resume();
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'start');
         };
-
-        //inject the custom material parser
-        //注入自定义的素材解析器
         let assetAdapter = new AssetAdapter();
         egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
-        // 定义屏幕宽高
         this.resize();
         this.stage.addEventListener(egret.Event.RESIZE, this.resize, this);
-
         this.runGame().catch(e => {
             console.log(e);
         })
@@ -65,7 +71,7 @@ class Main extends eui.UILayer {
         wind.height = Math.min(window.innerWidth, window.innerHeight);
         videoSize.width = window.innerWidth;
         videoSize.height = window.innerHeight;
-        this.initRotation();
+        Main.initRotation();
         let scale = wind.width / wind.height;
         if (scale < (GameDefine.VIDEO_WIDTH - GameDefine.EDGE_BEYOND_H * 2) / GameDefine.VIDEO_HEIGHT) {
             size.fillType = FILL_TYPE_FILL_H;
@@ -75,26 +81,6 @@ class Main extends eui.UILayer {
             size.fillType = FILL_TYPE_COVER;
         }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATE_RESIZE));
-    }
-
-    private initRotation() {
-        let div = window["videoDivMin"];
-        let value = 0;
-        let tx = 0;
-        let ty = 0;
-        if (videoSize.width < videoSize.height) {
-            let cha = (videoSize.height - videoSize.width) / 2;
-            videoSize.width = wind.width;
-            videoSize.height = wind.height;
-            value = 90;
-            tx = -cha;
-            ty = cha;
-        }
-        div.style["transform"] = 'translate3d(' + tx + 'px, ' + ty + 'px, 0px) rotate3d(0, 0, 1, ' + value + 'deg) scale3d(1, 1, 1)';
-        div.style["-webkit-transform"] = 'translate3d(' + tx + 'px, ' + ty + 'px, 0px) rotate3d(0, 0, 1, ' + value + 'deg) scale3d(1, 1, 1)';
-        div.style.width = videoSize.width + "px";
-        div.style.height = videoSize.height + "px";
-        // div.style.zoom = 1;
     }
 
     private async runGame() {
@@ -126,7 +112,7 @@ class Main extends eui.UILayer {
     }
 
     private loadTheme() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             // load skin theme configuration file, you can manually modify the file. And replace the default skin.
             //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
             let theme = new eui.Theme("resource/default.thm.json", this.stage);
@@ -146,16 +132,18 @@ class Main extends eui.UILayer {
                 for (let filename in jszip['files']) {
                     window['jsonfileCount']++;
                 }
-                for (let filename in jszip['files']) {
-                    jszip['files'][filename].async("string").then(function (jsonFile) {
-                        ModelManager.getInstance().configJson[filename] = JSON.parse(jsonFile);
-                        window['jsonfileCount']--;
-                        if (window['jsonfileCount'] == 0) {
-                            GameDispatcher.getInstance().dispatchEventWith(GameEvent.GAME_JSON_PARSE_OK);
-                        }
-                    });
+                for (const filename in jszip['files']) {
+                    if (jszip['files'].hasOwnProperty(filename)) {
+                        jszip['files'][filename].async("string").then(function (jsonFile) {
+                            ModelManager.getInstance().configJson[filename] = JSON.parse(jsonFile);
+                            window['jsonfileCount']--;
+                            if (window['jsonfileCount'] == 0) {
+                                GameDispatcher.getInstance().dispatchEventWith(GameEvent.GAME_JSON_PARSE_OK);
+                            }
+                        });
+                    }
                 }
-            }, this);
+            });
         } catch (e) {
             alert("zip read fail!!!!! ");
         }
@@ -167,24 +155,7 @@ class Main extends eui.UILayer {
     private onParseJsonComplete(): void {
         GameDispatcher.getInstance().removeEventListener(GameEvent.GAME_JSON_PARSE_OK, this.onParseJsonComplete, this);
         this.touchEnabled = false;
-        var gameWo: GameWorld = new GameWorld();
+        const gameWo: GameWorld = new GameWorld();
         this.addChild(gameWo);
     }
-
-    /**
-     * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
-     * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
-     */
-    private createBitmapByName(name: string): egret.Bitmap {
-        let result = new egret.Bitmap();
-        let texture: egret.Texture = RES.getRes(name);
-        result.texture = texture;
-        return result;
-    }
 }
-
-declare function showVideo(id, src);
-
-declare function videoSourceChoose(src);
-
-declare function share_game()
