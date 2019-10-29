@@ -9,7 +9,7 @@
 		<e:Group id="leftBtnGroup" left="0" top="0" height="100%" width="100%">
 			<e:Group touchChildren="true">
 				<e:Image source="quanquan_title_png" y="46" x="38" />
-				<e:Image id="icon" source="main_icon_png" x="56" y="25" visible="false" />
+				<e:Image id="icon" source="main_icon_png" x="56" y="25"  visible="false"/>
 			</e:Group>
 			<e:Group verticalCenter="0">
 				<e:Button id="btnShouCang" icon="yuandianbai_png" height="93" width="260">

@@ -25,190 +25,162 @@ declare interface Platform {
     reportBusinessEvent(bookId, evtId, optionId,callback): Promise<any>;//上报事件选项
     getBusinessEventData(bookId, evtId, optionId,callback): Promise<any>;//查询上报的事件选项统计
     triggerEventNotify(evt, str): Promise<any>;//事件通知（web主动通知app）
-    finishPage();
 
     isDebug(): boolean;
     getPlatform():string;
+
+    getBridgeHelper();
 }
 
 class DebugPlatform implements Platform {
     async getUserInfo() {
-        if (window['StoryPlatform']) {
-            var data = window['StoryPlatform']['getUserInfo']();
-            var info = JSON.parse(data);
-            if (info && info.code == 0) {
-                info = JSON.parse(info.data);
-                UserInfo.sex = info.sex;
-                UserInfo.user = info.user;
-                UserInfo.id = info.id;
-                UserInfo.avatar = info.avatar;
-                UserInfo.nickName = info.nickName;
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_USER_REFRESH));
-            }
-        }
+        await window["getUserInfo"](()=>{});
     }
     public getPlatform(){
-        return "plat_1001"//plat_txsp
+        if (egret.Capabilities.os == 'Windows PC')
+            return "plat_pc";
+        if (window['StoryPlatform'])
+            return "plat_1001"
+        else
+            return 'plat_txsp'
+    }
+    
+    public getBridgeHelper(){
+        return bridgeHelper;
     }
 
     async share(bookId, title, summary, icon, url, array) {        
         await window["share"](bookId,title,summary, icon, url, array);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['share'](bookId, title, summary, icon, window.location.href, array);
-        // }
     }
 
     async shareImage(bookId, imageData) {
-        await window["shareImage"](bookId,imageData);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['shareImage'](bookId, imageData);
-        // }
+        if (this.getPlatform() == "plat_txsp"){
+            await plattxsp.shareImage(bookId,imageData);
+        }else{
+            await window["shareImage"](bookId,imageData);
+        }
     }
 
     async openButton(str) {
         await window["openButton"](str);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform'].openButton(str, "");
-        // }
     }
 
     //游戏存档
     async saveBookHistory(bookId, slotId, title, externParam,callback) {
-        await window["saveBookHistory"](bookId, slotId,0, title, externParam,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['saveBookHistory'](bookId, slotId, 0, title, externParam, 'callbackSaveBookHistory');
-        // }
+        //console.trace("saveBookHistory")
+        if (this.getPlatform() == "plat_txsp"){
+            await plattxsp.saveBookHistory(bookId, slotId, title, externParam,callback)
+        }else{
+            await window["saveBookHistory"](bookId, slotId,0, title, externParam,callback);
+        }
     }
 
     //获取游戏存档列表
     async getBookHistoryList(bookId,callback) {
         await window["getBookHistoryList"](bookId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['getBookHistoryList'](bookId, 'callbackGetBookHistoryList');
-        // }
     }
 
     //获取制定存档
     async getBookHistory(bookId, slotId,callback) {
         callback = callbackGetBookHistory;
-        await window["getBookHistory"](bookId,slotId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['getBookHistory'](bookId, slotId, 'callbackGetBookHistory');
-        // }
+        if (this.getPlatform() == "plat_txsp"){
+            await plattxsp.getBookHistory(bookId,slotId,callback);
+        }else{
+            await window["getBookHistory"](bookId,slotId,callback);
+        }
     }
 
     //删除制定存档
     async deleteBookHistory(bookId, slotId,callback) {
-        await window["deleteBookHistory"](bookId,slotId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['deleteBookHistory'](bookId, slotId, 'callbackDeleteBookHistory');
-        // }
+        if (this.getPlatform() == "plat_txsp"){
+            await plattxsp.deleteBookHistory(bookId,slotId,callback);
+        }else{
+            await window["deleteBookHistory"](bookId,slotId,callback);
+        }
     }
 
     //获取最近进度
     async getBookLastHistory(bookId,callback) {
         await window["getBookLastHistory"](bookId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['getBookLastHistory'](bookId, 'callbackGetBookLastHistory');
-        // }
-
     }
 
     //获取商业化数值
     async getBookValues(bookId, slotId,callback) {
-        await window["getBookValues"](bookId,slotId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['getBookValues'](bookId, slotId, "callbackGetBookValues");
-        // }
+        if(this.getPlatform()=="plat_txsp"){
+            await plattxsp.getBookValues(bookId,slotId,callback);
+        }else{
+            await window["getBookValues"](bookId,slotId,callback);
+        }
     }
 
     async buyGoods(bookId, itemId, num, curSlotId,callback) {
-        await window["buyGoods"](bookId,itemId,num,curSlotId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['buyGoods'](bookId, itemId, num, curSlotId, 'callbackBuyGoods');
-        // }
+        if(this.getPlatform()=="plat_txsp"){
+            await plattxsp.buyGoods(bookId,itemId,num,curSlotId,callback);
+        }else{
+            await window["buyGoods"](bookId,itemId,num,curSlotId,callback);
+        }
     }
     async sendRequest(params,callback){
-        await window["sendRequest"](params,callback);
-        // if(window['StoryPlatform']){
-        //     await window['StoryPlatform']['sendRequest'](params,'callbackSendRequest');
-        // }
+        if(this.getPlatform()=="plat_txsp" || this.getPlatform()=="plat_pc"){
+            await plattxsp.sendRequest(params,callback);
+        }else{
+            await window["sendRequest"](params,callback);
+        }
     }
 
     async takeOffBookValue(bookId, saleId, currentSlotId, num,callback) {
         await window["takeOffBookValue"](bookId,saleId,currentSlotId,num,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['takeOffBookValue'](bookId, saleId, currentSlotId, num, 'callbackTakeOffBookValue');
-        // }
     }
 
     async report(bookId, evt, params,callback) {
         await window["report"](bookId, evt, params,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['report'](bookId, evt, JSON.stringify(params), 'callbackReport');
-        // }
     }
 
     async getUserPlatformData() {
         await window["getUserPlatformData"]();
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['getUserPlatformData']('callbackGetUserPlatformData');
-        // }
     }
 
     async getBookConsumeData(bookId,callback) {
         await window["getBookConsumeData"](bookId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['getBookConsumeData'](bookId, 'callbackGetBookConsumeData');
-        // }
     }
 
     async reportBusinessEvent(bookId, evtId, optionId,callback) {
         await window["getBookConsumeData"](bookId, evtId, optionId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['reportBusinessEvent'](bookId, evtId, optionId, 'callbackReportBusinessEvent');
-        // }
     }
 
     async getBusinessEventData(bookId, evtId, optionId,callback) {
         await window["getBusinessEventData"](bookId, evtId, optionId,callback);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['getBusinessEventData'](bookId, evtId, optionId, 'callbackGetBusinessEventData');
-        // }
     }
 
     async triggerEventNotify(evt, str) {
         await window["triggerEventNotify"](evt, str);
-        // if (window['StoryPlatform']) {
-        //     await window['StoryPlatform']['triggerEventNotify'](evt, str);
-        // }
-    }
-
-    async finishPage() {//退出页面
-        if (window['StoryPlatform']) {
-            await window['StoryPlatform']['finishPage']();
-        }
     }
 
     public isDebug(): boolean {
         return true;
-        // return window['StoryPlatform'] ? false : true;
     }
 }
 
 if (!window.platform) {
     window.platform = new DebugPlatform();
 }
+if (!window.plattxsp){
+    window.plattxsp = new Txsp();
+    window.plattxsp.init();
+}
+
 declare let platform: Platform;
-declare let appToH5EventType: number;
-declare let appToH5EventData: string;
-declare let nextVideoUrl: string;
+declare let plattxsp:Txsp;
+// declare let appToH5EventType: number;
+// declare let appToH5EventData: string;
+// declare let nextVideoUrl: string;
 
 declare interface Window {
-    platform: Platform;
-    appToH5EventType: number;
-    appToH5EventData: string;
-    nextVideoUrl: string;
+    platform: Platform;    
+    plattxsp: Txsp;    
+    // appToH5EventType: number;
+    // appToH5EventData: string;
+    // nextVideoUrl: string;
 }
 
 

@@ -87,7 +87,8 @@ class ShopManager {
     /**获取商品信息列表**/
     public getShopInfos() {
         // if (!this._shopDataDict) {
-        if (!1 || egret.Capabilities.os == 'Windows PC') {//测试版数据platform.isDebug
+         //商品列表全部走本地，不从服务器取
+        if (true){//(!1 || egret.Capabilities.os == 'Windows PC' || platform.getPlatform()=="plat_txsp") {
             if (!this._shopDataDict) {
                 //platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE,callbackGetBookHistory);
                 GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
@@ -170,7 +171,7 @@ class ShopManager {
         } else if (shopdata.id > GameDefine.SHOP_CHAPTER_STARTID) {//章节
             GameCommon.getInstance().onShowResultTips('购买成功');
         }
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH));
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH),shopdata);
     }
 
     /**初始化商城数据**/
@@ -213,16 +214,16 @@ class ShopManager {
                     break;
                 case SHOP_TYPE.DAOJU:
                     break;
-                case SHOP_TYPE.XINSHOUBAO:
-                    let goodsIDAry: string[] = info.model.params.split(",");
-                    for (let i: number = 0; i < goodsIDAry.length; i++) {
-                        let goodsid: number = parseInt(goodsIDAry[i]);
-                        let shopData: ShopInfoData = this.getShopInfoData(goodsid);
-                        this.addGoods(goodsid);
-                        this.onUpdateMyGoods(shopData);
+                case SHOP_TYPE.SPECIAL:
+                    if (info.id == GameDefine.SHOP_XINSHOU_ID){
+                        let goodsIDAry: string[] = info.model.params.split(",");
+                        for (let i: number = 0; i < goodsIDAry.length; i++) {
+                            let goodsid: number = parseInt(goodsIDAry[i]);
+                            let shopData: ShopInfoData = this.getShopInfoData(goodsid);
+                            this.addGoods(goodsid);
+                            this.onUpdateMyGoods(shopData);
+                        }
                     }
-                    break;
-                case SHOP_TYPE.GUANGLIPINGZHENG:
                     break;
             }
         } else if (info.id > GameDefine.SHOP_CHAPTER_STARTID) {//章节
@@ -274,8 +275,7 @@ enum SHOP_TYPE {
     MUSICS = 3,//音乐
     CHAPTER = 4,//章节
     DAOJU = 5,//道具
-    GUANGLIPINGZHENG = 6,//观礼凭证
-    XINSHOUBAO = 99,//新手包
+    SPECIAL = 6,//特殊物品
 }
 
 declare let callbackBuyGoods;

@@ -1,9 +1,10 @@
-var size = {width: 0, height: 0, fillType: 0};
-var wind = {width: 0, height: 0};
-var videoSize = {width: 0, height: 0};
+var size = { width: 0, height: 0, fillType: 0 };
+var wind = { width: 0, height: 0 };
+var videoSize = { width: 0, height: 0 };
 var FILL_TYPE_COVER = 0;// 覆盖
 var FILL_TYPE_FILL_H = 1;// 横向填充
 var FILL_TYPE_FILL_V = 2;// 纵向填充
+declare const BridgeHelper;
 class Main extends eui.UILayer {
     private textfield: egret.TextField;
 
@@ -98,6 +99,7 @@ class Main extends eui.UILayer {
     }
 
     private async runGame() {
+        await plattxsp.login();
         await this.loadResource();
         this.createGameScene();
         // const result = await RES.getResAsync("description_json")
@@ -142,7 +144,7 @@ class Main extends eui.UILayer {
         let _jsZip = new JSZip();
         try {
             GameDispatcher.getInstance().addEventListener(GameEvent.GAME_JSON_PARSE_OK, this.onParseJsonComplete, this);
-            _jsZip['loadAsync'](RES.getRes("config_bin"), {checkCRC32: true}).then(function (jszip: JSZip) {
+            _jsZip['loadAsync'](RES.getRes("config_bin"), { checkCRC32: true }).then(function (jszip: JSZip) {
                 for (let filename in jszip['files']) {
                     window['jsonfileCount']++;
                 }
@@ -159,12 +161,12 @@ class Main extends eui.UILayer {
         } catch (e) {
             alert("zip read fail!!!!! ");
         }
-        _jsZip = null;
+            _jsZip = null;
         RES.destroyRes('config_bin');
-    }
+        }
 
-    //解析数据完成
-    private onParseJsonComplete(): void {
+        //解析数据完成
+        private onParseJsonComplete(): void {
         GameDispatcher.getInstance().removeEventListener(GameEvent.GAME_JSON_PARSE_OK, this.onParseJsonComplete, this);
         this.touchEnabled = false;
         var gameWo: GameWorld = new GameWorld();
