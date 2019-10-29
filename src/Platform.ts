@@ -36,6 +36,11 @@ class DebugPlatform implements Platform {
     async getUserInfo() {
         await window["getUserInfo"](()=>{});
     }
+
+    //是否是活动期间；
+    public isCelebrateTime(){
+        return true;
+    }
     public getPlatform(){
         if (egret.Capabilities.os == 'Windows PC')
             return "plat_pc";
