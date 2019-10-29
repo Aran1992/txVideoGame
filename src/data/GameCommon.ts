@@ -1,12 +1,3 @@
-// callbackSaveBookHistory = data => {
-//     if (data.code !== 0) {
-//         GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储失败！${data.data.msg}`);
-//         //如果是因为太频繁，则之后再试
-//     } else {
-//         GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
-//         GameCommon.getInstance().parseFile(data.data.slotId);
-//     }
-// };
 
 callbackDeleteBookHistory = data => {
     GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
@@ -273,10 +264,13 @@ class GameCommon {
         }
         // UserInfo.curBokData = info;
         // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), tp);
-        callbackGetBookHistory = function (data) {
+        let callbackGetBookHistory = (data) =>{
             if (data.code != 0) {
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.INIT_DESC), JSON.stringify(data));
+                console.log("read book failed:"+tp)
+                return;
             }
+            console.log("read book success:"+tp)
             switch (data.data.slotId) {
                 //自动存档和手动存档
                 case FILE_TYPE.AUTO_FILE:
@@ -849,10 +843,8 @@ class GameCommon {
 }
 
 declare let callbackDeleteBookHistory;
-declare let callbackGetBookHistory;
 declare let callbackGetBookLastHistory;
 declare let callbackGetBookHistoryList;
-declare let callbackSaveBookHistory;
 declare let callbackReport;
 declare let callbackGetUserPlatformData;
 declare let callbackGetBookConsumeData;

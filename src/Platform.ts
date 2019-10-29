@@ -91,7 +91,6 @@ class DebugPlatform implements Platform {
 
     //获取制定存档
     async getBookHistory(bookId, slotId,callback) {
-        callback = callbackGetBookHistory;
         if (this.getPlatform() == "plat_txsp"){
             await plattxsp.getBookHistory(bookId,slotId,callback);
         }else{
@@ -175,7 +174,8 @@ if (!window.platform) {
 }
 if (!window.plattxsp){
     window.plattxsp = new Txsp();
-    window.plattxsp.init();
+    if(window.platform.getPlatform()=="plat_txsp")
+        window.plattxsp.init();
 }
 
 declare let platform: Platform;

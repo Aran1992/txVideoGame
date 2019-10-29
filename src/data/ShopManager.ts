@@ -90,7 +90,6 @@ class ShopManager {
          //商品列表全部走本地，不从服务器取
         if (true){//(!1 || egret.Capabilities.os == 'Windows PC' || platform.getPlatform()=="plat_txsp") {
             if (!this._shopDataDict) {
-                //platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE,callbackGetBookHistory);
                 GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
                 let values = [];
                 for (let id in JsonModelManager.instance.getModelshop()) {

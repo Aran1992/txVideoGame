@@ -34,7 +34,8 @@ class PromptPanel extends egret.DisplayObjectContainer {
     }
 
     public showCommomTips(str) {
-        this.cjTips.setTipsLab(str);
+        if (this.cjTips)
+            this.cjTips.setTipsLab(str);
     }
 
     public showRoleChapterNotice() {

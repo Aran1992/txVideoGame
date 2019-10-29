@@ -151,6 +151,10 @@ class VideoData extends egret.DisplayObjectContainer {
         if (!UserInfo.curBokData) {
             return;
         }
+        if(!this.videoIdx){
+            console.error("存档错误")
+            return;
+        }
         console.log("readFile>>>>", this.videoIdx);
         this.tiaoState = false;
         if (GameDefine.IS_DUDANG && GameDefine.CUR_PLAYER_VIDEO == 1) {
