@@ -799,6 +799,9 @@ class GameCommon {
         let curDay = Tool.formatTimeDay2Num();
         return curDay >= saleTime;
     }
+    public getWentiItemId(wentiId,id){        
+        return 500000+wentiId*1000+id;
+    }
 
     public getNextChapterId(curChapterId) {
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
@@ -839,7 +842,7 @@ class GameCommon {
             }
             GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-            return false;
+        return false;
         }
         return true;
     }

@@ -36,7 +36,7 @@ class ShopManager {
     }
 
     /**钻石购买商品**/
-    public buyGoods(itemId, num: number = 1) {
+    public buyGoods(itemId, num: number = 1,callback:()=>void=null) {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (!1 || egret.Capabilities.os == 'Windows PC') {//platform.isDebug
@@ -63,7 +63,7 @@ class ShopManager {
         }
     }
 
-    public buyGoodsSuip(itemId: number, num: number = 1): void {
+    public buyGoodsSuip(itemId: number, num: number = 1,callback:any=null): void {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (UserInfo.suipianMoney < shopdata.model.currSuipian) {
@@ -72,7 +72,7 @@ class ShopManager {
         }
         UserInfo.suipianMoney -= shopdata.model.currSuipian;
         this.addGoods(itemId, num);
-        this.onBuySuccessHandler(shopdata);
+        this.onBuySuccessHandler(shopdata,callback);
     }
 
     /**物品存储**/
@@ -145,7 +145,7 @@ class ShopManager {
         return this._openShoucangIds.indexOf(shoucangID) >= 0;
     }
 
-    private onBuySuccessHandler(shopdata: ShopInfoData): void {
+    private onBuySuccessHandler(shopdata: ShopInfoData,callback:any=null): void {
         this.onUpdateMyGoods(shopdata);
         if (shopdata.id > GameDefine.SHOP_GOODS_STARTID) {//内购商品
             let shop_tp: number = this.getShopTP(shopdata.id);
@@ -171,6 +171,8 @@ class ShopManager {
         } else if (shopdata.id > GameDefine.SHOP_CHAPTER_STARTID) {//章节
             GameCommon.getInstance().onShowResultTips('购买成功');
         }
+        if (callback)
+            callback();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH),shopdata);
     }
 

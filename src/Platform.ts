@@ -41,6 +41,10 @@ class DebugPlatform implements Platform {
     public isCelebrateTime(){
         return true;
     }
+    //获得上线时间，其它时间可以此时间上叠加
+    public getSaleTime(day:number = 0){
+        return "20191001"
+    }
     public getPlatform(){
         if (egret.Capabilities.os == 'Windows PC')
             return "plat_pc";

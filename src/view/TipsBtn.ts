@@ -615,7 +615,8 @@ class TipsBtn extends eui.Component {
     }
     //获得某个问题解锁需要的物品
     private getWentiItemNum(wentiId,id){
-        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(500000+wentiId*1000+id);
+        let itemId = GameCommon.getInstance().getWentiItemId(wentiId,id);
+        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(itemId);
         if (!item)
             return 0;
         return item.num;
@@ -702,8 +703,7 @@ class TipsBtn extends eui.Component {
         
         //VideoManager.getInstance().
     }
-    private idBtnClockClick(){
-        
+    private idBtnClockClick(){        
         GameCommon.getInstance().showCommomTips("下一章X天后免费")
     }
     private idBtnShopCarClick(){

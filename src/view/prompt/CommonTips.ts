@@ -374,16 +374,15 @@ class CommonTips extends eui.Component {
 
     private onbtnConfirm_haogan() {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        //this._buyhaoganparams;
-        //ShopManager.getInstance().buyGoods()
+        let itemId = GameCommon.getInstance().getWentiItemId( this._buyhaoganparams.wentiId,this._buyhaoganparams.id)
+        ShopManager.getInstance().buyGoods(itemId,1,()=>{
+            this.buyGrphaogan.visible = false;
+            this.onhideMaskBG();
+            VideoManager.getInstance().videoResume();
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_HAOGAN));
+            this.onShowResultTips('解锁成功');
+        })
 
-
-
-        this.buyGrphaogan.visible = false;
-        VideoManager.getInstance().videoResume();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_HAOGAN));
-        this.onShowResultTips('解锁成功');
-        this.onhideMaskBG();
     }
 
     private onbtnCancel_haogan() {
