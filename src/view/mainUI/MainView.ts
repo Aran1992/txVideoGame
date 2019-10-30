@@ -368,6 +368,8 @@ class MainView extends eui.Component {
 
     private onBtnContinue() {
         //SoundManager.getInstance().playSound("ope_click.mp3")
+        if (!GameCommon.getInstance().checkChapterLocked())
+            return;
         if (this.curDuDang) {
             this.curDuDang = false;
             GameDefine.IS_DUDANG = true;

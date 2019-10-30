@@ -39,9 +39,9 @@ class ShopManager {
     public buyGoods(itemId, num: number = 1,callback:()=>void=null) {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
-        if (!1 || egret.Capabilities.os == 'Windows PC') {//platform.isDebug
+        if (egret.Capabilities.os == 'Windows PC') {//platform.isDebug
             this.addGoods(itemId, num);
-            this.onBuySuccessHandler(shopdata);
+            this.onBuySuccessHandler(shopdata,callback);
         } else {
             let self = this;
             callbackBuyGoods = (data) => {
@@ -51,7 +51,7 @@ class ShopManager {
                     shopdata = self._shopDataDict[recData.saleId];
                     if (shopdata) {
                         shopdata.onupdate(shopInfo);
-                        this.onBuySuccessHandler(shopdata);
+                        this.onBuySuccessHandler(shopdata,callback);
                     }
                 } else {
                     GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);

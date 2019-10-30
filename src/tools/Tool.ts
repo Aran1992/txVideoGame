@@ -307,6 +307,17 @@ class Tool {
         return Number(str)
     }
 
+    public static formatAddDay(addDay,time:number=null) {
+        return Tool.formatTimeDay2Num(time*1000+addDay*(24*60*60*1000));
+        // var year,month,day,today,thatDay;
+        // today = time?time:new Date().getTime();
+        // thatDay = new Date( today + addDay*(24*60*60*1000) )//.toLocaleString().substr(0,9);
+        // year  = thatDay.getFullYear();// thatDay.substr(0,4);
+        // month = thatDay.substr(5,1);
+        // day = thatDay.substr(7,2);
+        // thatDay = year+""+month +""+day;
+        // return Number(thatDay)
+    }
 
     public static getCurrTime() {
         return new Date().getTime();
