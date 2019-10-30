@@ -151,7 +151,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (!UserInfo.curBokData) {
             return;
         }
-        if(!this.videoIdx){
+        if (!this.videoIdx) {
             console.error("存档错误")
             return;
         }
@@ -550,8 +550,8 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (GameDefine.CUR_PLAYER_VIDEO == 2) {
                     return;
                 }
-                if (data.old === "seeked" && data.new === "canplay") {
-                    widPlayer.play();
+                if (data.new === "seeked" || (data.old === "seeked" && data.new === "canplay")) {
+                    widPlayer.resume();
                 }
                 if (data.new === "playing") {
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.HIDE_MAIN_GROUP), data);
@@ -632,8 +632,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.HIDE_MAIN_GROUP));
                 }
-
-            })
+            });
         }
         Tool.callbackTime(() => {
             if (!widPlayer) {

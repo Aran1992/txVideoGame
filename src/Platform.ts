@@ -53,12 +53,12 @@ class DebugPlatform implements Platform {
         else
             return 'plat_txsp'
     }
-    
+
     public getBridgeHelper(){
         return bridgeHelper;
     }
 
-    async share(bookId, title, summary, icon, url, array) {        
+    async share(bookId, title, summary, icon, url, array) {
         await window["share"](bookId,title,summary, icon, url, array);
     }
 
@@ -172,9 +172,9 @@ class DebugPlatform implements Platform {
 if (!window.platform) {
     window.platform = new DebugPlatform();
 }
-if (!window.plattxsp){
+if (!window.plattxsp && Txsp) {
     window.plattxsp = new Txsp();
-    if(window.platform.getPlatform()=="plat_txsp")
+    if (window.platform.getPlatform() == "plat_txsp")
         window.plattxsp.init();
 }
 
@@ -185,8 +185,8 @@ declare let plattxsp:Txsp;
 // declare let nextVideoUrl: string;
 
 declare interface Window {
-    platform: Platform;    
-    plattxsp: Txsp;    
+    platform: Platform;
+    plattxsp: Txsp;
     // appToH5EventType: number;
     // appToH5EventData: string;
     // nextVideoUrl: string;

@@ -189,7 +189,6 @@ class GameWorld extends egret.DisplayObjectContainer {
     }
 
     private onButtonClick(chapId: number) {
-        GameDefine.CUR_IS_MAINVIEW = false;
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[chapId];
         let videoIds = curChapterCfg.videoSrc.split(",");
         VideoManager.getInstance().updateVideoData(videoIds[0]);
