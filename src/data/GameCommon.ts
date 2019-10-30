@@ -1,16 +1,8 @@
-callbackSaveBookHistory = data => {
-    if (data.code !== 0) {
-        GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储失败！错误id==${data.data.msg}`);
-    } else {
-        GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
-        GameCommon.getInstance().parseFile(data.data.slotId);
-    }
-};
 
 callbackDeleteBookHistory = data => {
     GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
 };
-
+const saveValues=["allCollectionDatas","achievementDics","suipianMoney","guideDic","guideJson","curchapter","main_Img",,"shopDic","allVideos","tipsDick"]
 class GameCommon {
     private static instance: GameCommon = null;
     public getLockedOptionIDs = {
@@ -191,9 +183,6 @@ class GameCommon {
                 UserInfo.curBokData.allCollectionDatas = UserInfo.allCollectionDatas;
                 str = JSON.stringify(UserInfo.allCollectionDatas);
                 break;
-            case FILE_TYPE.HIDE_FILE:
-                // str = JSON.stringify(UserInfo.chapterDatas)
-                break;
             case FILE_TYPE.GUIDE_TP:
                 str = JSON.stringify(UserInfo.guideDic);
                 UserInfo.curBokData.guideDic = UserInfo.guideDic;
@@ -216,7 +205,18 @@ class GameCommon {
         if (curChapterCfg) {
             cundangTitle = curChapterCfg.name;
         }
-        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str, callbackSaveBookHistory);
+        let func =  data => {
+            if (data.code !== 0) {
+                GameCommon.getInstance().showErrorLog(`${tp}存储失败,重试！${data.data.msg}`);
+                if(data.code == 1)
+                    this.setBookData(tp);
+                //如果是因为太频繁，则之后再试
+            } else {
+                GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
+                GameCommon.getInstance().parseFile(data.data.slotId);
+            }
+        };
+        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str, func);
     }
 
     /*所有数据存档*/
@@ -225,27 +225,14 @@ class GameCommon {
             let documentList = [];
             let slots = data.data.slots;
 
-            // GameCommon.getInstance().getBookHistory(FILE_TYPE.HIDE_FILE);
             if (slots && slots.length > 0) {
                 documentList = slots;
-                let str: string = slots.length + 'bibibi';
-                str += '\n';//+// JSON.stringify(slots)
                 for (let i = 0, n = documentList.length; i < n; ++i) {
                     let item = documentList[i];
                     if (item && item.slotId) {
-                        str += '\n' + JSON.stringify(item);
                         GameCommon.getInstance().parseChapter(item.slotId, item);
                     }
                 }
-                // for (let i:number=0;i<slots.lenth;i++) {
-                //     if(slots[i]&&slots[i].content)
-                //     {
-                //         str +='\n'+JSON.stringify(item);
-                //         // GameCommon.getInstance().parseChapter(slots[i].slotId, slots[i].content);
-                //     }
-                // }
-                // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH), str);
-                // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH));
             }
         };
         platform.getBookHistoryList(GameDefine.BOOKID, callbackGetBookHistoryList);
@@ -264,42 +251,11 @@ class GameCommon {
                 return;
             if (tp == 1) {
                 UserInfo.curBokData = info;
-                if (UserInfo.curBokData.allCollectionDatas) {
-                    UserInfo.allCollectionDatas = UserInfo.curBokData.allCollectionDatas;
-                }
-                if (UserInfo.curBokData.achievementDics) {
-                    UserInfo.achievementDics = UserInfo.curBokData.achievementDics;
-                }
-                if (UserInfo.curBokData.ansWerData) {
-                    UserInfo.ansWerData = UserInfo.curBokData.ansWerData;
-                }
-                if (UserInfo.curBokData.suipianMoney) {
-                    UserInfo.suipianMoney = UserInfo.curBokData.suipianMoney;
-                }
-                if (UserInfo.curBokData.guideDic) {
-                    UserInfo.guideDic = UserInfo.curBokData.guideDic;
-                }
-                if (UserInfo.curBokData.guideJson) {
-                    UserInfo.guideJson = UserInfo.curBokData.guideJson;
-                }
-                // if (UserInfo.curBokData.chapterDatas) {
-                //     UserInfo.chapterDatas = UserInfo.curBokData.chapterDatas;
-                // }
-                if (UserInfo.curBokData.curchapter) {
-                    UserInfo.curchapter = UserInfo.curBokData.curchapter;
-                }
-                if (UserInfo.curBokData.main_Img) {
-                    UserInfo.main_Img = UserInfo.curBokData.main_Img;
-                }
-                if (UserInfo.curBokData.shopDic) {
-                    UserInfo.shopDic = UserInfo.curBokData.shopDic;
-                }
-                if (UserInfo.curBokData.allVideos) {
-                    UserInfo.allVideos = UserInfo.curBokData.allVideos;
-                }
-                if (UserInfo.curBokData.tipsDick) {
-                    UserInfo.tipsDick = UserInfo.curBokData.tipsDick;
-                }
+                saveValues.forEach(element => {
+                    if (info[element]){
+                        UserInfo[element] = info[element];
+                    }
+                });
             } else {
                 UserInfo.fileDatas[tp] = info;
             }
@@ -308,51 +264,22 @@ class GameCommon {
         }
         // UserInfo.curBokData = info;
         // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), tp);
-        callbackGetBookHistory = function (data) {
+        let callbackGetBookHistory = (data) =>{
             if (data.code != 0) {
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.INIT_DESC), JSON.stringify(data));
+                console.log("read book failed:"+tp)
+                return;
             }
+            console.log("read book success:"+tp)
             switch (data.data.slotId) {
                 //自动存档和手动存档
                 case FILE_TYPE.AUTO_FILE:
                     UserInfo.curBokData = JSON.parse(data.data.content);
-                    if (UserInfo.curBokData.allCollectionDatas) {
-                        UserInfo.allCollectionDatas = UserInfo.curBokData.allCollectionDatas;
-                    }
-                    if (UserInfo.curBokData.achievementDics) {
-                        UserInfo.achievementDics = UserInfo.curBokData.achievementDics;
-                    }
-                    if (UserInfo.curBokData.ansWerData) {
-                        UserInfo.ansWerData = UserInfo.curBokData.ansWerData;
-                    }
-                    if (UserInfo.curBokData.suipianMoney) {
-                        UserInfo.suipianMoney = UserInfo.curBokData.suipianMoney;
-                    }
-                    if (UserInfo.curBokData.guideDic) {
-                        UserInfo.guideDic = UserInfo.curBokData.guideDic;
-                    }
-                    // if (UserInfo.curBokData.chapterDatas) {
-                    //     UserInfo.chapterDatas = UserInfo.curBokData.chapterDatas;
-                    // }
-                    if (UserInfo.curBokData.curchapter) {
-                        UserInfo.curchapter = UserInfo.curBokData.curchapter;
-                    }
-                    if (UserInfo.curBokData.main_Img) {
-                        UserInfo.main_Img = UserInfo.curBokData.main_Img;
-                    }
-                    if (UserInfo.curBokData.shopDic) {
-                        UserInfo.shopDic = UserInfo.curBokData.shopDic;
-                    }
-                    if (UserInfo.curBokData.allVideos) {
-                        UserInfo.allVideos = UserInfo.curBokData.allVideos;
-                    }
-                    if (UserInfo.curBokData.tipsDick) {
-                        UserInfo.tipsDick = UserInfo.curBokData.tipsDick;
-                    }
-
-
-                    // GameCommon.getInstance().addLikeTips('img'+UserInfo.main_Img);
-                    // GameCommon.getInstance().addLikeTips('UserInfo.curBokData.main_Img'+JSON.stringify(UserInfo.curBokData.main_Img))
+                    saveValues.forEach(element => {
+                        if (UserInfo.curBokData[element]){
+                            UserInfo[element] = UserInfo.curBokData[element];
+                        }
+                    });
                     UserInfo.fileDatas[data.data.slotId] = UserInfo.curBokData;
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), data.data.slotId);
                     break;
@@ -366,61 +293,23 @@ class GameCommon {
                         return;
                     }
                     if (GameDefine.ISFILE_STATE) {
-                        UserInfo.curBokData = JSON.parse(data.data.content);
-                        if (UserInfo.allCollectionDatas) {
-                            UserInfo.curBokData.allCollectionDatas = UserInfo.allCollectionDatas;
-                        }
-                        if (UserInfo.achievementDics) {
-                            UserInfo.curBokData.achievementDics = UserInfo.achievementDics;
-                        }
-                        if (UserInfo.ansWerData) {
-                            UserInfo.curBokData.ansWerData = UserInfo.ansWerData;
-                        }
-                        if (UserInfo.suipianMoney) {
-                            UserInfo.curBokData.suipianMoney = UserInfo.suipianMoney;
-                        }
-                        if (UserInfo.guideDic) {
-                            UserInfo.curBokData.guideDic = UserInfo.guideDic;
-                        }
-                        // if (UserInfo.chapterDatas) {
-                        //     UserInfo.curBokData.chapterDatas = UserInfo.chapterDatas;
-                        // }
-                        if (UserInfo.curchapter) {
-                            UserInfo.curBokData.curchapter = UserInfo.curchapter;
-                        }
-                        if (UserInfo.main_Img) {
-                            UserInfo.curBokData.main_Img = UserInfo.main_Img;
-                        }
-                        if (UserInfo.shopDic) {
-                            UserInfo.curBokData.shopDic = UserInfo.shopDic;
-                        }
-                        if (UserInfo.allVideos) {
-                            UserInfo.curBokData.allVideos = UserInfo.allVideos;
-                        }
-                        if (UserInfo.tipsDick) {
-                            UserInfo.curBokData.tipsDick = UserInfo.tipsDick;
-                        }
-
-
+                        UserInfo.curBokData = JSON.parse(data.data.content); 
+                        saveValues.forEach(element => {
+                            if (UserInfo.curBokData[element]){
+                                UserInfo[element] = UserInfo.curBokData[element];
+                            }
+                        });
                     }
                     let bookData: BookData = JSON.parse(data.data.content);
                     UserInfo.fileDatas[data.data.slotId] = bookData;
-                    // UserInfo.fileDatas[data.data.slotId].timestamp = UserInfo.curBokData.timestamp;
-                    // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), tp);
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), data.data.slotId);
                     break;
-                //成就存档
                 case FILE_TYPE.CHENGJIU_FILE:
                     UserInfo.achievementDics = JSON.parse(data.data.content);
                     break;
-                //收藏存档
                 case FILE_TYPE.COLLECTION_FILE:
                     UserInfo.allCollectionDatas = JSON.parse(data.data.content);
                     break;
-                case FILE_TYPE.HIDE_FILE:
-                    // UserInfo.chapterDatas = JSON.parse(data.data.content);
-                    break;
-                //引导存档
                 case FILE_TYPE.GUIDE_TP:
                     // UserInfo.guideDic = JSON.parse(data.data.content);
                     // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH), JSON.stringify(UserInfo.guideDic));
@@ -582,7 +471,6 @@ class GameCommon {
         let awardStrAry: string[];
         switch (tp) {
             case FILE_TYPE.ANSWER_FILE:  //问题存档
-                // UserInfo.allWenTiAnswer = JSON.parse(data);
                 break;
             case FILE_TYPE.AUTO_FILE: //自动存档 和手动存档
             case FILE_TYPE.FILE2:
@@ -602,9 +490,6 @@ class GameCommon {
                 break;
             case FILE_TYPE.COLLECTION_FILE: //收藏存档
                 // UserInfo.allCollectionDatas = JSON.parse(data);
-                break;
-            case FILE_TYPE.HIDE_FILE:  //隐藏存档 = 章节存档
-                // UserInfo.chapterDatas = JSON.parse(data);
                 break;
         }
         //
@@ -908,6 +793,9 @@ class GameCommon {
         let curDay = Tool.formatTimeDay2Num();
         return curDay >= saleTime;
     }
+    public getWentiItemId(wentiId,id){        
+        return 500000+wentiId*1000+id;
+    }
 
     public getNextChapterId(curChapterId) {
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
@@ -948,17 +836,15 @@ class GameCommon {
             }
             GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-            return false;
+        return false;
         }
         return true;
     }
 }
 
 declare let callbackDeleteBookHistory;
-declare let callbackGetBookHistory;
 declare let callbackGetBookLastHistory;
 declare let callbackGetBookHistoryList;
-declare let callbackSaveBookHistory;
 declare let callbackReport;
 declare let callbackGetUserPlatformData;
 declare let callbackGetBookConsumeData;

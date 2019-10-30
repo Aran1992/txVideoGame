@@ -66,6 +66,7 @@ class TipsBtn extends eui.Component {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);
     }
 
     public set imStatus(str) {
@@ -179,6 +180,7 @@ class TipsBtn extends eui.Component {
             this.currentState = 'index' + idx;
             /**判断下问题是否带锁**/
             this.onUpdateWentiBtnStatus();
+            
 
             this.zimu.bottom = 335;
 
@@ -561,7 +563,7 @@ class TipsBtn extends eui.Component {
         if (button['lock_grp'].visible) {
             SoundManager.getInstance().playSound("ope_click.mp3");
             VideoManager.getInstance().videoPause();
-            PromptPanel.getInstance().onShowBuyHaoGan(id);
+            PromptPanel.getInstance().onShowBuyHaoGan(this.wentiId,id);
         } else {
             SoundManager.getInstance().playSound("ope_select_tab.mp3");
             this.onSelectWenTi(id);
@@ -611,18 +613,28 @@ class TipsBtn extends eui.Component {
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
     }
-
+    //获得某个问题解锁需要的物品
+    private getWentiItemNum(wentiId,id){
+        let itemId = GameCommon.getInstance().getWentiItemId(wentiId,id);
+        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(itemId);
+        if (!item)
+            return 0;
+        return item.num;
+    }
     /**判断下问题是否带锁**/
     private onUpdateWentiBtnStatus(): void {
         for (let i: number = 1; i <= 5; i++) {
             this[`btn${i}`].lock_grp.visible = false;
         }
-        GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);
+        //GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);
         const func = GameCommon.getInstance().getLockedOptionIDs[this.wentiId];
         if (func) {
             let lockOptIDs: number[] = func() || [];
             if (lockOptIDs.length > 0) {
-                lockOptIDs.forEach(id => this[`btn${id}`].lock_grp.visible = true);
+                lockOptIDs.forEach(id => {
+                    let itemNum = this.getWentiItemNum(this.wentiId,id);                    
+                    this[`btn${id}`].lock_grp.visible = itemNum<=0;
+                })
             }
         }
     }
@@ -691,8 +703,7 @@ class TipsBtn extends eui.Component {
         
         //VideoManager.getInstance().
     }
-    private idBtnClockClick(){
-        
+    private idBtnClockClick(){        
         GameCommon.getInstance().showCommomTips("下一章X天后免费")
     }
     private idBtnShopCarClick(){

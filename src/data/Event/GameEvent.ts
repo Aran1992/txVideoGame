@@ -27,7 +27,6 @@ class GameEvent {
     public static GAME_LOADING: number = 10000;//游戏加载中
     public static GAME_COMPLETE: number = 10001;//游戏加载完成
     public static UNLOCK_SHOUCANG: string = 'unlock.shoucang';//解锁收藏
-    public static GAME_USER_REFRESH: string = 'game.user.refresh';
     public static GAME_GO_MAINVIEW: string = 'game.go.mainview';//返回游戏主界面
     public static SWITCH_QUALITY: string = 'switch.quality';//切换视频品质
     public static CHENGJIU_REFRESH: string = 'chengjiu.refresh';//切换视频品质

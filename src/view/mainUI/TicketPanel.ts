@@ -94,7 +94,7 @@ class TicketPanel extends eui.Component{
         this.idBtnCopyCode.visible = false;
         this.idBtnShareCode.visible = false;
         var params = {"bookId":GameDefine.BOOKID,"cmd":"getMyCDKey","saleId":GameDefine.GUANGLIPINGZHENG}
-        window['sendRequest'](params,(data)=>{
+        platform.sendRequest(params,(data)=>{
             //有而且第一个可用。
             if (data.code == 0 && data.data.list.length>0 && data.data.list[0].isValid == 1){
                 let item = data.data.list[0];
@@ -135,8 +135,8 @@ class TicketPanel extends eui.Component{
             return;
         }
         let code = this.idEditText.text;
-        var params = {"bookId":GameDefine.BOOKID,"cmd":"exchangeCDKey","CDKey":code}    
-        window['sendRequest'](params,(data)=>{
+        var params = {"bookId":GameDefine.BOOKID,"cmd":"exchangeCDKey","CDKey":code}
+        platform.sendRequest(params,(data)=>{
             if(data.code == 0){
                 GameCommon.getInstance().showCommomTips("激活成功,恭喜您已获得观礼资格！");
                 console.log(data);

@@ -60,9 +60,9 @@
                      textAlign="center" x="3" y="0" fontFamily="SimHei" />
         </e:Group>
         <e:Group horizontalCenter="0" verticalCenter="70">
-            <e:Button id="btnConfirm" label="是" bottom="1" horizontalCenter="-127" touchEnabled="true" width="217"
+            <e:Button id="btnConfirm_buy" label="是" bottom="1" horizontalCenter="-127" touchEnabled="true" width="217"
                       height="53" skinName="skins.Common_Button2Skin" />
-            <e:Button id="btnCancel" label="否" bottom="56" horizontalCenter="-250" touchEnabled="true" width="217"
+            <e:Button id="btnCancel_buy" label="否" bottom="56" horizontalCenter="-250" touchEnabled="true" width="217"
                       skinName="skins.Common_Button2Skin" height="53"></e:Button>
             <e:layout>
                 <e:HorizontalLayout gap="88" />
@@ -81,7 +81,7 @@
 		</e:layout>
 		</e:Group>
 	</e:Group>
-    <e:Group id="buyGrp1" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false"
+    <e:Group id="buyGrphaogan" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false"
              visible="false">
         <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
         <e:Group id="buyGroup3" y="118" horizontalCenter="0">
@@ -91,9 +91,9 @@
                      textAlign="center" fontFamily="SimHei" horizontalCenter="0" />
         </e:Group>
         <e:Group horizontalCenter="0" verticalCenter="70">
-            <e:Button id="btnCancel1" label="我知道了" bottom="0" horizontalCenter="-180.5" touchEnabled="true" width="250"
+            <e:Button id="btnCancel_haogan" label="我知道了" bottom="0" horizontalCenter="-180.5" touchEnabled="true" width="250"
                       skinName="skins.Common_Button2Skin" height="53"></e:Button>
-            <e:Button id="btnConfirm2" label="付费解锁" bottom="0" horizontalCenter="180.5" touchEnabled="true" width="250"
+            <e:Button id="btnConfirm_haogan" label="付费解锁" bottom="0" horizontalCenter="180.5" touchEnabled="true" width="250"
                       height="53">
                 <e:skinName>
                     <e:Skin states="up,down,disabled">
@@ -118,7 +118,7 @@
         <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
         <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="亲密度不足，无法开启选项" textAlign="center"
                  fontFamily="SimHei" horizontalCenter="0" verticalCenter="-39" />
-        <e:Button id="btnConfirm1" label="我知道了" horizontalCenter="0" verticalCenter="87" skinName="skins.Common_Button2Skin"
+        <e:Button id="btnConfirm_qinmi" label="我知道了" horizontalCenter="0" verticalCenter="87" skinName="skins.Common_Button2Skin"
                   width="240" height="53"></e:Button>
     </e:Group>
     <e:Group id="buyResult" horizontalCenter="0" verticalCenter="0" visible="false">

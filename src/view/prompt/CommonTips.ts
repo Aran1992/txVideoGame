@@ -8,7 +8,7 @@ class CommonTips extends eui.Component {
     private desc: eui.Label;
     private grp1: eui.Group;
     private desc1: eui.Label;
-    private grp2: eui.Group;
+    private grp2: eui.Group;//即将进入互动；
     private grp3: eui.Group;
     private desc3: eui.Label;
     private grp4: eui.Group;
@@ -18,12 +18,12 @@ class CommonTips extends eui.Component {
     private buyGrp: eui.Group;
     private buyGroup1: eui.Group;
     private buyGroup2: eui.Group;
-    private btnCancel: eui.Button;
-    private btnConfirm: eui.Button;
-    private btnConfirm1: eui.Button;
-    private btnConfirm2: eui.Button;
-    private btnCancel1: eui.Button;
-    private buyGrp1: eui.Group;
+    private btnCancel_buy: eui.Button;
+    private btnConfirm_buy: eui.Button;
+    private btnConfirm_qinmi: eui.Button;
+    private btnConfirm_haogan: eui.Button;
+    private btnCancel_haogan: eui.Button;
+    private buyGrphaogan: eui.Group;
     private buyResult: eui.Group;
     private buyResultLab: eui.Label;
     private buyResultImg: eui.Image;
@@ -43,7 +43,7 @@ class CommonTips extends eui.Component {
     private isLikeTime: boolean = false;
     private itemTp: number;
     private itemId: number;
-    private _buyId: number = 0;
+    private _buyhaoganparams={wentiId:0,id:0};
     /**二级确认框**/
     private _confirmFunc: Function;
     private mcFactory1: egret.MovieClipDataFactory;
@@ -204,12 +204,13 @@ class CommonTips extends eui.Component {
         this.onshowMaskBG();
     }
 
-    public onShowBuyHaoGan(id: number = 0) {
+    public onShowBuyHaoGan(wentiId:number=0,id: number = 0) {
         if (id > 0) {
-            this.btnConfirm2['money'].text = 10;
+            this.btnConfirm_haogan['money'].text = 30;
         }
-        this._buyId = id;
-        this.buyGrp1.visible = true;
+        this._buyhaoganparams.wentiId= wentiId;
+        this._buyhaoganparams.id= id;        
+        this.buyGrphaogan.visible = true;
         this.onshowMaskBG();
     }
 
@@ -283,7 +284,7 @@ class CommonTips extends eui.Component {
         this.buyGroup1.visible = false;
         this.buyGroup2.visible = false;
         this.qinmiGroup.visible = false;
-        this.buyGrp1.visible = false;
+        this.buyGrphaogan.visible = false;
         this.buyResult.visible = false;
         this.confirmGrp.visible = false;
     }
@@ -291,11 +292,11 @@ class CommonTips extends eui.Component {
     private onLoadComplete(): void {
         this.touchEnabled = false;
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
-        this.btnCancel.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCancel, this);
-        this.btnConfirm.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm, this);
-        this.btnConfirm1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm1, this);
-        this.btnCancel1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCancel1, this);
-        this.btnConfirm2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm2, this);
+        this.btnCancel_buy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCancel_buy, this);
+        this.btnConfirm_buy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm_buy, this);
+        this.btnConfirm_qinmi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm_qinmi, this);
+        this.btnCancel_haogan.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnCancel_haogan, this);
+        this.btnConfirm_haogan.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm_haogan, this);
         this.updateResize();
         this.onInit();
     }
@@ -344,7 +345,7 @@ class CommonTips extends eui.Component {
         }
     }
 
-    private onbtnConfirm() {
+    private onbtnConfirm_buy() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.buyGrp.visible = false;
         switch (this.itemTp) {
@@ -357,32 +358,36 @@ class CommonTips extends eui.Component {
         }
         this.onhideMaskBG();
     }
+    private onCancel_buy() {
+        SoundManager.getInstance().playSound("ope_click.mp3")
+        this.buyGrp.visible = false;
+        this.onhideMaskBG();
+    }
 
-    private onbtnConfirm1() {
+
+    private onbtnConfirm_qinmi() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.qinmiGroup.visible = false;
         this.onhideMaskBG();
         VideoManager.getInstance().videoResume();
     }
 
-    private onCancel() {
+    private onbtnConfirm_haogan() {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        this.buyGrp.visible = false;
-        this.onhideMaskBG();
+        let itemId = GameCommon.getInstance().getWentiItemId( this._buyhaoganparams.wentiId,this._buyhaoganparams.id)
+        ShopManager.getInstance().buyGoods(itemId,1,()=>{
+            this.buyGrphaogan.visible = false;
+            this.onhideMaskBG();
+            VideoManager.getInstance().videoResume();
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_HAOGAN));
+            this.onShowResultTips('解锁成功');
+        })
+
     }
 
-    private onbtnConfirm2() {
+    private onbtnCancel_haogan() {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        this.buyGrp1.visible = false;
-        VideoManager.getInstance().videoResume();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_HAOGAN));
-        this.onShowResultTips('解锁成功');
-        this.onhideMaskBG();
-    }
-
-    private onCancel1() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
-        this.buyGrp1.visible = false;
+        this.buyGrphaogan.visible = false;
         VideoManager.getInstance().videoResume();
         this.onhideMaskBG();
     }

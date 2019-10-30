@@ -61,14 +61,14 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onClose, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.GAME_WIN, this.onGameWin, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.GAME_GO_MAINVIEW, this.onShowMian, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.GAME_USER_REFRESH, this.onRefreshUser, this);
+        //GameDispatcher.getInstance().addEventListener(GameEvent.GAME_USER_REFRESH, this.onRefreshUser, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdata, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.PLAY_VIDEO3, this.onClose, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.CLOSE_VIDEO3, this.onShowView, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.MAIN_IMG_REFRESH, this.onRefreshImg, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.HIDE_MAIN_GROUP, this.onHideMainGroup, this);
         this.updateResize();
-        this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay1, this);
+        this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
         // this.btnContinueGame1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowXuZhang, this);
         this.btnDuQu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onDuDang, this);
@@ -87,10 +87,8 @@ class MainView extends eui.Component {
         // this.onGetDataRefresh();
         // LocalStorageManager.getInstance().onInit();
         ShopManager.getInstance().getShopInfos();
-        //platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE,callbackGetBookHistory);
         GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
         GameCommon.getInstance().getUserInfo();
-        // GameCommon.getInstance().getBookHistory(FILE_TYPE.GUIDE_TP);
         let cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         this.chapterName.text = cpCfg.name;
         VideoManager.getInstance().updateVideoData('');
@@ -263,12 +261,6 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'AboutPanel');
     }
 
-    private onRefreshUser() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        this.checkGuide8();
-        this.icon.source = UserInfo.avatar;
-        // this.desc.text = UserInfo.avatar;
-    }
 
     private onShowMian() {
         GameDefine.CUR_IS_MAINVIEW = true;
@@ -368,15 +360,13 @@ class MainView extends eui.Component {
                 this.curDuDang = false;
                 GameDefine.IS_DUDANG = true;
             }
-            // GameDefine.ISFILE_STATE = true;
-            // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA));
             this.gameWorld.createGameScene();
         }
 
         this.checkGuide8();
     }
 
-    private onEventPlay1() {
+    private onBtnContinue() {
         //SoundManager.getInstance().playSound("ope_click.mp3")
         if (this.curDuDang) {
             this.curDuDang = false;
@@ -409,18 +399,6 @@ class MainView extends eui.Component {
         this.onRefreshImg();
         this.mainGroup.visible = false;
         if (!GameDefine.ISFILE_STATE) {
-            // if (UserInfo.guideDic && UserInfo.guideDic[4]) {
-            //     this.play_Btn.visible = false;
-            // this.play_zi.visible =false;
-            //     this.mainGroup.visible = true;
-            //     this.onShowMian();
-            // }
-            // else if (UserInfo.guideDic && UserInfo.guideDic[8]) {
-            //     this.mainGroup.visible = true;
-            //     this.play_Btn.visible = false;
-            // this.play_zi.visible =false;
-            //     this.onShowMian();
-            // }else
             if (UserInfo.achievementDics[17]) {
                 this.mainGroup.visible = true;
                 this.play_Btn.visible = false;
@@ -451,10 +429,5 @@ class MainView extends eui.Component {
 
     private onShowView() {
         this.mainGroup.visible = true;
-    }
-
-    private onContinueGame() {
-        GameDefine.ISFILE_STATE = true;
-        GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
     }
 }

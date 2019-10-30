@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<shop>
-    <shop id="9900001" name="新手礼包" banner="*" banner2="xinshou_1_png,xinshou_2_png,xinshou_3_png" desc="超值新手礼包" params="100001,200001,300001" currPrice="0" origPrice="0" currSuipian="300" origSuipian="300" show="1" preview="*" shaixuan_params="*"/>
+<!--1图片，2视频，3音乐，4章节，5道具，6观礼凭证，9新手礼包-->
+<shop>    
+    <shop id="600002" name="新手礼包" banner="*" banner2="xinshou_1_png,xinshou_2_png,xinshou_3_png" desc="超值新手礼包" params="100001,200001,300001" currPrice="0" origPrice="0" currSuipian="300" origSuipian="300" show="1" preview="*" shaixuan_params="*"/>
+    <shop id="600001" name="观礼凭证" banner="*" banner2="*" desc="*" params="20191107" currPrice="100" origPrice="100" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
+    
     <shop id="100001" name="梦想的模样" banner="sc_role3_imgIcon_1_jpg" banner2="sc_role3_img1_png" desc="初次登台的灯光，因梦想而闪闪发亮！" params="1" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="0" preview="*" shaixuan_params="主角,夏子豪#等级,sr"/>
     <shop id="100002" name="隐藏高手" banner="sc_role1_imgIcon_1_jpg" banner2="sc_role1_img1_png" desc="少年这一次不会再放手了！" params="4" currPrice="30" origPrice="30" currSuipian="300" origSuipian="300" show="1" preview="*" shaixuan_params="主角,韩小白#等级,sr"/>
     <shop id="100003" name="斯人垂目" banner="sc_role4_imgIcon_1_jpg" banner2="sc_role4_img1_png" desc="你不出现的时候，知道还有谁在等你？" params="5" currPrice="30" origPrice="30" currSuipian="300" origSuipian="300" show="1" preview="*" shaixuan_params="主角,肖万寻#等级,sr"/>
@@ -8,20 +11,22 @@
     <shop id="200002" name="雨后湿温" banner2="sc_role2_img1_png" desc="雨后湿温的视频" params="7" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="1" preview="S002pre" shaixuan_params="主角,肖千也#等级,sr"/>
     <shop id="300001" name="如果你也有梦想" banner="sc_music_icon1_png" banner2="*" desc="如果你也有梦想的音乐" params="3" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="0" preview="mp3_music1_1s" shaixuan_params="等级,sr"/>
     <shop id="300002" name="you cool" banner="sc_music_icon1_png" banner2="*" desc="you cool的音乐" params="6" currPrice="30" origPrice="30" currSuipian="300" origSuipian="300" show="1" preview="mp3_music2_1s" shaixuan_params="等级,sr"/>
-    <shop id="400001" name="第1-2章" banner="shop_banner4_png" banner2="zhangjie_1_png" desc="第1-2章剧情" params="1#2" currPrice="100" origPrice="100" currSuipian="0" origSuipian="0" show="1" preview="*" shaixuan_params="*"/>
-    <shop id="400002" name="2-12" banner="*" banner2="*" desc="*" params="*" currPrice="100" origPrice="100" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
-    <shop id="500001" name="第二章好感度判断道具1" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500002" name="第二章好感度判断道具2" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500003" name="第二章好感度判断道具3" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500004" name="第二章好感度判断道具4" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500005" name="问题25锁死A" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500006" name="问题25锁死B" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500007" name="问题34好感A" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500008" name="问题34好感B" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500009" name="问题34好感C" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500010" name="问题34好感D" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500011" name="问题48锁死" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500012" name="问题49锁死A" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500013" name="问题49锁死B" banner="*" banner2="*" desc="*" params="*" currPrice="10" origPrice="10" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="600001" name="观礼凭证" banner="*" banner2="*" desc="*" params="20191107" currPrice="100" origPrice="100" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
+    
+    <shop id="500501" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="500502" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+
+    <shop id="501802" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+
+    <shop id="501901" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="501902" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="501903" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="501904" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+
+    <shop id="502501" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="502502" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+
+    <shop id="503401" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="503402" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="503403" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="503404" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>        
 </shop>

@@ -96,7 +96,6 @@ class VideoShopPreviewPanel extends eui.Component {
     }
 
     private onBuy(): void {
-        // ShopManager.getInstance().buyGoods(this.data.id);
         SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, this.shoucangModel.minipic)));
     }

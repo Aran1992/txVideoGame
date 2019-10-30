@@ -9,7 +9,7 @@
 		<e:Group id="leftBtnGroup" left="0" top="0" height="100%" width="100%">
 			<e:Group touchChildren="true">
 				<e:Image source="quanquan_title_png" y="46" x="38" />
-				<e:Image id="icon" source="main_icon_png" x="56" y="25" visible="false" />
+				<e:Image id="icon" source="main_icon_png" x="56" y="25"  visible="false"/>
 			</e:Group>
 			<e:Group verticalCenter="0">
 				<e:Button id="btnShouCang" icon="yuandianbai_png" height="93" width="260">
@@ -26,7 +26,7 @@
 					<e:skinName>
 						<e:Skin states="up,down" width="272" height="88">
 							<e:Image source="left_btn_di_png" visible="false" visible.down='true' left='0' verticalCenter="0" />
-							<e:Label text="观礼凭证" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
+							<e:Label text="心动PASS" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
 							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" />
 						</e:Skin>
 					</e:skinName>

@@ -75,7 +75,7 @@ class ActionHuiYi extends ActionTimerSceneBase {
         this.answerID = name;
         if (this['timeImg' + name].visible) {
             VideoManager.getInstance().videoPause();
-            PromptPanel.getInstance().onShowBuyHaoGan(name);
+            PromptPanel.getInstance().onShowBuyHaoGan(this.model.id,name);
         } else {
             this['selected' + name].visible = true;
             this.exitTimer = egret.setTimeout(() => this.onBackSuccess(), this, 1000);

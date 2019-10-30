@@ -573,7 +573,6 @@ class ImagesShopItem extends eui.ItemRenderer {
     }
 
     private onBuy(): void {
-        // ShopManager.getInstance().buyGoods(this.data.id);
         SoundManager.getInstance().playSound("ope_click.mp3")
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
@@ -639,7 +638,6 @@ class VideosShopItem extends eui.ItemRenderer {
 
     private onBuy(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 
@@ -713,7 +711,6 @@ class MusicsShopItem extends eui.ItemRenderer {
 
     private onBuy(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 
@@ -768,7 +765,6 @@ class ChapterShopItem extends eui.ItemRenderer {
 
     private onBuy(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 }
@@ -829,7 +825,6 @@ class DaojuShopItem extends eui.ItemRenderer {
 
     private onBuy(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        // ShopManager.getInstance().buyGoods(this.data.id);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 }

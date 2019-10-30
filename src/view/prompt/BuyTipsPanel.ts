@@ -109,7 +109,6 @@ class BuyTipsPanel extends eui.Component {
 
     private onCancel() {
         this.buyGrp.visible = false;
-        // ShopManager.getInstance().buyGoods(this.info.id);
         this.onclose();
     }
 

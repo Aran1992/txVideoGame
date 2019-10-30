@@ -36,7 +36,7 @@ class ShopManager {
     }
 
     /**钻石购买商品**/
-    public buyGoods(itemId, num: number = 1) {
+    public buyGoods(itemId, num: number = 1,callback:()=>void=null) {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (!1 || egret.Capabilities.os == 'Windows PC') {//platform.isDebug
@@ -63,7 +63,7 @@ class ShopManager {
         }
     }
 
-    public buyGoodsSuip(itemId: number, num: number = 1): void {
+    public buyGoodsSuip(itemId: number, num: number = 1,callback:any=null): void {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (UserInfo.suipianMoney < shopdata.model.currSuipian) {
@@ -72,7 +72,7 @@ class ShopManager {
         }
         UserInfo.suipianMoney -= shopdata.model.currSuipian;
         this.addGoods(itemId, num);
-        this.onBuySuccessHandler(shopdata);
+        this.onBuySuccessHandler(shopdata,callback);
     }
 
     /**物品存储**/
@@ -87,9 +87,9 @@ class ShopManager {
     /**获取商品信息列表**/
     public getShopInfos() {
         // if (!this._shopDataDict) {
-        if (!1 || egret.Capabilities.os == 'Windows PC') {//测试版数据platform.isDebug
+         //商品列表全部走本地，不从服务器取
+        if (true){//(!1 || egret.Capabilities.os == 'Windows PC' || platform.getPlatform()=="plat_txsp") {
             if (!this._shopDataDict) {
-                //platform.getBookHistory(GameDefine.BOOKID, FILE_TYPE.GOODS_FILE,callbackGetBookHistory);
                 GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
                 let values = [];
                 for (let id in JsonModelManager.instance.getModelshop()) {
@@ -144,7 +144,7 @@ class ShopManager {
         return this._openShoucangIds.indexOf(shoucangID) >= 0;
     }
 
-    private onBuySuccessHandler(shopdata: ShopInfoData): void {
+    private onBuySuccessHandler(shopdata: ShopInfoData,callback:any=null): void {
         this.onUpdateMyGoods(shopdata);
         if (shopdata.id > GameDefine.SHOP_GOODS_STARTID) {//内购商品
             let shop_tp: number = this.getShopTP(shopdata.id);
@@ -170,7 +170,9 @@ class ShopManager {
         } else if (shopdata.id > GameDefine.SHOP_CHAPTER_STARTID) {//章节
             GameCommon.getInstance().onShowResultTips('购买成功');
         }
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH));
+        if (callback)
+            callback();
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH),shopdata);
     }
 
     /**初始化商城数据**/
@@ -213,16 +215,16 @@ class ShopManager {
                     break;
                 case SHOP_TYPE.DAOJU:
                     break;
-                case SHOP_TYPE.XINSHOUBAO:
-                    let goodsIDAry: string[] = info.model.params.split(",");
-                    for (let i: number = 0; i < goodsIDAry.length; i++) {
-                        let goodsid: number = parseInt(goodsIDAry[i]);
-                        let shopData: ShopInfoData = this.getShopInfoData(goodsid);
-                        this.addGoods(goodsid);
-                        this.onUpdateMyGoods(shopData);
+                case SHOP_TYPE.SPECIAL:
+                    if (info.id == GameDefine.SHOP_XINSHOU_ID){
+                        let goodsIDAry: string[] = info.model.params.split(",");
+                        for (let i: number = 0; i < goodsIDAry.length; i++) {
+                            let goodsid: number = parseInt(goodsIDAry[i]);
+                            let shopData: ShopInfoData = this.getShopInfoData(goodsid);
+                            this.addGoods(goodsid);
+                            this.onUpdateMyGoods(shopData);
+                        }
                     }
-                    break;
-                case SHOP_TYPE.GUANGLIPINGZHENG:
                     break;
             }
         } else if (info.id > GameDefine.SHOP_CHAPTER_STARTID) {//章节
@@ -274,8 +276,7 @@ enum SHOP_TYPE {
     MUSICS = 3,//音乐
     CHAPTER = 4,//章节
     DAOJU = 5,//道具
-    GUANGLIPINGZHENG = 6,//观礼凭证
-    XINSHOUBAO = 99,//新手包
+    SPECIAL = 6,//特殊物品
 }
 
 declare let callbackBuyGoods;

@@ -25,6 +25,7 @@ class GameDefine {
         "action_msg_head_6_png",// 艾黎柯
     ];
     public static GUANGLIPINGZHENG = 600001;
+    public static SHOP_XINSHOU_ID: number = 600002;
     public static SELF_ROLE_HEAD_INDEX: number = 5;
     public static SHOUCANG_NAME: string[] = ['韩小白', '肖千也', '夏子豪', '肖万寻', '音乐', '其他'];
     public static ROLE_OCCUPATION: string[] = ['主唱', '贝斯手', '吉他手', '键盘手', '音乐', '其他'];
@@ -40,7 +41,6 @@ class GameDefine {
     public static CUR_ROLEIDX: number = 0;
     public static SHOP_GOODS_STARTID: number = 100000;
     public static SHOP_CHAPTER_STARTID: number = 10000;
-    public static SHOP_XINSHOU_ID: number = 9900001;
     public static IS_READ_PLAY: boolean = false;//播放器是否准备好
     public static ISFILE_STATE: boolean = false;//是获取存档还是 要读档看视频
     public static IS_SWITCH_VIDEO: boolean = false;//是否切换章节
