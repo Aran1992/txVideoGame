@@ -307,7 +307,8 @@ class GameWorld extends egret.DisplayObjectContainer {
     /**事件注册**/
     private onRegist(): void {
         window.onerror = function (message, url, line) {
-            console.trace();
+            console.trace(message);
+            console.log("URL: " + url + "\n" + 'line' + line + '    \n' + message);
             GameCommon.getInstance().showErrorLog("URL: " + url + "\n" + 'line' + line + '    \n' + message);
         };
 

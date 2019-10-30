@@ -2,7 +2,7 @@
 callbackDeleteBookHistory = data => {
     GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
 };
-const saveValues=["allCollectionDatas","achievementDics","suipianMoney","guideDic","guideJson","curchapter","main_Img",,"shopDic","allVideos","tipsDick"]
+const saveValues=["allCollectionDatas","achievementDics","ansWerData","suipianMoney","guideDic","guideJson","curchapter","main_Img",,"shopDic","allVideos","tipsDick"]
 class GameCommon {
     private static instance: GameCommon = null;
     public getLockedOptionIDs = {
@@ -208,8 +208,12 @@ class GameCommon {
         let func =  data => {
             if (data.code !== 0) {
                 GameCommon.getInstance().showErrorLog(`${tp}存储失败,重试！${data.data.msg}`);
-                if(data.code == 1)
-                    this.setBookData(tp);
+                if(data.code == 1){
+                    let callback = ()=>{
+                        this.setBookData(tp)
+                    };
+                    setTimeout(callback,1000)
+                }
                 //如果是因为太频繁，则之后再试
             } else {
                 GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
@@ -249,7 +253,7 @@ class GameCommon {
             let info = JSON.parse(egret.localStorage.getItem(tp.toString()));
             if (!info)
                 return;
-            if (tp == 1) {
+            if (tp == FILE_TYPE.AUTO_FILE) {
                 UserInfo.curBokData = info;
                 saveValues.forEach(element => {
                     if (info[element]){
@@ -280,7 +284,7 @@ class GameCommon {
                             UserInfo[element] = UserInfo.curBokData[element];
                         }
                     });
-                    UserInfo.fileDatas[data.data.slotId] = UserInfo.curBokData;
+                    //UserInfo.fileDatas[data.data.slotId] = UserInfo.curBokData;
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), data.data.slotId);
                     break;
                 case FILE_TYPE.FILE2:
