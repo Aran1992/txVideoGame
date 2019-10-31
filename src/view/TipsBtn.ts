@@ -687,7 +687,8 @@ class TipsBtn extends eui.Component {
         }
         let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        let isVip = vipNum > 0;
+        let isVip = vipNum > 0;        
+        //let freeDay = GameCommon.getInstance().getNextChapterFreeDay();
         if(isVip || nnextChapterId==0 || !onSale){
             this.idBtnClock.visible=false;
             this.idBtnTicket.visible=false;
@@ -704,7 +705,10 @@ class TipsBtn extends eui.Component {
     private idBtnClockClick(){
         let freeDay = GameCommon.getInstance().getNextChapterFreeDay();
         if(freeDay>0)
-            GameCommon.getInstance().showCommomTips("下一章"+freeDay+"天后免费")
+            GameCommon.getInstance().showCommomTips("下一章"+freeDay+"天后免费");
+        else{            
+            GameCommon.getInstance().showCommomTips("您可以免费阅读下一章");
+        }
     }
     private idBtnShopCarClick(){
         VideoManager.getInstance().videoPause();
