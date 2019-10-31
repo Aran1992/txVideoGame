@@ -444,7 +444,8 @@ class ImagesShopItem extends eui.ItemRenderer {
         this.style_name_lab.text = shopInfoDt.model.name;
         this.pingfen_img.source = `shop_image_${shoucangModel.level}_png`;
 
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if ( num> 0) {//shopInfoDt.num
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
@@ -508,7 +509,8 @@ class VideosShopItem extends eui.ItemRenderer {
         this.name_lab.text = `${GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1]}的视频`;
         this.time_lab.text = shoucangModel.time;
         this.style_name_lab.text = shopInfoDt.model.name;
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (num > 0) {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
@@ -574,7 +576,8 @@ class MusicsShopItem extends eui.ItemRenderer {
         let param: string[] = shopInfoDt.model.preview.split(",");
         this.count_lab.text = param.length + "首";
         this.name_lab.text = shopInfoDt.model.name;
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (num > 0) {
             if (this.discount_bar.parent) {
                 this.discountBar_Grp.removeChild(this.discount_bar);
             }
@@ -636,7 +639,8 @@ class ChapterShopItem extends eui.ItemRenderer {
 
         this.banner_img.source = shopInfoDt.model.banner2;
         this.title_lab.text = shopInfoDt.model.name;
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (num > 0) {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
@@ -689,7 +693,8 @@ class DaojuShopItem extends eui.ItemRenderer {
         this.banner_img.source = shopInfoDt.model.banner2;
         this.title_lab.text = this.data.name;
         this.desc_lab.text = this.data.desc;
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (num > 0) {
             if (this.discount_bar.parent) {
                 this.discountBar_Grp.removeChild(this.discount_bar);
             }

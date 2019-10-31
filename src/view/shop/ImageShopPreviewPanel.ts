@@ -33,8 +33,9 @@ class ImageShopPreviewPanel extends eui.Component {
         this.shoucangModel = JsonModelManager.instance.getModelshoucang()[shoucangID];
         let srcAry: string[] = this.shoucangModel.src.split(",");
         this.count_lab.text = srcAry.length + "P";
-        this.pingfen_img.source = `shop_image_${this.shoucangModel.level}_png`;
-        if (this.data.num > 0) {
+        this.pingfen_img.source = `shop_image_${this.shoucangModel.level}_png`;        
+        let num = ShopManager.getInstance().getItemNum(this.data.id);
+        if (num > 0) {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
