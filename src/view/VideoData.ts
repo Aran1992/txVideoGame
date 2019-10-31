@@ -152,6 +152,7 @@ class VideoData extends egret.DisplayObjectContainer {
             return;
         }
         if(!this.videoIdx){
+            GameCommon.getInstance().showCommomTips("当前有错误（BUG）,请从存档中进入")
             console.error("存档错误")
             return;
         }

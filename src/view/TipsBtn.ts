@@ -688,7 +688,7 @@ class TipsBtn extends eui.Component {
         let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
-        if(nnextChapterId==0 || !onSale){
+        if(isVip || nnextChapterId==0 || !onSale){
             this.idBtnClock.visible=false;
             this.idBtnTicket.visible=false;
         }else{
