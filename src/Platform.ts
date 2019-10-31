@@ -52,7 +52,7 @@ class DebugPlatform implements Platform {
     public getPlatform(){
         if (egret.Capabilities.os == 'Windows PC')
             return "plat_pc";
-        if (window['StoryPlatform'])
+        if (window['StoryPlatform'] || (window["webkit"] && window["webkit"]["messageHandlers"] && window["webkit"]["messageHandlers"]["saveBookHistory"]))
             return "plat_1001"
         else
             return 'plat_txsp'
