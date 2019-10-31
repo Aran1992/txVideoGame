@@ -15,8 +15,8 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected0" touchEnabled="false"/>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_1_png" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected0" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="1_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="肖千也" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
@@ -29,8 +29,8 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected1" touchEnabled="false"/>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_2_png" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected1" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="2_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="夏子豪" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
@@ -43,8 +43,8 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected2" touchEnabled="false"/>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_3_png" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected2" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="3_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="肖万寻" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
@@ -57,8 +57,8 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected3" touchEnabled="false"/>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_4_png" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected3" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="4_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35"/>
         <e:Label text="韩小白" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
@@ -71,8 +71,8 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_white_png" id="selected4" touchEnabled="false"/>
-        <e:Image horizontalCenter="0" verticalCenter="0" source="action_select_5_png" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected4" touchEnabled="false"/>
+        <e:Image horizontalCenter="0" verticalCenter="0" source="5_png" touchEnabled="false"/>
         <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="江雪" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
