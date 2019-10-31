@@ -307,6 +307,9 @@ class Tool {
         return Number(str)
     }
 
+    public static formatAddDay(addDay,time:number=null) {
+        return Tool.formatTimeDay2Num(time*1000+addDay*(24*60*60*1000));
+    }
 
     public static getCurrTime() {
         return new Date().getTime();

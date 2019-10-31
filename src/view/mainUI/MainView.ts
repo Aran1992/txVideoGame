@@ -86,7 +86,7 @@ class MainView extends eui.Component {
         // GameCommon.getInstance().getWenTi();
         // this.onGetDataRefresh();
         // LocalStorageManager.getInstance().onInit();
-        ShopManager.getInstance().getShopInfos();
+        ShopManager.getInstance().initShopInfos();
         GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
         GameCommon.getInstance().getUserInfo();
         let cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
@@ -366,8 +366,16 @@ class MainView extends eui.Component {
         this.checkGuide8();
     }
 
-    private onBtnContinue() {
+    private onBtnContinue() {  
+        //let videoIdx = VideoManager.getInstance().getVideoID()
+        // if(!videoIdx){
+        //     GameCommon.getInstance().showCommomTips("当前有错误（BUG）,请从存档中进入")
+        //     console.error("存档错误")
+        //     return;
+        // }
         //SoundManager.getInstance().playSound("ope_click.mp3")
+        if (!GameCommon.getInstance().checkChapterLocked())
+            return;
         if (this.curDuDang) {
             this.curDuDang = false;
             GameDefine.IS_DUDANG = true;

@@ -2,6 +2,8 @@ declare var bridgeHelper;
 declare var txsp_userinfo;
 const txsp_appid = "tivf8061263egmdcyp";
 const txsp_debug = true;
+
+
 class Txsp {
     public init(){
         if (txsp_debug)
@@ -138,8 +140,8 @@ class Txsp {
     }
     async login(){
         //await this.openDebug();
-        if (platform.getPlatform() != "plat_txsp")
-            return;
+        if (window.platform.getPlatform() != "plat_txsp")
+           return;
         bridgeHelper = new BridgeHelper({
             origin: location.protocol + '//m.v.qq.com',
             appid: txsp_appid,
@@ -158,4 +160,10 @@ class Txsp {
             await bridgeHelper.login();
         }
     }
+}
+
+if (!window.plattxsp){
+    window.plattxsp = new Txsp();
+    if(window.platform.getPlatform()=="plat_txsp")
+        window.plattxsp.init();
 }

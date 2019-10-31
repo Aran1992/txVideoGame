@@ -250,7 +250,10 @@ class CommonTips extends eui.Component {
 
     public showConfirmTips(desc: string, callBack: Function, desc2?: string,textYes:string="是",textNo:string="否"): void {
         this.confirm_desc_lab.text = desc;
-        if (desc2) this.confirm_desc2_lab.text = desc2;
+        if (desc2) 
+            this.confirm_desc2_lab.text = desc2;
+        else
+            this.confirm_desc2_lab.text = "";
         this._confirmFunc = callBack;
         if (!this.confirmGrp.visible) {
             this.confirmGrp.visible = true;

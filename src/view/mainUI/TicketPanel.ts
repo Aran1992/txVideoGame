@@ -80,7 +80,7 @@ class TicketPanel extends eui.Component{
 
         let today = Tool.formatTimeDay2Num();
         let cfg = JsonModelManager.instance.getModelshop()[GameDefine.GUANGLIPINGZHENG];
-        let discountDay = Number(cfg.params);
+        let discountDay = Tool.formatAddDay(Number(cfg.params),platform.getSaleBeginTime());
         this.bSpecail = today <= discountDay;//是否在优惠期间
         this.idGroupDescCommon.visible = !this.bSpecail;
         this.idGroupDescSpecial.visible = this.bSpecail;
@@ -121,15 +121,18 @@ class TicketPanel extends eui.Component{
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.idGroupBuyTicket.visible=true;
     }
-    private onBuy600001Complte(){
-        if (this._openParam == "confirm")//从弹窗进来的。购买成功后需要继续播放视频
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
-        this.onCloseClick();
+    private onBuy600001Complte(shopdata:ShopInfoData){
+        if(shopdata.id == GameDefine.GUANGLIPINGZHENG){
+            if (this._openParam == "confirm")//从弹窗进来的。购买成功后需要继续播放视频
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
+            this.onCloseClick();
+        }
     }
     private idBtnUseCodeClick(){
         SoundManager.getInstance().playSound("ope_click.mp3")
-        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
-        let isVip = item.num > 0;
+        //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
+        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        let isVip = vipNum > 0;
         if(isVip){
             GameCommon.getInstance().showCommomTips("你已购买观礼凭证，不可以激活。")
             return;

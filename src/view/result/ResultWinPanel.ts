@@ -79,6 +79,8 @@ class ResultWinPanel extends eui.Component {
     }
 
     private onContinue() {
+        if(!GameCommon.getInstance().checkChapterLocked())
+            return;
         if (!this._isEnd) {
             PromptPanel.getInstance().showRoleChapterNotice();
         } else {

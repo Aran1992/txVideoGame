@@ -411,109 +411,6 @@ class ShopPanel extends eui.Component {
     }
 }
 
-// class ShopItem extends eui.Component {
-//     public group_price: eui.Group;
-//     public img_payIcon: eui.Image;
-//     private oldMoney: eui.Label;
-//     private group_price0: eui.Group;
-//     public img_payIcon0: eui.Image;
-//     private label_price0: eui.Label;
-//     private btn_buy: eui.Group;
-//     private _shenmidate: shopdate;
-//     private pingfenLab: eui.Label;
-//     private pingfen_grp: eui.Group;
-//     private index: number;
-//     private dazheimg: eui.Image;
-//     private label_rebate: eui.Label;
-//     private rebateLayer: eui.Group;
-//     public itemStgate: number;
-//     public cfgId: number;
-//     private desc: eui.Label;
-//     private openDesc: eui.Label;
-//     private redLine: eui.Label;
-//     private cfg: Modelshop;
-//     private stateLab: eui.Label;
-//     public constructor() {
-//         super();
-//         this.skinName = skins.ShopItemSkin;
-//         this.touchEnabled = false;
-//     }
-//     private colorMatrix = [
-//         0.3, 0.6, 0, 0, 0,
-//         0.3, 0.6, 0, 0, 0,
-//         0.3, 0.6, 0, 0, 0,
-//         0, 0, 0, 1, 0];
-//     private flilter = new egret.ColorMatrixFilter(this.colorMatrix);
-//     public set data(info) {
-//         this.cfg = info;
-//         this.desc.text = info.desc;
-//         if (this.cfg.money == 0) {
-//             this.label_price0.text = '' + this.cfg.saveMoney;
-//         }
-//         else {
-//             this.oldMoney.text = '原价:￥' + this.cfg.money;
-//             this.label_price0.text = '' + this.cfg.saveMoney;
-//         }
-//         if (UserInfo.shopDic[this.cfg.id]) {
-//             // this.btn_buy.label = '已购买';
-//             // this.btn_buy.enabled = false;
-//             this.stateLab.visible = true;
-//             this.filters = [this.flilter];
-//         }
-//         else {
-//             this.stateLab.visible = false;
-//             this.filters = []
-//         }
-//         // this.desc.text = '描述噼里啪啦一大堆';
-//         this.btn_buy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
-//     }
-//     private onTouchBtn() {//更改的地方
-
-//         if (this.cfg.type1 == SHOP_TYPE.CHAPTER) {
-//             ShopManager.getInstance().myShopData[this.cfg.id] = this.cfg.id;
-//             ChengJiuManager.getInstance().onDlcChengJiu(this.cfg.id);
-//         } else if (this.cfg.type1 == SHOP_TYPE.SHOUCANG) {
-//             if (UserInfo.shopDic[this.cfg.id]) {
-//                 return;
-//             }
-//             if (UserInfo.suipianMoney < Number(this.cfg.saveMoney)) {
-//                 GameCommon.getInstance().showCommomTips('碎片不足');
-//                 return;
-//             }
-//             UserInfo.shopDic[this.cfg.id] = this.cfg.id;
-//             if (this.cfg.srcld.indexOf(',') >= 0) {
-//                 var cjAry: string[];
-//                 cjAry = this.cfg.srcld.split(",");
-//                 for (var i: number = 0; i < cjAry.length; i++) {
-//                     UserInfo.allCollectionDatas[cjAry[i]] = cjAry[i];
-//                 }
-//             }
-//             else {
-//                 UserInfo.allCollectionDatas[this.cfg.srcld] = this.cfg.srcld;
-//             }
-//             UserInfo.suipianMoney -= Number(this.cfg.saveMoney);
-//             // ShopManager.getInstance().myShopData[this.cfg.id] = this.cfg.id;
-//             ChengJiuManager.getInstance().onDlcChengJiu(this.cfg.id);
-//             GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE)
-//             GameCommon.getInstance().showCommomTips('购买成功');
-//         }
-//         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH))
-//     }
-//     /**设置是否有折扣**/
-//     private onDiscountHandler(saleRate: number): void {
-
-//     }
-
-//     public set shenmmidata(info: shopdate) {
-
-//     }
-//     private onTouchBtn2() {
-
-//     }
-//     public onindex(_index: number) {
-//         this.index = _index;
-//     }
-// }
 /**
  * 图集商城Item
  **/
@@ -547,7 +444,8 @@ class ImagesShopItem extends eui.ItemRenderer {
         this.style_name_lab.text = shopInfoDt.model.name;
         this.pingfen_img.source = `shop_image_${shoucangModel.level}_png`;
 
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if ( num> 0) {//shopInfoDt.num
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
@@ -611,7 +509,8 @@ class VideosShopItem extends eui.ItemRenderer {
         this.name_lab.text = `${GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1]}的视频`;
         this.time_lab.text = shoucangModel.time;
         this.style_name_lab.text = shopInfoDt.model.name;
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (num > 0) {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
@@ -677,7 +576,8 @@ class MusicsShopItem extends eui.ItemRenderer {
         let param: string[] = shopInfoDt.model.preview.split(",");
         this.count_lab.text = param.length + "首";
         this.name_lab.text = shopInfoDt.model.name;
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (num > 0) {
             if (this.discount_bar.parent) {
                 this.discountBar_Grp.removeChild(this.discount_bar);
             }
@@ -739,7 +639,8 @@ class ChapterShopItem extends eui.ItemRenderer {
 
         this.banner_img.source = shopInfoDt.model.banner2;
         this.title_lab.text = shopInfoDt.model.name;
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (num > 0) {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
@@ -792,7 +693,8 @@ class DaojuShopItem extends eui.ItemRenderer {
         this.banner_img.source = shopInfoDt.model.banner2;
         this.title_lab.text = this.data.name;
         this.desc_lab.text = this.data.desc;
-        if (shopInfoDt.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (num > 0) {
             if (this.discount_bar.parent) {
                 this.discountBar_Grp.removeChild(this.discount_bar);
             }

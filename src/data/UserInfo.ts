@@ -87,7 +87,7 @@ class BookData {
     public lookAchievement = {};//所有查看过的收藏
     public chapterDatas;//章节存档 通关章节后才会存储该存档
     //当前播放的videoID
-    public curVideoID: string;
+    public _curVideoID: string;
     // 当前播放到多少秒了
     public times;
     //data 章节 ,选择的问题ID,答案  1,1,2;这种格式
@@ -109,6 +109,15 @@ class BookData {
     public likes;
     //对应问题选择的答案
     public answerId;
+
+    
+    public get curVideoID() {
+        return this._curVideoID;
+    }
+
+    public set curVideoID(ids) {
+        this._curVideoID = ids;
+    }
 
     public constructor() {
         this.chapterDatas = [];

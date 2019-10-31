@@ -32,7 +32,8 @@ class VideoShopPreviewPanel extends eui.Component {
         this.name_lab.text = this.data.model.name;
         this.desc_lab.text = this.data.model.desc;
         this.time_lab.text = this.shoucangModel.time;
-        if (this.data.num > 0) {
+        let num = ShopManager.getInstance().getItemNum(this.data.id);
+        if (num > 0) {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";

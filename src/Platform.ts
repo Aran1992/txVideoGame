@@ -4,6 +4,9 @@
  * 推荐开发者通过这种方式封装平台逻辑，以保证整体结构的稳定
  * 由于不同平台的接口形式各有不同，白鹭推荐开发者将所有接口封装为基于 Promise 的异步形式
  */
+
+declare let plattxsp:Txsp;
+declare let platform: Platform;
 declare interface Platform {
     getUserInfo(): Promise<any>;//获取主用户数据
     saveBookHistory(bookId, slotId, title, externParam,callback): Promise<any>;//游戏存档
@@ -29,7 +32,8 @@ declare interface Platform {
     isDebug(): boolean;
     getPlatform():string;
 
-    getBridgeHelper();
+    getBridgeHelper();  
+    getSaleBeginTime();
 }
 
 class DebugPlatform implements Platform {
@@ -42,23 +46,23 @@ class DebugPlatform implements Platform {
         return true;
     }
     //获得上线时间，其它时间可以此时间上叠加
-    public getSaleTime(day:number = 0){
-        return "20191001"
-    }
+    public getSaleBeginTime(){
+        return 1572364800;//2019-10-30 00:00:00
+    }  
     public getPlatform(){
         if (egret.Capabilities.os == 'Windows PC')
             return "plat_pc";
-        if (window['StoryPlatform'])
+        if (window['StoryPlatform'] || (window["webkit"] && window["webkit"]["messageHandlers"] && window["webkit"]["messageHandlers"]["saveBookHistory"]))
             return "plat_1001"
         else
             return 'plat_txsp'
     }
-
+    
     public getBridgeHelper(){
         return bridgeHelper;
     }
 
-    async share(bookId, title, summary, icon, url, array) {
+    async share(bookId, title, summary, icon, url, array) {        
         await window["share"](bookId,title,summary, icon, url, array);
     }
 
@@ -169,24 +173,17 @@ class DebugPlatform implements Platform {
     }
 }
 
+
 if (!window.platform) {
     window.platform = new DebugPlatform();
 }
-if (!window.plattxsp && Txsp) {
-    window.plattxsp = new Txsp();
-    if (window.platform.getPlatform() == "plat_txsp")
-        window.plattxsp.init();
-}
-
-declare let platform: Platform;
-declare let plattxsp:Txsp;
 // declare let appToH5EventType: number;
 // declare let appToH5EventData: string;
 // declare let nextVideoUrl: string;
 
 declare interface Window {
-    platform: Platform;
-    plattxsp: Txsp;
+    platform: Platform;    
+    plattxsp: Txsp;    
     // appToH5EventType: number;
     // appToH5EventData: string;
     // nextVideoUrl: string;

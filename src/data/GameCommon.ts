@@ -2,7 +2,7 @@
 callbackDeleteBookHistory = data => {
     GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
 };
-const saveValues=["allCollectionDatas","achievementDics","suipianMoney","guideDic","guideJson","curchapter","main_Img",,"shopDic","allVideos","tipsDick"]
+const saveValues=["curVideoID","allCollectionDatas","achievementDics","ansWerData","suipianMoney","guideDic","guideJson","curchapter","main_Img",,"shopDic","allVideos","tipsDick"]
 class GameCommon {
     private static instance: GameCommon = null;
     public getLockedOptionIDs = {
@@ -208,8 +208,12 @@ class GameCommon {
         let func =  data => {
             if (data.code !== 0) {
                 GameCommon.getInstance().showErrorLog(`${tp}存储失败,重试！${data.data.msg}`);
-                if(data.code == 1)
-                    this.setBookData(tp);
+                if(data.code == 1){
+                    let callback = ()=>{
+                        this.setBookData(tp)
+                    };    
+                    setTimeout(callback,1000)
+                }
                 //如果是因为太频繁，则之后再试
             } else {
                 GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
@@ -249,7 +253,7 @@ class GameCommon {
             let info = JSON.parse(egret.localStorage.getItem(tp.toString()));
             if (!info)
                 return;
-            if (tp == 1) {
+            if (tp == FILE_TYPE.AUTO_FILE) {
                 UserInfo.curBokData = info;
                 saveValues.forEach(element => {
                     if (info[element]){
@@ -280,7 +284,7 @@ class GameCommon {
                             UserInfo[element] = UserInfo.curBokData[element];
                         }
                     });
-                    UserInfo.fileDatas[data.data.slotId] = UserInfo.curBokData;
+                    //UserInfo.fileDatas[data.data.slotId] = UserInfo.curBokData;
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), data.data.slotId);
                     break;
                 case FILE_TYPE.FILE2:
@@ -316,8 +320,8 @@ class GameCommon {
                     break;
                 case FILE_TYPE.GOODS_FILE:
                     // GameCommon.getInstance().addChengJiuTips(JSON.stringify(data.data.content));
-                    ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
-                    ShopManager.getInstance().getShopInfos();
+                    //ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
+                    ShopManager.getInstance().initShopInfos();
                     break;
             }
 
@@ -787,14 +791,20 @@ class GameCommon {
         return null;
     }
 
-    public isChapterOnSale(chaperId) {
-        const chapterCfg = JsonModelManager.instance.getModelchapter()[chaperId];
-        let saleTime = chapterCfg.saleTime;
+    public isChapterOnSale(chapterId) {
+        const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
+        let saleTime = Tool.formatAddDay(chapterCfg.saleTime,platform.getSaleBeginTime());
         let curDay = Tool.formatTimeDay2Num();
         return curDay >= saleTime;
     }
+    public getChapterFreeDay(chapterId){
+        const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
+        let freeTime = Tool.formatAddDay(chapterCfg.freeTime,platform.getSaleBeginTime());
+        let curDay = Tool.formatTimeDay2Num();
+        return freeTime-curDay;
+    }
     public getWentiItemId(wentiId,id){        
-        return 500000+wentiId*1000+id;
+        return 500000+wentiId*100+id;
     }
 
     public getNextChapterId(curChapterId) {
@@ -804,26 +814,36 @@ class GameCommon {
         return Number(arr[0]);
     }
 
-    //确定章节是否已开启
-    public checkChapterLocked() {
+    public getPlayingChapterId(){        
         let videoName = VideoManager.getInstance().getVideoID();
         let curChapterId = this.getChapterIdByVideoName(videoName);
         if (!curChapterId)
             curChapterId = UserInfo.curchapter;
-
-        //let curChapterId = UserInfo.curchapter;
-        //let nnextChapterId =  curChapterId
+        return curChapterId;
+    }
+    public getNextChapterFreeDay(){        
+        let curChapterId = this.getPlayingChapterId();   
+        let nextChapterId = this.getNextChapterId(curChapterId);
+        let freeDay = this.getChapterFreeDay(nextChapterId);
+        return freeDay;
+    }
+    //确定章节是否已开启
+    public checkChapterLocked() {
+        let curChapterId = this.getPlayingChapterId();
         if (curChapterId == 0)
             return true;
         let nnextChapterId = this.getNextChapterId(curChapterId);
         let onSale = this.isChapterOnSale(nnextChapterId);
-        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
-        let isVip = item.num > 0;
+        //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);       
+        //let isVip = item.num > 0; 
+        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        let isVip = vipNum > 0;
         if (!onSale) {
             GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。");
             return false;
         }
-        if (!isVip) {
+        let freeDay = this.getChapterFreeDay(curChapterId);
+        if (!isVip && freeDay>0) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
             VideoManager.getInstance().clear();
@@ -833,8 +853,8 @@ class GameCommon {
                     windowName: 'TicketPanel',
                     data: "confirm"
                 });
-            }
-            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待");
+            }            
+            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待"+freeDay+"天");
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         return false;
         }
@@ -851,4 +871,3 @@ declare let callbackGetBookConsumeData;
 declare let callbackReportBusinessEvent;
 declare let callbackGetBusinessEventData;//查询上报事件
 
-declare let callbackGetBookValues;

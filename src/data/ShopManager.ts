@@ -4,11 +4,10 @@ class ShopManager {
     public debugShopInfos;
     private _shopDataDict;
     private _openShoucangIds: number[];
-    private _openChapterIds: number[];
+    private _serverItemNums={};
 
     private constructor() {
         this._openShoucangIds = [];
-        this._openChapterIds = [];
     }
 
     /**获取商品总列表**/
@@ -39,20 +38,19 @@ class ShopManager {
     public buyGoods(itemId, num: number = 1,callback:()=>void=null) {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
-        if (!1 || egret.Capabilities.os == 'Windows PC') {//platform.isDebug
+        if (egret.Capabilities.os == 'Windows PC') {
             this.addGoods(itemId, num);
-            this.onBuySuccessHandler(shopdata);
+            this.onBuySuccessHandler(shopdata,callback);
         } else {
-            let self = this;
-            callbackBuyGoods = (data) => {
-                let recData = data.data;//JSON.parse(data.data);
-                let shopInfo = data.data.value;//JSON.parse(recData.value);
+            let callbackBuyGoods = (data) => {
+                let recData = data.data;
+                let jsonObject = data.data.value;
                 if (data.code == 0) {
-                    shopdata = self._shopDataDict[recData.saleId];
-                    if (shopdata) {
-                        shopdata.onupdate(shopInfo);
-                        this.onBuySuccessHandler(shopdata);
-                    }
+                    shopdata = this._shopDataDict[recData.saleId];
+                    shopdata.updateShopData(jsonObject);
+                    this._serverItemNums[jsonObject.saleId] = jsonObject.num;//更新商品数量
+                    console.log("update item:"+jsonObject.saleId+";"+jsonObject.num);
+                    this.onBuySuccessHandler(shopdata,callback);
                 } else {
                     GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);
                 }
@@ -77,6 +75,7 @@ class ShopManager {
 
     /**物品存储**/
     public addGoods(itemId: number, num: number = 1) {
+        console.log("add item:"+itemId+";"+num);
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (shopdata) {
             shopdata.num += num;
@@ -85,45 +84,51 @@ class ShopManager {
     }
 
     /**获取商品信息列表**/
-    public getShopInfos() {
-        // if (!this._shopDataDict) {
-         //商品列表全部走本地，不从服务器取
-        if (true){//(!1 || egret.Capabilities.os == 'Windows PC' || platform.getPlatform()=="plat_txsp") {
-            if (!this._shopDataDict) {
-                GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
-                let values = [];
-                for (let id in JsonModelManager.instance.getModelshop()) {
-                    let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
-                    let valueObj = {saleId: model.id, currPrice: model.currPrice, origPrice: model.origPrice};
-                    values.push(valueObj);
-                }
-                this.onInitShopInfos(values);
-            } else if (this.debugShopInfos) {
-                for (let id in this.debugShopInfos) {
-                    let valueObj = this.debugShopInfos[id];
-                    let shopData: ShopInfoData = this._shopDataDict[id];
-                    if (shopData) {
-                        shopData.num = valueObj.num;
-                        this.onUpdateMyGoods(shopData);
-                    }
-                }
+    public initShopInfos() {
+        if (!this._shopDataDict) {
+            GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
+            this._shopDataDict = {};
+            for (let id in JsonModelManager.instance.getModelshop()) {
+                let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
+                let valueObj = {saleId: model.id, currPrice: model.currPrice, origPrice: model.origPrice};
+                let shopData: ShopInfoData = new ShopInfoData(valueObj);
+                this._shopDataDict[shopData.id] = shopData;
             }
-        } else {//正式版本数据
-            let self = this;
-            callbackGetBookValues = function (data) {
-                if (data.code == 0) {
-                    let values = data.data.values;//JSON.parse(data.data).value;
-                    ShopManager.getInstance().onInitShopInfos(values);
-                } else {
-                    GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
-                }
-            };
-            let currentSlotId: number = 0;
-            platform.getBookValues(GameDefine.BOOKID, currentSlotId,callbackGetBookValues);//, callbackGetBookValues);
         }
-        // }
+        this.loadFromServer()
     }
-
+    //不从服务器上取了。因为TXSP从服务器上也取不到
+    public loadFromServer(){
+        if(this._serverItemNums["loaded"])
+            return;
+        let callback = (data)=> {
+            if (data.code == 0) {
+                let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
+                //console.log(values);
+                values.forEach(element => {
+                    this._serverItemNums[element.saleId]=element.num;
+                });
+                this._serverItemNums["loaded"] = true;
+                console.log(this._serverItemNums);
+                //把本地的值+服务器的值
+            } else {
+                GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
+            }
+        };
+        let currentSlotId: number = 0;
+        platform.getBookValues(GameDefine.BOOKID, currentSlotId,callback);
+    }
+    public getServerItemNum(id){
+        if (!this._serverItemNums["loaded"]){
+            this.loadFromServer()
+            return 0;
+        }
+        return this._serverItemNums[id] || 0;
+    }
+    public getItemNum(id){        
+        let shopdata: ShopInfoData = this._shopDataDict[id] || {num:0};
+        return this.getServerItemNum(id)+shopdata.num
+    }
     /**获取ID商品信息**/
     public getShopInfoData(id: number) {
         return this._shopDataDict[id];
@@ -134,10 +139,6 @@ class ShopManager {
         return Math.floor(id / GameDefine.SHOP_GOODS_STARTID);
     }
 
-    /**判断某章节是否开通**/
-    public onCheckChapterOpen(chapterID: number): boolean {
-        return this._openChapterIds.indexOf(chapterID) >= 0;
-    }
 
     /**判断某收藏是否开通**/
     public onCheckShoucangOpen(shoucangID: number): boolean {
@@ -175,21 +176,6 @@ class ShopManager {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH),shopdata);
     }
 
-    /**初始化商城数据**/
-    public onInitShopInfos(values): void {
-        this._shopDataDict = {};
-        for (let idx in values) {
-            let info = values[idx];
-            if (info.saleId < GameDefine.SHOP_GOODS_STARTID) continue;
-            // if (info.currPrice == 0) continue;
-            let shopData: ShopInfoData = new ShopInfoData(info);
-            if (shopData.model) this._shopDataDict[shopData.id] = shopData;
-            else egret.log("策划表SHOP没有ID：：" + shopData.saleId);
-
-            this.onUpdateMyGoods(shopData);
-        }
-    }
-
     /**更新内购商品状态**/
     private onUpdateMyGoods(info: ShopInfoData): void {
         if (!info || info.num == 0) return;
@@ -197,14 +183,6 @@ class ShopManager {
             let shop_tp: number = this.getShopTP(info.id);
             switch (shop_tp) {
                 case SHOP_TYPE.CHAPTER:
-                    let chapterParms: string[] = info.model.params.split('#');
-                    for (let i: number = 0; i < chapterParms.length; i++) {
-                        let chapterID: number = parseInt(chapterParms[i]);
-                        if (this._openChapterIds.indexOf(chapterID) == -1) {
-                            this._openChapterIds.push(chapterID);
-                        }
-                    }
-                    break;
                 case SHOP_TYPE.IMAGES:
                 case SHOP_TYPE.VIDEOS:
                 case SHOP_TYPE.MUSICS:
@@ -216,25 +194,9 @@ class ShopManager {
                 case SHOP_TYPE.DAOJU:
                     break;
                 case SHOP_TYPE.SPECIAL:
-                    if (info.id == GameDefine.SHOP_XINSHOU_ID){
-                        let goodsIDAry: string[] = info.model.params.split(",");
-                        for (let i: number = 0; i < goodsIDAry.length; i++) {
-                            let goodsid: number = parseInt(goodsIDAry[i]);
-                            let shopData: ShopInfoData = this.getShopInfoData(goodsid);
-                            this.addGoods(goodsid);
-                            this.onUpdateMyGoods(shopData);
-                        }
-                    }
                     break;
             }
-        } else if (info.id > GameDefine.SHOP_CHAPTER_STARTID) {//章节
-            if (info.num > 0 || info.currPrice == 0) {
-                let chapterID: number = parseInt(info.model.params);
-                if (this._openChapterIds.indexOf(chapterID) == -1) {
-                    this._openChapterIds.push(chapterID);
-                }
-            }
-        }
+        } 
     }
 
     //The end
@@ -253,11 +215,11 @@ class ShopInfoData {
 
     public constructor(info?: any) {
         if (info) {
-            this.onupdate(info);
+            this.updateShopData(info);
         }
     }
 
-    public onupdate(info): void {
+    public updateShopData(info): void {
         this.saleId = info.saleId;
         this.id = parseInt(this.saleId);
         this.currPrice = info.currPrice;
@@ -279,5 +241,4 @@ enum SHOP_TYPE {
     SPECIAL = 6,//特殊物品
 }
 
-declare let callbackBuyGoods;
 declare let callbackTakeOffBookValue;
