@@ -48,7 +48,6 @@ class TipsBtn extends eui.Component {
     private hideTipTimer: number;
     private idGuideBuyLock: eui.Group;
     private tipsTotalTime: number;
-    private isVip:boolean = false;
     private idBtnClock:eui.Button;
     private idBtnShopCar:eui.Button;
     private idBtnTicket:eui.Button;
@@ -615,11 +614,8 @@ class TipsBtn extends eui.Component {
     }
     //获得某个问题解锁需要的物品
     private getWentiItemNum(wentiId,id){
-        let itemId = GameCommon.getInstance().getWentiItemId(wentiId,id);
-        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(itemId);
-        if (!item)
-            return 0;
-        return item.num;
+        let itemId = GameCommon.getInstance().getWentiItemId(wentiId,id);        
+        return ShopManager.getInstance().getItemNum(itemId);
     }
     /**判断下问题是否带锁**/
     private onUpdateWentiBtnStatus(): void {
@@ -690,7 +686,9 @@ class TipsBtn extends eui.Component {
             this.idBtnTicket.visible=false;
         }
         let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
-        if(this.isVip || nnextChapterId==0 || !onSale){
+        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        let isVip = vipNum > 0;
+        if(nnextChapterId==0 || !onSale){
             this.idBtnClock.visible=false;
             this.idBtnTicket.visible=false;
         }else{
@@ -703,8 +701,10 @@ class TipsBtn extends eui.Component {
         
         //VideoManager.getInstance().
     }
-    private idBtnClockClick(){        
-        GameCommon.getInstance().showCommomTips("下一章X天后免费")
+    private idBtnClockClick(){
+        let freeDay = GameCommon.getInstance().getNextChapterFreeDay();
+        if(freeDay>0)
+            GameCommon.getInstance().showCommomTips("下一章"+freeDay+"天后免费")
     }
     private idBtnShopCarClick(){
         VideoManager.getInstance().videoPause();

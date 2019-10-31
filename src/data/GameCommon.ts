@@ -320,7 +320,7 @@ class GameCommon {
                     break;
                 case FILE_TYPE.GOODS_FILE:
                     // GameCommon.getInstance().addChengJiuTips(JSON.stringify(data.data.content));
-                    ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
+                    //ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
                     ShopManager.getInstance().getShopInfos();
                     break;
             }
@@ -814,21 +814,30 @@ class GameCommon {
         return Number(arr[0]);
     }
 
-    //确定章节是否已开启
-    public checkChapterLocked() {
+    public getPlayingChapterId(){        
         let videoName = VideoManager.getInstance().getVideoID();
         let curChapterId = this.getChapterIdByVideoName(videoName);
         if (!curChapterId)
             curChapterId = UserInfo.curchapter;
-
-        //let curChapterId = UserInfo.curchapter;
-        //let nnextChapterId =  curChapterId
+        return curChapterId;
+    }
+    public getNextChapterFreeDay(){        
+        let curChapterId = this.getPlayingChapterId();   
+        let nextChapterId = this.getNextChapterId(curChapterId);
+        let freeDay = this.getChapterFreeDay(nextChapterId);
+        return freeDay;
+    }
+    //确定章节是否已开启
+    public checkChapterLocked() {
+        let curChapterId = this.getPlayingChapterId();
         if (curChapterId == 0)
             return true;
         let nnextChapterId = this.getNextChapterId(curChapterId);
         let onSale = this.isChapterOnSale(nnextChapterId);
-        let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
-        let isVip = item.num > 0;
+        //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);       
+        //let isVip = item.num > 0; 
+        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        let isVip = vipNum > 0;
         if (!onSale) {
             GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。");
             return false;
@@ -862,4 +871,3 @@ declare let callbackGetBookConsumeData;
 declare let callbackReportBusinessEvent;
 declare let callbackGetBusinessEventData;//查询上报事件
 
-declare let callbackGetBookValues;
