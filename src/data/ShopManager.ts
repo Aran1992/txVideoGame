@@ -38,27 +38,25 @@ class ShopManager {
     public buyGoods(itemId, num: number = 1,callback:()=>void=null) {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
-        if (egret.Capabilities.os == 'Windows PC') {//platform.isDebug
+        if (egret.Capabilities.os == 'Windows PC') {
             this.addGoods(itemId, num);
             this.onBuySuccessHandler(shopdata,callback);
         } else {
-            let self = this;
-            callbackBuyGoods = (data) => {
-                let recData = data.data;//JSON.parse(data.data);
-                let jsonObject = data.data.value;//JSON.parse(recData.value);
+            let callbackBuyGoods = (data) => {
+                let recData = data.data;
+                let jsonObject = data.data.value;
                 if (data.code == 0) {
-                    shopdata = self._shopDataDict[recData.saleId];
-                    if (shopdata) {
-                        shopdata.updateShopData(jsonObject);
-                        this._serverItemNums[jsonObject.saleId] = jsonObject.num;//更新商品数量
-                        this.onBuySuccessHandler(shopdata,callback);
-                    }
+                    shopdata = this._shopDataDict[recData.saleId];
+                    shopdata.updateShopData(jsonObject);
+                    this._serverItemNums[jsonObject.saleId] = jsonObject.num;//更新商品数量
+                    console.log("update item:"+jsonObject.saleId+";"+jsonObject.num);
+                    this.onBuySuccessHandler(shopdata,callback);
                 } else {
                     GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);
                 }
             };
             let currentSlotId: number = 0;
-            //console.log("buy:"+itemId+";"+num+";slot="+currentSlotId);
+            console.log("buy:"+itemId+";"+num+";slot="+currentSlotId);
             platform.buyGoods(GameDefine.BOOKID, itemId, num, currentSlotId,callbackBuyGoods);
         }
     }
@@ -86,7 +84,7 @@ class ShopManager {
     }
 
     /**获取商品信息列表**/
-    public getShopInfos() {
+    public initShopInfos() {
         if (!this._shopDataDict) {
             GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
             this._shopDataDict = {};
@@ -101,7 +99,8 @@ class ShopManager {
     }
     //不从服务器上取了。因为TXSP从服务器上也取不到
     public loadFromServer(){
-        let self = this;
+        if(this._serverItemNums["loaded"])
+            return;
         let callback = (data)=> {
             if (data.code == 0) {
                 let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
@@ -109,6 +108,8 @@ class ShopManager {
                 values.forEach(element => {
                     this._serverItemNums[element.saleId]=element.num;
                 });
+                this._serverItemNums["loaded"] = true;
+                console.log(this._serverItemNums);
                 //把本地的值+服务器的值
             } else {
                 GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
@@ -118,10 +119,11 @@ class ShopManager {
         platform.getBookValues(GameDefine.BOOKID, currentSlotId,callback);
     }
     public getServerItemNum(id){
+        if (!this._serverItemNums["loaded"]){
+            this.loadFromServer()
+            return 0;
+        }
         return this._serverItemNums[id] || 0;
-    }
-    public addServerItemNum(id,num){
-        this._serverItemNums[id] = (this._serverItemNums[id] || 0) + num
     }
     public getItemNum(id){        
         let shopdata: ShopInfoData = this._shopDataDict[id] || {num:0};
@@ -190,10 +192,8 @@ class ShopManager {
                     }
                     break;
                 case SHOP_TYPE.DAOJU:
-                    //this.addGoods(info.id, info.num);
                     break;
                 case SHOP_TYPE.SPECIAL:
-                    //this.addGoods(info.id, info.num);
                     break;
             }
         } 
@@ -241,5 +241,4 @@ enum SHOP_TYPE {
     SPECIAL = 6,//特殊物品
 }
 
-declare let callbackBuyGoods;
 declare let callbackTakeOffBookValue;

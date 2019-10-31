@@ -2,7 +2,7 @@
 callbackDeleteBookHistory = data => {
     GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
 };
-const saveValues=["allCollectionDatas","achievementDics","ansWerData","suipianMoney","guideDic","guideJson","curchapter","main_Img",,"shopDic","allVideos","tipsDick"]
+const saveValues=["curVideoID","allCollectionDatas","achievementDics","ansWerData","suipianMoney","guideDic","guideJson","curchapter","main_Img",,"shopDic","allVideos","tipsDick"]
 class GameCommon {
     private static instance: GameCommon = null;
     public getLockedOptionIDs = {
@@ -321,7 +321,7 @@ class GameCommon {
                 case FILE_TYPE.GOODS_FILE:
                     // GameCommon.getInstance().addChengJiuTips(JSON.stringify(data.data.content));
                     //ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
-                    ShopManager.getInstance().getShopInfos();
+                    ShopManager.getInstance().initShopInfos();
                     break;
             }
 
