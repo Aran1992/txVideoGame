@@ -1,5 +1,6 @@
 // TypeScript file
 declare let callbackSendRequest;
+
 class MainView extends eui.Component {
     private gameWorld: GameWorld;
     private labname: eui.Label;
@@ -113,7 +114,7 @@ class MainView extends eui.Component {
         }
         let player = new window['Txiplayer']({
             container: '#videoDivMin',
-            vid: 'a0031tzescw',
+            vid: 't0032b6tjt4',
             width: "100%",
             // height: "100%",
             showUI: false //默认false，控制是否展示默认的播放器UI
@@ -175,6 +176,7 @@ class MainView extends eui.Component {
         // this.mainGroup.scaleX = GameDefine.SCALENUMX;
         // this.mainGroup.scaleY = GameDefine.SCALENUMY;
     }
+
     private onDuDang() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         if (DEBUG) {
@@ -230,8 +232,11 @@ class MainView extends eui.Component {
         this.checkGuide8();
         //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ChengJiuPanel');
         //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'TicketPanel');
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"mainview"});
-        
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
+            windowName: 'TicketPanel',
+            data: "mainview"
+        });
+
     }
 
     private onXinkaishi(): void {

@@ -194,23 +194,6 @@ class ShouCangViewPanel extends eui.Component {
             this.bgBtn.touchEnabled = false;
             GuideManager.getInstance().onShowImg(this.itemGroup, this.itemGroup, 'tupianItem');
         }
-        // var player = new window['Txiplayer']({
-        //     container: '#videoDivMin',
-        //     vid: 'a0031tzescw',
-        //     width: "100%",
-        //     showUI: false //默认false，控制是否展示默认的播放器UI
-        // })
-        // player.on('ready', () => {
-        //     widPlayer1 = player;
-        //     var ps = document.getElementsByTagName('video');
-        //     for (var i: number = 0; i < ps.length; i++) {
-        //         if (size.fillType == FILL_TYPE_COVER) {
-        //             ps[i].style["object-fit"] = "cover";
-        //         } else {
-        //             ps[i].style["object-fit"] = "contain";
-        //         }
-        //     }
-        // })
         this.onInit();
         this.onRegist();
         this.updateResize();
