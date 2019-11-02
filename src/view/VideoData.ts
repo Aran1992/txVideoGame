@@ -1073,7 +1073,7 @@ class VideoData extends egret.DisplayObjectContainer {
             return;
         }
 
-        let isChapterLastVideo = this.videoIdx == 'V019' || (Number(videoModels[this.videoIdx].jtime) == 0 ? false : true);
+        let isChapterLastVideo = this.videoIdx == 'V019' || Number(videoModels[this.videoIdx].jtime) != 0;
         if (lastTime > 0) {
             if (this.videoState != 'buffering' && this.videoState != 'end' && this.videoState != 'idle' && this.videoState != 'loadStart') {
                 if (VideoManager.getInstance().videoCurrTime() + 12 < wentiTime) {
