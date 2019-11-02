@@ -51,6 +51,24 @@
 						</e:Skin>
 					</e:skinName>
 				</e:Button>
+				<e:Button id="btnDisableCheck" width="260" height="93" x="10" y="10" label="" icon="yuandianbai_png">
+					<e:skinName>
+					<e:Skin states="up,down" width="260" height="88">
+						<e:Image source="left_btn_di_png" visible.down="true" left="0" verticalCenter="0" width="272" height="88" visible="false"/>
+						<e:Label text="关闭章节开放检查" fontFamily="SimHei" size="36" x="79" verticalCenter="0"/>
+						<e:Image source="main_jiantou1_png" left="0" verticalCenter="0" scale9Grid="8,2,38,17"/>
+					</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button id="btnEnableCheck" icon="yuandianbai_png" width="260" height="93" x="10" y="10" label="">
+					<e:skinName>
+					<e:Skin states="up,down" width="260" height="88">
+						<e:Image source="left_btn_di_png" visible.down="true" left="0" verticalCenter="0" width="272" height="88" visible="false"/>
+						<e:Label text="开启章节开放检查" fontFamily="SimHei" size="36" x="79" verticalCenter="0"/>
+						<e:Image source="main_jiantou1_png" left="0" verticalCenter="0" scale9Grid="8,2,38,17"/>
+					</e:Skin>
+					</e:skinName>
+				</e:Button>
 				<e:layout>
 					<e:VerticalLayout gap="12" />
 				</e:layout>

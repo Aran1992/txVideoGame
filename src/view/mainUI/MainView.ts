@@ -15,6 +15,8 @@ class MainView extends eui.Component {
     private btnHuodong: eui.Button;
     private btnShangCheng: eui.Button;
     private btnContinueGame: eui.Button;
+    private btnDisableCheck: eui.Button;
+    private btnEnableCheck: eui.Button;
     private myTitle: eui.Button;
     private chapterName: eui.Label;
     private cleanLab: eui.Label;
@@ -84,6 +86,8 @@ class MainView extends eui.Component {
         this.closeWeb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseWebView, this);
         this.btnSetting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowbtnSetting, this);
         this.btnShangCheng.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShop, this);
+        this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, this.disableCheck, this);
+        this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, this.enabledCheck, this);
         // GameCommon.getInstance().getWenTi();
         // this.onGetDataRefresh();
         // LocalStorageManager.getInstance().onInit();
@@ -371,7 +375,7 @@ class MainView extends eui.Component {
         this.checkGuide8();
     }
 
-    private onBtnContinue() {  
+    private onBtnContinue() {
         //let videoIdx = VideoManager.getInstance().getVideoID()
         // if(!videoIdx){
         //     GameCommon.getInstance().showCommomTips("当前有错误（BUG）,请从存档中进入")
@@ -442,5 +446,13 @@ class MainView extends eui.Component {
 
     private onShowView() {
         this.mainGroup.visible = true;
+    }
+
+    private disableCheck() {
+        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = false;
+    }
+
+    private enableCheck() {
+        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = true;
     }
 }

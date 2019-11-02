@@ -846,6 +846,9 @@ class GameCommon {
 
     //确定章节是否已开启
     public checkChapterLocked() {
+        if (!GameDefine.ENABLE_CHECK_CHAPTER_LOCK) {
+            return false;
+        }
         let curChapterId = this.getPlayingChapterId();
         if (curChapterId == 0)
             return true;
