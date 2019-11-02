@@ -37,9 +37,8 @@ class Modelshipin extends ModelJsonBase {
 	public set time(value){
 		this._time = value;
 	}
-	public get time():string{
-		if (this._json["time"] == "*") { return ""; }
-		return this._json["time"];
+	public get time():number{
+		return parseFloat(this._json["time"]);
 	}
 
 	private _dlc;

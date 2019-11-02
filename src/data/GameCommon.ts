@@ -1,8 +1,21 @@
-
 callbackDeleteBookHistory = data => {
     GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
 };
-const saveValues=["curVideoID","allCollectionDatas","achievementDics","ansWerData","suipianMoney","guideDic","guideJson","curchapter","main_Img",,"shopDic","allVideos","tipsDick"]
+const saveValues = [
+    "curVideoID",
+    "allCollectionDatas",
+    "achievementDics",
+    "ansWerData",
+    "suipianMoney",
+    "guideDic",
+    "guideJson",
+    "curchapter",
+    "main_Img",
+    "shopDic",
+    "allVideos",
+    "tipsDick"
+];
+
 class GameCommon {
     private static instance: GameCommon = null;
     public getLockedOptionIDs = {
@@ -14,10 +27,10 @@ class GameCommon {
                 const q3a = GameCommon.getQuestionAnswer(3);
                 if (q1a === 1 && q3a === 1) {
                     return [];
-                } else if (q1a === 1 || q3a === 1) {
-                    return [2];
                 } else if (q1a !== 1 && q3a !== 1) {
-                    return [1, 2];
+                    return [1];
+                } else {
+                    return [];
                 }
             }
         },
@@ -205,14 +218,14 @@ class GameCommon {
         if (curChapterCfg) {
             cundangTitle = curChapterCfg.name;
         }
-        let func =  data => {
+        let func = data => {
             if (data.code !== 0) {
                 GameCommon.getInstance().showErrorLog(`${tp}存储失败,重试！${data.data.msg}`);
-                if(data.code == 1){
-                    let callback = ()=>{
+                if (data.code == 1) {
+                    let callback = () => {
                         this.setBookData(tp)
-                    };    
-                    setTimeout(callback,1000)
+                    };
+                    setTimeout(callback, 1000)
                 }
                 //如果是因为太频繁，则之后再试
             } else {
@@ -256,7 +269,7 @@ class GameCommon {
             if (tp == FILE_TYPE.AUTO_FILE) {
                 UserInfo.curBokData = info;
                 saveValues.forEach(element => {
-                    if (info[element]){
+                    if (info[element]) {
                         UserInfo[element] = info[element];
                     }
                 });
@@ -268,19 +281,19 @@ class GameCommon {
         }
         // UserInfo.curBokData = info;
         // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA), tp);
-        let callbackGetBookHistory = (data) =>{
+        let callbackGetBookHistory = (data) => {
             if (data.code != 0) {
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.INIT_DESC), JSON.stringify(data));
-                console.log("read book failed:"+tp)
+                console.log("read book failed:" + tp)
                 return;
             }
-            console.log("read book success:"+tp)
+            console.log("read book success:" + tp)
             switch (data.data.slotId) {
                 //自动存档和手动存档
                 case FILE_TYPE.AUTO_FILE:
                     UserInfo.curBokData = JSON.parse(data.data.content);
                     saveValues.forEach(element => {
-                        if (UserInfo.curBokData[element]){
+                        if (UserInfo.curBokData[element]) {
                             UserInfo[element] = UserInfo.curBokData[element];
                         }
                     });
@@ -297,9 +310,9 @@ class GameCommon {
                         return;
                     }
                     if (GameDefine.ISFILE_STATE) {
-                        UserInfo.curBokData = JSON.parse(data.data.content); 
+                        UserInfo.curBokData = JSON.parse(data.data.content);
                         saveValues.forEach(element => {
-                            if (UserInfo.curBokData[element]){
+                            if (UserInfo.curBokData[element]) {
                                 UserInfo[element] = UserInfo.curBokData[element];
                             }
                         });
@@ -793,40 +806,44 @@ class GameCommon {
 
     public isChapterOnSale(chapterId) {
         const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
-        let saleTime = Tool.formatAddDay(chapterCfg.saleTime,platform.getSaleBeginTime());
+        let saleTime = Tool.formatAddDay(chapterCfg.saleTime, platform.getSaleBeginTime());
         let curDay = Tool.formatTimeDay2Num();
         return curDay >= saleTime;
     }
-    public getChapterFreeDay(chapterId){
+
+    public getChapterFreeDay(chapterId) {
         const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
-        let freeTime = Tool.formatAddDay(chapterCfg.freeTime,platform.getSaleBeginTime());
+        let freeTime = Tool.formatAddDay(chapterCfg.freeTime, platform.getSaleBeginTime());
         let curDay = Tool.formatTimeDay2Num();
-        return freeTime-curDay;
+        return freeTime - curDay;
     }
-    public getWentiItemId(wentiId,id){        
-        return 500000+wentiId*100+id;
+
+    public getWentiItemId(wentiId, id) {
+        return 500000 + wentiId * 100 + id;
     }
 
     public getNextChapterId(curChapterId) {
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
         let nextChapterId = String(curChapterCfg.next);
-        var arr = nextChapterId.split(";");
+        const arr = nextChapterId.split(";");
         return Number(arr[0]);
     }
 
-    public getPlayingChapterId(){        
+    public getPlayingChapterId() {
         let videoName = VideoManager.getInstance().getVideoID();
         let curChapterId = this.getChapterIdByVideoName(videoName);
         if (!curChapterId)
             curChapterId = UserInfo.curchapter;
         return curChapterId;
     }
-    public getNextChapterFreeDay(){        
-        let curChapterId = this.getPlayingChapterId();   
+
+    public getNextChapterFreeDay() {
+        let curChapterId = this.getPlayingChapterId();
         let nextChapterId = this.getNextChapterId(curChapterId);
         let freeDay = this.getChapterFreeDay(nextChapterId);
         return freeDay;
     }
+
     //确定章节是否已开启
     public checkChapterLocked() {
         let curChapterId = this.getPlayingChapterId();
@@ -834,8 +851,8 @@ class GameCommon {
             return true;
         let nnextChapterId = this.getNextChapterId(curChapterId);
         let onSale = this.isChapterOnSale(nnextChapterId);
-        //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);       
-        //let isVip = item.num > 0; 
+        //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
+        //let isVip = item.num > 0;
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         if (!onSale) {
@@ -843,20 +860,20 @@ class GameCommon {
             return false;
         }
         let freeDay = this.getChapterFreeDay(curChapterId);
-        if (!isVip && freeDay>0) {
+        if (!isVip && freeDay > 0) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
             VideoManager.getInstance().clear();
             ChengJiuManager.getInstance().curChapterChengJiu = {};
-            var callback = function () {
+            const callback = function () {
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
                     windowName: 'TicketPanel',
                     data: "confirm"
                 });
-            }            
-            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待"+freeDay+"天");
+            };
+            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待" + freeDay + "天");
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-        return false;
+            return false;
         }
         return true;
     }
