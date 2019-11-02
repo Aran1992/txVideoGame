@@ -52,6 +52,14 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangListPanel');
     }
 
+    private static disableCheck() {
+        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = false;
+    }
+
+    private static enableCheck() {
+        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = true;
+    }
+
     //添加到舞台
     private onAddToStage(): void {
         this.skinName = skins.GameMainSkin;
@@ -86,8 +94,8 @@ class MainView extends eui.Component {
         this.closeWeb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseWebView, this);
         this.btnSetting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowbtnSetting, this);
         this.btnShangCheng.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShop, this);
-        this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, this.disableCheck, this);
-        this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, this.enabledCheck, this);
+        this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.disableCheck, this);
+        this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.enableCheck, this);
         // GameCommon.getInstance().getWenTi();
         // this.onGetDataRefresh();
         // LocalStorageManager.getInstance().onInit();
@@ -270,7 +278,6 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'AboutPanel');
     }
 
-
     private onShowMian() {
         GameDefine.CUR_IS_MAINVIEW = true;
         this.mainGroup.visible = true;
@@ -446,13 +453,5 @@ class MainView extends eui.Component {
 
     private onShowView() {
         this.mainGroup.visible = true;
-    }
-
-    private disableCheck() {
-        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = false;
-    }
-
-    private enableCheck() {
-        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = true;
     }
 }
