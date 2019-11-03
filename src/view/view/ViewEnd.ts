@@ -153,7 +153,6 @@ class ViewEnd extends eui.Component {
                     break;
             }
         } else {
-
             var chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
             let videoSrc = '';
             if (chapCfg.videoSrc.indexOf(",") >= 0) {

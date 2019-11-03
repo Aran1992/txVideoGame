@@ -111,19 +111,6 @@ class VideoData extends egret.DisplayObjectContainer {
         return id == 'V4111';
     }
 
-    public onShowDetail() {
-        console.log("curVideoIndex=", this.curVideoIndex);
-        console.log(this.curVideoIDs)
-        console.log("tiaoState=" + String(this.tiaoState) + ";videoState=" + String(this.videoState))
-        console.log("curWentiId=" + String(this.curWentiId) + ";nextWentiId=" + String(this.nextWentiId))
-        console.log("===", this.videoIdx, VideoManager.getInstance().videoCurrTime(), VideoManager.getInstance().getVideoDuration());
-        console.log(this.curAnswerCfg)
-        console.log("isSelectVideo=" + String(this.isSelectVideo) + ";isHuDong=" + String(this.isHuDong) + ";isDie=" + String(this.isDie) + ";isEndChapter=" + String(this.isEndChapter))
-        console.log("UserInfo.curchapter=" + String(UserInfo.curchapter))
-        console.log(UserInfo.curBokData)
-
-    }
-
     public onCloseMengBan() {
         this.tipsPanel.onCloseMengBan();
     }
@@ -441,7 +428,6 @@ class VideoData extends egret.DisplayObjectContainer {
                     if (this.curWentiId >= 1) {
                         if (videoCurTime >= VideoManager.getInstance().getVideoDuration())
                             return;
-
                         if (videoModels[this.videoIdx] && Number(videoModels[this.videoIdx].time) > 0) {
                             if (videoCurTime >= Number(videoModels[this.videoIdx].time) - 3 && !isShowHuDong) {
                                 isShowHuDong = true;
@@ -1094,7 +1080,7 @@ class VideoData extends egret.DisplayObjectContainer {
                         GameCommon.getInstance().showCommomTips('别着急有惊喜');
                         return;
                     }
-                    GameCommon.getInstance().showCommomTips('即将出现互动')
+                    GameCommon.getInstance().showCommomTips('即将出现互动');
                 }
             }
         } else {
@@ -1102,15 +1088,14 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (this.videoState != 'buffering' && this.videoState != 'end' && this.videoState != 'idle' && this.videoState != 'loadStart') {
                     widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);
                     this.tipsPanel.onShowAddTime();
-
                 } else {
-                    GameCommon.getInstance().showCommomTips('别着急有惊喜')
+                    GameCommon.getInstance().showCommomTips('别着急有惊喜');
                 }
             } else {
                 if (isChapterLastVideo)
-                    GameCommon.getInstance().showCommomTips('章节结尾')
+                    GameCommon.getInstance().showCommomTips('章节结尾');
                 else
-                    GameCommon.getInstance().showCommomTips('别着急有惊喜')
+                    GameCommon.getInstance().showCommomTips('别着急有惊喜');
             }
         }
     }
