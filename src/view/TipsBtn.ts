@@ -48,9 +48,9 @@ class TipsBtn extends eui.Component {
     private hideTipTimer: number;
     private idGuideBuyLock: eui.Group;
     private tipsTotalTime: number;
-    private idBtnClock:eui.Button;
-    private idBtnShopCar:eui.Button;
-    private idBtnTicket:eui.Button;
+    private idBtnClock: eui.Button;
+    private idBtnShopCar: eui.Button;
+    private idBtnTicket: eui.Button;
 
 
     /**选项对应的道具**/
@@ -179,7 +179,7 @@ class TipsBtn extends eui.Component {
             this.currentState = 'index' + idx;
             /**判断下问题是否带锁**/
             this.onUpdateWentiBtnStatus();
-            
+
 
             this.zimu.bottom = 335;
 
@@ -562,7 +562,7 @@ class TipsBtn extends eui.Component {
         if (button['lock_grp'].visible) {
             SoundManager.getInstance().playSound("ope_click.mp3");
             VideoManager.getInstance().videoPause();
-            PromptPanel.getInstance().onShowBuyHaoGan(this.wentiId,id);
+            PromptPanel.getInstance().onShowBuyHaoGan(this.wentiId, id);
         } else {
             SoundManager.getInstance().playSound("ope_select_tab.mp3");
             this.onSelectWenTi(id);
@@ -612,11 +612,13 @@ class TipsBtn extends eui.Component {
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
     }
+
     //获得某个问题解锁需要的物品
-    private getWentiItemNum(wentiId,id){
-        let itemId = GameCommon.getInstance().getWentiItemId(wentiId,id);        
+    private getWentiItemNum(wentiId, id) {
+        let itemId = GameCommon.getInstance().getWentiItemId(wentiId, id);
         return ShopManager.getInstance().getItemNum(itemId);
     }
+
     /**判断下问题是否带锁**/
     private onUpdateWentiBtnStatus(): void {
         for (let i: number = 1; i <= 5; i++) {
@@ -628,8 +630,8 @@ class TipsBtn extends eui.Component {
             let lockOptIDs: number[] = func() || [];
             if (lockOptIDs.length > 0) {
                 lockOptIDs.forEach(id => {
-                    let itemNum = this.getWentiItemNum(this.wentiId,id);                    
-                    this[`btn${id}`].lock_grp.visible = itemNum<=0;
+                    let itemNum = this.getWentiItemNum(this.wentiId, id);
+                    this[`btn${id}`].lock_grp.visible = itemNum <= 0;
                 })
             }
         }
@@ -673,49 +675,59 @@ class TipsBtn extends eui.Component {
         //这里更新章节解锁信息
         this.updateChapterLockInfo();
     }
-    private updateChapterLockInfo(){
+
+    private updateChapterLockInfo() {
         let curChapterId = UserInfo.curchapter;
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
         let nextChapterId = String(curChapterCfg.next);
         var arr = nextChapterId.split(";");
         let nnextChapterId = Number(arr[0]);
         //是否付费用户，下一章是否已上架
-        if (platform.getPlatform() == "plat_txsp"){
-            this.idBtnTicket.visible=true;
-        }else {
-            this.idBtnTicket.visible=false;
+        if (platform.getPlatform() == "plat_txsp") {
+            this.idBtnTicket.visible = true;
+        } else {
+            this.idBtnTicket.visible = false;
         }
         let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        let isVip = vipNum > 0;        
+        let isVip = vipNum > 0;
         //let freeDay = GameCommon.getInstance().getNextChapterFreeDay();
-        if(isVip || nnextChapterId==0 || !onSale){
-            this.idBtnClock.visible=false;
-            this.idBtnTicket.visible=false;
-        }else{
-            this.idBtnClock.visible=true;
+        if (isVip || nnextChapterId == 0 || !onSale) {
+            this.idBtnClock.visible = false;
+            this.idBtnTicket.visible = false;
+        } else {
+            this.idBtnClock.visible = true;
         }
         this.idBtnClock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnClockClick, this);
         this.idBtnShopCar.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShopCarClick, this);
         this.idBtnTicket.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnTicketClick, this);
 
-        
+
         //VideoManager.getInstance().
     }
-    private idBtnClockClick(){
+
+    private idBtnClockClick() {
         let freeDay = GameCommon.getInstance().getNextChapterFreeDay();
-        if(freeDay>0)
-            GameCommon.getInstance().showCommomTips("下一章"+freeDay+"天后免费");
-        else{            
+        if (freeDay > 0)
+            GameCommon.getInstance().showCommomTips("下一章" + freeDay + "天后免费");
+        else {
             GameCommon.getInstance().showCommomTips("您可以免费阅读下一章");
         }
     }
-    private idBtnShopCarClick(){
+
+    private idBtnShopCarClick() {
         VideoManager.getInstance().videoPause();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"tipsbtnshopcar"});
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
+            windowName: 'TicketPanel',
+            data: "tipsbtnshopcar"
+        });
     }
-    private idBtnTicketClick(){
+
+    private idBtnTicketClick() {
         VideoManager.getInstance().videoPause();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {windowName:'TicketPanel',data:"tipsbtnticket"});
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
+            windowName: 'TicketPanel',
+            data: "tipsbtnticket"
+        });
     }
 }
