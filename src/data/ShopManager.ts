@@ -22,16 +22,24 @@ class ShopManager {
         return this.instance;
     }
 
+    public takeOffAllBookValue(){
+        for(let k in this._serverItemNums){
+            if (k!='loaded' && this._serverItemNums[k]>0){
+                this.takeOffBookValue(GameDefine.BOOKID,k,0,this._serverItemNums[k]);//this._serverItemNums[k]
+            }
+        }
+    }
+
     public takeOffBookValue(bookId, saleId, currentSlotId, num) {
-        callbackTakeOffBookValue = function (data) {
-            // let array = JSON.parse(data);
-            // for(let k in array)
-            // {
-            //     let  d = array[k];
-            //     this.items[array[k].saleId] = d;
-            // }
+        let callback = (data)=> {
+            if (data.code == 0){
+                this._serverItemNums[data.data.value.saleId] = data.data.value.num;
+                console.log("使用物品："+data.data.value.saleId+";"+num+" 剩余:"+data.data.value.num);
+            }else{
+                console.log(data.data.msg+";"+saleId+";"+num);
+            }
         };
-        platform.takeOffBookValue(GameDefine.BOOKID, saleId, currentSlotId, num,callbackTakeOffBookValue);
+        platform.takeOffBookValue(GameDefine.BOOKID, saleId, currentSlotId, num,callback);
     }
 
     /**钻石购买商品**/
@@ -46,7 +54,7 @@ class ShopManager {
                 let recData = data.data;
                 let jsonObject = data.data.value;
                 if (data.code == 0) {
-                    shopdata = this._shopDataDict[recData.saleId];
+                    shopdata = this._shopDataDict[jsonObject.saleId];
                     shopdata.updateShopData(jsonObject);
                     this._serverItemNums[jsonObject.saleId] = jsonObject.num;//更新商品数量
                     console.log("update item:"+jsonObject.saleId+";"+jsonObject.num);
@@ -240,5 +248,3 @@ enum SHOP_TYPE {
     DAOJU = 5,//道具
     SPECIAL = 6,//特殊物品
 }
-
-declare let callbackTakeOffBookValue;
