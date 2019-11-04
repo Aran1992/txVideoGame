@@ -6,8 +6,14 @@ const txsp_debug = true;
 
 class Txsp {
     public init(){
-        if (txsp_debug)
+        if (txsp_debug){
+            bridgeHelper = new BridgeHelper({
+                origin: location.protocol + '//m.v.qq.com',
+                appid: txsp_appid,
+            });
+
             bridgeHelper.setBridgeEnableLog(true) 
+        }
     }
     async saveBookHistory(bookId, slotId, title, externParam,callback){
             bridgeHelper.accessStore({
@@ -103,14 +109,14 @@ class Txsp {
                 }
             })
         //钱够直接买
-        if (leftMoney>=shopdata.currPrice){//){
+        if (leftMoney>=0){//){shopdata.currPrice
             if(txsp_debug)
                 await bridgeHelper.setServerEnv(true)
             await bridgeHelper.diamondConsume({
                 appid: txsp_appid, // 业务id
                 openid: txsp_userinfo.openid, // 互动账号openid,
                 access_token: txsp_userinfo.token, // 互动登录态access_token
-                product_id: '111000', // 商品id
+                product_id: '600001', // 商品id
                 count: 1, // 商品数量
                 }).then((res) => {
                     if(res.code == 0){
@@ -130,23 +136,18 @@ class Txsp {
                 close: 1,     //购买成功后是否自动关闭webview 1: 是 0: 不是，默认 0
                 ru: '', // 购买成功后跳转的链接，优先级低于close
                 title: '拳拳四重奏', // 支付页面标题
-                sandbox:txsp_debug?1:0,
+                sandbox:1,//txsp_debug?1:0,
                 }).then((res) => {
                 })
         }
     }
     async openDebug(){
-        bridgeHelper.openWebview("http://debugx5.qq.com/")
+        bridgeHelper.openWebview("http://debugx5.qq.com/");
     }
     async login(){
         //await this.openDebug();
         if (window.platform.getPlatform() != "plat_txsp")
            return;
-        bridgeHelper = new BridgeHelper({
-            origin: location.protocol + '//m.v.qq.com',
-            appid: txsp_appid,
-        });
-
         //登陆
         while(1){
             let ret = await bridgeHelper.getUserInfo({

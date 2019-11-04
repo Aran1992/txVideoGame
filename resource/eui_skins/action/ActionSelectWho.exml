@@ -7,7 +7,7 @@
         <e:Label id="desc" text="" fontFamily="SimHei" size="40" height="60" verticalAlign="middle" verticalCenter="0" horizontalCenter="0"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="-600" bottom="150">
-			<e:Button id="button0" label="" horizontalCenter="0" verticalCenter="0" x="307" y="7" scaleX="1" scaleY="1">
+			<e:Button id="button0" label="" horizontalCenter="0" verticalCenter="0" x="307" y="7" scaleX="1" scaleY="1" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" source="action_select_line_png"/>
@@ -21,7 +21,7 @@
         <e:Label text="肖千也" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="-300" bottom="150">
-			<e:Button label="" id="button1" horizontalCenter="0" verticalCenter="0">
+			<e:Button label="" id="button1" horizontalCenter="0" verticalCenter="0" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" source="action_select_line_png"/>
@@ -35,7 +35,7 @@
         <e:Label text="夏子豪" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="0" bottom="150">
-			<e:Button label="" id="button2" horizontalCenter="0" verticalCenter="0">
+			<e:Button label="" id="button2" horizontalCenter="0" verticalCenter="0" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" source="action_select_line_png"/>
@@ -49,7 +49,7 @@
         <e:Label text="肖万寻" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="300" bottom="150">
-			<e:Button label="" id="button3" horizontalCenter="0" verticalCenter="0">
+			<e:Button label="" id="button3" horizontalCenter="0" verticalCenter="0" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" source="action_select_line_png"/>
@@ -63,7 +63,7 @@
         <e:Label text="韩小白" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="600" bottom="150">
-			<e:Button label="" id="button4" horizontalCenter="0" verticalCenter="0">
+			<e:Button label="" id="button4" horizontalCenter="0" verticalCenter="0" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" source="action_select_line_png"/>

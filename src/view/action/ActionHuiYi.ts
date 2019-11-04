@@ -14,6 +14,10 @@ class ActionHuiYi extends ActionTimerSceneBase {
         this.skinName = skins.ActionHuiYiSkin;
     }
 
+    private getWentiItemNum(wentiId,id){
+        let itemId = GameCommon.getInstance().getWentiItemId(wentiId,id);        
+        return ShopManager.getInstance().getItemNum(itemId);
+    }
     protected onInit(): void {
         super.onInit();
         this.updateResize();
@@ -29,12 +33,13 @@ class ActionHuiYi extends ActionTimerSceneBase {
         }
         let data1 = GameCommon.getInstance().getSortLike(0);
         this.defaultAnswerID = this.optionRoles[data1.id];
-        const func = GameCommon.getInstance().getLockedOptionIDs[this.model.id];
+        const func = GameCommon.getInstance().getLockedOptionIDs[this.model.id];     
         if (func) {
             const lockedIDs = func() || [];
-            lockedIDs.forEach(id => {
-                this['timeImg' + id].visible = true;
-                this['suo' + id].visible = true;
+            lockedIDs.forEach(id => {                   
+                let itemNum = this.getWentiItemNum(this.model.id,id);     
+                this['timeImg' + id].visible = true && itemNum>0;
+                this['suo' + id].visible = true && itemNum>0;
             });
         }
         let cfgs = answerModels[this.model.id];

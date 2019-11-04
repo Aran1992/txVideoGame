@@ -1,6 +1,3 @@
-// TypeScript file
-declare let callbackSendRequest;
-
 class MainView extends eui.Component {
     private gameWorld: GameWorld;
     private labname: eui.Label;
@@ -24,7 +21,6 @@ class MainView extends eui.Component {
     private wallet: eui.Label;
     private closeWeb: eui.Label;
     private icon: eui.Image;
-    // private btnContinueGame1: eui.Group;
     private bg: eui.Image;
     private bg_grp: eui.Group;
     private rightGruop: eui.Group;
@@ -81,7 +77,6 @@ class MainView extends eui.Component {
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
-        // this.btnContinueGame1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowXuZhang, this);
         this.btnDuQu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onDuDang, this);
         this.btnChengjiu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChengJiu, this);
         this.btnShouCang.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
@@ -131,9 +126,45 @@ class MainView extends eui.Component {
             // height: "100%",
             showUI: false //默认false，控制是否展示默认的播放器UI
         });
+        const methodList = [
+            "play",
+            "clear",
+            "pause",
+            "resume",
+            "seek",
+            "setNextVideoNode",
+            "preloadVideoNode",
+            "getDuration",
+            "getPlayTime",
+            "setPlaybackRate",
+            "on",
+        ];
+        const logArgsMethodList = [
+            "play",
+            "clear",
+            "pause",
+            "resume",
+            "seek",
+            "setNextVideoNode",
+            "preloadVideoNode",
+            "setPlaybackRate",
+            "on",
+        ];
+        const logResultMethodList = [];
         player.on('ready', () => {
-            // window['player'] = player;
-            widPlayer = player;
+            widPlayer = {};
+            methodList.forEach(key => {
+                widPlayer[key] = (...args) => {
+                    if (logArgsMethodList.indexOf(key) !== -1) {
+                        console.trace(`widPlayer.${key} args`, ...args);
+                    }
+                    const result = player[key].bind(player)(...args);
+                    if (logResultMethodList.indexOf(key) !== -1) {
+                        console.trace(`widPlayer.${key} result`, result);
+                    }
+                    return result;
+                };
+            });
             let ps = document.getElementsByTagName('video');
             for (let i: number = 0; i < ps.length; i++) {
                 if (size.fillType == FILL_TYPE_COVER) {
@@ -227,6 +258,7 @@ class MainView extends eui.Component {
         for (var i: number = 1; i < FILE_TYPE.SIZE; i++) {
             GameCommon.getInstance().deleteBookHistory(i);
         }
+        ShopManager.getInstance().takeOffAllBookValue();
         GameCommon.getInstance().addLikeTips('清档成功');
         this.checkGuide8();
     }
@@ -350,14 +382,6 @@ class MainView extends eui.Component {
         this.mainGroup.visible = true;
         let cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         this.chapterName.text = cpCfg.name;
-    }
-
-    private onShowXuZhang() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        this.gameWorld.createGameScene();
-        SoundManager.getInstance().initMusic(SoundManager.musicList);
-        this.mainGroup.visible = false;
-        this.checkGuide8();
     }
 
     private onEventPlay() {
