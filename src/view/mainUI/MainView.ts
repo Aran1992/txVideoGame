@@ -258,6 +258,7 @@ class MainView extends eui.Component {
         for (var i: number = 1; i < FILE_TYPE.SIZE; i++) {
             GameCommon.getInstance().deleteBookHistory(i);
         }
+        ShopManager.getInstance().takeOffAllBookValue();
         GameCommon.getInstance().addLikeTips('清档成功');
         this.checkGuide8();
     }

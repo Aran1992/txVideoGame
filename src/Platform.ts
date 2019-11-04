@@ -45,11 +45,24 @@ class DebugPlatform implements Platform {
     public isCelebrateTime(){
         return true;
     }
+    public getNetTime(){
+        var xmlhttp = new window["XMLHttpRequest"]("MSXML2.XMLHTTP.3.0");
+        xmlhttp.onload=function(){
+            var dateStr=xmlhttp.getResponseHeader("Date");
+            var d=new Date(dateStr);
+            alert("dd:"+d);  
+        }
+        xmlhttp.open("GET", "http://bjtime.cn/", true);
+        xmlhttp.setRequestHeader("If-Modified-Since","q");
+        xmlhttp.send();
+
+    }
     //获得上线时间，其它时间可以此时间上叠加
     public getSaleBeginTime(){
         return 1572364800;//2019-10-30 00:00:00
     }  
     public getPlatform(){
+        //this.getNetTime()
         if (egret.Capabilities.os == 'Windows PC')
             return "plat_pc";
         if (window['StoryPlatform'] || (window["webkit"] && window["webkit"]["messageHandlers"] && window["webkit"]["messageHandlers"]["saveBookHistory"]))
@@ -111,6 +124,7 @@ class DebugPlatform implements Platform {
         }
     }
 
+    
     //获取最近进度
     async getBookLastHistory(bookId,callback) {
         await window["getBookLastHistory"](bookId,callback);
@@ -139,6 +153,7 @@ class DebugPlatform implements Platform {
             await window["sendRequest"](params,callback);
         }
     }
+
 
     async takeOffBookValue(bookId, saleId, currentSlotId, num,callback) {
         await window["takeOffBookValue"](bookId,saleId,currentSlotId,num,callback);
