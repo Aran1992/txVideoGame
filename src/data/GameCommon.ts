@@ -18,6 +18,11 @@ const saveValues = [
 
 class GameCommon {
     private static instance: GameCommon = null;
+    // 每多少毫秒可以进行多少次存储
+    private static MAX_SAVE_TIMES: number = 2;
+    private static SAVE_TIME_INTERVAL: number = 10000;
+    // 存档延迟
+    private static SAVE_DELAY: number = 1000;
     public getLockedOptionIDs = {
         5: () => {
             if (GameCommon.getRoleLike(2) === 1) {
@@ -87,6 +92,14 @@ class GameCommon {
         },
     };
     private readonly sd: egret.Sound;
+    // 重置存档状态计时器
+    private resetSaveTimesTimer: number;
+    // 存档次数
+    private saveTimes: number = 0;
+    // 存档抖动计时器
+    private saveTimer: number = 0;
+    // 在阻挡存储期间是否有存储请求被驳回
+    private hasWaitSaveData: boolean = false;
 
     private constructor() {
         if (!this.sd) {
@@ -218,22 +231,37 @@ class GameCommon {
         if (curChapterCfg) {
             cundangTitle = curChapterCfg.name;
         }
-        let func = data => {
-            if (data.code !== 0) {
-                GameCommon.getInstance().showErrorLog(`${tp}存储失败,重试！${data.data.msg}`);
-                if (data.code == 1) {
-                    let callback = () => {
-                        this.setBookData(tp)
-                    };
-                    setTimeout(callback, 1000)
+        if (this.saveTimes >= GameCommon.MAX_SAVE_TIMES) {
+            console.warn("请求过于频繁");
+            this.hasWaitSaveData = true;
+            return;
+        }
+        // 延迟一定事件之后执行，这样能够确保如果短时间之内请求多次存档，可以合并在一起请求，减少请求次数
+        clearTimeout(this.saveTimer);
+        this.saveTimer = setTimeout(() => {
+            this.saveTimes++;
+            platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str, data => {
+                if (data.code !== 0) {
+                    if (data.code == 1) {
+                        // 请求过于频繁的话 那么就等上充足的时间进行存档
+                        setTimeout(() => this.setBookData(tp), GameCommon.SAVE_TIME_INTERVAL);
+                    }
+                } else {
+                    // 存储成功之后 设置一个计时器 这个时间过了之后 就能够把存储限制移除
+                    if (this.resetSaveTimesTimer === undefined) {
+                        this.resetSaveTimesTimer = setTimeout(() => {
+                            this.resetSaveTimesTimer = undefined;
+                            this.saveTimes = 0;
+                            if (this.hasWaitSaveData) {
+                                this.hasWaitSaveData = false;
+                                this.setBookData(tp);
+                            }
+                        }, GameCommon.SAVE_TIME_INTERVAL);
+                    }
+                    GameCommon.getInstance().parseFile(data.data.slotId);
                 }
-                //如果是因为太频繁，则之后再试
-            } else {
-                GameCommon.getInstance().showErrorLog(`存档${data.data.slotId}存储成功！`);
-                GameCommon.getInstance().parseFile(data.data.slotId);
-            }
-        };
-        await platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str, func);
+            });
+        }, GameCommon.SAVE_DELAY);
     }
 
     /*所有数据存档*/

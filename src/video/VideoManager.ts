@@ -1,21 +1,14 @@
 class VideoManager {
     private static instance: VideoManager = null;
-    public currParam: string;
     public speed: number = 1;
-    public isSwitchVideo: boolean = false;
-    public videoLoadNode: Function;
-    public videoCurrCallBack: Function;
-    public videoDurationCallBack: Function;
     public isReadySet: boolean = false;
     private videoData: VideoData;
     private currIdx: number;
-    private isPlay: boolean = false;
     private first: boolean = true;
     private _videoID: string;//当前播放的视频ID
     private isPause: boolean = false;
     private _isRead: boolean = false;
     private setVid: string = '';
-    private _speed: number = 1;
 
     private constructor() {
     }
@@ -43,10 +36,7 @@ class VideoManager {
     }
 
     public getVideoData() {
-        if (this.videoData) {
-            return true;
-        }
-        return false;
+        return !!this.videoData;
     }
 
     /**存储当前正在播放的视频**/
@@ -111,27 +101,22 @@ class VideoManager {
         if (this.first) {
             this.onPlay(src);
         } else {
-            VideoManager.play(videoModels[src].vid);
+            this.play(videoModels[src].vid);
         }
     }
 
     public onPlay(param) {
         if (this.first) {
             if (widPlayer) {
-                VideoManager.play(videoModels[param].vid);
+                this.play(videoModels[param].vid);
                 VideoManager.getInstance().videoData.checkVideoTime(param);
                 this.first = false;
             }
         } else {
             if (widPlayer) {
-                VideoManager.play(videoModels[param].vid);
+                this.play(videoModels[param].vid);
             }
         }
-    }
-
-    public onClick() {
-        VideoManager.getInstance().log('click');
-        window['player'].play();
     }
 
     public againInit() {
@@ -147,29 +132,18 @@ class VideoManager {
     public videoCurrTime(): number {
         if (!widPlayer)
             return 0;
-        if (!this.videoCurrCallBack) {
-            this.videoCurrCallBack = function (tim) {
-                return tim;
-            }
-        }
         return widPlayer.getPlayTime();
     }
 
     public getVideoDuration(): number {
         if (!widPlayer)
             return 0;
-        if (!this.videoDurationCallBack) {
-            this.videoDurationCallBack = function (tim) {
-                return tim;
-            }
-        }
         // this.videoDurationCallBack
         return widPlayer.getDuration();
     }
 
     public videoLastTime(): number {
-        let num = VideoManager.getInstance().getVideoDuration() - VideoManager.getInstance().videoCurrTime();
-        return num;
+        return VideoManager.getInstance().getVideoDuration() - VideoManager.getInstance().videoCurrTime();
     }
 
     public videoPause() {
@@ -203,51 +177,47 @@ class VideoManager {
 
     }
 
-    public getPause(): boolean {
-        return this.isPause;
-    }
-
     public onLoad(wentiId) {
         if (!widPlayer)
             return;
-        var cfgs = answerModels[wentiId];
-        var videoSrcs: string[] = [];
+        const cfgs = answerModels[wentiId];
+        const videoSrcs: string[] = [];
         if (!cfgs) {
             if (!videoModels[wentiId]) {
                 return;
             }
             videoSrcs.push(videoModels[wentiId].id)
         } else {
-            for (var k in cfgs) {
-                if (cfgs[k].videos.indexOf(",") >= 0) {
-                    var strs = cfgs[k].videos.split(",");
-                    videoSrcs.push(strs[0]);
-                } else {
-                    if (cfgs[k].videos != '')
-                        videoSrcs.push(cfgs[k].videos);
-                    else
-                        return;
+            for (const k in cfgs) {
+                if (cfgs.hasOwnProperty(k)) {
+                    if (cfgs[k].videos.indexOf(",") >= 0) {
+                        const strs = cfgs[k].videos.split(",");
+                        videoSrcs.push(strs[0]);
+                    } else {
+                        if (cfgs[k].videos != '')
+                            videoSrcs.push(cfgs[k].videos);
+                        else
+                            return;
+                    }
                 }
             }
         }
         // VideoManager.getInstance().log('load可能播放的src' + videoSrcs)
-        for (var i: number = 0; i < videoSrcs.length; i++) {
+        for (let i: number = 0; i < videoSrcs.length; i++) {
             videoSrcs[i] = videoModels[videoSrcs[i]].vid;
         }
-        var obj = this;
         this.isReadySet = false;
         widPlayer.preloadVideoNode(videoSrcs).then(() => {
-            obj.isReadySet = true;
+            this.isReadySet = true;
             // VideoManager.getInstance().log('预加载成功' + videoSrcs)
-            if (obj.setVid != '') {
+            if (this.setVid != '') {
                 // VideoManager.getInstance().log('成功回调set_Src' + obj.setVid)
-                if (obj._isRead) {
-                    widPlayer.setNextVideoNode(obj.setVid, {inerrupt: true});
+                if (this._isRead) {
+                    widPlayer.setNextVideoNode(this.setVid, {inerrupt: true});
                 } else {
-                    widPlayer.setNextVideoNode(obj.setVid);
+                    widPlayer.setNextVideoNode(this.setVid);
                 }
-
-                obj.setVid = '';
+                this.setVid = '';
             }
         })
     }
@@ -291,34 +261,6 @@ class VideoManager {
         widPlayer.setPlaybackRate(speed);
     }
 
-    public getSpeed(): number {
-        return this._speed;
-    }
-
-    public videoUpDataHandle() {
-        if (this.videoData && this.videoData.videoUpDataHandle())
-            this.videoData.videoUpDataHandle();
-    }
-
-    public videoEndHandle() {
-        // VideoManager.getInstance().log('我画')
-        if (this.videoData && this.videoData.videoEndHandle)
-            this.videoData.videoEndHandle();
-    }
-
-    public onwaiting() {
-        if (this.videoData && this.videoData.onWaitin) {
-            this.videoData.onWaitin();
-        }
-    }
-
-    //切换视频清晰度
-    public onSwitchQuality() {
-        if (!widPlayer)
-            return;
-        widPlayer.setLevel(GameDefine.VIDEO_PINZHI);
-    }
-
     //切换视频音量
     public onSwitchVolume(volume) {
         if (!widPlayer)
@@ -335,25 +277,15 @@ class VideoManager {
         // widPlayer.stop();
     }
 
-    public videoStop() {
-        if (!widPlayer)
-            return;
-        widPlayer.stop();
-    }
-
     public videoClose(): void {
         this.videoData.onCloseVideo();
     }
 
-    public textHudong(wentId: number) {
-        this.videoData.testHudong(wentId);
-    }
-
-    private static play(vid) {
-        if (vid === widPlayer.getVid()) {
-            widPlayer.seek(0);
-        } else {
+    private play(vid) {
+        if (this.first) {
             widPlayer.play(vid);
+        } else {
+            widPlayer.setNextVideoNode(vid, {inerrupt: true});
         }
     }
 }
