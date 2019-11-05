@@ -51,6 +51,7 @@ class CommonTips extends eui.Component {
     private ldState: boolean = false;
     private roleChapterNoticeGroup: eui.Group;
     private roleChapterNoticeLabel: eui.Label;
+    private idBuyItemName:eui.Label;
 
     constructor() {
         super();
@@ -198,6 +199,7 @@ class CommonTips extends eui.Component {
         }
         this.itemTp = tp;
         this.itemId = id;
+        this.idBuyItemName.text = "“"+ShopManager.getInstance().getShopInfoData(id).model.name+"”";
         this.desc6.text = money + "";
         this.buyGroup1.visible = true;
         this.buyGrp.visible = true;
@@ -209,7 +211,7 @@ class CommonTips extends eui.Component {
             this.btnConfirm_haogan['money'].text = 30;
         }
         this._buyhaoganparams.wentiId= wentiId;
-        this._buyhaoganparams.id= id;        
+        this._buyhaoganparams.id= id;
         this.buyGrphaogan.visible = true;
         this.onshowMaskBG();
     }

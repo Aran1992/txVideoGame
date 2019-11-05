@@ -18,6 +18,7 @@ class BuyTipsPanel extends eui.Component {
     //显示蒙板
     private mask_BG: eui.Image;
     private _curModel: Modelshop;
+    private idBuyItemName:eui.Label;
 
     constructor(param) {
         super();
@@ -37,7 +38,7 @@ class BuyTipsPanel extends eui.Component {
 
     //供子类覆盖
     protected onInit(): void {
-        this.icon.source = this.param.banner;
+        //this.icon.source = this.param.banner;
         // let scale = 200/this.icon.width;
         // this.icon.x = 30;
         // this.icon.y =
@@ -46,6 +47,7 @@ class BuyTipsPanel extends eui.Component {
         var spModel: Modelshop = JsonModelManager.instance.getModelshop()[this.param.shopInfo.id];
         this.money1.text = spModel.currSuipian + '';
         this.money2.text = spModel.currPrice + '';
+        this.idBuyItemName.text = "“"+spModel.name+"”";
         this._curModel = spModel;
         // GameCommon.getInstance().onShowBuyTips(spModel.id, spModel.pay_tp, spModel.currPrice);
     }
@@ -85,13 +87,17 @@ class BuyTipsPanel extends eui.Component {
     }
 
     private onZuanShi() {        
-        GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currPrice, GOODS_TYPE.DIAMOND);
+        if (platform.getPlatform() == "plat_txsp" || platform.getPlatform()== "plat_pc")
+            GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currPrice, GOODS_TYPE.DIAMOND);
+        else
+            ShopManager.getInstance().buyGoods(this.param.shopInfo.id);
         // this.moneyIcon.source = 'common_zuanshi1_png';
         this.onclose();
     }
 
     private onSuiPian() {
-        GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currSuipian, GOODS_TYPE.SUIPIAN);
+        ShopManager.getInstance().buyGoodsSuip(this.param.shopInfo.id);
+        //GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currSuipian, GOODS_TYPE.SUIPIAN);
         this.onclose();
         // this.moneyIcon.source = 'common_yuese_png';
     }

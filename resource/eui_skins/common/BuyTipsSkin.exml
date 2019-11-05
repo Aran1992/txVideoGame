@@ -5,30 +5,55 @@
              height="385">
         <e:Image fillMode="scale" scale9Grid="128,6,117,33" source="common_heidi2_png" width="100%" height="100%"  x="-1" y="1" locked="true"/>
         <e:Image id='icon' fillMode="scale" left="30" source="sc_role1_imgIcon_1_png"
-                  scaleX="0.6" scaleY="0.55" verticalCenter="0"/>
-        <e:Group horizontalCenter="88" verticalCenter="-29">
-            <e:Group horizontalCenter="0" verticalCenter="-66" width="244">
-                <e:Image fillMode="scale" source="control_btn_di_png" height="58" />
-                <e:Image fillMode="scale" source="common_yuese_png" x="18" y="15" />
-                <e:Label id="money1" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="588" textAlign="center"
-                         x="90" fontFamily="SimHei" scaleX="1" scaleY="1" width="127" verticalCenter="0" />
+                  scaleX="0.6" scaleY="0.55" verticalCenter="0" visible="false"/>
+        <e:Group horizontalCenter="17" verticalCenter="-22.5">
+            <e:Group width="244" y="146">
+                <e:Image fillMode="scale" source="control_btn_di_png" height="58"  visible="false"/>
+                <e:Image fillMode="scale" source="common_yuese_png" x="85.33" y="15" />
+                <e:Label id="money1" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="588" textAlign="left"
+                         x="123.33" fontFamily="SimHei" scaleX="1" scaleY="1" width="95" verticalCenter="0"  anchorOffsetX="0"/>
             </e:Group>
-            <e:Group horizontalCenter="0" verticalCenter="-66" width="244">
-                <e:Image source="control_btn_di_png" height="58" />
-                <e:Image x="18" y="15" source="common_zuanshi1_png" />
-                <e:Label id="money2" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="588" textAlign="center"
-                         x="90" fontFamily="SimHei" width="127" verticalCenter="0" />
+            <e:Group width="244" x="298" y="146">
+                <e:Image source="control_btn_di_png" height="58"  visible="false"/>
+                <e:Image x="73.33" y="14.33" source="common_zuanshi1_png" />
+                <e:Label id="money2" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="588" textAlign="left"
+                         x="112.67" fontFamily="SimHei" width="92.33" verticalCenter="0"  anchorOffsetX="0"/>
             </e:Group>
-            <e:layout>
-                <e:VerticalLayout gap="27" />
-            </e:layout>
+					<e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="选择购买以下物品" textAlign="center" x="128.33" y="8" fontFamily="SimHei"/>
+					<e:Label id="idBuyItemName" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="物品名字" fontFamily="SimHei" x="66.66" y="68" textAlign="center" anchorOffsetX="0" width="386.68"/>
+					<e:layout>
+						<e:BasicLayout/>
+					</e:layout>
+
         </e:Group>
-        <e:Group bottom="29" x="249">
-            <e:Button id="suipBuy" label="碎片购买" touchEnabled="true" width="240" skinName="skins.Common_Button2Skin" height="53"></e:Button>
-            <e:Button id="zuanshiBuy" label="钻石购买" touchEnabled="true" x="294" width="240" height="53"
-                      skinName="skins.Common_Button2Skin"></e:Button>
+        <e:Group bottom="29" x="18.7" anchorOffsetX="0" width="788.54">
+					<e:Button id="cancelBuy" label="取消" touchEnabled="true" width="249.09" height="53" x="11.52" y="1" anchorOffsetX="0">
+						<e:skinName>
+							<e:Skin states="up,down,disabled">
+							<e:Image scaleX.down="0.9" scaleY.down="0.9" width="100%" height="100%" source="buy_btn_cancel_png"/>
+							<e:Label scaleX.down="0.9" scaleY.down="0.9" id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+							</e:Skin>
+						</e:skinName>
+					</e:Button>
+            <e:Button id="suipBuy" label="碎片购买" touchEnabled="true" width="240" height="53" x="279" y="1">
+							<e:skinName>
+								<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" scaleY.down="0.9" width="100%" height="100%" source="buy_btn_suipian_png"/>
+								<e:Label scaleX.down="0.9" scaleY.down="0.9" id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+								</e:Skin>
+							</e:skinName>
+</e:Button>
+            <e:Button id="zuanshiBuy" label="钻石购买" touchEnabled="true" x="540.97" width="240" height="53"
+                      y="1">
+							<e:skinName>
+								<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" scaleY.down="0.9" width="100%" height="100%" source="buy_btn_zhuang_png"/>
+								<e:Label scaleX.down="0.9" scaleY.down="0.9" id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+								</e:Skin>
+							</e:skinName>
+</e:Button>
         </e:Group>
         <e:Label id="closeBtn" size="50" textColor="0xFFFFFF" verticalAlign="middle" text="X" textAlign="center"
-                 fontFamily="Arial" width="41" bold="true" right="0" top="0" />
+                 fontFamily="Arial" width="41" bold="true" right="0" top="0"  visible="false"/>
     </e:Group>
 </e:Skin>

@@ -150,7 +150,7 @@ class ShopManager {
         return this.getServerItemNum(id)+shopdata.num
     }
     /**获取ID商品信息**/
-    public getShopInfoData(id: number) {
+    public getShopInfoData(id: number):ShopInfoData {
         return this._shopDataDict[id];
     }
 

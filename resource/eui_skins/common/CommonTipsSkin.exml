@@ -37,19 +37,20 @@
                  verticalCenter="0" horizontalCenter="0" fontFamily="SimHei" />
     </e:Group>
     <e:Group id="buyGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false"
-             visible="false">
-        <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
-        <e:Group id="buyGroup1" verticalCenter="-66" horizontalCenter="0">
-            <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="是否花费" textAlign="center" x="3" y="0"
+            >
+        <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png"  locked="true"/>
+        <e:Group id="buyGroup1" anchorOffsetX="0" width="441.67" anchorOffsetY="0" height="259.99" horizontalCenter="-3" verticalCenter="-16">
+            <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="选择购买以下物品" textAlign="center" x="91" y="13.34"
                      fontFamily="SimHei" />
-            <e:Label id="desc6" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="XXX" textAlign="center"
-                     x="13" y="10" fontFamily="SimHei" />
-            <e:Image id="moneyIcon" source="common_yuese_png" x="155" y="1" />
-            <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="购买？" textAlign="center" x="23" y="20"
-                     fontFamily="SimHei" />
-            <e:layout>
-                <e:HorizontalLayout verticalAlign="middle" />
-            </e:layout>
+            <e:Label id="desc6" size="32" verticalAlign="middle" text="XXX" textAlign="left"
+                     x="223.67" y="131.33" fontFamily="SimHei"  textColor="0xf2bd09"/>
+            <e:Image id="moneyIcon" source="common_yuese_png" x="175" y="135.67" />
+            <e:Label id="idBuyItemName" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="物品名字"
+                     fontFamily="SimHei"  horizontalCenter="-1.335000000000008" verticalCenter="-43.995000000000005" textAlign="center" anchorOffsetX="0" width="335"/>
+					<e:layout>
+						<e:BasicLayout/>
+					</e:layout>
+
         </e:Group>
         <e:Group id="buyGroup2" width="583" x="115" y="118" visible="false">
             <e:Image source="common_yuese_png" x="313" y="5" />
@@ -60,22 +61,51 @@
                      textAlign="center" x="3" y="0" fontFamily="SimHei" />
         </e:Group>
         <e:Group horizontalCenter="0" verticalCenter="70">
-            <e:Button id="btnConfirm_buy" label="是" bottom="1" horizontalCenter="-127" touchEnabled="true" width="217"
-                      height="53" skinName="skins.Common_Button2Skin" />
-            <e:Button id="btnCancel_buy" label="否" bottom="56" horizontalCenter="-250" touchEnabled="true" width="217"
-                      skinName="skins.Common_Button2Skin" height="53"></e:Button>
+					<e:Button id="btnCancel_buy" label="取消" bottom="0" horizontalCenter="-142.5" touchEnabled="true" width="217" height="53">
+						<e:skinName>
+							<e:Skin states="up,down,disabled">
+							<e:Image scaleX.down="0.9" scaleY.down="0.9" width="100%" height="100%" source="buy_btn_cancel_png"/>
+							<e:Label scaleX.down="0.9" scaleY.down="0.9" id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+							</e:Skin>
+						</e:skinName>
+					</e:Button>
+            <e:Button id="btnConfirm_buy" label="钻石购买" bottom="1" horizontalCenter="-127" touchEnabled="true" width="217"
+                      height="53" >
+							<e:skinName>
+								<e:Skin states="up,down,disabled">
+								<e:Image scaleX.down="0.9" scaleY.down="0.9" width="100%" height="100%" source="buy_btn_zhuang_png"/>
+								<e:Label scaleX.down="0.9" scaleY.down="0.9" id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+								</e:Skin>
+							</e:skinName>
+						</e:Button>
+
             <e:layout>
                 <e:HorizontalLayout gap="88" />
             </e:layout>
         </e:Group>
     </e:Group>
-	<e:Group id="confirmGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false" height="390" width="760">
+	<e:Group id="confirmGrp" horizontalCenter="6" verticalCenter="4" touchChildren="true" touchEnabled="false" height="398" width="784" anchorOffsetY="0" anchorOffsetX="0" visible="false">
 		<e:Image scale9Grid="128,6,117,33" source="common_heidi2_png" left="0" right="0" top="0" bottom="0" locked="true"/>
 		<e:Label id="confirm_desc_lab" size="32" textColor="0xFFFFFF" verticalAlign="middle" textAlign="center" fontFamily="SimHei" horizontalCenter="0" width="690" height="200" verticalCenter="-45" lineSpacing="25"/>
-		<e:Label id="confirm_desc2_lab" size="28" text="" fontFamily="SimHei" horizontalCenter="0" y="345" textColor="0xffbe56"/>
-		<e:Group horizontalCenter="0" y="260">
-		<e:Button id="confirm_btn" label="是" bottom="1" horizontalCenter="-127" touchEnabled="true" width="217" height="53" skinName="skins.Common_Button2Skin"/>
-		<e:Button id="cancel_btn" label="否" bottom="56" horizontalCenter="-250" touchEnabled="true" width="217" skinName="skins.Common_Button2Skin" height="53"/>
+		<e:Label id="confirm_desc2_lab" size="22" text="活动期间，非特权用户也可等剧集解锁免费观看，详情请在《一零零一》查看" fontFamily="SimHei" horizontalCenter="3" y="331" textColor="0xffbe56" anchorOffsetX="0" width="774" anchorOffsetY="0" height="56" verticalAlign="middle" textAlign="center"/>
+		<e:Group horizontalCenter="2" y="270">
+			<e:Button id="cancel_btn" label="否" bottom="0" horizontalCenter="-255.5" touchEnabled="true" width="217" height="53">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="buy_btn_cancel_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+		<e:Button id="confirm_btn" label="是" bottom="-8" horizontalCenter="51.5" touchEnabled="true" width="217" height="53">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="buy_btn_zhuang_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+
 		<e:layout>
 			<e:HorizontalLayout gap="88"/>
 		</e:layout>
