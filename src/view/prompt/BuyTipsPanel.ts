@@ -19,6 +19,7 @@ class BuyTipsPanel extends eui.Component {
     private mask_BG: eui.Image;
     private _curModel: Modelshop;
     private idBuyItemName:eui.Label;
+    private cancelBuy:eui.Button;
 
     constructor(param) {
         super();
@@ -56,6 +57,7 @@ class BuyTipsPanel extends eui.Component {
         this.touchEnabled = false;
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         this.closeBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclose, this);
+        this.cancelBuy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclose, this);
         this.zuanshiBuy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onZuanShi, this);
         this.suipBuy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSuiPian, this);
         this.updateResize();
