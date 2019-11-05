@@ -4,7 +4,6 @@ var videoSize = { width: 0, height: 0 };
 var FILL_TYPE_COVER = 0;// 覆盖
 var FILL_TYPE_FILL_H = 1;// 横向填充
 var FILL_TYPE_FILL_V = 2;// 纵向填充
-declare const BridgeHelper;
 class Main extends eui.UILayer {
     private textfield: egret.TextField;
 
