@@ -861,6 +861,21 @@
             "url": "assets/common/button_pinkdi.png?v=928"
         },
         {
+            "name": "buy_btn_cancel_png",
+            "type": "image",
+            "url": "assets/common/buy_btn_cancel.png?v=929"
+        },
+        {
+            "name": "buy_btn_suipian_png",
+            "type": "image",
+            "url": "assets/common/buy_btn_suipian.png?v=950"
+        },
+        {
+            "name": "buy_btn_zhuang_png",
+            "type": "image",
+            "url": "assets/common/buy_btn_zhuang.png?v=107"
+        },
+        {
             "name": "chengjiu_tips_di_png",
             "type": "image",
             "url": "assets/common/chengjiu_tips_di.png?v=155"
@@ -4636,6 +4651,11 @@
             "url": "assets/shoucang/shoucang_baikuang.png?v=695"
         },
         {
+            "name": "ticket_bk1_png",
+            "type": "image",
+            "url": "assets/ticket/ticket_bk1.png?v=812"
+        },
+        {
             "name": "ticket_btn1_png",
             "type": "image",
             "url": "assets/ticket/ticket_btn1.png?v=474"
@@ -4646,9 +4666,19 @@
             "url": "assets/ticket/ticket_btn2.png?v=531"
         },
         {
+            "name": "ticket_btn3_png",
+            "type": "image",
+            "url": "assets/ticket/ticket_btn3.png?v=722"
+        },
+        {
             "name": "ticket_buy_png",
             "type": "image",
             "url": "assets/ticket/ticket_buy.png?v=604"
+        },
+        {
+            "name": "ticket_buy_ex_png",
+            "type": "image",
+            "url": "assets/ticket/ticket_buy_ex.png?v=539"
         },
         {
             "name": "ticket_cdk_png",
@@ -4743,7 +4773,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=428"
+            "url": "config/config.bin?v=429"
         }
     ]
 }

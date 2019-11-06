@@ -27,6 +27,8 @@ class TicketPanel extends eui.Component{
     private idNoCode:eui.Label;
     private idShareCode:eui.Label;
     private idHasCodeText:eui.Label;
+    private idExpireText:eui.Label;
+    private idTicketNum:eui.Label;
 
     private _selectIndex:number = 1;
     private _openParam:string;
@@ -44,7 +46,15 @@ class TicketPanel extends eui.Component{
     protected onSkinName():void{
         this.skinName = skins.TicketSkin;
     }   
-    
+    private getPingzhengPrize(){
+        if (platform.getPlatform() == "plat_txsp"){
+            if(platform.getLocalUserInfo().base_info.vip == 1)//是否腾讯视频vip用户， 1: 是， 0: 否
+                return 120;
+            else
+                return 180;
+        }
+        return 120;
+    }
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
@@ -93,10 +103,11 @@ class TicketPanel extends eui.Component{
         this.idNoCode.visible = true;
         this.idBtnCopyCode.visible = false;
         this.idBtnShareCode.visible = false;
+        this.idTicketNum.text = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         var params = {"bookId":GameDefine.BOOKID,"cmd":"getMyCDKey","saleId":GameDefine.GUANGLIPINGZHENG}
         platform.sendRequest(params,(data)=>{
-            //有而且第一个可用。
-            if (data.code == 0 && data.data.list.length>0 && data.data.list[0].isValid == 1){
+            //有而且第一个可用。isExpire 1过期0未过期;expireTime "过期时间字符串",status:1还没使用，2已使用
+            if (data.code == 0 && data.data.list.length>0 ){//&& data.data.list[0].status == 1
                 let item = data.data.list[0];
                 let cdk = item.CDKey;
                 let valid = item.isValid; //1或者0，1 是可用
@@ -107,12 +118,21 @@ class TicketPanel extends eui.Component{
                 this.idBtnCopyCode.visible = true;
                 this.idBtnShareCode.visible = true;
                 this.idHasCodeText.visible = true;
-            }else{                
+                if (data.data.list[0].status==2){
+                    this.idExpireText.text = "已被使用"
+                }
+                else if (data.data.list[0].isExpire == 0)
+                    this.idExpireText.text = data.data.list[0].expireTime+" 前有效"
+                else{
+                    this.idExpireText.text = "已过期"
+                }
+            }else{
                 this.idCode.visible = false;
                 this.idNoCode.visible = true;
                 this.idBtnCopyCode.visible = false;
                 this.idBtnShareCode.visible = false;
                 this.idHasCodeText.visible = false;
+                this.idExpireText.text = ""
             }
             //console.log(data)
         });
@@ -138,11 +158,14 @@ class TicketPanel extends eui.Component{
             return;
         }
         let code = this.idEditText.text;
-        var params = {"bookId":GameDefine.BOOKID,"cmd":"exchangeCDKey","CDKey":code}
+        var params = {"bookId":GameDefine.BOOKID,"cmd":"exchangeCDKey","CDKey":code,saleId:GameDefine.GUANGLIPINGZHENG}
         platform.sendRequest(params,(data)=>{
             if(data.code == 0){
-                GameCommon.getInstance().showCommomTips("激活成功,恭喜您已获得观礼资格！");
-                console.log(data);
+                ShopManager.getInstance().addGoods(GameDefine.GUANGLIPINGZHENG,1,()=>{            
+                    GameCommon.getInstance().showCommomTips("激活成功,恭喜您已获得观礼资格！");
+                })
+            }else{
+                GameCommon.getInstance().showCommomTips(data.data.msg);
             }
         })
     }
@@ -197,12 +220,19 @@ class TicketPanel extends eui.Component{
     }
     private idBtnBuyTicketSpecailPrizeClick(event:egret.TouchEvent):void{
         SoundManager.getInstance().playSound("ope_click.mp3")
+        
         let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         if(item.num>0){
             GameCommon.getInstance().showCommomTips("已购买");
             //return;
         }
-        ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG);
+        if (platform.getPlatform()=="plat_txsp" || platform.getPlatform()=="plat_pc"){
+            GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENG,this.getPingzhengPrize(),GOODS_TYPE.DIAMOND)
+        }else{
+            ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG,1,()=>{
+                        GameCommon.getInstance().onShowResultTips('购买成功，激活码可在“心动PASS”-“激活码观礼”处查看');
+                    });
+        }
     }
     private onCloseClick(event:egret.TouchEvent=null):void{ 
         SoundManager.getInstance().playSound("ope_click.mp3")
