@@ -155,14 +155,22 @@ class MainView extends eui.Component {
             widPlayer = {};
             methodList.forEach(key => {
                 widPlayer[key] = (...args) => {
-                    if (logArgsMethodList.indexOf(key) !== -1) {
-                        console.trace(`widPlayer.${key} args`, ...args);
+                    if (key === "on") {
+                        const [event, handler] = args;
+                        player[key].bind(player)(event, (...args) => {
+                            console.log("video player event", event, ...args);
+                            handler(...args);
+                        });
+                    } else {
+                        if (logArgsMethodList.indexOf(key) !== -1) {
+                            console.trace(`widPlayer.${key} args`, ...args);
+                        }
+                        const result = player[key].bind(player)(...args);
+                        if (logResultMethodList.indexOf(key) !== -1) {
+                            console.trace(`widPlayer.${key} result`, result);
+                        }
+                        return result;
                     }
-                    const result = player[key].bind(player)(...args);
-                    if (logResultMethodList.indexOf(key) !== -1) {
-                        console.trace(`widPlayer.${key} result`, result);
-                    }
-                    return result;
                 };
             });
             let ps = document.getElementsByTagName('video');
