@@ -37,13 +37,13 @@
                  verticalCenter="0" horizontalCenter="0" fontFamily="SimHei" />
     </e:Group>
     <e:Group id="buyGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false"
-            >
+             visible="false">
         <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png"  locked="true"/>
         <e:Group id="buyGroup1" anchorOffsetX="0" width="441.67" anchorOffsetY="0" height="259.99" horizontalCenter="-3" verticalCenter="-16">
             <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="选择购买以下物品" textAlign="center" x="91" y="13.34"
                      fontFamily="SimHei" />
             <e:Label id="desc6" size="32" verticalAlign="middle" text="XXX" textAlign="left"
-                     x="222.67" y="154.33" fontFamily="SimHei"  textColor="0xf2bd09"/>
+                     x="221.67" y="156.33" fontFamily="SimHei"  textColor="0xf2bd09"/>
             <e:Image id="moneyIcon" source="common_yuese_png" x="174" y="158.67" />
             <e:Label id="idBuyItemName" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="物品名字"
                      fontFamily="SimHei"  horizontalCenter="-0.33500000000000796" verticalCenter="-26.995000000000005" textAlign="center" anchorOffsetX="0" width="335"/>
@@ -154,8 +154,8 @@
     <e:Group id="buyResult" horizontalCenter="0" verticalCenter="0" visible="false">
         <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
         <e:Image id='buyResultImg' source="common_close2_png" horizontalCenter="0" y="105" />
-        <e:Label id='buyResultLab' size="32" textColor="0xFFFFFF" verticalAlign="middle" text="购买成功" textAlign="center"
-                 fontFamily="SimHei" horizontalCenter="0" y="205" />
+        <e:Label id='buyResultLab' size="30" textColor="0xFFFFFF" verticalAlign="middle" text="购买成功" textAlign="center"
+                 fontFamily="SimHei" horizontalCenter="3.5" y="205"  anchorOffsetX="0" width="712.85" anchorOffsetY="0" height="115.33" lineSpacing="20"/>
         <e:Button id="btn_qianwang" label="" touchEnabled="true" width="240" height="53" horizontalCenter="0" y="280"
                   skinName="skins.Common_Button2Skin" visible="false"></e:Button>
         <e:Label id="result_closebtn" size="50" textColor="0xFFFFFF" verticalAlign="middle" text="X" textAlign="center"

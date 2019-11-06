@@ -184,6 +184,11 @@ class ShopManager {
                         }
                     });
                     break;
+                case SHOP_TYPE.SPECIAL:
+                    if(shopdata.id == GameDefine.GUANGLIPINGZHENG){
+                        //啥也不干。由调用者传入
+                        //GameCommon.getInstance().onShowResultTips('购买成功，激活码可在“心动PASS”-“激活码观礼”处查看');
+                    }
                 default:
                     GameCommon.getInstance().onShowResultTips('购买成功');
                     break;
@@ -244,7 +249,7 @@ class ShopInfoData {
         if (info.pay) this.pay = info.pay;
         if (info.origPrice) this.currPrice = info.origPrice;
         if (info.saleIntro) this.saleIntro = info.saleIntro;
-        if (info.num) this.num = info.num;
+        //if (info.num) this.num = info.num;//数量不更新到本地
         if (info.date) this.date = info.date;
         this.model = JsonModelManager.instance.getModelshop()[this.id];
     }

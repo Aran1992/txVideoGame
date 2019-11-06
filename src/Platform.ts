@@ -31,6 +31,7 @@ declare interface Platform {
 
     isDebug(): boolean;
     getPlatform():string;
+    getLocalUserInfo();
 
     getBridgeHelper();  
     getSaleBeginTime();
@@ -39,6 +40,14 @@ declare interface Platform {
 class DebugPlatform implements Platform {
     async getUserInfo() {
         await window["getUserInfo"](()=>{});
+    }
+
+    public getLocalUserInfo(){        
+        if (this.getPlatform() == "plat_txsp"){
+            return txsp_userinfo;
+        }else{
+            return {}
+        }
     }
 
     //是否是活动期间；
