@@ -1,14 +1,14 @@
 const ADShowConfig = [
     {
         id: "ad1",
-        videoID: "V508",
-        start: 3,
-        end: 6,
+        videoID: "V510",
+        start: 165,
+        end: 168,
     },
     {
         id: "ad2",
         videoID: "VX1204",
-        start: 3,
+        start: 29,
         end: 6,
     }
 ];
