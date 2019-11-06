@@ -558,14 +558,11 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         if (!this.videoErrorHandle) {
             widPlayer.on('error', (error) => {
-                if (error.code == 14001) {
-                    GameCommon.getInstance().showErrorLog(JSON.stringify(error));
-                    GameCommon.getInstance().showCommomTips('preload失败请重新进入游戏');
-                    VideoManager.getInstance().clear();
-                    this.touchEnabled = false;
-                    this.touchChildren = false;
-
-                }
+                GameCommon.getInstance().showErrorLog(JSON.stringify(error));
+                GameCommon.getInstance().showCommomTips('视频加载出错，请重新打开游戏');
+                VideoManager.getInstance().clear();
+                this.touchEnabled = false;
+                this.touchChildren = false;
             })
         }
 
