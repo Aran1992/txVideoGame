@@ -12,7 +12,9 @@
 			<e:Label text="观礼凭证激活" x="763.15" y="159" size="34"/>
 			<e:Label text="持有激活码的用户，可在下方输入，激活即可获得心动PASS，无需购买" x="671.54" y="211.33" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10"/>
 			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" y="366.91" size="30" textColor="0x898686" lineSpacing="12"/>
-			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="297.64" textAlign="center" x="121.37" y="379.06" visible="false"/>
+			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" x="54.7" y="379.06"/>
+			<e:Label id="idTicketNum" text="0" size="40" textColor="0xFFFFFF" anchorOffsetX="0" width="435.52" textAlign="center" x="78.34" y="633"/>
+			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" width="456.73" textAlign="center" x="46.52" y="472.4" textColor="0xbfbbbb"/>
 			<e:Rect width="392" height="120" x="649" y="306" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5"/>
 			<e:Button id="idBtnUseCode" label="激活" y="532" horizontalCenter="278" x="841" scaleX="1" scaleY="1" enabled="true">
 				<e:skinName>
@@ -88,7 +90,7 @@
 	</e:Button>
 	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0" visible="false">
 		<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="video_heidi1_png"/>
-		<e:Image width="1106" height="592" anchorOffsetX="0" anchorOffsetY="0" source="ticket_buy_png" horizontalCenter="0" verticalCenter="0"/>
+		<e:Image width="1106" height="592" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" source="ticket_buy_ex_png"/>
 		<e:Button id="idBuyTicketClose" width="91" height="91" top="48" right="63" x="1351" y="113" scaleX="1" scaleY="1">
 			<e:skinName>
 			<e:Skin states="up,down,disabled" xmlns:n1s="*">
@@ -96,15 +98,28 @@
 			</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Group id="idGroupDescSpecial" width="200" height="200" horizontalCenter="0" verticalCenter="0">
-			<e:Label text="限时特惠结束时间：2019/11/7 24:00" x="184.66" y="160" size="28" textColor="0xff790c" scaleX="1" scaleY="1"/>
-			<e:Label text="观礼凭证" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
-			<e:Image width="20" height="20" x="-321" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
-			<e:Label text="快人一步，超前观看最新剧情" y="214" x="-285" scaleX="1" scaleY="1"/>
-			<e:Image width="20" height="20" x="142.66" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
-			<e:Label text="买一赠一，与好友同享拳拳" x="180" y="214" scaleX="1" scaleY="1"/>
-			<e:Label text="原价：240钻" x="-46" y="272" size="28" scaleX="1" scaleY="1"/>
-			<e:Button label="5折" x="132" y="265" enabled="false" scaleX="1" scaleY="1">
+		<e:Group id="idGroupDescSpecial" width="1100" height="396.98" horizontalCenter="0" verticalCenter="98.5" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Label text="限时特惠结束时间：2019/11/7 24:00" x="184.66" y="160" size="28" textColor="0xff790c" scaleX="1" scaleY="1" visible="false"/>
+			<e:Image width="369" height="45" x="404.37" y="25.78" scaleX="1" scaleY="1" source="ticket_bk1_png"/>
+			<e:Label text="超前追剧，并享超5倍返利！" y="35.45" x="419.06" scaleX="1" scaleY="1" size="28"/>
+
+			<e:Image width="20" height="20" x="358" y="152.15" scaleX="1" scaleY="1" source="ticket_icon_png"/>
+			<e:Label text="购买当日，畅玩全部剧集，感受提前发糖" y="152" x="403" scaleX="1" scaleY="1" size="22"/>
+			<e:Image width="20" height="20" x="358" y="195" scaleX="1" scaleY="1" source="ticket_icon_png"/>
+			<e:Label text="完成专属任务，附赠专属奖励，收藏独家记忆" x="403" y="194" scaleX="1" scaleY="1" size="22"/>
+			<e:Image width="20" height="20" x="358" y="238.17" scaleX="1" scaleY="1" source="ticket_icon_png"/>
+			<e:Label text="截止1月5日，超值购买，还可以与好友共享" x="401.67" y="236.84" scaleX="1" scaleY="1" size="22"/>
+			<e:Label text="《拳拳四重奏》看剧特权" size="40" x="369" y="92" scaleX="1" scaleY="1" bold="true"/>
+			<e:Button id="idBtnBuyTicketSpecailPrize" label="180       解锁" y="296.51" x="795.11" scaleX="1" scaleY="1" enabled="true" icon="common_zuanshi1_png">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" scaleX.down="0.9" scaleY.down="0.9" height="100%" source="ticket_btn3_png" source.down="ticket_btn3_png"/>
+					<e:Label id="labelDisplay" scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" size="35"/>
+					<e:Image id="iconDisplay" scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="-10" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button label="6.7折" x="686.27" y="317" enabled="false" scaleX="1" scaleY="1">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" source="ticket_btn2_png"/>
@@ -112,16 +127,12 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-			<e:Image width="135" height="3" y="282" source="ticket_line_png" x="-38" anchorOffsetY="0" scaleX="1" scaleY="1"/>
-			<e:Button id="idBtnBuyTicketSpecailPrize" label="120" y="325.41" horizontalCenter="6" x="12" scaleX="1" scaleY="1" enabled="true" icon="common_zuanshi1_png">
-				<e:skinName>
-				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
-					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-					<e:Image id="iconDisplay" horizontalCenter="50" verticalCenter="0"/>
-				</e:Skin>
-				</e:skinName>
-			</e:Button>
+			<e:Label text="原价：240钻" x="514" y="325" size="28" scaleX="1" scaleY="1"/>
+			<e:Image width="150.52" height="3" y="337.64" source="ticket_line_png" x="520.06" anchorOffsetY="0" scaleX="1" scaleY="1" anchorOffsetX="0"/>
+
+
+
+
 		</e:Group>
 		<e:Group id="idGroupDescCommon" width="200" height="200" horizontalCenter="0" verticalCenter="0" visible="false">
 			<e:Label text="观礼凭证" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
@@ -139,6 +150,8 @@
 			</e:skinName>
 			</e:Button>
 		</e:Group>
+
+
 	</e:Group>
 	<e:Group id="idGroupShareTicket" width="100%" height="100%" x="0" y="0" visible="false">
 		<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="video_heidi1_png"/>

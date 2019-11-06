@@ -1,3 +1,4 @@
+declare const BridgeHelper;
 declare var bridgeHelper;
 declare var txsp_userinfo;
 const txsp_appid = "tivf8061263egmdcyp";
@@ -94,7 +95,7 @@ class Txsp {
     async sendRequest(params,callback){
         callback({code:0,data:{list:[{"isValid":1,"CDKey":"FFFFFFFF"}]}})
     }
-    async buyGoods(bookId, itemId, num, curSlotId,callback) {     
+    async buyGoods(bookId, itemId, num, curSlotId,callbackBuyGoods) {     
         let shopdata: ShopInfoData = ShopManager.getInstance().shopInfoDict[itemId];          
         let leftMoney = 0
         await bridgeHelper.diamondQueryBalance({
@@ -116,15 +117,10 @@ class Txsp {
                 appid: txsp_appid, // 业务id
                 openid: txsp_userinfo.openid, // 互动账号openid,
                 access_token: txsp_userinfo.token, // 互动登录态access_token
-                product_id: '600001', // 商品id
-                count: 1, // 商品数量
+                product_id: itemId, // 商品id
+                count: num, // 商品数量
                 }).then((res) => {
-                    if(res.code == 0){
-                        leftMoney = res.result.balance;
-                        callback()
-                    }else{
-                        console.log(res.msg)
-                    }
+                    callbackBuyGoods(res)
                 })
         }else{
             //钱不够走充值流程

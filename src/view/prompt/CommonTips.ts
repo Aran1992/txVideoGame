@@ -51,6 +51,7 @@ class CommonTips extends eui.Component {
     private ldState: boolean = false;
     private roleChapterNoticeGroup: eui.Group;
     private roleChapterNoticeLabel: eui.Label;
+    private idBuyItemName:eui.Label;
 
     constructor() {
         super();
@@ -198,6 +199,7 @@ class CommonTips extends eui.Component {
         }
         this.itemTp = tp;
         this.itemId = id;
+        this.idBuyItemName.text = "“"+ShopManager.getInstance().getShopInfoData(id).model.name+"”";
         this.desc6.text = money + "";
         this.buyGroup1.visible = true;
         this.buyGrp.visible = true;
@@ -209,7 +211,7 @@ class CommonTips extends eui.Component {
             this.btnConfirm_haogan['money'].text = 30;
         }
         this._buyhaoganparams.wentiId= wentiId;
-        this._buyhaoganparams.id= id;        
+        this._buyhaoganparams.id= id;
         this.buyGrphaogan.visible = true;
         this.onshowMaskBG();
     }
@@ -220,7 +222,7 @@ class CommonTips extends eui.Component {
         this.buyResultImg.source = isRight ? "common_close2_png" : "common_close3_png";
         this.buyResult.alpha = 0;
         let tw = egret.Tween.get(this.buyResult);
-        tw.to({alpha: 1}, 1000);
+        tw.to({alpha: 1}, 500);
         if (btnlabel) {
             this.result_closebtn.visible = true;
             this.btn_qianwang.visible = true;
@@ -241,8 +243,7 @@ class CommonTips extends eui.Component {
         } else {
             this.result_closebtn.visible = false;
             this.btn_qianwang.visible = false;
-            tw.to({alpha: 0.8}, 500);
-            tw.to({alpha: 0}, 100).wait(0).call(() => {
+            tw.to({alpha: 1}, 50).wait(2000).to({alpha:0},100).wait(0).call(() => {
                 this.buyResult.visible = false;
             });
         }

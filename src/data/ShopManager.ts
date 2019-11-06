@@ -47,8 +47,7 @@ class ShopManager {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (egret.Capabilities.os == 'Windows PC') {
-            this.addGoods(itemId, num);
-            this.onBuySuccessHandler(shopdata,callback);
+            this.addGoods(itemId, num,callback);
         } else {
             let callbackBuyGoods = (data) => {
                 let recData = data.data;
@@ -57,14 +56,23 @@ class ShopManager {
                     shopdata = this._shopDataDict[jsonObject.saleId];
                     shopdata.updateShopData(jsonObject);
                     this._serverItemNums[jsonObject.saleId] = jsonObject.num;//更新商品数量
-                    console.log("update item:"+jsonObject.saleId+";"+jsonObject.num);
-                    this.onBuySuccessHandler(shopdata,callback);
+                    //console.log("update item:"+jsonObject.saleId+";"+jsonObject.num);
+                    this.addGoods(itemId,0,callback)//需要加0以便能调用到回调函数
                 } else {
                     GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);
                 }
             };
+            if (platform.getPlatform() == "plat_txsp"){
+                callbackBuyGoods=(res)=>{
+                    if (res.code == 0){
+                        this.addGoods(itemId,num,callback)
+                    }else{
+                        console.log(res.msg);
+                    }
+                }
+            }
             let currentSlotId: number = 0;
-            console.log("buy:"+itemId+";"+num+";slot="+currentSlotId);
+            //console.log("buy:"+itemId+";"+num+";slot="+currentSlotId);
             platform.buyGoods(GameDefine.BOOKID, itemId, num, currentSlotId,callbackBuyGoods);
         }
     }
@@ -77,18 +85,22 @@ class ShopManager {
             return;
         }
         UserInfo.suipianMoney -= shopdata.model.currSuipian;
-        this.addGoods(itemId, num);
-        this.onBuySuccessHandler(shopdata,callback);
+        this.addGoods(itemId, num,callback);
     }
 
     /**物品存储**/
-    public addGoods(itemId: number, num: number = 1) {
-        console.log("add item:"+itemId+";"+num);
+    public addGoods(itemId: number, num: number = 1,callback:any=null) {
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (shopdata) {
             shopdata.num += num;
             GameCommon.getInstance().setBookData(FILE_TYPE.GOODS_FILE);
+            this.onBuySuccessHandler(shopdata);
+            console.log("add item:"+itemId+";"+num+" left:"+ shopdata.num);
+        }else{
+            console.trace();
         }
+        if (callback)
+            callback();
     }
 
     /**获取商品信息列表**/
@@ -138,7 +150,7 @@ class ShopManager {
         return this.getServerItemNum(id)+shopdata.num
     }
     /**获取ID商品信息**/
-    public getShopInfoData(id: number) {
+    public getShopInfoData(id: number):ShopInfoData {
         return this._shopDataDict[id];
     }
 
@@ -153,7 +165,7 @@ class ShopManager {
         return this._openShoucangIds.indexOf(shoucangID) >= 0;
     }
 
-    private onBuySuccessHandler(shopdata: ShopInfoData,callback:any=null): void {
+    private onBuySuccessHandler(shopdata: ShopInfoData): void {
         this.onUpdateMyGoods(shopdata);
         if (shopdata.id > GameDefine.SHOP_GOODS_STARTID) {//内购商品
             let shop_tp: number = this.getShopTP(shopdata.id);
@@ -172,6 +184,11 @@ class ShopManager {
                         }
                     });
                     break;
+                case SHOP_TYPE.SPECIAL:
+                    if(shopdata.id == GameDefine.GUANGLIPINGZHENG){
+                        //啥也不干。由调用者传入
+                        //GameCommon.getInstance().onShowResultTips('购买成功，激活码可在“心动PASS”-“激活码观礼”处查看');
+                    }
                 default:
                     GameCommon.getInstance().onShowResultTips('购买成功');
                     break;
@@ -179,8 +196,6 @@ class ShopManager {
         } else if (shopdata.id > GameDefine.SHOP_CHAPTER_STARTID) {//章节
             GameCommon.getInstance().onShowResultTips('购买成功');
         }
-        if (callback)
-            callback();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH),shopdata);
     }
 
@@ -234,7 +249,7 @@ class ShopInfoData {
         if (info.pay) this.pay = info.pay;
         if (info.origPrice) this.currPrice = info.origPrice;
         if (info.saleIntro) this.saleIntro = info.saleIntro;
-        if (info.num) this.num = info.num;
+        //if (info.num) this.num = info.num;//数量不更新到本地
         if (info.date) this.date = info.date;
         this.model = JsonModelManager.instance.getModelshop()[this.id];
     }

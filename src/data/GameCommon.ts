@@ -702,10 +702,11 @@ class GameCommon {
 
     public async report(evt, params) {
         callbackReport = function (data) {
-            if (data.code == 0) {
-                GameCommon.getInstance().showCommomTips(JSON.stringify(data));
-            } else {
-                GameCommon.getInstance().showCommomTips(JSON.stringify(data));
+            if (data.code != 0) {
+                errorList.push({type: "platform.report error", data});
+                GameCommon.getInstance().showErrorLog(JSON.stringify(data));
+                GameCommon.getInstance().showErrorLog('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
+                GameCommon.getInstance().showCommomTips('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
             }
         };
         await platform.report(GameDefine.BOOKID, evt, params, callbackReport)
@@ -875,7 +876,7 @@ class GameCommon {
     //确定章节是否已开启
     public checkChapterLocked() {
         if (!GameDefine.ENABLE_CHECK_CHAPTER_LOCK) {
-            return false;
+            return true;
         }
         let curChapterId = this.getPlayingChapterId();
         if (curChapterId == 0)
@@ -902,7 +903,7 @@ class GameCommon {
                     data: "confirm"
                 });
             };
-            GameCommon.getInstance().showConfirmTips("后续内容尚未解锁，您可以通过等待免费解锁，或购买凭证立即观看最新所有章节！", callback, "", "购买凭证", "等待" + freeDay + "天");
+            GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非特权用户也可等剧集解锁免费观看，详情请在《一零零一》查看", "购买特权","取消");// "等待" + freeDay + "天"
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
             return false;
         }

@@ -10,70 +10,70 @@
 			<e:Button id="button0" label="" horizontalCenter="0" verticalCenter="0" x="307" y="7" scaleX="1" scaleY="1" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Image width="100%" height="100%" source="line_png"/>
 					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
         <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected0" touchEnabled="false"/>
         <e:Image horizontalCenter="0" verticalCenter="0" source="1_png" touchEnabled="false"/>
-        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
+        <e:Image source="name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="肖千也" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="-300" bottom="150">
 			<e:Button label="" id="button1" horizontalCenter="0" verticalCenter="0" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Image width="100%" height="100%" source="line_png"/>
 					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
         <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected1" touchEnabled="false"/>
         <e:Image horizontalCenter="0" verticalCenter="0" source="2_png" touchEnabled="false"/>
-        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
+        <e:Image source="name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="夏子豪" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="0" bottom="150">
 			<e:Button label="" id="button2" horizontalCenter="0" verticalCenter="0" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Image width="100%" height="100%" source="line_png"/>
 					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
         <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected2" touchEnabled="false"/>
         <e:Image horizontalCenter="0" verticalCenter="0" source="3_png" touchEnabled="false"/>
-        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
+        <e:Image source="name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="肖万寻" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="300" bottom="150">
 			<e:Button label="" id="button3" horizontalCenter="0" verticalCenter="0" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Image width="100%" height="100%" source="line_png"/>
 					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
         <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected3" touchEnabled="false"/>
         <e:Image horizontalCenter="0" verticalCenter="0" source="4_png" touchEnabled="false"/>
-        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35"/>
+        <e:Image source="name_bg_png" horizontalCenter="0" bottom="-35"/>
         <e:Label text="韩小白" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
     <e:Group width="250" height="250" horizontalCenter="600" bottom="150">
 			<e:Button label="" id="button4" horizontalCenter="0" verticalCenter="0" width="100%" height="100%">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="action_select_line_png"/>
+					<e:Image width="100%" height="100%" source="line_png"/>
 					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
         <e:Image horizontalCenter="0" verticalCenter="0" source="white_png" id="selected4" touchEnabled="false"/>
         <e:Image horizontalCenter="0" verticalCenter="0" source="5_png" touchEnabled="false"/>
-        <e:Image source="action_select_name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
+        <e:Image source="name_bg_png" horizontalCenter="0" bottom="-35" touchEnabled="false"/>
         <e:Label text="江雪" horizontalCenter="0" bottom="-31.5" size="28"/>
     </e:Group>
 </e:Skin>
