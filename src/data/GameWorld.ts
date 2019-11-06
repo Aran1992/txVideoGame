@@ -305,12 +305,12 @@ class GameWorld extends egret.DisplayObjectContainer {
 
     /**事件注册**/
     private onRegist(): void {
-        window.onerror = function (message, url, line) {
-            console.trace(message);
-            console.log("URL: " + url + "\n" + 'line' + line + '    \n' + message);
-            GameCommon.getInstance().showErrorLog("URL: " + url + "\n" + 'line' + line + '    \n' + message);
+        window.onerror = (...args) => {
+            errorList.push({type: "window unhandled error", args});
+            GameCommon.getInstance().showErrorLog(JSON.stringify(args));
+            GameCommon.getInstance().showErrorLog('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
+            GameCommon.getInstance().showCommomTips('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
         };
-
         window['onEventNotify'] = function (event, json) {
             console.log(json);
             let data = json;

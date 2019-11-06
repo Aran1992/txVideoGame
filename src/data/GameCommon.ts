@@ -702,10 +702,11 @@ class GameCommon {
 
     public async report(evt, params) {
         callbackReport = function (data) {
-            if (data.code == 0) {
-                GameCommon.getInstance().showCommomTips(JSON.stringify(data));
-            } else {
-                GameCommon.getInstance().showCommomTips(JSON.stringify(data));
+            if (data.code != 0) {
+                errorList.push({type: "platform.report error", data});
+                GameCommon.getInstance().showErrorLog(JSON.stringify(data));
+                GameCommon.getInstance().showErrorLog('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
+                GameCommon.getInstance().showCommomTips('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
             }
         };
         await platform.report(GameDefine.BOOKID, evt, params, callbackReport)

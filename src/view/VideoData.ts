@@ -558,9 +558,11 @@ class VideoData extends egret.DisplayObjectContainer {
             }
         }
         if (!this.videoErrorHandle) {
-            widPlayer.on('error', (error) => {
-                GameCommon.getInstance().showErrorLog(JSON.stringify(error));
-                GameCommon.getInstance().showCommomTips('视频加载出错，请重新打开游戏');
+            widPlayer.on('error', (...args) => {
+                errorList.push({type: "video player error", args});
+                GameCommon.getInstance().showErrorLog(JSON.stringify(args));
+                GameCommon.getInstance().showErrorLog('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
+                GameCommon.getInstance().showCommomTips('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
                 VideoManager.getInstance().clear();
                 this.touchEnabled = false;
                 this.touchChildren = false;
@@ -993,8 +995,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (UserInfo.curchapter == 1)
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         else
-            console.error("open ResultWinPanel");
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
     }
 
     private onLoadNextVideo(id = 0) {
