@@ -22,6 +22,7 @@ class VideoData extends egret.DisplayObjectContainer {
     public isLoadSrc = false;
     public videoPauseTime: number = 0;
     private actionScene: egret.DisplayObjectContainer;
+    private pauseByPauseEvent: boolean = false;
     /**
      * 下一个视频需要好感度才能播放的 否则进BE规则
      * 视频ID对应数组 是每个角色的好感度值
@@ -1100,19 +1101,22 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         if (data.data == 'stop') {
             this.current = false;
-            VideoManager.getInstance().videoPause();
-        } else {
-            if (this.tipsPanel) {
-                if (!this.tipsPanel.visible)
-                    return;
-                this.tipsPanel.imStatus = 'pauseImg_png';
+            if (this.videoState === "playing") {
+                this.pauseByPauseEvent = true;
+                VideoManager.getInstance().videoPause();
             }
+        } else {
             if (GuideManager.getInstance().isGuide && GuideManager.getInstance().curState) {
                 return;
             }
             this.current = true;
             this.oldVideoTimer = 0;
-            VideoManager.getInstance().videoResume();
+            // 只有因为pause事件暂停的时候 才会因为resume事件恢复播放
+            if (this.pauseByPauseEvent) {
+                this.tipsPanel.imStatus = 'pauseImg_png';
+                VideoManager.getInstance().videoResume();
+                this.pauseByPauseEvent = false;
+            }
         }
     }
 
