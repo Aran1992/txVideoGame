@@ -63,6 +63,7 @@
 		"resource/eui_skins/HScrollBarSkin.exml",
 		"resource/eui_skins/LoadingSkin.exml",
 		"resource/eui_skins/LoadingUISkin.exml",
+		"resource/eui_skins/PassSkin.exml",
 		"resource/eui_skins/ScrollerSkin.exml",
 		"resource/eui_skins/ToggleSwitchSkin.exml",
 		"resource/eui_skins/PlayerSettingSkin.exml",
