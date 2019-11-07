@@ -72,6 +72,9 @@ class TipsBtn extends eui.Component {
         if (str == 'pauseImg_png') {
             this.mengban.visible = false;
             this.pauseGroup.visible = false;
+        } else {
+            this.mengban.visible = true;
+            this.pauseGroup.visible = true;
         }
         this.play_pauseBtn['iconDisplay'].source = str;
     }

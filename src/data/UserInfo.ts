@@ -41,7 +41,7 @@ class UserInfo {
         console.log('set curchapter '+n)
         UserInfo._curchapter = n;
     }
-    
+
     public static get playingChapter(){
         return UserInfo._playingChapter;
     }
@@ -110,7 +110,7 @@ class BookData {
     //对应问题选择的答案
     public answerId;
 
-    
+
     public get curVideoID() {
         return this._curVideoID;
     }

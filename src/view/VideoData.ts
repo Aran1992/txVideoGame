@@ -1,14 +1,14 @@
 const ADShowConfig = [
     {
         id: "ad1",
-        videoID: "V508",
-        start: 3,
-        end: 6,
+        videoID: "V510",
+        start: 165,
+        end: 168,
     },
     {
         id: "ad2",
         videoID: "VX1204",
-        start: 3,
+        start: 29,
         end: 6,
     }
 ];
@@ -22,6 +22,7 @@ class VideoData extends egret.DisplayObjectContainer {
     public isLoadSrc = false;
     public videoPauseTime: number = 0;
     private actionScene: egret.DisplayObjectContainer;
+    private pauseByPauseEvent: boolean = false;
     /**
      * 下一个视频需要好感度才能播放的 否则进BE规则
      * 视频ID对应数组 是每个角色的好感度值
@@ -557,15 +558,14 @@ class VideoData extends egret.DisplayObjectContainer {
             }
         }
         if (!this.videoErrorHandle) {
-            widPlayer.on('error', (error) => {
-                if (error.code == 14001) {
-                    GameCommon.getInstance().showErrorLog(JSON.stringify(error));
-                    GameCommon.getInstance().showCommomTips('preload失败请重新进入游戏');
-                    VideoManager.getInstance().clear();
-                    this.touchEnabled = false;
-                    this.touchChildren = false;
-
-                }
+            widPlayer.on('error', (...args) => {
+                errorList.push({type: "video player error", args});
+                GameCommon.getInstance().showErrorLog(JSON.stringify(args));
+                GameCommon.getInstance().showErrorLog('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
+                GameCommon.getInstance().showCommomTips('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
+                VideoManager.getInstance().clear();
+                this.touchEnabled = false;
+                this.touchChildren = false;
             })
         }
 
@@ -995,8 +995,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (UserInfo.curchapter == 1)
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         else
-            console.error("open ResultWinPanel");
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
     }
 
     private onLoadNextVideo(id = 0) {
@@ -1103,19 +1102,22 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         if (data.data == 'stop') {
             this.current = false;
-            VideoManager.getInstance().videoPause();
-        } else {
-            if (this.tipsPanel) {
-                if (!this.tipsPanel.visible)
-                    return;
-                this.tipsPanel.imStatus = 'pauseImg_png';
+            if (this.videoState === "playing") {
+                this.pauseByPauseEvent = true;
+                VideoManager.getInstance().videoPause();
             }
+        } else {
             if (GuideManager.getInstance().isGuide && GuideManager.getInstance().curState) {
                 return;
             }
             this.current = true;
             this.oldVideoTimer = 0;
-            VideoManager.getInstance().videoResume();
+            // 只有因为pause事件暂停的时候 才会因为resume事件恢复播放
+            if (this.pauseByPauseEvent) {
+                this.tipsPanel.imStatus = 'pauseImg_png';
+                VideoManager.getInstance().videoResume();
+                this.pauseByPauseEvent = false;
+            }
         }
     }
 
