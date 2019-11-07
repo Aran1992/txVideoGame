@@ -54,8 +54,8 @@ class PromptPanel extends egret.DisplayObjectContainer {
         this.cjTips.onShowQinMiGroup();
     }
 
-    public onShowBuyTips(id, money, tp) {
-        this.cjTips.onShowBuyTips(id, money, tp);
+    public onShowBuyTips(id, money, tp,buycallback) {
+        this.cjTips.onShowBuyTips(id, money, tp,buycallback);
     }
 
     public onShowBuyHaoGan(wentiId:number=0,id: number = 0) {

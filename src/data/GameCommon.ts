@@ -651,8 +651,8 @@ class GameCommon {
         PromptPanel.getInstance().hideActionTips();
     }
 
-    public onShowBuyTips(id, money, tp) {
-        PromptPanel.getInstance().onShowBuyTips(id, money, tp);
+    public onShowBuyTips(id, money, tp,buycallback?:any) {
+        PromptPanel.getInstance().onShowBuyTips(id, money, tp,buycallback);
     }
 
     public onShowResultTips(str: string, isRight: boolean = true, btnlabel?: string, callBack?: Function, ...arys) {

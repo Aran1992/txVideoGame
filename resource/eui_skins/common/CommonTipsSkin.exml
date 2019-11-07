@@ -153,9 +153,9 @@
     </e:Group>
     <e:Group id="buyResult" horizontalCenter="0" verticalCenter="0" visible="false">
         <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
-        <e:Image id='buyResultImg' source="common_close2_png" horizontalCenter="0" y="105" />
+        <e:Image id='buyResultImg' source="common_close2_png" horizontalCenter="-5" y="71.66" />
         <e:Label id='buyResultLab' size="30" textColor="0xFFFFFF" verticalAlign="middle" text="购买成功" textAlign="center"
-                 fontFamily="SimHei" horizontalCenter="3.5" y="205"  anchorOffsetX="0" width="712.85" anchorOffsetY="0" height="115.33" lineSpacing="20"/>
+                 fontFamily="SimHei" horizontalCenter="5.5" y="173.18"  anchorOffsetX="0" width="712.85" anchorOffsetY="0" height="115.33" lineSpacing="20"/>
         <e:Button id="btn_qianwang" label="" touchEnabled="true" width="240" height="53" horizontalCenter="0" y="280"
                   skinName="skins.Common_Button2Skin" visible="false"></e:Button>
         <e:Label id="result_closebtn" size="50" textColor="0xFFFFFF" verticalAlign="middle" text="X" textAlign="center"

@@ -187,7 +187,7 @@ class ShopManager {
                 case SHOP_TYPE.SPECIAL:
                     if(shopdata.id == GameDefine.GUANGLIPINGZHENG){
                         //啥也不干。由调用者传入
-                        //GameCommon.getInstance().onShowResultTips('购买成功，激活码可在“心动PASS”-“激活码观礼”处查看');
+                        //GameCommon.getInstance().onShowResultTips('购买成功，激活码可在“心动PASS”-“激活码”处查看');
                     }
                 default:
                     GameCommon.getInstance().onShowResultTips('购买成功');

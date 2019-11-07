@@ -2,7 +2,7 @@
 <!--1图片，2视频，3音乐，4章节，5道具，6观礼凭证，9新手礼包-->
 <shop>    
     <shop id="600002" name="新手礼包" banner="*" banner2="xinshou_1_png,xinshou_2_png,xinshou_3_png" desc="超值新手礼包" params="100001,200001,300001" currPrice="0" origPrice="0" currSuipian="300" origSuipian="300" show="1" preview="*" shaixuan_params="*"/>
-    <shop id="600001" name="观礼凭证" banner="*" banner2="*" desc="*" params="30" currPrice="100" origPrice="100" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
+    <shop id="600001" name="心动PASS" banner="*" banner2="*" desc="*" params="30" currPrice="100" origPrice="100" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
     
     <shop id="100001" name="梦想的模样" banner="sc_role3_imgIcon_1_jpg" banner2="sc_role3_img1_png" desc="初次登台的灯光，因梦想而闪闪发亮！" params="1" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="0" preview="*" shaixuan_params="主角,夏子豪#等级,sr"/>
     <shop id="100002" name="隐藏高手" banner="sc_role1_imgIcon_1_jpg" banner2="sc_role1_img1_png" desc="少年这一次不会再放手了！" params="4" currPrice="30" origPrice="30" currSuipian="300" origSuipian="300" show="1" preview="*" shaixuan_params="主角,韩小白#等级,sr"/>
