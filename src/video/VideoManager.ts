@@ -282,10 +282,6 @@ class VideoManager {
     }
 
     private play(vid) {
-        if (this.first) {
-            widPlayer.play(vid);
-        } else {
-            widPlayer.setNextVideoNode(vid, {inerrupt: true});
-        }
+        widPlayer.play(vid);
     }
 }

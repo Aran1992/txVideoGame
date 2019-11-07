@@ -4899,6 +4899,11 @@
             "name": "zhangjiedi_png",
             "type": "image",
             "url": "assets/zhujiemian/zhangjiedi.png?v=44"
+        },
+        {
+            "name": "config_bin",
+            "type": "bin",
+            "url": "config/config.bin?v=430"
         }
     ]
 }
