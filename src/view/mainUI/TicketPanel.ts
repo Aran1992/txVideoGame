@@ -104,38 +104,41 @@ class TicketPanel extends eui.Component{
         this.idBtnCopyCode.visible = false;
         this.idBtnShareCode.visible = false;
         this.idTicketNum.text = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        this.refreshActiveCode();
+    }
+    private refreshActiveCode(){
         var params = {"bookId":GameDefine.BOOKID,"cmd":"getMyCDKey","saleId":GameDefine.GUANGLIPINGZHENG}
         platform.sendRequest(params,(data)=>{
-            //有而且第一个可用。isExpire 1过期0未过期;expireTime "过期时间字符串",status:1还没使用，2已使用
-            if (data.code == 0 && data.data.list.length>0 ){//&& data.data.list[0].status == 1
-                let item = data.data.list[0];
-                let cdk = item.CDKey;
-                let valid = item.isValid; //1或者0，1 是可用
-                this.idCode.text = cdk;
-                this.idCode.visible = true;
-                this.idNoCode.visible = false;
-                this.idShareCode.text=cdk
-                this.idBtnCopyCode.visible = true;
-                this.idBtnShareCode.visible = true;
-                this.idHasCodeText.visible = true;
-                if (data.data.list[0].status==2){
-                    this.idExpireText.text = "已被使用" 
-                }
-                else if (data.data.list[0].isExpire == 0)
-                    this.idExpireText.text = data.data.list[0].expireTime+" 前有效"
-                else{
-                    this.idExpireText.text = "已过期"
-                } 
-            }else{
-                this.idCode.visible = false;
-                this.idNoCode.visible = true;
-                this.idBtnCopyCode.visible = false;
-                this.idBtnShareCode.visible = false;
-                this.idHasCodeText.visible = false;
-                this.idExpireText.text = ""
-            }
-            //console.log(data)
-        });
+                    //有而且第一个可用。isExpire 1过期0未过期;expireTime "过期时间字符串",status:1还没使用，2已使用
+                    if (data.code == 0 && data.data.list.length>0 ){//&& data.data.list[0].status == 1
+                        let item = data.data.list[0];
+                        let cdk = item.CDKey;
+                        let valid = item.isValid; //1或者0，1 是可用
+                        this.idCode.text = cdk;
+                        this.idCode.visible = true;
+                        this.idNoCode.visible = false;
+                        this.idShareCode.text=cdk
+                        this.idBtnCopyCode.visible = true;
+                        this.idBtnShareCode.visible = true;
+                        this.idHasCodeText.visible = true;
+                        if (data.data.list[0].status==2){
+                            this.idExpireText.text = "已被使用" 
+                        }
+                        else if (data.data.list[0].isExpire == 0)
+                            this.idExpireText.text = data.data.list[0].expireTime+" 前有效"
+                        else{
+                            this.idExpireText.text = "已过期"
+                        } 
+                    }else{
+                        this.idCode.visible = false;
+                        this.idNoCode.visible = true;
+                        this.idBtnCopyCode.visible = false;
+                        this.idBtnShareCode.visible = false;
+                        this.idHasCodeText.visible = false;
+                        this.idExpireText.text = ""
+                    }
+                    //console.log(data)
+                });
     }
     private idBtnBuyNowClick(){
         SoundManager.getInstance().playSound("ope_click.mp3")
@@ -226,12 +229,15 @@ class TicketPanel extends eui.Component{
             GameCommon.getInstance().showCommomTips("已购买");
             //return;
         }
+        let callback = ()=>{
+            this.onCloseBuyTicketClick(null);
+            this.refreshActiveCode();
+            GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“激活码”处查看');
+        }
         if (platform.getPlatform()=="plat_txsp" || platform.getPlatform()=="plat_pc"){
-            GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENG,this.getPingzhengPrize(),GOODS_TYPE.DIAMOND)
+            GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENG,this.getPingzhengPrize(),GOODS_TYPE.DIAMOND,callback);
         }else{
-            ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG,1,()=>{
-                        GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“激活码”处查看');
-                    });
+            ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG,1,callback);
         }
     }
     private onCloseClick(event:egret.TouchEvent=null):void{ 

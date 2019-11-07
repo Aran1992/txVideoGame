@@ -46,6 +46,7 @@ class CommonTips extends eui.Component {
     private _buyhaoganparams={wentiId:0,id:0};
     /**二级确认框**/
     private _confirmFunc: Function;
+    private _buyCallBack:Function;
     private mcFactory1: egret.MovieClipDataFactory;
     private img_mc: egret.MovieClip;
     private ldState: boolean = false;
@@ -144,7 +145,7 @@ class CommonTips extends eui.Component {
             return;
         Tool.callbackTime(() => {
             this.grp3.visible = false;
-        }, this, 1000);
+        }, this, 2000);
     }
 
     public showRoleChapterNotice() {
@@ -187,7 +188,7 @@ class CommonTips extends eui.Component {
         this.onshowMaskBG();
     }
 
-    public onShowBuyTips(id, money, tp) {
+    public onShowBuyTips(id, money, tp,buycallback) {
         SoundManager.getInstance().playSound("ope_click.mp3");
         switch (tp) {
             case GOODS_TYPE.DIAMOND:
@@ -199,6 +200,7 @@ class CommonTips extends eui.Component {
         }
         this.itemTp = tp;
         this.itemId = id;
+        this._buyCallBack = buycallback;
         this.idBuyItemName.text = "“"+ShopManager.getInstance().getShopInfoData(id).model.name+"”";
         this.desc6.text = money + "";
         this.buyGroup1.visible = true;
@@ -354,10 +356,16 @@ class CommonTips extends eui.Component {
         this.buyGrp.visible = false;
         switch (this.itemTp) {
             case GOODS_TYPE.DIAMOND:
-                ShopManager.getInstance().buyGoods(this.itemId);
+                ShopManager.getInstance().buyGoods(this.itemId,1,()=>{
+                    if (this._buyCallBack) 
+                        this._buyCallBack()
+                    });
                 break;
             case GOODS_TYPE.SUIPIAN:
-                ShopManager.getInstance().buyGoodsSuip(this.itemId);
+                ShopManager.getInstance().buyGoodsSuip(this.itemId,1,()=>{
+                    if (this._buyCallBack) 
+                        this._buyCallBack()
+                    });
                 break;
         }
         this.onhideMaskBG();

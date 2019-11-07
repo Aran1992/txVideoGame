@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="skins.TicketSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="skins.PassSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<w:Config id="16d615f8c43"/>
 	<e:Image scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" width="100%" height="100%" y="0" source="cundang_bj_jpg" left="0"/>
 	<e:Rect width="100%" height="100%" x="6.08" y="4.56" fillAlpha="0.6"/>

@@ -151,7 +151,7 @@
         <e:Button id="btnConfirm_qinmi" label="我知道了" horizontalCenter="0" verticalCenter="87" skinName="skins.Common_Button2Skin"
                   width="240" height="53"></e:Button>
     </e:Group>
-    <e:Group id="buyResult" horizontalCenter="0" verticalCenter="0">
+    <e:Group id="buyResult" horizontalCenter="0" verticalCenter="0" visible="false">
         <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
         <e:Image id='buyResultImg' source="common_close2_png" horizontalCenter="-5" y="71.66" />
         <e:Label id='buyResultLab' size="30" textColor="0xFFFFFF" verticalAlign="middle" text="购买成功" textAlign="center"
