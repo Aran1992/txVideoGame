@@ -1,3 +1,29 @@
+const playerCallList = [];
+const errorList = [];
+
+
+const infoDiv = document.createElement("div");
+document.body.appendChild(infoDiv);
+infoDiv.outerHTML = `<div style="position: absolute; top: 0; left: 50%; z-index: 99999">
+<button onclick="copyLog();">复制LOG</button>
+</div>`;
+
+function copyLog() {
+    const str = JSON.stringify({
+        errorList,
+        playerCallList,
+        curBookData: UserInfo.curBokData
+    });
+    const input = document.createElement("input");
+    input.value = str;
+    document.body.appendChild(input);
+    input.select(); // 选择对象
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    input.className = "input";
+    input.style.display = "none";
+    GameCommon.getInstance().showCommomTips("复制成功，可以直接粘贴到聊天栏发送给开发人员");
+}
+
 class MainView extends eui.Component {
     private gameWorld: GameWorld;
     private labname: eui.Label;
@@ -45,7 +71,7 @@ class MainView extends eui.Component {
 
     private static onShowShowCang() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangListPanel');
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ShouCangListPanel");
     }
 
     private static disableCheck() {
@@ -99,7 +125,7 @@ class MainView extends eui.Component {
         GameCommon.getInstance().getUserInfo();
         let cpCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         this.chapterName.text = cpCfg.name;
-        VideoManager.getInstance().updateVideoData('');
+        VideoManager.getInstance().updateVideoData("");
         this.play_Btn.visible = true;
         this.play_zi.visible = true;
         this.mainGroup.visible = false;
@@ -119,12 +145,19 @@ class MainView extends eui.Component {
             GameDefine.ISFILE_STATE = false;
             this.onRefreshUpdata({data: 1});
         }
-        let player = new window['Txiplayer']({
-            container: '#videoDivMin',
-            vid: 't0032b6tjt4',
+        let player = new window["Txiplayer"]({
+            container: "#videoDivMin",
+            vid: "t0032b6tjt4",
             width: "100%",
-            // height: "100%",
-            showUI: false //默认false，控制是否展示默认的播放器UI
+        });
+        playerCallList.push({
+            key: "constructor",
+            args: [{
+                container: "#videoDivMin",
+                vid: "t0032b6tjt4",
+                width: "100%",
+            }],
+            time: new Date().getTime()
         });
         const methodList = [
             "play",
@@ -151,21 +184,39 @@ class MainView extends eui.Component {
             "on",
         ];
         const logResultMethodList = [];
-        player.on('ready', () => {
+        player.on("ready", () => {
             widPlayer = {};
             methodList.forEach(key => {
                 widPlayer[key] = (...args) => {
-                    if (logArgsMethodList.indexOf(key) !== -1) {
-                        console.trace(`widPlayer.${key} args`, ...args);
+                    if (key === "on") {
+                        const [event, handler] = args;
+                        player[key].bind(player)(event, (...args) => {
+                            console.log("video player event", event, ...args);
+                            handler(...args);
+                        });
+                        playerCallList.push({
+                            key,
+                            args,
+                            time: new Date().getTime()
+                        });
+                    } else {
+                        if (logArgsMethodList.indexOf(key) !== -1) {
+                            console.trace(`widPlayer.${key} args`, ...args);
+                            playerCallList.push({
+                                key,
+                                args,
+                                time: new Date().getTime()
+                            });
+                        }
+                        const result = player[key].bind(player)(...args);
+                        if (logResultMethodList.indexOf(key) !== -1) {
+                            console.trace(`widPlayer.${key} result`, result);
+                        }
+                        return result;
                     }
-                    const result = player[key].bind(player)(...args);
-                    if (logResultMethodList.indexOf(key) !== -1) {
-                        console.trace(`widPlayer.${key} result`, result);
-                    }
-                    return result;
                 };
             });
-            let ps = document.getElementsByTagName('video');
+            let ps = document.getElementsByTagName("video");
             for (let i: number = 0; i < ps.length; i++) {
                 if (size.fillType == FILL_TYPE_COVER) {
                     ps[i].style["object-fit"] = "cover";
@@ -186,11 +237,11 @@ class MainView extends eui.Component {
             this.bg.scaleX = scale;
             this.bg.scaleY = scale;
         } else {
-            this.bg.source = 'main_bj1_jpg';
+            this.bg.source = "main_bj1_jpg";
         }
-        // this.desc.text = 'UserInfo.main_Img' + UserInfo.main_Img;
+        // this.desc.text = "UserInfo.main_Img" + UserInfo.main_Img;
         if (UserInfo.curBokData) {
-            this.desc.text += UserInfo.curBokData.main_Img + '---' + UserInfo.main_Img;
+            this.desc.text += UserInfo.curBokData.main_Img + "---" + UserInfo.main_Img;
             UserInfo.curBokData.main_Img = UserInfo.main_Img;
         }
     }
@@ -199,8 +250,8 @@ class MainView extends eui.Component {
     private onGetDataRefresh(data) {
         // if(data||data==0)
         // {
-        //     // VideoManager.getInstance().log('我日'+UserInfo.curBokData.wentiId.length+'~~~'+UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1]);
-        //     if(data.data=='cuowu')
+        //     // VideoManager.getInstance().log("我日"+UserInfo.curBokData.wentiId.length+"~~~"+UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1]);
+        //     if(data.data=="cuowu")
         //     {
         if (!UserInfo.curchapter) {
             this.gameWorld.createGameScene();
@@ -239,7 +290,7 @@ class MainView extends eui.Component {
             this.curDuDang = true;
         }
         GameDefine.IS_DUDANG = false;
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
     }
 
     private onShowWallet() {
@@ -259,25 +310,25 @@ class MainView extends eui.Component {
             GameCommon.getInstance().deleteBookHistory(i);
         }
         ShopManager.getInstance().takeOffAllBookValue();
-        GameCommon.getInstance().addLikeTips('清档成功');
+        GameCommon.getInstance().addLikeTips("清档成功");
         this.checkGuide8();
     }
 
     private onShowActivity() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         this.checkGuide8();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ActivityPanel');
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ActivityPanel");
     }
 
     private onShowChengJiu() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        // GameCommon.getInstance().addAlert('zanweikaifang');
+        // GameCommon.getInstance().addAlert("zanweikaifang");
         this.cjLab.visible = false;
         this.checkGuide8();
-        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ChengJiuPanel');
-        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'TicketPanel');
+        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ChengJiuPanel");
+        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "TicketPanel");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
-            windowName: 'TicketPanel',
+            windowName: "TicketPanel",
             data: "mainview"
         });
 
@@ -297,17 +348,17 @@ class MainView extends eui.Component {
     private onShowShop() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         this.checkGuide8();
-        // GameCommon.getInstance().addAlert('zanweikaifang');
+        // GameCommon.getInstance().addAlert("zanweikaifang");
         this.shopLab.visible = false;
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShopPanel');
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ShopPanel");
     }
 
     private onShowbtnSetting() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         this.checkGuide8();
-        // GameCommon.getInstance().addAlert('zanweikaifang');
-        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'PlayerSettingPanel');
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'AboutPanel');
+        // GameCommon.getInstance().addAlert("zanweikaifang");
+        //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "PlayerSettingPanel");
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "AboutPanel");
     }
 
     private onShowMian() {
@@ -327,7 +378,7 @@ class MainView extends eui.Component {
         //     this.btnShouCang.touchEnabled = false;
         //     this.btnSetting.touchEnabled = false;
         //     this.play_Btn.touchEnabled = false;
-        //     GuideManager.getInstance().onShowImg(this['leftBtnGroup'], this.btnChengjiu, 'chengjiuBtn');
+        //     GuideManager.getInstance().onShowImg(this["leftBtnGroup"], this.btnChengjiu, "chengjiuBtn");
         // }
         // else if (!UserInfo.guideDic[6])//检测商城消费
         // {
@@ -340,7 +391,7 @@ class MainView extends eui.Component {
         //     this.btnShouCang.touchEnabled = false;
         //     this.btnSetting.touchEnabled = false;
         //     this.btnShangCheng.touchEnabled = true;
-        //     GuideManager.getInstance().onShowImg(this['leftBtnGroup'], this.btnShangCheng, 'shangchengBtn');
+        //     GuideManager.getInstance().onShowImg(this["leftBtnGroup"], this.btnShangCheng, "shangchengBtn");
         // }
         // else if (!UserInfo.guideDic[7]) {
         //     this.rightGruop.touchEnabled = false;
@@ -352,7 +403,7 @@ class MainView extends eui.Component {
         //     this.btnShangCheng.touchEnabled = false;
         //     this.play_Btn.touchEnabled = false;
         //     this.scLab.visible = true;
-        //     GuideManager.getInstance().onShowImg(this['leftBtnGroup'], this.btnShouCang, 'shoucangBtn');
+        //     GuideManager.getInstance().onShowImg(this["leftBtnGroup"], this.btnShouCang, "shoucangBtn");
         // } else if (!UserInfo.guideDic[8]) {
         //     this.zjLab.visible = true;
         //     this.rightGruop.touchEnabled = true;
@@ -363,7 +414,7 @@ class MainView extends eui.Component {
         //     this.btnSetting.touchEnabled = true;
         //     this.btnShangCheng.touchEnabled = true;
         //     this.play_Btn.touchEnabled = true;
-        //     // GuideManager.getInstance().onShowImg(this['leftBtnGroup'], this.btnZhangjie, 'zhangjieBtn');
+        //     // GuideManager.getInstance().onShowImg(this["leftBtnGroup"], this.btnZhangjie, "zhangjieBtn");
         // }
         // else {
         //     this.rightGruop.touchEnabled = true;
@@ -451,7 +502,7 @@ class MainView extends eui.Component {
                 this.mainGroup.visible = true;
                 this.play_Btn.visible = false;
                 this.play_zi.visible = false;
-                // VideoManager.getInstance().log('17'+'已完成');
+                // VideoManager.getInstance().log("17"+"已完成");
                 this.onShowMian();
             } else {
                 TipsBtn.Is_Guide_Bool = true;
@@ -461,9 +512,9 @@ class MainView extends eui.Component {
             }
             return;
         }
-        // window['video1'].style.display = 'block';
-        // window['video2'].style.display = 'block';
-        // window['video3'].style.display = 'block';
+        // window["video1"].style.display = "block";
+        // window["video2"].style.display = "block";
+        // window["video3"].style.display = "block";
         GameDefine.ISFILE_STATE = false;
     }
 

@@ -110,7 +110,7 @@ class Txsp {
                 }
             })
         //钱够直接买
-        if (leftMoney>=0){//){shopdata.currPrice
+        if (leftMoney>=shopdata.currPrice){//){shopdata.currPrice
             if(txsp_debug)
                 await bridgeHelper.setServerEnv(true)
             await bridgeHelper.diamondConsume({
