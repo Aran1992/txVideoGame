@@ -119,7 +119,7 @@ class TicketPanel extends eui.Component{
                 this.idBtnShareCode.visible = true;
                 this.idHasCodeText.visible = true;
                 if (data.data.list[0].status==2){
-                    this.idExpireText.text = "已被使用"
+                    this.idExpireText.text = "已被使用" 
                 }
                 else if (data.data.list[0].isExpire == 0)
                     this.idExpireText.text = data.data.list[0].expireTime+" 前有效"
