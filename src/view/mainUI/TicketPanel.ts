@@ -125,7 +125,7 @@ class TicketPanel extends eui.Component{
                     this.idExpireText.text = data.data.list[0].expireTime+" 前有效"
                 else{
                     this.idExpireText.text = "已过期"
-                }
+                } 
             }else{
                 this.idCode.visible = false;
                 this.idNoCode.visible = true;
