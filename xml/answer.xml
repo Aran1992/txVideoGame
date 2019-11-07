@@ -152,8 +152,8 @@
     <answer qid="68" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VY1103,VY1104" nextid="69" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="69" chengjiuId="*" ansid="1" des="成功" like="0,1,0,0" videos="VY1105,VY1107" nextid="0" isdie="0" nextChapterId="32" shanhuiid="*"/>
     <answer qid="69" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VY1106,VY1107" nextid="0" isdie="0" nextChapterId="32" shanhuiid="*"/>
-    <answer qid="70" chengjiuId="*" ansid="1" des="成功" like="0,1,0,0" videos="VY1203,VY1204,VX1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
-    <answer qid="70" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VY1202,VY1204,VX1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
+    <answer qid="70" chengjiuId="*" ansid="1" des="成功" like="0,1,0,0" videos="VY1203,VY1204,VY1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
+    <answer qid="70" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VY1202,VY1204,VY1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="71" chengjiuId="*" ansid="1" des="成功" like="0,0,0,1" videos="VW1102,VW1104" nextid="72" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="71" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VW1103,VW1104" nextid="72" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="72" chengjiuId="*" ansid="1" des="成功" like="0,0,0,1" videos="VW1105,VW1107" nextid="0" isdie="0" nextChapterId="42" shanhuiid="*"/>
