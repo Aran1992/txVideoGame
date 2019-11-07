@@ -154,15 +154,15 @@ class TicketPanel extends eui.Component{
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         if(isVip){
-            GameCommon.getInstance().showCommomTips("你已购买观礼凭证，不可以激活。")
+            GameCommon.getInstance().showCommomTips("你已购买心动PASS，不可以激活。")
             return;
         }
         let code = this.idEditText.text;
         var params = {"bookId":GameDefine.BOOKID,"cmd":"exchangeCDKey","CDKey":code,saleId:GameDefine.GUANGLIPINGZHENG}
         platform.sendRequest(params,(data)=>{
             if(data.code == 0){
-                ShopManager.getInstance().addGoods(GameDefine.GUANGLIPINGZHENG,1,()=>{            
-                    GameCommon.getInstance().showCommomTips("激活成功,恭喜您已获得观礼资格！");
+                ShopManager.getInstance().addGoods(GameDefine.GUANGLIPINGZHENG,1,()=>{
+                    GameCommon.getInstance().onShowResultTips("激活心动PASS成功,恭喜您开启所有章节！");
                 })
             }else{
                 GameCommon.getInstance().showCommomTips(data.data.msg);
@@ -230,7 +230,7 @@ class TicketPanel extends eui.Component{
             GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENG,this.getPingzhengPrize(),GOODS_TYPE.DIAMOND)
         }else{
             ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG,1,()=>{
-                        GameCommon.getInstance().onShowResultTips('购买成功，激活码可在“心动PASS”-“激活码观礼”处查看');
+                        GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“激活码”处查看');
                     });
         }
     }

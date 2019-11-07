@@ -9,7 +9,7 @@
 			<e:Image width="509" height="619" x="594.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Label text="与好友同享" x="183.15" y="159" size="34"/>
 			<e:Label id="idHasCodeText" text="您已通过购买”心动PASS“获得赠送资格一次，分享激活码给好友，对方将免费获得看剧权" x="70.15" y="215.88" size="24" anchorOffsetX="0" width="412.3" anchorOffsetY="0" height="104.31" lineSpacing="10" textColor="0x8c8a8a" visible="false"/>
-			<e:Label text="观礼凭证激活" x="763.15" y="159" size="34"/>
+			<e:Label text="心动PASS激活" x="763.15" y="159" size="34"/>
 			<e:Label text="持有激活码的用户，可在下方输入，激活即可获得心动PASS，无需购买" x="671.54" y="211.33" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10"/>
 			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" y="366.91" size="30" textColor="0x898686" lineSpacing="12"/>
 			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" x="54.7" y="379.06"/>
@@ -135,11 +135,11 @@
 
 		</e:Group>
 		<e:Group id="idGroupDescCommon" width="200" height="200" horizontalCenter="0" verticalCenter="0" visible="false">
-			<e:Label text="观礼凭证" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
+			<e:Label text="心动PASS" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
 			<e:Image width="20" height="20" x="-321" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
 			<e:Label text="快人一步，超前观看最新剧情" y="214" x="-285" scaleX="1" scaleY="1"/>
 			<e:Image width="20" height="20" x="142.66" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
-			<e:Label text="完成观礼任务，再获得专属奖励" x="180" y="214" scaleX="1" scaleY="1"/>
+			<e:Label text="完成任务，再获得专属奖励" x="180" y="214" scaleX="1" scaleY="1"/>
 			<e:Button id="idBtnBuyTicketOriPrize" label="240" y="314.92" horizontalCenter="6" x="178" scaleX="1" scaleY="1" enabled="true" icon="common_zuanshi1_png">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
@@ -164,11 +164,11 @@
 		</e:skinName>
 		</e:Button>
 		<e:Group width="200" height="200" horizontalCenter="0" verticalCenter="0">
-		<e:Label text="拳拳四重奏  观礼凭证" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
+		<e:Label text="拳拳四重奏  心动PASS" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
 		<e:Image width="20" height="20" x="-321" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
 		<e:Label text="快人一步，超前观看最新剧情" y="214" x="-285" scaleX="1" scaleY="1"/>
 		<e:Image width="20" height="20" x="142.66" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
-		<e:Label text="完成观礼任务，再获得专属奖励" x="180" y="214" scaleX="1" scaleY="1"/>
+		<e:Label text="完成任务，再获得专属奖励" x="180" y="214" scaleX="1" scaleY="1"/>
 			<e:Label text="激活码：" x="-52.43" y="283.09" scaleX="1" scaleY="1" size="34"/>
 			<e:Label id="idShareCode" text="123456" x="66.66" y="282.48" scaleX="1" scaleY="1" size="34"/>
 		</e:Group>
