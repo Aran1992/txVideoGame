@@ -475,7 +475,7 @@ class VideoData extends egret.DisplayObjectContainer {
                                 }
                             }
                         } else {
-                            if (videoCurTime >= Math.round(VideoManager.getInstance().getVideoDuration()) / 2 - 10 && !this.isSelectVideo) {
+                            if (videoCurTime >= 0 && !this.isSelectVideo) {
                                 this.isSelectVideo = true;
                                 VideoManager.getInstance().isReadySet = true;
                                 let likeConditionData = this.Video_Like_Condition[this.videoIdx];
@@ -505,9 +505,7 @@ class VideoData extends egret.DisplayObjectContainer {
                                 }
 
                                 let nextVideoSrc: string = this.curVideoIDs[this.curVideoIndex];
-                                Tool.callbackTime(() => {
-                                    VideoManager.getInstance().onLoadSrc(nextVideoSrc);
-                                }, this, 1000);
+                                VideoManager.getInstance().onLoadSrc(nextVideoSrc);
                                 this._nextVid = nextVideoSrc;
                             }
                             tips.hideTips();
@@ -829,7 +827,7 @@ class VideoData extends egret.DisplayObjectContainer {
         GameDefine.IS_READ_PLAY = true;
         let chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         if (!this.isEndChapter) {
-            VideoManager.getInstance().onSetSrc1(UserInfo.curBokData.videoNames[chapCfg.wenti]);
+            VideoManager.getInstance().onPlay(UserInfo.curBokData.videoNames[chapCfg.wenti]);
         } else {
             this.againFlg = true;
             videoNextFlg1 = true;
@@ -894,7 +892,7 @@ class VideoData extends egret.DisplayObjectContainer {
             this._nextVid = '';
             this.isSelectVideo = false;
             GameDefine.IS_READ_PLAY = true;
-            VideoManager.getInstance().onSetSrc1(this.videoIdx);
+            VideoManager.getInstance().onPlay(this.videoIdx);
             this.againTime = Number(videoModels[this.videoIdx].time) - 5;
         }
     }
@@ -1254,7 +1252,7 @@ class VideoData extends egret.DisplayObjectContainer {
         this.videoIdx = this.curVideoIDs[this.curVideoIndex];
         this._nextVid = this.curVideoIDs[this.curVideoIndex];
         this.setVideoTouch(this.videoIdx);
-        VideoManager.getInstance().onSetSrc1(this.curVideoIDs[this.curVideoIndex]);
+        VideoManager.getInstance().onPlay(this.curVideoIDs[this.curVideoIndex]);
         widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 1);
     }
 }

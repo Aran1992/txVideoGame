@@ -3,23 +3,12 @@
  * @date 2019年1月24日 下午5:00:03
  */
 class UserInfo {
-
     //用户名
     public static user: string = '';
     //用户id
     public static id: number = 0;
-    //用户名
-    public static nickName: string = '';
-    //用户头像url
-    public static avatar: string = '';
-    public static sex: number = 0;
-    // public static chapterDatas = {};//章节存档 通关章节后才会存储该存档
-    public static autoDatas = {};//自动存档
     public static fileDatas = {};//
-    private static _curchapter: number = 0;
-    private static _playingChapter:number = 0;
     public static ansWerData: AnswerData;
-    public static curTitle: number;//当前穿戴称号
     public static achievementDics = {};//所有成就
     public static allCollectionDatas = {};//收藏列表解锁过的收藏 通过达成成就解锁
     public static allVideos = {};//所有看过的视频
@@ -28,28 +17,10 @@ class UserInfo {
     public static shopDic = {};//所有购买过的商品
     public static lookAchievement = {};//所有查看过的收藏
     public static tipsDick = {};//所有提示过的问题
-    public static curFileTp: number = 0;
     public static guideDic = {};
     public static guideJson = {};
     public static main_Img: string = '';
     public static timestamp: number;//存档UNIX时间戳
-
-    public static get curchapter(){
-        return UserInfo._curchapter;
-    }
-    public static set curchapter(n){
-        console.log('set curchapter '+n)
-        UserInfo._curchapter = n;
-    }
-
-    public static get playingChapter(){
-        return UserInfo._playingChapter;
-    }
-    public static set playingChapter(n){
-        console.log('set playingChapter '+n)
-        UserInfo._playingChapter = n;
-    }
-
 
     public constructor() {
         // UserInfo.chapterDatas = {};
@@ -58,12 +29,23 @@ class UserInfo {
         UserInfo.guideDic = {};
         //0，或者undefine表示引导未开始，100表示引导已结束
         UserInfo.guideJson = {
-            "buyLock":0,//首次购买选项引导，发生在问题：0-5;
-            "juQing":0//首次打开剧情界面
+            "buyLock": 0,//首次购买选项引导，发生在问题：0-5;
+            "juQing": 0//首次打开剧情界面
         };
         UserInfo.shopDic = {};
         UserInfo.allVideos = {};
         UserInfo.tipsDick = {};
+    }
+
+    private static _curchapter: number = 0;
+
+    public static get curchapter() {
+        return UserInfo._curchapter;
+    }
+
+    public static set curchapter(n) {
+        console.trace('set curchapter ' + n);
+        UserInfo._curchapter = n;
     }
 }
 
@@ -71,34 +53,23 @@ class BookData {
     public ansWerData: AnswerData;
     public achievementDics = {};//所有成就
     public allCollectionDatas = {};//收藏列表解锁过的收藏 通过达成成就解锁
-    //书籍ID
-    public bookId: number;
-    //章节ID
-    public chapterId: number;
     //存档ID
     public slotId: number;
-    //当前存档ID
-    public currentSlotId: number;
     //存档描述
     public title: string;
     public shopDic = {};
     public videoNames;
     public videoDic = {};
-    public lookAchievement = {};//所有查看过的收藏
     public chapterDatas;//章节存档 通关章节后才会存储该存档
-    //当前播放的videoID
-    public _curVideoID: string;
     // 当前播放到多少秒了
     public times;
     //data 章节 ,选择的问题ID,答案  1,1,2;这种格式
-    public externParam: string;
     public suipianMoney: number;
     //存档UNIX时间戳
     public timestamp: number;
     public main_Img: string = '';
     //问题ID
     public wentiId: number[];
-    public nextWenTiId: number;
     public curchapter: number = 0;
     public tipsDick = {};
     public videoIds;
@@ -109,15 +80,6 @@ class BookData {
     public likes;
     //对应问题选择的答案
     public answerId;
-
-
-    public get curVideoID() {
-        return this._curVideoID;
-    }
-
-    public set curVideoID(ids) {
-        this._curVideoID = ids;
-    }
 
     public constructor() {
         this.chapterDatas = [];
@@ -136,11 +98,20 @@ class BookData {
         this.achievementDics = {};
         this.suipianMoney = 0;
     }
+
+    //当前播放的videoID
+    public _curVideoID: string;
+
+    public get curVideoID() {
+        return this._curVideoID;
+    }
+
+    public set curVideoID(ids) {
+        this._curVideoID = ids;
+    }
 }
 
 class AnswerData {
-    //章节ID
-    public chapterId: number;
     //问题ID
     public wentiId;
     public answerId;
@@ -165,21 +136,5 @@ class ChengJiuData {
 
     public constructor() {
         this.iscomplete = 0;
-    }
-}
-
-class TitleData {
-    //成就ID
-    public id: number;
-    //存档进度
-    public progress: number;
-    public canshu: string = '';
-    //当前存档ID
-    public iscomplete: boolean;
-    //存档UNIX时间戳
-    public timestamp: number;
-
-    public constructor() {
-
     }
 }

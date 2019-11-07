@@ -62,6 +62,9 @@ class VideoManager {
         let chapterCfg: Modelchapter = JsonModelManager.instance.getModelchapter()[chapterID];
         if (!chapterCfg) return isComplete;
         switch (chapterID) {
+            case 0:
+                isComplete = true;
+                break;
             case 10:
                 const likeDataList = GameCommon.getInstance().getSortLikeAry();
                 const map = {
@@ -220,18 +223,6 @@ class VideoManager {
                 this.setVid = '';
             }
         })
-    }
-
-    public onSetSrc1(param) {
-        // this._isRead = true;
-        // this.setVid = videoModels[param].vid;
-        // if (this.isReadySet) {
-        if (this.first) {
-            this.onPlay(param);
-        } else
-            widPlayer.setNextVideoNode(videoModels[param].vid, {inerrupt: true});
-        // 	return;
-        // }
     }
 
     public onLoadSrc(src) {
