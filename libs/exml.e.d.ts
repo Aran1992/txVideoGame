@@ -183,6 +183,10 @@ declare module skins{
 	}
 }
 declare module skins{
+	class TicketSkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class PlayerSettingSkin extends eui.Skin{
 	}
 }
@@ -316,10 +320,6 @@ declare module skins{
 }
 declare module skins{
 	class ShouCangViewSkin extends eui.Skin{
-	}
-}
-declare module skins{
-	class TicketSkin extends eui.Skin{
 	}
 }
 declare module skins{

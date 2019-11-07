@@ -4651,6 +4651,136 @@
             "url": "assets/shoucang/shoucang_baikuang.png?v=695"
         },
         {
+            "name": "pass_bg_luxury_task_png",
+            "type": "image",
+            "url": "assets/task/pass_bg_luxury_task.png?v=566"
+        },
+        {
+            "name": "pass_bg_name_luxury_png",
+            "type": "image",
+            "url": "assets/task/pass_bg_name_luxury.png?v=841"
+        },
+        {
+            "name": "pass_bg_name_normal_png",
+            "type": "image",
+            "url": "assets/task/pass_bg_name_normal.png?v=844"
+        },
+        {
+            "name": "pass_bg_normal_task_png",
+            "type": "image",
+            "url": "assets/task/pass_bg_normal_task.png?v=778"
+        },
+        {
+            "name": "pass_bg_zhangjie_png",
+            "type": "image",
+            "url": "assets/task/pass_bg_zhangjie.png?v=770"
+        },
+        {
+            "name": "pass_bg_zhekou_png",
+            "type": "image",
+            "url": "assets/task/pass_bg_zhekou.png?v=631"
+        },
+        {
+            "name": "pass_btn_close_png",
+            "type": "image",
+            "url": "assets/task/pass_btn_close.png?v=612"
+        },
+        {
+            "name": "pass_btn_unlock_png",
+            "type": "image",
+            "url": "assets/task/pass_btn_unlock.png?v=402"
+        },
+        {
+            "name": "pass_frame_task_luxury_png",
+            "type": "image",
+            "url": "assets/task/pass_frame_task_luxury.png?v=254"
+        },
+        {
+            "name": "pass_frame_task_normal_png",
+            "type": "image",
+            "url": "assets/task/pass_frame_task_normal.png?v=250"
+        },
+        {
+            "name": "pass_icon_get_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_get.png?v=573"
+        },
+        {
+            "name": "pass_icon_lock_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_lock.png?v=188"
+        },
+        {
+            "name": "pass_icon_resume_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_resume.png?v=549"
+        },
+        {
+            "name": "pass_icon_task_1_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_1.png?v=647"
+        },
+        {
+            "name": "pass_icon_task_10_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_10.png?v=407"
+        },
+        {
+            "name": "pass_icon_task_11_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_11.png?v=439"
+        },
+        {
+            "name": "pass_icon_task_12_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_12.png?v=373"
+        },
+        {
+            "name": "pass_icon_task_2_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_2.png?v=666"
+        },
+        {
+            "name": "pass_icon_task_3_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_3.png?v=26"
+        },
+        {
+            "name": "pass_icon_task_4_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_4.png?v=552"
+        },
+        {
+            "name": "pass_icon_task_5_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_5.png?v=511"
+        },
+        {
+            "name": "pass_icon_task_6_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_6.png?v=662"
+        },
+        {
+            "name": "pass_icon_task_7_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_7.png?v=122"
+        },
+        {
+            "name": "pass_icon_task_8_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_8.png?v=54"
+        },
+        {
+            "name": "pass_icon_task_9_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_9.png?v=966"
+        },
+        {
+            "name": "pass_icon_tip_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_tip.png?v=909"
+        },
+        {
             "name": "ticket_bk1_png",
             "type": "image",
             "url": "assets/ticket/ticket_bk1.png?v=812"
@@ -4773,7 +4903,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=432"
+            "url": "config/config.bin?v=430"
         }
     ]
 }

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.TicketSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="16d615f8c43"/>
+	<e:Image scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" width="100%" height="100%" y="0" source="cundang_bj_jpg" left="0"/>
+	<e:Rect width="100%" height="100%" x="6.08" y="4.56" fillAlpha="0.6"/>
+
+
+
+	
+	<e:Group id="tabGroup" touchChildren="true" y="180" x="0">
+		<e:RadioButton id="idTab2" groupName="tabGroup" label="奖励" skinName="skins.Common_TabButtonSkin1" width="260" height="90" value="1" name="2" x="6" y="-55"/>
+		<e:RadioButton id="idTab1" groupName="tabGroup" label="激活码" skinName="skins.Common_TabButtonSkin1" width="260"
+						height="90" value="0" selected="true"  name="1"/>
+
+
+		<e:layout>
+			<e:VerticalLayout gap="15" />
+		</e:layout>
+	</e:Group>
+
+	<e:Button id="idClose" label="心动PASS" width="200" x="44" y="29.5" height="62" scaleX="1" scaleY="1" touchEnabled="true" touchChildren="true" enabled="true">
+		<e:skinName>
+		<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
+			<e:Group width="100%" height="100%"/>
+			<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png" verticalCenter="0" left="0" locked="true"/>
+			<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9" left="50" text=""/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="normal_bg" source="pass_bg_normal_task_png" x="355" y="158.49"/>
+	<e:Image id="luxury_bg" source="pass_bg_luxury_task_png" x="355" y="482"/>
+	<e:Scroller id="pass_task_view" width="996" height="576" x="602" y="156" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group id="pass_task_group" anchorOffsetY="0" height="576">
+			<e:Group id="pass_normal_task_group" width="995.45" height="246.97" x="0.67" y="3.94" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0">
+				<e:Image id="pass_normal_task_frame" source="pass_frame_task_normal_png" x="6.81" y="22.56" scaleX="1" scaleY="1"/>
+				<e:Button id="pass_normal_task_btn" label="" x="16.81" y="30.56" scaleX="1" scaleY="1">
+					<e:skinName>
+						<e:Skin states="up,down,disabled">
+						<e:Image width="100%" height="100%" source="pass_icon_task_1_png"/>
+						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button label="" x="216.81" y="28.56" scaleX="1" scaleY="1">
+					<e:skinName>
+						<e:Skin states="up,down,disabled">
+						<e:Image width="100%" height="100%" source="pass_icon_task_1_png"/>
+						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button label="" x="414.81" y="30.56" scaleX="1" scaleY="1">
+					<e:skinName>
+						<e:Skin states="up,down,disabled">
+						<e:Image width="100%" height="100%" source="pass_icon_task_1_png"/>
+						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+						</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Image source="pass_bg_name_normal_png" x="34.81" y="180.08" scaleX="1" scaleY="1"/>
+				<e:Image source="pass_bg_name_normal_png" x="234.81" y="180.08" scaleX="1" scaleY="1"/>
+				<e:Image source="pass_bg_name_normal_png" x="434.81" y="180.08" scaleX="1" scaleY="1"/>
+				<e:Image id="pass_normal_task_tip" source="pass_icon_tip_png" x="138.81" y="26.56" scaleX="1" scaleY="1"/>
+				<e:Image source="pass_icon_tip_png" x="342.81" y="26.56" scaleX="1" scaleY="1"/>
+				<e:Image source="pass_icon_tip_png" x="538.81" y="28.56" scaleX="1" scaleY="1"/>
+				<e:Image id="pass_normal_task_get" source="pass_icon_get_png" x="140.81" y="26.56" scaleX="1" scaleY="1"/>
+				<e:Image source="pass_icon_get_png" x="344.81" y="26.56" scaleX="1" scaleY="1"/>
+				<e:Image source="pass_icon_get_png" x="540.81" y="26.56" scaleX="1" scaleY="1"/>
+				<e:Label id="pass_narmal_task_name" text="I" y="186.08" size="35" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="-383.725"/>
+				<e:Label text="love" x="285.83" y="184.08" size="35" anchorOffsetX="0.5" scaleX="1" scaleY="1"/>
+				<e:Label text="you" x="487.83" y="182.08" size="35" anchorOffsetX="0.5" scaleX="1" scaleY="1"/>
+			</e:Group>
+			<e:Group id="pass_luxury_task_group" width="990" height="246" x="-2" y="328" anchorOffsetX="0" anchorOffsetY="0">
+				<e:Image id="pass_luxury_task_frame" source="pass_frame_task_luxury_png" x="8" y="23.09" scaleX="1" scaleY="1"/>
+				<e:Button id="pass_luxury_task_btn" label="" x="14.72" y="31.64">
+					<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image width="100%" height="100%" source="pass_icon_task_7_png"/>
+						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button label="" x="216.48" y="31.56">
+					<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image width="100%" height="100%" source="pass_icon_task_7_png"/>
+						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button label="" x="418.6" y="30.9">
+					<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image width="100%" height="100%" source="pass_icon_task_7_png"/>
+						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Image source="pass_bg_name_luxury_png" x="33.09" y="179.27"/>
+				<e:Image source="pass_bg_name_luxury_png" x="235.09" y="178.38"/>
+				<e:Image source="pass_bg_name_luxury_png" x="436.46" y="178.3"/>
+				<e:Image id="pass_luxury_task_lock" source="pass_icon_lock_png" x="81.52" y="88.52"/>
+				<e:Image source="pass_icon_lock_png" x="283.6" y="88.52"/>
+				<e:Image source="pass_icon_lock_png" x="484.4" y="89"/>
+				<e:Label id="pass_luxury_task_name" text="come" x="71.16" y="183.12" size="35"/>
+				<e:Label text="on" x="294.18" y="181.56" size="35"/>
+				<e:Label text="baby" x="480.08" y="181.58" size="35"/>
+			</e:Group>
+			<e:Group id="pass_zhangjie_group" width="993.94" height="71.21" x="0" y="253" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1">
+				<e:Image id="pass_task_zhangjie_bg" source="pass_bg_zhangjie_png" x="9.4" y="16.45" scaleX="1" scaleY="1"/>
+				<e:Label id="pass_task_zhangjie" text="第一章" x="268" y="21" size="35" anchorOffsetX="0.5"/>
+			</e:Group>
+		</e:Group>
+	</e:Scroller>
+	<e:Label text="快人一步，超前观看最新剧情" x="420" y="748" height="30" size="25"/>
+	<e:Label text="完成观礼任务，可获得专属奖励" x="812" y="748" size="25"/>
+	<e:Label text="买一赠一，与好友同享拳拳" x="1226" y="748" size="25"/>
+	<e:Image source="pass_icon_resume_png" x="386" y="750"/>
+	<e:Image source="pass_icon_resume_png" x="782" y="750"/>
+	<e:Image source="pass_icon_resume_png" x="1194" y="750"/>
+	<e:Button id="pass_unlock_btn" label="解 锁" x="1294" y="798" height="81">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="pass_btn_unlock_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+
+
+</e:Skin>
