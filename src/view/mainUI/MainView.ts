@@ -147,14 +147,12 @@ class MainView extends eui.Component {
         }
         let player = new window["Txiplayer"]({
             container: "#videoDivMin",
-            vid: "t0032b6tjt4",
             width: "100%",
         });
         playerCallList.push({
             key: "constructor",
             args: [{
                 container: "#videoDivMin",
-                vid: "t0032b6tjt4",
                 width: "100%",
             }],
             time: new Date().getTime()
@@ -184,47 +182,45 @@ class MainView extends eui.Component {
             "on",
         ];
         const logResultMethodList = [];
-        player.on("ready", () => {
-            widPlayer = {};
-            methodList.forEach(key => {
-                widPlayer[key] = (...args) => {
-                    if (key === "on") {
-                        const [event, handler] = args;
-                        player[key].bind(player)(event, (...args) => {
-                            console.log("video player event", event, ...args);
-                            handler(...args);
-                        });
+        widPlayer = {};
+        methodList.forEach(key => {
+            widPlayer[key] = (...args) => {
+                if (key === "on") {
+                    const [event, handler] = args;
+                    player[key].bind(player)(event, (...args) => {
+                        console.log("video player event", event, ...args);
+                        handler(...args);
+                    });
+                    playerCallList.push({
+                        key,
+                        args,
+                        time: new Date().getTime()
+                    });
+                } else {
+                    if (logArgsMethodList.indexOf(key) !== -1) {
+                        console.trace(`widPlayer.${key} args`, ...args);
                         playerCallList.push({
                             key,
                             args,
                             time: new Date().getTime()
                         });
-                    } else {
-                        if (logArgsMethodList.indexOf(key) !== -1) {
-                            console.trace(`widPlayer.${key} args`, ...args);
-                            playerCallList.push({
-                                key,
-                                args,
-                                time: new Date().getTime()
-                            });
-                        }
-                        const result = player[key].bind(player)(...args);
-                        if (logResultMethodList.indexOf(key) !== -1) {
-                            console.trace(`widPlayer.${key} result`, result);
-                        }
-                        return result;
                     }
-                };
-            });
-            let ps = document.getElementsByTagName("video");
-            for (let i: number = 0; i < ps.length; i++) {
-                if (size.fillType == FILL_TYPE_COVER) {
-                    ps[i].style["object-fit"] = "cover";
-                } else {
-                    ps[i].style["object-fit"] = "contain";
+                    const result = player[key].bind(player)(...args);
+                    if (logResultMethodList.indexOf(key) !== -1) {
+                        console.trace(`widPlayer.${key} result`, result);
+                    }
+                    return result;
                 }
-            }
+            };
         });
+        let ps = document.getElementsByTagName("video");
+        for (let i: number = 0; i < ps.length; i++) {
+            if (size.fillType == FILL_TYPE_COVER) {
+                ps[i].style["object-fit"] = "cover";
+            } else {
+                ps[i].style["object-fit"] = "contain";
+            }
+        }
     }
 
     // private loadpanel:LoadingPanel;
