@@ -31,10 +31,9 @@ declare interface Platform {
 
     isDebug(): boolean;
     getPlatform():string;
-    getLocalUserInfo();
-
     getBridgeHelper();  
     getSaleBeginTime();
+    isPlatformVip():boolean;
 }
 
 class DebugPlatform implements Platform {
@@ -42,14 +41,12 @@ class DebugPlatform implements Platform {
         await window["getUserInfo"](()=>{});
     }
 
-    public getLocalUserInfo(){        
+    public isPlatformVip(){
         if (this.getPlatform() == "plat_txsp"){
-            return txsp_userinfo;
-        }else{
-            return {}
-        }
+            return plattxsp.isPlatformVip();
+        }else
+            return false;
     }
-
     //是否是活动期间；
     public isCelebrateTime(){
         return true;
@@ -79,6 +76,7 @@ class DebugPlatform implements Platform {
         else
             return 'plat_txsp'
     }
+    
     
     public getBridgeHelper(){
         return bridgeHelper;

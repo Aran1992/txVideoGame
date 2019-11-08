@@ -2,7 +2,8 @@
 <!--1图片，2视频，3音乐，4章节，5道具，6观礼凭证，9新手礼包-->
 <shop>    
     <shop id="600002" name="新手礼包" banner="*" banner2="xinshou_1_png,xinshou_2_png,xinshou_3_png" desc="超值新手礼包" params="100001,200001,300001" currPrice="0" origPrice="0" currSuipian="300" origSuipian="300" show="1" preview="*" shaixuan_params="*"/>
-    <shop id="600001" name="心动PASS" banner="*" banner2="*" desc="*" params="30" currPrice="100" origPrice="100" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
+    <shop id="600001" name="心动PASS" banner="*" banner2="*" desc="*" params="30" currPrice="180" origPrice="180" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
+    <shop id="600003" name="心动PASS" banner="*" banner2="*" desc="*" params="30" currPrice="120" origPrice="180" currSuipian="*" origSuipian="*" show="*" preview="*" shaixuan_params="*"/>
     
     <shop id="100001" name="梦想的模样" banner="sc_role3_imgIcon_1_jpg" banner2="sc_role3_img1_png" desc="初次登台的灯光，因梦想而闪闪发亮！" params="1" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="0" preview="*" shaixuan_params="主角,夏子豪#等级,sr"/>
     <shop id="100002" name="隐藏高手" banner="sc_role1_imgIcon_1_jpg" banner2="sc_role1_img1_png" desc="少年这一次不会再放手了！" params="4" currPrice="30" origPrice="30" currSuipian="300" origSuipian="300" show="1" preview="*" shaixuan_params="主角,韩小白#等级,sr"/>
@@ -12,21 +13,21 @@
     <shop id="300001" name="如果你也有梦想" banner="sc_music_icon1_png" banner2="*" desc="如果你也有梦想的音乐" params="3" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="0" preview="mp3_music1_1s" shaixuan_params="等级,sr"/>
     <shop id="300002" name="you cool" banner="sc_music_icon1_png" banner2="*" desc="you cool的音乐" params="6" currPrice="30" origPrice="30" currSuipian="300" origSuipian="300" show="1" preview="mp3_music2_1s" shaixuan_params="等级,sr"/>
     
-    <shop id="500501" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="500502" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="500501" name="不太好吧…" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="500502" name="上就上!" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
 
-    <shop id="501802" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="501802" name="他们说的有道理…" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
 
-    <shop id="501901" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="501902" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="501903" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="501904" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="501901" name="想起夏子豪" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="501902" name="想起韩小白" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="501903" name="想起肖千也" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="501904" name="想起肖万寻" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
 
-    <shop id="502501" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="502502" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="502501" name="我还得多练习" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="502502" name="我……" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
 
-    <shop id="503401" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="503402" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="503403" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
-    <shop id="503404" name="" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>        
+    <shop id="503401" name="找肖千也" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="503402" name="找夏子豪" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="503403" name="陪肖万寻" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>
+    <shop id="503404" name="找韩小白" banner="*" banner2="*" desc="*" params="*" currPrice="30" origPrice="30" currSuipian="0" origSuipian="0" show="0" preview="*" shaixuan_params="*"/>        
 </shop>

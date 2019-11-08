@@ -33,9 +33,9 @@ class GameCommon {
                 if (q1a === 1 && q3a === 1) {
                     return [];
                 } else if (q1a !== 1 && q3a !== 1) {
-                    return [1];
+                    return [1,2];
                 } else {
-                    return [];
+                    return [2];
                 }
             }
         },
@@ -496,7 +496,7 @@ class GameCommon {
         return items[idx];
     }
 
-    public getSortLikeAry() {
+        public getSortLikeAry() {
         let items = [];
         for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
             let data = {num: 0, id: i};

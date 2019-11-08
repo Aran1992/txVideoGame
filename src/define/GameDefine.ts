@@ -25,6 +25,7 @@ class GameDefine {
         "action_msg_head_6_png",// 艾黎柯
     ];
     public static GUANGLIPINGZHENG = 600001;
+    public static GUANGLIPINGZHENGEX = 600003;
     public static SHOP_XINSHOU_ID: number = 600002;
     public static SELF_ROLE_HEAD_INDEX: number = 5;
     public static SHOUCANG_NAME: string[] = ['韩小白', '肖千也', '夏子豪', '肖万寻', '音乐', '其他'];

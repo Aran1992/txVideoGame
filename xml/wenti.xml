@@ -4,7 +4,7 @@
     <wenti id="2" chapter="0" des="教练挽留你" ans="1,2" moren="2" time="4.5" type="0"/>
     <wenti id="3" chapter="0" des="从侧门进入礼堂" ans="1,2" moren="2" time="3.5" type="2"/>
     <wenti id="4" chapter="0" des="询问夏子豪" ans="1,2" moren="2" time="7" type="0"/>
-    <wenti id="5" chapter="0" des="是否上台" ans="1,2,3" moren="2" time="4.5" type="0"/>
+    <wenti id="5" chapter="0" des="是否上台" ans="1,2,3" moren="3" time="4.5" type="0"/>
     <wenti id="6" chapter="0" des="上台表演" ans="1,2,3" moren="2" time="12" type="3"/>
     <wenti id="8" chapter="1" des="接过来吗" ans="1,2" moren="1" time="3.5" type="0"/>
     <wenti id="9" chapter="1" des="摸夏子豪的头" ans="1,2" moren="2" time="4.5" type="6"/>

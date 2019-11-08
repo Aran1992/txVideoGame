@@ -16,6 +16,9 @@ class Txsp {
             bridgeHelper.setBridgeEnableLog(true) 
         }
     }
+    public isPlatformVip(){
+        return txsp_userinfo.base_info.vip == 1
+    }
     async saveBookHistory(bookId, slotId, title, externParam,callback){
             bridgeHelper.accessStore({
                 appid:txsp_appid,

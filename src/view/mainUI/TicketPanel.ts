@@ -19,6 +19,7 @@ class TicketPanel extends eui.Component{
     
     private idGroupDescCommon:eui.Group;//日常观礼描述
     private idGroupDescSpecial:eui.Group;//活动观礼描述
+    private idGroupDiscount:eui.Group;
 
     private idBtnBuyTicketOriPrize:eui.Button;
     private idBtnBuyTicketSpecailPrize:eui.Button;
@@ -30,7 +31,7 @@ class TicketPanel extends eui.Component{
     private idExpireText:eui.Label;
     private idTicketNum:eui.Label;
 
-    private _selectIndex:number = 1;
+    private _selectIndex:number = 2;
     private _openParam:string;
 
     private bSpecail:boolean = false;
@@ -48,7 +49,7 @@ class TicketPanel extends eui.Component{
     }   
     private getPingzhengPrize(){
         if (platform.getPlatform() == "plat_txsp"){
-            if(platform.getLocalUserInfo().base_info.vip == 1)//是否腾讯视频vip用户， 1: 是， 0: 否
+            if(platform.isPlatformVip())//是否腾讯视频vip用户， 1: 是， 0: 否
                 return 120;
             else
                 return 180;
@@ -103,8 +104,27 @@ class TicketPanel extends eui.Component{
         this.idNoCode.visible = true;
         this.idBtnCopyCode.visible = false;
         this.idBtnShareCode.visible = false;
-        this.idTicketNum.text = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        this.idTicketNum.text = itemNum;
         this.refreshActiveCode();
+        if (itemNum<=0){
+            this.idGroupBuyTicket.visible=true;
+        }
+        //如果还没有买过凭据，直接拍脸
+
+        this.idBtnBuyTicketSpecailPrize.label = String(this.getPingzhengPrize());
+        this.updateBuyBtnState();
+
+        if (platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false){
+            this.idGroupDiscount.visible = false;
+        }else{
+            this.idGroupDiscount.visible = true;
+        }
+
+    }
+    private updateBuyBtnState(){
+        let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        this.idBtnBuyNow.label = itemNum>0?"已拥有":"立即购买"
     }
     private refreshActiveCode(){
         var params = {"bookId":GameDefine.BOOKID,"cmd":"getMyCDKey","saleId":GameDefine.GUANGLIPINGZHENG}
@@ -153,11 +173,10 @@ class TicketPanel extends eui.Component{
     }
     private idBtnUseCodeClick(){
         SoundManager.getInstance().playSound("ope_click.mp3")
-        //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         if(isVip){
-            GameCommon.getInstance().showCommomTips("你已购买心动PASS，不可以激活。")
+            GameCommon.getInstance().showCommomTips("你已拥有心动PASS，不可以激活。")
             return;
         }
         let code = this.idEditText.text;
@@ -165,7 +184,8 @@ class TicketPanel extends eui.Component{
         platform.sendRequest(params,(data)=>{
             if(data.code == 0){
                 ShopManager.getInstance().addGoods(GameDefine.GUANGLIPINGZHENG,1,()=>{
-                    GameCommon.getInstance().onShowResultTips("激活心动PASS成功,恭喜您开启所有章节！");
+                    GameCommon.getInstance().onShowResultTips("激活心动PASS成功,恭喜您开启所有章节！");                    
+                    this.updateBuyBtnState();
                 })
             }else{
                 GameCommon.getInstance().showCommomTips(data.data.msg);
@@ -226,16 +246,21 @@ class TicketPanel extends eui.Component{
         
         let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         if(item.num>0){
-            GameCommon.getInstance().showCommomTips("已购买");
+            GameCommon.getInstance().showCommomTips("你已经拥有心动PASS了");
             //return;
         }
         let callback = ()=>{
             this.onCloseBuyTicketClick(null);
             this.refreshActiveCode();
+            this.updateBuyBtnState();
             GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“激活码”处查看');
         }
         if (platform.getPlatform()=="plat_txsp" || platform.getPlatform()=="plat_pc"){
-            GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENG,this.getPingzhengPrize(),GOODS_TYPE.DIAMOND,callback);
+            let itemID = GameDefine.GUANGLIPINGZHENG;
+            if (platform.getPlatform() == "plat_txsp" && platform.isPlatformVip()){//在腾讯视频中。会员买另外一个特价物品
+                itemID = GameDefine.GUANGLIPINGZHENGEX;
+            }
+            GameCommon.getInstance().onShowBuyTips(itemID,this.getPingzhengPrize(),GOODS_TYPE.DIAMOND,callback);
         }else{
             ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG,1,callback);
         }
