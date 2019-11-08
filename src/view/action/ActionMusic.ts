@@ -89,7 +89,7 @@ class ActionMusic extends ActionSceneBase {
     protected onBackFail() {
         let count = this.touchChecks.filter(check => check).length;
         let answerID = 0;
-        if (count === 0) {
+        if (count <= 1) {
             answerID = 3
         } else if (count === this.totalCount) {
             answerID = 1;

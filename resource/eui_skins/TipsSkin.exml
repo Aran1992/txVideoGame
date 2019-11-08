@@ -163,7 +163,7 @@
 					<e:HorizontalLayout gap="66" />
 				</e:layout>
 			</e:Group>
-			<e:Button id="cundang1" width="65" height="58" right="478" verticalCenter="383">
+			<e:Button id="cundang1" width="65" height="58" right="478" bottom="38">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
 						<e:Image scaleX.down="0.9" scaleY.down="0.9" source="control_cundang_png" horizontalCenter="0" verticalCenter="0" />
