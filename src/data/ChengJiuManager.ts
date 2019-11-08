@@ -259,7 +259,6 @@ class ChengJiuManager {
                     for (var k in cfgs) {
                         if (cfgs[k].ansid == answerId) {
                             if (cfgs[k].chengjiuId) {
-
                                 this.onCheckChengJiu(cfgs[k].chengjiuId, wentiId, answerId);
                             }
                         }

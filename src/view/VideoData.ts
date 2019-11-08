@@ -1121,6 +1121,7 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     private onRefreshVideo(data) {
+        setTimeout(() => GameCommon.getInstance().showRoleLike(), 0);
         console.log("onRefreshVideo>>>>", this.videoIdx);
         if (this.isSelectVideo && wentiModels[data.data.wentiId].type != ActionType.OPTION)
             return;
@@ -1173,7 +1174,6 @@ class VideoData extends egret.DisplayObjectContainer {
             if (UserInfo.curBokData.videoNames[data.data.wentiId] != this.videoIdx) {
                 UserInfo.curBokData.videoNames[data.data.wentiId] = this.videoIdx;
             }
-
 
             return;
         }

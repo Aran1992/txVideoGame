@@ -274,5 +274,6 @@ class VideoManager {
 
     private play(vid) {
         widPlayer.play(vid);
+        setTimeout(() => GameCommon.getInstance().showRoleLike(), 0);
     }
 }

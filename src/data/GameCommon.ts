@@ -120,15 +120,19 @@ class GameCommon {
     }
 
     private static isChapterInRoleJuqingTree(chapter: number, curChapter: number): boolean {
-        for (let role = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
-            const roleTree = GameDefine.ROLE_JUQING_TREE[role];
-            const curIndex = roleTree.indexOf(curChapter);
-            if (curIndex !== -1) {
-                const index = roleTree.indexOf(chapter);
-                return index !== -1 && index <= curIndex;
+        if (curChapter === 0) {
+            return chapter === 0;
+        } else {
+            for (let role = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
+                const roleTree = GameDefine.ROLE_JUQING_TREE[role];
+                const curIndex = roleTree.indexOf(curChapter);
+                if (curIndex !== -1) {
+                    const index = roleTree.indexOf(chapter);
+                    return index !== -1 && index <= curIndex;
+                }
             }
+            return false;
         }
-        return false;
     }
 
     private static getRoleLike(roleIndex) {
@@ -651,8 +655,8 @@ class GameCommon {
         PromptPanel.getInstance().hideActionTips();
     }
 
-    public onShowBuyTips(id, money, tp,buycallback?:any) {
-        PromptPanel.getInstance().onShowBuyTips(id, money, tp,buycallback);
+    public onShowBuyTips(id, money, tp, buycallback?: any) {
+        PromptPanel.getInstance().onShowBuyTips(id, money, tp, buycallback);
     }
 
     public onShowResultTips(str: string, isRight: boolean = true, btnlabel?: string, callBack?: Function, ...arys) {
@@ -903,11 +907,16 @@ class GameCommon {
                     data: "confirm"
                 });
             };
-            GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非特权用户也可等剧集解锁免费观看，详情请在《一零零一》查看", "购买特权","取消");// "等待" + freeDay + "天"
+            GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非特权用户也可等剧集解锁免费观看，详情请在《一零零一》查看", "购买特权", "取消");// "等待" + freeDay + "天"
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
             return false;
         }
         return true;
+    }
+
+    public showRoleLike() {
+        const info = this.getSortLikeAry().map(data => `${GameDefine.ROLE_NAME[data.id]}:${data.num}`).join(",");
+        this.showErrorLog(info);
     }
 }
 

@@ -1,7 +1,6 @@
 const playerCallList = [];
 const errorList = [];
 
-
 const infoDiv = document.createElement("div");
 document.body.appendChild(infoDiv);
 infoDiv.outerHTML = `<div style="position: absolute; top: 0; left: 50%; z-index: 99999">

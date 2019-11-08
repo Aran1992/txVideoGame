@@ -2,7 +2,6 @@ class PromptPanel extends egret.DisplayObjectContainer {
     private static _promptPanel: PromptPanel;
     private cjTips: CommonTips;
     private loadPanel: LoadingPanel;
-    private errTipsStrAry: string[] = [];
 
     public constructor() {
         super();
@@ -54,29 +53,26 @@ class PromptPanel extends egret.DisplayObjectContainer {
         this.cjTips.onShowQinMiGroup();
     }
 
-    public onShowBuyTips(id, money, tp,buycallback) {
-        this.cjTips.onShowBuyTips(id, money, tp,buycallback);
+    public onShowBuyTips(id, money, tp, buycallback) {
+        this.cjTips.onShowBuyTips(id, money, tp, buycallback);
     }
 
-    public onShowBuyHaoGan(wentiId:number=0,id: number = 0) {
-        this.cjTips.onShowBuyHaoGan(wentiId,id);
+    public onShowBuyHaoGan(wentiId: number = 0, id: number = 0) {
+        this.cjTips.onShowBuyHaoGan(wentiId, id);
     }
 
     public onShowResultTips(str: string, isRight: boolean, btnlabel: string, callBack: Function, ...arys) {
         this.cjTips.onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }
 
-    public showConfirmTips(desc: string, callBack: Function, desc2?: string,textYes:string="是",textNo:string="否"): void {
-        this.cjTips.showConfirmTips(desc, callBack, desc2,textYes,textNo);
+    public showConfirmTips(desc: string, callBack: Function, desc2?: string, textYes: string = "是", textNo: string = "否"): void {
+        this.cjTips.showConfirmTips(desc, callBack, desc2, textYes, textNo);
     }
 
     public showErrorLog(logstr: string) {
         if (!platform.isDebug) return;
-        this.errTipsStrAry.push(logstr);
         if (this.cjTips) {
-            while (this.errTipsStrAry.length > 0) {
-                this.cjTips.showErrorLog(this.errTipsStrAry.shift());
-            }
+            this.cjTips.showErrorLog(logstr);
         }
     }
 
