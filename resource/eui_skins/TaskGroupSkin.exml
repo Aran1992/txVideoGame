@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.TaskGroupSkin" height="550" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="pass_frame_task_normal_png" scaleX="1" scaleY="1" left="0" right="0" verticalCenter="-145" scale9Grid="117,25,377,152"/>
+	<e:Image source="pass_frame_task_normal_png" scaleX="1" scaleY="1" left="0" right="0" verticalCenter="145" scale9Grid="117,25,377,152"/>
+	<e:Group id="common" verticalCenter="-145" x="0">
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Group height="40" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" left="0" right="0" verticalCenter="0">
+		<e:Image source="pass_bg_zhangjie_png" scaleX="1" scaleY="1" left="0" right="0" verticalCenter="0" scale9Grid="75,5,454,30"/>
+		<e:Label id="chapterName" text="第一章" size="35" anchorOffsetX="0.5" verticalCenter="0" horizontalCenter="0"/>
+	</e:Group>
+	<e:Group id="luxury" verticalCenter="145" x="0">
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

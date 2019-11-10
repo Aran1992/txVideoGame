@@ -25,8 +25,10 @@ class TicketPanel extends eui.Component {
     private idExpireText: eui.Label;
     private idTicketNum: eui.Label;
 
+    private taskGroupContainer: eui.Group;
+
     private _selectIndex: number = 2;
-    private _openParam: string;
+    private readonly _openParam: string;
 
     private bSpecail: boolean = false;
 
@@ -38,11 +40,7 @@ class TicketPanel extends eui.Component {
         this._openParam = openParam
     }
 
-    protected onSkinName(): void {
-        this.skinName = skins.TicketSkin;
-    }
-
-    private getPingzhengPrize() {
+    private static getPingzhengPrize() {
         if (platform.getPlatform() == "plat_txsp") {
             if (platform.isPlatformVip())//是否腾讯视频vip用户， 1: 是， 0: 否
                 return 120;
@@ -52,13 +50,17 @@ class TicketPanel extends eui.Component {
         return 120;
     }
 
+    protected onSkinName(): void {
+        this.skinName = skins.TicketSkin;
+    }
+
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
     }
 
     private onLoadComplete() {
-        for (let i = 1; i <= 3; i++) {
+        for (let i = 1; i <= 2; i++) {
             this["idTab" + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTabClick, this);
         }
 
@@ -104,10 +106,11 @@ class TicketPanel extends eui.Component {
         }
         //如果还没有买过凭据，直接拍脸
 
-        this.idBtnBuyTicketSpecailPrize.label = String(this.getPingzhengPrize());
+        this.idBtnBuyTicketSpecailPrize.label = String(TicketPanel.getPingzhengPrize());
         this.updateBuyBtnState();
 
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
+        this.createTasks();
     }
 
     private updateBuyBtnState() {
@@ -218,10 +221,10 @@ class TicketPanel extends eui.Component {
     }
 
     private updateTab() {
-        for (let i = 1; i <= 3; i++) {
+        for (let i = 1; i <= 2; i++) {
             (this["idTab" + i] as eui.RadioButton).selected = this._selectIndex == i;
         }
-        for (let i = 1; i <= 3; i++) {
+        for (let i = 1; i <= 2; i++) {
             this["idPage" + i].visible = this._selectIndex == i;
         }
     }
@@ -263,7 +266,7 @@ class TicketPanel extends eui.Component {
             if (platform.getPlatform() == "plat_txsp" && platform.isPlatformVip()) {//在腾讯视频中。会员买另外一个特价物品
                 itemID = GameDefine.GUANGLIPINGZHENGEX;
             }
-            GameCommon.getInstance().onShowBuyTips(itemID, this.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
+            GameCommon.getInstance().onShowBuyTips(itemID, TicketPanel.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
         } else {
             ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG, 1, callback);
         }
@@ -284,5 +287,51 @@ class TicketPanel extends eui.Component {
         SoundManager.getInstance().playSound("ope_click.mp3");
         this._selectIndex = Number(event.currentTarget.name);
         this.updateTab()
+    }
+
+    private createTasks() {
+        TASK.forEach(chapter => {
+            const taskGroup = new TaskGroup(chapter);
+            this.taskGroupContainer.addChild(taskGroup);
+        });
+    }
+}
+
+class TaskItem extends eui.Component {
+    private allChildren: eui.Group;
+    private btn: eui.Button;
+    private taskName: eui.Label;
+    private receivable: eui.Image;
+    private received: eui.Image;
+    private uncompleted: eui.Image;
+    private lock: eui.Image;
+
+    constructor(task) {
+        super();
+        this.skinName = skins.TaskItemSkin;
+        if (task) {
+            this.taskName.text = task.name;
+            this.allChildren.visible = true;
+        } else {
+            this.allChildren.visible = false;
+        }
+    }
+}
+
+class TaskGroup extends eui.Component {
+    private common: eui.Group;
+    private luxury: eui.Group;
+    private chapterName: eui.Label;
+
+    constructor(chapterTasks) {
+        super();
+        this.skinName = skins.TaskGroupSkin;
+        this.chapterName.text = chapterTasks.chapter;
+        chapterTasks.common.forEach(task => {
+            this.common.addChild(new TaskItem(task));
+        });
+        chapterTasks.luxury.forEach(task => {
+            this.luxury.addChild(new TaskItem(task));
+        });
     }
 }
