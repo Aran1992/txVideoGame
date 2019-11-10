@@ -1162,10 +1162,7 @@ class TaskManager {
         GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
     }
 
-    private getWatchedDuration(): number {
-        return 0;
-    }
-
+    // 类似于array的some方法 只是是用来遍历object的
     private some(obj, handler) {
         for (const key in obj) {
             if (obj.hasOwnProperty(key)) {
