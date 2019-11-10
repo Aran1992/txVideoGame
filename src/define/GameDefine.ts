@@ -103,7 +103,8 @@ enum FILE_TYPE {
     GUIDE_TP = 11,//引导存档
     GOODS_FILE = 12,//商品存档（debug版本使用）
     TIMESTAMP = 13,//时间戳
-    SIZE = 14,
+    TASK = 14,//时间戳
+    SIZE = 15,
 }
 
 enum GOODS_TYPE {

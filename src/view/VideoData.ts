@@ -539,6 +539,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_PLAY_END), data);
                     this.isEndChapter = true;
                     this.onShowNextVideo();
+                    TaskManager.instance.addDuration(widPlayer.getDuration());
                 } else {
                     GameCommon.getInstance().removeLoading();
                     if (data.new == 'playing' && this.tiaoState)//强行修复BUG
@@ -660,7 +661,7 @@ class VideoData extends egret.DisplayObjectContainer {
         this.tiaoState = false;
         UserInfo.allVideos[this.videoIdx] = this.videoIdx;
         UserInfo.curBokData.allVideos[this.videoIdx] = this.videoIdx;
-        UserInfo.curBokData.videoDic[this.videoIdx] = this.videoIdx;
+        this.setVideoDict(this.videoIdx);
         this.isLoadSrc = false;
         if (this.videoIdx != 'V019' && videoModels[this.videoIdx].chengjiuId != '' && VideoManager.getInstance().videoCurrTime() >= VideoManager.getInstance().getVideoDuration() - 10) {
             ChengJiuManager.getInstance().onCheckShiPinChengJiu(videoModels[this.videoIdx].chengjiuId);
@@ -959,7 +960,7 @@ class VideoData extends egret.DisplayObjectContainer {
             }
         }
 
-        UserInfo.curBokData.videoDic[this.videoIdx] = this.videoIdx;
+        this.setVideoDict(this.videoIdx);
         UserInfo.allVideos[this.videoIdx] = this.videoIdx;
         UserInfo.curBokData.allVideos[this.videoIdx] = this.videoIdx;
         UserInfo.curBokData.videoNames[curWentiId] = this.videoIdx;
@@ -975,7 +976,7 @@ class VideoData extends egret.DisplayObjectContainer {
         this.curVideoIndex = 1;
         let videoSrc = videoIds[0];
         UserInfo.curBokData.wentiId.push(chapCfg.wenti);
-        UserInfo.curBokData.videoDic[videoSrc] = videoSrc;
+        this.setVideoDict(videoSrc);
         UserInfo.curBokData.videoNames[chapCfg.wenti] = videoSrc;
         UserInfo.curBokData.times[chapCfg.wenti] = 0;
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
@@ -991,6 +992,7 @@ class VideoData extends egret.DisplayObjectContainer {
 
         VideoManager.getInstance().onLoad(videoSrc);
         VideoManager.getInstance().loadSrc = videoSrc;
+        TaskManager.instance.checkChapterTask();
         if (UserInfo.curchapter == 1)
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
         else
@@ -1121,7 +1123,10 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     private onRefreshVideo(data) {
-        setTimeout(() => GameCommon.getInstance().showRoleLike(), 0);
+        setTimeout(() => {
+            GameCommon.getInstance().showRoleLike();
+            TaskManager.instance.checkQuestionTask();
+        }, 0);
         console.log("onRefreshVideo>>>>", this.videoIdx);
         if (this.isSelectVideo && wentiModels[data.data.wentiId].type != ActionType.OPTION)
             return;
@@ -1256,12 +1261,17 @@ class VideoData extends egret.DisplayObjectContainer {
         VideoManager.getInstance().onPlay(this.curVideoIDs[this.curVideoIndex]);
         widPlayer.seek(VideoManager.getInstance().getVideoDuration() - 1);
     }
+
+    private setVideoDict(vid: string) {
+        UserInfo.curBokData.videoDic[vid] = vid;
+        TaskManager.instance.checkVideoTask();
+    }
 }
 
 declare let widPlayer;
-declare let videoModels: Modelshipin[];
-declare let wentiModels: Modelwenti[];
-declare let answerModels: Modelanswer[];
+declare let videoModels;
+declare let wentiModels;
+declare let answerModels;
 declare let videoNextFlg: boolean;
 declare let videoNextFlg1: boolean;
 declare let videoAdvanceLoad: boolean;

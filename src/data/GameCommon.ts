@@ -33,7 +33,7 @@ class GameCommon {
                 if (q1a === 1 && q3a === 1) {
                     return [];
                 } else if (q1a !== 1 && q3a !== 1) {
-                    return [1,2];
+                    return [1, 2];
                 } else {
                     return [2];
                 }
@@ -229,6 +229,13 @@ class GameCommon {
                     egret.localStorage.setItem(tp.toString(), str);
                 }
                 break;
+            case FILE_TYPE.TASK: {
+                str = JSON.stringify(TaskManager.instance.getTaskStates());
+                if (egret.Capabilities.os == 'Windows PC') {
+                    egret.localStorage.setItem(tp.toString(), str);
+                }
+                break;
+            }
         }
         let curChapterCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
         let cundangTitle: string = '存档';
@@ -298,7 +305,9 @@ class GameCommon {
             let info = JSON.parse(egret.localStorage.getItem(tp.toString()));
             if (!info)
                 return;
-            if (tp == FILE_TYPE.AUTO_FILE) {
+            if (tp === FILE_TYPE.TASK) {
+                TaskManager.instance.init(info);
+            } else if (tp == FILE_TYPE.AUTO_FILE) {
                 UserInfo.curBokData = info;
                 saveValues.forEach(element => {
                     if (info[element]) {
@@ -316,10 +325,10 @@ class GameCommon {
         let callbackGetBookHistory = (data) => {
             if (data.code != 0) {
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.INIT_DESC), JSON.stringify(data));
-                console.log("read book failed:" + tp)
+                console.log("read book failed:" + tp);
                 return;
             }
-            console.log("read book success:" + tp)
+            console.log("read book success:" + tp);
             switch (data.data.slotId) {
                 //自动存档和手动存档
                 case FILE_TYPE.AUTO_FILE:
@@ -368,6 +377,10 @@ class GameCommon {
                     //ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
                     ShopManager.getInstance().initShopInfos();
                     break;
+                case FILE_TYPE.TASK: {
+                    TaskManager.instance.init(JSON.parse(data.data.content));
+                    break;
+                }
             }
 
         };
@@ -496,7 +509,7 @@ class GameCommon {
         return items[idx];
     }
 
-        public getSortLikeAry() {
+    public getSortLikeAry() {
         let items = [];
         for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
             let data = {num: 0, id: i};

@@ -108,6 +108,7 @@ class Main extends eui.UILayer {
 
     private async loadResource() {
         GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
+        GameCommon.getInstance().getBookHistory(FILE_TYPE.TASK);
         await RES.loadConfig("resource/default.res.json", "resource/");
         await RES.loadGroup("loading", 0);
         await this.loadTheme();

@@ -22,6 +22,7 @@
 		"bin-debug/data/GameWorld.js",
 		"bin-debug/data/GuideManager.js",
 		"bin-debug/data/ShopManager.js",
+		"bin-debug/data/TaskManager.js",
 		"bin-debug/data/UserInfo.js",
 		"bin-debug/data/Event/GameEvent.js",
 		"bin-debug/define/GameDefine.js",
