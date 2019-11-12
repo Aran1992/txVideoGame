@@ -164,7 +164,6 @@ class ViewEnd extends eui.Component {
             VideoManager.getInstance().log('隐藏存档');
             UserInfo.curBokData.wentiId.push(chapCfg.wenti);
             UserInfo.curBokData.videoNames[chapCfg.wenti] = videoSrc;
-            UserInfo.curBokData.times[chapCfg.wenti] = 0;
             GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
             // ChengJiuManager.getInstance().onChapterChengJiu(UserInfo.curchapter - 1);
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
@@ -173,9 +172,6 @@ class ViewEnd extends eui.Component {
             // GameCommon.getInstance().setBookData(FILE_TYPE.HIDE_FILE);
             // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH), '隐藏存档');
         }
-
-
-        //
     }
 }
 

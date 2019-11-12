@@ -627,7 +627,6 @@ class VideoData extends egret.DisplayObjectContainer {
             if (UserInfo.curBokData.videoNames[this.curWentiId] != this.videoIdx) {
                 UserInfo.curBokData.videoNames[this.curWentiId] = this.videoIdx;
             }
-            UserInfo.curBokData.times[this.curWentiId] = Math.floor(VideoManager.getInstance().videoCurrTime());
             GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
         } else {
             if (UserInfo.curBokData.wentiId.length > 0) {
@@ -635,7 +634,6 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (UserInfo.curBokData.videoNames[wId] != this.videoIdx) {
                     UserInfo.curBokData.videoNames[wId] = this.videoIdx;
                 }
-                UserInfo.curBokData.times[wId] = Math.floor(VideoManager.getInstance().videoCurrTime());
                 GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
             }
         }
@@ -978,7 +976,6 @@ class VideoData extends egret.DisplayObjectContainer {
         UserInfo.curBokData.wentiId.push(chapCfg.wenti);
         this.setVideoDict(videoSrc);
         UserInfo.curBokData.videoNames[chapCfg.wenti] = videoSrc;
-        UserInfo.curBokData.times[chapCfg.wenti] = 0;
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
         this.fileTimerIdx = 0;
         this.tipsPanel.hideTips();
@@ -993,10 +990,7 @@ class VideoData extends egret.DisplayObjectContainer {
         VideoManager.getInstance().onLoad(videoSrc);
         VideoManager.getInstance().loadSrc = videoSrc;
         TaskManager.instance.checkChapterTask();
-        if (UserInfo.curchapter == 1)
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-        else
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
     }
 
     private onLoadNextVideo(id = 0) {

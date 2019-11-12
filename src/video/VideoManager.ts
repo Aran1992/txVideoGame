@@ -177,7 +177,6 @@ class VideoManager {
         if (!widPlayer)
             return;
         this.isPause = false;
-
     }
 
     public onLoad(wentiId) {

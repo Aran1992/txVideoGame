@@ -190,6 +190,7 @@ class GameWorld extends egret.DisplayObjectContainer {
 
     private onButtonClick(chapId: number) {
         const curChapterCfg = JsonModelManager.instance.getModelchapter()[chapId];
+        GameCommon.getInstance().onCleanFile(JsonModelManager.instance.getModeljuqingkuai()[1][1]);
         UserInfo.curBokData.curchapter = chapId;
         UserInfo.curchapter = chapId;
         let videoIds = curChapterCfg.videoSrc.split(",");
@@ -211,14 +212,8 @@ class GameWorld extends egret.DisplayObjectContainer {
         }
         let cfg: Modeljuqingkuai = data.data.cfg;
         VideoManager.getInstance().log(JSON.stringify(UserInfo.curBokData.wentiId));
-        if (VideoManager.getInstance().getVideoID() == cfg.videoId) {
-            VideoManager.getInstance().videoResume();
-            this.videoData.onInitVideoData();
-            GameCommon.getInstance().removeLoading();
-            return;
-        }
-        let src = cfg.videoId;
 
+        let src = cfg.videoId;
         let wentiId = data.data.cfg.wentiId;
         if (VideoManager.getInstance().loadSrc == cfg.videoId && GameDefine.CUR_PLAYER_VIDEO == 1) {
             GameCommon.getInstance().showLoading();
@@ -281,7 +276,6 @@ class GameWorld extends egret.DisplayObjectContainer {
             }
         } else {
             UserInfo.curBokData.videoNames[wentiId] = cfg.openVideo;
-            UserInfo.curBokData.times[wentiId] = 0;
             UserInfo.curBokData.answerId[wentiId] = '';
             wentiId = 0;
         }

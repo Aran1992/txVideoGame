@@ -72,10 +72,7 @@ class BookData {
     public videoNames;
     public videoDic = {};
     public chapterDatas;//章节存档 通关章节后才会存储该存档
-    // 当前播放到多少秒了
-    public times;
     //data 章节 ,选择的问题ID,答案  1,1,2;这种格式
-    public suipianMoney: number;
     //存档UNIX时间戳
     public timestamp: number;
     public main_Img: string = '';
@@ -98,7 +95,6 @@ class BookData {
         this.wentiId = [];
         this.answerId = {};
         this.allVideos = {};
-        this.times = {};
         this.videoNames = {};
         this.videoDic = {};
         this.videoIds = {};

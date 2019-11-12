@@ -5,7 +5,7 @@ class ResultWinPanel extends eui.Component {
     private btnMain: eui.Button;
     private btnNext: eui.Button;
     private readonly _isEnd: boolean;
-    private cur_chapter: number;
+    private curChapter: number;
 
     public constructor(isEnd: boolean) {
         super();
@@ -42,20 +42,20 @@ class ResultWinPanel extends eui.Component {
         this.touchEnabled = true;
         this.touchChildren = true;
         if (!this._isEnd) {
-            this.cur_chapter = 0;
+            this.curChapter = 0;
             for (let role: number = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
                 let roleChapters: number[] = GameDefine.ROLE_JUQING_TREE[role];
                 for (let index: number = 0; index < roleChapters.length; index++) {
                     if (roleChapters[index] == UserInfo.curchapter) {
-                        this.cur_chapter = index > 0 ? roleChapters[index - 1] : 1;
+                        this.curChapter = index > 0 ? roleChapters[index - 1] : 0;
                         break;
                     }
                 }
-                if (this.cur_chapter) break;
+                if (this.curChapter) break;
             }
-            this.chapterName1.text = JsonModelManager.instance.getModelchapter()[this.cur_chapter].name;
+            this.chapterName1.text = JsonModelManager.instance.getModelchapter()[this.curChapter].name;
         } else {
-            this.cur_chapter = UserInfo.curchapter;
+            this.curChapter = UserInfo.curchapter;
             this.chapterName1.text = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter].name;
         }
 
@@ -67,7 +67,14 @@ class ResultWinPanel extends eui.Component {
     private onShowWinEffect() {
         let data = GameCommon.getInstance().getSortLike();
         for (let i: number = 1; i < 5; i++) {
-            this['roleItem' + i].data = {idx: i - 1, xindong: data.id, chapter: this.cur_chapter}
+            const roleItem = this['roleItem' + i];
+            const roleIndex = i - 1;
+            if (UserInfo.curchapter === 1
+                || (UserInfo.curchapter === 2 && [ROLE_INDEX.XiaoBai_Han, ROLE_INDEX.QianYe_Xiao].indexOf(roleIndex) !== -1)) {
+                roleItem.parent.removeChild(roleItem);
+            } else {
+                roleItem.data = {idx: roleIndex, xindong: data.id, chapter: this.curChapter};
+            }
         }
         this.winEff.alpha = 0;
         egret.Tween.get(this.winEff).to({alpha: 1}, 1000);
@@ -79,7 +86,7 @@ class ResultWinPanel extends eui.Component {
     }
 
     private onContinue() {
-        if(!GameCommon.getInstance().checkChapterLocked())
+        if (!GameCommon.getInstance().checkChapterLocked())
             return;
         if (!this._isEnd) {
             PromptPanel.getInstance().showRoleChapterNotice();

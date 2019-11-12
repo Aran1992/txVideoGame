@@ -775,7 +775,7 @@ class GameCommon {
         }
     }
 
-    public onCleanFile(data) {
+    public onCleanFile(data: Modeljuqingkuai) {
         let cfg: Modeljuqingkuai = data;
         let cfg1: Modeljuqingkuai;
         if (cfg.BE == 1) {
@@ -789,14 +789,11 @@ class GameCommon {
                 isClean = true;
             }
             if (cfg1 && cfg1.wentiId == id) {
-                UserInfo.curBokData.wentiId[i];
                 UserInfo.curBokData.videoNames[id] = cfg1.videoId;
-                UserInfo.curBokData.times[id] = 1;
                 UserInfo.curBokData.answerId[id] = '';
             }
             if (isClean) {
                 UserInfo.curBokData.videoNames[id] = '';
-                UserInfo.curBokData.times[id] = 0;
                 UserInfo.curBokData.answerId[id] = '';
                 UserInfo.curBokData.wentiId.splice(i, 1);
                 i = i - 1;
