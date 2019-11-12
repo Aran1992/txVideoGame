@@ -9,10 +9,12 @@ const TASK = [
                     "type": "question",
                     "qid": 1
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 100
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 100
+                    }
+                ],
                 "id": "0-0-0"
             },
             {
@@ -22,10 +24,12 @@ const TASK = [
                     "type": "question",
                     "cid": 0
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 100
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 100
+                    }
+                ],
                 "id": "0-0-1"
             },
             {
@@ -35,10 +39,12 @@ const TASK = [
                     "type": "chapter",
                     "cid": 0
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 200
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 200
+                    }
+                ],
                 "id": "0-0-2"
             }
         ],
@@ -52,9 +58,11 @@ const TASK = [
                     "type": "chapter",
                     "cid": 0
                 },
-                "reward": {
-                    "type": "quantao"
-                },
+                "reward": [
+                    {
+                        "type": "quantao"
+                    }
+                ],
                 "id": "0-1-2"
             }
         ]
@@ -72,10 +80,12 @@ const TASK = [
                         "10": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 200
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 200
+                    }
+                ],
                 "id": "1-0-0"
             },
             {
@@ -85,10 +95,12 @@ const TASK = [
                     "type": "duration",
                     "num": 25
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 200
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 200
+                    }
+                ],
                 "id": "1-0-1"
             },
             {
@@ -98,9 +110,11 @@ const TASK = [
                     "type": "chapter",
                     "cid": 1
                 },
-                "reward": {
-                    "type": "quantao"
-                },
+                "reward": [
+                    {
+                        "type": "quantao"
+                    }
+                ],
                 "id": "1-0-2"
             }
         ],
@@ -116,10 +130,12 @@ const TASK = [
                         "75": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 300
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 300
+                    }
+                ],
                 "id": "1-1-0"
             },
             {
@@ -129,9 +145,11 @@ const TASK = [
                     "type": "duration",
                     "num": 25
                 },
-                "reward": {
-                    "type": "quantao"
-                },
+                "reward": [
+                    {
+                        "type": "quantao"
+                    }
+                ],
                 "id": "1-1-1"
             },
             {
@@ -141,9 +159,11 @@ const TASK = [
                     "type": "chapter",
                     "cid": 1
                 },
-                "reward": {
-                    "type": "quantao"
-                },
+                "reward": [
+                    {
+                        "type": "quantao"
+                    }
+                ],
                 "id": "1-1-2"
             }
         ]
@@ -160,10 +180,12 @@ const TASK = [
                         "18": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 200
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 200
+                    }
+                ],
                 "id": "2-0-0"
             },
             null,
@@ -174,10 +196,12 @@ const TASK = [
                     "type": "duration",
                     "num": 35
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 300
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 300
+                    }
+                ],
                 "id": "2-0-2"
             },
             {
@@ -187,9 +211,11 @@ const TASK = [
                     "type": "chapter",
                     "cid": 3
                 },
-                "reward": {
-                    "type": "quantao"
-                },
+                "reward": [
+                    {
+                        "type": "quantao"
+                    }
+                ],
                 "id": "2-0-3"
             }
         ],
@@ -204,10 +230,12 @@ const TASK = [
                         "17": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 300
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 300
+                    }
+                ],
                 "id": "2-1-0"
             },
             {
@@ -220,10 +248,12 @@ const TASK = [
                         "14": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 300
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 300
+                    }
+                ],
                 "id": "2-1-1"
             },
             {
@@ -233,10 +263,12 @@ const TASK = [
                     "type": "duration",
                     "num": 35
                 },
-                "reward": {
-                    "type": "quantao",
-                    "num": 2
-                },
+                "reward": [
+                    {
+                        "type": "quantao",
+                        "num": 2
+                    }
+                ],
                 "id": "2-1-2"
             },
             {
@@ -264,10 +296,12 @@ const TASK = [
                         "22": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 300
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 300
+                    }
+                ],
                 "id": "3-0-0"
             },
             {
@@ -277,10 +311,12 @@ const TASK = [
                     "type": "chapter",
                     "cid": 5
                 },
-                "reward": {
-                    "type": "quantao",
-                    "num": 2
-                },
+                "reward": [
+                    {
+                        "type": "quantao",
+                        "num": 2
+                    }
+                ],
                 "id": "3-0-1"
             }
         ],
@@ -296,10 +332,12 @@ const TASK = [
                         "24": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 500
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 500
+                    }
+                ],
                 "id": "3-1-0"
             },
             {
@@ -309,10 +347,12 @@ const TASK = [
                     "type": "chapter",
                     "cid": 5
                 },
-                "reward": {
-                    "type": "quantao",
-                    "num": 3
-                },
+                "reward": [
+                    {
+                        "type": "quantao",
+                        "num": 3
+                    }
+                ],
                 "id": "3-1-1"
             }
         ]
@@ -329,10 +369,12 @@ const TASK = [
                         "34": 2
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 500
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 500
+                    }
+                ],
                 "id": "4-0-0"
             },
             {
@@ -347,10 +389,12 @@ const TASK = [
                         "36": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 500
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 500
+                    }
+                ],
                 "id": "4-0-1"
             },
             null,
@@ -364,10 +408,12 @@ const TASK = [
                     "type": "chapter",
                     "cid": 6
                 },
-                "reward": {
-                    "type": "quantao",
-                    "num": 3
-                },
+                "reward": [
+                    {
+                        "type": "quantao",
+                        "num": 3
+                    }
+                ],
                 "id": "4-0-6"
             }
         ],
@@ -381,10 +427,12 @@ const TASK = [
                         "34": 4
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 800
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 800
+                    }
+                ],
                 "id": "4-1-0"
             },
             {
@@ -396,10 +444,12 @@ const TASK = [
                         "34": 3
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 800
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 800
+                    }
+                ],
                 "id": "4-1-1"
             },
             {
@@ -411,10 +461,12 @@ const TASK = [
                         "34": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 800
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 800
+                    }
+                ],
                 "id": "4-1-2"
             },
             {
@@ -429,9 +481,11 @@ const TASK = [
                         "34": 3
                     }
                 },
-                "reward": {
-                    "type": "erfan"
-                },
+                "reward": [
+                    {
+                        "type": "erfan"
+                    }
+                ],
                 "id": "4-1-3"
             },
             {
@@ -447,9 +501,11 @@ const TASK = [
                         "39": 1
                     }
                 },
-                "reward": {
-                    "type": "erfan"
-                },
+                "reward": [
+                    {
+                        "type": "erfan"
+                    }
+                ],
                 "id": "4-1-4"
             },
             {
@@ -466,9 +522,11 @@ const TASK = [
                         "35": 1
                     }
                 },
-                "reward": {
-                    "type": "erfan"
-                },
+                "reward": [
+                    {
+                        "type": "erfan"
+                    }
+                ],
                 "id": "4-1-5"
             },
             {
@@ -497,10 +555,12 @@ const TASK = [
                         "47": 2
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 800
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 800
+                    }
+                ],
                 "id": "5-0-0"
             },
             {
@@ -516,10 +576,12 @@ const TASK = [
                         "50": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 800
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 800
+                    }
+                ],
                 "id": "5-0-1"
             },
             {
@@ -532,10 +594,12 @@ const TASK = [
                         "20": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 500
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 500
+                    }
+                ],
                 "id": "5-0-2"
             },
             null,
@@ -546,9 +610,11 @@ const TASK = [
                     "type": "chapter",
                     "cid": 8
                 },
-                "reward": {
-                    "type": "erfan"
-                },
+                "reward": [
+                    {
+                        "type": "erfan"
+                    }
+                ],
                 "id": "5-0-4"
             }
         ],
@@ -563,10 +629,12 @@ const TASK = [
                         "46": 5
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 800
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 800
+                    }
+                ],
                 "id": "5-1-0"
             },
             {
@@ -582,10 +650,12 @@ const TASK = [
                         "50": 4
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 1000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 1000
+                    }
+                ],
                 "id": "5-1-1"
             },
             {
@@ -601,10 +671,12 @@ const TASK = [
                         "50": 3
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 1000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 1000
+                    }
+                ],
                 "id": "5-1-2"
             },
             {
@@ -620,10 +692,12 @@ const TASK = [
                         "50": 2
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 1000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 1000
+                    }
+                ],
                 "id": "5-1-3"
             },
             {
@@ -633,10 +707,12 @@ const TASK = [
                     "type": "chapter",
                     "cid": 8
                 },
-                "reward": {
-                    "type": "erfan",
-                    "num": 3
-                },
+                "reward": [
+                    {
+                        "type": "erfan",
+                        "num": 3
+                    }
+                ],
                 "id": "5-1-4"
             }
         ]
@@ -651,10 +727,12 @@ const TASK = [
                     "type": "question",
                     "rid": 2
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 1000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 1000
+                    }
+                ],
                 "id": "6-0-0"
             },
             {
@@ -673,10 +751,12 @@ const TASK = [
                         "53": 1
                     }
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 1000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 1000
+                    }
+                ],
                 "id": "6-0-1"
             },
             null,
@@ -688,10 +768,12 @@ const TASK = [
                     "type": "duration",
                     "num": 60
                 },
-                "reward": {
-                    "type": "erfan",
-                    "num": 2
-                },
+                "reward": [
+                    {
+                        "type": "erfan",
+                        "num": 2
+                    }
+                ],
                 "id": "6-0-4"
             },
             {
@@ -701,10 +783,12 @@ const TASK = [
                     "type": "chapter",
                     "cid": 9
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 2000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 2000
+                    }
+                ],
                 "id": "6-0-5"
             }
         ],
@@ -716,10 +800,12 @@ const TASK = [
                     "type": "question",
                     "rid": 4
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 2000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 2000
+                    }
+                ],
                 "id": "6-1-0"
             },
             {
@@ -729,10 +815,12 @@ const TASK = [
                     "type": "question",
                     "rid": 1
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 2000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 2000
+                    }
+                ],
                 "id": "6-1-1"
             },
             {
@@ -742,10 +830,12 @@ const TASK = [
                     "type": "question",
                     "rid": 0
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 2000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 2000
+                    }
+                ],
                 "id": "6-1-2"
             },
             {
@@ -755,7 +845,7 @@ const TASK = [
                     "type": "video",
                     "vid": "V908"
                 },
-                "reward": "愿星伴你·江雪 ",
+                "reward": "愿星伴你·江雪",
                 "id": "6-1-3"
             },
             {
@@ -765,10 +855,12 @@ const TASK = [
                     "type": "duration",
                     "num": 60
                 },
-                "reward": {
-                    "type": "erfan",
-                    "num": 3
-                },
+                "reward": [
+                    {
+                        "type": "erfan",
+                        "num": 3
+                    }
+                ],
                 "id": "6-1-4"
             },
             {
@@ -778,10 +870,12 @@ const TASK = [
                     "type": "chapter",
                     "cid": 9
                 },
-                "reward": {
-                    "type": "suipian",
-                    "num": 5000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 5000
+                    }
+                ],
                 "id": "6-1-5"
             }
         ]
@@ -793,10 +887,12 @@ const TASK = [
                 "name": "夏子豪",
                 "dsc": "进入夏子豪结局",
                 "check": "第十章判定进入夏子豪",
-                "reward": {
-                    "type": "suipian",
-                    "num": 1000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 1000
+                    }
+                ],
                 "id": "7-0-0"
             },
             null,
@@ -807,10 +903,12 @@ const TASK = [
                     "type": "chapter",
                     "cid": 11
                 },
-                "reward": {
-                    "type": "erfan",
-                    "num": 2
-                },
+                "reward": [
+                    {
+                        "type": "erfan",
+                        "num": 2
+                    }
+                ],
                 "id": "7-0-2"
             }
         ],
@@ -819,20 +917,24 @@ const TASK = [
                 "name": "肖家兄弟",
                 "dsc": "进入肖家兄弟",
                 "check": "第十章判定进入肖家兄弟",
-                "reward": {
-                    "type": "suipian",
-                    "num": 2000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 2000
+                    }
+                ],
                 "id": "7-1-0"
             },
             {
                 "name": "韩小白",
                 "dsc": "进入韩小白结局",
                 "check": "第十章判定进入夏子豪",
-                "reward": {
-                    "type": "suipian",
-                    "num": 2000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 2000
+                    }
+                ],
                 "id": "7-1-1"
             },
             {
@@ -874,20 +976,24 @@ const TASK = [
                     "type": "video",
                     "vid": "VX1205"
                 },
-                "reward": {
-                    "type": "erfan",
-                    "num": 2
-                },
+                "reward": [
+                    {
+                        "type": "erfan",
+                        "num": 2
+                    }
+                ],
                 "id": "8-0-1"
             },
             {
                 "name": "梦想终点",
                 "dsc": "达成全部默认结局",
                 "check": "续命选项全达成",
-                "reward": {
-                    "type": "suipian",
-                    "num": 5000
-                },
+                "reward": [
+                    {
+                        "type": "suipian",
+                        "num": 5000
+                    }
+                ],
                 "id": "8-0-2"
             },
             null,
@@ -899,9 +1005,11 @@ const TASK = [
                     "type": "chapter",
                     "cid": 12
                 },
-                "reward": {
-                    "type": "yuepu"
-                },
+                "reward": [
+                    {
+                        "type": "yuepu"
+                    }
+                ],
                 "id": "8-0-5"
             }
         ],
@@ -943,9 +1051,11 @@ const TASK = [
                     "type": "video",
                     "vid": "VH1115"
                 },
-                "reward": {
-                    "type": "yuepu"
-                },
+                "reward": [
+                    {
+                        "type": "yuepu"
+                    }
+                ],
                 "id": "8-1-3"
             },
             {
@@ -980,7 +1090,10 @@ const TASK = [
 ];
 
 enum TASK_STATES {
-    COMPLETED
+    LOCKED,
+    UNCOMPLETED,
+    RECEIVABLE,
+    RECEIVED,
 }
 
 class TaskManager {
@@ -1000,11 +1113,29 @@ class TaskManager {
         if (data) {
             this.tasks = data.tasks;
             this.duration = data.duration;
+            UserInfo._suipianMoney = data.suipian;
         }
     }
 
     public getTaskStates(): any {
-        return {tasks: this.tasks, duration: this.duration};
+        return {
+            tasks: this.tasks,
+            duration: this.duration,
+            suipian: UserInfo.suipianMoney
+        };
+    }
+
+    public getTaskState(tid): TASK_STATES {
+        if (this.isLuxuryTask(tid) && !this.isUnlockLuxuryTask()) {
+            return TASK_STATES.LOCKED;
+        }
+        if (this.tasks[tid] === TASK_STATES.RECEIVABLE) {
+            return TASK_STATES.RECEIVABLE;
+        }
+        if (this.tasks[tid] === TASK_STATES.RECEIVED) {
+            return TASK_STATES.RECEIVED;
+        }
+        return TASK_STATES.UNCOMPLETED;
     }
 
     public checkQuestionTask() {
@@ -1068,6 +1199,31 @@ class TaskManager {
         this.checkDurationTask();
     }
 
+    public isLuxuryTask(tid): boolean {
+        return TASK.some(chapterTasks => {
+            for (let i = 0; i < chapterTasks.luxury.length; i++) {
+                const task = chapterTasks.luxury[i];
+                if (task && task.id === tid) {
+                    return true;
+                }
+            }
+        })
+    }
+
+    public receiveTaskReward(task) {
+        task.reward.forEach(reward => {
+            switch (reward.type) {
+                case "suipian": {
+                    UserInfo.suipianMoney += reward.num;
+                    break;
+                }
+            }
+        });
+        this.tasks[task.id] = TASK_STATES.RECEIVED;
+        GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
+    }
+
     private iterUncompletedTask(handler: (task: any) => void) {
         const taskRarity = ["common", "luxury"];
         TASK.forEach(chapter => {
@@ -1086,7 +1242,7 @@ class TaskManager {
     }
 
     private isTaskCompleted(tid): boolean {
-        return this.tasks[tid] >= TASK_STATES.COMPLETED;
+        return this.tasks[tid] >= TASK_STATES.RECEIVABLE;
     }
 
     private isRoleLikeAllCompleted(rid: number): boolean {
@@ -1158,8 +1314,9 @@ class TaskManager {
     }
 
     private completeTask(tid) {
-        this.tasks[tid] = TASK_STATES.COMPLETED;
+        this.tasks[tid] = TASK_STATES.RECEIVABLE;
         GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), tid);
     }
 
     // 类似于array的some方法 只是是用来遍历object的

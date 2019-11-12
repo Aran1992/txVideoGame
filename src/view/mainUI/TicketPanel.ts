@@ -1,3 +1,79 @@
+const REWARD_ICON = [
+    {type: ["suipian"], icon: "pass_icon_task_1_png"},
+    {type: ["erfan"], icon: "pass_icon_task_2_png"},
+    {type: ["yuepu"], icon: "pass_icon_task_4_png"},
+    {type: ["quantao"], icon: "pass_icon_task_7_png"},
+    {type: ["yuepu", "erfan"], icon: "pass_icon_task_11_png"},
+    {type: ["CD", "yuepu"], icon: "pass_icon_task_12_png"},
+];
+
+const REWARD_DSC = {
+    suipian: {
+        name: "碎片",
+        dsc: "一种珍贵的材料，可以在《拳拳四重奏》“商城”内兑换美图、音乐等奖励。",
+    },
+    quantao: {
+        name: "拳套",
+        dsc: "特别订制的轻便拳套，在《一零零一》中《拳拳四重奏》专区内使用，可以为心仪的TA增加少量的花语值。",
+    },
+    erfan: {
+        name: "耳机",
+        dsc: "集降噪和悦耳于一体的专用耳机，在《一零零一》中《拳拳四重奏》专区内使用，可以为心仪的TA增加花语值。",
+    },
+    yuepu: {
+        name: "乐谱",
+        dsc: "写满某个乐队灵感的原创乐谱，在《一零零一》中《拳拳四重奏》专区内使用，可以为心仪的TA增加花语值。",
+    },
+    CD: {
+        name: "原版CD",
+        dsc: "乐手们最珍爱的原版CD，在《一零零一》中《拳拳四重奏》专区内使用，可以为心仪的TA增加大量的花语值。",
+    },
+    a: {
+        name: "少女情怀*林薄荷",
+        dsc: "看剧特权限定藏品，永久收藏林薄荷精品剧照卡5张。",
+    },
+    b: {
+        name: "梦想的模样·林薄荷&夏子豪 SR",
+        dsc: "看剧特权限定藏品，永久收藏林薄荷&夏子豪高清精品剧照卡5张。",
+    },
+    c: {
+        name: "愿星伴你·江雪 ",
+        dsc: "看剧特权限定藏品，永久收藏江雪精品剧照卡5张。",
+    },
+    d: {
+        name: "美梦酩酊·夏子豪",
+        dsc: "看剧特权限定藏品，永久收藏夏子豪高清精品剧照卡5张。",
+    },
+    e: {
+        name: "B面人生·肖千也",
+        dsc: "看剧特权限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖千也的专属纪念照。",
+    },
+    f: {
+        name: "B面人生·肖万寻",
+        dsc: "看剧特权限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖万寻的专属纪念照。",
+    },
+    g: {
+        name: "B面人生·韩小白",
+        dsc: "看剧特权限定的心动藏品，《拳拳四重奏》制作组倾情奉上，韩小白的专属纪念照。",
+    },
+    h: {
+        name: "兄弟？兄弟！·肖千也&肖万寻",
+        dsc: "看剧特权限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖千也&肖万寻的专属纪念照。",
+    },
+};
+
+function getRewardIcon(rewards): string {
+    for (let i = 0; i < REWARD_ICON.length; i++) {
+        const {type, icon} = REWARD_ICON[i];
+        if (typeof rewards !== "string" && !rewards.some((reward, i) => reward.type !== type[i])) {
+            return icon;
+        }
+    }
+    return "pass_icon_task_3_png";
+}
+
+let taskItemList = [];
+
 class TicketPanel extends eui.Component {
     private idClose: eui.Button;
     private idBuyTicketClose: eui.Button;
@@ -24,6 +100,7 @@ class TicketPanel extends eui.Component {
     private idHasCodeText: eui.Label;
     private idExpireText: eui.Label;
     private idTicketNum: eui.Label;
+    private suipNum: eui.Label;
 
     private taskGroupContainer: eui.Group;
 
@@ -77,6 +154,7 @@ class TicketPanel extends eui.Component {
         this.idBtnShareCode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShareCodeClick, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.SUIPIAN_CHANGE, this.onSuipianChange, this);
         this.updateTab();
         this.updateResize();
 
@@ -111,6 +189,7 @@ class TicketPanel extends eui.Component {
 
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
         this.createTasks();
+        this.suipNum.text = UserInfo.suipianMoney + "";
     }
 
     private updateBuyBtnState() {
@@ -277,6 +356,8 @@ class TicketPanel extends eui.Component {
         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'TicketPanel');
+        taskItemList.forEach(item => item.onDestroyed());
+        taskItemList = [];
 
         if (this._openParam == "tipsbtnshopcar" || this._openParam == "tipsbtnticket") {
             VideoManager.getInstance().videoResume();
@@ -291,29 +372,92 @@ class TicketPanel extends eui.Component {
 
     private createTasks() {
         TASK.forEach(chapter => {
-            const taskGroup = new TaskGroup(chapter);
+            const taskGroup = new TaskGroup(chapter, this);
+            taskGroup.width = chapter.common.length * 200 + 6 * (chapter.common.length - 1);
             this.taskGroupContainer.addChild(taskGroup);
         });
+    }
+
+    private onSuipianChange() {
+        this.suipNum.text = UserInfo.suipianMoney + "";
     }
 }
 
 class TaskItem extends eui.Component {
     private allChildren: eui.Group;
-    private btn: eui.Button;
+    private icon: eui.Image;
     private taskName: eui.Label;
     private receivable: eui.Image;
     private received: eui.Image;
     private uncompleted: eui.Image;
-    private lock: eui.Image;
+    private locked: eui.Image;
+    private readonly task;
+    private detailContainer;
 
-    constructor(task) {
+    constructor(task, detailContainer) {
         super();
         this.skinName = skins.TaskItemSkin;
+        this.detailContainer = detailContainer;
         if (task) {
-            this.taskName.text = task.name;
+            this.task = task;
             this.allChildren.visible = true;
+            this.taskName.text = task.name;
+            this.icon.source = getRewardIcon(task.reward);
+            this.icon.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
+            this.refreshState();
         } else {
             this.allChildren.visible = false;
+        }
+        GameDispatcher.getInstance().addEventListener(GameEvent.TASK_STATE_CHANGED, this.onTaskStateChanged, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyRefresh, this);
+        taskItemList.push(this);
+    }
+
+    public onDestroyed() {
+        GameDispatcher.getInstance().removeEventListener(GameEvent.TASK_STATE_CHANGED, this.onTaskStateChanged, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onBuyRefresh, this);
+    }
+
+    private onTouchEnd() {
+        this.detailContainer.addChild(new TaskDetail(this.task));
+    }
+
+    private refreshState() {
+        this.receivable.visible = false;
+        this.received.visible = false;
+        this.uncompleted.visible = false;
+        this.locked.visible = false;
+        const state = TaskManager.instance.getTaskState(this.task.id);
+        switch (state) {
+            case TASK_STATES.LOCKED: {
+                this.locked.visible = true;
+                this.uncompleted.visible = true;
+                break;
+            }
+            case TASK_STATES.UNCOMPLETED: {
+                this.uncompleted.visible = true;
+                break;
+            }
+            case TASK_STATES.RECEIVABLE: {
+                this.receivable.visible = true;
+                break;
+            }
+            case TASK_STATES.RECEIVED: {
+                this.received.visible = true;
+                break;
+            }
+        }
+    }
+
+    private onTaskStateChanged(data) {
+        if (this.task && data.data === this.task.id) {
+            this.refreshState();
+        }
+    }
+
+    private onBuyRefresh() {
+        if (this.task) {
+            this.refreshState();
         }
     }
 }
@@ -323,15 +467,53 @@ class TaskGroup extends eui.Component {
     private luxury: eui.Group;
     private chapterName: eui.Label;
 
-    constructor(chapterTasks) {
+    constructor(chapterTasks, detailContainer) {
         super();
         this.skinName = skins.TaskGroupSkin;
         this.chapterName.text = chapterTasks.chapter;
         chapterTasks.common.forEach(task => {
-            this.common.addChild(new TaskItem(task));
+            this.common.addChild(new TaskItem(task, detailContainer));
         });
         chapterTasks.luxury.forEach(task => {
-            this.luxury.addChild(new TaskItem(task));
+            this.luxury.addChild(new TaskItem(task, detailContainer));
         });
+    }
+}
+
+class TaskDetail extends eui.Component {
+    private icon: eui.Image;
+    private taskName: eui.Label;
+    private getDsc: eui.Label;
+    private rewardCount: eui.Label;
+    private rewardDsc: eui.Label;
+    private closeBtn: eui.Button;
+    private receiveBtn: eui.Button;
+    private readonly task;
+
+    constructor(task) {
+        super();
+        this.task = task;
+        this.skinName = skins.TaskDetailSkin;
+        this.closeBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickCloseBtn, this);
+        this.receiveBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickReceiveBtn, this);
+        this.receiveBtn.visible = TaskManager.instance.getTaskState(task.id) === TASK_STATES.RECEIVABLE;
+        this.icon.source = getRewardIcon(task.reward);
+        this.taskName.text = `${TaskManager.instance.isLuxuryTask(task.id) ? "豪华任务" : "普通任务"}：${task.name}`;
+        this.getDsc.text = `获得条件：${task.dsc}`;
+        const rewardNameStr = task.reward.map(reward => `${REWARD_DSC[reward.type].name}*${reward.num || 1}`).join(";");
+        this.rewardCount.text = `奖励：${rewardNameStr}`;
+        const rewardDscStr = task.reward.map(reward => `${REWARD_DSC[reward.type].name}：${REWARD_DSC[reward.type].dsc}`).join("\n");
+        this.rewardDsc.text = `${rewardDscStr}`;
+        this.width = size.width;
+        this.height = size.height;
+    }
+
+    private onClickCloseBtn() {
+        this.parent.removeChild(this);
+    }
+
+    private onClickReceiveBtn() {
+        GameCommon.getInstance().showCommomTips("你已经领取了奖励，到对应的地方进行查看吧~");
+        TaskManager.instance.receiveTaskReward(this.task);
     }
 }

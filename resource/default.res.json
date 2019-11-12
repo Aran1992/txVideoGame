@@ -4711,6 +4711,11 @@
             "url": "assets/task/pass_icon_lock.png?v=188"
         },
         {
+            "name": "pass_icon_mask_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_mask.png?v=640"
+        },
+        {
             "name": "pass_icon_resume_png",
             "type": "image",
             "url": "assets/task/pass_icon_resume.png?v=549"
@@ -4903,7 +4908,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=426"
+            "url": "config/config.bin?v=544"
         }
     ]
 }

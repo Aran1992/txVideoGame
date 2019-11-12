@@ -42,6 +42,7 @@ class GameEvent {
     public static REFRESH_JUQING: string = 'refresh.juqing';
     public static BUY_HAOGAN: string = 'buy.haogan';
     public static SELECT_JUQING: string = 'select.juqing';
-    
     public static VIDEO_PLAY_END: string = 'game.videoplayend';
+    public static TASK_STATE_CHANGED: string = 'task.statechanged';
+    public static SUIPIAN_CHANGE: string = 'suipian.change';
 }

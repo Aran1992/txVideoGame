@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="skins.TaskDetailSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="idGroupBuyTicket" left="0" right="0" top="0" bottom="0">
+		<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="video_heidi1_png" touchEnabled="true"/>
+		<e:Button id="closeBtn" width="91" height="91" top="48" right="63" x="1351" y="113" scaleX="1" scaleY="1">
+		<e:skinName>
+			<e:Skin states="up,down,disabled" xmlns:n1s="*" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+			<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png" horizontalCenter="0" verticalCenter="0" width="91" height="91"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Image id="icon" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="-150" x="706" y="206" source="pass_icon_task_1_png" touchEnabled="true"/>
+		<e:Label id="taskName" text="开始四重奏" size="50" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" x="675" y="425"/>
+		<e:Label id="getDsc" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="80" x="730" y="536" width="800" textAlign="center"/>
+		<e:Label id="rewardCount" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="120" x="730" y="586" width="800" textAlign="center"/>
+		<e:Label id="rewardDsc" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="200" x="730" y="636" width="800" textAlign="center"/>
+		<e:Button id="receiveBtn" width="91" height="91" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="300" label="领取">
+			<e:skinName>
+			<e:Skin states="up,down,disabled" xmlns:n1s="*" xmlns:ns1="*">
+				<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png" horizontalCenter="0" verticalCenter="0" width="91" height="91"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>
+</e:Skin>

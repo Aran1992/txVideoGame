@@ -85,24 +85,6 @@
 <!-- 首先先引入js -->
 <script src="//vm.gtimg.cn/tencentvideo/script/video-interact/bridge-helper.min.js"></script>
 <script>
-    showLoadPage();
-
-    function showLoadPage() {
-        var elements = document.getElementsByClassName("divMain");
-        if (isIphoneX()) {
-            elements[0].style.left = '50px';
-            elements[0].style.width = '95%';
-        }
-    }
-
-    function isIphoneX() {
-        var ua = navigator.userAgent;
-        if (ua.indexOf("iPhone") > -1) {
-            return screen.height === 812 && screen.width === 375;
-        }
-        return false;
-    }
-
     var loadScript = function (list, callback) {
         var loaded = 0;
         var loadNext = function () {

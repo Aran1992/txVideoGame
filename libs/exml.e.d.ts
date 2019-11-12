@@ -323,6 +323,18 @@ declare module skins{
 	}
 }
 declare module skins{
+	class TaskDetailSkin extends eui.Skin{
+	}
+}
+declare module skins{
+	class TaskGroupSkin extends eui.Skin{
+	}
+}
+declare module skins{
+	class TaskItemSkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class TicketSkin extends eui.Skin{
 	}
 }

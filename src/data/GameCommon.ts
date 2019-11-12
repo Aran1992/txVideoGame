@@ -6,7 +6,6 @@ const saveValues = [
     "allCollectionDatas",
     "achievementDics",
     "ansWerData",
-    "suipianMoney",
     "guideDic",
     "guideJson",
     "curchapter",
@@ -120,8 +119,8 @@ class GameCommon {
     }
 
     private static isChapterInRoleJuqingTree(chapter: number, curChapter: number): boolean {
-        if (curChapter === 0) {
-            return chapter === 0;
+        if (chapter === 0) {
+            return true;
         } else {
             for (let role = 0; role < GameDefine.ROLE_JUQING_TREE.length; role++) {
                 const roleTree = GameDefine.ROLE_JUQING_TREE[role];
@@ -177,7 +176,6 @@ class GameCommon {
             case FILE_TYPE.FILE4:
             case FILE_TYPE.FILE5:
             case FILE_TYPE.FILE6:
-                UserInfo.curBokData.suipianMoney = UserInfo.suipianMoney;
                 UserInfo.curBokData.ansWerData = UserInfo.ansWerData;
                 UserInfo.curBokData.achievementDics = UserInfo.achievementDics;
                 UserInfo.curBokData.allCollectionDatas = UserInfo.allCollectionDatas;

@@ -12,7 +12,6 @@ class UserInfo {
     public static achievementDics = {};//所有成就
     public static allCollectionDatas = {};//收藏列表解锁过的收藏 通过达成成就解锁
     public static allVideos = {};//所有看过的视频
-    public static suipianMoney: number = 0;
     public static curBokData: BookData;
     public static shopDic = {};//所有购买过的商品
     public static lookAchievement = {};//所有查看过的收藏
@@ -35,6 +34,18 @@ class UserInfo {
         UserInfo.shopDic = {};
         UserInfo.allVideos = {};
         UserInfo.tipsDick = {};
+    }
+
+    public static _suipianMoney: number = 0;
+
+    public static get suipianMoney(): number {
+        return this._suipianMoney;
+    }
+
+    public static set suipianMoney(n: number) {
+        this._suipianMoney = n;
+        GameCommon.getInstance().setBookData(FILE_TYPE.TASK);
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SUIPIAN_CHANGE));
     }
 
     private static _curchapter: number = 0;
@@ -96,7 +107,6 @@ class BookData {
         this.guideDic = {};
         this.allCollectionDatas = {};
         this.achievementDics = {};
-        this.suipianMoney = 0;
     }
 
     //当前播放的videoID
