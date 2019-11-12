@@ -117,7 +117,7 @@ class JuQingPanel extends eui.Component {
             VideoManager.getInstance().videoResume();
         }
         GameDefine.ISFILE_STATE = false;
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel')
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
     }
 
     private updateResize() {

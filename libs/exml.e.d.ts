@@ -183,10 +183,6 @@ declare module skins{
 	}
 }
 declare module skins{
-	class PassSkin extends eui.Skin{
-	}
-}
-declare module skins{
 	class PlayerSettingSkin extends eui.Skin{
 	}
 }

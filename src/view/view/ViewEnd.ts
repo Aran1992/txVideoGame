@@ -9,11 +9,10 @@ class ViewEnd extends eui.Component {
     private tiaozhuan: number;
     private isdie: boolean;
     private goMain: eui.Button;
+    private goJuqing: eui.Button;
 
     constructor(isDie, tiaozhuan) {
         super();
-        // this.width = size.width;
-        // this.height = size.height;
         this.isdie = isDie;
         this.tiaozhuan = tiaozhuan;
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
@@ -42,8 +41,6 @@ class ViewEnd extends eui.Component {
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
-        // this.mainGroup.scaleX = GameDefine.SCALENUMX;
-        // this.mainGroup.scaleY = GameDefine.SCALENUMY;
     }
 
     private onAddToStage(): void {
@@ -52,48 +49,20 @@ class ViewEnd extends eui.Component {
 
     private onLoadComplete(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onStartVideo, this);
         this.updateResize();
-        // this.group.mask = new egret.Rectangle(0, 0, size.width, size.height);
-        // this.x = (size.width - this.width) / 2;
-        // this.y = (size.height - this.height) / 2;
-        // for (let i = 0; i < this.imgList.length; ++i) {
-        //     if (!this.imgList[i])
-        //         break;
-        //     let scale = wind.width / wind.height;
-
-        //     // if(size.width>1920)
-        //     // {
-        //         // var w = size.width/1600;
-        //         var scalX = 0;
-        //         if(size.width>1920)
-        //         {
-        //             scalX = size.width/1920
-        //         }
-        //         else
-        //         {
-        //             scalX = 1920/size.width
-        //         }
-        //         // this.imgList[i].width = 1920*scalX;
-        //         // this.imgList[i].height = 1080*scalX;
-
-        //         console.log("宽" + this.imgList[i].width +'----'+this.imgList[i].height);
-        //     // }
-        //     this.imgList[i].fillMode="clip";
-        //     this.imgList[i].x = this.imgList[i].anchorOffsetX = this.width / 2;
-        //     this.imgList[i].y = this.imgList[i].anchorOffsetY = this.height / 2;
-        // }
-        // if (size.fillType!=FILL_TYPE_COVER) {
-        // window['mainDiv'].style["object-fit"] = "contain";
-        // }
-        // this.isOver = false;
-        // this.curImgIdx = 0;
-
-        // this.tweenControler = new TweenContoler(this, this.width, this.height);
-        // this.onTweenStart();
         if (this.isdie) {
             this.mainGroup.visible = true;
             this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEvent, this);
-            this.goMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGoMain, this);
+            this.goMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGoBack, this);
+            this.goJuqing.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGoBack, this);
+            if (isTXSP) {
+                this.goMain.visible = false;
+                this.goJuqing.visible = true;
+            } else {
+                this.goMain.visible = true;
+                this.goJuqing.visible = false;
+            }
         } else {
             this.mainGroup.visible = false;
             this.onEvent();
@@ -122,24 +91,19 @@ class ViewEnd extends eui.Component {
         }
     }
 
-    private onGoMain() {
-        this.parent.removeChild(this);
+    private onGoBack() {
+        if (!isTXSP) {
+            this.parent.removeChild(this);
+        }
         VideoManager.getInstance().videoClose();
     }
 
     private onEvent() {
-        // this.btn.visible = false;
         this.isOver = true;
         this.parent.removeChild(this);
         if (this.isdie) {
             switch (this.tiaozhuan) {
                 case TIAOZHUAN_Type.WENTI:
-                    // document.createElement('canvas').cl
-                    // var canvas = document.getElementById("myCanvas");//canvas画布
-                    // canvas['getContext']('2d').drawImage(window['videoDivMin'], 0, 0);//画图
-                    // canvas.style.display = '';
-                    // VideoManager.getInstance().videoPause();
-                    // VideoManager.getInstance().clear();
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_OVER));
                     break;
                 case TIAOZHUAN_Type.MAINVIEW:
@@ -165,13 +129,13 @@ class ViewEnd extends eui.Component {
             UserInfo.curBokData.wentiId.push(chapCfg.wenti);
             UserInfo.curBokData.videoNames[chapCfg.wenti] = videoSrc;
             GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
-            // ChengJiuManager.getInstance().onChapterChengJiu(UserInfo.curchapter - 1);
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ResultWinPanel');
-            // GameCommon.getInstance().setBookData(FILE_TYPE.ANSWER_FILE);
-            // GameCommon.getInstance().setBookData(FILE_TYPE.HIDE_FILE);
-            // GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_REFRESH), '隐藏存档');
         }
+    }
+
+    private onStartVideo() {
+        this.parent.removeChild(this);
     }
 }
 

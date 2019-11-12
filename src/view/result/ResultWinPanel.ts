@@ -3,6 +3,7 @@ class ResultWinPanel extends eui.Component {
     private chapterName1: eui.Label;
     private labState: eui.Label;
     private btnMain: eui.Button;
+    private btnJuqing: eui.Button;
     private btnNext: eui.Button;
     private readonly _isEnd: boolean;
     private curChapter: number;
@@ -19,10 +20,14 @@ class ResultWinPanel extends eui.Component {
             VideoManager.getInstance().videoPause();
         }
         ChengJiuManager.getInstance().curChapterChengJiu = {};
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_CHAPTER_END));
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_WIN));
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ResultWinPanel');
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+        if (isTXSP) {
+            GameDefine.IS_DUDANG = false;
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
+        } else {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ResultWinPanel');
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+        }
     }
 
     private onAddToStage(): void {
@@ -34,7 +39,9 @@ class ResultWinPanel extends eui.Component {
         this.height = this.stage.stageHeight;
         this.btnNext.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onContinue, this);
         this.btnMain.addEventListener(egret.TouchEvent.TOUCH_TAP, ResultWinPanel.onShowMainView, this);
+        this.btnJuqing.addEventListener(egret.TouchEvent.TOUCH_TAP, ResultWinPanel.onShowMainView, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onStartVideo, this);
         for (let i: number = 1; i < 5; i++) {
             this['roleItem' + i].name = i;
         }
@@ -62,6 +69,14 @@ class ResultWinPanel extends eui.Component {
         this.onShowWinEffect();
         this.labState.text = '一完成章节一';
         this.labState.textColor = 0xCB7ED3;
+
+        if (isTXSP) {
+            this.btnMain.visible = false;
+            this.btnJuqing.visible = true;
+        } else {
+            this.btnMain.visible = true;
+            this.btnJuqing.visible = false;
+        }
     }
 
     private onShowWinEffect() {
@@ -83,6 +98,10 @@ class ResultWinPanel extends eui.Component {
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
+    }
+
+    private onStartVideo() {
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ResultWinPanel');
     }
 
     private onContinue() {
