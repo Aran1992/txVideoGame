@@ -685,10 +685,12 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                     return;
                 }
                 GameCommon.getInstance().showCommomTips('暂未开启');
+            } else if (allCfg[name].videoId) {
+                this.showConfirm(allCfg[name]);
             } else {
-                if (allCfg[name].videoId) {
-                    this.showConfirm(allCfg[name]);
-                }
+                // 没有openVideo也没有video的都是人物故事线剧情块，当作点击下一个块处理就行
+                let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index + 1];
+                this.showConfirm(allCfg[name]);
             }
         }
     }
