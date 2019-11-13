@@ -25,13 +25,8 @@ function copyLog() {
 
 class MainView extends eui.Component {
     private gameWorld: GameWorld;
-    private labname: eui.Label;
-    private sex: eui.Label;
-    private user: eui.Label;
     private mainGroup: eui.Group;
-    private btnclean: eui.Button;
     private btnSetting: eui.Button;
-    private btnZhangjie: eui.Button;
     private btnShouCang: eui.Button;
     private btnChengjiu: eui.Button;
     private btnHuodong: eui.Button;
@@ -39,18 +34,12 @@ class MainView extends eui.Component {
     private btnContinueGame: eui.Button;
     private btnDisableCheck: eui.Button;
     private btnEnableCheck: eui.Button;
-    private myTitle: eui.Button;
     private cleanLab: eui.Label;
     private desc: eui.Label;
     private wallet: eui.Label;
     private closeWeb: eui.Label;
-    private icon: eui.Image;
     private bg: eui.Image;
     private bg_grp: eui.Group;
-    private rightGruop: eui.Group;
-    private rightDownGroup: eui.Group;
-    private zjLab: eui.Group;
-    private scLab: eui.Group;
     private shopLab: eui.Group;
     private cjLab: eui.Group;
     private play_Btn: eui.Button;
@@ -91,9 +80,8 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onClose, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.GAME_WIN, this.onGameWin, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.GAME_GO_MAINVIEW, this.onShowMian, this);
-        //GameDispatcher.getInstance().addEventListener(GameEvent.GAME_USER_REFRESH, this.onRefreshUser, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdata, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.GAME_GO_MAINVIEW, this.onShowMain, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, this.onRefreshUpdate, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.PLAY_VIDEO3, this.onClose, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.CLOSE_VIDEO3, this.onShowView, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.MAIN_IMG_REFRESH, this.onRefreshImg, this);
@@ -124,7 +112,7 @@ class MainView extends eui.Component {
         VideoManager.getInstance().updateVideoData("");
         this.play_Btn.visible = true;
         this.play_zi.visible = true;
-        this.mainGroup.visible = false;
+        this.setMainGroupVisible(false);
         UserInfo.guideDic[0] = 0;
         UserInfo.guideDic[1] = 1;
         UserInfo.guideDic[2] = 2;
@@ -139,7 +127,7 @@ class MainView extends eui.Component {
             GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
         } else if (UserInfo.guideDic[4] || UserInfo.guideDic[8] || UserInfo.achievementDics[17]) {
             GameDefine.ISFILE_STATE = false;
-            this.onRefreshUpdata({data: 1});
+            this.onRefreshUpdate({data: 1});
         }
         let player = new window["Txiplayer"]({
             container: "#videoDivMin",
@@ -239,16 +227,11 @@ class MainView extends eui.Component {
     }
 
     //序章小三角
-    private onGetDataRefresh(data) {
-        // if(data||data==0)
-        // {
-        //     // VideoManager.getInstance().log("我日"+UserInfo.curBokData.wentiId.length+"~~~"+UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1]);
-        //     if(data.data=="cuowu")
-        //     {
+    private onGetDataRefresh() {
         if (!UserInfo.curchapter) {
             this.gameWorld.createGameScene();
             SoundManager.getInstance().initMusic(SoundManager.musicList);
-            this.mainGroup.visible = false;
+            this.setMainGroupVisible(false);
         }
     }
 
@@ -277,7 +260,6 @@ class MainView extends eui.Component {
                 return;
             }
         }
-        this.checkGuide8();
         if (GameDefine.IS_DUDANG) {
             this.curDuDang = true;
         }
@@ -287,12 +269,10 @@ class MainView extends eui.Component {
 
     private onShowWallet() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        this.checkGuide8();
         GameCommon.getInstance().openButton("story://wallet");
     }
 
     private onCloseWebView() {
-        this.checkGuide8();
         GameCommon.getInstance().onCloseWebView();
     }
 
@@ -303,12 +283,10 @@ class MainView extends eui.Component {
         }
         ShopManager.getInstance().takeOffAllBookValue();
         GameCommon.getInstance().addLikeTips("清档成功");
-        this.checkGuide8();
     }
 
     private onShowActivity() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        this.checkGuide8();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ActivityPanel");
     }
 
@@ -316,7 +294,6 @@ class MainView extends eui.Component {
         SoundManager.getInstance().playSound("ope_click.mp3");
         // GameCommon.getInstance().addAlert("zanweikaifang");
         this.cjLab.visible = false;
-        this.checkGuide8();
         //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ChengJiuPanel");
         //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "TicketPanel");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
@@ -341,7 +318,6 @@ class MainView extends eui.Component {
 
     private onShowShop() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        this.checkGuide8();
         // GameCommon.getInstance().addAlert("zanweikaifang");
         this.shopLab.visible = false;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ShopPanel");
@@ -349,86 +325,34 @@ class MainView extends eui.Component {
 
     private onShowbtnSetting() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        this.checkGuide8();
         // GameCommon.getInstance().addAlert("zanweikaifang");
         //GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "PlayerSettingPanel");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "AboutPanel");
     }
 
-    private onShowMian() {
+    private onShowMain() {
         GameDefine.CUR_IS_MAINVIEW = true;
-        this.mainGroup.visible = true;
+        this.setMainGroupVisible(true);
         this.btnChengjiu.touchEnabled = true;
         this.btnShouCang.touchEnabled = true;
         this.btnSetting.touchEnabled = true;
-        // this.desc.text = JSON.stringify(UserInfo.guideDic);
-        // if (!UserInfo.guideDic[5])//先检测成就引导是否OK
-        // {
-        //     this.cjLab.visible = true;
-        //     this.rightGruop.touchEnabled = false;
-        //     this.rightDownGroup.touchEnabled = false;
-        //     this.btnZhangjie.touchEnabled = false;
-        //     this.btnShangCheng.touchEnabled = false;
-        //     this.btnShouCang.touchEnabled = false;
-        //     this.btnSetting.touchEnabled = false;
-        //     this.play_Btn.touchEnabled = false;
-        //     GuideManager.getInstance().onShowImg(this["leftBtnGroup"], this.btnChengjiu, "chengjiuBtn");
-        // }
-        // else if (!UserInfo.guideDic[6])//检测商城消费
-        // {
-        //     this.play_Btn.touchEnabled = false;
-        //     this.shopLab.visible = true;
-        //     this.rightGruop.touchEnabled = false;
-        //     this.rightDownGroup.touchEnabled = false;
-        //     this.btnZhangjie.touchEnabled = false;
-        //     this.btnChengjiu.touchEnabled = false;
-        //     this.btnShouCang.touchEnabled = false;
-        //     this.btnSetting.touchEnabled = false;
-        //     this.btnShangCheng.touchEnabled = true;
-        //     GuideManager.getInstance().onShowImg(this["leftBtnGroup"], this.btnShangCheng, "shangchengBtn");
-        // }
-        // else if (!UserInfo.guideDic[7]) {
-        //     this.rightGruop.touchEnabled = false;
-        //     this.rightDownGroup.touchEnabled = false;
-        //     this.btnZhangjie.touchEnabled = false;
-        //     this.btnChengjiu.touchEnabled = false;
-        //     this.btnShouCang.touchEnabled = true;
-        //     this.btnSetting.touchEnabled = false;
-        //     this.btnShangCheng.touchEnabled = false;
-        //     this.play_Btn.touchEnabled = false;
-        //     this.scLab.visible = true;
-        //     GuideManager.getInstance().onShowImg(this["leftBtnGroup"], this.btnShouCang, "shoucangBtn");
-        // } else if (!UserInfo.guideDic[8]) {
-        //     this.zjLab.visible = true;
-        //     this.rightGruop.touchEnabled = true;
-        //     this.rightDownGroup.touchEnabled = true;
-        //     this.btnZhangjie.touchEnabled = true;
-        //     this.btnChengjiu.touchEnabled = true;
-        //     this.btnShouCang.touchEnabled = true;
-        //     this.btnSetting.touchEnabled = true;
-        //     this.btnShangCheng.touchEnabled = true;
-        //     this.play_Btn.touchEnabled = true;
-        //     // GuideManager.getInstance().onShowImg(this["leftBtnGroup"], this.btnZhangjie, "zhangjieBtn");
-        // }
-        // else {
-        //     this.rightGruop.touchEnabled = true;
-        //     this.rightDownGroup.touchEnabled = true;
-        //     this.btnZhangjie.touchEnabled = true;
-        //     this.btnChengjiu.touchEnabled = true;
-        //     this.btnShouCang.touchEnabled = true;
-        //     this.btnSetting.touchEnabled = true;
-        //     this.btnShangCheng.touchEnabled = true;
-        //     this.play_Btn.touchEnabled = true;
-        // }
     }
 
     private onGameWin() {
         GameCommon.getInstance().getBookHistoryList();
-        this.mainGroup.visible = true;
+        this.setMainGroupVisible(true);
+    }
+
+    // 腾讯视频版本不希望显示主界面
+    private setMainGroupVisible(visible: boolean) {
+        if (isTXSP) {
+            this.mainGroup.visible = false;
+        } else {
+            this.mainGroup.visible = visible;
+        }
     }
 
     private onEventPlay() {
-        //SoundManager.getInstance().playSound("ope_click.mp3")
         this.play_Btn.visible = false;
         this.play_zi.visible = false;
 
@@ -437,26 +361,25 @@ class MainView extends eui.Component {
             UserInfo.ansWerData = new AnswerData;
             UserInfo.curBokData = new BookData();
             GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
-            this.onGetDataRefresh(null);
+            this.onGetDataRefresh();
         } else {
-            if (this.curDuDang) {
-                this.curDuDang = false;
-                GameDefine.IS_DUDANG = true;
+            if (isTXSP) {
+                if (UserInfo.curchapter === 0) {
+                    this.gameWorld.createGameScene();
+                } else {
+                    this.onBtnContinue();
+                }
+            } else {
+                if (this.curDuDang) {
+                    this.curDuDang = false;
+                    GameDefine.IS_DUDANG = true;
+                }
+                this.gameWorld.createGameScene();
             }
-            this.gameWorld.createGameScene();
         }
-
-        this.checkGuide8();
     }
 
     private onBtnContinue() {
-        //let videoIdx = VideoManager.getInstance().getVideoID()
-        // if(!videoIdx){
-        //     GameCommon.getInstance().showCommomTips("当前有错误（BUG）,请从存档中进入")
-        //     console.error("存档错误")
-        //     return;
-        // }
-        //SoundManager.getInstance().playSound("ope_click.mp3")
         if (!GameCommon.getInstance().checkChapterLocked())
             return;
         if (this.curDuDang) {
@@ -464,23 +387,10 @@ class MainView extends eui.Component {
             GameDefine.IS_DUDANG = true;
         }
         GameDefine.ISFILE_STATE = true;
-        // GameDefine.IS_SWITCH_VIDEO = true;
-        // GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA));
-        // this.mainGroup.visible = false;
-        this.checkGuide8();
     }
 
-    private checkGuide8() {
-        // if(UserInfo.guideDic[7]&&!UserInfo.guideDic[8])
-        // {
-        //     UserInfo.guideDic[8] = 8;
-        //     this.zjLab.visible = false;
-        //     GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
-        // }
-    }
-
-    private onRefreshUpdata(data) {
+    private onRefreshUpdate(data) {
         if (data.data != 1) {
             return;
         }
@@ -488,37 +398,33 @@ class MainView extends eui.Component {
             return;
         }
         this.onRefreshImg();
-        this.mainGroup.visible = false;
+        this.setMainGroupVisible(false);
         if (!GameDefine.ISFILE_STATE) {
-            if (UserInfo.achievementDics[17]) {
-                this.mainGroup.visible = true;
+            if (UserInfo.achievementDics[17] && !isTXSP) {
+                this.setMainGroupVisible(true);
                 this.play_Btn.visible = false;
                 this.play_zi.visible = false;
-                // VideoManager.getInstance().log("17"+"已完成");
-                this.onShowMian();
+                this.onShowMain();
             } else {
                 TipsBtn.Is_Guide_Bool = true;
-                this.mainGroup.visible = false;
+                this.setMainGroupVisible(false);
                 this.play_Btn.visible = true;
                 this.play_zi.visible = true;
             }
             return;
         }
-        // window["video1"].style.display = "block";
-        // window["video2"].style.display = "block";
-        // window["video3"].style.display = "block";
         GameDefine.ISFILE_STATE = false;
     }
 
     private onClose() {
-        this.mainGroup.visible = false;
+        this.setMainGroupVisible(false);
     }
 
     private onHideMainGroup() {
-        this.mainGroup.visible = false;
+        this.setMainGroupVisible(false);
     }
 
     private onShowView() {
-        this.mainGroup.visible = true;
+        this.setMainGroupVisible(true);
     }
 }

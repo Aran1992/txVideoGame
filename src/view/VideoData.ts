@@ -568,7 +568,6 @@ class VideoData extends egret.DisplayObjectContainer {
                 this.touchChildren = false;
             })
         }
-
         if (!this.videoNodeChangeHandle) {
             widPlayer.on('videoNodeChange', () => {
                 GameCommon.getInstance().removeLoading();
@@ -639,16 +638,20 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         GameCommon.getInstance().removeLoading();
         VideoManager.getInstance().videoPause();
-        this.tipsPanel.hideTips();
-        this.tipsPanel.visible = false;
-        this.visible = false;
-        Tool.callbackTime(function () {
-            GameDefine.IS_DUDANG = true;
-        }, this, 200);
-        GameCommon.getInstance().hideTipsHuDong();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-
+        if (isTXSP) {
+            GameDefine.IS_DUDANG = false;
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
+        } else {
+            this.tipsPanel.hideTips();
+            this.tipsPanel.visible = false;
+            this.visible = false;
+            GameCommon.getInstance().hideTipsHuDong();
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            Tool.callbackTime(function () {
+                GameDefine.IS_DUDANG = true;
+            }, this, 200);
+        }
     }
 
     public onShowNextVideo() {
@@ -808,7 +811,6 @@ class VideoData extends egret.DisplayObjectContainer {
         GameDispatcher.getInstance().addEventListener(GameEvent.GUIDE_STOP_GAME, this.onGuideStopGame, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.IOS_GAME_PLAY, this.onPlayIos, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_FULL_END, this.onVideo_Full_End, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.VIDEO_CHAPTER_END, this.onStopVideo, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.GAME_CONTINUE, this.onContinue, this);
     }
 
@@ -914,9 +916,6 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     private onPlayIos() {
-    }
-
-    private onStopVideo() {
     }
 
     private onShowResult() {

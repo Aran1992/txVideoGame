@@ -168,7 +168,6 @@ class CommonTips extends eui.Component {
             .call(() => {
                 this.roleChapterNoticeGroup.visible = false;
                 GameCommon.getInstance().showLoading();
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.VIDEO_CHAPTER_END));
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
             });
     }

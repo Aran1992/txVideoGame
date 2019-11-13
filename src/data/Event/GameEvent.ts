@@ -23,7 +23,6 @@ class GameEvent {
     public static GUIDE_STOP_GAME: string = 'guide.stop.game';
     public static IOS_GAME_PLAY: string = 'ios.game.play';
     public static VIDEO_FULL_END: string = 'video.full.end';//全景视频结束
-    public static VIDEO_CHAPTER_END: string = 'video.chapter.end';//关闭结算视频
     public static GAME_LOADING: number = 10000;//游戏加载中
     public static GAME_COMPLETE: number = 10001;//游戏加载完成
     public static UNLOCK_SHOUCANG: string = 'unlock.shoucang';//解锁收藏

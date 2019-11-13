@@ -10,7 +10,6 @@ class GameWorld extends egret.DisplayObjectContainer {
     public constructor() {
         super();
         this.panelDict = {};
-        this.init();
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
         this.onRegistEvent();
     }
@@ -37,14 +36,6 @@ class GameWorld extends egret.DisplayObjectContainer {
 
     /**舞台尺寸发生变化**/
     public onResize(): void {
-        // this.promptLayer.x = Globar_Pos.x;
-        // if (DataManager.IS_PC_Game) {
-        //     try {
-        //         this.gamescene.getModuleLayer().onStageResize();
-        //         this.gamescene.getMapLayer().onResizeLayer();
-        //     } catch (e) {
-        //     }
-        // }
     }
 
     public createGameScene(chapId: number = 0): void {
@@ -156,11 +147,7 @@ class GameWorld extends egret.DisplayObjectContainer {
         }
     }
 
-    private init(): void {
-        this.onResize();
-    }
-
-    private onAddToStage(event: egret.Event): void {
+    private onAddToStage(): void {
         this.onRegist();
 
         let view = new MainView(this);
