@@ -219,9 +219,3 @@ declare interface Window {
 
 const isTXSP = window.platform.getPlatform() === "plat_txsp"
     || window.location.href.indexOf("txsp") !== -1;
-
-
-
-
-
-

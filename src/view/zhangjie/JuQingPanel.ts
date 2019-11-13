@@ -1,6 +1,7 @@
 // TypeScript file
 class JuQingPanel extends eui.Component {
     private bgBtn: eui.Button;
+    private restartBtn: eui.Button;
     private slideGroup: eui.Group;
     private noneFile: eui.Group;
     private qiuGroup: eui.Group;
@@ -44,6 +45,7 @@ class JuQingPanel extends eui.Component {
         this.slideGroup.addEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
         this.qiuGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
         this.qiuGroup.addEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
+        this.restartBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickRestartBtn, this);
         for (let i: number = 1; i <= GameDefine.MAX_CUNDAGN_NUM; i++) {
             this['fileBtn' + i].name = i;
             this['fileBtn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
@@ -62,6 +64,7 @@ class JuQingPanel extends eui.Component {
         this.slideGroup.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
         this.qiuGroup.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
         this.qiuGroup.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEventEnd, this);
+        this.restartBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickRestartBtn, this);
         for (let i: number = 1; i <= GameDefine.MAX_CUNDAGN_NUM; i++) {
             this['fileBtn' + i].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
         }
@@ -149,6 +152,8 @@ class JuQingPanel extends eui.Component {
             this._guideIndex = 1;
             this.idGuideImage.source = `guide_cundang_${this._guideIndex}_jpg`;
         }
+
+        this.restartBtn.visible = isTXSP;
     }
 
     private onTouchGuideGroup() {
@@ -320,6 +325,13 @@ class JuQingPanel extends eui.Component {
 
     private onGuideHandler(): void {
         this.guide_grp.visible = false;
+    }
+
+    private onClickRestartBtn() {
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+            cfg: JsonModelManager.instance.getModeljuqingkuai()[1][1],
+            idx: FILE_TYPE.AUTO_FILE
+        });
     }
 }
 

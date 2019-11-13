@@ -115,7 +115,15 @@
             </e:Skin>
         </e:skinName>
     </e:Button>
-	<e:Group id="idGuideGroup" touchEnabled="false" left="0" top="0" width="100%" height="100%">
+	<e:Button id="restartBtn" label="重新开始" width="251" height="71" scaleX="1" scaleY="1" right="350" bottom="62">
+		<e:skinName>
+		<e:Skin states="up,down,disabled" width="109">
+			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png" source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="36" fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Group id="idGuideGroup" touchEnabled="false" left="0" top="0" width="100%" height="100%" visible="false">
 		<e:Rect strokeAlpha="0" fillAlpha="0.8" left="0" top="0" width="100%" height="100%"/>
 		<e:Image id="idGuideImage" source="guide_cundang_1_jpg" anchorOffsetX="0" anchorOffsetY="0" fillMode="scale" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
 	</e:Group>
