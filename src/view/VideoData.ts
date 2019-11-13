@@ -738,7 +738,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (isChapterLastVideo)
                     GameCommon.getInstance().showCommomTips('章节结尾');
                 else
-                    GameCommon.getInstance().showCommomTips('","有惊喜');
+                    GameCommon.getInstance().showCommomTips('精彩正加载');
             }
         } else if (curTime + 5 < duration && !this.tiaoState) {
             //没有问题。但离结束还有5秒以上，stime=seektime.表示大跳跳到的时间
@@ -1216,6 +1216,10 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     private onVideo_Full_End(data) {
+        setTimeout(() => {
+            GameCommon.getInstance().showRoleLike();
+            TaskManager.instance.checkQuestionTask();
+        }, 0);
         let wentiId = this.curWentiId;
         let morenId = data.data - 3;
         let cfgs = answerModels[this.curWentiId];
@@ -1230,6 +1234,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
             }
         }
+        GameCommon.getInstance().addRoleLike(this.curAnswerCfg.like);
         GameCommon.getInstance().shock();
         if (UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1] != wentiId) {
             UserInfo.curBokData.wentiId.push(wentiId);

@@ -34,8 +34,8 @@ class ActionHuiYi extends ActionTimerSceneBase {
             const lockedIDs = func() || [];
             lockedIDs.forEach(id => {
                 let itemNum = this.getWentiItemNum(this.model.id, id);
-                this['timeImg' + id].visible = itemNum > 0;
-                this['suo' + id].visible = itemNum > 0;
+                this['timeImg' + id].visible = itemNum <= 0;
+                this['suo' + id].visible = itemNum <= 0;
             });
         }
         let cfgs = answerModels[this.model.id];
