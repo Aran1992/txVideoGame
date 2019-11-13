@@ -1,20 +1,12 @@
 class ActionSlide extends ActionSceneBase {
-    // private imgArrow: eui.Group;
     private groupHand: eui.Group;
-    private groupTouch: eui.Group;
     private posList: egret.Point[];
-    private mainGroup: eui.Group;
-    // private posIdx: number;
     private tipsGroup: eui.Group;
     private dangaoGroup: eui.Group;
     private curGroup: eui.Group;
-    // private imgArrow1: eui.Group;
-    private curImg: eui.Image;
-    // private handImg: eui.Image;
+    private touchGroup: eui.Group;
     private touchList: boolean[];
     private isFinish: boolean;
-    // private timeBar: eui.ProgressBar;
-    // private handImg1: eui.Image;
     private timeBar1: eui.ProgressBar;
     private timeBar2: eui.ProgressBar;
     private desc1: eui.Label;
@@ -39,7 +31,6 @@ class ActionSlide extends ActionSceneBase {
         super.onInit();
         this.updateResize();
         this.touchList = [false];
-        // this.posIdx = -1;
         this.posList = [];
         this.tipsGroup.visible = false;
         for (let i = 3; i < this.paramList.length; ++i) {
@@ -92,8 +83,8 @@ class ActionSlide extends ActionSceneBase {
         let posY: number = this.posList[this.posList.length - 1].y;
         this.curGroup.x = Math.floor(posX * (size.width / GameDefine.GAME_VIEW_WIDTH));
         this.curGroup.y = Math.floor(posY * (size.height / GameDefine.GAME_VIEW_HEIGHT));
-        this.curGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
-        this.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onEventMove, this);
+        this.touchGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
+        this.touchGroup.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onEventMove, this);
     }
 
     protected update(dt): void {
@@ -108,38 +99,11 @@ class ActionSlide extends ActionSceneBase {
         }
         this.timeBar2.value = this.runTime;
         this.timeBar1.value = this.runTime;
-        // this.timeBar.value = this.runTime//this.maxTime - this.runTime;
-        // this.drawArc(this.share, this.maxTime - this.runTime, this.maxTime, 300);
     }
 
-    private onComplete() {
-        var obj = this;
-        obj.handAni.onStop();
-        // obj.handAni.removeEventListener(egret.Event.COMPLETE, this.onMCFinishResult, this);
-        // obj.handAni.parent.removeChild(this.handAni);
-        // obj.handAni.stop();
-        // this.mcResult = null;
-        Tool.callbackTime(function () {
-            obj.handAni.onPlay();
-            console.log('重新播放');
-        }, obj, 500);
-    }
-
-    // private share: egret.Shape;
     private initTimeInfo() {
-        // var img: eui.Image;
-        // if (this.model.id == '32') {
-        // 	img = this['timeImg'];
-        // }
-        // else {
-        // 	img = this['menTime'];
-        // }
-
         var hdCfg: Modelhudong = JsonModelManager.instance.getModelhudong()[this.model.type];
         this.desc1.text = hdCfg.des;
-        // this.timeBar.slideDuration = 0;
-        // this.timeBar.maximum = this.maxTime;
-        // this.timeBar.value = 0;//this.maxTime;
 
         this.timeBar1.maximum = this.maxTime;
         this.timeBar1.slideDuration = 0;
@@ -148,27 +112,6 @@ class ActionSlide extends ActionSceneBase {
         this.timeBar2.slideDuration = 0;
         this.timeBar2.maximum = this.maxTime;
         this.timeBar2.value = this.maxTime;
-
-        // this.timeBar.maximum = this.maxTime;
-        // this.timeBar.slideDuration = 0;
-        // this.timeBar.value = this.maxTime;
-        // this.share = new egret.Shape();
-        // this.share.x = 133 / 2;
-        // this.share.y = 133 / 2;
-        // this.drawArc(this.share, this.runTime, this.maxTime, 300);
-        // img.parent.addChild(this.share);
-        // img.mask = this.share;
-    }
-
-    private drawArc(shape: egret.Shape, value: number, max: number, wd: number) {
-        var r = wd / 2;
-        shape.graphics.clear();
-        shape.graphics.beginFill(0xFFFFFF);
-        shape.graphics.moveTo(0, 0);
-        shape.graphics.lineTo(0, -r);//画线到弧的起始点
-        shape.graphics.drawArc(0, 0, r, (Math.min(value / max * 360, 360) - 90) * Math.PI / 180, (0 - 90) * Math.PI / 180, false);//从起始点顺时针画弧到终点
-        shape.graphics.lineTo(0, 0);//从终点画线到圆形。到此扇形的封闭区域形成
-        shape.graphics.endFill();
     }
 
     private onEventDown(event: egret.TouchEvent) {
@@ -230,7 +173,6 @@ class ActionSlide extends ActionSceneBase {
             super.startRun();
         }
 
-        // GameCommon.getInstance().shock();
         this.isFinish = true;
         this.onBackSuccess();
     }

@@ -278,7 +278,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 VideoManager.getInstance().clear();
                 Tool.callbackTime(() => {
                     VideoManager.getInstance().onAgainGame(this.videoIdx);
-                }, this, 1000);
+                }, this, 100);
             } else {
                 VideoManager.getInstance().onPlay(this.videoIdx);
             }
@@ -735,7 +735,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 if (isChapterLastVideo)
                     GameCommon.getInstance().showCommomTips('章节结尾');
                 else
-                    GameCommon.getInstance().showCommomTips('别着急有惊喜');
+                    GameCommon.getInstance().showCommomTips('","有惊喜');
             }
         } else if (curTime + 5 < duration && !this.tiaoState) {
             //没有问题。但离结束还有5秒以上，stime=seektime.表示大跳跳到的时间
@@ -748,7 +748,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     if (isChapterLastVideo)
                         GameCommon.getInstance().showCommomTips('章节结尾');
                     else
-                        GameCommon.getInstance().showCommomTips('别着急有惊喜');
+                        GameCommon.getInstance().showCommomTips('精彩正加载');
                 }
             } else {
                 this.tiaoState = true;
@@ -759,7 +759,7 @@ class VideoData extends egret.DisplayObjectContainer {
             if (isChapterLastVideo)
                 GameCommon.getInstance().showCommomTips('章节结尾');
             else
-                GameCommon.getInstance().showCommomTips('别着急有惊喜');
+                GameCommon.getInstance().showCommomTips('精彩正加载');
         }
     }
 
@@ -850,7 +850,7 @@ class VideoData extends egret.DisplayObjectContainer {
             this.isSelectVideo = false;
             this._nextVid = '';
             this.videoIdx = UserInfo.curBokData.videoNames[this.curWentiId];
-        }, this, 1000);
+        }, this, 100);
     }
 
     private onGameOver(): void {
@@ -1048,11 +1048,11 @@ class VideoData extends egret.DisplayObjectContainer {
                         if (isChapterLastVideo)
                             GameCommon.getInstance().showCommomTips('章节结尾');
                         else
-                            GameCommon.getInstance().showCommomTips('别着急有惊喜')
+                            GameCommon.getInstance().showCommomTips('精彩正加载')
                     }
                 } else {
                     if (this.isSelectVideo) {
-                        GameCommon.getInstance().showCommomTips('别着急有惊喜');
+                        GameCommon.getInstance().showCommomTips('精彩正加载');
                         return;
                     }
                     GameCommon.getInstance().showCommomTips('即将出现互动');
@@ -1064,13 +1064,13 @@ class VideoData extends egret.DisplayObjectContainer {
                     widPlayer.seek(VideoManager.getInstance().videoCurrTime() + 10);
                     this.tipsPanel.onShowAddTime();
                 } else {
-                    GameCommon.getInstance().showCommomTips('别着急有惊喜');
+                    GameCommon.getInstance().showCommomTips('精彩正加载');
                 }
             } else {
                 if (isChapterLastVideo)
                     GameCommon.getInstance().showCommomTips('章节结尾');
                 else
-                    GameCommon.getInstance().showCommomTips('别着急有惊喜');
+                    GameCommon.getInstance().showCommomTips('精彩正加载');
             }
         }
     }

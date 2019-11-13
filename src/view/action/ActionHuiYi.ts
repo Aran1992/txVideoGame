@@ -14,10 +14,6 @@ class ActionHuiYi extends ActionTimerSceneBase {
         this.skinName = skins.ActionHuiYiSkin;
     }
 
-    private getWentiItemNum(wentiId,id){
-        let itemId = GameCommon.getInstance().getWentiItemId(wentiId,id);        
-        return ShopManager.getInstance().getItemNum(itemId);
-    }
     protected onInit(): void {
         super.onInit();
         this.updateResize();
@@ -33,13 +29,13 @@ class ActionHuiYi extends ActionTimerSceneBase {
         }
         let data1 = GameCommon.getInstance().getSortLike(0);
         this.defaultAnswerID = this.optionRoles[data1.id];
-        const func = GameCommon.getInstance().getLockedOptionIDs[this.model.id];     
+        const func = GameCommon.getInstance().getLockedOptionIDs[this.model.id];
         if (func) {
             const lockedIDs = func() || [];
-            lockedIDs.forEach(id => {                   
-                let itemNum = this.getWentiItemNum(this.model.id,id);     
-                this['timeImg' + id].visible = true && itemNum>0;
-                this['suo' + id].visible = true && itemNum>0;
+            lockedIDs.forEach(id => {
+                let itemNum = this.getWentiItemNum(this.model.id, id);
+                this['timeImg' + id].visible = itemNum > 0;
+                this['suo' + id].visible = itemNum > 0;
             });
         }
         let cfgs = answerModels[this.model.id];
@@ -69,6 +65,11 @@ class ActionHuiYi extends ActionTimerSceneBase {
         this.onBackSuccess();
     }
 
+    private getWentiItemNum(wentiId, id) {
+        let itemId = GameCommon.getInstance().getWentiItemId(wentiId, id);
+        return ShopManager.getInstance().getItemNum(itemId);
+    }
+
     private onEventClick(event: egret.Event) {
         SoundManager.getInstance().playSound('ope_select_head.mp3');
         if (this.isSelected) {
@@ -80,7 +81,7 @@ class ActionHuiYi extends ActionTimerSceneBase {
         this.answerID = name;
         if (this['timeImg' + name].visible) {
             VideoManager.getInstance().videoPause();
-            PromptPanel.getInstance().onShowBuyHaoGan(this.model.id,name);
+            PromptPanel.getInstance().onShowBuyHaoGan(this.model.id, name);
         } else {
             this['selected' + name].visible = true;
             this.exitTimer = egret.setTimeout(() => this.onBackSuccess(), this, 1000);

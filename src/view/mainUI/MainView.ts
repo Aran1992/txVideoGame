@@ -334,7 +334,9 @@ class MainView extends eui.Component {
                 return;
             }
         }
-        this.gameWorld.createGameScene();
+        GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
+            this.gameWorld.createGameScene();
+        });
     }
 
     private onShowShop() {

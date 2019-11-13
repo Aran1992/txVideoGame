@@ -38,7 +38,6 @@ class JuQingPanel extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, JuQingPanel.onRefreshUpdata, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.REFRESH_JUQING, this.onRefresh, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onShowVideo, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.SELECT_JUQING, this.onShowConfirm, this);
 
         this.cunchuBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSaveCunChu, this);
         this.slideGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
@@ -57,7 +56,6 @@ class JuQingPanel extends eui.Component {
         GameDispatcher.getInstance().removeEventListener(GameEvent.AUTO_UPDATA, JuQingPanel.onRefreshUpdata, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.REFRESH_JUQING, this.onRefresh, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.STARTCHAPTER, this.onShowVideo, this);
-        GameDispatcher.getInstance().removeEventListener(GameEvent.SELECT_JUQING, this.onShowConfirm, this);
 
         this.cunchuBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onSaveCunChu, this);
         this.slideGroup.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onEventDown, this);
@@ -93,18 +91,6 @@ class JuQingPanel extends eui.Component {
     private onShowVideo() {
         this.touchEnabled = false;
         this.touchChildren = false;
-    }
-
-    private onShowConfirm(data) {
-        if (this._curIdx == FILE_TYPE.AUTO_FILE) {
-            let self = this;
-            SoundManager.getInstance().playSound("ope_click.mp3");
-            GameCommon.getInstance().showConfirmTips("清空记忆，从这里从新开始？", function (): void {
-                self._videoData = data.data;
-                GameCommon.getInstance().showLoading();
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), self._videoData);
-            }, "注：此处仅影响自动存档，不影响手动存档存储");
-        }
     }
 
     private onClose() {
@@ -695,31 +681,28 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         if (allCfg[name]) {
             if (allCfg[name].openVideo) {
                 if (this.getOpen(allCfg[name]) == this.IS_OPEN) {
-                    GameCommon.getInstance().showLoading();
-                    if (this._curFile != FILE_TYPE.AUTO_FILE) {
-                        UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
-                    }
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
-                        cfg: allCfg[name],
-                        idx: this._curFile
-                    });
+                    this.showConfirm(allCfg[name]);
                     return;
                 }
                 GameCommon.getInstance().showCommomTips('暂未开启');
             } else {
                 if (allCfg[name].videoId) {
-                    GameCommon.getInstance().showLoading();
-                    if (this.index != FILE_TYPE.AUTO_FILE) {
-                        UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
-                    }
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
-                        cfg: allCfg[name],
-                        idx: this._curFile
-                    });
+                    this.showConfirm(allCfg[name]);
                 }
             }
         }
     }
 
-    //The end
+    private showConfirm(cfg) {
+        GameCommon.getInstance().showConfirmTips("是否读取？", () => {
+            GameCommon.getInstance().showLoading();
+            if (this._curFile != FILE_TYPE.AUTO_FILE) {
+                UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
+            }
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+                cfg: cfg,
+                idx: this._curFile
+            });
+        }, "自动存档将会被覆盖");
+    }
 }
