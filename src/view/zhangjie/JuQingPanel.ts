@@ -267,11 +267,9 @@ class JuQingPanel extends eui.Component {
                             break;
                         }
                     } else {
-                        if (this._curIdx == FILE_TYPE.AUTO_FILE) {
-                            if (!this.kuaiDatas[allCfg[k].show]) {
-                                this._idx = this._idx + 1;
-                                this.kuaiDatas[allCfg[k].show] = allCfg[k];
-                            }
+                        if (!this.kuaiDatas[allCfg[k].show]) {
+                            this._idx = this._idx + 1;
+                            this.kuaiDatas[allCfg[k].show] = allCfg[k];
                         }
                     }
                 }
