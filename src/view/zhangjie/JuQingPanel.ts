@@ -251,7 +251,6 @@ class JuQingPanel extends eui.Component {
         let juqingAry: number[] = GameDefine.ROLE_JUQING_TREE[roleIdx];
         for (let i: number = 0; i < juqingAry.length; i++) {
             let juqing_page: number = juqingAry[i];
-            let bool: boolean = true;
             let allCfg = JsonModelManager.instance.getModeljuqingkuai()[juqing_page];
             if (!allCfg) break;
             for (let k in allCfg) {
@@ -262,9 +261,6 @@ class JuQingPanel extends eui.Component {
                                 this._idx = this._idx + 1;
                                 this.kuaiDatas[allCfg[k].show] = allCfg[k];
                             }
-                        } else {
-                            bool = false;
-                            break;
                         }
                     } else {
                         if (!this.kuaiDatas[allCfg[k].show]) {
@@ -274,7 +270,6 @@ class JuQingPanel extends eui.Component {
                     }
                 }
             }
-            if (!bool) break;
         }
 
         this.imgIndx = 0;

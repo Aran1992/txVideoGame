@@ -135,7 +135,9 @@ class ViewEnd extends eui.Component {
     }
 
     private onStartVideo() {
-        this.parent.removeChild(this);
+        if (this.parent) {
+            this.parent.removeChild(this);
+        }
     }
 }
 
