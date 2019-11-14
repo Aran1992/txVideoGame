@@ -326,6 +326,9 @@ class GameCommon {
                 console.log("read book failed:" + tp);
                 return;
             }
+            if(data.data.content == ""){
+                return;
+            }
             console.log("read book success:" + tp);
             switch (data.data.slotId) {
                 //自动存档和手动存档

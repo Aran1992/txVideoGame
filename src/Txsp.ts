@@ -76,12 +76,12 @@ class Txsp {
     }
 
     async deleteBookHistory(bookId,slotId,callback){
-        await this.saveBookHistory(bookId, slotId, "", "{}",()=>{})
+        await this.saveBookHistory(bookId, slotId, "", "",()=>{})
         callback();
     }
     //获取商业化数值
     async getBookValues(bookId, slotId,callback) {
-        
+
         //使用本地数据
     }
     async shareImage(bookId,imageData){
