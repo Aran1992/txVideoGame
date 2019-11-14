@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <shoucang>
     <!--<shoucang id="5001" src="S002" shengyin="0" time="1:09" level="sr" mulu2="2" name="雨后湿温new" kuozhan="*" mulu1="2"/>-->
-    <shoucang id="5001" src="HDLC" shengyin="0" time="1:24" level="ssr" mulu2="1" name="你的选择" kuozhan="*" mulu1="2"/>
-    <shoucang id="5002" src="XDLC" shengyin="0" time="1:45" level="ssr" mulu2="3" name="陪他一日" kuozhan="*" mulu1="2"/>
+    <shoucang id="5001" src="HDLC" shengyin="0" time="1:24" level="ssr" mulu2="2" name="你的选择" kuozhan="*" mulu1="1"/>
+    <shoucang id="5002" src="XDLC" shengyin="0" time="1:45" level="ssr" mulu2="2" name="陪他一日" kuozhan="*" mulu1="3"/>
     <shoucang id="5003" src="QDLC" shengyin="0" time="1:19" level="ssr" mulu2="2" name="为你担心" kuozhan="*" mulu1="2"/>
-    <shoucang id="5004" src="WDLC" shengyin="0" time="1:07" level="ssr" mulu2="4" name="他的娇纵" kuozhan="*" mulu1="2"/>
+    <shoucang id="5004" src="WDLC" shengyin="0" time="1:07" level="ssr" mulu2="2" name="他的娇纵" kuozhan="*" mulu1="4"/>
         
     <shoucang id="6001" src="" shengyin="0" time="*" level="sr" mulu2="3" name="如果你也有梦想" kuozhan="如果你也有梦想" mulu1="5" />
     <shoucang id="6002" src="" shengyin="0" time="*" level="sr" mulu2="3" name="梦想映射" kuozhan="You Cool;我;Missed Call" mulu1="5" />
