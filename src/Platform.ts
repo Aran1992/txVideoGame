@@ -59,7 +59,9 @@ class DebugPlatform implements Platform {
     }
     public updateServerTime(){
         var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
-        httpRequest.open('GET', 'http://quan.suning.com/getSysTime.do', true);//第二步：打开连接 
+        //let url = `http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp`;
+        let url=`http://quan.suning.com/getSysTime.do`
+        httpRequest.open('GET', url, true);//第二步：打开连接 
         httpRequest.send();//第三步：发送请求  将请求参数写在URL中
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState == 4 && httpRequest.status == 200) {

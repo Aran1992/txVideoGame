@@ -310,7 +310,7 @@ class TicketPanel extends eui.Component {
 
     private onCloseBuyTicketClick(): void {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        if (this._openParam == "tipsbtnshopcar" || this._openParam == "confirm") {
+        if (this._openParam == "tipsbtnshopcar" || this._openParam == "confirm" || this._openParam == "tipsbtnticket") {
             this.onCloseClick();
             return;
         }
