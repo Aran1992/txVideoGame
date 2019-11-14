@@ -353,9 +353,6 @@ class MainView extends eui.Component {
     }
 
     private onEventPlay() {
-        this.play_Btn.visible = false;
-        this.play_zi.visible = false;
-
         if (!UserInfo.curBokData) {
             UserInfo.allVideos = {};
             UserInfo.ansWerData = new AnswerData;
@@ -367,7 +364,10 @@ class MainView extends eui.Component {
                 if (UserInfo.curchapter === 0) {
                     this.gameWorld.createGameScene();
                 } else {
-                    this.onBtnContinue();
+                    // 如果没有成功继续 那么就不隐藏按钮
+                    if (!this.onBtnContinue()) {
+                        return;
+                    }
                 }
             } else {
                 if (this.curDuDang) {
@@ -377,17 +377,20 @@ class MainView extends eui.Component {
                 this.gameWorld.createGameScene();
             }
         }
+        this.play_Btn.visible = false;
+        this.play_zi.visible = false;
     }
 
-    private onBtnContinue() {
+    private onBtnContinue(): boolean {
         if (!GameCommon.getInstance().checkChapterLocked())
-            return;
+            return false;
         if (this.curDuDang) {
             this.curDuDang = false;
             GameDefine.IS_DUDANG = true;
         }
         GameDefine.ISFILE_STATE = true;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA));
+        return true;
     }
 
     private onRefreshUpdate(data) {
@@ -400,13 +403,13 @@ class MainView extends eui.Component {
         this.onRefreshImg();
         this.setMainGroupVisible(false);
         if (!GameDefine.ISFILE_STATE) {
+            TipsBtn.Is_Guide_Bool = !UserInfo.achievementDics[17];
             if (UserInfo.achievementDics[17] && !isTXSP) {
                 this.setMainGroupVisible(true);
                 this.play_Btn.visible = false;
                 this.play_zi.visible = false;
                 this.onShowMain();
             } else {
-                TipsBtn.Is_Guide_Bool = true;
                 this.setMainGroupVisible(false);
                 this.play_Btn.visible = true;
                 this.play_zi.visible = true;
@@ -421,6 +424,8 @@ class MainView extends eui.Component {
     }
 
     private onHideMainGroup() {
+        this.play_Btn.visible = false;
+        this.play_zi.visible = false;
         this.setMainGroupVisible(false);
     }
 

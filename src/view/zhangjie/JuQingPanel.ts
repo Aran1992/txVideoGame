@@ -319,6 +319,35 @@ class JuQingPanel extends eui.Component {
         this.slideGroup.x = -(this.imgIndx * size.width);
 
         this.imgMaxNumb = this._idx;
+
+        if (this._curIdx == FILE_TYPE.AUTO_FILE) {
+            this.setPage(models);
+        }
+    }
+
+    private setPage(models) {
+        let curJuqingID: number = GameCommon.getInstance().getCurJuqingID(UserInfo.curBokData);
+        const jqModels = JsonModelManager.instance.getModeljuqingkuai();
+        for (let showid in jqModels) {
+            if (jqModels.hasOwnProperty(showid)) {
+                let jqmodels = jqModels[showid];
+                for (let juqingid in jqmodels) {
+                    if (jqmodels.hasOwnProperty(juqingid)) {
+                        if (jqmodels[juqingid].id == curJuqingID) {
+                            const newIndex = models.findIndex(model => model.show == showid);
+                            if (newIndex !== -1) {
+                                const currIndex = this.imgIndx;
+                                this.imgIndx = newIndex;
+                                this.slideGroup.x = -(this.imgIndx * size.width);
+                                this.qiuImgs[currIndex].source = 'cundang_dian2_png';
+                                this.qiuImgs[this.imgIndx].source = 'cundang_dian1_png';
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private onGuideHandler(): void {
@@ -326,9 +355,11 @@ class JuQingPanel extends eui.Component {
     }
 
     private onClickRestartBtn() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
-            cfg: JsonModelManager.instance.getModeljuqingkuai()[1][1],
-            idx: FILE_TYPE.AUTO_FILE
+        GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+                cfg: JsonModelManager.instance.getModeljuqingkuai()[1][1],
+                idx: FILE_TYPE.AUTO_FILE
+            });
         });
     }
 }

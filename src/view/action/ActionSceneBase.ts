@@ -6,7 +6,7 @@ class ActionSceneBase extends eui.Component {
     protected videoStartTime: number;
     private videoRunTime: number;
     private test: boolean;
-    private _result:boolean;
+    private _result: boolean;
 
     public constructor(model: Modelwenti, list: string[], idx: number, test: boolean = false) {
         super();
@@ -69,7 +69,7 @@ class ActionSceneBase extends eui.Component {
         } else {
             this.parent.removeChild(this);
         }
-        
+
     }
 
     protected startRun() {

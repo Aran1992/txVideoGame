@@ -271,6 +271,6 @@
 	<e:Group id="idGuideBuyLock" width="100%" height="100%" x="0" y="0" visible="false">
 
 		<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" alpha="0.5" source="common_heidi1_png"/>
-		<e:Image width="1600" height="900" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="buylock_png" alpha="1"/>
+		<e:Image anchorOffsetX="0" anchorOffsetY="0" source="buylock_png" alpha="1" horizontalCenter="0" verticalCenter="-100"/>
 	</e:Group>
 </e:Skin>

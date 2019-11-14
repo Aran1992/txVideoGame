@@ -893,17 +893,19 @@ class GameCommon {
         let curChapterId = this.getPlayingChapterId();
         if (curChapterId == 0)
             return true;
-        let nnextChapterId = this.getNextChapterId(curChapterId);
-        let onSale = this.isChapterOnSale(nnextChapterId);
+        let nextChapterId = this.getNextChapterId(curChapterId);
+        let onSale = this.isChapterOnSale(nextChapterId);
         //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         //let isVip = item.num > 0;
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         if (!onSale) {
             GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。");
+            GameDefine.IS_DUDANG = false;
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
             return false;
         }
-        let freeDay = this.getChapterFreeDay(curChapterId);
+        let freeDay = this.getChapterFreeDay(nextChapterId);
         if (!isVip && freeDay > 0) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
@@ -916,7 +918,12 @@ class GameCommon {
                 });
             };
             GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非特权用户也可等剧集解锁免费观看，详情请在《一零零一》查看", "购买特权", "取消");// "等待" + freeDay + "天"
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            if (isTXSP) {
+                GameDefine.IS_DUDANG = false;
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
+            } else {
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            }
             return false;
         }
         return true;

@@ -7968,7 +7968,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=401"
+            "url": "config/config.bin?v=423"
         }
     ]
 }
