@@ -362,12 +362,16 @@ class TipsBtn extends eui.Component {
     }
 
     private onShowMain() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        this.hideTips();
-        this.videoD.onCloseVideo();
-        GameCommon.getInstance().hideTipsHuDong();
-        this.mengban.visible = false;
-        this.pauseGroup.visible = false;
+        if (isTXSP) {
+            platform.close();
+        } else {
+            SoundManager.getInstance().playSound("ope_click.mp3");
+            this.hideTips();
+            this.videoD.onCloseVideo();
+            GameCommon.getInstance().hideTipsHuDong();
+            this.mengban.visible = false;
+            this.pauseGroup.visible = false;
+        }
     }
 
     private onEnd() {

@@ -40,6 +40,8 @@ declare interface Platform {
     getSaleBeginTime();
 
     isPlatformVip(): boolean;
+
+    close();
 }
 
 class DebugPlatform implements Platform {
@@ -204,6 +206,12 @@ class DebugPlatform implements Platform {
 
     public isDebug(): boolean {
         return true;
+    }
+
+    public close() {
+        if (this.getPlatform() == "plat_txsp") {
+            bridgeHelper.close();
+        }
     }
 }
 
