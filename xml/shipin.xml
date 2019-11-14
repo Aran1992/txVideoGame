@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <shipin>
-    <shipin id="V001" chengjiuId="*" juqing="1" vid="t0032b6tjt4" time="28" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
+    <shipin id="V001" chengjiuId="*" juqing="1" vid="t0032b6tjt4" time="26" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V002" chengjiuId="*" juqing="1" vid="d00326u60gx" time="-1" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V003" chengjiuId="*" juqing="1" vid="x0032ambnam" time="-1" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V004" chengjiuId="*" juqing="1" vid="n0032mzudx5" time="35" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
@@ -213,7 +213,7 @@
     <shipin id="VX1101" chengjiuId="*" juqing="67" vid="z003295d4yi" time="93" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="VX1102" chengjiuId="*" juqing="67" vid="f0032jcexcb" time="0" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="VX1103" chengjiuId="*" juqing="67" vid="e0032lctfmg" time="0" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
-    <shipin id="VX1104" chengjiuId="*" juqing="67" vid="w0032dlhrdb" time="113" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
+    <shipin id="VX1104" chengjiuId="*" juqing="67" vid="w0032dlhrdb" time="107" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="VX1105" chengjiuId="*" juqing="67" vid="c0032hqp022" time="0" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="VX1106" chengjiuId="*" juqing="67" vid="f00321o3g6l" time="0" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="VX1107" chengjiuId="*" juqing="68" vid="l0032yeib5h" time="142" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
