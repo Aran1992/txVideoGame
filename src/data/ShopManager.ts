@@ -174,6 +174,7 @@ class ShopManager {
 
     /**判断某收藏是否开通**/
     public onCheckShoucangOpen(shoucangID: number): boolean {
+        //return true;
         let itemId = shoucangID+SHOP_TYPE.IMAGES*100000;
         if (shoucangID>6000){
             itemId = shoucangID+SHOP_TYPE.MUSICS*100000;

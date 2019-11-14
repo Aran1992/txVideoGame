@@ -64,13 +64,13 @@
 				<e:VerticalLayout gap="15" />
 			</e:layout>
 		</e:Group>
-		<e:Group id="shopGroup" left="300" right="0" top="135" bottom="0">
-			<e:Group id="image_shop_grp" width="100%" height="100%" verticalCenter="0" visible="false">
-				<e:Scroller id="image_shop_scroll" top="40" bottom="40" left="0" right="0">
+		<e:Group id="shopGroup" left="300" right="0" top="125" bottom="0">
+			<e:Group id="image_shop_grp" width="100%" height="100%" verticalCenter="0">
+				<e:Scroller id="image_shop_scroll" top="7" bottom="40" left="0" right="9" anchorOffsetY="0" anchorOffsetX="0">
 					<e:Group width="100%" height="100%">
 						<e:List id="imgs_list" horizontalCenter="0">
 							<e:layout>
-								<e:TileLayout requestedColumnCount="4" horizontalGap="80" verticalGap="30" horizontalAlign="center" />
+								<e:TileLayout requestedColumnCount="4" horizontalGap="60" verticalGap="30" horizontalAlign="center" />
 							</e:layout>
 						</e:List>
 					</e:Group>

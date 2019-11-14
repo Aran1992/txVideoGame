@@ -7558,12 +7558,12 @@
         {
             "name": "5001_view_png",
             "type": "image",
-            "url": "assets/shopvideo/5001_view.png?v=532"
+            "url": "assets/shopvideo/5001_view.png?v=734"
         },
         {
             "name": "5001_view_l_png",
             "type": "image",
-            "url": "assets/shopvideo/5001_view_l.png?v=734"
+            "url": "assets/shopvideo/5001_view_l.png?v=532"
         },
         {
             "name": "5002_desc_png",
@@ -7573,12 +7573,12 @@
         {
             "name": "5002_view_png",
             "type": "image",
-            "url": "assets/shopvideo/5002_view.png?v=781"
+            "url": "assets/shopvideo/5002_view.png?v=434"
         },
         {
             "name": "5002_view_l_png",
             "type": "image",
-            "url": "assets/shopvideo/5002_view_l.png?v=434"
+            "url": "assets/shopvideo/5002_view_l.png?v=781"
         },
         {
             "name": "5003_desc_png",
@@ -7588,12 +7588,12 @@
         {
             "name": "5003_view_png",
             "type": "image",
-            "url": "assets/shopvideo/5003_view.png?v=331"
+            "url": "assets/shopvideo/5003_view.png?v=361"
         },
         {
             "name": "5003_view_l_png",
             "type": "image",
-            "url": "assets/shopvideo/5003_view_l.png?v=361"
+            "url": "assets/shopvideo/5003_view_l.png?v=331"
         },
         {
             "name": "5004_desc_png",
@@ -7603,12 +7603,12 @@
         {
             "name": "5004_view_png",
             "type": "image",
-            "url": "assets/shopvideo/5004_view.png?v=583"
+            "url": "assets/shopvideo/5004_view.png?v=475"
         },
         {
             "name": "5004_view_l_png",
             "type": "image",
-            "url": "assets/shopvideo/5004_view_l.png?v=475"
+            "url": "assets/shopvideo/5004_view_l.png?v=583"
         },
         {
             "name": "sc_music_Pro_png",
@@ -8303,7 +8303,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=478"
+            "url": "config/config.bin?v=490"
         }
     ]
 }
