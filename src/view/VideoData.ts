@@ -952,7 +952,14 @@ class VideoData extends egret.DisplayObjectContainer {
                 }, this, 200);
                 GameCommon.getInstance().hideTipsHuDong();
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+                if (isTXSP) {
+                    GameDefine.IS_DUDANG = false;
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
+                } else {
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+                }
+                GameCommon.getInstance().showConfirmTips("END", () => {
+                });
                 return;
             }
         }
