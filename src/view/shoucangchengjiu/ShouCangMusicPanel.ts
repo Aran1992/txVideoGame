@@ -96,7 +96,7 @@ class ShouCangMusicItem extends eui.Component {
     public set data(info) {
         this.info = info;
         this.musicName.text = info.name;
-        this.icon.source = `${info.id}_view_yuan_png`
+        this.icon.source = `${info.id}_view_fang_png`
         let count = info.kuozhan.split(";").length
         this.musicNum.text = count + '首';
         // if (UserInfo.allCollectionDatas[info.id]) {

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <shoucang>
-    <shoucang id="5001" src="S002" shengyin="0" time="1:09" level="sr" mulu2="2" name="雨后湿温new" kuozhan="*" mulu1="2"/>
+    <!--<shoucang id="5001" src="S002" shengyin="0" time="1:09" level="sr" mulu2="2" name="雨后湿温new" kuozhan="*" mulu1="2"/>-->
+    <shoucang id="5001" src="HDLC" shengyin="0" time="1:24" level="ssr" mulu2="2" name="你的选择" kuozhan="*" mulu1="1"/>
+    <shoucang id="5002" src="XDLC" shengyin="0" time="1:45" level="ssr" mulu2="2" name="陪他一日" kuozhan="*" mulu1="3"/>
+    <shoucang id="5003" src="QDLC" shengyin="0" time="1:19" level="ssr" mulu2="2" name="为你担心" kuozhan="*" mulu1="2"/>
+    <shoucang id="5004" src="WDLC" shengyin="0" time="1:07" level="ssr" mulu2="2" name="他的娇纵" kuozhan="*" mulu1="4"/>
         
     <shoucang id="6001" src="" shengyin="0" time="*" level="sr" mulu2="3" name="如果你也有梦想" kuozhan="如果你也有梦想" mulu1="5" />
     <shoucang id="6002" src="" shengyin="0" time="*" level="sr" mulu2="3" name="梦想映射" kuozhan="You Cool;我;Missed Call" mulu1="5" />
@@ -65,6 +69,4 @@
     <shoucang id="3019" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="轻舞泡沫"       kuozhan="泡泡浴什么的最好玩了;你怎么还不过来啊;爱心攻击！你收到我的心了吗？;不接收，看我的爱心泡泡;好累啊，你都不和我玩;不管干什么，我都想和你在一起啊"    mulu1="1"/>
     <shoucang id="3020" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="清涧涌泉"       kuozhan="一个⼈泡在水⾥的感觉，让人很安心;和你在一起，也让我觉得觉得很安心;你和我在一起的时候，也有这种感觉吗;如果害羞的话，不如悄悄对我说;你还是这么淘气;别玩了，我们该上场了，一起走吧"    mulu1="4"/>
     <shoucang id="3021" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="濡湿之梦"       kuozhan="你能陪我一会么？;我需要你陪着我;你觉得我们真的会一切好好的么？;说真的，我只在乎你，但你只有我么？;你能多看我一眼么？;就像以前那样"    mulu1="3"/>
-
-    
 </shoucang>

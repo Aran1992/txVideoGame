@@ -24,7 +24,12 @@
     <shop id="503404" name="找韩小白"  preview="*" params="*" currPrice="30" origPrice="0" currSuipian="0" origSuipian="0" show="0" shaixuan_params="*" desc="*" />        
     
     
-    <shop id="205001" name="雨后湿温new" preview="S002pre" desc="雨后湿温的视频new" params="5001" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="1" shaixuan_params="*"/>    
+    <!--<shop id="205001" name="雨后湿温new" preview="S002pre" desc="雨后湿温的视频new" params="5001" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="1" shaixuan_params="*"/>    -->
+
+    <shop id="205001" name="你的选择" preview="HDLCS" params="5001" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="1" shaixuan_params="*" desc="你的选择" />    
+    <shop id="205002" name="陪他一日" preview="XDLCS" params="5002" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="1" shaixuan_params="*" desc="陪他一日" />    
+    <shop id="205003" name="为你担心" preview="QDLCS" params="5003" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="1" shaixuan_params="*" desc="为你担心"/>    
+    <shop id="205004" name="他的娇纵" preview="WDLCS" params="5004" currPrice="10" origPrice="10" currSuipian="100" origSuipian="100" show="1" shaixuan_params="*" desc="他的娇纵"/>    
 
     <shop id="306001" name="如果你也有梦想"  preview="*" desc="如果你也有梦想专辑" params="6001" currPrice="30" origPrice="30" currSuipian="300" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
     <shop id="306002" name="梦想映射"  preview="*" desc="梦想映射专辑" params="6002" currPrice="30" origPrice="30" currSuipian="300" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
@@ -90,6 +95,4 @@
     <shop id="103019"   name="轻舞泡沫"       preview="*"  params="3019" currPrice="30" origPrice="0" currSuipian="100" origSuipian="0" show="1" shaixuan_params="*" desc="轻巧的泡沫，松松软软，也好像和你在一起的心情"    />                
     <shop id="103020"   name="清涧涌泉"       preview="*"  params="3020" currPrice="30" origPrice="0" currSuipian="100" origSuipian="0" show="1" shaixuan_params="*" desc="让自己放松的方法有千百种，但和你一起最受用"      />           
     <shop id="103021"   name="濡湿之梦"       preview="*"  params="3021" currPrice="30" origPrice="0" currSuipian="100" origSuipian="0" show="1" shaixuan_params="*" desc="就像小小的幼兽舔舐伤口，他需要的是你"          />      
-
-    
 </shop>

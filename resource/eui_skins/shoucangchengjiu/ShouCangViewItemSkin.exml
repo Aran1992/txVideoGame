@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="skins.ShouCangViewItemSkin" xmlns:e="http://ns.egret.com/eui" width="290" height="618"
+<e:Skin class="skins.ShouCangViewItemSkin" xmlns:e="http://ns.egret.com/eui" width="274" height="470"
         xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-    <e:Image id="icon" touchEnabled="false" horizontalCenter="0" verticalCenter="0"  width="290" height="618" source="shop_banner2_jpg"/>
+    <e:Image id="icon" touchEnabled="false" horizontalCenter="0" verticalCenter="0"  width="274" height="470" source="shop_banner2_jpg"/>
     <e:Image touchEnabled="false"  source="shop_image_maskbg_png" bottom="0" top="0" right="0" left="0" scale9Grid="38,33,230,148"/>
-    <e:Group  width="100%" y="516">
+    <e:Group  width="100%" y="438">
         <e:Label id="desc" text="韩小白视频" size="20" fontFamily="SimHei" textAlign="left" touchEnabled="false"
                  textColor="0xffffff" verticalAlign="middle" height="23" horizontalCenter="0" bottom="48" />
 			<e:Image id="pinji" y="0" touchEnabled="false" horizontalCenter="0" source="sc_pinji3_png"/>
@@ -12,7 +12,7 @@
 			</e:layout>
     </e:Group>
     <e:Label id="title" text="谁家少年不戴花" size="30" fontFamily="SimHei" textAlign="left" touchEnabled="false"
-             textColor="0xffffff" verticalAlign="middle" bottom="32" height="29" bold="true" horizontalCenter="0" />
+             textColor="0xffffff" verticalAlign="middle" bottom="49" height="43" bold="true" horizontalCenter="5.5" />
     <e:Image id="tubiao" y="0" touchEnabled="false" source="sc_shipin_icon_png" right="7" top="10" />
     <e:Image id="newPoint" touchEnabled="false" source="redCircle_png"  scaleX="0.5" scaleY="0.5" y="5" x="4"/>
     <e:Group id="weijiesuo" width="100%" height="100%" visible="false">

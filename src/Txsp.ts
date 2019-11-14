@@ -76,11 +76,12 @@ class Txsp {
     }
 
     async deleteBookHistory(bookId,slotId,callback){
-        await this.saveBookHistory(bookId, slotId, "", "{}",()=>{})
+        await this.saveBookHistory(bookId, slotId, "", "",()=>{})
         callback();
     }
     //获取商业化数值
     async getBookValues(bookId, slotId,callback) {
+
         //使用本地数据
     }
     async shareImage(bookId,imageData){
@@ -114,17 +115,22 @@ class Txsp {
             })
         //钱够直接买
         if (leftMoney>=shopdata.currPrice){//){shopdata.currPrice
-            if(txsp_debug)
-                await bridgeHelper.setServerEnv(true)
-            await bridgeHelper.diamondConsume({
-                appid: txsp_appid, // 业务id
-                openid: txsp_userinfo.openid, // 互动账号openid,
-                access_token: txsp_userinfo.token, // 互动登录态access_token
-                product_id: itemId, // 商品id
-                count: num, // 商品数量
-                }).then((res) => {
-                    callbackBuyGoods(res)
-                })
+            let okFunc=()=>{
+                            if(txsp_debug)
+                                bridgeHelper.setServerEnv(true)//await 
+                            bridgeHelper.diamondConsume({//await 
+                                appid: txsp_appid, // 业务id
+                                openid: txsp_userinfo.openid, // 互动账号openid,
+                                access_token: txsp_userinfo.token, // 互动登录态access_token
+                                product_id: itemId, // 商品id
+                                count: num, // 商品数量
+                                }).then((res) => {
+                                    callbackBuyGoods(res)
+                                })
+                            }
+            GameCommon.getInstance().showConfirmTips(`你的余额还有${leftMoney}钻
+本次购买将花费${shopdata.currPrice}钻
+是否购买?`,okFunc);
         }else{
             //钱不够走充值流程
             await bridgeHelper.openPayPage({

@@ -326,6 +326,9 @@ class GameCommon {
                 console.log("read book failed:" + tp);
                 return;
             }
+            if(data.data.content == ""){
+                return;
+            }
             console.log("read book success:" + tp);
             switch (data.data.slotId) {
                 //自动存档和手动存档
@@ -373,7 +376,7 @@ class GameCommon {
                 case FILE_TYPE.GOODS_FILE:
                     // GameCommon.getInstance().addChengJiuTips(JSON.stringify(data.data.content));
                     //ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
-                    ShopManager.getInstance().initShopInfos();
+                    ShopManager.getInstance().initShopInfos(data.data.content);
                     break;
                 case FILE_TYPE.TASK: {
                     TaskManager.instance.init(JSON.parse(data.data.content));

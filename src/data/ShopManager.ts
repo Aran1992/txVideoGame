@@ -70,6 +70,7 @@ class ShopManager {
                         this.addGoods(itemId,num,callback)
                     }else{
                         console.log(res.msg);
+                        GameCommon.getInstance().showCommomTips("购买商品失败"+res.msg);
                     }
                 }
             }
@@ -106,7 +107,7 @@ class ShopManager {
     }
 
     /**获取商品信息列表**/
-    public initShopInfos() {
+    public initShopInfos(record?:string) {
         if (!this._shopDataDict) {
             GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
             this._shopDataDict = {};
@@ -117,12 +118,21 @@ class ShopManager {
                 this._shopDataDict[shopData.id] = shopData;
             }
         }
-        this.loadFromServer()
+        this.loadFromServer(record)
     }
     //不从服务器上取了。因为TXSP从服务器上也取不到
-    public loadFromServer(){
+    public loadFromServer(record?:string){
         if(this._serverItemNums["loaded"])
             return;
+        if (platform.getPlatform() == "plat_txsp" && record){//腾讯视频数量初始化
+            let r = JSON.parse(record);
+            for (let itemId in r){
+                let shopdata: ShopInfoData = this._shopDataDict[Number(itemId)];
+                shopdata.num = Number(r[itemId].num);
+            }
+            this._serverItemNums["loaded"] = true;
+            return;
+        }
         let callback = (data)=> {
             if (data.code == 0) {
                 let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
@@ -164,6 +174,7 @@ class ShopManager {
 
     /**判断某收藏是否开通**/
     public onCheckShoucangOpen(shoucangID: number): boolean {
+        //return true;
         let itemId = shoucangID+SHOP_TYPE.IMAGES*100000;
         if (shoucangID>6000){
             itemId = shoucangID+SHOP_TYPE.MUSICS*100000;
