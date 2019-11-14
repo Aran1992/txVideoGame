@@ -90,6 +90,7 @@ class TicketPanel extends eui.Component {
     private idGroupDescCommon: eui.Group;//日常观礼描述
     private idGroupDescSpecial: eui.Group;//活动观礼描述
     private idGroupDiscount: eui.Group;
+    private idGroupTips:eui.Group;
 
     private idBtnBuyTicketOriPrize: eui.Button;
     private idBtnBuyTicketSpecailPrize: eui.Button;
@@ -195,6 +196,8 @@ class TicketPanel extends eui.Component {
     private updateBuyBtnState() {
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         this.idBtnBuyNow.label = itemNum > 0 ? "已拥有" : "立即购买"
+        this.idBtnBuyNow.visible = itemNum<=0;
+        this.idGroupTips.visible = itemNum<=0;
     }
 
     private refreshActiveCode() {
@@ -310,7 +313,7 @@ class TicketPanel extends eui.Component {
 
     private onCloseBuyTicketClick(): void {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        if (this._openParam == "tipsbtnshopcar" || this._openParam == "confirm") {
+        if (this._openParam == "tipsbtnshopcar" || this._openParam == "confirm" || this._openParam == "tipsbtnticket") {
             this.onCloseClick();
             return;
         }
@@ -332,7 +335,7 @@ class TicketPanel extends eui.Component {
         let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         if (item.num > 0) {
             GameCommon.getInstance().showCommomTips("你已经拥有心动PASS了");
-            //return;
+            return;
         }
         let callback = () => {
             this.onCloseBuyTicketClick();
@@ -342,7 +345,7 @@ class TicketPanel extends eui.Component {
         };
         if (platform.getPlatform() == "plat_txsp" || platform.getPlatform() == "plat_pc") {
             let itemID = GameDefine.GUANGLIPINGZHENG;
-            if (platform.getPlatform() == "plat_txsp" && platform.isPlatformVip()) {//在腾讯视频中。会员买另外一个特价物品
+            if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {//在腾讯视频中。会员买另外一个特价物品
                 itemID = GameDefine.GUANGLIPINGZHENGEX;
             }
             GameCommon.getInstance().onShowBuyTips(itemID, TicketPanel.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);

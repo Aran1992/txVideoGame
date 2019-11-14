@@ -8,6 +8,7 @@ class ImageShopPreviewPanel extends eui.Component {
     public buy_btn: eui.Button;
     public closeBtn: eui.Button;
     private datu: eui.Image;
+    private idHasBuyed:eui.Label;
 
     private data: ShopInfoData;
     private shoucangModel: Modelshoucang;
@@ -26,12 +27,12 @@ class ImageShopPreviewPanel extends eui.Component {
     }
 
     private onUpdateInfo(): void {
-        this.banner_img.source = this.data.model.banner2;
-        this.name_lab.text = this.data.model.name;
-        this.desc_lab.text = this.data.model.desc;
         let shoucangID: number = parseInt(this.data.model.params);
         this.shoucangModel = JsonModelManager.instance.getModelshoucang()[shoucangID];
-        let srcAry: string[] = this.shoucangModel.src.split(",");
+        this.banner_img.source = this.shoucangModel.id+"_desc_png";//this.data.model.preview;
+        this.name_lab.text = this.data.model.name;
+        this.desc_lab.text = this.data.model.desc;
+        let srcAry: string[] = this.shoucangModel.src.split(";");
         this.count_lab.text = srcAry.length + "P";
         this.pingfen_img.source = `shop_image_${this.shoucangModel.level}_png`;        
         let num = ShopManager.getInstance().getItemNum(this.data.id);
@@ -39,7 +40,9 @@ class ImageShopPreviewPanel extends eui.Component {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
+            this.idHasBuyed.visible = true;
         } else {
+            this.idHasBuyed.visible = false;
             let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
             if (this.data.model.origPrice > this.data.model.currPrice) {
                 this.discount_bar.visible = true;
@@ -84,7 +87,8 @@ class ImageShopPreviewPanel extends eui.Component {
 
     private onBuy(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, this.shoucangModel.minipic)));
+        let picPath = this.shoucangModel.id+"_view_png";
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data,picPath )));
 
     }
 

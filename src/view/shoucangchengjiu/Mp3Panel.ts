@@ -83,21 +83,22 @@ class Mp3Panel extends eui.Component {
     //供子类覆盖
     protected onInit(): void {
         this.goodsLayer.removeChildren();
-        var awardStrAry: string[] = [];
-        var awardStrAry2: string[] = [];
-        if (this.scCfg.src.indexOf(",") >= 0) {
-            awardStrAry = this.scCfg.src.split(",");
-            awardStrAry2 = this.scCfg.kuozhan.split(';');
-        } else {
-            awardStrAry.push(this.scCfg.src);
-            awardStrAry2.push(this.scCfg.kuozhan);
-        }
-        this.musicNum.text = awardStrAry.length + '首';
-        for (var i: number = 0; i < awardStrAry.length; i++) {
+        // var awardStrAry: string[] = [];
+        // var awardStrAry2: string[] = [];
+        // if (this.scCfg.src.indexOf(";") >= 0) {
+        //     awardStrAry = this.scCfg.src.split(";");
+        //     awardStrAry2 = this.scCfg.kuozhan.split(';');
+        // } else {
+        //     awardStrAry.push(this.scCfg.src);
+        //     awardStrAry2.push(this.scCfg.kuozhan);
+        // }
+        let names = this.scCfg.kuozhan.split(';');
+        this.musicNum.text = names.length + '首';
+        for (var i: number = 0; i < names.length; i++) {
             var cg: Mp3Item = new Mp3Item();
             cg = new Mp3Item();
-            cg.name = i + '';
-            cg.data = {data: this.scCfg, src: this.scCfg.src, idx: i + 1, name: awardStrAry2[i]};
+            cg.name = (i+1) + '';
+            cg.data = {data: this.scCfg, src:`resource/assets/shopmusic/${this.scCfg.id}_${i+1}.mp3`, idx: i + 1, name: names[i]};
             cg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectMusic, this);
             this.goodsLayer.addChild(cg);
         }
@@ -108,7 +109,7 @@ class Mp3Panel extends eui.Component {
         this.timeImg.parent.addChild(this.share);
         this.timeImg.mask = this.share;
         this.onCreateMp3();
-        this.banner_img.source = this.scCfg.minipic + 'yuan_png';
+        this.banner_img.source = `${this.scCfg.id}_view_yuan_png`
     }
 
     protected onSkinName(): void {
@@ -184,8 +185,7 @@ class Mp3Panel extends eui.Component {
 
     private onPlayMp3(data) {
         var mp = window['audioMp3'];
-
-        var md = JsonModelManager.instance.getModelgeci()[data.data.src];
+        var md = JsonModelManager.instance.getModelgeci()[data.data.name];
         this.musicName.text = data.data.name + '';
         mp.name = data.data.src;
         this.desc.text = data.data.data.kuozhan;
@@ -197,7 +197,7 @@ class Mp3Panel extends eui.Component {
         }
         this.lyricsLab.textFlow = this._geci;
         this.stopDragMove();
-        mp.src = "resource/sound/" + data.data.src + '.mp3';
+        mp.src = data.data.src;//"resource/sound/" + data.data.src + '.mp3';
         this.geciIdx = 0;
         this.labScroll.viewport.scrollV = 0;
         mp.load();
@@ -325,7 +325,7 @@ class Mp3Item extends eui.Component {
 
     public set data(info) {
         this.info = info;
-        this.musicName.text = info.idx + '.' + info.name;
+        this.musicName.text = (info.idx+1) + '.' + info.name;
         this.playerGroup.visible = false;
     }
 

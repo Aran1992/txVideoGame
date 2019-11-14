@@ -25,6 +25,7 @@ class ShouCangImgPanel extends eui.Component {
     private imgMaxNumb: number = 5;
     private curImg;
     private imgSound: string[] = [];
+    private imgInfoJson:JSON;
 
     constructor(data) {
         super();
@@ -202,7 +203,7 @@ class ShouCangImgPanel extends eui.Component {
         else
             idx = idx + 1;
         if (this.imgSound[idx]) {
-            SoundManager.getInstance().playSound(this.imgSound[idx] + '.mp3');
+            SoundManager.getInstance().playSound(this.imgSound[idx],null,true);// + '.mp3');
         }
     }
 
@@ -218,7 +219,7 @@ class ShouCangImgPanel extends eui.Component {
         else
             idx = idx + 1;
         if (this.imgSound[idx]) {
-            SoundManager.getInstance().playSound(this.imgSound[idx] + '.mp3');
+            SoundManager.getInstance().playSound(this.imgSound[idx],null,true);// + '.mp3');
         }
         this.play();
     }
@@ -302,7 +303,20 @@ class ShouCangImgPanel extends eui.Component {
         this.width = size.width;
         this.height = size.height;
     }
-
+    private getImgArray(){
+        var imgs: string[]=[];  
+        let count = Math.min(this.imgMaxNumb,Number(this.info.src));
+        for (let i=1;i<=count;i++){
+            imgs.push(this.info.id+"_"+String(i)+"_jpg");
+        }     
+        return imgs; 
+        // if (this.info.src.indexOf(";") >= 0) {
+        //     imgs = this.info.src.split(";");
+        //     for(let i=1;i<=imgs.length;i++){
+        //         imgs[i-1]=this.info.id+"_"+String(i)+"_jpg";
+        //     }
+        // }
+    }
     private onLoadComplete(): void {
         this.updateResize();
         this.touchEnabled = false;
@@ -311,14 +325,17 @@ class ShouCangImgPanel extends eui.Component {
         this.isOne = true;
         // UserInfo.guideDic[7] = 7;
 
-        var imgs: string[];
-        if (this.info.src.indexOf(",") >= 0) {
-            imgs = this.info.src.split(",");
-        }
+        var imgs: string[]=this.getImgArray();
+        // if (this.info.src.indexOf(";") >= 0) {
+        //     imgs = this.info.src.split(";");
+        //     for(let i=1;i<=imgs.length;i++){
+        //         imgs[i-1]=this.info.id+"_"+String(i)+"_jpg";
+        //     }
+        // }
         var miaoshus: string[];
-        if (this.info.kuozhan.indexOf(";") >= 0) {
+        //if (this.info.kuozhan.indexOf(";") >= 0) {
             miaoshus = this.info.kuozhan.split(";");
-        }
+        //}
 
         for (let j = 0; j < imgs.length; j++) {
             this[`xindong${j}`].visible = false;
@@ -361,10 +378,19 @@ class ShouCangImgPanel extends eui.Component {
             this['img' + j].width = 1006;
             this['img' + j].height = 537;
         }
-        var sounds: string[];
-        if (this.info.shengyin.indexOf(";") >= 0) {
-            sounds = this.info.shengyin.split(";");
+        var sounds: string[]=[];
+        let count = Number(this.info.shengyin) || 0;
+        for (let i=1;i<=count;i++){
+            sounds.push("resource/assets/shopimages/"+this.info.id+"/"+this.info.id+"_"+i+".mp3");
+            //sounds[i-1]=
         }
+        // if (this.info.shengyin.indexOf(";") >= 0) {
+        //     sounds = this.info.shengyin.split(";");            
+        //     for(let i=1;i<=sounds.length;i++){
+        //         //this.info.id+"_"+String(i)+"_mp3";
+        //         //sounds[i-1]=this.info.id+"_"+String(i)+".mp3";
+        //     }
+        // }
 
         this.imgSound = sounds;
         this.yindaoGroup.visible = false;
@@ -377,7 +403,7 @@ class ShouCangImgPanel extends eui.Component {
         else
             idx = idx + 1;
         if (this.imgSound[idx]) {
-            SoundManager.getInstance().playSound(this.imgSound[idx] + '.mp3');
+            SoundManager.getInstance().playSound(this.imgSound[idx],null,true)// + '.mp3');
         }
         this.play();
         this.onRegist();
@@ -394,10 +420,14 @@ class ShouCangImgPanel extends eui.Component {
 
     private onShare(): void {        
         SoundManager.getInstance().playSound("ope_click.mp3")
-        var imgs: string[];
-        if (this.info.src.indexOf(",") >= 0) {
-            imgs = this.info.src.split(",");
-        }
+        var imgs: string[]=this.getImgArray();
+        // var imgs: string[];
+        // if (this.info.src.indexOf(";") >= 0) {
+        //     imgs = this.info.src.split(";");            
+        //     for(let i=1;i<imgs.length;i++){
+        //         imgs[i-1]=this.info.id+"_"+String(i)+"_jpg";
+        //     }
+        // }
         let image_src: string = imgs[this.imgIndx - 1];
         if (!image_src) return;
         let texture: egret.Texture = RES.getRes(image_src);

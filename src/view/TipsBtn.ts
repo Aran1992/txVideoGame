@@ -642,6 +642,10 @@ class TipsBtn extends eui.Component {
                 })
             }
         }
+        
+        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        let isVip = vipNum > 0;
+        this.idBtnTicket.visible = !isVip;
     }
 
     private gotoAction(model: Modelwenti) {
@@ -731,6 +735,12 @@ class TipsBtn extends eui.Component {
     }
 
     private idBtnTicketClick() {
+        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
+        let isVip = vipNum > 0;
+        if(isVip){
+            GameCommon.getInstance().showCommomTips("你已经购买了心动PASS了")
+            return;
+        }
         VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
             windowName: 'TicketPanel',

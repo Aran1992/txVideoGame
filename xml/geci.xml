@@ -1,157 +1,323 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <geci>
-    <geci videoId="mp3_music1_1" start="1" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="4" text="词：张敬豪    曲：张敬豪"/>
-    <geci videoId="mp3_music1_1" start="7" text="演唱：耀乐团"/>
-    <geci videoId="mp3_music1_1" start="10" text="他从小就很喜欢唱歌"/>
-    <geci videoId="mp3_music1_1" start="13" text="嘴里一直哼着包括上课"/>
-    <geci videoId="mp3_music1_1" start="15" text="被老师骂了头还是一直晃着"/>
-    <geci videoId="mp3_music1_1" start="18" text="不是装酷是心里的节奏还没断呢"/>
-    <geci videoId="mp3_music1_1" start="21" text="他被妈妈骂了 他被爸爸打了"/>
-    <geci videoId="mp3_music1_1" start="24" text="梦想的希望小了"/>
-    <geci videoId="mp3_music1_1" start="25" text="他为此流泪了"/>
-    <geci videoId="mp3_music1_1" start="26" text="默默努力着试图向他们证明什么"/>
-    <geci videoId="mp3_music1_1" start="29" text="那天他做到了在雨中 跑 跳 哭笑了"/>
-    <geci videoId="mp3_music1_1" start="32" text="他离开了家 离开了最爱的她"/>
-    <geci videoId="mp3_music1_1" start="35" text="带着那份倔强离开老人家"/>
-    <geci videoId="mp3_music1_1" start="37" text="他离开了那 离开了最熟悉的那 一片土地"/>
-    <geci videoId="mp3_music1_1" start="40" text="有一天他一定会回去"/>
-    <geci videoId="mp3_music1_1" start="42" text="这是他对自己许下的承诺"/>
-    <geci videoId="mp3_music1_1" start="45" text="也是他左手和右手打的勾勾"/>
-    <geci videoId="mp3_music1_1" start="48" text="即使有天他只剩一只手"/>
-    <geci videoId="mp3_music1_1" start="50" text="也会一直紧紧地握着麦克风"/>
-    <geci videoId="mp3_music1_1" start="52" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="55" text="现在请你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="57" text="因为我跟和你一样 需要爱和希望"/>
-    <geci videoId="mp3_music1_1" start="62" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="65" text="我会为你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="68" text="因为爱和希望会为它插上翅膀"/>
-    <geci videoId="mp3_music1_1" start="73" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="76" text="现在请你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="78" text="因为我跟和你一样 需要爱和希望"/>
-    <geci videoId="mp3_music1_1" start="84" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="87" text="我会为你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="89" text="因为爱和希望会为它插上翅膀"/>
-    <geci videoId="mp3_music1_1" start="96" text="有时成功和失败只有一步之差"/>
-    <geci videoId="mp3_music1_1" start="98" text="向左 或向右的选择会有偏差"/>
-    <geci videoId="mp3_music1_1" start="101" text="他不想像他们一样 对选择有误差"/>
-    <geci videoId="mp3_music1_1" start="104" text="他知道他最初的梦想 他不瞎"/>
-    <geci videoId="mp3_music1_1" start="106" text="对所谓的圈子会成功的规则不回答"/>
-    <geci videoId="mp3_music1_1" start="109" text="他看到了太多的人 太多的沉沦"/>
-    <geci videoId="mp3_music1_1" start="112" text="太多的画面 让他不敢转身去"/>
-    <geci videoId="mp3_music1_1" start="115" text="打开就在面前通向成功的那扇门"/>
-    <geci videoId="mp3_music1_1" start="117" text="他决定自己做 不论选对或选错"/>
-    <geci videoId="mp3_music1_1" start="120" text="有困难自己破 不论过程多难过"/>
-    <geci videoId="mp3_music1_1" start="122" text="被人误解的时候他选择沉默"/>
-    <geci videoId="mp3_music1_1" start="125" text="被人伤害的时候他选择沉默"/>
-    <geci videoId="mp3_music1_1" start="128" text="为何所有的一切他都选择沉默"/>
-    <geci videoId="mp3_music1_1" start="130" text="有人说沉默是金 那他病的不轻"/>
-    <geci videoId="mp3_music1_1" start="133" text="幸好他身边还有一群可以信赖的朋友"/>
-    <geci videoId="mp3_music1_1" start="136" text="关键的时候他们总是十指紧扣"/>
-    <geci videoId="mp3_music1_1" start="138" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="140" text="现在请你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="142" text="因为我他跟和你一样 需要爱和希望"/>
-    <geci videoId="mp3_music1_1" start="148" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="151" text="我会为你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="153" text="因为爱和希望会为它插上翅膀"/>
-    <geci videoId="mp3_music1_1" start="158" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="161" text="现在请你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="164" text="因为我跟和你一样 需要爱和希望"/>
-    <geci videoId="mp3_music1_1" start="169" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="172" text="我会为你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="174" text="因为爱和希望会为它插上翅膀"/>
-    <geci videoId="mp3_music1_1" start="181" text="这一路上他得到了太多 也失去了太多"/>
-    <geci videoId="mp3_music1_1" start="185" text="他也曾偷偷躲在角落哭过"/>
-    <geci videoId="mp3_music1_1" start="187" text="因为他在工作而悄悄离开的外婆（I’m sorry Grandma）"/>
-    <geci videoId="mp3_music1_1" start="192" text="他也曾问自己这一切值得与否"/>
-    <geci videoId="mp3_music1_1" start="194" text="面对更多的这些 那些 是留或是走"/>
-    <geci videoId="mp3_music1_1" start="197" text="今天是昨天的明天 希望还会有"/>
-    <geci videoId="mp3_music1_1" start="199" text="成功会站在希望身后等你牵手"/>
-    <geci videoId="mp3_music1_1" start="201" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="204" text="现在请你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="207" text="因为他跟我和你一样 需要爱和希望"/>
-    <geci videoId="mp3_music1_1" start="212" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="215" text="我会为你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="217" text="因为爱和希望会为它插上翅膀"/>
-    <geci videoId="mp3_music1_1" start="222" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="225" text="现在请你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="228" text="因为我他跟和你一样 需要爱和希望"/>
-    <geci videoId="mp3_music1_1" start="233" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="236" text="我会为你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="238" text="因为爱和希望会为它插上翅膀"/>
-    <geci videoId="mp3_music1_1" start="244" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="247" text="现在请你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="249" text="因为我他跟和你一样 需要爱和希望"/>
-    <geci videoId="mp3_music1_1" start="254" text="如果你也有梦想"/>
-    <geci videoId="mp3_music1_1" start="258" text="我会为你鼓掌"/>
-    <geci videoId="mp3_music1_1" start="260" text="因为爱和希望会为它插上翅膀"/>
-    <geci videoId="mp3_music2_1" start="0" text="You Cool"/>
-    <geci videoId="mp3_music2_1" start="5" text="词曲：耀乐团 演唱：耀乐团"/>
-    <geci videoId="mp3_music2_1" start="10" text="Bass"/>
-    <geci videoId="mp3_music2_1" start="13" text="Hello"/>
-    <geci videoId="mp3_music2_1" start="16" text="Bring"/>
-    <geci videoId="mp3_music2_1" start="19" text="With me"/>
-    <geci videoId="mp3_music2_1" start="21" text="With me"/>
-    <geci videoId="mp3_music2_1" start="26" text="Yao homie I made this beat"/>
-    <geci videoId="mp3_music2_1" start="28" text="I made this beat so go with me"/>
-    <geci videoId="mp3_music2_1" start="30" text="用影像记录"/>
-    <geci videoId="mp3_music2_1" start="31" text="用生命记住"/>
-    <geci videoId="mp3_music2_1" start="32" text="用身体叙述"/>
-    <geci videoId="mp3_music2_1" start="33" text="向风景寄宿"/>
-    <geci videoId="mp3_music2_1" start="34" text="沿途的来客走各色各样的路"/>
-    <geci videoId="mp3_music2_1" start="36" text="想活得更赞就拿出你的态度"/>
-    <geci videoId="mp3_music2_1" start="38" text="这条路我一步你一步他一步"/>
-    <geci videoId="mp3_music2_1" start="40" text="把梦想握住"/>
-    <geci videoId="mp3_music2_1" start="41" text="我们永远不孤独"/>
-    <geci videoId="mp3_music2_1" start="42" text="如果说精神是食粮"/>
-    <geci videoId="mp3_music2_1" start="44" text="那影像就是食堂"/>
-    <geci videoId="mp3_music2_1" start="46" text="喂饱饥饿的双眼"/>
-    <geci videoId="mp3_music2_1" start="48" text="盯住精彩的瞬间"/>
-    <geci videoId="mp3_music2_1" start="50" text="我们在不同地域"/>
-    <geci videoId="mp3_music2_1" start="51" text="因为相同的兴趣"/>
-    <geci videoId="mp3_music2_1" start="53" text="独一无二的你和我相遇"/>
-    <geci videoId="mp3_music2_1" start="54" text="流星滑过天际说谜语"/>
-    <geci videoId="mp3_music2_1" start="57" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="mp3_music2_1" start="61" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="mp3_music2_1" start="65" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="mp3_music2_1" start="69" text="Do mi re mi fa mi so mi with me yeah"/>
-    <geci videoId="mp3_music2_1" start="73" text="Na..."/>
-    <geci videoId="mp3_music2_1" start="80" text="You cool"/>
-    <geci videoId="mp3_music2_1" start="81" text="Na..."/>
-    <geci videoId="mp3_music2_1" start="87" text="I'm cool"/>
-    <geci videoId="mp3_music2_1" start="88" text="Na..."/>
-    <geci videoId="mp3_music2_1" start="95" text="Yao cool"/>
-    <geci videoId="mp3_music2_1" start="96" text="Na..."/>
-    <geci videoId="mp3_music2_1" start="103" text="Yao cool"/>
-    <geci videoId="mp3_music2_1" start="104" text="Yao homie I made this beat"/>
-    <geci videoId="mp3_music2_1" start="105" text="I made this beat so go with me"/>
-    <geci videoId="mp3_music2_1" start="107" text="用影像记录"/>
-    <geci videoId="mp3_music2_1" start="108" text="用生命记住"/>
-    <geci videoId="mp3_music2_1" start="109" text="用身体叙述"/>
-    <geci videoId="mp3_music2_1" start="110" text="向风景寄宿"/>
-    <geci videoId="mp3_music2_1" start="111" text="沿途的来客走各色各样的路"/>
-    <geci videoId="mp3_music2_1" start="113" text="想活得更赞就拿出你的态度"/>
-    <geci videoId="mp3_music2_1" start="115" text="这条路我一步你一步他一步"/>
-    <geci videoId="mp3_music2_1" start="117" text="把梦想握住"/>
-    <geci videoId="mp3_music2_1" start="118" text="我们永远不孤独"/>
-    <geci videoId="mp3_music2_1" start="119" text="如果说精神是食粮"/>
-    <geci videoId="mp3_music2_1" start="121" text="那影像就是食堂"/>
-    <geci videoId="mp3_music2_1" start="123" text="喂饱饥饿的双眼"/>
-    <geci videoId="mp3_music2_1" start="125" text="盯住精彩的瞬间"/>
-    <geci videoId="mp3_music2_1" start="127" text="我们在不同地域"/>
-    <geci videoId="mp3_music2_1" start="129" text="因为相同的兴趣"/>
-    <geci videoId="mp3_music2_1" start="130" text="独一无二的你和我相遇"/>
-    <geci videoId="mp3_music2_1" start="132" text="流星滑过天际说谜语"/>
-    <geci videoId="mp3_music2_1" start="134" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="mp3_music2_1" start="138" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="mp3_music2_1" start="142" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="mp3_music2_1" start="145" text="Do mi re mi fa mi so mi with me yeah"/>
-    <geci videoId="mp3_music2_1" start="149" text="Na..."/>
-    <geci videoId="mp3_music2_1" start="156" text="You cool"/>
-    <geci videoId="mp3_music2_1" start="157" text="Na..."/>
-    <geci videoId="mp3_music2_1" start="164" text="I'm cool"/>
-    <geci videoId="mp3_music2_1" start="165" text="Na..."/>
-    <geci videoId="mp3_music2_1" start="172" text="Yao cool"/>
-    <geci videoId="mp3_music2_1" start="173" text="Na..."/>
-    <geci videoId="mp3_music2_1" start="179" text="Yao cool"/>
+    <geci videoId="如果你也有梦想" start="1" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="4" text="词：张敬豪    曲：张敬豪"/>
+    <geci videoId="如果你也有梦想" start="7" text="演唱：耀乐团"/>
+    <geci videoId="如果你也有梦想" start="10" text="他从小就很喜欢唱歌"/>
+    <geci videoId="如果你也有梦想" start="13" text="嘴里一直哼着包括上课"/>
+    <geci videoId="如果你也有梦想" start="15" text="被老师骂了头还是一直晃着"/>
+    <geci videoId="如果你也有梦想" start="18" text="不是装酷是心里的节奏还没断呢"/>
+    <geci videoId="如果你也有梦想" start="21" text="他被妈妈骂了 他被爸爸打了"/>
+    <geci videoId="如果你也有梦想" start="24" text="梦想的希望小了"/>
+    <geci videoId="如果你也有梦想" start="25" text="他为此流泪了"/>
+    <geci videoId="如果你也有梦想" start="26" text="默默努力着试图向他们证明什么"/>
+    <geci videoId="如果你也有梦想" start="29" text="那天他做到了在雨中 跑 跳 哭笑了"/>
+    <geci videoId="如果你也有梦想" start="32" text="他离开了家 离开了最爱的她"/>
+    <geci videoId="如果你也有梦想" start="35" text="带着那份倔强离开老人家"/>
+    <geci videoId="如果你也有梦想" start="37" text="他离开了那 离开了最熟悉的那 一片土地"/>
+    <geci videoId="如果你也有梦想" start="40" text="有一天他一定会回去"/>
+    <geci videoId="如果你也有梦想" start="42" text="这是他对自己许下的承诺"/>
+    <geci videoId="如果你也有梦想" start="45" text="也是他左手和右手打的勾勾"/>
+    <geci videoId="如果你也有梦想" start="48" text="即使有天他只剩一只手"/>
+    <geci videoId="如果你也有梦想" start="50" text="也会一直紧紧地握着麦克风"/>
+    <geci videoId="如果你也有梦想" start="52" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="55" text="现在请你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="57" text="因为我跟和你一样 需要爱和希望"/>
+    <geci videoId="如果你也有梦想" start="62" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="65" text="我会为你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="68" text="因为爱和希望会为它插上翅膀"/>
+    <geci videoId="如果你也有梦想" start="73" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="76" text="现在请你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="78" text="因为我跟和你一样 需要爱和希望"/>
+    <geci videoId="如果你也有梦想" start="84" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="87" text="我会为你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="89" text="因为爱和希望会为它插上翅膀"/>
+    <geci videoId="如果你也有梦想" start="96" text="有时成功和失败只有一步之差"/>
+    <geci videoId="如果你也有梦想" start="98" text="向左 或向右的选择会有偏差"/>
+    <geci videoId="如果你也有梦想" start="101" text="他不想像他们一样 对选择有误差"/>
+    <geci videoId="如果你也有梦想" start="104" text="他知道他最初的梦想 他不瞎"/>
+    <geci videoId="如果你也有梦想" start="106" text="对所谓的圈子会成功的规则不回答"/>
+    <geci videoId="如果你也有梦想" start="109" text="他看到了太多的人 太多的沉沦"/>
+    <geci videoId="如果你也有梦想" start="112" text="太多的画面 让他不敢转身去"/>
+    <geci videoId="如果你也有梦想" start="115" text="打开就在面前通向成功的那扇门"/>
+    <geci videoId="如果你也有梦想" start="117" text="他决定自己做 不论选对或选错"/>
+    <geci videoId="如果你也有梦想" start="120" text="有困难自己破 不论过程多难过"/>
+    <geci videoId="如果你也有梦想" start="122" text="被人误解的时候他选择沉默"/>
+    <geci videoId="如果你也有梦想" start="125" text="被人伤害的时候他选择沉默"/>
+    <geci videoId="如果你也有梦想" start="128" text="为何所有的一切他都选择沉默"/>
+    <geci videoId="如果你也有梦想" start="130" text="有人说沉默是金 那他病的不轻"/>
+    <geci videoId="如果你也有梦想" start="133" text="幸好他身边还有一群可以信赖的朋友"/>
+    <geci videoId="如果你也有梦想" start="136" text="关键的时候他们总是十指紧扣"/>
+    <geci videoId="如果你也有梦想" start="138" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="140" text="现在请你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="142" text="因为我他跟和你一样 需要爱和希望"/>
+    <geci videoId="如果你也有梦想" start="148" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="151" text="我会为你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="153" text="因为爱和希望会为它插上翅膀"/>
+    <geci videoId="如果你也有梦想" start="158" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="161" text="现在请你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="164" text="因为我跟和你一样 需要爱和希望"/>
+    <geci videoId="如果你也有梦想" start="169" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="172" text="我会为你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="174" text="因为爱和希望会为它插上翅膀"/>
+    <geci videoId="如果你也有梦想" start="181" text="这一路上他得到了太多 也失去了太多"/>
+    <geci videoId="如果你也有梦想" start="185" text="他也曾偷偷躲在角落哭过"/>
+    <geci videoId="如果你也有梦想" start="187" text="因为他在工作而悄悄离开的外婆（I’m sorry Grandma）"/>
+    <geci videoId="如果你也有梦想" start="192" text="他也曾问自己这一切值得与否"/>
+    <geci videoId="如果你也有梦想" start="194" text="面对更多的这些 那些 是留或是走"/>
+    <geci videoId="如果你也有梦想" start="197" text="今天是昨天的明天 希望还会有"/>
+    <geci videoId="如果你也有梦想" start="199" text="成功会站在希望身后等你牵手"/>
+    <geci videoId="如果你也有梦想" start="201" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="204" text="现在请你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="207" text="因为他跟我和你一样 需要爱和希望"/>
+    <geci videoId="如果你也有梦想" start="212" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="215" text="我会为你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="217" text="因为爱和希望会为它插上翅膀"/>
+    <geci videoId="如果你也有梦想" start="222" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="225" text="现在请你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="228" text="因为我他跟和你一样 需要爱和希望"/>
+    <geci videoId="如果你也有梦想" start="233" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="236" text="我会为你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="238" text="因为爱和希望会为它插上翅膀"/>
+    <geci videoId="如果你也有梦想" start="244" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="247" text="现在请你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="249" text="因为我他跟和你一样 需要爱和希望"/>
+    <geci videoId="如果你也有梦想" start="254" text="如果你也有梦想"/>
+    <geci videoId="如果你也有梦想" start="258" text="我会为你鼓掌"/>
+    <geci videoId="如果你也有梦想" start="260" text="因为爱和希望会为它插上翅膀"/>
+
+    <geci videoId="you cool" start="0" text="You Cool"/>
+    <geci videoId="you cool" start="5" text="词曲：耀乐团 演唱：耀乐团"/>
+    <geci videoId="you cool" start="10" text="Bass"/>
+    <geci videoId="you cool" start="13" text="Hello"/>
+    <geci videoId="you cool" start="16" text="Bring"/>
+    <geci videoId="you cool" start="19" text="With me"/>
+    <geci videoId="you cool" start="21" text="With me"/>
+    <geci videoId="you cool" start="26" text="Yao homie I made this beat"/>
+    <geci videoId="you cool" start="28" text="I made this beat so go with me"/>
+    <geci videoId="you cool" start="30" text="用影像记录"/>
+    <geci videoId="you cool" start="31" text="用生命记住"/>
+    <geci videoId="you cool" start="32" text="用身体叙述"/>
+    <geci videoId="you cool" start="33" text="向风景寄宿"/>
+    <geci videoId="you cool" start="34" text="沿途的来客走各色各样的路"/>
+    <geci videoId="you cool" start="36" text="想活得更赞就拿出你的态度"/>
+    <geci videoId="you cool" start="38" text="这条路我一步你一步他一步"/>
+    <geci videoId="you cool" start="40" text="把梦想握住"/>
+    <geci videoId="you cool" start="41" text="我们永远不孤独"/>
+    <geci videoId="you cool" start="42" text="如果说精神是食粮"/>
+    <geci videoId="you cool" start="44" text="那影像就是食堂"/>
+    <geci videoId="you cool" start="46" text="喂饱饥饿的双眼"/>
+    <geci videoId="you cool" start="48" text="盯住精彩的瞬间"/>
+    <geci videoId="you cool" start="50" text="我们在不同地域"/>
+    <geci videoId="you cool" start="51" text="因为相同的兴趣"/>
+    <geci videoId="you cool" start="53" text="独一无二的你和我相遇"/>
+    <geci videoId="you cool" start="54" text="流星滑过天际说谜语"/>
+    <geci videoId="you cool" start="57" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="you cool" start="61" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="you cool" start="65" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="you cool" start="69" text="Do mi re mi fa mi so mi with me yeah"/>
+    <geci videoId="you cool" start="73" text="Na..."/>
+    <geci videoId="you cool" start="80" text="You cool"/>
+    <geci videoId="you cool" start="81" text="Na..."/>
+    <geci videoId="you cool" start="87" text="I'm cool"/>
+    <geci videoId="you cool" start="88" text="Na..."/>
+    <geci videoId="you cool" start="95" text="Yao cool"/>
+    <geci videoId="you cool" start="96" text="Na..."/>
+    <geci videoId="you cool" start="103" text="Yao cool"/>
+    <geci videoId="you cool" start="104" text="Yao homie I made this beat"/>
+    <geci videoId="you cool" start="105" text="I made this beat so go with me"/>
+    <geci videoId="you cool" start="107" text="用影像记录"/>
+    <geci videoId="you cool" start="108" text="用生命记住"/>
+    <geci videoId="you cool" start="109" text="用身体叙述"/>
+    <geci videoId="you cool" start="110" text="向风景寄宿"/>
+    <geci videoId="you cool" start="111" text="沿途的来客走各色各样的路"/>
+    <geci videoId="you cool" start="113" text="想活得更赞就拿出你的态度"/>
+    <geci videoId="you cool" start="115" text="这条路我一步你一步他一步"/>
+    <geci videoId="you cool" start="117" text="把梦想握住"/>
+    <geci videoId="you cool" start="118" text="我们永远不孤独"/>
+    <geci videoId="you cool" start="119" text="如果说精神是食粮"/>
+    <geci videoId="you cool" start="121" text="那影像就是食堂"/>
+    <geci videoId="you cool" start="123" text="喂饱饥饿的双眼"/>
+    <geci videoId="you cool" start="125" text="盯住精彩的瞬间"/>
+    <geci videoId="you cool" start="127" text="我们在不同地域"/>
+    <geci videoId="you cool" start="129" text="因为相同的兴趣"/>
+    <geci videoId="you cool" start="130" text="独一无二的你和我相遇"/>
+    <geci videoId="you cool" start="132" text="流星滑过天际说谜语"/>
+    <geci videoId="you cool" start="134" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="you cool" start="138" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="you cool" start="142" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="you cool" start="145" text="Do mi re mi fa mi so mi with me yeah"/>
+    <geci videoId="you cool" start="149" text="Na..."/>
+    <geci videoId="you cool" start="156" text="You cool"/>
+    <geci videoId="you cool" start="157" text="Na..."/>
+    <geci videoId="you cool" start="164" text="I'm cool"/>
+    <geci videoId="you cool" start="165" text="Na..."/>
+    <geci videoId="you cool" start="172" text="Yao cool"/>
+    <geci videoId="you cool" start="173" text="Na..."/>
+    <geci videoId="you cool" start="179" text="Yao cool"/>
+    
+    <geci videoId="我" start="0" text="《我》"/>
+    <geci videoId="我" start="6" text="词曲：王鹏飞"/>
+    <geci videoId="我" start="12" text="编曲：王鹏飞 演唱：陈佳懿"/>
+    <geci videoId="我" start="18" text="我 站在城市的路口"/>
+    <geci videoId="我" start="30" text="曾经绚烂的烟火"/>
+    <geci videoId="我" start="38" text="刹那坠落"/>
+    <geci videoId="我" start="45" text="我 不再相信着承诺"/>
+    <geci videoId="我" start="57" text="就算世界背弃我"/>
+    <geci videoId="我" start="65" text="不再退缩"/>
+    <geci videoId="我" start="76" text="我已倾尽我所有"/>
+    <geci videoId="我" start="80" text="而你却要我放手"/>
+    <geci videoId="我" start="84" text="曾经的承诺不准我说出口"/>
+    <geci videoId="我" start="92" text="在这无尽的宇宙"/>
+    <geci videoId="我" start="96" text="心早已沉没"/>
+    <geci videoId="我" start="138" text="我已倾尽我所有"/>
+    <geci videoId="我" start="142" text="而你却要我放手"/>
+    <geci videoId="我" start="146" text="曾经的承诺不准我说出口"/>
+    <geci videoId="我" start="154" text="在这无尽的宇宙"/>
+    <geci videoId="我" start="158" text="心早已沉没"/>
+    <geci videoId="我" start="169" text="我 行走在废墟之中"/>
+    <geci videoId="我" start="181" text="将眼泪定格"/>
+
+    <geci videoId="最美的时刻" start="0" text="最美的时刻"/>
+    <geci videoId="最美的时刻" start="8" text="词：刘柏谣  曲：张玺 "/>
+    <geci videoId="最美的时刻" start="13" text="编曲：张玺 演唱：明鹏"/>
+    <geci videoId="最美的时刻" start="19" text="下雨后 空气会变得氤氲而舒服"/>
+    <geci videoId="最美的时刻" start="24" text="会期待 接下来的剧情会有何不同"/>
+    <geci videoId="最美的时刻" start="31" text="用各种理由 约你出来和我看日出或日落"/>
+    <geci videoId="最美的时刻" start="36" text="你没有Say no 是否已感觉到什么"/>
+    <geci videoId="最美的时刻" start="41" text="有暖风吹过"/>
+    <geci videoId="最美的时刻" start="42" text="你的额头 你的发线飘散在风中"/>
+    <geci videoId="最美的时刻" start="47" text="在不经意间 最美的时刻 你的侧脸让我好心动"/>
+    <geci videoId="最美的时刻" start="53" text="当太阳 渐渐落下 金色的光芒 勾勒出你的轮廓"/>
+    <geci videoId="最美的时刻" start="59" text="一种莫名的冲动 装作不经意牵你的手"/>
+    <geci videoId="最美的时刻" start="63" text="你竟没闪躲"/>
+    <geci videoId="最美的时刻" start="78" text="我还以为 空气会变得尴尬而沉默"/>
+    <geci videoId="最美的时刻" start="84" text="认识太久 我们的关系反而变得很困惑"/>
+    <geci videoId="最美的时刻" start="90" text="开不了口 只好装作一切都没有发生过"/>
+    <geci videoId="最美的时刻" start="96" text="目光交错 是否你在也期待着什么"/>
+    <geci videoId="最美的时刻" start="101" text="有暖风吹过"/>
+    <geci videoId="最美的时刻" start="102" text="你的额头 你的发线飘散在风中"/>
+    <geci videoId="最美的时刻" start="107" text="在不经意间 最美的时刻 你的侧脸让我好心动"/>
+    <geci videoId="最美的时刻" start="112" text="当太阳 渐渐落下 金色的光芒 勾勒出你的轮廓"/>
+    <geci videoId="最美的时刻" start="118" text="一种莫名的冲动 装作不经意牵你的手"/>
+    <geci videoId="最美的时刻" start="123" text="你冲我笑了"/>
+    <geci videoId="最美的时刻" start="126" text="有暖风吹过"/>
+    <geci videoId="最美的时刻" start="127" text="你的额头 你的发线飘散在风中"/>
+    <geci videoId="最美的时刻" start="132" text="这就是我 最美的时刻 你的侧脸让我好心动"/>
+    <geci videoId="最美的时刻" start="138" text="当太阳 渐渐落下 金色的光芒 勾勒出你的轮廓"/>
+    <geci videoId="最美的时刻" start="144" text="一种莫名的冲动 装作不经意牵你的手"/>
+    <geci videoId="最美的时刻" start="149" text="你冲我笑了 这就是故事的最后"/>
+    <geci videoId="最美的时刻" start="154" text="最美的时刻"/>
+
+    <geci videoId="低音弦上的呐喊" start="0" text="低音弦上的呐喊"/>
+    <geci videoId="低音弦上的呐喊" start="1" text="词：刘柏谣  曲：刘柏谣 编曲：刘柏谣 演唱：明鹏"/>
+    <geci videoId="低音弦上的呐喊" start="2" text="所有我给过你的承诺 全都会兑现"/>
+    <geci videoId="低音弦上的呐喊" start="9" text="就算向整个世界宣战 都无法改变"/>
+    <geci videoId="低音弦上的呐喊" start="12" text="我会一直陪在你身边"/>
+    <geci videoId="低音弦上的呐喊" start="29" text="你出现在我的眼前"/>
+    <geci videoId="低音弦上的呐喊" start="34" text="只是看着我"/>
+    <geci videoId="低音弦上的呐喊" start="37" text="内心的重重防线"/>
+    <geci videoId="低音弦上的呐喊" start="39" text="忽然就瓦解"/>
+    <geci videoId="低音弦上的呐喊" start="41" text="目光交错的一瞬间"/>
+    <geci videoId="低音弦上的呐喊" start="46" text="不用任何语言"/>
+    <geci videoId="低音弦上的呐喊" start="49" text="心跳的频率说明一切"/>
+    <geci videoId="低音弦上的呐喊" start="53" text="用最低音的琴弦"/>
+    <geci videoId="低音弦上的呐喊" start="59" text="向整个世界呐喊"/>
+    <geci videoId="低音弦上的呐喊" start="63" text="大声表白"/>
+    <geci videoId="低音弦上的呐喊" start="65" text="要让你听见"/>
+    <geci videoId="低音弦上的呐喊" start="67" text="想骑着我的摩托车 载你去大海边"/>
+    <geci videoId="低音弦上的呐喊" start="73" text="想这样牵着你的手 每一天 都是 "/>
+    <geci videoId="低音弦上的呐喊" start="77" text="阳光明媚的五月"/>
+    <geci videoId="低音弦上的呐喊" start="79" text="所有我给过你的承诺 全都会兑现"/>
+    <geci videoId="低音弦上的呐喊" start="85" text="就算向整个世界宣战 都无法改变"/>
+    <geci videoId="低音弦上的呐喊" start="89" text="我会一直陪在你身边 "/>
+    <geci videoId="低音弦上的呐喊" start="106" text="想骑着我的摩托车 载你去大海边"/>
+    <geci videoId="低音弦上的呐喊" start="112" text="想这样牵着你的手 每一天 都是 "/>
+    <geci videoId="低音弦上的呐喊" start="115" text="阳光明媚的五月"/>
+    <geci videoId="低音弦上的呐喊" start="118" text="所有我给过你的承诺 全都会兑现"/>
+    <geci videoId="低音弦上的呐喊" start="124" text="就算向整个世界宣战 都无法改变"/>
+    <geci videoId="低音弦上的呐喊" start="128" text="我会一直陪在你身边 "/>
+
+    <geci videoId="芝士的味道" start="0" text="芝士的味道"/>
+    <geci videoId="芝士的味道" start="6" text="词：刘柏谣    曲：徐鲤"/>
+    <geci videoId="芝士的味道" start="12" text="编曲：张玺  演唱：明鹏 陈佳懿"/>
+    <geci videoId="芝士的味道" start="18" text="女：随风跳跃的旋律"/>
+    <geci videoId="芝士的味道" start="23" text="娓娓飘来"/>
+    <geci videoId="芝士的味道" start="25" text="我用心听"/>
+    <geci videoId="芝士的味道" start="28" text="有一种熟悉的香气"/>
+    <geci videoId="芝士的味道" start="32" text="原来是你在那里"/>
+    <geci videoId="芝士的味道" start="37" text="男：我梦里的风景是雨季"/>
+    <geci videoId="芝士的味道" start="41" text="你的出现"/>
+    <geci videoId="芝士的味道" start="43" text="天空放晴"/>
+    <geci videoId="芝士的味道" start="46" text="心跳声被打乱了频率"/>
+    <geci videoId="芝士的味道" start="50" text="随风摇曳不定"/>
+    <geci videoId="芝士的味道" start="55" text="合：怎么忍心 看你 "/>
+    <geci videoId="芝士的味道" start="60" text="独自在人群"/>
+    <geci videoId="芝士的味道" start="64" text="有某种默契 让我们 相遇"/>
+    <geci videoId="芝士的味道" start="72" text="女：想给你惊喜 想向你靠近"/>
+    <geci videoId="芝士的味道" start="78" text="轻轻说声 没关系"/>
+    <geci videoId="芝士的味道" start="82" text="合：你不再孤单 往后有我 陪伴你"/>
+    <geci videoId="芝士的味道" start="91" text="合：那芝士的香气 你独特的气息"/>
+    <geci videoId="芝士的味道" start="101" text="你出现那一刻起 这颗心就被占据"/>
+    <geci videoId="芝士的味道" start="110" text="那芝士的香气 是我们默契的密语"/>
+    <geci videoId="芝士的味道" start="120" text="未来的日子有你 多幸运"/>
+    <geci videoId="芝士的味道" start="130" text="合：随风跳跃的旋律"/>
+    <geci videoId="芝士的味道" start="134" text="娓娓飘来"/>
+    <geci videoId="芝士的味道" start="137" text="我用心听"/>
+    <geci videoId="芝士的味道" start="140" text="甜美如芝士般的香气"/>
+    <geci videoId="芝士的味道" start="144" text="而你又在哪里"/>
+
+    <geci videoId="我的爱呢" start="0" text="我的爱呢"/>
+    <geci videoId="我的爱呢" start="5" text="词：张敬豪  曲：冯宣元 "/>
+    <geci videoId="我的爱呢" start="9" text="演唱：耀乐团"/>
+    <geci videoId="我的爱呢" start="14" text="就算全世界把我抛弃"/>
+    <geci videoId="我的爱呢" start="17" text="可不可以将我抱紧"/>
+    <geci videoId="我的爱呢" start="21" text="不需要任何言语"/>
+    <geci videoId="我的爱呢" start="24" text="就静静地陪我在这里"/>
+    <geci videoId="我的爱呢" start="28" text="就算全世界把我抛弃"/>
+    <geci videoId="我的爱呢" start="31" text="可不可以将我抱紧"/>
+    <geci videoId="我的爱呢" start="34" text="别再说任何言语"/>
+    <geci videoId="我的爱呢" start="38" text="就这一次陪我在这里"/>
+    <geci videoId="我的爱呢" start="42" text="我知道我的方式或许让你为难"/>
+    <geci videoId="我的爱呢" start="45" text="我知道丢了你 我就丢了爱呀"/>
+    <geci videoId="我的爱呢" start="49" text="你才会说 你太累了"/>
+    <geci videoId="我的爱呢" start="51" text="还是做朋友吧 都别再给彼此负担"/>
+    <geci videoId="我的爱呢" start="56" text="可为什么你牵他的手那么简单"/>
+    <geci videoId="我的爱呢" start="59" text="为什么你看我眼神都不自然"/>
+    <geci videoId="我的爱呢" start="63" text="擦肩而过 你的冷漠"/>
+    <geci videoId="我的爱呢" start="65" text="好像我们之间的话题 就只剩沉默"/>
+    <geci videoId="我的爱呢" start="69" text="Oh 我的我的爱呀 Oh我的我的爱呢"/>
+    <geci videoId="我的爱呢" start="83" text="Oh 我的我的爱呀 Oh我的我的爱呢"/>
+    <geci videoId="我的爱呢" start="100" text="就算全世界把我抛弃"/>
+    <geci videoId="我的爱呢" start="103" text="可不可以将我抱紧"/>
+    <geci videoId="我的爱呢" start="106" text="不需要任何言语"/>
+    <geci videoId="我的爱呢" start="110" text="就静静地陪我在这里"/>
+    <geci videoId="我的爱呢" start="113" text="就算全世界把我抛弃"/>
+    <geci videoId="我的爱呢" start="116" text="可不可以将我抱紧"/>
+    <geci videoId="我的爱呢" start="120" text="别再说任何言语"/>
+    <geci videoId="我的爱呢" start="123" text="就这一次陪我在这里"/>
+    <geci videoId="我的爱呢" start="127" text="我知道我的方式或许让你为难"/>
+    <geci videoId="我的爱呢" start="130" text="我知道丢了你 我就丢了爱呀"/>
+    <geci videoId="我的爱呢" start="134" text="你才会说 你太累了"/>
+    <geci videoId="我的爱呢" start="137" text="还是做朋友吧 都别再给彼此负担"/>
+    <geci videoId="我的爱呢" start="141" text="可为什么你牵他的手那么简单"/>
+    <geci videoId="我的爱呢" start="144" text="为什么你看我眼神都不自然"/>
+    <geci videoId="我的爱呢" start="148" text="擦肩而过 你的冷漠"/>
+    <geci videoId="我的爱呢" start="151" text="好像我们之间的话题 就只剩沉默"/>
+    <geci videoId="我的爱呢" start="154" text="Oh 我的我的爱呀 Oh我的我的爱呢"/>
+    <geci videoId="我的爱呢" start="168" text="Oh 我的我的爱呀 Oh我的我的爱呢"/>
+    <geci videoId="我的爱呢" start="182" text="你悲伤委屈 都躺在我怀里"/>
+    <geci videoId="我的爱呢" start="185" text="一起吃早餐 轻轻道声晚安"/>
+    <geci videoId="我的爱呢" start="188" text="最美好的那段 最珍惜的那段"/>
+    <geci videoId="我的爱呢" start="191" text="那回忆 那回忆 我舍不得 Oh No"/>
+    <geci videoId="我的爱呢" start="196" text="Oh 我的我的爱呀 Oh我的我的爱呢"/>
+    <geci videoId="我的爱呢" start="210" text="Oh 我的我的爱呀 Oh我的我的爱呢"/>
+    <geci videoId="我的爱呢" start="223" text="就算全世界把我抛弃"/>
+    <geci videoId="我的爱呢" start="227" text="可不可以将我抱紧"/>
+    <geci videoId="我的爱呢" start="230" text="不需要任何言语"/>
+    <geci videoId="我的爱呢" start="233" text="就静静地陪我在这里"/>
+    <geci videoId="我的爱呢" start="237" text="就算全世界把我抛弃"/>
+    <geci videoId="我的爱呢" start="240" text="可不可以将我抱紧"/>
+    <geci videoId="我的爱呢" start="244" text="别再说任何言语"/>
+    <geci videoId="我的爱呢" start="247" text="就这一次陪我在这里"/>
 </geci>

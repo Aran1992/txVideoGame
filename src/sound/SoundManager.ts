@@ -28,11 +28,13 @@ class SoundManager {
         // this.stopMusicAll();
     }
 
-    public playSound(key: string, callback?: Function): void {
+    public playSound(key: string, callback?: Function,isUrl?:Boolean): void {
         if (!this.musicMap[key]) {
             if (this.musicDataMap[key]) {
                 this.musicMap[key] = new MusicBody(this.musicDataMap[key]);
-            } else {
+            } else if(isUrl == true ){
+                this.musicMap[key] = new MusicBody(key);
+            }else {
                 this.musicMap[key] = new MusicBody("resource/sound/" + key);
             }
             VideoManager.getInstance().log('没有预加载')

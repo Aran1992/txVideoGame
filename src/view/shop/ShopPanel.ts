@@ -159,7 +159,7 @@ class ShopPanel extends eui.Component {
         if (this.xinshou_select) {
             this.cur_models = null;
             this.currIdx = null;
-            this.updateXinshoubaoShop();
+            //this.updateXinshoubaoShop();
         } else {
             let shoptpye: SHOP_TYPE = this.TAB_2_SHOPTYPE[this.currIdx];
             switch (shoptpye) {
@@ -205,7 +205,7 @@ class ShopPanel extends eui.Component {
             }
 
             let params: string[] = this.xinshoubaoData.model.params.split(",");
-            let banners: string[] = this.xinshoubaoData.model.banner2.split(",");
+            let banners: string[] = this.xinshoubaoData.model.preview.split(",");
             for (let i: number = 0; i < params.length; i++) {
                 let shopid: number = parseInt(params[i]);
                 let banner: string = banners[i];
@@ -437,8 +437,8 @@ class ImagesShopItem extends eui.ItemRenderer {
             this.title_lab.text = '商品数据出错\n没有找到对应的收藏数据ID:::' + shoucangID;
             return;
         }
-        this.banner_img.source = shoucangModel.minipic;
-        let srcAry: string[] = shoucangModel.src.split(",");
+        this.banner_img.source =  shoucangModel.id+"_view_png"
+        let srcAry: string[] = shoucangModel.src.split(";");
         this.imgs_num_lab.text = srcAry.length + "P";
         this.title_lab.text = GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] + '的图片';
         this.style_name_lab.text = shopInfoDt.model.name;
@@ -505,7 +505,7 @@ class VideosShopItem extends eui.ItemRenderer {
             this.name_lab.text = '商品数据出错\n没有找到对应的收藏数据ID:::' + shoucangID;
             return;
         }
-        this.banner_img.source = shoucangModel.minipic;
+        this.banner_img.source = `${shoucangModel.id}_view_png`
         this.name_lab.text = `${GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1]}的视频`;
         this.time_lab.text = shoucangModel.time;
         this.style_name_lab.text = shopInfoDt.model.name;
@@ -572,7 +572,7 @@ class MusicsShopItem extends eui.ItemRenderer {
             return;
         }
 
-        this.banner_img.source = shoucangModel.minipic + "_png";
+        this.banner_img.source = `${shoucangModel.id}_view_fang_png`;
         let param: string[] = shopInfoDt.model.preview.split(",");
         this.count_lab.text = param.length + "首";
         this.name_lab.text = shopInfoDt.model.name;
@@ -637,7 +637,7 @@ class ChapterShopItem extends eui.ItemRenderer {
     protected dataChanged(): void {
         let shopInfoDt: ShopInfoData = this.data;
 
-        this.banner_img.source = shopInfoDt.model.banner2;
+        this.banner_img.source = shopInfoDt.model.preview;
         this.title_lab.text = shopInfoDt.model.name;
         let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
         if (num > 0) {
@@ -690,7 +690,7 @@ class DaojuShopItem extends eui.ItemRenderer {
     protected dataChanged(): void {
         let shopInfoDt: ShopInfoData = this.data;
 
-        this.banner_img.source = shopInfoDt.model.banner2;
+        this.banner_img.source = shopInfoDt.model.preview;
         this.title_lab.text = this.data.name;
         this.desc_lab.text = this.data.desc;
         let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);

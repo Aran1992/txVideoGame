@@ -92,12 +92,14 @@ class MusicShopPreviewPanel extends eui.Component {
     private onUpdateInfo(): void {
         let shoucangID: number = parseInt(this.data.model.params);
         this.shoucangModel = JsonModelManager.instance.getModelshoucang()[shoucangID];
-        let srcAry: string[] = this.data.model.preview.split(",");
+        //let srcAry: string[] = this.data.model.preview.split(";");
         let musicNameAry: string[] = this.shoucangModel.kuozhan.split(";");
-        this.banner_img.source = `${this.shoucangModel.minipic}yuan_png`;
+        //this.banner_img.source = `yuan_png`;
+        this.banner_img.source = `${this.shoucangModel.id}_view_yuan_png`;
         this.name_lab.text = this.data.model.name;
         this.desc_lab.text = this.data.model.desc;
-        this.count_lab.text = srcAry.length + "首";
+        //this.count_lab.text = srcAry.length + "首";
+        this.count_lab.text = musicNameAry.length + "首";
         
         let num = ShopManager.getInstance().getItemNum(this.data.id);
         if (num > 0) {
@@ -123,10 +125,10 @@ class MusicShopPreviewPanel extends eui.Component {
         this.music_item_grp.removeChildren();
         for (var i: number = 0; i < musicNameAry.length; i++) {
             let music_name: string = musicNameAry[i];
-            let music_src: string = srcAry[i];
+            //let music_src: string = srcAry[i];
             let item: Mp3Item = new Mp3Item();
             item.name = i + '';
-            item.data = {data: this.shoucangModel, idx: i, src: music_src, name: music_name};
+            item.data = {data: this.shoucangModel, idx: i, src:`resource/assets/shopmusic/${this.shoucangModel.id}_${i+1}_try.mp3`, name: music_name};//src: music_src,
             item.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectMusic, this);
             this.music_item_grp.addChild(item);
         }
@@ -205,7 +207,8 @@ class MusicShopPreviewPanel extends eui.Component {
         var md = JsonModelManager.instance.getModelgeci()['mp3_music1'];
         mp.name = data.data;
         GameCommon.getInstance().showLoading();
-        mp.src = `resource/sound/${data.data}.mp3`;
+        //mp.src = `resource/sound/${data.data}.mp3`;
+        mp.src = data.data;
         mp.load();
         mp.play();
     }
@@ -252,7 +255,7 @@ class MusicShopPreviewPanel extends eui.Component {
     }
 
     private onBuy(): void {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, this.shoucangModel.minipic)));
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, "")));
     }
 
     private onClose() {

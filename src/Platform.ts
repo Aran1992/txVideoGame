@@ -41,10 +41,18 @@ declare interface Platform {
 
     isPlatformVip(): boolean;
 
+    getServerTime();
+
+    updateServerTime();
+
+    isPlatformVip(): boolean;
+
     close();
 }
 
 class DebugPlatform implements Platform {
+    private static s_serverTime: Number;
+
     async getUserInfo() {
         await window["getUserInfo"](() => {
         });
@@ -62,16 +70,22 @@ class DebugPlatform implements Platform {
         return true;
     }
 
-    public getNetTime() {
-        var xmlhttp = new window["XMLHttpRequest"]("MSXML2.XMLHTTP.3.0");
-        xmlhttp.onload = function () {
-            var dateStr = xmlhttp.getResponseHeader("Date");
-            var d = new Date(dateStr);
-            alert("dd:" + d);
-        }
-        xmlhttp.open("GET", "http://bjtime.cn/", true);
-        xmlhttp.setRequestHeader("If-Modified-Since", "q");
-        xmlhttp.send();
+    public getServerTime() {
+        return DebugPlatform.s_serverTime;
+    }
+
+    public updateServerTime() {
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        //let url = `http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp`;
+        let url = `http://quan.suning.com/getSysTime.do`
+        httpRequest.open('GET', url, true);//第二步：打开连接
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = JSON.parse(httpRequest.responseText);//获取到json字符串，还需解析
+                DebugPlatform.s_serverTime = new Date(json.sysTime2).getTime();
+            }
+        };
 
     }
 
@@ -81,7 +95,7 @@ class DebugPlatform implements Platform {
     }
 
     public getPlatform() {
-        //this.getNetTime()
+        //this.updateServerTime();
         if (egret.Capabilities.os == 'Windows PC')
             return "plat_pc";
         if (window['StoryPlatform'] || (window["webkit"] && window["webkit"]["messageHandlers"] && window["webkit"]["messageHandlers"]["saveBookHistory"]))
@@ -218,6 +232,8 @@ class DebugPlatform implements Platform {
 
 if (!window.platform) {
     window.platform = new DebugPlatform();
+    platform.updateServerTime();
+    setInterval(platform.updateServerTime, 10000);
 }
 
 declare interface Window {
