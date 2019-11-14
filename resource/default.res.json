@@ -7268,12 +7268,42 @@
         {
             "name": "5001_desc_png",
             "type": "image",
-            "url": "assets/shopvideo/5001_desc.png?v=574"
+            "url": "assets/shopvideo/5001_desc.png?v=444"
         },
         {
             "name": "5001_view_png",
             "type": "image",
-            "url": "assets/shopvideo/5001_view.png?v=361"
+            "url": "assets/shopvideo/5001_view.png?v=734"
+        },
+        {
+            "name": "5002_desc_png",
+            "type": "image",
+            "url": "assets/shopvideo/5002_desc.png?v=910"
+        },
+        {
+            "name": "5002_view_png",
+            "type": "image",
+            "url": "assets/shopvideo/5002_view.png?v=434"
+        },
+        {
+            "name": "5003_desc_png",
+            "type": "image",
+            "url": "assets/shopvideo/5003_desc.png?v=574"
+        },
+        {
+            "name": "5003_view_png",
+            "type": "image",
+            "url": "assets/shopvideo/5003_view.png?v=361"
+        },
+        {
+            "name": "5004_desc_png",
+            "type": "image",
+            "url": "assets/shopvideo/5004_desc.png?v=256"
+        },
+        {
+            "name": "5004_view_png",
+            "type": "image",
+            "url": "assets/shopvideo/5004_view.png?v=475"
         },
         {
             "name": "sc_music_Pro_png",
@@ -7968,7 +7998,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=401"
+            "url": "config/config.bin?v=477"
         }
     ]
 }
