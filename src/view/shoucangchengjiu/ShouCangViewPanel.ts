@@ -238,7 +238,7 @@ class ShouCangViewItem extends eui.Component {
             // if (UserInfo.allCollectionDatas[this.info.id]) {
             this.weijiesuo.visible = false;
             // this.xiadi.visible = true;
-            this.icon.source = info.data.minipic;
+            this.icon.source = info.data.id+"_view_png";
             // }
             this.desc.text = GameDefine.ROLE_NAME[this.info.mulu1 - 1] + '的图片'
             // else {
@@ -253,7 +253,8 @@ class ShouCangViewItem extends eui.Component {
             // }
         } else if (this.info.mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
             this.tubiao.source = 'sc_shipin_icon_png';
-            this.icon.source = info.data.minipic;
+            this.icon.source = `${info.data.id}_view_png`
+            
             this.pinji.source = '';
             this.desc.text = GameDefine.ROLE_NAME[this.info.mulu1 - 1] + '的视频';
             // if (UserInfo.allCollectionDatas[this.info.id]) {

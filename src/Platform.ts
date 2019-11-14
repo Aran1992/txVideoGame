@@ -5,81 +5,76 @@
  * 由于不同平台的接口形式各有不同，白鹭推荐开发者将所有接口封装为基于 Promise 的异步形式
  */
 
-declare let plattxsp: Txsp;
+declare let plattxsp:Txsp;
 declare let platform: Platform;
-
 declare interface Platform {
     getUserInfo(): Promise<any>;//获取主用户数据
-    saveBookHistory(bookId, slotId, title, externParam, callback): Promise<any>;//游戏存档
+    saveBookHistory(bookId, slotId, title, externParam,callback): Promise<any>;//游戏存档
     share(bookId, title, summary, icon, url, array): Promise<any>;//分享
     shareImage(bookId, imageData): Promise<any>;//分享图片
     openButton(tr): Promise<any>;//调取APP钱包界面
-    getBookHistoryList(bookId, callback): Promise<any>;//获取指定书籍下的所有存档列表信息
-    deleteBookHistory(bookId, slotId, callback): Promise<any>;//删除制定存档
-    getBookHistory(bookId, slotId, callback): Promise<any>;//获取制定存档
-    getBookLastHistory(bookId, callback): Promise<any>;//读取最近一次阅读进度，继续阅读。 在开始阅读前可通过该接口获得最近一次进度继续阅读。
-    getBookValues(bookId, slotId, callback): Promise<any>;//获取管理端配置的可购买的物品信息，包括章节，物品。
-    buyGoods(bookId, itemId, num, curSlotId, callback): Promise<any>;
+    getBookHistoryList(bookId,callback): Promise<any>;//获取指定书籍下的所有存档列表信息
+    deleteBookHistory(bookId, slotId,callback): Promise<any>;//删除制定存档
+    getBookHistory(bookId, slotId,callback): Promise<any>;//获取制定存档
+    getBookLastHistory(bookId,callback): Promise<any>;//读取最近一次阅读进度，继续阅读。 在开始阅读前可通过该接口获得最近一次进度继续阅读。
+    getBookValues(bookId, slotId,callback): Promise<any>;//获取管理端配置的可购买的物品信息，包括章节，物品。
+    buyGoods(bookId, itemId, num, curSlotId,callback):Promise<any>;
+    sendRequest(params,callback):Promise<any>;
 
-    sendRequest(params, callback): Promise<any>;
-
-    takeOffBookValue(bookId, saleId, currentSlotId, num, callback): Promise<any>;//消耗后台已购买物品（管理配置）
-    report(bookId, evt, params, callback): Promise<any>;//统计类接口
+    takeOffBookValue(bookId, saleId, currentSlotId, num,callback): Promise<any>;//消耗后台已购买物品（管理配置）
+    report(bookId, evt, params,callback): Promise<any>;//统计类接口
     getUserPlatformData(): Promise<any>;//获取用户平台数据
-    getBookConsumeData(bookId, callback): Promise<any>;//获取书籍消费数据
-    reportBusinessEvent(bookId, evtId, optionId, callback): Promise<any>;//上报事件选项
-    getBusinessEventData(bookId, evtId, optionId, callback): Promise<any>;//查询上报的事件选项统计
+    getBookConsumeData(bookId,callback): Promise<any>;//获取书籍消费数据
+    reportBusinessEvent(bookId, evtId, optionId,callback): Promise<any>;//上报事件选项
+    getBusinessEventData(bookId, evtId, optionId,callback): Promise<any>;//查询上报的事件选项统计
     triggerEventNotify(evt, str): Promise<any>;//事件通知（web主动通知app）
 
     isDebug(): boolean;
-
-    getPlatform(): string;
-
-    getBridgeHelper();
-
+    getPlatform():string;
+    getBridgeHelper();  
     getSaleBeginTime();
-
-    isPlatformVip(): boolean;
+    isPlatformVip():boolean;
+    getServerTime();
+    updateServerTime();
 }
 
 class DebugPlatform implements Platform {
+    private static s_serverTime:Number;
     async getUserInfo() {
-        await window["getUserInfo"](() => {
-        });
+        await window["getUserInfo"](()=>{});
     }
 
-    public isPlatformVip() {
-        if (this.getPlatform() == "plat_txsp") {
+    public isPlatformVip(){
+        if (this.getPlatform() == "plat_txsp"){
             return plattxsp.isPlatformVip();
-        } else
+        }else
             return false;
     }
-
     //是否是活动期间；
-    public isCelebrateTime() {
+    public isCelebrateTime(){
         return true;
     }
-
-    public getNetTime() {
-        var xmlhttp = new window["XMLHttpRequest"]("MSXML2.XMLHTTP.3.0");
-        xmlhttp.onload = function () {
-            var dateStr = xmlhttp.getResponseHeader("Date");
-            var d = new Date(dateStr);
-            alert("dd:" + d);
-        }
-        xmlhttp.open("GET", "http://bjtime.cn/", true);
-        xmlhttp.setRequestHeader("If-Modified-Since", "q");
-        xmlhttp.send();
-
+    public getServerTime(){
+        return DebugPlatform.s_serverTime;
     }
-
+    public updateServerTime(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open('GET', 'http://quan.suning.com/getSysTime.do', true);//第二步：打开连接 
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = JSON.parse(httpRequest.responseText);//获取到json字符串，还需解析
+                DebugPlatform.s_serverTime=new Date(json.sysTime2).getTime();
+            }
+        };
+        
+    }
     //获得上线时间，其它时间可以此时间上叠加
-    public getSaleBeginTime() {
-        return 1572364800 + 86400 * 6;//2019-10-30 00:00:00
-    }
-
-    public getPlatform() {
-        //this.getNetTime()
+    public getSaleBeginTime(){
+        return 1572364800+86400*6;//2019-10-30 00:00:00
+    }  
+    public getPlatform(){
+        //this.updateServerTime();
         if (egret.Capabilities.os == 'Windows PC')
             return "plat_pc";
         if (window['StoryPlatform'] || (window["webkit"] && window["webkit"]["messageHandlers"] && window["webkit"]["messageHandlers"]["saveBookHistory"]))
@@ -87,21 +82,21 @@ class DebugPlatform implements Platform {
         else
             return 'plat_txsp';
     }
-
-
-    public getBridgeHelper() {
+    
+    
+    public getBridgeHelper(){
         return bridgeHelper;
     }
 
-    async share(bookId, title, summary, icon, url, array) {
-        await window["share"](bookId, title, summary, icon, url, array);
+    async share(bookId, title, summary, icon, url, array) {        
+        await window["share"](bookId,title,summary, icon, url, array);
     }
 
     async shareImage(bookId, imageData) {
-        if (this.getPlatform() == "plat_txsp") {
-            await plattxsp.shareImage(bookId, imageData);
-        } else {
-            await window["shareImage"](bookId, imageData);
+        if (this.getPlatform() == "plat_txsp"){
+            await plattxsp.shareImage(bookId,imageData);
+        }else{
+            await window["shareImage"](bookId,imageData);
         }
     }
 
@@ -110,92 +105,91 @@ class DebugPlatform implements Platform {
     }
 
     //游戏存档
-    async saveBookHistory(bookId, slotId, title, externParam, callback) {
+    async saveBookHistory(bookId, slotId, title, externParam,callback) {
         //console.trace("saveBookHistory")
-        if (this.getPlatform() == "plat_txsp") {
-            await plattxsp.saveBookHistory(bookId, slotId, title, externParam, callback)
-        } else {
-            await window["saveBookHistory"](bookId, slotId, 0, title, externParam, callback);
+        if (this.getPlatform() == "plat_txsp"){
+            await plattxsp.saveBookHistory(bookId, slotId, title, externParam,callback)
+        }else{
+            await window["saveBookHistory"](bookId, slotId,0, title, externParam,callback);
         }
     }
 
     //获取游戏存档列表
-    async getBookHistoryList(bookId, callback) {
-        await window["getBookHistoryList"](bookId, callback);
+    async getBookHistoryList(bookId,callback) {
+        await window["getBookHistoryList"](bookId,callback);
     }
 
     //获取制定存档
-    async getBookHistory(bookId, slotId, callback) {
-        if (this.getPlatform() == "plat_txsp") {
-            await plattxsp.getBookHistory(bookId, slotId, callback);
-        } else {
-            await window["getBookHistory"](bookId, slotId, callback);
+    async getBookHistory(bookId, slotId,callback) {
+        if (this.getPlatform() == "plat_txsp"){
+            await plattxsp.getBookHistory(bookId,slotId,callback);
+        }else{
+            await window["getBookHistory"](bookId,slotId,callback);
         }
     }
 
     //删除制定存档
-    async deleteBookHistory(bookId, slotId, callback) {
-        if (this.getPlatform() == "plat_txsp") {
-            await plattxsp.deleteBookHistory(bookId, slotId, callback);
-        } else {
-            await window["deleteBookHistory"](bookId, slotId, callback);
+    async deleteBookHistory(bookId, slotId,callback) {
+        if (this.getPlatform() == "plat_txsp"){
+            await plattxsp.deleteBookHistory(bookId,slotId,callback);
+        }else{
+            await window["deleteBookHistory"](bookId,slotId,callback);
         }
     }
 
-
+    
     //获取最近进度
-    async getBookLastHistory(bookId, callback) {
-        await window["getBookLastHistory"](bookId, callback);
+    async getBookLastHistory(bookId,callback) {
+        await window["getBookLastHistory"](bookId,callback);
     }
 
     //获取商业化数值
-    async getBookValues(bookId, slotId, callback) {
-        if (this.getPlatform() == "plat_txsp") {
-            await plattxsp.getBookValues(bookId, slotId, callback);
-        } else {
-            await window["getBookValues"](bookId, slotId, callback);
+    async getBookValues(bookId, slotId,callback) {
+        if(this.getPlatform()=="plat_txsp"){
+            await plattxsp.getBookValues(bookId,slotId,callback);
+        }else{
+            await window["getBookValues"](bookId,slotId,callback);
         }
     }
 
-    async buyGoods(bookId, itemId, num, curSlotId, callback) {
-        if (this.getPlatform() == "plat_txsp") {
-            await plattxsp.buyGoods(bookId, itemId, num, curSlotId, callback);
-        } else {
-            await window["buyGoods"](bookId, itemId, num, curSlotId, callback);
+    async buyGoods(bookId, itemId, num, curSlotId,callback) {
+        if(this.getPlatform()=="plat_txsp"){
+            await plattxsp.buyGoods(bookId,itemId,num,curSlotId,callback);
+        }else{
+            await window["buyGoods"](bookId,itemId,num,curSlotId,callback);
+        }
+    }
+    async sendRequest(params,callback){
+        if(this.getPlatform()=="plat_txsp" || this.getPlatform()=="plat_pc"){
+            await plattxsp.sendRequest(params,callback);
+        }else{
+            await window["sendRequest"](params,callback);
         }
     }
 
-    async sendRequest(params, callback) {
-        if (this.getPlatform() == "plat_txsp" || this.getPlatform() == "plat_pc") {
-            await plattxsp.sendRequest(params, callback);
-        } else {
-            await window["sendRequest"](params, callback);
-        }
+
+    async takeOffBookValue(bookId, saleId, currentSlotId, num,callback) {
+        await window["takeOffBookValue"](bookId,saleId,currentSlotId,num,callback);
     }
 
-
-    async takeOffBookValue(bookId, saleId, currentSlotId, num, callback) {
-        await window["takeOffBookValue"](bookId, saleId, currentSlotId, num, callback);
-    }
-
-    async report(bookId, evt, params, callback) {
-        await window["report"](bookId, evt, params, callback);
+    async report(bookId, evt, params,callback) {
+        await window["report"](bookId, evt, params,callback);
     }
 
     async getUserPlatformData() {
         await window["getUserPlatformData"]();
     }
 
-    async getBookConsumeData(bookId, callback) {
-        await window["getBookConsumeData"](bookId, callback);
+    async getBookConsumeData(bookId,callback) {
+        await window["getBookConsumeData"](bookId,callback);
     }
 
-    async reportBusinessEvent(bookId, evtId, optionId, callback) {
-        await window["getBookConsumeData"](bookId, evtId, optionId, callback);
+    async reportBusinessEvent(bookId, evtId, optionId,callback) {
+        await window["getBookConsumeData"](bookId, evtId, optionId,callback);
     }
 
-    async getBusinessEventData(bookId, evtId, optionId, callback) {
-        await window["getBusinessEventData"](bookId, evtId, optionId, callback);
+    async getBusinessEventData(bookId, evtId, optionId,callback) {
+        await window["getBusinessEventData"](bookId, evtId, optionId,callback);
     }
 
     async triggerEventNotify(evt, str) {
@@ -210,11 +204,13 @@ class DebugPlatform implements Platform {
 
 if (!window.platform) {
     window.platform = new DebugPlatform();
+    platform.updateServerTime();
+    setInterval(platform.updateServerTime,10000);
 }
 
 declare interface Window {
-    platform: Platform;
-    plattxsp: Txsp;
+    platform: Platform;    
+    plattxsp: Txsp;    
 }
 
 const isTXSP = window.platform.getPlatform() === "plat_txsp"

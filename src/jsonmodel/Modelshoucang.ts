@@ -7,38 +7,21 @@ class Modelshoucang extends ModelJsonBase {
 
 	public constructor(json) { super(json); }
 
-	private _mulu1;
-	public set mulu1(value){
-		this._mulu1 = value;
+	private _src;
+	public set src(value){
+		this._src = value;
 	}
-	public get mulu1():number{
-		return parseFloat(this._json["mulu1"]);
-	}
-
-	private _mulu2;
-	public set mulu2(value){
-		this._mulu2 = value;
-	}
-	public get mulu2():number{
-		return parseFloat(this._json["mulu2"]);
+	public get src():string{
+		if (this._json["src"] == "*") { return ""; }
+		return this._json["src"];
 	}
 
-	private _level;
-	public set level(value){
-		this._level = value;
+	private _shengyin;
+	public set shengyin(value){
+		this._shengyin = value;
 	}
-	public get level():string{
-		if (this._json["level"] == "*") { return ""; }
-		return this._json["level"];
-	}
-
-	private _name;
-	public set name(value){
-		this._name = value;
-	}
-	public get name():string{
-		if (this._json["name"] == "*") { return ""; }
-		return this._json["name"];
+	public get shengyin():number{
+		return parseFloat(this._json["shengyin"]);
 	}
 
 	private _time;
@@ -50,22 +33,30 @@ class Modelshoucang extends ModelJsonBase {
 		return this._json["time"];
 	}
 
-	private _minipic;
-	public set minipic(value){
-		this._minipic = value;
+	private _level;
+	public set level(value){
+		this._level = value;
 	}
-	public get minipic():string{
-		if (this._json["minipic"] == "*") { return ""; }
-		return this._json["minipic"];
+	public get level():string{
+		if (this._json["level"] == "*") { return ""; }
+		return this._json["level"];
 	}
 
-	private _src;
-	public set src(value){
-		this._src = value;
+	private _mulu2;
+	public set mulu2(value){
+		this._mulu2 = value;
 	}
-	public get src():string{
-		if (this._json["src"] == "*") { return ""; }
-		return this._json["src"];
+	public get mulu2():number{
+		return parseFloat(this._json["mulu2"]);
+	}
+
+	private _name;
+	public set name(value){
+		this._name = value;
+	}
+	public get name():string{
+		if (this._json["name"] == "*") { return ""; }
+		return this._json["name"];
 	}
 
 	private _kuozhan;
@@ -77,13 +68,12 @@ class Modelshoucang extends ModelJsonBase {
 		return this._json["kuozhan"];
 	}
 
-	private _shengyin;
-	public set shengyin(value){
-		this._shengyin = value;
+	private _mulu1;
+	public set mulu1(value){
+		this._mulu1 = value;
 	}
-	public get shengyin():string{
-		if (this._json["shengyin"] == "*") { return ""; }
-		return this._json["shengyin"];
+	public get mulu1():number{
+		return parseFloat(this._json["mulu1"]);
 	}
 
 }

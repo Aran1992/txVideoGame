@@ -302,6 +302,9 @@ class Tool {
     }
     //把日期格式化为整数
     public static formatTimeDay2Num(time:number=null){
+        if(!time){
+            time=platform.getServerTime();
+        }
         const date = time?new Date(time):new Date();
         let str = String(date.getFullYear())+String(Tool.formatZero(date.getMonth()+1,2))+String(Tool.formatZero(date.getDate(),2))
         return Number(str)

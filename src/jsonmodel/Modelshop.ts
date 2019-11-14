@@ -16,31 +16,13 @@ class Modelshop extends ModelJsonBase {
 		return this._json["name"];
 	}
 
-	private _banner;
-	public set banner(value){
-		this._banner = value;
+	private _preview;
+	public set preview(value){
+		this._preview = value;
 	}
-	public get banner():string{
-		if (this._json["banner"] == "*") { return ""; }
-		return this._json["banner"];
-	}
-
-	private _banner2;
-	public set banner2(value){
-		this._banner2 = value;
-	}
-	public get banner2():string{
-		if (this._json["banner2"] == "*") { return ""; }
-		return this._json["banner2"];
-	}
-
-	private _desc;
-	public set desc(value){
-		this._desc = value;
-	}
-	public get desc():string{
-		if (this._json["desc"] == "*") { return ""; }
-		return this._json["desc"];
+	public get preview():string{
+		if (this._json["preview"] == "*") { return ""; }
+		return this._json["preview"];
 	}
 
 	private _params;
@@ -92,15 +74,6 @@ class Modelshop extends ModelJsonBase {
 		return parseFloat(this._json["show"]);
 	}
 
-	private _preview;
-	public set preview(value){
-		this._preview = value;
-	}
-	public get preview():string{
-		if (this._json["preview"] == "*") { return ""; }
-		return this._json["preview"];
-	}
-
 	private _shaixuan_params;
 	public set shaixuan_params(value){
 		this._shaixuan_params = value;
@@ -108,6 +81,15 @@ class Modelshop extends ModelJsonBase {
 	public get shaixuan_params():string{
 		if (this._json["shaixuan_params"] == "*") { return ""; }
 		return this._json["shaixuan_params"];
+	}
+
+	private _desc;
+	public set desc(value){
+		this._desc = value;
+	}
+	public get desc():string{
+		if (this._json["desc"] == "*") { return ""; }
+		return this._json["desc"];
 	}
 
 }

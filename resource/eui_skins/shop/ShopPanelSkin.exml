@@ -22,7 +22,7 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:RadioButton id="xinshoubao_btn" width="110" height="110" y="737.67" x="66">
+		<e:RadioButton id="xinshoubao_btn" width="110" height="110" y="737.67" x="66" visible="false">
 			<e:skinName>
 				<e:Skin states="up,down,upAndSelected,downAndSelected">
 					<e:Image source="shop_shaixuan_selected_png" left="-32" right="-28" top="-25" bottom="-35"
@@ -57,9 +57,9 @@
 			<e:RadioButton id="shopBtn2" groupName="tabGroup" label="音乐" skinName="skins.Common_TabButtonSkin1" width="260"
 			               height="90" value="2" />
 			<e:RadioButton id="shopBtn3" groupName="tabGroup" label="章节" skinName="skins.Common_TabButtonSkin1" width="260"
-			               height="90" value="3" />
+			               height="90" value="3"  visible="false"/>
 			<e:RadioButton id="shopBtn4" groupName="tabGroup" label="道具" skinName="skins.Common_TabButtonSkin1" width="260"
-			               height="90" value="4" />
+			               height="90" value="4"  visible="false"/>
 			<e:layout>
 				<e:VerticalLayout gap="15" />
 			</e:layout>

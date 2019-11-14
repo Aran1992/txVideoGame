@@ -28,7 +28,7 @@ class VideoShopPreviewPanel extends eui.Component {
         let shoucangID: number = parseInt(this.data.model.params);
         this.shoucangModel = JsonModelManager.instance.getModelshoucang()[shoucangID];
 
-        this.banner_img.source = this.data.model.banner2;
+        this.banner_img.source = `${this.shoucangModel.id}_desc_png`//this.data.model.preview.split(";")[0];
         this.name_lab.text = this.data.model.name;
         this.desc_lab.text = this.data.model.desc;
         this.time_lab.text = this.shoucangModel.time;
@@ -80,7 +80,7 @@ class VideoShopPreviewPanel extends eui.Component {
 
     private onBuy(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, this.shoucangModel.minipic)));
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, "")));
     }
 
     private onPlay(): void {

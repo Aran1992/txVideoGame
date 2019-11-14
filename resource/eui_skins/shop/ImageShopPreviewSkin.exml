@@ -2,8 +2,8 @@
 <e:Skin class="skins.ImageShopPreviewSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui"
         xmlns:w="http://ns.egret.com/wing">
     <e:Image source="video_heidi1_png" left="0" right="0" top="0" bottom="0" locked="true" />
-    <e:Label text="——  已购买该商品，可在收藏查看完整内容 —— " y="50" fontFamily="SimHei" textColor="0xff5fa5" size="28"
-             horizontalCenter="0" locked="true" />
+    <e:Label id="idHasBuyed" text="——  已购买该商品，可在收藏查看完整内容 —— " y="50" fontFamily="SimHei" textColor="0xff5fa5" size="28"
+             horizontalCenter="0" />
     <e:Group width="1600" height="900" horizontalCenter="0" verticalCenter="0">
         <e:Group y="120" horizontalCenter="0">
             <e:Image source="shop_bannerkuang_png" y="0" scale9Grid="65,33,396,109" width="1180" height="600" x="0"

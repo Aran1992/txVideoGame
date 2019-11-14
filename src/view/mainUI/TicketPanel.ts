@@ -332,7 +332,7 @@ class TicketPanel extends eui.Component {
         let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         if (item.num > 0) {
             GameCommon.getInstance().showCommomTips("你已经拥有心动PASS了");
-            //return;
+            return;
         }
         let callback = () => {
             this.onCloseBuyTicketClick();
@@ -342,7 +342,7 @@ class TicketPanel extends eui.Component {
         };
         if (platform.getPlatform() == "plat_txsp" || platform.getPlatform() == "plat_pc") {
             let itemID = GameDefine.GUANGLIPINGZHENG;
-            if (platform.getPlatform() == "plat_txsp" && platform.isPlatformVip()) {//在腾讯视频中。会员买另外一个特价物品
+            if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {//在腾讯视频中。会员买另外一个特价物品
                 itemID = GameDefine.GUANGLIPINGZHENGEX;
             }
             GameCommon.getInstance().onShowBuyTips(itemID, TicketPanel.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);

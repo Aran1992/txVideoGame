@@ -96,15 +96,9 @@ class ShouCangMusicItem extends eui.Component {
     public set data(info) {
         this.info = info;
         this.musicName.text = info.name;
-        if (info.minipic)
-            this.icon.source = info.minipic + '_png';
-        var awardStrAry: string[] = [];
-        if (info.src.indexOf(",") >= 0) {
-            awardStrAry = info.src.split(",");
-        } else {
-            awardStrAry.push(info.src);
-        }
-        this.musicNum.text = awardStrAry.length + '首';
+        this.icon.source = `${info.id}_view_yuan_png`
+        let count = info.kuozhan.split(";").length
+        this.musicNum.text = count + '首';
         // if (UserInfo.allCollectionDatas[info.id]) {
         //     this.weijiesuo.visible = false;
         // }
