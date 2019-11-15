@@ -36,6 +36,8 @@ class ActionListen extends ActionTimerSceneBase {
         this.selected = true;
         const name = `music${listenBtn.value + 1}.mp3`;
         SoundManager.getInstance().playSound(name);
+        egret.Tween.get(listenBtn)
+            .to({scaleX: 1.5, scaleY: 1.5}, 250, egret.Ease.sineIn);
         this.timer = egret.setTimeout(() => {
             const DURATION = 200;
             egret.Tween.get(listenBtn)
