@@ -89,6 +89,7 @@ class TicketPanel extends eui.Component {
 
     private idGroupDescCommon: eui.Group;//日常观礼描述
     private idGroupDescSpecial: eui.Group;//活动观礼描述
+    private idGroupDescSpecialTxsp: eui.Group;//活动观礼描述
     private idGroupDiscount: eui.Group;
     private idGroupTips:eui.Group;
 
@@ -173,7 +174,8 @@ class TicketPanel extends eui.Component {
         let discountDay = Tool.formatAddDay(Number(cfg.params), platform.getSaleBeginTime());
         this.bSpecail = today <= discountDay;//是否在优惠期间
         this.idGroupDescCommon.visible = !this.bSpecail;
-        this.idGroupDescSpecial.visible = this.bSpecail;
+        this.idGroupDescSpecial.visible = this.bSpecail && platform.getPlatform()!="plat_txsp";
+        this.idGroupDescSpecial.visible = this.bSpecail && platform.getPlatform()=="plat_txsp";
 
         this.idCode.visible = false;
         this.idNoCode.visible = true;

@@ -919,7 +919,11 @@ class GameCommon {
                     data: "confirm"
                 });
             };
-            GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非特权用户也可等剧集解锁免费观看，详情请在《一零零一》查看", "购买特权", "取消");// "等待" + freeDay + "天"
+            if(platform.getPlatform()=="plat_txsp"){
+                GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集", callback, "活动期间，活动期间，非特权用户可通过等待免费解锁，详情请参见活动资讯", "购买特权", "取消");// "等待" + freeDay + "天"
+            }else{
+                GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，活动期间，非特权用户可通过等待免费解锁，详情请参见活动资讯", "购买特权", "取消");// "等待" + freeDay + "天"
+            }            
             if (isTXSP) {
                 GameDefine.IS_DUDANG = false;
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
