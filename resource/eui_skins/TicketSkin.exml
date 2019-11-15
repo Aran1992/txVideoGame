@@ -13,7 +13,7 @@
 			<e:Label text="持有激活码的用户，可在下方输入，激活即可获得心动PASS，无需购买" x="671.54" y="211.33" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10"/>
 			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" y="366.91" size="30" textColor="0x898686" lineSpacing="12"/>
 			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" x="54.7" y="379.06"/>
-			<e:Label id="idTicketNum" text="0" size="40" textColor="0xFFFFFF" anchorOffsetX="0" width="435.52" textAlign="center" x="78.34" y="633"/>
+			<e:Label id="idTicketNum" text="" size="40" textColor="0xFFFFFF" anchorOffsetX="0" width="435.52" textAlign="center" x="78.34" y="633"/>
 			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" width="456.73" textAlign="center" x="46.52" y="472.4" textColor="0xbfbbbb"/>
 			<e:Rect width="392" height="120" x="649" y="306" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5"/>
 			<e:Button id="idBtnUseCode" label="激活" y="532" horizontalCenter="278" x="841" scaleX="1" scaleY="1" enabled="true">
@@ -108,7 +108,7 @@
 		</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0">
+	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0" visible="false">
 		<e:Rect id="idRectBuy" width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0"/>
 
 		<e:Image width="1106" height="592" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" source="ticket_buy_ex_png"/>
@@ -119,7 +119,7 @@
 			</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Group id="idGroupDescSpecial" width="1100" height="396.98" horizontalCenter="0" verticalCenter="98.5" anchorOffsetX="0" anchorOffsetY="0" visible="false">
+		<e:Group id="idGroupDescSpecial" width="1100" height="396.98" horizontalCenter="0" verticalCenter="98.5" anchorOffsetX="0" anchorOffsetY="0">
 			<e:Label text="限时特惠结束时间：2019/11/7 24:00" x="184.66" y="160" size="28" textColor="0xff790c" scaleX="1" scaleY="1" visible="false"/>
 			<e:Image width="369" height="45" x="404.37" y="25.78" scaleX="1" scaleY="1" source="ticket_bk1_png"/>
 			<e:Label id="idYellowTitle" text="超前追剧，并享超5倍返利！" y="35.45" x="419.06" scaleX="1" scaleY="1" size="28" textAlign="center"/>
@@ -170,7 +170,7 @@
 
 
 		</e:Group>
-		<e:Group id="idGroupDescSpecialTxsp" width="1100" height="396.98" horizontalCenter="0" verticalCenter="98.5" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group id="idGroupDescSpecialTxsp" width="1100" height="396.98" horizontalCenter="0" verticalCenter="98.5" anchorOffsetX="0" anchorOffsetY="0" visible="false">
 			<e:Label text="限时特惠结束时间：2019/11/7 24:00" x="184.66" y="160" size="28" textColor="0xFF790C" scaleX="1" scaleY="1" visible="false"/>
 			<e:Image width="369" height="45" x="404.37" y="25.78" scaleX="1" scaleY="1" source="ticket_bk1_png"/>
 			<e:Label text="超前追剧" y="35.45" x="419.06" scaleX="1" scaleY="1" size="28" anchorOffsetX="0" width="338.67" anchorOffsetY="0" height="25.33" textAlign="center"/>

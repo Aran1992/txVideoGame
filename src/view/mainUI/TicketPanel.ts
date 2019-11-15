@@ -175,14 +175,14 @@ class TicketPanel extends eui.Component {
         this.bSpecail = today <= discountDay;//是否在优惠期间
         this.idGroupDescCommon.visible = !this.bSpecail;
         this.idGroupDescSpecial.visible = this.bSpecail && platform.getPlatform()!="plat_txsp";
-        this.idGroupDescSpecial.visible = this.bSpecail && platform.getPlatform()=="plat_txsp";
+        this.idGroupDescSpecialTxsp.visible = this.bSpecail && platform.getPlatform()=="plat_txsp";
 
         this.idCode.visible = false;
         this.idNoCode.visible = true;
         this.idBtnCopyCode.visible = false;
         this.idBtnShareCode.visible = false;
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        this.idTicketNum.text = itemNum;
+        this.idTicketNum.text = ""//itemNum;
         this.refreshActiveCode();
         if (itemNum <= 0) {
             this.idGroupBuyTicket.visible = true;
