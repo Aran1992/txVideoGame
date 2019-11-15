@@ -64,12 +64,9 @@ class ShopManager {
             if (platform.getPlatform() == "plat_txsp") {
                 callbackBuyGoods = (res) => {
                     if (res.code == 0) {
-                        if (itemId == GameDefine.GUANGLIPINGZHENGEX)
-                            itemId = GameDefine.GUANGLIPINGZHENG;
                         this.addGoods(itemId, num, callback)
                     } else {
                         console.log(res.msg);
-                        GameCommon.getInstance().showCommomTips("购买商品失败" + res.msg);
                     }
                 }
             }
@@ -106,7 +103,7 @@ class ShopManager {
     }
 
     /**获取商品信息列表**/
-    public initShopInfos(record?: string) {
+    public initShopInfos() {
         if (!this._shopDataDict) {
             GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
             this._shopDataDict = {};
@@ -117,22 +114,13 @@ class ShopManager {
                 this._shopDataDict[shopData.id] = shopData;
             }
         }
-        this.loadFromServer(record)
+        this.loadFromServer()
     }
 
     //不从服务器上取了。因为TXSP从服务器上也取不到
-    public loadFromServer(record?: string) {
+    public loadFromServer() {
         if (this._serverItemNums["loaded"])
             return;
-        if (platform.getPlatform() == "plat_txsp" && record) {//腾讯视频数量初始化
-            let r = JSON.parse(record);
-            for (let itemId in r) {
-                let shopdata: ShopInfoData = this._shopDataDict[Number(itemId)];
-                shopdata.num = Number(r[itemId].num);
-            }
-            this._serverItemNums["loaded"] = true;
-            return;
-        }
         let callback = (data) => {
             if (data.code == 0) {
                 let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
@@ -153,17 +141,13 @@ class ShopManager {
 
     public getServerItemNum(id) {
         if (!this._serverItemNums["loaded"]) {
-            this.loadFromServer();
+            this.loadFromServer()
             return 0;
         }
         return this._serverItemNums[id] || 0;
     }
 
     public getItemNum(id) {
-        // 如果已经关闭会员检查 且 查询的是会员数量 那么就返回1
-        if (!GameDefine.ENABLE_CHECK_VIP && id === GameDefine.GUANGLIPINGZHENG) {
-            return 1;
-        }
         let shopdata: ShopInfoData = this._shopDataDict[id] || {num: 0};
         return this.getServerItemNum(id) + shopdata.num
     }
@@ -181,15 +165,7 @@ class ShopManager {
 
     /**判断某收藏是否开通**/
     public onCheckShoucangOpen(shoucangID: number): boolean {
-        //return true;
-        let itemId = shoucangID + SHOP_TYPE.IMAGES * 100000;
-        if (shoucangID > 6000) {
-            itemId = shoucangID + SHOP_TYPE.MUSICS * 100000;
-        } else if (shoucangID > 5000) {
-            itemId = shoucangID + SHOP_TYPE.VIDEOS * 100000;
-        }
-        return ShopManager.getInstance().getItemNum(itemId) > 0;
-        //return this._openShoucangIds.indexOf(shoucangID) >= 0;
+        return this._openShoucangIds.indexOf(shoucangID) >= 0;
     }
 
     private onBuySuccessHandler(shopdata: ShopInfoData): void {
@@ -200,17 +176,16 @@ class ShopManager {
                 case SHOP_TYPE.IMAGES:
                 case SHOP_TYPE.VIDEOS:
                 case SHOP_TYPE.MUSICS:
-                    GameCommon.getInstance().onShowResultTips('购买成功\n图集可以“收藏”中查看');
-                    // let shoucangID: number = parseInt(shopdata.model.params);
-                    // GameCommon.getInstance().onShowResultTips('购买成功', true, "立刻查看", function (): void {
-                    //     let scCfg: Modelshoucang = JsonModelManager.instance.getModelshoucang()[shoucangID];
-                    //     GameDefine.CUR_ROLEIDX = scCfg.mulu1;
-                    //     if (scCfg.mulu1 == 5) {
-                    //         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangMusicPanel')
-                    //     } else {
-                    //         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangViewPanel')
-                    //     }
-                    // });
+                    let shoucangID: number = parseInt(shopdata.model.params);
+                    GameCommon.getInstance().onShowResultTips('购买成功', true, "立刻查看", function (): void {
+                        let scCfg: Modelshoucang = JsonModelManager.instance.getModelshoucang()[shoucangID];
+                        GameDefine.CUR_ROLEIDX = scCfg.mulu1;
+                        if (scCfg.mulu1 == 5) {
+                            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangMusicPanel')
+                        } else {
+                            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangViewPanel')
+                        }
+                    });
                     break;
                 case SHOP_TYPE.SPECIAL:
                     if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
