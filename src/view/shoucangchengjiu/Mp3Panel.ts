@@ -325,7 +325,7 @@ class Mp3Item extends eui.Component {
 
     public set data(info) {
         this.info = info;
-        this.musicName.text = (info.idx) + '.' + info.name;
+        this.musicName.text = (info.idx+1) + '.' + info.name;
         this.playerGroup.visible = false;
     }
 

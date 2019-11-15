@@ -440,7 +440,7 @@ class ImagesShopItem extends eui.ItemRenderer {
         this.banner_img.source =  shoucangModel.id+"_view_png"
         let srcAry: string[] = shoucangModel.src.split(";");
         this.imgs_num_lab.text = srcAry.length + "P";
-        this.title_lab.text = GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] + '的图片';
+        this.title_lab.text = GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] + '图集';
         this.style_name_lab.text = shopInfoDt.model.name;
         this.pingfen_img.source = `shop_image_${shoucangModel.level}_png`;
 
@@ -506,7 +506,7 @@ class VideosShopItem extends eui.ItemRenderer {
             return;
         }
         this.banner_img.source = `${shoucangModel.id}_view_png`
-        this.name_lab.text = `${GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1]}的视频`;
+        this.name_lab.text = `${GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1]}视频`;
         this.time_lab.text = shoucangModel.time;
         this.style_name_lab.text = shopInfoDt.model.name;
         let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);

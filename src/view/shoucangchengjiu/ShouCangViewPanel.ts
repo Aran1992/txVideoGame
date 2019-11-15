@@ -129,32 +129,43 @@ class ShouCangViewPanel extends eui.Component {
     }
 
     private onRefresh() {
-        this.goodsLayer.removeChildren();
-        var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
-        var curIdx: number = 0;
-        for (var k in cfgs) {
-            if (ShopManager.getInstance().onCheckShoucangOpen(cfgs[k].id)) {
-                if (cfgs[k].mulu1 == GameDefine.CUR_ROLEIDX) {
-                    if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG || cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
-                        // if (UserInfo.allCollectionDatas[cfgs[k].id]) {
-                        curIdx = curIdx + 1;
-                        var cg: ShouCangViewItem = new ShouCangViewItem();
-                        this.goodsLayer.addChild(cg);
-                        cg.data = {data: cfgs[k], idx: curIdx};
-                        // }
-                    }
-                }
-            }
-        }
-        this.scroll.viewport.scrollV = 0;
+        this.showGoods();
+        // this.goodsLayer.removeChildren();
+        // var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
+        // var curIdx: number = 0;
+        // for (var k in cfgs) {
+        //     if (ShopManager.getInstance().onCheckShoucangOpen(cfgs[k].id)) {
+        //         if (cfgs[k].mulu1 == GameDefine.CUR_ROLEIDX) {
+        //             if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG || cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
+        //                 curIdx = curIdx + 1;
+        //                 var cg: ShouCangViewItem = new ShouCangViewItem();
+        //                 this.goodsLayer.addChild(cg);
+        //                 cg.data = {data: cfgs[k], idx: curIdx};
+        //             }
+        //         }
+        //     }
+        // }
+        // this.scroll.viewport.scrollV = 0;
     }
 
     private showGoods() {
         this.goodsLayer.removeChildren();
         var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
+        //这里需要排序。所以需要把对象转成array再排序
+        let keySorted = Object.keys(cfgs).sort((a,b)=>{            
+            let powerA = 0
+            if (Number(a)<=5000){
+                powerA = Number(a);
+            }           
+            let powerB = 0
+            if (Number(b)<=5000){
+                powerB = Number(b);
+            }            
+            return powerA-powerB;
+        })
         var curIdx: number = 0;
-        for (var k in cfgs) {
-            // if (this.tabIdx > 0) {
+        for (var nk in keySorted) {
+            let k=keySorted[nk];
             if (ShopManager.getInstance().onCheckShoucangOpen(cfgs[k].id)) {
                 if (cfgs[k].mulu1 == GameDefine.CUR_ROLEIDX) {
                     if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG || cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
@@ -163,22 +174,8 @@ class ShouCangViewPanel extends eui.Component {
                         this.goodsLayer.addChild(cg);
                         cg.data = {data: cfgs[k], idx: curIdx};
                     }
-                    // if (UserInfo.allCollectionDatas[cfgs[k].id]) {
-                    // }
                 }
             }
-
-            // }
-            // else {
-            //     // if (UserInfo.allCollectionDatas[cfgs[k].id]) {
-            //     curIdx = curIdx + 1;
-            //     var cg: ShouCangViewItem = new ShouCangViewItem();
-            //     this.goodsLayer.addChild(cg);
-            //     cg.data = { data: cfgs[k], idx: curIdx };
-            //     // }
-
-            // }
-
         }
         this.scroll.viewport.scrollV = 0;
     }
@@ -198,6 +195,39 @@ class ShouCangViewPanel extends eui.Component {
         this.onRegist();
         this.updateResize();
 
+        let w = this.centerGroup.width;      
+        let h = 50
+        let lightMatrix = new egret.Matrix();
+        let cirleLight = new egret.Shape();
+        //cirleLight.blendMode = egret.BlendMode.ERASE;
+        this.addChild(cirleLight);
+        lightMatrix.createGradientBox(w,h,3.14*3/2);
+        cirleLight.graphics.clear();
+        cirleLight.graphics.beginGradientFill(egret.GradientType.LINEAR, [0x000000,  0x000000], [0.6,0],[0, 255], lightMatrix);
+        //this.cirleLight.graphics.beginFill(0x00cc00);
+        cirleLight.graphics.drawRect( 0, 0, w, h );
+        cirleLight.graphics.endFill();
+        this.centerGroup.addChild(cirleLight);
+        cirleLight.y=this.centerGroup.height-h-2
+
+
+
+    //     if(!this.cirleLight){
+    //         let cirleLight = new egret.Shape();  
+    //         this.cirleLight = cirleLight
+    //         this.centerGroup.addChild(cirleLight);
+    //     }
+    //     let w = this.centerGroup.width;      
+    //     let lightMatrix = new egret.Matrix();
+    //     //cirleLight.blendMode = egret.BlendMode.ERASE;
+    //     this.addChild(this.cirleLight);
+    //     lightMatrix.createGradientBox(w,50,3.14*3/2);
+    //     this.cirleLight.graphics.clear();
+    //     //this.cirleLight.graphics.beginGradientFill(egret.GradientType.LINEAR, [0x000000,  0x000000], [0.6,0],[0, 255], lightMatrix);
+    //     this.cirleLight.graphics.beginFill(0x00cc00);
+    //     this.cirleLight.graphics.drawRect( 0, 0, w, 50 );
+    //     this.cirleLight.graphics.endFill();
+    //    // this.cirleLight.y=this.centerGroup.height;
     }
 }
 

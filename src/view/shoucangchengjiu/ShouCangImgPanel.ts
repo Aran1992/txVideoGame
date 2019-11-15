@@ -21,11 +21,18 @@ class ShouCangImgPanel extends eui.Component {
     private endPos: number = 0;
     private isOne: boolean = false;
     private animRecords: SCImageData[];
-    private imgIndx: number = 0;
+    private _imgIndx: number = 0;
     private imgMaxNumb: number = 5;
     private curImg;
     private imgSound: string[] = [];
     private imgInfoJson:JSON;
+
+    private get imgIndx(){
+        return this._imgIndx;
+    }
+    private set imgIndx(m){
+        this._imgIndx =m;
+    }
 
     constructor(data) {
         super();
@@ -198,7 +205,7 @@ class ShouCangImgPanel extends eui.Component {
     private onPlaySound() {
         let idx = this.imgIndx;
         SoundManager.getInstance().stopMusicAll();
-        if (idx + 1 >= 5)
+        if (idx + 1 >= this.imgMaxNumb)
             idx = 0;
         else
             idx = idx + 1;
@@ -208,13 +215,13 @@ class ShouCangImgPanel extends eui.Component {
     }
 
     private onNextImg() {
-        if (this.imgIndx + 1 >= 5)
+        if (this.imgIndx + 1 >= this.imgMaxNumb)
             this.imgIndx = 0;
         else
             this.imgIndx = this.imgIndx + 1;
         let idx = this.imgIndx;
         SoundManager.getInstance().stopMusicAll();
-        if (idx + 1 >= 5)
+        if (idx + 1 >= this.imgMaxNumb)
             idx = 0;
         else
             idx = idx + 1;
@@ -398,7 +405,7 @@ class ShouCangImgPanel extends eui.Component {
         this.imgIndx = 4;
         let idx = this.imgIndx;
         SoundManager.getInstance().stopMusicAll();
-        if (idx + 1 >= 5)
+        if (idx + 1 >= this.imgMaxNumb)
             idx = 0;
         else
             idx = idx + 1;
@@ -421,14 +428,11 @@ class ShouCangImgPanel extends eui.Component {
     private onShare(): void {        
         SoundManager.getInstance().playSound("ope_click.mp3")
         var imgs: string[]=this.getImgArray();
-        // var imgs: string[];
-        // if (this.info.src.indexOf(";") >= 0) {
-        //     imgs = this.info.src.split(";");            
-        //     for(let i=1;i<imgs.length;i++){
-        //         imgs[i-1]=this.info.id+"_"+String(i)+"_jpg";
-        //     }
-        // }
-        let image_src: string = imgs[this.imgIndx - 1];
+        let idx = this.imgIndx+1
+        if(idx == this.imgMaxNumb){
+            idx = 0;
+        }
+        let image_src: string = imgs[idx];
         if (!image_src) return;
         let texture: egret.Texture = RES.getRes(image_src);
         if (texture) {

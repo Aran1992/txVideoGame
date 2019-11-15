@@ -7883,32 +7883,32 @@
         {
             "name": "sc_list_role1_png",
             "type": "image",
-            "url": "assets/shoucang/sc_list_role1.png?v=523"
+            "url": "assets/shoucang/sc_list_role1.png?v=474"
         },
         {
             "name": "sc_list_role2_png",
             "type": "image",
-            "url": "assets/shoucang/sc_list_role2.png?v=5"
+            "url": "assets/shoucang/sc_list_role2.png?v=546"
         },
         {
             "name": "sc_list_role3_png",
             "type": "image",
-            "url": "assets/shoucang/sc_list_role3.png?v=281"
+            "url": "assets/shoucang/sc_list_role3.png?v=581"
         },
         {
             "name": "sc_list_role4_png",
             "type": "image",
-            "url": "assets/shoucang/sc_list_role4.png?v=560"
+            "url": "assets/shoucang/sc_list_role4.png?v=694"
         },
         {
             "name": "sc_list_role5_png",
             "type": "image",
-            "url": "assets/shoucang/sc_list_role5.png?v=840"
+            "url": "assets/shoucang/sc_list_role5.png?v=340"
         },
         {
             "name": "sc_list_role6_png",
             "type": "image",
-            "url": "assets/shoucang/sc_list_role6.png?v=664"
+            "url": "assets/shoucang/sc_list_role6.png?v=536"
         },
         {
             "name": "sc_music_icon_1_png",
@@ -8303,7 +8303,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=490"
+            "url": "config/config.bin?v=491"
         }
     ]
 }

@@ -87,7 +87,7 @@ class ImageShopPreviewPanel extends eui.Component {
 
     private onBuy(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        let picPath = this.shoucangModel.id+"_view_png";
+        let picPath = this.shoucangModel.id+"_view_l_png";
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data,picPath )));
 
     }

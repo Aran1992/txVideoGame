@@ -346,7 +346,10 @@ class TicketPanel extends eui.Component {
             this.onCloseBuyTicketClick();
             this.refreshActiveCode();
             this.updateBuyBtnState();
-            GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“激活码”处查看');
+            if(platform.getPlatform()=="plat_txsp"){
+                GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
+            }else
+                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“激活码”处查看');
         };
         if (platform.getPlatform() == "plat_txsp" || platform.getPlatform() == "plat_pc") {
             let itemID = GameDefine.GUANGLIPINGZHENG;

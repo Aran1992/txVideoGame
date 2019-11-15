@@ -13,13 +13,14 @@
 		</e:Button>
 		<e:BitmapLabel id="suipNum" text="15" font="zuanshiFont_fnt" touchEnabled="false" letterSpacing="0" scaleX="0.5"
 		               scaleY="0.5" right="80" top="47" visible="false" />
-		<e:Group id="centerGroup" height="647" left="86" right="0" verticalCenter="11.5">
+		<e:Group id="centerGroup" height="779.8" width="1514" horizontalCenter="43" anchorOffsetY="0" verticalCenter="60">
 			<e:Group id="itemGroup" touchChildren="true" touchEnabled="true" width="100%" height="100%">
 				<e:Scroller id="scroll" height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">
 					<e:Group id="goodsLayer">
 						<e:layout>
-							<e:HorizontalLayout gap="23" />
+							<e:TileLayout requestedColumnCount="4" horizontalGap="50" verticalGap="30"/>
 						</e:layout>
+
 					</e:Group>
 				</e:Scroller>
 			</e:Group>
