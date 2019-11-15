@@ -31,8 +31,6 @@ class MainView extends eui.Component {
     private btnChengjiu: eui.Button;
     private btnShangCheng: eui.Button;
     private btnContinueGame: eui.Button;
-    private btnDisableCheck: eui.Button;
-    private btnEnableCheck: eui.Button;
     private desc: eui.Label;
     private bg: eui.Image;
     private bg_grp: eui.Group;
@@ -55,14 +53,6 @@ class MainView extends eui.Component {
     private static onShowShowCang() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ShouCangListPanel");
-    }
-
-    private static disableCheck() {
-        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = false;
-    }
-
-    private static enableCheck() {
-        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = true;
     }
 
     //添加到舞台
@@ -93,8 +83,6 @@ class MainView extends eui.Component {
         //
         this.btnSetting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowbtnSetting, this);
         this.btnShangCheng.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShop, this);
-        this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.disableCheck, this);
-        this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.enableCheck, this);
         // GameCommon.getInstance().getWenTi();
         // this.onGetDataRefresh();
         // LocalStorageManager.getInstance().onInit();

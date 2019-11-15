@@ -60,7 +60,7 @@ class GameDefine {
         DIAMOND: "common_zuanshi_png"
     };
     // 控制是否检查章节开启
-    public static ENABLE_CHECK_CHAPTER_LOCK = true;
+    public static ENABLE_CHECK_VIP = true;
 
     public static get sizeScaleX() {// 白鹭UI和视频的尺寸比（横向）
         return size.width / GameDefine.VIDEO_FULL_WIDTH;

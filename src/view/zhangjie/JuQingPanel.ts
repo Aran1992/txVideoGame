@@ -11,7 +11,8 @@ class JuQingPanel extends eui.Component {
     private idGuideGroup: eui.Group;
     private idGuideImage: eui.Image;
     private cleanLab: eui.Label;
-
+    private btnDisableCheck: eui.Button;
+    private btnEnableCheck: eui.Button;
     private _curIdx: number = FILE_TYPE.AUTO_FILE;
     private qiuImgs: eui.Image[];
     private _idx: number = 0;
@@ -43,6 +44,16 @@ class JuQingPanel extends eui.Component {
         GameCommon.getInstance().addLikeTips("清档成功");
     }
 
+    private static disableCheck() {
+        GameDefine.ENABLE_CHECK_VIP = false;
+        GameCommon.getInstance().addLikeTips("已经关闭会员检查");
+    }
+
+    private static enableCheck() {
+        GameDefine.ENABLE_CHECK_VIP = true;
+        GameCommon.getInstance().addLikeTips("已经开启会员检查");
+    }
+
     protected onRegist(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.AUTO_UPDATA, JuQingPanel.onRefreshUpdata, this);
@@ -61,6 +72,8 @@ class JuQingPanel extends eui.Component {
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
+        this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
+        this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
     }
 
     protected onRemove(): void {
@@ -269,7 +282,9 @@ class JuQingPanel extends eui.Component {
                             }
                         }
                     } else {
-                        if (!this.kuaiDatas[allCfg[k].show] && (juqingKuaiMax >= allCfg[k].id) || allCfg[k].lastKuai === "") {
+                        if (!this.kuaiDatas[allCfg[k].show]
+                            && (juqingKuaiMax >= allCfg[k].id)
+                            || (allCfg[k].lastKuai === "" && this._curIdx === FILE_TYPE.AUTO_FILE)) {
                             this._idx = this._idx + 1;
                             this.kuaiDatas[allCfg[k].show] = allCfg[k];
                         }
