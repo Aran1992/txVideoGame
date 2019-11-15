@@ -1,12 +1,10 @@
-class ActionSearch extends ActionSceneBase {
-    private timeBar1: eui.ProgressBar;
-    private timeBar2: eui.ProgressBar;
-    private desc: eui.Label;
+class ActionSearch extends ActionTimerSceneBase {
     private hudong_grp: eui.Group;
 
     private TanSuo_Pos_Ary: number[][] = [[400, 320], [780, 320], [1110, 350], [580, 550]];
     private ansId: number;
     private Before_ID: number = 57;
+    private closeTimer: number;
 
     public exit() {
         this.stopRun();
@@ -21,12 +19,6 @@ class ActionSearch extends ActionSceneBase {
         this.maxTime = this.runTime = this.model.time * 1000;
         this.delTime = this.model.time * 1000;
         this.updateResize();
-        this.timeBar1.maximum = this.maxTime;
-        this.timeBar1.slideDuration = 0;
-        this.timeBar1.value = this.maxTime;
-        this.timeBar2.slideDuration = 0;
-        this.timeBar2.maximum = this.maxTime;
-        this.timeBar2.value = this.maxTime;
         this.ansId = this.model.moren;
         let isselectIdx: number = 0;
         if (this.model.id == 76) {
@@ -52,13 +44,6 @@ class ActionSearch extends ActionSceneBase {
             if (i == isselectIdx) anim.visible = false;
             else anim.onPlay();
         }
-        this.initTimeInfo();
-    }
-
-    protected update(dt): void {
-        super.update(dt);
-        this.timeBar1.value = this.runTime;
-        this.timeBar2.value = this.runTime;
     }
 
     protected onBackFail() {
@@ -74,18 +59,12 @@ class ActionSearch extends ActionSceneBase {
         this.exit();
     }
 
-    private initTimeInfo() {
-        var hdCfg: Modelhudong = JsonModelManager.instance.getModelhudong()[this.model.type];
-        if (hdCfg && hdCfg.des) {
-            this.desc.text = hdCfg.des;
-        }
-    }
-
     private onSelect(event: egret.Event): void {
         this.ansId = parseInt(event.currentTarget.name);
         for (let i: number = this.hudong_grp.numChildren; i >= 1; i--) {
             if (this.ansId != i) this.hudong_grp.getChildAt(i - 1).visible = false;
         }
+        this.closeTimer = setTimeout(() => this.onBackSuccess(), 1000);
     }
 
     private onExit() {
@@ -97,7 +76,6 @@ class ActionSearch extends ActionSceneBase {
             anim.onDestroy();
             anim = null;
         }
+        clearTimeout(this.closeTimer);
     }
-
-    //The end
 }
