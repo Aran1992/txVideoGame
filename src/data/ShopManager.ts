@@ -157,7 +157,11 @@ class ShopManager {
         }
         return this._serverItemNums[id] || 0;
     }
-    public getItemNum(id){        
+    public getItemNum(id){    
+        // 如果已经关闭会员检查 且 查询的是会员数量 那么就返回1
+        if (!GameDefine.ENABLE_CHECK_VIP && id === GameDefine.GUANGLIPINGZHENG) {
+            return 1;
+        }    
         let shopdata: ShopInfoData = this._shopDataDict[id] || {num:0};
         return this.getServerItemNum(id)+shopdata.num
     }
