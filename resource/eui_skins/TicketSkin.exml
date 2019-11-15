@@ -108,8 +108,9 @@
 		</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0" visible="false">
-		<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="video_heidi1_png"/>
+	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0">
+		<e:Rect id="idRectBuy" width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0"/>
+
 		<e:Image width="1106" height="592" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" source="ticket_buy_ex_png"/>
 		<e:Button id="idBuyTicketClose" width="91" height="91" top="48" right="63" x="1351" y="113" scaleX="1" scaleY="1">
 			<e:skinName>

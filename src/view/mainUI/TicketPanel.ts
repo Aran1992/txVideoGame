@@ -103,6 +103,8 @@ class TicketPanel extends eui.Component {
     private idTicketNum: eui.Label;
     private suipNum: eui.Label;
 
+    private idRectBuy:eui.Rect;
+
     private taskGroupContainer: eui.Group;
 
     private _selectIndex: number = 2;
@@ -191,6 +193,9 @@ class TicketPanel extends eui.Component {
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
         this.createTasks();
         this.suipNum.text = UserInfo.suipianMoney + "";
+
+        if(platform.getPlatform() != "plat_txsp")
+            this.idRectBuy.alpha = 0.9
     }
 
     private updateBuyBtnState() {
