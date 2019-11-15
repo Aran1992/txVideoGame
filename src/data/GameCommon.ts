@@ -72,17 +72,17 @@ class GameCommon {
         },
         34: () => {
             const list = [1, 2, 3, 4];
-            if (GameCommon.getRoleLike(2) >= 2) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) >= 6) {
+                list.splice(list.indexOf(1), 1);
+            }
+            if (GameCommon.getRoleLike(ROLE_INDEX.ZiHao_Xia) >= 6) {
                 list.splice(list.indexOf(2), 1);
             }
-            if (GameCommon.getRoleLike(0) >= 5) {
-                list.splice(list.indexOf(4), 1);
-            }
-            if (GameCommon.getRoleLike(3) >= 6) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) >= 6) {
                 list.splice(list.indexOf(3), 1);
             }
-            if (GameCommon.getRoleLike(1) >= 6) {
-                list.splice(list.indexOf(1), 1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) >= 5) {
+                list.splice(list.indexOf(4), 1);
             }
             if (list.length === 4) {
                 list.splice(list.indexOf(3), 1);
@@ -326,7 +326,7 @@ class GameCommon {
                 console.log("read book failed:" + tp);
                 return;
             }
-            if(data.data.content == ""){
+            if (data.data.content == "") {
                 return;
             }
             console.log("read book success:" + tp);
@@ -511,6 +511,8 @@ class GameCommon {
     }
 
     public getSortLikeAry() {
+        // 当好感度相同时 按照这个顺序 越前面越大
+        const list = [ROLE_INDEX.ZiHao_Xia, ROLE_INDEX.XiaoBai_Han, ROLE_INDEX.WanXun_Xiao, ROLE_INDEX.QianYe_Xiao];
         let items = [];
         for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
             let data = {num: 0, id: i};
@@ -523,7 +525,7 @@ class GameCommon {
             } else if (arg2.num < arg1.num) {
                 return -1;
             } else {
-                return arg1.id - arg2.id;
+                return list.indexOf(arg1.id) - list.indexOf(arg2.id);
             }
         });
         return items;
@@ -890,23 +892,22 @@ class GameCommon {
 
     //确定章节是否已开启
     public checkChapterLocked() {
-        if (!GameDefine.ENABLE_CHECK_CHAPTER_LOCK) {
-            return true;
-        }
         let curChapterId = this.getPlayingChapterId();
         if (curChapterId == 0)
             return true;
-        let nnextChapterId = this.getNextChapterId(curChapterId);
-        let onSale = this.isChapterOnSale(nnextChapterId);
+        let nextChapterId = this.getNextChapterId(curChapterId);
+        let onSale = this.isChapterOnSale(nextChapterId);
         //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         //let isVip = item.num > 0;
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         if (!onSale) {
             GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。");
+            GameDefine.IS_DUDANG = false;
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
             return false;
         }
-        let freeDay = this.getChapterFreeDay(curChapterId);
+        let freeDay = this.getChapterFreeDay(nextChapterId);
         if (!isVip && freeDay > 0) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
@@ -919,7 +920,12 @@ class GameCommon {
                 });
             };
             GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非特权用户也可等剧集解锁免费观看，详情请在《一零零一》查看", "购买特权", "取消");// "等待" + freeDay + "天"
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            if (isTXSP) {
+                GameDefine.IS_DUDANG = false;
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
+            } else {
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+            }
             return false;
         }
         return true;
@@ -928,6 +934,17 @@ class GameCommon {
     public showRoleLike() {
         const info = this.getSortLikeAry().map(data => `${GameDefine.ROLE_NAME[data.id]}:${data.num}`).join(",");
         this.showErrorLog(info);
+    }
+
+    public getDefaultAns(wtID:number) {
+        const getLockIDListFunc = GameCommon.getInstance().getLockedOptionIDs[wtID];
+        const lockIDList = getLockIDListFunc ? getLockIDListFunc() : [];
+        const wtModel = wentiModels[wtID];
+        let defaultID = wtModel.moren;
+        if (lockIDList.indexOf(wtModel.moren) !== -1) {
+            defaultID = wtModel.ans.split(",").map(s => parseInt(s)).find(i => lockIDList.indexOf(i) === -1);
+        }
+        return defaultID;
     }
 }
 

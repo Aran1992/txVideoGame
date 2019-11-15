@@ -72,7 +72,7 @@
     <answer qid="30" chengjiuId="*" ansid="1" des="全力以赴" like="0,0,1,0" videos="V510,V518,V519" nextid="0" isdie="0" nextChapterId="6" shanhuiid="*"/>
     <answer qid="30" chengjiuId="*" ansid="2" des="放水让他赢" like="0,0,-1,0" videos="V509,V518,V519" nextid="0" isdie="0" nextChapterId="6" shanhuiid="*"/>
     <answer qid="31" chengjiuId="*" ansid="1" des="我想回去练习…" like="0,0,0,-2" videos="V512,V518,V519" nextid="0" isdie="0" nextChapterId="6" shanhuiid="*"/>
-    <answer qid="31" chengjiuId="*" ansid="2" des="走，去吃饭吧！" like="0,0,2,0" videos="V513,V518,V519" nextid="0" isdie="0" nextChapterId="6" shanhuiid="*"/>
+    <answer qid="31" chengjiuId="*" ansid="2" des="走，去吃饭吧！" like="0,0,0,2" videos="V513,V518,V519" nextid="0" isdie="0" nextChapterId="6" shanhuiid="*"/>
     <answer qid="32" chengjiuId="*" ansid="1" des="成功" like="2,0,0,0" videos="V516,V518,V519" nextid="0" isdie="0" nextChapterId="6" shanhuiid="*"/>
     <answer qid="32" chengjiuId="*" ansid="2" des="失败" like="-2,0,0,0" videos="V515,V518,V519" nextid="0" isdie="0" nextChapterId="6" shanhuiid="*"/>
     <answer qid="33" chengjiuId="*" ansid="1" des="紧握他的手" like="0,1,0,-1" videos="V602,V604" nextid="34" isdie="0" nextChapterId="0" shanhuiid="*"/>

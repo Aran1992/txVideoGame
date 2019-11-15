@@ -127,4 +127,7 @@
 		<e:Rect strokeAlpha="0" fillAlpha="0.8" left="0" top="0" width="100%" height="100%"/>
 		<e:Image id="idGuideImage" source="guide_cundang_1_jpg" anchorOffsetX="0" anchorOffsetY="0" fillMode="scale" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
 	</e:Group>
+	<e:Label id="cleanLab" text="清档" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="100" top="50"/>
+	<e:Label id="btnDisableCheck" text="关闭会员检查" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="200" top="50"/>
+	<e:Label id="btnEnableCheck" text="开启会员检查" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="465" top="50"/>
 </e:Skin>

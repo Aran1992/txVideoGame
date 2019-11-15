@@ -10,12 +10,13 @@ class JuQingPanel extends eui.Component {
     private guide_grp: eui.Group;
     private idGuideGroup: eui.Group;
     private idGuideImage: eui.Image;
-
+    private cleanLab: eui.Label;
+    private btnDisableCheck: eui.Button;
+    private btnEnableCheck: eui.Button;
     private _curIdx: number = FILE_TYPE.AUTO_FILE;
     private qiuImgs: eui.Image[];
     private _idx: number = 0;
     private kuaiDatas;
-    private _videoData;
     private starPos: number = 0;
     private imgIndx: number = 1;
     private imgMaxNumb: number = 5;
@@ -32,6 +33,25 @@ class JuQingPanel extends eui.Component {
         if (GameDefine.ISFILE_STATE) {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
         }
+    }
+
+    private static onCleanCache() {
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        for (let i: number = 1; i < FILE_TYPE.SIZE; i++) {
+            GameCommon.getInstance().deleteBookHistory(i);
+        }
+        ShopManager.getInstance().takeOffAllBookValue();
+        GameCommon.getInstance().addLikeTips("清档成功");
+    }
+
+    private static disableCheck() {
+        GameDefine.ENABLE_CHECK_VIP = false;
+        GameCommon.getInstance().addLikeTips("已经关闭会员检查");
+    }
+
+    private static enableCheck() {
+        GameDefine.ENABLE_CHECK_VIP = true;
+        GameCommon.getInstance().addLikeTips("已经开启会员检查");
     }
 
     protected onRegist(): void {
@@ -51,6 +71,9 @@ class JuQingPanel extends eui.Component {
             this['fileBtn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+        this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
+        this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
+        this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
     }
 
     protected onRemove(): void {
@@ -216,14 +239,10 @@ class JuQingPanel extends eui.Component {
     }
 
     private onSwitchKuai(tp: number) {
-        // this.slideGroup.removeChildren();
-        // this.slideGroup.addChild(new PlotTreeItem(tp));
         this['fileBtn' + tp].touchEnabled = false;
         this._idx = 0;
         this.cunchuBtn.visible = tp != 1;
         this.timerLab.text = '';
-        // UserInfo.curBokData.allVideos['V019'] = 'V019'
-        // UserInfo.curBokData.videoDic['V019'] = 'V019'
         this.kuaiDatas = {};
         let juqingKuaiMax: number = 0;
         if (this._curIdx != FILE_TYPE.AUTO_FILE) {
@@ -251,7 +270,6 @@ class JuQingPanel extends eui.Component {
         let juqingAry: number[] = GameDefine.ROLE_JUQING_TREE[roleIdx];
         for (let i: number = 0; i < juqingAry.length; i++) {
             let juqing_page: number = juqingAry[i];
-            let bool: boolean = true;
             let allCfg = JsonModelManager.instance.getModeljuqingkuai()[juqing_page];
             if (!allCfg) break;
             for (let k in allCfg) {
@@ -262,19 +280,17 @@ class JuQingPanel extends eui.Component {
                                 this._idx = this._idx + 1;
                                 this.kuaiDatas[allCfg[k].show] = allCfg[k];
                             }
-                        } else {
-                            bool = false;
-                            break;
                         }
                     } else {
-                        if (!this.kuaiDatas[allCfg[k].show]) {
+                        if (!this.kuaiDatas[allCfg[k].show]
+                            && (juqingKuaiMax >= allCfg[k].id)
+                            || (allCfg[k].lastKuai === "" && this._curIdx === FILE_TYPE.AUTO_FILE)) {
                             this._idx = this._idx + 1;
                             this.kuaiDatas[allCfg[k].show] = allCfg[k];
                         }
                     }
                 }
             }
-            if (!bool) break;
         }
 
         this.imgIndx = 0;
@@ -319,6 +335,35 @@ class JuQingPanel extends eui.Component {
         this.slideGroup.x = -(this.imgIndx * size.width);
 
         this.imgMaxNumb = this._idx;
+
+        if (this._curIdx == FILE_TYPE.AUTO_FILE) {
+            this.setPage(models);
+        }
+    }
+
+    private setPage(models) {
+        let curJuqingID: number = GameCommon.getInstance().getCurJuqingID(UserInfo.curBokData);
+        const jqModels = JsonModelManager.instance.getModeljuqingkuai();
+        for (let showid in jqModels) {
+            if (jqModels.hasOwnProperty(showid)) {
+                let jqmodels = jqModels[showid];
+                for (let juqingid in jqmodels) {
+                    if (jqmodels.hasOwnProperty(juqingid)) {
+                        if (jqmodels[juqingid].id == curJuqingID) {
+                            const newIndex = models.findIndex(model => model.show == showid);
+                            if (newIndex !== -1) {
+                                const currIndex = this.imgIndx;
+                                this.imgIndx = newIndex;
+                                this.slideGroup.x = -(this.imgIndx * size.width);
+                                this.qiuImgs[currIndex].source = 'cundang_dian2_png';
+                                this.qiuImgs[this.imgIndx].source = 'cundang_dian1_png';
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private onGuideHandler(): void {
@@ -326,9 +371,11 @@ class JuQingPanel extends eui.Component {
     }
 
     private onClickRestartBtn() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
-            cfg: JsonModelManager.instance.getModeljuqingkuai()[1][1],
-            idx: FILE_TYPE.AUTO_FILE
+        GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+                cfg: JsonModelManager.instance.getModeljuqingkuai()[1][1],
+                idx: FILE_TYPE.AUTO_FILE
+            });
         });
     }
 }

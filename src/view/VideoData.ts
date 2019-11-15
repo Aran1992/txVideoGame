@@ -3,13 +3,13 @@ const ADShowConfig = [
         id: "ad1",
         videoID: "V510",
         start: 165,
-        end: 168,
+        end: 169,
     },
     {
         id: "ad2",
         videoID: "VX1204",
         start: 29,
-        end: 6,
+        end: 33,
     }
 ];
 
@@ -63,6 +63,8 @@ class VideoData extends egret.DisplayObjectContainer {
     private nextWentiId: number = 0;
     private _nextVid: string = '';
     private tiaoState: boolean = false;
+    private timeoutCallbackTime: number;
+    private timeoutCallback: Function;
 
     public constructor() {
         super();
@@ -308,6 +310,7 @@ class VideoData extends egret.DisplayObjectContainer {
     public starVideo(wenti) {
         if (!UserInfo.curBokData)
             UserInfo.curBokData = new BookData();
+        this.againFlg = true;
         this.curWentiId = wenti;
         this.nextWentiId = wenti;
         this.onCreateData();
@@ -343,6 +346,11 @@ class VideoData extends egret.DisplayObjectContainer {
             this.videoUpDataHandle = new function () {
             };
             widPlayer.on('timeupdate', () => {
+                if (widPlayer.getPlayTime() >= this.timeoutCallbackTime) {
+                    this.timeoutCallback();
+                    this.timeoutCallback = undefined;
+                    this.timeoutCallbackTime = undefined;
+                }
                 const videoCurTime = VideoManager.getInstance().videoCurrTime();
                 ADShowConfig.forEach(config => {
                     this.tipsPanel[config.id].visible = this.videoIdx === config.videoID && videoCurTime > config.start && videoCurTime < config.end;
@@ -437,7 +445,7 @@ class VideoData extends egret.DisplayObjectContainer {
                             }
 
                             let lastTime: number = Number(wentiModels[this.curWentiId].time) + Number(videoModels[this.videoIdx].time);
-                            if (videoCurTime >= lastTime - 10 && !videoAdvanceLoad) {
+                            if (!videoAdvanceLoad) {
                                 videoAdvanceLoad = true;
                                 VideoManager.getInstance().onLoad(this.curWentiId)
                             }
@@ -570,6 +578,8 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         if (!this.videoNodeChangeHandle) {
             widPlayer.on('videoNodeChange', () => {
+                this.timeoutCallback = undefined;
+                this.timeoutCallbackTime = undefined;
                 GameCommon.getInstance().removeLoading();
                 if (!widPlayer) {
                     this.isPlay = false;
@@ -796,6 +806,11 @@ class VideoData extends egret.DisplayObjectContainer {
         return 0;
     }
 
+    public setVideoTimeout(callback: Function, timeout: number) {
+        this.timeoutCallbackTime = widPlayer.getPlayTime() + timeout / 1000;
+        this.timeoutCallback = callback;
+    }
+
     protected createGameScene(): void {
         VideoManager.getInstance().init(this);
         this.onCreateData();
@@ -952,7 +967,14 @@ class VideoData extends egret.DisplayObjectContainer {
                 }, this, 200);
                 GameCommon.getInstance().hideTipsHuDong();
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+                if (isTXSP) {
+                    GameDefine.IS_DUDANG = false;
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
+                } else {
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
+                }
+                GameCommon.getInstance().showConfirmTips("END", () => {
+                });
                 return;
             }
         }
@@ -996,7 +1018,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (id != 0) {
             this.tipsPanel.onUpdateWenTi(id);
         } else {
-            this.tipsPanel.onUpdateWenTi(wentiModels[this.curWentiId].moren);
+            this.tipsPanel.onUpdateWenTi(GameCommon.getInstance().getDefaultAns(this.curWentiId));
         }
     }
 

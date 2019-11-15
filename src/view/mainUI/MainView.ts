@@ -29,15 +29,9 @@ class MainView extends eui.Component {
     private btnSetting: eui.Button;
     private btnShouCang: eui.Button;
     private btnChengjiu: eui.Button;
-    private btnHuodong: eui.Button;
     private btnShangCheng: eui.Button;
     private btnContinueGame: eui.Button;
-    private btnDisableCheck: eui.Button;
-    private btnEnableCheck: eui.Button;
-    private cleanLab: eui.Label;
     private desc: eui.Label;
-    private wallet: eui.Label;
-    private closeWeb: eui.Label;
     private bg: eui.Image;
     private bg_grp: eui.Group;
     private shopLab: eui.Group;
@@ -59,14 +53,6 @@ class MainView extends eui.Component {
     private static onShowShowCang() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ShouCangListPanel");
-    }
-
-    private static disableCheck() {
-        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = false;
-    }
-
-    private static enableCheck() {
-        GameDefine.ENABLE_CHECK_CHAPTER_LOCK = true;
     }
 
     //添加到舞台
@@ -93,16 +79,10 @@ class MainView extends eui.Component {
         this.btnChengjiu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChengJiu, this);
         this.btnShouCang.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
         this.xindong.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
-        this.btnHuodong.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowActivity, this);
-        this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCleanCache, this);
-        this.wallet.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowWallet, this);
         this.btnXinkaishi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onXinkaishi, this);
         //
-        this.closeWeb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseWebView, this);
         this.btnSetting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowbtnSetting, this);
         this.btnShangCheng.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShop, this);
-        this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.disableCheck, this);
-        this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.enableCheck, this);
         // GameCommon.getInstance().getWenTi();
         // this.onGetDataRefresh();
         // LocalStorageManager.getInstance().onInit();
@@ -219,7 +199,6 @@ class MainView extends eui.Component {
         } else {
             this.bg.source = "main_bj1_jpg";
         }
-        // this.desc.text = "UserInfo.main_Img" + UserInfo.main_Img;
         if (UserInfo.curBokData) {
             this.desc.text += UserInfo.curBokData.main_Img + "---" + UserInfo.main_Img;
             UserInfo.curBokData.main_Img = UserInfo.main_Img;
@@ -265,29 +244,6 @@ class MainView extends eui.Component {
         }
         GameDefine.IS_DUDANG = false;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
-    }
-
-    private onShowWallet() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        GameCommon.getInstance().openButton("story://wallet");
-    }
-
-    private onCloseWebView() {
-        GameCommon.getInstance().onCloseWebView();
-    }
-
-    private onCleanCache() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        for (var i: number = 1; i < FILE_TYPE.SIZE; i++) {
-            GameCommon.getInstance().deleteBookHistory(i);
-        }
-        ShopManager.getInstance().takeOffAllBookValue();
-        GameCommon.getInstance().addLikeTips("清档成功");
-    }
-
-    private onShowActivity() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ActivityPanel");
     }
 
     private onShowChengJiu() {
@@ -353,9 +309,6 @@ class MainView extends eui.Component {
     }
 
     private onEventPlay() {
-        this.play_Btn.visible = false;
-        this.play_zi.visible = false;
-
         if (!UserInfo.curBokData) {
             UserInfo.allVideos = {};
             UserInfo.ansWerData = new AnswerData;
@@ -367,7 +320,10 @@ class MainView extends eui.Component {
                 if (UserInfo.curchapter === 0) {
                     this.gameWorld.createGameScene();
                 } else {
-                    this.onBtnContinue();
+                    // 如果没有成功继续 那么就不隐藏按钮
+                    if (!this.onBtnContinue()) {
+                        return;
+                    }
                 }
             } else {
                 if (this.curDuDang) {
@@ -377,17 +333,20 @@ class MainView extends eui.Component {
                 this.gameWorld.createGameScene();
             }
         }
+        this.play_Btn.visible = false;
+        this.play_zi.visible = false;
     }
 
-    private onBtnContinue() {
+    private onBtnContinue(): boolean {
         if (!GameCommon.getInstance().checkChapterLocked())
-            return;
+            return false;
         if (this.curDuDang) {
             this.curDuDang = false;
             GameDefine.IS_DUDANG = true;
         }
         GameDefine.ISFILE_STATE = true;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.AUTO_UPDATA));
+        return true;
     }
 
     private onRefreshUpdate(data) {
@@ -400,13 +359,13 @@ class MainView extends eui.Component {
         this.onRefreshImg();
         this.setMainGroupVisible(false);
         if (!GameDefine.ISFILE_STATE) {
+            TipsBtn.Is_Guide_Bool = !UserInfo.achievementDics[17];
             if (UserInfo.achievementDics[17] && !isTXSP) {
                 this.setMainGroupVisible(true);
                 this.play_Btn.visible = false;
                 this.play_zi.visible = false;
                 this.onShowMain();
             } else {
-                TipsBtn.Is_Guide_Bool = true;
                 this.setMainGroupVisible(false);
                 this.play_Btn.visible = true;
                 this.play_zi.visible = true;
@@ -421,6 +380,8 @@ class MainView extends eui.Component {
     }
 
     private onHideMainGroup() {
+        this.play_Btn.visible = false;
+        this.play_zi.visible = false;
         this.setMainGroupVisible(false);
     }
 

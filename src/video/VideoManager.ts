@@ -5,13 +5,10 @@ class VideoManager {
     private videoData: VideoData;
     private currIdx: number;
     private first: boolean = true;
-    private _videoID: string;//当前播放的视频ID
     private isPause: boolean = false;
     private _isRead: boolean = false;
     private setVid: string = '';
-
-    private constructor() {
-    }
+    private _videoID: string;//当前播放的视频ID
 
     private _loadSrc: string = '';
 
@@ -183,7 +180,7 @@ class VideoManager {
         if (!widPlayer)
             return;
         const cfgs = answerModels[wentiId];
-        const videoSrcs: string[] = [];
+        let videoSrcs: string[] = [];
         if (!cfgs) {
             if (!videoModels[wentiId]) {
                 return;
@@ -193,8 +190,7 @@ class VideoManager {
             for (const k in cfgs) {
                 if (cfgs.hasOwnProperty(k)) {
                     if (cfgs[k].videos.indexOf(",") >= 0) {
-                        const strs = cfgs[k].videos.split(",");
-                        videoSrcs.push(strs[0]);
+                        videoSrcs = videoSrcs.concat(cfgs[k].videos.split(","));
                     } else {
                         if (cfgs[k].videos != '')
                             videoSrcs.push(cfgs[k].videos);
@@ -204,7 +200,6 @@ class VideoManager {
                 }
             }
         }
-        // VideoManager.getInstance().log('load可能播放的src' + videoSrcs)
         for (let i: number = 0; i < videoSrcs.length; i++) {
             videoSrcs[i] = videoModels[videoSrcs[i]].vid;
         }

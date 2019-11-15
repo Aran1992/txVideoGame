@@ -3088,7 +3088,7 @@
         {
             "name": "plot82_image_png",
             "type": "image",
-            "url": "assets/cundang/plot/plot82_image.png?v=735"
+            "url": "assets/cundang/plot/plot82_image.png?v=980"
         },
         {
             "name": "plot82_lightLine_png",
@@ -8303,7 +8303,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=491"
+            "url": "config/config.bin?v=524"
         }
     ]
 }
