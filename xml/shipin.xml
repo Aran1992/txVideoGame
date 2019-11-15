@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <shipin>
-    <shipin id="V001" chengjiuId="*" juqing="1" vid="t0032b6tjt4" time="26" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
+    <shipin id="V001" chengjiuId="*" juqing="1" vid="t0032b6tjt4" time="28" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V002" chengjiuId="*" juqing="1" vid="d00326u60gx" time="-1" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V003" chengjiuId="*" juqing="1" vid="x0032ambnam" time="-1" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>
     <shipin id="V004" chengjiuId="*" juqing="1" vid="n0032mzudx5" time="35" dlc="0" shanhuiid="*" weight="1" tiaozhuan="0" subtitle="0" payTime="0" haogandu="*" jtime="*" stime="*"/>

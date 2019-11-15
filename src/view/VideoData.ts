@@ -63,6 +63,8 @@ class VideoData extends egret.DisplayObjectContainer {
     private nextWentiId: number = 0;
     private _nextVid: string = '';
     private tiaoState: boolean = false;
+    private timeoutCallbackTime: number;
+    private timeoutCallback: Function;
 
     public constructor() {
         super();
@@ -308,6 +310,7 @@ class VideoData extends egret.DisplayObjectContainer {
     public starVideo(wenti) {
         if (!UserInfo.curBokData)
             UserInfo.curBokData = new BookData();
+        this.againFlg = true;
         this.curWentiId = wenti;
         this.nextWentiId = wenti;
         this.onCreateData();
@@ -343,6 +346,11 @@ class VideoData extends egret.DisplayObjectContainer {
             this.videoUpDataHandle = new function () {
             };
             widPlayer.on('timeupdate', () => {
+                if (widPlayer.getPlayTime() >= this.timeoutCallbackTime) {
+                    this.timeoutCallback();
+                    this.timeoutCallback = undefined;
+                    this.timeoutCallbackTime = undefined;
+                }
                 const videoCurTime = VideoManager.getInstance().videoCurrTime();
                 ADShowConfig.forEach(config => {
                     this.tipsPanel[config.id].visible = this.videoIdx === config.videoID && videoCurTime > config.start && videoCurTime < config.end;
@@ -570,6 +578,8 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         if (!this.videoNodeChangeHandle) {
             widPlayer.on('videoNodeChange', () => {
+                this.timeoutCallback = undefined;
+                this.timeoutCallbackTime = undefined;
                 GameCommon.getInstance().removeLoading();
                 if (!widPlayer) {
                     this.isPlay = false;
@@ -794,6 +804,11 @@ class VideoData extends egret.DisplayObjectContainer {
 
         }
         return 0;
+    }
+
+    public setVideoTimeout(callback: Function, timeout: number) {
+        this.timeoutCallbackTime = widPlayer.getPlayTime() + timeout / 1000;
+        this.timeoutCallback = callback;
     }
 
     protected createGameScene(): void {

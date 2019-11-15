@@ -8303,7 +8303,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=566"
+            "url": "config/config.bin?v=567"
         }
     ]
 }
