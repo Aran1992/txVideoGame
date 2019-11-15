@@ -29,15 +29,11 @@ class MainView extends eui.Component {
     private btnSetting: eui.Button;
     private btnShouCang: eui.Button;
     private btnChengjiu: eui.Button;
-    private btnHuodong: eui.Button;
     private btnShangCheng: eui.Button;
     private btnContinueGame: eui.Button;
     private btnDisableCheck: eui.Button;
     private btnEnableCheck: eui.Button;
-    private cleanLab: eui.Label;
     private desc: eui.Label;
-    private wallet: eui.Label;
-    private closeWeb: eui.Label;
     private bg: eui.Image;
     private bg_grp: eui.Group;
     private shopLab: eui.Group;
@@ -93,12 +89,8 @@ class MainView extends eui.Component {
         this.btnChengjiu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChengJiu, this);
         this.btnShouCang.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
         this.xindong.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
-        this.btnHuodong.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowActivity, this);
-        this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCleanCache, this);
-        this.wallet.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowWallet, this);
         this.btnXinkaishi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onXinkaishi, this);
         //
-        this.closeWeb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseWebView, this);
         this.btnSetting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowbtnSetting, this);
         this.btnShangCheng.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShop, this);
         this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.disableCheck, this);
@@ -219,7 +211,6 @@ class MainView extends eui.Component {
         } else {
             this.bg.source = "main_bj1_jpg";
         }
-        // this.desc.text = "UserInfo.main_Img" + UserInfo.main_Img;
         if (UserInfo.curBokData) {
             this.desc.text += UserInfo.curBokData.main_Img + "---" + UserInfo.main_Img;
             UserInfo.curBokData.main_Img = UserInfo.main_Img;
@@ -265,29 +256,6 @@ class MainView extends eui.Component {
         }
         GameDefine.IS_DUDANG = false;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
-    }
-
-    private onShowWallet() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        GameCommon.getInstance().openButton("story://wallet");
-    }
-
-    private onCloseWebView() {
-        GameCommon.getInstance().onCloseWebView();
-    }
-
-    private onCleanCache() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        for (var i: number = 1; i < FILE_TYPE.SIZE; i++) {
-            GameCommon.getInstance().deleteBookHistory(i);
-        }
-        ShopManager.getInstance().takeOffAllBookValue();
-        GameCommon.getInstance().addLikeTips("清档成功");
-    }
-
-    private onShowActivity() {
-        SoundManager.getInstance().playSound("ope_click.mp3");
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "ActivityPanel");
     }
 
     private onShowChengJiu() {

@@ -10,12 +10,12 @@ class JuQingPanel extends eui.Component {
     private guide_grp: eui.Group;
     private idGuideGroup: eui.Group;
     private idGuideImage: eui.Image;
+    private cleanLab: eui.Label;
 
     private _curIdx: number = FILE_TYPE.AUTO_FILE;
     private qiuImgs: eui.Image[];
     private _idx: number = 0;
     private kuaiDatas;
-    private _videoData;
     private starPos: number = 0;
     private imgIndx: number = 1;
     private imgMaxNumb: number = 5;
@@ -32,6 +32,15 @@ class JuQingPanel extends eui.Component {
         if (GameDefine.ISFILE_STATE) {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'JuQingPanel');
         }
+    }
+
+    private static onCleanCache() {
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        for (let i: number = 1; i < FILE_TYPE.SIZE; i++) {
+            GameCommon.getInstance().deleteBookHistory(i);
+        }
+        ShopManager.getInstance().takeOffAllBookValue();
+        GameCommon.getInstance().addLikeTips("清档成功");
     }
 
     protected onRegist(): void {
@@ -51,6 +60,7 @@ class JuQingPanel extends eui.Component {
             this['fileBtn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+        this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
     }
 
     protected onRemove(): void {
@@ -216,14 +226,10 @@ class JuQingPanel extends eui.Component {
     }
 
     private onSwitchKuai(tp: number) {
-        // this.slideGroup.removeChildren();
-        // this.slideGroup.addChild(new PlotTreeItem(tp));
         this['fileBtn' + tp].touchEnabled = false;
         this._idx = 0;
         this.cunchuBtn.visible = tp != 1;
         this.timerLab.text = '';
-        // UserInfo.curBokData.allVideos['V019'] = 'V019'
-        // UserInfo.curBokData.videoDic['V019'] = 'V019'
         this.kuaiDatas = {};
         let juqingKuaiMax: number = 0;
         if (this._curIdx != FILE_TYPE.AUTO_FILE) {
@@ -263,7 +269,7 @@ class JuQingPanel extends eui.Component {
                             }
                         }
                     } else {
-                        if (!this.kuaiDatas[allCfg[k].show]) {
+                        if (!this.kuaiDatas[allCfg[k].show] && (juqingKuaiMax >= allCfg[k].id) || allCfg[k].lastKuai === "") {
                             this._idx = this._idx + 1;
                             this.kuaiDatas[allCfg[k].show] = allCfg[k];
                         }

@@ -72,17 +72,17 @@ class GameCommon {
         },
         34: () => {
             const list = [1, 2, 3, 4];
-            if (GameCommon.getRoleLike(2) >= 2) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) >= 6) {
+                list.splice(list.indexOf(1), 1);
+            }
+            if (GameCommon.getRoleLike(ROLE_INDEX.ZiHao_Xia) >= 6) {
                 list.splice(list.indexOf(2), 1);
             }
-            if (GameCommon.getRoleLike(0) >= 5) {
-                list.splice(list.indexOf(4), 1);
-            }
-            if (GameCommon.getRoleLike(3) >= 6) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) >= 6) {
                 list.splice(list.indexOf(3), 1);
             }
-            if (GameCommon.getRoleLike(1) >= 6) {
-                list.splice(list.indexOf(1), 1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) >= 5) {
+                list.splice(list.indexOf(4), 1);
             }
             if (list.length === 4) {
                 list.splice(list.indexOf(3), 1);
@@ -326,7 +326,7 @@ class GameCommon {
                 console.log("read book failed:" + tp);
                 return;
             }
-            if(data.data.content == ""){
+            if (data.data.content == "") {
                 return;
             }
             console.log("read book success:" + tp);
@@ -511,6 +511,8 @@ class GameCommon {
     }
 
     public getSortLikeAry() {
+        // 当好感度相同时 按照这个顺序 越前面越大
+        const list = [ROLE_INDEX.ZiHao_Xia, ROLE_INDEX.XiaoBai_Han, ROLE_INDEX.WanXun_Xiao, ROLE_INDEX.QianYe_Xiao];
         let items = [];
         for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
             let data = {num: 0, id: i};
@@ -523,7 +525,7 @@ class GameCommon {
             } else if (arg2.num < arg1.num) {
                 return -1;
             } else {
-                return arg1.id - arg2.id;
+                return list.indexOf(arg1.id) - list.indexOf(arg2.id);
             }
         });
         return items;
@@ -935,6 +937,17 @@ class GameCommon {
     public showRoleLike() {
         const info = this.getSortLikeAry().map(data => `${GameDefine.ROLE_NAME[data.id]}:${data.num}`).join(",");
         this.showErrorLog(info);
+    }
+
+    public getDefaultAns(wtID:number) {
+        const getLockIDListFunc = GameCommon.getInstance().getLockedOptionIDs[wtID];
+        const lockIDList = getLockIDListFunc ? getLockIDListFunc() : [];
+        const wtModel = wentiModels[wtID];
+        let defaultID = wtModel.moren;
+        if (lockIDList.indexOf(wtModel.moren) !== -1) {
+            defaultID = wtModel.ans.split(",").map(s => parseInt(s)).find(i => lockIDList.indexOf(i) === -1);
+        }
+        return defaultID;
     }
 }
 

@@ -8,9 +8,7 @@ class VideoManager {
     private isPause: boolean = false;
     private _isRead: boolean = false;
     private setVid: string = '';
-
-    private constructor() {
-    }
+    private _videoID: string;//当前播放的视频ID
 
     private _loadSrc: string = '';
 
@@ -20,17 +18,6 @@ class VideoManager {
 
     public set loadSrc(str) {
         this._loadSrc = str;
-    }
-
-    private __videoID: string;//当前播放的视频ID
-
-    private get _videoID() {
-        return this.__videoID;
-    }
-
-    private set _videoID(id) {
-        this.__videoID = id;
-        console.trace("set video id", id);
     }
 
     public static getInstance(): VideoManager {
@@ -193,7 +180,7 @@ class VideoManager {
         if (!widPlayer)
             return;
         const cfgs = answerModels[wentiId];
-        const videoSrcs: string[] = [];
+        let videoSrcs: string[] = [];
         if (!cfgs) {
             if (!videoModels[wentiId]) {
                 return;
@@ -203,8 +190,7 @@ class VideoManager {
             for (const k in cfgs) {
                 if (cfgs.hasOwnProperty(k)) {
                     if (cfgs[k].videos.indexOf(",") >= 0) {
-                        const strs = cfgs[k].videos.split(",");
-                        videoSrcs.push(strs[0]);
+                        videoSrcs = videoSrcs.concat(cfgs[k].videos.split(","));
                     } else {
                         if (cfgs[k].videos != '')
                             videoSrcs.push(cfgs[k].videos);
@@ -214,7 +200,6 @@ class VideoManager {
                 }
             }
         }
-        // VideoManager.getInstance().log('load可能播放的src' + videoSrcs)
         for (let i: number = 0; i < videoSrcs.length; i++) {
             videoSrcs[i] = videoModels[videoSrcs[i]].vid;
         }

@@ -445,7 +445,7 @@ class VideoData extends egret.DisplayObjectContainer {
                             }
 
                             let lastTime: number = Number(wentiModels[this.curWentiId].time) + Number(videoModels[this.videoIdx].time);
-                            if (videoCurTime >= lastTime - 10 && !videoAdvanceLoad) {
+                            if (!videoAdvanceLoad) {
                                 videoAdvanceLoad = true;
                                 VideoManager.getInstance().onLoad(this.curWentiId)
                             }
@@ -1018,7 +1018,7 @@ class VideoData extends egret.DisplayObjectContainer {
         if (id != 0) {
             this.tipsPanel.onUpdateWenTi(id);
         } else {
-            this.tipsPanel.onUpdateWenTi(wentiModels[this.curWentiId].moren);
+            this.tipsPanel.onUpdateWenTi(GameCommon.getInstance().getDefaultAns(this.curWentiId));
         }
     }
 
