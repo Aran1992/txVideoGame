@@ -349,8 +349,8 @@ class ShopPanel extends eui.Component {
         cur_models = [];
         let shoptpye: SHOP_TYPE = this.TAB_2_SHOPTYPE[this.currIdx];
         for (let idx in ShopManager.getInstance().shopInfoDict) {
-            let shopdata = ShopManager.getInstance().shopInfoDict[idx];
-            if (!shopdata.model.show) continue;
+            let shopdata = ShopManager.getInstance().shopInfoDict[idx] as ShopInfoData;
+            if (shopdata.model.show == 0) continue;
             let shop_tp: number = ShopManager.getInstance().getShopTP(shopdata.id);
             if (shop_tp == shoptpye) {
                 cur_models.push(shopdata);
