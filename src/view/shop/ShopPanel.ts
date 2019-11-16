@@ -356,6 +356,11 @@ class ShopPanel extends eui.Component {
                 cur_models.push(shopdata);
             }
         }
+        cur_models.sort((a,b)=>{
+            let powerA = a.id+ShopManager.getInstance().getItemNum(a.id)*1000000;
+            let powerB = b.id+ShopManager.getInstance().getItemNum(b.id)*1000000;            
+            return powerA-powerB;
+        })
         return cur_models;
     }
 

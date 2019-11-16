@@ -84,6 +84,7 @@ class BookData {
     public guideDic = {};
     public guideJson = {};
     public allVideos = {};
+    public lookAchievement={};
     //好感度
     public likes;
     //对应问题选择的答案

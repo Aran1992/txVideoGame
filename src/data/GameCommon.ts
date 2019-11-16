@@ -2,6 +2,7 @@ callbackDeleteBookHistory = data => {
     GameCommon.getInstance().showCommomTips('清档' + JSON.stringify(data));
 };
 const saveValues = [
+    "lookAchievement",
     "curVideoID",
     "allCollectionDatas",
     "achievementDics",
@@ -187,6 +188,7 @@ class GameCommon {
                 UserInfo.curBokData.shopDic = UserInfo.shopDic;
                 UserInfo.curBokData.allVideos = UserInfo.allVideos;
                 UserInfo.curBokData.tipsDick = UserInfo.tipsDick;
+                UserInfo.curBokData.lookAchievement = UserInfo.lookAchievement;                
                 str = JSON.stringify(UserInfo.curBokData);
                 // VideoManager.getInstance().log('村上了');
                 if (egret.Capabilities.os == 'Windows PC') {

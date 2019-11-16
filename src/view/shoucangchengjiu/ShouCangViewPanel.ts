@@ -257,10 +257,10 @@ class ShouCangViewItem extends eui.Component {
     public set data(info) {
         this.info = info.data;
         this.title.text = info.data.name;
-        this.newPoint.visible = true;
-        if (UserInfo.lookAchievement[this.info.id]) {
-            this.newPoint.visible = false;
-        }
+        this.newPoint.visible = UserInfo.lookAchievement[this.info.id] != 1;
+        // if (UserInfo.lookAchievement[this.info.id] == 1) {
+        //     this.newPoint.visible = false;
+        // }
         if (this.info.mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG) {
             this.currentState = 'img';
             this.tubiao.source = 'sc_tupian_icon_png';
@@ -304,6 +304,8 @@ class ShouCangViewItem extends eui.Component {
     }
 
     private onPlayVideo() {
+        UserInfo.lookAchievement[this.info.id] = 1;
+        this.newPoint.visible = false;
         SoundManager.getInstance().playSound("ope_click.mp3")
         // if (!UserInfo.allCollectionDatas[this.info.id]) {
         //     return;
@@ -329,7 +331,6 @@ class ShouCangViewItem extends eui.Component {
         //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangImgPanel')
         // }
         // }
-        UserInfo.lookAchievement[this.info.id] = this.info.id;
         GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
         if (this.info.mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG) {
             if (!UserInfo.guideDic[7])//关闭引导图片

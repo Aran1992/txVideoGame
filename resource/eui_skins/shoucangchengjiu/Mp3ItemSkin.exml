@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="skins.Mp3ItemSkin" xmlns:e="http://ns.egret.com/eui" width="385" height="55"
+<e:Skin class="skins.Mp3ItemSkin" xmlns:e="http://ns.egret.com/eui" width="385" height="75"
         xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 
 
 	<e:Group id="playerGroup">
-		<e:Image width="372" x="0" y="0" scaleX="1" scaleY="1" source="currency_dibai_png" scale9Grid="37,0,107,48"/>
-		<e:Image source="control_d1_png" x="282" scaleX="0.4" scaleY="0.4" y="7"/>
-		<e:Image source="pauseImg_png" id="icon" scaleX="0.5" scaleY="0.5" x="296" y="17"/>
+		<e:Image width="378" x="0" y="0" scaleX="1" scaleY="1" source="currency_dibai_png" scale9Grid="37,0,107,48" anchorOffsetX="0" anchorOffsetY="0" height="74"/>
+		<e:Image source="control_d1_png" x="282" scaleX="0.4" scaleY="0.4" y="11" anchorOffsetX="0" width="125" anchorOffsetY="0" height="122.5"/>
+		<e:Image source="pauseImg_png" id="icon" scaleX="0.5" scaleY="0.5" x="296" y="22" anchorOffsetX="0" width="45" anchorOffsetY="0" height="53"/>
 	</e:Group>
-	<e:Label id="musicName" text="最后一班车" size="30" fontFamily="SimHei" textAlign="left" x="21" y="10" width="264" height="34" touchEnabled="false" textColor="0xffffff"/>
+	<e:Label id="musicName" text="最后一班车" size="30" fontFamily="SimHei" textAlign="left" x="21" y="22" width="264" height="45" touchEnabled="false" textColor="0xffffff"/>
 
 </e:Skin>
