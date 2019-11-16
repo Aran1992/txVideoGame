@@ -474,13 +474,14 @@ class GameCommon {
         return Number(str.split(",")[index]) || 0;
     }
 
-    public getRoleLikeAll(index): number {
-        let likeData = UserInfo.curBokData.answerId;
+    public getRoleLikeAll(index: number, bookData?: BookData): number {
+        bookData = bookData || UserInfo.curBokData;
+        let likeData = bookData.answerId;
         let likeNum = 0;
         for (let wentiID in likeData) {
             if (likeData.hasOwnProperty(wentiID)) {
                 const wentiModel: Modelwenti = JsonModelManager.instance.getModelwenti()[wentiID];
-                if (GameCommon.isChapterInRoleJuqingTree(wentiModel.chapter, UserInfo.curchapter)) {
+                if (GameCommon.isChapterInRoleJuqingTree(wentiModel.chapter, bookData.curchapter)) {
                     let wentiAnswerModels = JsonModelManager.instance.getModelanswer()[wentiID];
                     if (wentiAnswerModels) {
                         let answerList: string[] = likeData[wentiID].toString().split(",");
@@ -498,12 +499,12 @@ class GameCommon {
         return likeNum;
     }
 
-    public getSortLike(idx: number = 0) {
+    public getSortLike(idx: number = 0, bookData?: BookData) {
         let items = [];
         for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
             items.push({
                 id: i,
-                num: this.getRoleLikeAll(i),
+                num: this.getRoleLikeAll(i, bookData),
             });
         }
         items.sort((arg1, arg2) => {
@@ -927,11 +928,11 @@ class GameCommon {
                     data: "confirm"
                 });
             };
-            if(platform.getPlatform()=="plat_txsp"){
+            if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集", callback, "活动期间，活动期间，非特权用户可通过等待免费解锁，详情请参见活动资讯", "购买特权", "取消");// "等待" + freeDay + "天"
-            }else{
+            } else {
                 GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，活动期间，非特权用户可通过等待免费解锁，详情请参见活动资讯", "购买特权", "取消");// "等待" + freeDay + "天"
-            }            
+            }
             if (isTXSP) {
                 GameDefine.IS_DUDANG = false;
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");

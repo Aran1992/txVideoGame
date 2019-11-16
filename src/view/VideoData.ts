@@ -79,6 +79,7 @@ class VideoData extends egret.DisplayObjectContainer {
     /**读取当前视频ID**/
     public set videoIdx(id: string) {
         VideoManager.getInstance().updateVideoData(id);
+        this.setVideoDict(id);
     }
 
     private _curWentiId: number = 0;

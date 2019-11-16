@@ -275,15 +275,14 @@ class GameWorld extends egret.DisplayObjectContainer {
         VideoManager.getInstance().updateVideoData(src);
         let wentiCfg: Modelwenti = wentiModels[wentiId];
         VideoManager.getInstance().updateGameChapter(wentiCfg.chapter);
-        let obj = this;
-        Tool.callbackTime(function () {
-            if (obj.isAgaig) {
-                obj.isAgaig = false;
-                obj.videoData.againGame(wentiId);
+        setTimeout(() => {
+            if (this.isAgaig) {
+                this.isAgaig = false;
+                this.videoData.againGame(wentiId);
             } else {
-                obj.videoData.starVideo(wentiId);
+                this.videoData.starVideo(wentiId);
             }
-        }, obj, 1000);
+        }, 100);
     }
 
     /**事件注册**/
