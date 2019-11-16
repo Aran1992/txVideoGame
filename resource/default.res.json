@@ -7476,9 +7476,19 @@
             "url": "assets/shopmusic/6004_10.mp3?v=48"
         },
         {
+            "name": "6004_10_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_10_try.mp3?v=808"
+        },
+        {
             "name": "6004_11_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6004_11.mp3?v=408"
+        },
+        {
+            "name": "6004_11_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_11_try.mp3?v=96"
         },
         {
             "name": "6004_12_mp3",
@@ -7486,9 +7496,19 @@
             "url": "assets/shopmusic/6004_12.mp3?v=48"
         },
         {
+            "name": "6004_12_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_12_try.mp3?v=414"
+        },
+        {
             "name": "6004_13_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6004_13.mp3?v=528"
+        },
+        {
+            "name": "6004_13_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_13_try.mp3?v=804"
         },
         {
             "name": "6004_14_mp3",
@@ -7496,9 +7516,24 @@
             "url": "assets/shopmusic/6004_14.mp3?v=568"
         },
         {
+            "name": "6004_14_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_14_try.mp3?v=104"
+        },
+        {
             "name": "6004_15_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6004_15.mp3?v=968"
+        },
+        {
+            "name": "6004_15_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_15_try.mp3?v=570"
+        },
+        {
+            "name": "6004_1_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_1_try.mp3?v=310"
         },
         {
             "name": "6004_2_mp3",
@@ -7506,9 +7541,19 @@
             "url": "assets/shopmusic/6004_2.mp3?v=368"
         },
         {
+            "name": "6004_2_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_2_try.mp3?v=452"
+        },
+        {
             "name": "6004_3_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6004_3.mp3?v=568"
+        },
+        {
+            "name": "6004_3_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_3_try.mp3?v=38"
         },
         {
             "name": "6004_4_mp3",
@@ -7516,9 +7561,19 @@
             "url": "assets/shopmusic/6004_4.mp3?v=568"
         },
         {
+            "name": "6004_4_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_4_try.mp3?v=628"
+        },
+        {
             "name": "6004_5_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6004_5.mp3?v=408"
+        },
+        {
+            "name": "6004_5_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_5_try.mp3?v=292"
         },
         {
             "name": "6004_6_mp3",
@@ -7526,9 +7581,19 @@
             "url": "assets/shopmusic/6004_6.mp3?v=928"
         },
         {
+            "name": "6004_6_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_6_try.mp3?v=532"
+        },
+        {
             "name": "6004_7_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6004_7.mp3?v=608"
+        },
+        {
+            "name": "6004_7_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_7_try.mp3?v=324"
         },
         {
             "name": "6004_8_mp3",
@@ -7536,9 +7601,19 @@
             "url": "assets/shopmusic/6004_8.mp3?v=568"
         },
         {
+            "name": "6004_8_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_8_try.mp3?v=650"
+        },
+        {
             "name": "6004_9_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6004_9.mp3?v=528"
+        },
+        {
+            "name": "6004_9_try_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6004_9_try.mp3?v=782"
         },
         {
             "name": "6004_view_fang_png",
@@ -8303,7 +8378,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=575"
+            "url": "config/config.bin?v=526"
         }
     ]
 }

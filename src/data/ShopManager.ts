@@ -197,7 +197,7 @@ class ShopManager {
                 case SHOP_TYPE.IMAGES:
                 case SHOP_TYPE.VIDEOS:
                 case SHOP_TYPE.MUSICS:
-                    GameCommon.getInstance().onShowResultTips('购买成功\n图集可以“收藏”中查看');
+                    GameCommon.getInstance().onShowResultTips('购买成功\n可以“收藏”中查看');
                     // let shoucangID: number = parseInt(shopdata.model.params);
                     // GameCommon.getInstance().onShowResultTips('购买成功', true, "立刻查看", function (): void {
                     //     let scCfg: Modelshoucang = JsonModelManager.instance.getModelshoucang()[shoucangID];

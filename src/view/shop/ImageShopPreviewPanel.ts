@@ -40,9 +40,11 @@ class ImageShopPreviewPanel extends eui.Component {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
-            this.idHasBuyed.visible = true;
+            this.idHasBuyed.text="——  已购买该商品，可在收藏查看完整内容 —— ";            
+            //this.idHasBuyed.visible = true;
         } else {
-            this.idHasBuyed.visible = false;
+            //this.idHasBuyed.visible = false;
+            this.idHasBuyed.text="——  仅支持封面预览，购买后可在收藏查看完整图集 —— ";    
             let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
             if (this.data.model.origPrice > this.data.model.currPrice) {
                 this.discount_bar.visible = true;

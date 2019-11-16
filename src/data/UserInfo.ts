@@ -85,6 +85,7 @@ class BookData {
     public guideJson = {};
     // 这个存档内查看过的所有的视频 选择之前的剧情重玩时 不会清空 用来判定这个存档最远玩到过哪里
     public allVideos = {};
+    public lookAchievement={};
     //好感度
     public likes;
     //对应问题选择的答案

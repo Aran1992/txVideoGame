@@ -95,6 +95,7 @@ class TicketPanel extends eui.Component {
 
     private idBtnBuyTicketOriPrize: eui.Button;
     private idBtnBuyTicketSpecailPrize: eui.Button;
+    private idBtnBuyTicketSpecailPrize_txsp: eui.Button;
 
     private idCode: eui.Label;
     private idNoCode: eui.Label;
@@ -124,9 +125,9 @@ class TicketPanel extends eui.Component {
     private static getPingzhengPrize() {
         if (platform.getPlatform() == "plat_txsp") {
             if (platform.isPlatformVip())//是否腾讯视频vip用户， 1: 是， 0: 否
-                return 120;
+                return 1200;
             else
-                return 180;
+                return 1800;
         }
         return 120;
     }
@@ -148,6 +149,7 @@ class TicketPanel extends eui.Component {
         this.idClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseClick, this);
         this.idBuyTicketClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCloseBuyTicketClick, this);
         this.idBtnBuyTicketSpecailPrize.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnBuyTicketSpecailPrizeClick, this);
+        this.idBtnBuyTicketSpecailPrize_txsp.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnBuyTicketSpecailPrizeClick, this);
         this.idBtnBuyTicketOriPrize.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnBuyTicketOriPrizeClick, this);
         this.idBtnBuyNow.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnBuyNowClick, this);
 
@@ -189,7 +191,8 @@ class TicketPanel extends eui.Component {
         }
         //如果还没有买过凭据，直接拍脸
 
-        this.idBtnBuyTicketSpecailPrize.label = String(TicketPanel.getPingzhengPrize());
+        //this.idBtnBuyTicketSpecailPrize.label = String(TicketPanel.getPingzhengPrize());
+        this.idBtnBuyTicketSpecailPrize_txsp.label = String(TicketPanel.getPingzhengPrize());
         this.updateBuyBtnState();
 
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);

@@ -18,7 +18,7 @@
 	</e:Group>
 	<e:Label id="author" text="如果你也有梦想" size="16" fontFamily="SimHei" textAlign="left" touchEnabled="true"
 	         textColor="0xffffff" verticalAlign="middle" bottom="16" left="24"  visible="false"/>
-	<e:Group id="yindaoGroup" touchChildren="true" touchEnabled="true" scaleX="1" scaleY="1" width="377" height="430" horizontalCenter="273.5" verticalCenter="-34">
+	<e:Group id="yindaoGroup" touchChildren="true" touchEnabled="true" scaleX="1" scaleY="1" width="402" height="430" horizontalCenter="273.5" verticalCenter="-34">
 		<e:Scroller id="scroll" height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">
 		<e:Group id="goodsLayer" width="1498">
 

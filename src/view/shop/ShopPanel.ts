@@ -349,13 +349,18 @@ class ShopPanel extends eui.Component {
         cur_models = [];
         let shoptpye: SHOP_TYPE = this.TAB_2_SHOPTYPE[this.currIdx];
         for (let idx in ShopManager.getInstance().shopInfoDict) {
-            let shopdata = ShopManager.getInstance().shopInfoDict[idx];
-            if (!shopdata.model.show) continue;
+            let shopdata = ShopManager.getInstance().shopInfoDict[idx] as ShopInfoData;
+            if (shopdata.model.show == 0) continue;
             let shop_tp: number = ShopManager.getInstance().getShopTP(shopdata.id);
             if (shop_tp == shoptpye) {
                 cur_models.push(shopdata);
             }
         }
+        cur_models.sort((a,b)=>{
+            let powerA = a.id+ShopManager.getInstance().getItemNum(a.id)*1000000;
+            let powerB = b.id+ShopManager.getInstance().getItemNum(b.id)*1000000;            
+            return powerA-powerB;
+        })
         return cur_models;
     }
 
@@ -573,8 +578,9 @@ class MusicsShopItem extends eui.ItemRenderer {
         }
 
         this.banner_img.source = `${shoucangModel.id}_view_fang_png`;
-        let param: string[] = shopInfoDt.model.preview.split(",");
-        this.count_lab.text = param.length + "首";
+        //let param: string[] = shopInfoDt.model.preview.split(",");
+        let count = shoucangModel.kuozhan.split(";").length;
+        this.count_lab.text = count + "首";
         this.name_lab.text = shopInfoDt.model.name;
         let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
         if (num > 0) {

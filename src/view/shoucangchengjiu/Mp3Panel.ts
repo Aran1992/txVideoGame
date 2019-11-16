@@ -98,7 +98,7 @@ class Mp3Panel extends eui.Component {
             var cg: Mp3Item = new Mp3Item();
             cg = new Mp3Item();
             cg.name = i + '';
-            cg.data = {data: this.scCfg, src:`resource/assets/shopmusic/${this.scCfg.id}_${i+1}.mp3`, idx: i + 1, name: names[i]};
+            cg.data = {data: this.scCfg, src:`resource/assets/shopmusic/${this.scCfg.id}_${i+1}.mp3`, idx: i, name: names[i]};
             cg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectMusic, this);
             this.goodsLayer.addChild(cg);
         }
