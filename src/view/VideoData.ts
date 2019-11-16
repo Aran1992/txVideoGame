@@ -730,13 +730,16 @@ class VideoData extends egret.DisplayObjectContainer {
 
     public onTiao() {
         let isChapterLastVideo = this.videoIdx == 'V019' || Number(videoModels[this.videoIdx].jtime) !== 0;
-        let wentiTime: number = 0;
         const curTime = VideoManager.getInstance().videoCurrTime();
         const duration = VideoManager.getInstance().getVideoDuration();
         if (curTime < 1)
             return;
+        let wentiTime: number = 0;
         if (Number(videoModels[this.videoIdx].time) > 0) {
             wentiTime = Number(videoModels[this.videoIdx].time);
+        }
+        if (wentiTime > duration) {
+            wentiTime = duration - 5;
         }
         if (wentiTime > 0) {
             //如果有问题：问题时间还差3秒以上并且问题时间离结束<3秒，就跳到问题的前2秒，

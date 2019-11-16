@@ -418,7 +418,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             let cfg: Modeljuqingkuai = this.models[id];
             /**判断当前章节的状态**/
             if (cfg.openVideo) {
-                _status = this.getOpen(cfg);
+                _status = this.getOpenStatus(cfg);
             } else {
                 _status = this.IS_OPEN;
             }
@@ -616,7 +616,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         let lightLineImg: eui.Image;
         let _status: number;
         if (nextmodel.openVideo) {
-            _status = this.getOpen(nextmodel);
+            _status = this.getOpenStatus(nextmodel);
         } else {
             _status = this.IS_OPEN;
         }
@@ -638,12 +638,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         }
     }
 
-    /**
-     * 0 是未开启
-     * 1 代表有锁
-     * 2 开启
-     * **/
-    private getOpen(juqingCfg: Modeljuqingkuai) {
+    private getOpenStatus(juqingCfg: Modeljuqingkuai) {
         if (!UserInfo.curBokData) {
             return this.NOT_SHOW;
         }
@@ -681,7 +676,6 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                 if (curJuqingID > 0 && GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id)) return this.HAS_LOCK;
             }
         }
-
         return this.NOT_SHOW;
     }
 
@@ -740,7 +734,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
         if (allCfg[name]) {
             if (allCfg[name].openVideo) {
-                if (this.getOpen(allCfg[name]) == this.IS_OPEN) {
+                if (this.getOpenStatus(allCfg[name]) == this.IS_OPEN) {
                     this.showConfirm(allCfg[name]);
                     return;
                 }
@@ -749,8 +743,11 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                 this.showConfirm(allCfg[name]);
             } else {
                 // 没有openVideo也没有video的都是人物故事线剧情块，当作点击下一个块处理就行
-                let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index + 1];
-                this.showConfirm(allCfg[name]);
+                const allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
+                const cfg = allCfg[name + 1];
+                if (cfg) {
+                    this.showConfirm(cfg);
+                }
             }
         }
     }
