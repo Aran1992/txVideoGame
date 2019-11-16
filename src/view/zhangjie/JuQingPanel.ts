@@ -110,7 +110,10 @@ class JuQingPanel extends eui.Component {
     private onSaveCunChu() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         GameCommon.getInstance().showConfirmTips("是否存储？", () => {
-            GameCommon.getInstance().setBookData(this._curIdx).then(r => r);
+            GameCommon.getInstance().setBookData(this._curIdx, () => {
+                GameCommon.getInstance().showConfirmTips("手动存档失败，请稍后重试", () => {
+                });
+            });
         }, "注：存储会覆盖原来的存档");
     }
 

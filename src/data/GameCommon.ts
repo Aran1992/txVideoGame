@@ -22,7 +22,7 @@ class GameCommon {
     private static MAX_SAVE_TIMES: number = 2;
     private static SAVE_TIME_INTERVAL: number = 10000;
     // 存档延迟
-    private static SAVE_DELAY: number = 1000;
+    private static SAVE_DELAY: number = 100;
     public getLockedOptionIDs = {
         5: () => {
             if (GameCommon.getRoleLike(2) === 1) {
@@ -162,7 +162,7 @@ class GameCommon {
         }
     }
 
-    public async setBookData(tp) {
+    public async setBookData(tp: FILE_TYPE, failedCallback?: Function) {
         let str = '';
         if (!UserInfo.curBokData) {
             UserInfo.curBokData = new BookData();
@@ -244,7 +244,12 @@ class GameCommon {
         }
         if (this.saveTimes >= GameCommon.MAX_SAVE_TIMES) {
             console.warn("请求过于频繁");
-            this.hasWaitSaveData = true;
+            // 如果有失败回调的话 就不尝试自动存储了
+            if (failedCallback) {
+                failedCallback();
+            } else {
+                this.hasWaitSaveData = true;
+            }
             return;
         }
         // 延迟一定事件之后执行，这样能够确保如果短时间之内请求多次存档，可以合并在一起请求，减少请求次数
@@ -253,7 +258,10 @@ class GameCommon {
             this.saveTimes++;
             platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str, data => {
                 if (data.code !== 0) {
-                    if (data.code == 1) {
+                    // 如果有失败回调的话 就不尝试自动存储了
+                    if (failedCallback) {
+                        failedCallback();
+                    } else {
                         // 请求过于频繁的话 那么就等上充足的时间进行存档
                         setTimeout(() => this.setBookData(tp), GameCommon.SAVE_TIME_INTERVAL);
                     }
@@ -942,7 +950,7 @@ class GameCommon {
         this.showErrorLog(info);
     }
 
-    public getDefaultAns(wtID:number) {
+    public getDefaultAns(wtID: number) {
         const getLockIDListFunc = GameCommon.getInstance().getLockedOptionIDs[wtID];
         const lockIDList = getLockIDListFunc ? getLockIDListFunc() : [];
         const wtModel = wentiModels[wtID];

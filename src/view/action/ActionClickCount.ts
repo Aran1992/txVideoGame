@@ -1,8 +1,5 @@
-class ActionClickCount extends ActionSceneBase {
+class ActionClickCount extends ActionTimerSceneBase {
     private times: number;
-    private timeBar1: eui.ProgressBar;
-    private timeBar2: eui.ProgressBar;
-    private desc: eui.Label;
     private handAni: my.Animation;
     private touch_probar_grp: eui.Group;
     private progress_img: eui.Image;
@@ -24,13 +21,6 @@ class ActionClickCount extends ActionSceneBase {
     protected onInit(): void {
         super.onInit();
         this.updateResize();
-        this.initTimeInfo();
-        this.timeBar1.slideDuration = 0;
-        this.timeBar2.slideDuration = 0;
-        this.timeBar1.maximum = this.maxTime;
-        this.timeBar1.value = this.maxTime;
-        this.timeBar2.maximum = this.maxTime;
-        this.timeBar2.value = this.maxTime;
         this.touch_probar_grp.visible = false;
         let effectRes: string;
         switch (this.model.id) {
@@ -63,23 +53,9 @@ class ActionClickCount extends ActionSceneBase {
             this.touch_probar_grp.touchEnabled = true;
             this.touch_probar_grp.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
-            let r: number = this.touch_probar_grp.width / 2;
             this.pro_mask = new egret.Shape();
             this.touch_probar_grp.addChild(this.pro_mask);
             this.progress_img.mask = this.pro_mask;
-        }
-    }
-
-    protected update(dt): void {
-        super.update(dt);
-        this.timeBar1.value = this.runTime;
-        this.timeBar2.value = this.runTime;
-    }
-
-    private initTimeInfo() {
-        var hdCfg: Modelhudong = JsonModelManager.instance.getModelhudong()[this.model.type];
-        if (hdCfg && hdCfg.des) {
-            this.desc.text = hdCfg.des;
         }
     }
 

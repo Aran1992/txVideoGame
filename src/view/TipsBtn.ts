@@ -52,15 +52,6 @@ class TipsBtn extends eui.Component {
     private idBtnShopCar: eui.Button;
     private idBtnTicket: eui.Button;
 
-
-    /**选项对应的道具**/
-    private Option_Goods = {
-        "25": [500005, 500006, 0],
-        "48": [500011, 0],
-        "49": [500012, 500013, 0],
-        "34": [500007, 500008, 500009, 500010],
-    };
-
     public constructor() {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
@@ -642,7 +633,7 @@ class TipsBtn extends eui.Component {
                 })
             }
         }
-        
+
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         this.idBtnTicket.visible = !isVip;
@@ -694,11 +685,7 @@ class TipsBtn extends eui.Component {
         var arr = nextChapterId.split(";");
         let nnextChapterId = Number(arr[0]);
         //是否付费用户，下一章是否已上架
-        if (platform.getPlatform() == "plat_txsp") {
-            this.idBtnTicket.visible = true;
-        } else {
-            this.idBtnTicket.visible = false;
-        }
+        this.idBtnTicket.visible = platform.getPlatform() == "plat_txsp";
         let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
@@ -712,9 +699,6 @@ class TipsBtn extends eui.Component {
         this.idBtnClock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnClockClick, this);
         this.idBtnShopCar.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShopCarClick, this);
         this.idBtnTicket.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnTicketClick, this);
-
-
-        //VideoManager.getInstance().
     }
 
     private idBtnClockClick() {
@@ -737,8 +721,8 @@ class TipsBtn extends eui.Component {
     private idBtnTicketClick() {
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
-        if(isVip){
-            GameCommon.getInstance().showCommomTips("你已经购买了心动PASS了")
+        if (isVip) {
+            GameCommon.getInstance().showCommomTips("你已经购买了心动PASS了");
             return;
         }
         VideoManager.getInstance().videoPause();
