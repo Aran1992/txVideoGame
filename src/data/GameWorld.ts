@@ -261,9 +261,11 @@ class GameWorld extends egret.DisplayObjectContainer {
                     UserInfo.curBokData = UserInfo.fileDatas[data.data.idx];
                 }
             }
+            let wentiCfg: Modelwenti = wentiModels[wentiId];
+            VideoManager.getInstance().updateGameChapter(wentiCfg.chapter);
         } else {
-            UserInfo.curBokData.videoNames[wentiId] = cfg.openVideo;
-            UserInfo.curBokData.answerId[wentiId] = '';
+            let wentiCfg: Modelwenti = wentiModels[wentiId];
+            VideoManager.getInstance().updateGameChapter(wentiCfg.chapter);
             wentiId = 0;
         }
 
@@ -273,8 +275,6 @@ class GameWorld extends egret.DisplayObjectContainer {
             VideoManager.getInstance().clear();
         }
         VideoManager.getInstance().updateVideoData(src);
-        let wentiCfg: Modelwenti = wentiModels[wentiId];
-        VideoManager.getInstance().updateGameChapter(wentiCfg.chapter);
         setTimeout(() => {
             if (this.isAgaig) {
                 this.isAgaig = false;

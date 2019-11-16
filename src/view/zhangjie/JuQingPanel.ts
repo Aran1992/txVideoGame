@@ -278,7 +278,7 @@ class JuQingPanel extends eui.Component {
                     continue;
                 }
                 if (!juqingKuaiMax
-                    || GameCommon.getInstance().checkJuqingKuaiOpen(spCfg.juqing, juqingKuaiMax)
+                    || GameCommon.getInstance().checkJuqingKuaiOpen(spCfg.juqing, juqingKuaiMax, fileData)
                     && juqingAry.some(showid => showid === getJuqingConfig(spCfg.juqing).show)) {
                     juqingKuaiMax = spCfg.juqing;
                 }
@@ -293,7 +293,7 @@ class JuQingPanel extends eui.Component {
             for (let k in allCfg) {
                 if (allCfg.hasOwnProperty(k)) {
                     if (allCfg[k].openVideo) {
-                        if (GameCommon.getInstance().checkJuqingKuaiOpen(juqingKuaiMax, allCfg[k].id)) {
+                        if (GameCommon.getInstance().checkJuqingKuaiOpen(juqingKuaiMax, allCfg[k].id, fileData)) {
                             if (!this.kuaiDatas[allCfg[k].show]) {
                                 this._idx = this._idx + 1;
                                 this.kuaiDatas[allCfg[k].show] = allCfg[k];
@@ -683,7 +683,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             }
         }
         let curJuqingID: number = GameCommon.getInstance().getCurJuqingID(fileData);
-        if (GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id)) {//比当前剧情低的情况
+        if (GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id, fileData)) {//比当前剧情低的情况
             if (juqingCfg.id == curJuqingID) return this.IS_OPEN;
             else if (juqingCfg.videoId === "") return this.IS_OPEN;
             else if (fileData.videoDic[juqingCfg.videoId]) return this.IS_OPEN;
@@ -698,13 +698,13 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                     if (models.hasOwnProperty(id)) {
                         let model: Modeljuqingkuai = models[id];
                         if (UserInfo.curBokData.allVideos[model.videoId]) {
-                            if (curJuqingID == 0 || GameCommon.getInstance().checkJuqingKuaiOpen(model.id, curJuqingID)) {
+                            if (curJuqingID == 0 || GameCommon.getInstance().checkJuqingKuaiOpen(model.id, curJuqingID, fileData)) {
                                 curJuqingID = model.id;
                             }
                         }
                     }
                 }
-                if (curJuqingID > 0 && GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id)) return this.HAS_LOCK;
+                if (curJuqingID > 0 && GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id, fileData)) return this.HAS_LOCK;
             }
         }
         return this.NOT_SHOW;

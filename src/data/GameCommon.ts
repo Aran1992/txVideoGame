@@ -46,6 +46,8 @@ class GameCommon {
                 && GameCommon.getRoleLike(1) < 1
             ) {
                 return [2];
+            } else {
+                return [];
             }
         },
         19: () => {
@@ -68,6 +70,8 @@ class GameCommon {
             if (GameCommon.getQuestionAnswer(22) !== 1
                 && GameCommon.getQuestionAnswer(24) === 2) {
                 return [1, 2];
+            } else {
+                return [];
             }
         },
         34: () => {
@@ -627,21 +631,21 @@ class GameCommon {
      * 接手项目后  为防止出现插入的情况  特意写了这么一个可修改的接口
      * By 修改  如果传入的剧情块 不在当前章节列表（章节列表与角色好感度有关） 则直接返回Flase
      * **/
-    public checkJuqingKuaiOpen(kuaiID1: number, kuaiID2: number): boolean {
+    public checkJuqingKuaiOpen(kuaiID1: number, kuaiID2: number, bookData?: BookData): boolean {
         let compare: boolean = kuaiID1 >= kuaiID2;
 
         if (compare) {
             switch (kuaiID2) {
                 case 75:
-                    let qianxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
-                    let wanxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
+                    let qianxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao, bookData);
+                    let wanxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao, bookData);
                     if (qianxunlike75 < wanxunlike75) {
                         compare = false;
                     }
                     break;
                 case 82:
-                    let qianxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
-                    let wanxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
+                    let qianxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao, bookData);
+                    let wanxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao, bookData);
                     if (qianxunlike82 >= wanxunlike82) {
                         compare = false;
                     }
@@ -952,6 +956,7 @@ class GameCommon {
     public getDefaultAns(wtID: number) {
         const getLockIDListFunc = GameCommon.getInstance().getLockedOptionIDs[wtID];
         const lockIDList = getLockIDListFunc ? getLockIDListFunc() : [];
+
         const wtModel = wentiModels[wtID];
         let defaultID = wtModel.moren;
         if (lockIDList.indexOf(wtModel.moren) !== -1) {
