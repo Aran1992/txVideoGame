@@ -578,8 +578,9 @@ class MusicsShopItem extends eui.ItemRenderer {
         }
 
         this.banner_img.source = `${shoucangModel.id}_view_fang_png`;
-        let param: string[] = shopInfoDt.model.preview.split(",");
-        this.count_lab.text = param.length + "首";
+        //let param: string[] = shopInfoDt.model.preview.split(",");
+        let count = shoucangModel.kuozhan.split(";").length;
+        this.count_lab.text = count + "首";
         this.name_lab.text = shopInfoDt.model.name;
         let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
         if (num > 0) {
