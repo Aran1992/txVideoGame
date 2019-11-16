@@ -806,7 +806,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         GameCommon.getInstance().showConfirmTips("是否读取？", () => {
             GameCommon.getInstance().showLoading();
             if (this._curFile != FILE_TYPE.AUTO_FILE) {
-                UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
+                UserInfo.curBokData = copyBookData(UserInfo.fileDatas[this._curFile]);
             }
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
                 cfg: cfg,

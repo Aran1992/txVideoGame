@@ -258,7 +258,7 @@ class GameWorld extends egret.DisplayObjectContainer {
             } else {
                 let fileData = UserInfo.fileDatas[data.data.idx];
                 if (fileData) {
-                    UserInfo.curBokData = UserInfo.fileDatas[data.data.idx];
+                    UserInfo.curBokData = copyBookData(fileData);
                 }
             }
             let wentiCfg: Modelwenti = wentiModels[wentiId];

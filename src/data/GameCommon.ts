@@ -153,14 +153,14 @@ class GameCommon {
         // return;//暂时注释掉
         switch (tp) {
             case FILE_TYPE.AUTO_FILE: //自动存档 和手动存档
-                UserInfo.fileDatas[tp] = UserInfo.curBokData;
+                UserInfo.fileDatas[tp] = copyBookData(UserInfo.curBokData);
                 break;
             case FILE_TYPE.FILE2:
             case FILE_TYPE.FILE3:
             case FILE_TYPE.FILE4:
             case FILE_TYPE.FILE5:
             case FILE_TYPE.FILE6:
-                UserInfo.fileDatas[tp] = UserInfo.curBokData;
+                UserInfo.fileDatas[tp] = copyBookData(UserInfo.curBokData);
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.REFRESH_JUQING));
                 break;
         }
@@ -192,12 +192,12 @@ class GameCommon {
                 UserInfo.curBokData.shopDic = UserInfo.shopDic;
                 UserInfo.curBokData.allVideos = UserInfo.allVideos;
                 UserInfo.curBokData.tipsDick = UserInfo.tipsDick;
-                UserInfo.curBokData.lookAchievement = UserInfo.lookAchievement;                
+                UserInfo.curBokData.lookAchievement = UserInfo.lookAchievement;
                 str = JSON.stringify(UserInfo.curBokData);
                 // VideoManager.getInstance().log('村上了');
                 if (egret.Capabilities.os == 'Windows PC') {
                     egret.localStorage.setItem(tp.toString(), str);
-                    UserInfo.fileDatas[tp] = UserInfo.curBokData;
+                    UserInfo.fileDatas[tp] = copyBookData(UserInfo.curBokData);
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.REFRESH_JUQING));
                 }
                 break;
@@ -547,8 +547,6 @@ class GameCommon {
     }
 
     public parseChapter(tp, data) {
-        let str = data;
-        let awardStrAry: string[];
         switch (tp) {
             case FILE_TYPE.ANSWER_FILE:  //问题存档
                 break;
