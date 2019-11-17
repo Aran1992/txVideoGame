@@ -11,11 +11,6 @@
     ],
     "resources": [
         {
-            "name": "3016_view_l_png",
-            "type": "image",
-            "url": "assets/3016_view_l.png?v=984"
-        },
-        {
             "name": "handle_png",
             "type": "image",
             "url": "assets/ToggleSwitch/handle.png?v=153"
@@ -4528,7 +4523,7 @@
         {
             "name": "1007_view_png",
             "type": "image",
-            "url": "assets/shopimages/1007/1007_view.png?v=484"
+            "url": "assets/shopimages/1007/1007_view.png?v=975"
         },
         {
             "name": "1007_view_l_png",
@@ -4618,12 +4613,12 @@
         {
             "name": "1009_view_png",
             "type": "image",
-            "url": "assets/shopimages/1009/1009_view.png?v=872"
+            "url": "assets/shopimages/1009/1009_view.png?v=568"
         },
         {
             "name": "1009_view_l_png",
             "type": "image",
-            "url": "assets/shopimages/1009/1009_view_l.png?v=400"
+            "url": "assets/shopimages/1009/1009_view_l.png?v=40"
         },
         {
             "name": "1010_1_jpg",
@@ -4663,7 +4658,7 @@
         {
             "name": "1010_view_png",
             "type": "image",
-            "url": "assets/shopimages/1010/1010_view.png?v=374"
+            "url": "assets/shopimages/1010/1010_view.png?v=54"
         },
         {
             "name": "1010_view_l_png",
@@ -5313,7 +5308,7 @@
         {
             "name": "2006_view_png",
             "type": "image",
-            "url": "assets/shopimages/2006/2006_view.png?v=361"
+            "url": "assets/shopimages/2006/2006_view.png?v=468"
         },
         {
             "name": "2006_view_l_png",
@@ -5588,7 +5583,7 @@
         {
             "name": "2011_view_png",
             "type": "image",
-            "url": "assets/shopimages/2011/2011_view.png?v=82"
+            "url": "assets/shopimages/2011/2011_view.png?v=279"
         },
         {
             "name": "2011_view_l_png",
@@ -6103,7 +6098,7 @@
         {
             "name": "3003_1_jpg",
             "type": "image",
-            "url": "assets/shopimages/3003/3003_1.jpg?v=368"
+            "url": "assets/shopimages/3003/3003_1.jpg?v=875"
         },
         {
             "name": "3003_1_mp3",
@@ -6418,7 +6413,7 @@
         {
             "name": "3007_view_png",
             "type": "image",
-            "url": "assets/shopimages/3007/3007_view.png?v=999"
+            "url": "assets/shopimages/3007/3007_view.png?v=505"
         },
         {
             "name": "3007_view_l_png",
@@ -7143,7 +7138,7 @@
         {
             "name": "3018_view_png",
             "type": "image",
-            "url": "assets/shopimages/3018/3018_view.png?v=230"
+            "url": "assets/shopimages/3018/3018_view.png?v=534"
         },
         {
             "name": "3018_view_l_png",
@@ -7363,7 +7358,7 @@
         {
             "name": "3021_view_png",
             "type": "image",
-            "url": "assets/shopimages/3021/3021_view.png?v=387"
+            "url": "assets/shopimages/3021/3021_view.png?v=815"
         },
         {
             "name": "3021_view_l_png",
