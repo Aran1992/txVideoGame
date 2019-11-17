@@ -11,6 +11,11 @@
     ],
     "resources": [
         {
+            "name": "3016_view_l_png",
+            "type": "image",
+            "url": "assets/3016_view_l.png?v=984"
+        },
+        {
             "name": "handle_png",
             "type": "image",
             "url": "assets/ToggleSwitch/handle.png?v=153"
@@ -5478,7 +5483,7 @@
         {
             "name": "2009_view_l_png",
             "type": "image",
-            "url": "assets/shopimages/2009/2009_view_l.png?v=972"
+            "url": "assets/shopimages/2009/2009_view_l.png?v=538"
         },
         {
             "name": "2010_1_jpg",
@@ -7003,7 +7008,7 @@
         {
             "name": "3016_view_l_png",
             "type": "image",
-            "url": "assets/shopimages/3016/3016_view_l.png?v=111"
+            "url": "assets/shopimages/3016/3016_view_l.png?v=984"
         },
         {
             "name": "3017_1_jpg",
