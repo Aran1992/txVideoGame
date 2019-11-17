@@ -1,4 +1,14 @@
-// TypeScript file
+function getJuqingConfig(juqingID) {
+    const x = JsonModelManager.instance.getModeljuqingkuai();
+    for (let a in x) {
+        for (let b in x[a]) {
+            if (x[a][b].id == juqingID) {
+                return x[a][b];
+            }
+        }
+    }
+}
+
 class JuQingPanel extends eui.Component {
     private bgBtn: eui.Button;
     private restartBtn: eui.Button;
@@ -248,6 +258,13 @@ class JuQingPanel extends eui.Component {
         this.timerLab.text = '';
         this.kuaiDatas = {};
         let juqingKuaiMax: number = 0;
+        let fileData = this._curIdx == FILE_TYPE.AUTO_FILE ? UserInfo.curBokData : UserInfo.fileDatas[this._curIdx];
+        if (!fileData) {
+            fileData = new BookData();
+        }
+        let likeData = GameCommon.getInstance().getSortLike(0, fileData);
+        let roleIdx: number = likeData.id;
+        let juqingAry: number[] = GameDefine.ROLE_JUQING_TREE[roleIdx];
         if (this._curIdx != FILE_TYPE.AUTO_FILE) {
             if (UserInfo.fileDatas[this._curIdx]) {
                 this.timerLab.text = '最后存储时间' + Tool.getCurrDayTime(UserInfo.fileDatas[this._curIdx].timestamp);
@@ -260,17 +277,15 @@ class JuQingPanel extends eui.Component {
                 if (!spCfg) {
                     continue;
                 }
-                if (!juqingKuaiMax) {
-                    juqingKuaiMax = spCfg.juqing;
-                } else if (GameCommon.getInstance().checkJuqingKuaiOpen(spCfg.juqing, juqingKuaiMax)) {
+                if (!juqingKuaiMax
+                    || GameCommon.getInstance().checkJuqingKuaiOpen(spCfg.juqing, juqingKuaiMax, fileData)
+                    && juqingAry.some(showid => showid === getJuqingConfig(spCfg.juqing).show)) {
                     juqingKuaiMax = spCfg.juqing;
                 }
             }
         }
 
-        let likeData = GameCommon.getInstance().getSortLike();
-        let roleIdx: number = likeData.id;
-        let juqingAry: number[] = GameDefine.ROLE_JUQING_TREE[roleIdx];
+        this.kuaiDatas = {};
         for (let i: number = 0; i < juqingAry.length; i++) {
             let juqing_page: number = juqingAry[i];
             let allCfg = JsonModelManager.instance.getModeljuqingkuai()[juqing_page];
@@ -278,7 +293,7 @@ class JuQingPanel extends eui.Component {
             for (let k in allCfg) {
                 if (allCfg.hasOwnProperty(k)) {
                     if (allCfg[k].openVideo) {
-                        if (GameCommon.getInstance().checkJuqingKuaiOpen(juqingKuaiMax, allCfg[k].id)) {
+                        if (GameCommon.getInstance().checkJuqingKuaiOpen(juqingKuaiMax, allCfg[k].id, fileData)) {
                             if (!this.kuaiDatas[allCfg[k].show]) {
                                 this._idx = this._idx + 1;
                                 this.kuaiDatas[allCfg[k].show] = allCfg[k];
@@ -392,7 +407,6 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
     private refreshUIAry: string[];
     private handAni: my.Animation;
     private lockLayer: egret.DisplayObjectContainer;
-
     private readonly NOT_SHOW: number = 0;
     private readonly HAS_LOCK: number = 2;
     private readonly IS_OPEN: number = 1;
@@ -416,12 +430,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         let index: number = 0;
         for (let id in this.models) {
             let cfg: Modeljuqingkuai = this.models[id];
-            /**判断当前章节的状态**/
-            if (cfg.openVideo) {
-                _status = this.getOpen(cfg);
-            } else {
-                _status = this.IS_OPEN;
-            }
+            _status = this.getOpenStatus(cfg);
             this.statusData[cfg.id] = _status;
             /**根据状态来修改UI样式**/
             let slotImg: eui.Image;
@@ -614,12 +623,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         if (!nextmodel) return;
         let grayLineImg: eui.Image;
         let lightLineImg: eui.Image;
-        let _status: number;
-        if (nextmodel.openVideo) {
-            _status = this.getOpen(nextmodel);
-        } else {
-            _status = this.IS_OPEN;
-        }
+        let _status: number = this.getOpenStatus(nextmodel);
 
         if (nextmodel.lastKuai.indexOf(",") == -1) {
             grayLineImg = this.UIDict[`page${this.index}_last_grayLine`];//暗线
@@ -638,28 +642,50 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         }
     }
 
-    /**
-     * 0 是未开启
-     * 1 代表有锁
-     * 2 开启
-     * **/
-    private getOpen(juqingCfg: Modeljuqingkuai) {
+    private getOpenStatus(juqingCfg: Modeljuqingkuai) {
         if (!UserInfo.curBokData) {
             return this.NOT_SHOW;
         }
-        /** 判断剧情块的开启
-         * 自动存档  要求1.比当前正在看的问题小那些  如果看过视频则开启 没有则上锁  2.比问题大的章节如果用户层看过的视频  找出最高的剧情ID 向下锁定
-         * 存档位   只显示当前问题向下的状态
-         *  **/
-        let fileData;
+        let fileData: BookData;
         if (this._curFile == FILE_TYPE.AUTO_FILE) {
             fileData = UserInfo.curBokData;
         } else {
             fileData = UserInfo.fileDatas[this._curFile];
         }
+        if (["14", "24", "29", "35", "49"].indexOf(juqingCfg.lastKuai) !== -1) {
+            const groupBlocks = this.getGroupBlocks(juqingCfg);
+            if (groupBlocks.length > 1) {
+                let qid;
+                const x = JsonModelManager.instance.getModelanswer();
+                for (const a in x) {
+                    for (const b in x[a]) {
+                        const answerConfig = x[a][b];
+                        if (answerConfig.videos.split(",").indexOf(juqingCfg.videoId) !== -1) {
+                            qid = answerConfig.qid;
+                        }
+                    }
+                }
+                const aid = fileData.answerId[qid];
+                if (aid) {
+                    if (groupBlocks.some(config => fileData.videoDic[config.videoId])) {
+                        const answerVideos = JsonModelManager.instance.getModelanswer()[qid][aid - 1].videos.split(",");
+                        if (answerVideos.indexOf(juqingCfg.videoId) === -1) {
+                            return this.HAS_LOCK;
+                        } else {
+                            return this.IS_OPEN;
+                        }
+                    } else if (groupBlocks.some(config => fileData.allVideos[config.videoId])) {
+                        return this._curFile === FILE_TYPE.AUTO_FILE ? this.HAS_LOCK : this.NOT_SHOW;
+                    }
+                } else {
+                    return this._curFile === FILE_TYPE.AUTO_FILE ? this.HAS_LOCK : this.NOT_SHOW;
+                }
+            }
+        }
         let curJuqingID: number = GameCommon.getInstance().getCurJuqingID(fileData);
-        if (GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id)) {//比当前剧情低的情况
+        if (GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id, fileData)) {//比当前剧情低的情况
             if (juqingCfg.id == curJuqingID) return this.IS_OPEN;
+            else if (juqingCfg.videoId === "") return this.IS_OPEN;
             else if (fileData.videoDic[juqingCfg.videoId]) return this.IS_OPEN;
             else return this.HAS_LOCK;
         } else {//比当前剧情高的情况   就仅处理自动存档
@@ -672,18 +698,36 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                     if (models.hasOwnProperty(id)) {
                         let model: Modeljuqingkuai = models[id];
                         if (UserInfo.curBokData.allVideos[model.videoId]) {
-                            if (curJuqingID == 0 || GameCommon.getInstance().checkJuqingKuaiOpen(model.id, curJuqingID)) {
+                            if (curJuqingID == 0 || GameCommon.getInstance().checkJuqingKuaiOpen(model.id, curJuqingID, fileData)) {
                                 curJuqingID = model.id;
                             }
                         }
                     }
                 }
-                if (curJuqingID > 0 && GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id)) return this.HAS_LOCK;
+                if (curJuqingID > 0 && GameCommon.getInstance().checkJuqingKuaiOpen(curJuqingID, juqingCfg.id, fileData)) return this.HAS_LOCK;
             }
         }
-
         return this.NOT_SHOW;
     }
+
+    private getGroupBlocks(blockConfig: Modeljuqingkuai) {
+        const groupBlocks = [];
+        const allJQConfig = JsonModelManager.instance.getModeljuqingkuai();
+        for (const pageID in allJQConfig) {
+            if (allJQConfig.hasOwnProperty(pageID)) {
+                const pageConfig = allJQConfig[pageID];
+                for (const JQID in pageConfig) {
+                    if (pageConfig.hasOwnProperty(JQID)) {
+                        const JQConfig = pageConfig[JQID];
+                        if (JQConfig.lastKuai === blockConfig.lastKuai) {
+                            groupBlocks.push(JQConfig);
+                        }
+                    }
+                }
+            }
+        }
+        return groupBlocks
+    };
 
     private addLock(cfg: Modeljuqingkuai) {
         let heidiImg: eui.Image = new eui.Image();
@@ -740,7 +784,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
         if (allCfg[name]) {
             if (allCfg[name].openVideo) {
-                if (this.getOpen(allCfg[name]) == this.IS_OPEN) {
+                if (this.getOpenStatus(allCfg[name]) == this.IS_OPEN) {
                     this.showConfirm(allCfg[name]);
                     return;
                 }
@@ -749,8 +793,11 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                 this.showConfirm(allCfg[name]);
             } else {
                 // 没有openVideo也没有video的都是人物故事线剧情块，当作点击下一个块处理就行
-                let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index + 1];
-                this.showConfirm(allCfg[name]);
+                const allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
+                const cfg = allCfg[name + 1];
+                if (cfg) {
+                    this.showConfirm(cfg);
+                }
             }
         }
     }
@@ -759,7 +806,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         GameCommon.getInstance().showConfirmTips("是否读取？", () => {
             GameCommon.getInstance().showLoading();
             if (this._curFile != FILE_TYPE.AUTO_FILE) {
-                UserInfo.curBokData = UserInfo.fileDatas[this._curFile];
+                UserInfo.curBokData = copyBookData(UserInfo.fileDatas[this._curFile]);
             }
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
                 cfg: cfg,

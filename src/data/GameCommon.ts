@@ -47,6 +47,8 @@ class GameCommon {
                 && GameCommon.getRoleLike(1) < 1
             ) {
                 return [2];
+            } else {
+                return [];
             }
         },
         19: () => {
@@ -69,6 +71,8 @@ class GameCommon {
             if (GameCommon.getQuestionAnswer(22) !== 1
                 && GameCommon.getQuestionAnswer(24) === 2) {
                 return [1, 2];
+            } else {
+                return [];
             }
         },
         34: () => {
@@ -149,14 +153,14 @@ class GameCommon {
         // return;//暂时注释掉
         switch (tp) {
             case FILE_TYPE.AUTO_FILE: //自动存档 和手动存档
-                UserInfo.fileDatas[tp] = UserInfo.curBokData;
+                UserInfo.fileDatas[tp] = copyBookData(UserInfo.curBokData);
                 break;
             case FILE_TYPE.FILE2:
             case FILE_TYPE.FILE3:
             case FILE_TYPE.FILE4:
             case FILE_TYPE.FILE5:
             case FILE_TYPE.FILE6:
-                UserInfo.fileDatas[tp] = UserInfo.curBokData;
+                UserInfo.fileDatas[tp] = copyBookData(UserInfo.curBokData);
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.REFRESH_JUQING));
                 break;
         }
@@ -188,12 +192,12 @@ class GameCommon {
                 UserInfo.curBokData.shopDic = UserInfo.shopDic;
                 UserInfo.curBokData.allVideos = UserInfo.allVideos;
                 UserInfo.curBokData.tipsDick = UserInfo.tipsDick;
-                UserInfo.curBokData.lookAchievement = UserInfo.lookAchievement;                
+                UserInfo.curBokData.lookAchievement = UserInfo.lookAchievement;
                 str = JSON.stringify(UserInfo.curBokData);
                 // VideoManager.getInstance().log('村上了');
                 if (egret.Capabilities.os == 'Windows PC') {
                     egret.localStorage.setItem(tp.toString(), str);
-                    UserInfo.fileDatas[tp] = UserInfo.curBokData;
+                    UserInfo.fileDatas[tp] = copyBookData(UserInfo.curBokData);
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.REFRESH_JUQING));
                 }
                 break;
@@ -476,13 +480,14 @@ class GameCommon {
         return Number(str.split(",")[index]) || 0;
     }
 
-    public getRoleLikeAll(index): number {
-        let likeData = UserInfo.curBokData.answerId;
+    public getRoleLikeAll(index: number, bookData?: BookData): number {
+        bookData = bookData || UserInfo.curBokData;
+        let likeData = bookData.answerId;
         let likeNum = 0;
         for (let wentiID in likeData) {
             if (likeData.hasOwnProperty(wentiID)) {
                 const wentiModel: Modelwenti = JsonModelManager.instance.getModelwenti()[wentiID];
-                if (GameCommon.isChapterInRoleJuqingTree(wentiModel.chapter, UserInfo.curchapter)) {
+                if (GameCommon.isChapterInRoleJuqingTree(wentiModel.chapter, bookData.curchapter)) {
                     let wentiAnswerModels = JsonModelManager.instance.getModelanswer()[wentiID];
                     if (wentiAnswerModels) {
                         let answerList: string[] = likeData[wentiID].toString().split(",");
@@ -500,12 +505,12 @@ class GameCommon {
         return likeNum;
     }
 
-    public getSortLike(idx: number = 0) {
+    public getSortLike(idx: number = 0, bookData?: BookData) {
         let items = [];
         for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
             items.push({
                 id: i,
-                num: this.getRoleLikeAll(i),
+                num: this.getRoleLikeAll(i, bookData),
             });
         }
         items.sort((arg1, arg2) => {
@@ -542,8 +547,6 @@ class GameCommon {
     }
 
     public parseChapter(tp, data) {
-        let str = data;
-        let awardStrAry: string[];
         switch (tp) {
             case FILE_TYPE.ANSWER_FILE:  //问题存档
                 break;
@@ -628,21 +631,21 @@ class GameCommon {
      * 接手项目后  为防止出现插入的情况  特意写了这么一个可修改的接口
      * By 修改  如果传入的剧情块 不在当前章节列表（章节列表与角色好感度有关） 则直接返回Flase
      * **/
-    public checkJuqingKuaiOpen(kuaiID1: number, kuaiID2: number): boolean {
+    public checkJuqingKuaiOpen(kuaiID1: number, kuaiID2: number, bookData?: BookData): boolean {
         let compare: boolean = kuaiID1 >= kuaiID2;
 
         if (compare) {
             switch (kuaiID2) {
                 case 75:
-                    let qianxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
-                    let wanxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
+                    let qianxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao, bookData);
+                    let wanxunlike75: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao, bookData);
                     if (qianxunlike75 < wanxunlike75) {
                         compare = false;
                     }
                     break;
                 case 82:
-                    let qianxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao);
-                    let wanxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao);
+                    let qianxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.QianYe_Xiao, bookData);
+                    let wanxunlike82: number = GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.WanXun_Xiao, bookData);
                     if (qianxunlike82 >= wanxunlike82) {
                         compare = false;
                     }
@@ -929,11 +932,11 @@ class GameCommon {
                     data: "confirm"
                 });
             };
-            if(platform.getPlatform()=="plat_txsp"){
+            if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集", callback, "活动期间，活动期间，非特权用户可通过等待免费解锁，详情请参见活动资讯", "购买特权", "取消");// "等待" + freeDay + "天"
-            }else{
+            } else {
                 GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“观看特权”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，活动期间，非特权用户可通过等待免费解锁，详情请参见活动资讯", "购买特权", "取消");// "等待" + freeDay + "天"
-            }            
+            }
             if (isTXSP) {
                 GameDefine.IS_DUDANG = false;
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
@@ -953,6 +956,7 @@ class GameCommon {
     public getDefaultAns(wtID: number) {
         const getLockIDListFunc = GameCommon.getInstance().getLockedOptionIDs[wtID];
         const lockIDList = getLockIDListFunc ? getLockIDListFunc() : [];
+
         const wtModel = wentiModels[wtID];
         let defaultID = wtModel.moren;
         if (lockIDList.indexOf(wtModel.moren) !== -1) {
