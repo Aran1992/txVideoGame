@@ -8301,6 +8301,11 @@
             "url": "assets/ticket/ticket_line.png?v=23"
         },
         {
+            "name": "ticket_share_png",
+            "type": "image",
+            "url": "assets/ticket/ticket_share.png?v=186"
+        },
+        {
             "name": "huodong_png",
             "type": "image",
             "url": "assets/zhujiemian/huodong.png?v=302"
