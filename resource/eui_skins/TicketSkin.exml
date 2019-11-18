@@ -119,7 +119,7 @@
 			</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Group id="idGroupDescSpecial" width="1100" height="396.98" horizontalCenter="0" verticalCenter="98.5" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group id="idGroupDescSpecial" width="1100" height="396.98" horizontalCenter="0" verticalCenter="98.5" anchorOffsetX="0" anchorOffsetY="0" visible="false">
 			<e:Label text="限时特惠结束时间：2019/11/7 24:00" x="184.66" y="160" size="28" textColor="0xff790c" scaleX="1" scaleY="1" visible="false"/>
 			<e:Image width="369" height="45" x="404.37" y="25.78" scaleX="1" scaleY="1" source="ticket_bk1_png"/>
 			<e:Label id="idYellowTitle" text="超前追剧，并享超5倍返利！" y="35.45" x="419.06" scaleX="1" scaleY="1" size="28" textAlign="center"/>
@@ -189,7 +189,7 @@
 				</e:Skin>
 			</e:skinName>
 			</e:Button>
-			<e:Group id="idGroupDiscount0" width="200" height="200" x="712" y="270" touchEnabled="false">
+			<e:Group id="idGroupDiscountTxsp" width="200" height="200" x="712" y="270" touchEnabled="false">
 			<e:Button label="6.7折" x="-25.730000000000018" y="46.999999999999886" enabled="false" scaleX="1" scaleY="1">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
