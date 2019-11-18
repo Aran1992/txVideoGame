@@ -101,7 +101,7 @@ class Txsp {
     }
     async buyGoods(bookId, itemId, num, curSlotId,callbackBuyGoods) {     
         let shopdata: ShopInfoData = ShopManager.getInstance().shopInfoDict[itemId];          
-        let leftMoney = 0
+        let leftMoney = -1
         await bridgeHelper.diamondQueryBalance({
             appid: txsp_appid, // 业务id
             openid: txsp_userinfo.openid, // 互动账号openid,
@@ -112,9 +112,13 @@ class Txsp {
                 }else{
                     console.log(res.msg)
                     if(txsp_debug)
-                        GameCommon.getInstance().showConfirmTips(`我的余额查询失败:${res.msg}`,()=>{})
+                        GameCommon.getInstance().showConfirmTips(`我的余额查询失败;${res.msg}`,()=>{})
                 }
             })
+        if (leftMoney==-1){
+            GameCommon.getInstance().showCommomTips("我的余额查询失败");
+            return;
+        }
         //钱够直接买
         let price = shopdata.currPrice*platform.getPriceRate();
         if (leftMoney>=price){//){shopdata.currPrice
