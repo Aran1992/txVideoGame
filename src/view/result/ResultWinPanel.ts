@@ -84,7 +84,7 @@ class ResultWinPanel extends eui.Component {
         for (let i: number = 1; i < 5; i++) {
             const roleItem = this['roleItem' + i];
             const roleIndex = i - 1;
-            if (UserInfo.curchapter === 1
+            if ((UserInfo.curchapter === 1 && roleIndex !== ROLE_INDEX.ZiHao_Xia)
                 || (UserInfo.curchapter === 2 && [ROLE_INDEX.XiaoBai_Han, ROLE_INDEX.QianYe_Xiao].indexOf(roleIndex) !== -1)) {
                 roleItem.parent.removeChild(roleItem);
             } else {
