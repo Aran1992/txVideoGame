@@ -86,7 +86,7 @@ class ShouCangImgPanel extends eui.Component {
         this.onSkinName();
     }
 
-    private onSetXinDong() {        
+    private onSetXinDong() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         for (var i = 0; i < this.imgMaxNumb; i++) {
             this['xindong' + i].visible = false;
@@ -132,7 +132,7 @@ class ShouCangImgPanel extends eui.Component {
         this.imgIndx = 0;
     }
 
-    private onClose() {        
+    private onClose() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.onRemove();
         // if (!UserInfo.guideDic[7])//关闭引导图片
@@ -165,10 +165,10 @@ class ShouCangImgPanel extends eui.Component {
             if (this.curImg.width != size.width) {
                 this.datu.visible = true;
                 var tw = egret.Tween.get(this.datu);
-                let scaleX = size.width / 1600;
-                let scaleY = size.height / 900;
+                let scaleX = size.width / GameDefine.GAME_VIEW_WIDTH;
+                let scaleY = size.height / GameDefine.GAME_VIEW_HEIGHT;
                 let scale = scaleX > scaleY ? scaleX : scaleY;
-                tw.to({width: 1600 * scale, height: 900 * scale}, 100);
+                tw.to({width: GameDefine.GAME_VIEW_WIDTH * scale, height: GameDefine.GAME_VIEW_HEIGHT * scale}, 100);
                 return;
             }
 
@@ -311,12 +311,12 @@ class ShouCangImgPanel extends eui.Component {
         this.height = size.height;
     }
     private getImgArray(){
-        var imgs: string[]=[];  
+        var imgs: string[]=[];
         let count = Math.min(this.imgMaxNumb,Number(this.info.src));
         for (let i=1;i<=count;i++){
             imgs.push(this.info.id+"_"+String(i)+"_jpg");
-        }     
-        return imgs; 
+        }
+        return imgs;
         // if (this.info.src.indexOf(";") >= 0) {
         //     imgs = this.info.src.split(";");
         //     for(let i=1;i<=imgs.length;i++){
@@ -392,7 +392,7 @@ class ShouCangImgPanel extends eui.Component {
             //sounds[i-1]=
         }
         // if (this.info.shengyin.indexOf(";") >= 0) {
-        //     sounds = this.info.shengyin.split(";");            
+        //     sounds = this.info.shengyin.split(";");
         //     for(let i=1;i<=sounds.length;i++){
         //         //this.info.id+"_"+String(i)+"_mp3";
         //         //sounds[i-1]=this.info.id+"_"+String(i)+".mp3";
@@ -425,7 +425,7 @@ class ShouCangImgPanel extends eui.Component {
         // }
     }
 
-    private onShare(): void {        
+    private onShare(): void {
         SoundManager.getInstance().playSound("ope_click.mp3")
         var imgs: string[]=this.getImgArray();
         let idx = this.imgIndx+1

@@ -193,13 +193,13 @@ class MainView extends eui.Component {
         } else {
             this.bg.source = "main_bj1_jpg";
         }
-        const rate1 = 1600 / 900;
+        const rate1 = GameDefine.GAME_VIEW_WIDTH / GameDefine.GAME_VIEW_HEIGHT;
         const rate2 = size.width / size.height;
         let scale;
         if (rate1 > rate2) {
-            scale = size.width / 1600;
+            scale = size.width / GameDefine.GAME_VIEW_WIDTH;
         } else {
-            scale = size.height / 900;
+            scale = size.height / GameDefine.GAME_VIEW_HEIGHT;
         }
         this.bg.scaleX = scale;
         this.bg.scaleY = scale;

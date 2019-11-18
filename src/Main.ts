@@ -72,8 +72,8 @@ class Main extends eui.UILayer {
         // 定义屏幕宽高
         size.width = Math.max(this.stage.stageWidth, this.stage.stageHeight);
         size.height = Math.min(this.stage.stageWidth, this.stage.stageHeight);
-        GameDefine.SCALENUMX = size.width / 1600;
-        GameDefine.SCALENUMY = size.height / 900;
+        GameDefine.SCALENUMX = size.width / GameDefine.GAME_VIEW_WIDTH;
+        GameDefine.SCALENUMY = size.height / GameDefine.GAME_VIEW_HEIGHT;
         GameDefine.SCALENUM = GameDefine.SCALENUMX / GameDefine.SCALENUMY;
         wind.width = Math.max(window.innerWidth, window.innerHeight);
         wind.height = Math.min(window.innerWidth, window.innerHeight);
