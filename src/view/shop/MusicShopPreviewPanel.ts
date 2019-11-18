@@ -95,7 +95,7 @@ class MusicShopPreviewPanel extends eui.Component {
         //let srcAry: string[] = this.data.model.preview.split(";");
         let musicNameAry: string[] = this.shoucangModel.kuozhan.split(";");
         //this.banner_img.source = `yuan_png`;
-        this.banner_img.source = `${this.shoucangModel.id}_view_fang_png`;
+        this.banner_img.source = `${this.shoucangModel.id}_view_yuan_png`;
         this.name_lab.text = this.data.model.name;
         this.desc_lab.text = this.data.model.desc;
         //this.count_lab.text = srcAry.length + "首";

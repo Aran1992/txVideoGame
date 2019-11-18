@@ -123,13 +123,14 @@ class TicketPanel extends eui.Component {
     }
 
     private static getPingzhengPrize() {
+        let price = 120;
         if (platform.getPlatform() == "plat_txsp") {
             if (platform.isPlatformVip())//是否腾讯视频vip用户， 1: 是， 0: 否
-                return 1200;
+                price = 120;
             else
-                return 1800;
+                price = 180;
         }
-        return 120;
+        return price*platform.getPriceRate()
     }
 
     protected onSkinName(): void {

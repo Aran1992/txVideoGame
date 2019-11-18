@@ -48,6 +48,8 @@ declare interface Platform {
     isPlatformVip(): boolean;
 
     close();
+
+    getPriceRate();
 }
 
 class DebugPlatform implements Platform {
@@ -58,6 +60,12 @@ class DebugPlatform implements Platform {
         });
     }
 
+    public getPriceRate(){
+        if (this.getPlatform() == "plat_txsp") {
+            return 10;
+        }else
+            return 1
+    }
     public isPlatformVip() {
         if (this.getPlatform() == "plat_txsp") {
             return plattxsp.isPlatformVip();
