@@ -25,8 +25,9 @@ class TipsBtn extends eui.Component {
     private tiaoBtn: eui.Button;
     private timeGroup: eui.Group;
     private playBtn: eui.Button;
+    private speedDic: number[] = [0, 1.5, 1.25, 1];
     private spNames: string[] = ['', '1.5X', '1.25X', '1.0X'];
-    private pinzhiNames: string[] = ['', '1080P', '720P', '480P'];
+    private pinzhiNames: string[] = ['270P', '480P', '720P', '1080P'];
     private pinzhi: number = 1;
     private videoCurrentState: boolean = true;
     private timer: egret.Timer;
@@ -39,7 +40,6 @@ class TipsBtn extends eui.Component {
     private direction: number = 0;
     private beisuGroup: eui.Group;
     private pinzhiGroup: eui.Group;
-    private speedDic: number[] = [0, 1.5, 1.25, 1];
     private sd: egret.Sound;
     private isSelect: boolean = false;
     private wentiId: number = 0;
@@ -260,12 +260,14 @@ class TipsBtn extends eui.Component {
         for (let i = 1; i < 6; i++) {
             this['btn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }
-        for (let k = 1; k < 4; k++) {
+        for (let k = 0; k < this.pinzhiNames.length; k++) {
             this['pinzhi' + k].name = k + '';
-            this['sp' + k].name = k + '';
             this['pinzhi' + k].label = this.pinzhiNames[k];
-            this['sp' + k].label = this.spNames[k];
             this['pinzhi' + k].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectPinZhi, this);
+        }
+        for (let k = 1; k < 4; k++) {
+            this['sp' + k].name = k + '';
+            this['sp' + k].label = this.spNames[k];
             this['sp' + k].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectSpeed, this);
         }
         this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddVideo, this);
@@ -498,14 +500,21 @@ class TipsBtn extends eui.Component {
             this.beisuGroup.visible = false;
             return;
         }
-
         this.beisuGroup.visible = true;
         this.pinzhiGroup.visible = false;
     }
 
     private onSelectPinZhi(event: egret.Event) {
         this.pinzhiGroup.visible = false;
-        this.qualityBtn.label = event.target.label;
+        try {
+            const htmlButton: any = document
+                .getElementsByClassName("mod_overlay setlevel")[0]
+                .getElementsByClassName("select_list")[0]
+                .childNodes[event.target.name];
+            htmlButton.click();
+            this.qualityBtn.label = event.target.label;
+        } catch (e) {
+        }
     }
 
     private onSelectSpeed(event: egret.Event) {

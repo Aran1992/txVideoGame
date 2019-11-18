@@ -14,7 +14,7 @@ class GameDefine {
     public static SCALENUMY: number = 1;
     public static SCALENUM: number = 1;
     public static SLIDE_RECT = 300;
-    public static ROLE_NAME: string[] = ['韩小白', '肖千也', '夏子豪', '肖万寻','其他','其他'];
+    public static ROLE_NAME: string[] = ['韩小白', '肖千也', '夏子豪', '肖万寻', '其他', '其他'];
     public static ROLE_HEAD: string[] = [
         "action_msg_head_0_png",// 韩小白
         "action_msg_head_1_png",// 肖千也
@@ -108,13 +108,13 @@ enum FILE_TYPE {
 }
 
 enum GOODS_TYPE {
-    ITEM=1,
+    ITEM = 1,
     SUIPIAN,
     DIAMOND,
 }
 
 enum SHOUCANG_SUB_TYPE {
-    SHOUCANG_IMG=1,
+    SHOUCANG_IMG = 1,
     SHOUCANG_VIDEO,
     SHOUCANG_MUSIC,
 }

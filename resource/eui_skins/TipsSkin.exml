@@ -104,41 +104,48 @@
 					</e:Button>
 				</e:Group>
 			</e:Group>
-			<e:Group id="pinzhiGroup" touchEnabled="false" alpha="1" height="231" right="83" bottom="116" visible="false">
-				<e:Image source="control_beisudi_png" />
-				<e:Group touchEnabled="false" alpha="1" y="16" horizontalCenter="0">
-					<e:Button id="pinzhi1" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+			<e:Group id="pinzhiGroup" touchEnabled="false" alpha="1" right="83" bottom="116" visible="false">
+				<e:Image source="control_beisudi_png"  left="0" right="0" top="0" bottom="0"/>
+				<e:Group id="pinzhiBtnsGroup" touchEnabled="false" alpha="1" horizontalCenter="0" verticalCenter="0">
+					<e:Button id="pinzhi3" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X" x="-29" y="105" scaleX="1" scaleY="1">
 						<e:skinName>
-							<e:Skin states="up,down,disabled">
-								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
-								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
-								         verticalAlign="middle" textAlign="center" />
-							</e:Skin>
+						<e:Skin states="up,down,disabled">
+							<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0"/>
+							<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF" verticalAlign="middle" textAlign="center"/>
+						</e:Skin>
 						</e:skinName>
 					</e:Button>
-				</e:Group>
-				<e:Group touchEnabled="false" alpha="1" y="89" horizontalCenter="0">
-					<e:Button id="pinzhi2" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+					<e:Button id="pinzhi2" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X" x="-39" y="95" scaleX="1" scaleY="1">
 						<e:skinName>
-							<e:Skin states="up,down,disabled">
-								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
-								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
-								         verticalAlign="middle" textAlign="center" />
-							</e:Skin>
+						<e:Skin states="up,down,disabled">
+							<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0"/>
+							<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF" verticalAlign="middle" textAlign="center"/>
+						</e:Skin>
 						</e:skinName>
 					</e:Button>
-				</e:Group>
-				<e:Group touchEnabled="false" alpha="1" y="158" horizontalCenter="0">
-					<e:Button id="pinzhi3" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X">
+					<e:Button id="pinzhi1" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X" x="-59" y="75" scaleX="1" scaleY="1">
 						<e:skinName>
-							<e:Skin states="up,down,disabled">
-								<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />
-								<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF"
-								         verticalAlign="middle" textAlign="center" />
-							</e:Skin>
+						<e:Skin states="up,down,disabled">
+							<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0"/>
+							<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF" verticalAlign="middle" textAlign="center"/>
+						</e:Skin>
 						</e:skinName>
 					</e:Button>
+					<e:Button id="pinzhi0" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.5X" x="-49" y="85" scaleX="1" scaleY="1">
+						<e:skinName>
+						<e:Skin states="up,down,disabled">
+							<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0"/>
+							<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8" size="30" textColor="0xFFFFFF" verticalAlign="middle" textAlign="center"/>
+						</e:Skin>
+						</e:skinName>
+					</e:Button>
+					<e:layout>
+						<e:VerticalLayout/>
+					</e:layout>
 				</e:Group>
+
+
+
 			</e:Group>
 			<e:Group height="53" touchEnabled="false" bottom="39" right="108">
 				<e:Button id="speedBtn" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1.0X">
@@ -150,7 +157,7 @@
 						</e:Skin>
 					</e:skinName>
 				</e:Button>
-				<e:Button id="qualityBtn" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="1080P">
+				<e:Button id="qualityBtn" width="117" height="50" verticalCenter="0" horizontalCenter="0" label="自动">
 					<e:skinName>
 						<e:Skin states="up,down,disabled">
 							<e:Image scaleX.down="0.9" source="control_zidi_png" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" />

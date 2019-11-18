@@ -2,9 +2,9 @@
 <e:Skin class="skins.GameMainSkin" minHeight="50" minWidth="100" xmlns:e="http://ns.egret.com/eui"
         xmlns:w="http://ns.egret.com/wing" width="1600" height="900">
 	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
-		<e:Group id="bg_grp" touchChildren="true">
-			<e:Image id="bg" source="main_bj1_jpg"  width="1600" height="900"/>
-			<e:Image source="main_bj2_jpg" width="1600" height="900" />
+		<e:Group id="bg_grp" touchChildren="true" horizontalCenter="0" verticalCenter="0">
+			<e:Image id="bg" source="main_bj1_jpg"  width="1600" height="900" horizontalCenter="0" verticalCenter="0"/>
+			<e:Image source="main_bj2_jpg"  left="0" right="0" top="0" bottom="0"/>
 		</e:Group>
 		<e:Group id="leftBtnGroup" left="0" top="0" height="100%" width="100%">
 			<e:Group touchChildren="true">
