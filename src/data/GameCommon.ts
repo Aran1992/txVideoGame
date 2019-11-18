@@ -661,6 +661,9 @@ class GameCommon {
     }
 
     public addChengJiuTips(text: string): void {
+        if (isTXSP) {
+            return;
+        }
         PromptPanel.getInstance().addChengJiuTips(text);
     }
 
