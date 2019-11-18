@@ -111,6 +111,8 @@ class Txsp {
                     leftMoney = res.result.balance;
                 }else{
                     console.log(res.msg)
+                    if(txsp_debug)
+                        GameCommon.getInstance().showConfirmTips(`我的余额查询失败:${res.msg}`,()=>{})
                 }
             })
         //钱够直接买
