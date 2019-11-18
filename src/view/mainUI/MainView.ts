@@ -187,18 +187,22 @@ class MainView extends eui.Component {
         }
     }
 
-    // private loadpanel:LoadingPanel;
     private onRefreshImg() {
         if (UserInfo.main_Img && UserInfo.main_Img.length) {
             this.bg.source = UserInfo.main_Img;
-            let scaleX = size.width / 1600;
-            let scaleY = size.height / 900;
-            let scale = scaleX > scaleY ? scaleX : scaleY;
-            this.bg.scaleX = scale;
-            this.bg.scaleY = scale;
         } else {
             this.bg.source = "main_bj1_jpg";
         }
+        const rate1 = 1600 / 900;
+        const rate2 = size.width / size.height;
+        let scale;
+        if (rate1 > rate2) {
+            scale = size.width / 1600;
+        } else {
+            scale = size.height / 900;
+        }
+        this.bg.scaleX = scale;
+        this.bg.scaleY = scale;
         if (UserInfo.curBokData) {
             this.desc.text += UserInfo.curBokData.main_Img + "---" + UserInfo.main_Img;
             UserInfo.curBokData.main_Img = UserInfo.main_Img;
@@ -217,12 +221,8 @@ class MainView extends eui.Component {
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
-        // this.x = (size.width - this.width) / 2;
-        // this.y = (size.height - this.height) / 2;
         this.bg_grp.scaleX = Math.max(GameDefine.SCALENUMX, GameDefine.SCALENUMY);
         this.bg_grp.scaleY = Math.max(GameDefine.SCALENUMX, GameDefine.SCALENUMY);
-        // this.mainGroup.scaleX = GameDefine.SCALENUMX;
-        // this.mainGroup.scaleY = GameDefine.SCALENUMY;
     }
 
     private onDuDang() {

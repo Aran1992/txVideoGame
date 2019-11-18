@@ -95,9 +95,6 @@ class Main extends eui.UILayer {
         await plattxsp.login();
         await this.loadResource();
         this.createGameScene();
-        // const result = await RES.getResAsync("description_json")
-        // const userInfo = await storyPlatform.getUserInfo();
-        // console.log(userInfo);
     }
 
     private async loadResource() {
