@@ -231,8 +231,8 @@
 			</e:Skin>
 		</e:skinName>
 		</e:Button>
-		<e:Label id="idShareCode" text="FFFFFFFFFFFFF" x="501.09" y="546" scaleX="1" scaleY="1" size="50" anchorOffsetX="0" width="583.69" anchorOffsetY="0" height="73.39" textAlign="center" verticalAlign="middle"/>
-		<e:Label text="1. 该激活码可用于在一零零一或腾讯视频激活《拳拳四重奏》观看特权；\n2. 在《拳拳四重奏》剧集内部观看特权-激活码管理可以激活资格；\n3. 在一零零一重激活特权，可享受提前看剧以及特权福利内容，在腾讯视频中激活特权，仅包含提前看剧特权； 4. 激活码有效期至2020年x月xx日。" anchorOffsetY="0" height="139" anchorOffsetX="0" width="1476.33" textAlign="center" bottom="2" horizontalCenter="14" lineSpacing="5"/>
+		<e:Label id="idShareCode" text="FFFFFFFFFFFFF" scaleX="1" scaleY="1" size="50" anchorOffsetX="0" width="583.69" anchorOffsetY="0" height="73.39" textAlign="center" verticalAlign="middle" horizontalCenter="-7" verticalCenter="132.5"/>
+		<e:Label id="idShareText" text="1. 该激活码可用于在一零零一或腾讯视频激活《拳拳四重奏》观看特权；2. 在《拳拳四重奏》剧集内部观看特权-激活码管理可以激活资格；3. 在一零零一重激活特权，可享受提前看剧以及特权福利内容，在腾讯视频中激活特权，仅包含提前看剧特权;\n4. 激活码有效期至2020年x月xx日。" anchorOffsetY="0" height="139" anchorOffsetX="0" width="1476.33" textAlign="center" bottom="2" horizontalCenter="14" lineSpacing="5"/>
 		<e:Group width="200" height="200" horizontalCenter="0" verticalCenter="0" visible="false">
 		<e:Label text="拳拳四重奏  心动PASS" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
 		<e:Image width="20" height="20" x="-321" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>

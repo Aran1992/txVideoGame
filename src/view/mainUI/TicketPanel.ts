@@ -101,6 +101,7 @@ class TicketPanel extends eui.Component {
     private idCode: eui.Label;
     private idNoCode: eui.Label;
     private idShareCode: eui.Label;
+    private idShareText:eui.Label;
     private idHasCodeText: eui.Label;
     private idExpireText: eui.Label;
     private idTicketNum: eui.Label;
@@ -224,6 +225,10 @@ class TicketPanel extends eui.Component {
                 this.idCode.visible = true;
                 this.idNoCode.visible = false;
                 this.idShareCode.text = cdk;
+                this.idShareText.text = `1. 该激活码可用于在一零零一激活《拳拳四重奏》观看特权；
+2. 在《拳拳四重奏》剧集内部观看特权-激活码管理可以激活资格；
+3. 在一零零一重激活特权，可享受提前看剧以及特权福利内容;
+4. 激活码有效期至${data.data.list[0].expireTime}`
                 this.idBtnCopyCode.visible = true;
                 this.idBtnShareCode.visible = true;
                 this.idHasCodeText.visible = true;

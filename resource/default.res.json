@@ -7356,6 +7356,11 @@
             "url": "assets/shopimages/3021/3021_6.mp3?v=110"
         },
         {
+            "name": "3021_desc_png",
+            "type": "image",
+            "url": "assets/shopimages/3021/3021_desc.png?v=610"
+        },
+        {
             "name": "3021_view_png",
             "type": "image",
             "url": "assets/shopimages/3021/3021_view.png?v=815"
