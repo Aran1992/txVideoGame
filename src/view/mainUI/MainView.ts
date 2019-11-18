@@ -112,6 +112,7 @@ class MainView extends eui.Component {
         let player = new window["Txiplayer"]({
             container: "#videoDivMin",
             width: "100%",
+            enableUI: true,
         });
         playerCallList.push({
             key: "constructor",
@@ -133,6 +134,8 @@ class MainView extends eui.Component {
             "getPlayTime",
             "setPlaybackRate",
             "on",
+            "showLevelPanel",
+            "hideLevelPanel",
         ];
         const logArgsMethodList = [
             "play",
@@ -144,6 +147,8 @@ class MainView extends eui.Component {
             "preloadVideoNode",
             "setPlaybackRate",
             "on",
+            "showLevelPanel",
+            "hideLevelPanel",
         ];
         const logResultMethodList = [];
         widPlayer = {};
