@@ -91,6 +91,7 @@ class TicketPanel extends eui.Component {
     private idGroupDescSpecial: eui.Group;//活动观礼描述
     private idGroupDescSpecialTxsp: eui.Group;//活动观礼描述
     private idGroupDiscount: eui.Group;
+    private idGroupDiscountTxsp: eui.Group;
     private idGroupTips:eui.Group;
 
     private idBtnBuyTicketOriPrize: eui.Button;
@@ -197,6 +198,7 @@ class TicketPanel extends eui.Component {
         this.updateBuyBtnState();
 
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
+        this.idGroupDiscountTxsp.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
         this.createTasks();
         this.suipNum.text = UserInfo.suipianMoney + "";
 
