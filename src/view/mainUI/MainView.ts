@@ -113,6 +113,7 @@ class MainView extends eui.Component {
             container: "#videoDivMin",
             width: "100%",
             enableUI: true,
+            clip: 4,
         });
         playerCallList.push({
             key: "constructor",
