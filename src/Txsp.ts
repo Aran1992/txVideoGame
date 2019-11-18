@@ -114,7 +114,8 @@ class Txsp {
                 }
             })
         //钱够直接买
-        if (leftMoney>=shopdata.currPrice){//){shopdata.currPrice
+        let price = shopdata.currPrice*platform.getPriceRate();
+        if (leftMoney>=price){//){shopdata.currPrice
             let okFunc=()=>{
                             if(txsp_debug)
                                 bridgeHelper.setServerEnv(true)//await 
@@ -129,15 +130,17 @@ class Txsp {
                                 })
                             }
             GameCommon.getInstance().showConfirmTips(`你的余额还有${leftMoney}钻
-本次购买将花费${shopdata.currPrice}钻
+本次购买将花费${price}钻
 是否购买?`,okFunc);
         }else{
             //钱不够走充值流程
+            if(txsp_debug)
+                GameCommon.getInstance().showConfirmTips(`我的余额${leftMoney};本次需要消费${price}`,()=>{})
             await bridgeHelper.openPayPage({
                 actid: '', // 钻石actid
                 appid: txsp_appid, // 应用的appid
                 orderid: '', // 订单id
-                needpay: Math.abs(Math.ceil(shopdata.currPrice-leftMoney)), // 本次购买需要的钻石数目
+                needpay: Math.abs(Math.ceil(price-leftMoney)), // 本次购买需要的钻石数目
                 close: 1,     //购买成功后是否自动关闭webview 1: 是 0: 不是，默认 0
                 ru: '', // 购买成功后跳转的链接，优先级低于close
                 title: '拳拳四重奏', // 支付页面标题
