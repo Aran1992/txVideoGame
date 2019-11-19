@@ -42,6 +42,7 @@ class MainView extends eui.Component {
     private xindong: eui.Button;
     private btnXinkaishi: eui.Button;
     private curDuDang: boolean = false;
+    private idNewPoint1:eui.Image;//收藏小红点
 
     constructor(gameWorld: GameWorld) {
         super();
@@ -60,8 +61,7 @@ class MainView extends eui.Component {
         this.skinName = skins.GameMainSkin;
     }
 
-    private onLoadComplete(): void {
-        widPlayer = null;
+    private onLoadComplete(): void {        
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_REFRESH, this.onGetDataRefresh, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onClose, this);
@@ -72,6 +72,7 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.CLOSE_VIDEO3, this.onShowView, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.MAIN_IMG_REFRESH, this.onRefreshImg, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.HIDE_MAIN_GROUP, this.onHideMainGroup, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.updateNewPoint, this);
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
@@ -109,88 +110,12 @@ class MainView extends eui.Component {
             GameDefine.ISFILE_STATE = false;
             this.onRefreshUpdate({data: 1});
         }
-        let player = new window["Txiplayer"]({
-            container: "#videoDivMin",
-            width: "100%",
-            enableUI: true,
-            clip: 4,
-        });
-        playerCallList.push({
-            key: "constructor",
-            args: [{
-                container: "#videoDivMin",
-                width: "100%",
-            }],
-            time: new Date().getTime()
-        });
-        const methodList = [
-            "play",
-            "clear",
-            "pause",
-            "resume",
-            "seek",
-            "setNextVideoNode",
-            "preloadVideoNode",
-            "getDuration",
-            "getPlayTime",
-            "setPlaybackRate",
-            "on",
-            "showLevelPanel",
-            "hideLevelPanel",
-        ];
-        const logArgsMethodList = [
-            "play",
-            "clear",
-            "pause",
-            "resume",
-            "seek",
-            "setNextVideoNode",
-            "preloadVideoNode",
-            "setPlaybackRate",
-            "on",
-            "showLevelPanel",
-            "hideLevelPanel",
-        ];
-        const logResultMethodList = [];
-        widPlayer = {};
-        methodList.forEach(key => {
-            widPlayer[key] = (...args) => {
-                if (key === "on") {
-                    const [event, handler] = args;
-                    player[key].bind(player)(event, (...args) => {
-                        console.log("video player event", event, ...args);
-                        handler(...args);
-                    });
-                    playerCallList.push({
-                        key,
-                        args,
-                        time: new Date().getTime()
-                    });
-                } else {
-                    if (logArgsMethodList.indexOf(key) !== -1) {
-                        console.trace(`widPlayer.${key} args`, ...args);
-                        playerCallList.push({
-                            key,
-                            args,
-                            time: new Date().getTime()
-                        });
-                    }
-                    const result = player[key].bind(player)(...args);
-                    if (logResultMethodList.indexOf(key) !== -1) {
-                        console.trace(`widPlayer.${key} result`, result);
-                    }
-                    return result;
-                }
-            };
-        });
-        let ps = document.getElementsByTagName("video");
-        for (let i: number = 0; i < ps.length; i++) {
-            if (size.fillType == FILL_TYPE_COVER) {
-                ps[i].style["object-fit"] = "cover";
-            } else {
-                ps[i].style["object-fit"] = "contain";
-            }
-        }
+        this.updateNewPoint();
+        this.logHelper();        
+    }
+
+    private updateNewPoint(){
+        this.btnShouCang["idNewPoint1"].visible = ShopManager.getInstance().getNewPoint(0)>0;
     }
 
     private onRefreshImg() {
@@ -394,5 +319,90 @@ class MainView extends eui.Component {
 
     private onShowView() {
         this.setMainGroupVisible(true);
+    }
+
+    private logHelper(){        
+        let player = new window["Txiplayer"]({
+            container: "#videoDivMin",
+            width: "100%",
+            enableUI: true,
+            clip: 4,
+        });
+        playerCallList.push({
+            key: "constructor",
+            args: [{
+                container: "#videoDivMin",
+                width: "100%",
+            }],
+            time: new Date().getTime()
+        });
+        const methodList = [
+            "play",
+            "clear",
+            "pause",
+            "resume",
+            "seek",
+            "setNextVideoNode",
+            "preloadVideoNode",
+            "getDuration",
+            "getPlayTime",
+            "setPlaybackRate",
+            "on",
+            "showLevelPanel",
+            "hideLevelPanel",
+        ];
+        const logArgsMethodList = [
+            "play",
+            "clear",
+            "pause",
+            "resume",
+            "seek",
+            "setNextVideoNode",
+            "preloadVideoNode",
+            "setPlaybackRate",
+            "on",
+            "showLevelPanel",
+            "hideLevelPanel",
+        ];
+        const logResultMethodList = [];
+        widPlayer = {};
+        methodList.forEach(key => {
+            widPlayer[key] = (...args) => {
+                if (key === "on") {
+                    const [event, handler] = args;
+                    player[key].bind(player)(event, (...args) => {
+                        console.log("video player event", event, ...args);
+                        handler(...args);
+                    });
+                    playerCallList.push({
+                        key,
+                        args,
+                        time: new Date().getTime()
+                    });
+                } else {
+                    if (logArgsMethodList.indexOf(key) !== -1) {
+                        console.trace(`widPlayer.${key} args`, ...args);
+                        playerCallList.push({
+                            key,
+                            args,
+                            time: new Date().getTime()
+                        });
+                    }
+                    const result = player[key].bind(player)(...args);
+                    if (logResultMethodList.indexOf(key) !== -1) {
+                        console.trace(`widPlayer.${key} result`, result);
+                    }
+                    return result;
+                }
+            };
+        });
+        let ps = document.getElementsByTagName("video");
+        for (let i: number = 0; i < ps.length; i++) {
+            if (size.fillType == FILL_TYPE_COVER) {
+                ps[i].style["object-fit"] = "cover";
+            } else {
+                ps[i].style["object-fit"] = "contain";
+            }
+        }
     }
 }

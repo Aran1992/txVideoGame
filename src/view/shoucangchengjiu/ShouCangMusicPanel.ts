@@ -85,6 +85,7 @@ class ShouCangMusicItem extends eui.Component {
     private icon: eui.Image;
     private musicNum: eui.Label;
     private musicName: eui.Label;
+    private idNewPoint:eui.Image;
 
     public constructor() {
         super();
@@ -95,6 +96,7 @@ class ShouCangMusicItem extends eui.Component {
 
     public set data(info) {
         this.info = info;
+        this.idNewPoint.visible = UserInfo.lookAchievement[this.info.id] != 1;
         this.musicName.text = info.name;
         this.icon.source = `${info.id}_view_fang_png`
         let count = info.kuozhan.split(";").length
@@ -108,6 +110,11 @@ class ShouCangMusicItem extends eui.Component {
     }
 
     private onPlayVideo() {
+        if(UserInfo.lookAchievement[this.info.id]!=1){
+            UserInfo.lookAchievement[this.info.id] = 1;    
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
+        }
+        this.idNewPoint.visible=false;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
             windowName: 'Mp3Panel',
             data: this.info

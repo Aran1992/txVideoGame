@@ -5,9 +5,8 @@
     <e:Image id="icon" touchEnabled="true" horizontalCenter="0"  source="sc_list_role1_png"/>
     <e:Image  touchEnabled="true"  source="sc_item_di_png" scale9Grid="38,79,230,476" left="0" top="0" bottom="0" right="0" locked="true"/>
     
-	<e:Label id="roleTp" text="主唱" size="26" fontFamily="SimHei" touchEnabled="false" textColor="0xffffff" bottom="34" x="37"/>
-
-	
+	<e:Label id="roleTp" text="主唱" size="26" fontFamily="SimHei" touchEnabled="false" textColor="0xffffff" bottom="34" x="37"/>	
+   	<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png"  scaleX="0.5" scaleY="0.5" y="5" x="4"/>
     <e:Label id="roleName" text="肖千叶" size="52" fontFamily="SimHei" touchEnabled="true"
              textColor="0xffffff" bold="true"  bottom="78" x="32"/>
 	<e:Group id="music" x="30" bottom="20" visible="false">

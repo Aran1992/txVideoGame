@@ -102,10 +102,13 @@ class Txsp {
     async buyGoods(bookId, itemId, num, curSlotId,callbackBuyGoods) {     
         let shopdata: ShopInfoData = ShopManager.getInstance().shopInfoDict[itemId];          
         let leftMoney = -1
+        if(txsp_debug)
+            bridgeHelper.setServerEnv(true)//await 
         await bridgeHelper.diamondQueryBalance({
             appid: txsp_appid, // 业务id
             openid: txsp_userinfo.openid, // 互动账号openid,
             access_token: txsp_userinfo.token, // 互动登录态access_token
+            sandbox:txsp_debug?1:0,
             }).then((res) => {
                 if(res.code == 0){
                     leftMoney = res.result.balance;
@@ -150,7 +153,7 @@ class Txsp {
                 close: 1,     //购买成功后是否自动关闭webview 1: 是 0: 不是，默认 0
                 ru: '', // 购买成功后跳转的链接，优先级低于close
                 title: '拳拳四重奏', // 支付页面标题
-                sandbox:1,//txsp_debug?1:0,
+                sandbox:txsp_debug?1:0,
                 }).then((res) => {
                 })
         }
