@@ -1,4 +1,3 @@
-const playerCallList = [];
 const errorList = [];
 
 const infoDiv = document.createElement("div");
@@ -10,7 +9,6 @@ infoDiv.outerHTML = `<div style="position: absolute; top: 0; left: 50%; z-index:
 function copyLog() {
     const str = JSON.stringify({
         errorList,
-        playerCallList,
         curBookData: UserInfo.curBokData
     });
     const input = document.createElement("input");
@@ -328,14 +326,6 @@ class MainView extends eui.Component {
             enableUI: true,
             clip: 4,
         });
-        playerCallList.push({
-            key: "constructor",
-            args: [{
-                container: "#videoDivMin",
-                width: "100%",
-            }],
-            time: new Date().getTime()
-        });
         const methodList = [
             "play",
             "clear",
@@ -374,19 +364,9 @@ class MainView extends eui.Component {
                         console.log("video player event", event, ...args);
                         handler(...args);
                     });
-                    playerCallList.push({
-                        key,
-                        args,
-                        time: new Date().getTime()
-                    });
                 } else {
                     if (logArgsMethodList.indexOf(key) !== -1) {
                         console.trace(`widPlayer.${key} args`, ...args);
-                        playerCallList.push({
-                            key,
-                            args,
-                            time: new Date().getTime()
-                        });
                     }
                     const result = player[key].bind(player)(...args);
                     if (logResultMethodList.indexOf(key) !== -1) {
