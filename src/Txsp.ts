@@ -115,11 +115,11 @@ class Txsp {
                 }else{
                     console.log(res.msg)
                     if(txsp_debug)
-                        GameCommon.getInstance().showConfirmTips(`我的余额查询失败;${res.msg}`,()=>{})
+                        GameCommon.getInstance().showConfirmTips(`我的余额查询失败，请重新发起购买;${res.msg}`,()=>{})
                 }
             })
         if (leftMoney==-1){
-            GameCommon.getInstance().showCommomTips("我的余额查询失败");
+            //GameCommon.getInstance().showCommomTips("我的余额查询失败,请重新发起购买");
             return;
         }
         //钱够直接买
