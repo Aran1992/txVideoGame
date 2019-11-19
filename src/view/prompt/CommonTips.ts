@@ -63,20 +63,6 @@ class CommonTips extends eui.Component {
     public setText(text: string, bLike: boolean): void {
         this.addChengJiuArr.push({'text': text, 'bLike': bLike});
         if (this.isLikeTime == true) {
-            // Tool.callbackTime(() => {
-            //     if (this.addChengJiuArr.length == 1) {
-            //         this.grp.x = -2000;
-            //         this.grp.visible = true;
-            //         this.desc.text = '成就: ' + text;
-            //         this.grp.alpha = 0.7;
-            //         let tw = egret.Tween.get(this.grp);//.wait(0).call(this.onCallBtnState, this);
-            //         tw.to({x: 43}, 1500);
-            //         tw.to({alpha: 1}, 2000);
-            //         tw.to({alpha: 0}, 2000).wait(0).call(this.onCallBtnState, this);
-            //         let tw1 = egret.Tween.get(this.grp1);//.wait(0).call(this.onCallBtnState, this);
-            //         tw1.to({y: 257}, 500);
-            //     }
-            // }, this, 1000);
         } else {
             if (this.addChengJiuArr.length == 1) {
                 this.grp.x = -2000;
@@ -339,7 +325,7 @@ class CommonTips extends eui.Component {
         this.addChengJiuArr.shift();
         if (this.addChengJiuArr.length > 0) {
             this.grp.x = -2000;
-            let t = this.addChengJiuArr[0]
+            let t = this.addChengJiuArr[0];
             this.desc.text = (t.bLike ? '' : '成就: ') + t.text;
             this.idChengjiu.visible = !t.bLike;
             this.idLike.visible = t.bLike;

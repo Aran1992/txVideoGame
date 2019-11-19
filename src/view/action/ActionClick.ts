@@ -24,6 +24,8 @@ class ActionClick extends ActionSceneBase {
         this.groupClick.visible = false;
         this.heiping.visible = false;
         this.stopRun();
+        if (this.parent)
+            this.parent.removeChild(this);
     }
 
     protected onSkinName(): void {

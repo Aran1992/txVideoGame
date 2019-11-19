@@ -652,7 +652,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         } else {
             fileData = UserInfo.fileDatas[this._curFile];
         }
-        if (["14", "24", "29", "35", "49"].indexOf(juqingCfg.lastKuai) !== -1) {
+        if (["14", "24", "29", "35", "49"].indexOf(juqingCfg.lastKuai) !== -1 && this.getOpenStatus(getJuqingConfig(juqingCfg.lastKuai)) != this.NOT_SHOW) {
             const groupBlocks = this.getGroupBlocks(juqingCfg);
             if (groupBlocks.length > 1) {
                 let qid;
