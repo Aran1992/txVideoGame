@@ -30,4 +30,5 @@
             </e:Skin>
         </e:skinName>
     </e:Button>
+	<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.5" scaleY="0.5" y="5" x="4"/>
 </e:Skin>

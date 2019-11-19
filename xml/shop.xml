@@ -2,8 +2,8 @@
 <!--1图片，2视频，3音乐，4章节，5道具，6观礼凭证，9新手礼包-->
 <shop>    
     <shop id="600002" name="新手礼包"  preview="xinshou_1_png,xinshou_2_png,xinshou_3_png" params="100001,200001,300001" currPrice="0" origPrice="0" currSuipian="300" origSuipian="300" show="1" shaixuan_params="*" desc="超值新手礼包"/>
-    <shop id="600001" name="心动PASS"  preview="*" params="30" currPrice="180" origPrice="180" currSuipian="*" origSuipian="*" show="*" shaixuan_params="*" desc="*"/>
-    <shop id="600003" name="心动PASS"  preview="*" params="30" currPrice="120" origPrice="180" currSuipian="*" origSuipian="*" show="*" shaixuan_params="*" desc="*"/>    
+    <shop id="600001" name="心动PASS"  preview="*" params="30" currPrice="120" origPrice="180" currSuipian="*" origSuipian="*" show="*" shaixuan_params="*" desc="*"/>
+    <shop id="600003" name="心动PASS"  preview="*" params="30" currPrice="180" origPrice="180" currSuipian="*" origSuipian="*" show="*" shaixuan_params="*" desc="*"/>    
   
     <shop id="500501" name="不太好吧…"  preview="*" params="*" currPrice="30" origPrice="0" currSuipian="0" origSuipian="0" show="0" shaixuan_params="*" desc="*"/>
     <shop id="500502" name="上就上!"  preview="*" params="*" currPrice="30" origPrice="0" currSuipian="0" origSuipian="0" show="0" shaixuan_params="*" desc="*"/>

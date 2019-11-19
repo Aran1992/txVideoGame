@@ -3,6 +3,7 @@ declare var bridgeHelper;
 declare var txsp_userinfo;
 const txsp_appid = "tivf8061263egmdcyp";
 const txsp_debug = true;
+const txsp_vip = false;
 
 
 class Txsp {
@@ -17,6 +18,8 @@ class Txsp {
         }
     }
     public isPlatformVip(){
+        if(txsp_debug && txsp_vip)
+            return true;
         return txsp_userinfo.base_info.vip == 1
     }
     async saveBookHistory(bookId, slotId, title, externParam,callback){
@@ -102,29 +105,32 @@ class Txsp {
     async buyGoods(bookId, itemId, num, curSlotId,callbackBuyGoods) {     
         let shopdata: ShopInfoData = ShopManager.getInstance().shopInfoDict[itemId];          
         let leftMoney = -1
+        if(txsp_debug)
+            await bridgeHelper.setServerEnv(true)//await 
         await bridgeHelper.diamondQueryBalance({
             appid: txsp_appid, // 业务id
             openid: txsp_userinfo.openid, // 互动账号openid,
             access_token: txsp_userinfo.token, // 互动登录态access_token
+            sandbox:txsp_debug?1:0,
             }).then((res) => {
                 if(res.code == 0){
                     leftMoney = res.result.balance;
                 }else{
                     console.log(res.msg)
                     if(txsp_debug)
-                        GameCommon.getInstance().showConfirmTips(`我的余额查询失败;${res.msg}`,()=>{})
+                        GameCommon.getInstance().showConfirmTips(`我的余额查询失败，请重新发起购买;${res.msg}`,()=>{})
                 }
             })
         if (leftMoney==-1){
-            GameCommon.getInstance().showCommomTips("我的余额查询失败");
+            //GameCommon.getInstance().showCommomTips("我的余额查询失败,请重新发起购买");
             return;
         }
         //钱够直接买
-        let price = shopdata.currPrice*platform.getPriceRate();
+        let price = shopdata.model.currPrice*platform.getPriceRate();
         if (leftMoney>=price){//){shopdata.currPrice
             let okFunc=()=>{
                             if(txsp_debug)
-                                bridgeHelper.setServerEnv(true)//await 
+                                bridgeHelper.setServerEnv(true);//await 
                             bridgeHelper.diamondConsume({//await 
                                 appid: txsp_appid, // 业务id
                                 openid: txsp_userinfo.openid, // 互动账号openid,
@@ -150,7 +156,7 @@ class Txsp {
                 close: 1,     //购买成功后是否自动关闭webview 1: 是 0: 不是，默认 0
                 ru: '', // 购买成功后跳转的链接，优先级低于close
                 title: '拳拳四重奏', // 支付页面标题
-                sandbox:1,//txsp_debug?1:0,
+                sandbox:txsp_debug?1:0,
                 }).then((res) => {
                 })
         }

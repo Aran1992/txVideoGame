@@ -24,6 +24,7 @@ class ShouCangListPanel extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         for (var i: number = 1; i < 7; i++) {
             this['scBtn' + i].name = i;
+            this['scBtn' + i].onRegist();
             // this['scBtn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowSC, this);
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
@@ -35,6 +36,7 @@ class ShouCangListPanel extends eui.Component {
     protected onRemove(): void {
         for (var i: number = 1; i < 7; i++) {
             this['scBtn' + i].name = i;
+            this['scBtn' + i].onRemove();
             // this['scBtn' + i].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowSC, this);
         }
         this.bgBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
@@ -143,13 +145,26 @@ class ShouCangListItem extends eui.Component {
     private roleTp: eui.Label;
     private roleName: eui.Label;
     private music: eui.Group;
+    private idNewPoint:eui.Image;
 
     public constructor() {
         super();
         this.skinName = skins.ShouCangItemSkin;
         this.touchEnabled = false;
     }
+    
+    public onRegist(){
+        GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.onShoucangNewPoint, this);
+    }
 
+    public onRemove(){
+        GameDispatcher.getInstance().removeEventListener(GameEvent.SHOUCANG_NEWPOINT, this.onShoucangNewPoint, this);
+    }
+
+    private onShoucangNewPoint(){        
+        if (this.info && this.info>0)
+            this.idNewPoint.visible = ShopManager.getInstance().getNewPoint(this.info)>0;
+    }
     public set data(info) {
         // this.img.source = '';
         // if(info>=6)
@@ -164,9 +179,11 @@ class ShouCangListItem extends eui.Component {
         // if(info>4)
         // this.icon.source = 'sc_list_role' + 1 + '_png';
         // else
+        this.info = info;        
         this.icon.source = 'sc_list_role' + info + '_png';
         this.roleTp.text = GameDefine.ROLE_OCCUPATION[info - 1];
         this.roleName.text = GameDefine.SHOUCANG_NAME[info - 1];
+        this.idNewPoint.visible = ShopManager.getInstance().getNewPoint(info)>0;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlayVideo, this);
         this.info = info;
         this.music.visible = false;

@@ -304,7 +304,10 @@ class ShouCangViewItem extends eui.Component {
     }
 
     private onPlayVideo() {
-        UserInfo.lookAchievement[this.info.id] = 1;
+        if(UserInfo.lookAchievement[this.info.id]!=1){
+            UserInfo.lookAchievement[this.info.id] = 1;    
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
+        }    
         this.newPoint.visible = false;
         SoundManager.getInstance().playSound("ope_click.mp3")
         // if (!UserInfo.allCollectionDatas[this.info.id]) {

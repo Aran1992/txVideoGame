@@ -43,4 +43,5 @@ class GameEvent {
     public static VIDEO_PLAY_END: string = 'game.videoplayend';
     public static TASK_STATE_CHANGED: string = 'task.statechanged';
     public static SUIPIAN_CHANGE: string = 'suipian.change';
+    public static SHOUCANG_NEWPOINT: string = 'shoucang.newpoint';
 }

@@ -29,9 +29,9 @@ class SoundManager {
     }
 
     public playSound(key: string, callback?: Function,isUrl?:Boolean): void {
-        if(key == "ope_click.mp3"){
-            key = `ope_click_0${Tool.randomInt(1,3)}.mp3`
-        }
+        // if(key == "ope_click.mp3"){
+        //     key = `ope_click_0${Tool.randomInt(1,3)}.mp3`
+        // }
         if (!this.musicMap[key]) {
             if (this.musicDataMap[key]) {
                 this.musicMap[key] = new MusicBody(this.musicDataMap[key]);

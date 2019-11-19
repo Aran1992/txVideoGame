@@ -102,6 +102,7 @@ class ShopManager {
         }else{
             console.trace();
         }
+
         if (callback)
             callback();
     }
@@ -174,7 +175,24 @@ class ShopManager {
     public getShopTP(id: number): number {
         return Math.floor(id / GameDefine.SHOP_GOODS_STARTID);
     }
-
+    //传入0；代表主页面；传入1代表次级页面
+    public getNewPoint(idx){
+        let subPoints = [0,0,0,0,0,0];//子界面上红点
+        var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
+        for (var k in cfgs) {
+            let id = cfgs[k].id;
+            if (ShopManager.getInstance().onCheckShoucangOpen(id) && UserInfo.lookAchievement[id] != 1) {
+                subPoints[cfgs[k].mulu1-1] = subPoints[cfgs[k].mulu1-1]+1;//有N条未读
+            }
+        }
+        if (idx==0){
+            if (subPoints.join("") == "000000")
+                return 0;
+            else
+                return 1;
+        }
+        return subPoints[idx-1];
+    }
 
     /**判断某收藏是否开通**/
     public onCheckShoucangOpen(shoucangID: number): boolean {
@@ -198,6 +216,7 @@ class ShopManager {
                 case SHOP_TYPE.VIDEOS:
                 case SHOP_TYPE.MUSICS:
                     GameCommon.getInstance().onShowResultTips('购买成功\n可以“收藏”中查看');
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
                     // let shoucangID: number = parseInt(shopdata.model.params);
                     // GameCommon.getInstance().onShowResultTips('购买成功', true, "立刻查看", function (): void {
                     //     let scCfg: Modelshoucang = JsonModelManager.instance.getModelshoucang()[shoucangID];
@@ -269,9 +288,12 @@ class ShopInfoData {
     public updateShopData(info): void {
         this.saleId = info.saleId;
         this.id = parseInt(this.saleId);
+        if (info.currPrice==180){
+            console.trace();
+        }
         this.currPrice = info.currPrice;
         if (info.pay) this.pay = info.pay;
-        if (info.origPrice) this.currPrice = info.origPrice;
+        if (info.origPrice) this.origPrice = info.origPrice;
         if (info.saleIntro) this.saleIntro = info.saleIntro;
         //if (info.num) this.num = info.num;//数量不更新到本地
         if (info.date) this.date = info.date;
