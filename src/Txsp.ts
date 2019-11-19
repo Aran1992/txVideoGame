@@ -3,6 +3,7 @@ declare var bridgeHelper;
 declare var txsp_userinfo;
 const txsp_appid = "tivf8061263egmdcyp";
 const txsp_debug = true;
+const txsp_vip = false;
 
 
 class Txsp {
@@ -17,6 +18,8 @@ class Txsp {
         }
     }
     public isPlatformVip(){
+        if(txsp_debug && txsp_vip)
+            return true;
         return txsp_userinfo.base_info.vip == 1
     }
     async saveBookHistory(bookId, slotId, title, externParam,callback){
@@ -103,7 +106,7 @@ class Txsp {
         let shopdata: ShopInfoData = ShopManager.getInstance().shopInfoDict[itemId];          
         let leftMoney = -1
         if(txsp_debug)
-            bridgeHelper.setServerEnv(true)//await 
+            await bridgeHelper.setServerEnv(true)//await 
         await bridgeHelper.diamondQueryBalance({
             appid: txsp_appid, // 业务id
             openid: txsp_userinfo.openid, // 互动账号openid,
@@ -123,11 +126,11 @@ class Txsp {
             return;
         }
         //钱够直接买
-        let price = shopdata.currPrice*platform.getPriceRate();
+        let price = shopdata.model.currPrice*platform.getPriceRate();
         if (leftMoney>=price){//){shopdata.currPrice
             let okFunc=()=>{
                             if(txsp_debug)
-                                bridgeHelper.setServerEnv(true)//await 
+                                bridgeHelper.setServerEnv(true);//await 
                             bridgeHelper.diamondConsume({//await 
                                 appid: txsp_appid, // 业务id
                                 openid: txsp_userinfo.openid, // 互动账号openid,

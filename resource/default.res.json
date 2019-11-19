@@ -8388,7 +8388,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=593"
+            "url": "config/config.bin?v=548"
         }
     ]
 }

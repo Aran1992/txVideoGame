@@ -288,9 +288,12 @@ class ShopInfoData {
     public updateShopData(info): void {
         this.saleId = info.saleId;
         this.id = parseInt(this.saleId);
+        if (info.currPrice==180){
+            console.trace();
+        }
         this.currPrice = info.currPrice;
         if (info.pay) this.pay = info.pay;
-        if (info.origPrice) this.currPrice = info.origPrice;
+        if (info.origPrice) this.origPrice = info.origPrice;
         if (info.saleIntro) this.saleIntro = info.saleIntro;
         //if (info.num) this.num = info.num;//数量不更新到本地
         if (info.date) this.date = info.date;
