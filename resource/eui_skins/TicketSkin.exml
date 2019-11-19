@@ -108,7 +108,7 @@
 		</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0" visible="false">
+	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0">
 		<e:Rect id="idRectBuy" width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0"/>
 
 		<e:Image width="1106" height="592" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" source="ticket_buy_ex_png"/>
@@ -174,11 +174,11 @@
 			<e:Label text="限时特惠结束时间：2019/11/7 24:00" x="184.66" y="160" size="28" textColor="0xFF790C" scaleX="1" scaleY="1" visible="false"/>
 			<e:Image width="369" height="45" x="404.37" y="25.78" scaleX="1" scaleY="1" source="ticket_bk1_png"/>
 			<e:Label text="超前追剧" y="35.45" x="419.06" scaleX="1" scaleY="1" size="28" anchorOffsetX="0" width="338.67" anchorOffsetY="0" height="25.33" textAlign="center"/>
-			<e:Image width="20" height="20" x="358" y="152.15" scaleX="1" scaleY="1" source="ticket_icon_png"/>
-			<e:Label text="购买当日，畅玩全部剧集，感受提前发糖" y="152" x="403" scaleX="1" scaleY="1" size="22"/>
+			<e:Image width="20" height="20" x="358" y="199.15" scaleX="1" scaleY="1" source="ticket_icon_png"/>
+			<e:Label text="购买当日，畅玩全部剧集，感受提前发糖" y="199.15" x="403" scaleX="1" scaleY="1" size="22"/>
 			<e:Image width="20" height="20" x="358" y="205.17" scaleX="1" scaleY="1" source="ticket_icon_png" visible="false"/>
 			<e:Label text="截止1月5日，超值购买" x="401.67" y="205.17" scaleX="1" scaleY="1" size="22" visible="false"/>
-			<e:Label text="《拳拳四重奏》看剧特权" size="40" x="369" y="92" scaleX="1" scaleY="1" bold="true"/>
+			<e:Label text="《拳拳四重奏》看剧特权" size="40" x="369" y="110" scaleX="1" scaleY="1" bold="true"/>
 			<e:Button id="idBtnBuyTicketSpecailPrize_txsp" label="1200" y="298.99" x="799.38" width="282" height="79">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
