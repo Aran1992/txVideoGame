@@ -81,12 +81,16 @@ class ActionMsg extends ActionSceneBase {
         this.inputBg.visible = false;
         const itemList: ActionMsgItem[] = [];
         for (let i = 0; i < this.msgList.length; i++) {
-            const list = this.msgList[i].split(":");
-            const msg = list[1];
-            const role = parseInt(list[0]);
+            const [roleAndWaitTime, msg] = this.msgList[i].split(":");
+            const [role, waitTime] = roleAndWaitTime.split("=").map(s => s && parseInt(s));
             const isSelf = role === GameDefine.SELF_ROLE_HEAD_INDEX;
             if (i === this.msgList.length - 1 && isSelf && this.needClickSend) {
                 await this.playInput(msg);
+            }
+            if (waitTime) {
+                await new Promise(resolve => {
+                    setTimeout(() => resolve, waitTime);
+                });
             }
             const item = new ActionMsgItem(msg, isSelf, role);
             itemList.push(item);
