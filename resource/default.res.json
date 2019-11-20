@@ -8201,9 +8201,44 @@
             "url": "assets/task/pass_icon_task_1.png?v=647"
         },
         {
-            "name": "pass_icon_task_10_png",
+            "name": "pass_icon_task_101003_png",
             "type": "image",
-            "url": "assets/task/pass_icon_task_10.png?v=407"
+            "url": "assets/task/pass_icon_task_101003.png?v=443"
+        },
+        {
+            "name": "pass_icon_task_101004_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_101004.png?v=933"
+        },
+        {
+            "name": "pass_icon_task_102001_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_102001.png?v=772"
+        },
+        {
+            "name": "pass_icon_task_102017_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_102017.png?v=395"
+        },
+        {
+            "name": "pass_icon_task_103001_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_103001.png?v=593"
+        },
+        {
+            "name": "pass_icon_task_103007_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_103007.png?v=881"
+        },
+        {
+            "name": "pass_icon_task_103008_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_103008.png?v=38"
+        },
+        {
+            "name": "pass_icon_task_103009_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_103009.png?v=625"
         },
         {
             "name": "pass_icon_task_11_png",
@@ -8221,39 +8256,14 @@
             "url": "assets/task/pass_icon_task_2.png?v=666"
         },
         {
-            "name": "pass_icon_task_3_png",
-            "type": "image",
-            "url": "assets/task/pass_icon_task_3.png?v=26"
-        },
-        {
             "name": "pass_icon_task_4_png",
             "type": "image",
             "url": "assets/task/pass_icon_task_4.png?v=552"
         },
         {
-            "name": "pass_icon_task_5_png",
-            "type": "image",
-            "url": "assets/task/pass_icon_task_5.png?v=511"
-        },
-        {
-            "name": "pass_icon_task_6_png",
-            "type": "image",
-            "url": "assets/task/pass_icon_task_6.png?v=662"
-        },
-        {
             "name": "pass_icon_task_7_png",
             "type": "image",
             "url": "assets/task/pass_icon_task_7.png?v=122"
-        },
-        {
-            "name": "pass_icon_task_8_png",
-            "type": "image",
-            "url": "assets/task/pass_icon_task_8.png?v=54"
-        },
-        {
-            "name": "pass_icon_task_9_png",
-            "type": "image",
-            "url": "assets/task/pass_icon_task_9.png?v=966"
         },
         {
             "name": "pass_icon_tip_png",
@@ -8388,7 +8398,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=548"
+            "url": "config/config.bin?v=601"
         }
     ]
 }
