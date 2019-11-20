@@ -42,7 +42,6 @@ class MainView extends eui.Component {
     private xindong: eui.Button;
     private btnXinkaishi: eui.Button;
     private curDuDang: boolean = false;
-    private idNewPoint1:eui.Image;//收藏小红点
 
     constructor(gameWorld: GameWorld) {
         super();
@@ -116,7 +115,7 @@ class MainView extends eui.Component {
     }
 
     private updateNewPoint(){
-        this.btnShouCang["idNewPoint1"].visible = ShopManager.getInstance().getNewPoint(0)>0;
+        this.btnShouCang["idNewPoint"].visible = ShopManager.getInstance().getNewPoint(0)>0;
     }
 
     private onRefreshImg() {
