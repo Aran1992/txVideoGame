@@ -177,7 +177,7 @@ class ShouCangViewPanel extends eui.Component {
                 }
             }
         }
-        this.scroll.viewport.scrollV = 0;
+        this.scroll.viewport.scrollV = 0; 
     }
 
     private onLoadComplete(): void {

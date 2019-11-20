@@ -99,7 +99,8 @@ class DebugPlatform implements Platform {
 
     //获得上线时间，其它时间可以此时间上叠加
     public getSaleBeginTime() {
-        return 1572364800 + 86400 * 6;//2019-10-30 00:00:00
+        return 1574179200 //2019/11/20 0:0:0
+        //return 1572364800 + 86400 * 6;//2019-10-30 00:00:00
     }
 
     public getPlatform() {
