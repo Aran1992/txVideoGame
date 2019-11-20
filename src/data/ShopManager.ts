@@ -131,7 +131,8 @@ class ShopManager {
                 let shopdata: ShopInfoData = this._shopDataDict[Number(itemId)];
                 shopdata.num = Number(r[itemId].num);
             }
-            this._serverItemNums["loaded"] = true;
+            this._serverItemNums["loaded"] = true;            
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
             return;
         }
         let callback = (data) => {
@@ -142,6 +143,7 @@ class ShopManager {
                     this._serverItemNums[element.saleId] = element.num;
                 });
                 this._serverItemNums["loaded"] = true;
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
                 console.log(this._serverItemNums);
                 //把本地的值+服务器的值
             } else {

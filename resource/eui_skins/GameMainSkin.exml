@@ -20,7 +20,7 @@
 							         visible="false" />
 							<e:Label text="纪 念 册" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
 							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
-							<e:Image id="idNewPoint1" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" left="218" verticalCenter="-20"/>
+							<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" left="218" verticalCenter="-20"/>
 						</e:Skin>
 					</e:skinName>
 				</e:Button>
