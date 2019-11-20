@@ -42,7 +42,7 @@ class MainView extends eui.Component {
     private xindong: eui.Button;
     private btnXinkaishi: eui.Button;
     private curDuDang: boolean = false;
-    private idNewPoint1:eui.Image;//收藏小红点
+    private idNewPoint1: eui.Image;//收藏小红点
 
     constructor(gameWorld: GameWorld) {
         super();
@@ -61,7 +61,7 @@ class MainView extends eui.Component {
         this.skinName = skins.GameMainSkin;
     }
 
-    private onLoadComplete(): void {        
+    private onLoadComplete(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_REFRESH, this.onGetDataRefresh, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onClose, this);
@@ -73,6 +73,7 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.MAIN_IMG_REFRESH, this.onRefreshImg, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.HIDE_MAIN_GROUP, this.onHideMainGroup, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.updateNewPoint, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.TASK_STATE_CHANGED, this.updateTicketButtonPoint, this);
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
@@ -111,11 +112,16 @@ class MainView extends eui.Component {
             this.onRefreshUpdate({data: 1});
         }
         this.updateNewPoint();
-        this.logHelper();        
+        this.updateTicketButtonPoint();
+        this.logHelper();
     }
 
-    private updateNewPoint(){
-        this.btnShouCang["idNewPoint1"].visible = ShopManager.getInstance().getNewPoint(0)>0;
+    private updateNewPoint() {
+        this.btnShouCang["idNewPoint1"].visible = ShopManager.getInstance().getNewPoint(0) > 0;
+    }
+
+    private updateTicketButtonPoint() {
+        this.btnChengjiu["idNewPoint1"].visible = TaskManager.instance.hasReceivableReward();
     }
 
     private onRefreshImg() {
@@ -321,7 +327,7 @@ class MainView extends eui.Component {
         this.setMainGroupVisible(true);
     }
 
-    private logHelper(){        
+    private logHelper() {
         let player = new window["Txiplayer"]({
             container: "#videoDivMin",
             width: "100%",

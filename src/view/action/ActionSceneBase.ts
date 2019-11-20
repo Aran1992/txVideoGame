@@ -86,11 +86,6 @@ class ActionSceneBase extends eui.Component {
     }
 
     protected update(dt): void {
-        console.log("update");
-        console.log("this.isVideoRun", this.isVideoRun);
-        console.log("this.delTime", this.delTime);
-        console.log("this.runTime", this.runTime);
-        console.log("dt", dt);
         if (this.isVideoRun) {
             this.videoRunTime += dt;
             if (this.delTime > 0) {

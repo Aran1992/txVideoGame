@@ -29,6 +29,7 @@
 						<e:Skin states="up,down" width="272" height="88">
 							<e:Image source="left_btn_di_png" visible="false" visible.down='true' left='0' verticalCenter="0" />
 							<e:Label text="心动PASS" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
+							<e:Image id="idNewPoint1" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" left="218" verticalCenter="-20"/>
 							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" />
 						</e:Skin>
 					</e:skinName>

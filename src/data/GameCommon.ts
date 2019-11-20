@@ -967,6 +967,20 @@ class GameCommon {
         }
         return defaultID;
     }
+
+    public getChapterIndex(n) {
+        let chapterIndex = 0;
+        for (let i = 0; i < GameDefine.ROLE_JUQING_TREE.length; i++) {
+            const role = GameDefine.ROLE_JUQING_TREE[i];
+            for (let j = 0; j < role.length; j++) {
+                if (role[j] === n) {
+                    chapterIndex = j + 1;
+                    break;
+                }
+            }
+        }
+        return chapterIndex;
+    }
 }
 
 declare let callbackDeleteBookHistory;
