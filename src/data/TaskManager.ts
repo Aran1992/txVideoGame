@@ -1,3 +1,15 @@
+// const list = [
+//     "get_quantao_1",
+//     "get_quantao_2",
+//     "get_quantao_3",
+//     "get_erfan_1",
+//     "get_erfan_2",
+//     "get_erfan_3",
+//     "get_yuepu_1",
+//     "get_yuepu_1_erfan_1",
+//     "get_cd_1_yuepu_1",
+// ];
+
 const TASK = [
     {
         "chapter": "序章",
@@ -1273,7 +1285,15 @@ class TaskManager {
     }
 
     public receiveTaskReward(task) {
-        task.reward.forEach(reward => {
+        const rewards = task.reward;
+        for (let i = 0; i < REWARD_ICON.length; i++) {
+            const {type, icon} = REWARD_ICON[i];
+            if (!rewards.some((reward, i) => reward.type !== type[i])) {
+                return icon;
+            }
+        }
+        let eventId = "get";
+        rewards.forEach(reward => {
             switch (reward.type) {
                 case "suipian": {
                     UserInfo.suipianMoney += reward.num;
@@ -1285,11 +1305,33 @@ class TaskManager {
                     }, false);
                     break;
                 }
+                default: {
+                    eventId += `_${reward.type}_${reward.num || 1}`
+                }
             }
         });
-        this.tasks[task.id] = TASK_STATES.RECEIVED;
-        GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
+        const handler = () => {
+            this.tasks[task.id] = TASK_STATES.RECEIVED;
+            GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
+        };
+        console.log("eventId", eventId);
+        if (eventId.length > 3) {
+            platform.sendRequest({
+                "bookId": GameDefine.BOOKID,
+                "cmd": "reportBookGiftPkgEvent",
+                "eventId": eventId,
+            }, (data) => {
+                if (data.code == 0) {
+                    GameCommon.getInstance().showCommomTips("奖励领取成功");
+                    handler();
+                } else {
+                    GameCommon.getInstance().showCommomTips("奖励领取失败，请稍后重试");
+                }
+            });
+        } else {
+            handler();
+        }
     }
 
     private getTaskChapterIndex(tid: number): number {

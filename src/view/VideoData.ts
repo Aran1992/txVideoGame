@@ -986,8 +986,6 @@ class VideoData extends egret.DisplayObjectContainer {
                 } else {
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
                 }
-                GameCommon.getInstance().showConfirmTips("END", () => {
-                });
                 return;
             }
         }
