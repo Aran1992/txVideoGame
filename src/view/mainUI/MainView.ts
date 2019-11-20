@@ -111,6 +111,7 @@ class MainView extends eui.Component {
             this.onRefreshUpdate({data: 1});
         }
         this.updateNewPoint();
+        //setTimeout(this.updateNewPoint.bind(this),3);
         this.logHelper();        
     }
 

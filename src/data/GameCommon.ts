@@ -390,7 +390,8 @@ class GameCommon {
                 case FILE_TYPE.GOODS_FILE:
                     // GameCommon.getInstance().addChengJiuTips(JSON.stringify(data.data.content));
                     //ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
-                    ShopManager.getInstance().initShopInfos(data.data.content);
+                    ShopManager.getInstance().initShopInfos(data.data.content);                    
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
                     break;
                 case FILE_TYPE.TASK: {
                     TaskManager.instance.init(JSON.parse(data.data.content));
