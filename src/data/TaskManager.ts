@@ -1169,7 +1169,7 @@ class TaskManager {
     public hasReceivableReward(): boolean {
         for (const tid in this.tasks) {
             if (this.tasks.hasOwnProperty(tid)) {
-                if (this.tasks[tid] === TASK_STATES.RECEIVABLE) {
+                if (this.getTaskState(tid) === TASK_STATES.RECEIVABLE) {
                     return true;
                 }
             }
@@ -1199,17 +1199,16 @@ class TaskManager {
         if (this.isLuxuryTask(tid) && !this.isUnlockLuxuryTask()) {
             return TASK_STATES.LOCKED;
         }
+        if (this.playedMaxChapter < this.getTaskChapterIndex(tid)) {
+            return TASK_STATES.UNCOMPLETED;
+        }
         if (this.tasks[tid] === TASK_STATES.RECEIVABLE) {
             return TASK_STATES.RECEIVABLE;
         }
         if (this.tasks[tid] === TASK_STATES.RECEIVED) {
             return TASK_STATES.RECEIVED;
         }
-        if (this.playedMaxChapter >= this.getTaskChapterIndex(tid)) {
-            return TASK_STATES.UNLOCKED;
-        } else {
-            return TASK_STATES.UNCOMPLETED;
-        }
+        return TASK_STATES.UNLOCKED;
     }
 
     public checkQuestionTask() {
@@ -1285,15 +1284,8 @@ class TaskManager {
     }
 
     public receiveTaskReward(task) {
-        const rewards = task.reward;
-        for (let i = 0; i < REWARD_ICON.length; i++) {
-            const {type, icon} = REWARD_ICON[i];
-            if (!rewards.some((reward, i) => reward.type !== type[i])) {
-                return icon;
-            }
-        }
         let eventId = "get";
-        rewards.forEach(reward => {
+        task.reward.forEach(reward => {
             switch (reward.type) {
                 case "suipian": {
                     UserInfo.suipianMoney += reward.num;
