@@ -1,4 +1,3 @@
-const playerCallList = [];
 const errorList = [];
 
 const infoDiv = document.createElement("div");
@@ -10,7 +9,6 @@ infoDiv.outerHTML = `<div style="position: absolute; top: 0; left: 50%; z-index:
 function copyLog() {
     const str = JSON.stringify({
         errorList,
-        playerCallList,
         curBookData: UserInfo.curBokData
     });
     const input = document.createElement("input");
@@ -60,7 +58,7 @@ class MainView extends eui.Component {
         this.skinName = skins.GameMainSkin;
     }
 
-    private onLoadComplete(): void {        
+    private onLoadComplete(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_REFRESH, this.onGetDataRefresh, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onClose, this);
@@ -72,6 +70,7 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.MAIN_IMG_REFRESH, this.onRefreshImg, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.HIDE_MAIN_GROUP, this.onHideMainGroup, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.updateNewPoint, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.TASK_STATE_CHANGED, this.updateTicketButtonPoint, this);
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
@@ -110,12 +109,16 @@ class MainView extends eui.Component {
             this.onRefreshUpdate({data: 1});
         }
         this.updateNewPoint();
-        //setTimeout(this.updateNewPoint.bind(this),3);
-        this.logHelper();        
+        this.updateTicketButtonPoint();
+        this.logHelper();
     }
 
-    private updateNewPoint(){
-        this.btnShouCang["idNewPoint"].visible = ShopManager.getInstance().getNewPoint(0)>0;
+    private updateNewPoint() {
+        this.btnShouCang["idNewPoint"].visible = ShopManager.getInstance().getNewPoint(0) > 0;
+    }
+
+    private updateTicketButtonPoint() {
+        this.btnChengjiu["idNewPoint1"].visible = TaskManager.instance.hasReceivableReward();
     }
 
     private onRefreshImg() {
@@ -321,20 +324,12 @@ class MainView extends eui.Component {
         this.setMainGroupVisible(true);
     }
 
-    private logHelper(){        
+    private logHelper() {
         let player = new window["Txiplayer"]({
             container: "#videoDivMin",
             width: "100%",
             enableUI: true,
             clip: 4,
-        });
-        playerCallList.push({
-            key: "constructor",
-            args: [{
-                container: "#videoDivMin",
-                width: "100%",
-            }],
-            time: new Date().getTime()
         });
         const methodList = [
             "play",
@@ -374,19 +369,9 @@ class MainView extends eui.Component {
                         console.log("video player event", event, ...args);
                         handler(...args);
                     });
-                    playerCallList.push({
-                        key,
-                        args,
-                        time: new Date().getTime()
-                    });
                 } else {
                     if (logArgsMethodList.indexOf(key) !== -1) {
                         console.trace(`widPlayer.${key} args`, ...args);
-                        playerCallList.push({
-                            key,
-                            args,
-                            time: new Date().getTime()
-                        });
                     }
                     const result = player[key].bind(player)(...args);
                     if (logResultMethodList.indexOf(key) !== -1) {

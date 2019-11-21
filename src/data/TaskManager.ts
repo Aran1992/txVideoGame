@@ -1,6 +1,19 @@
+// const list = [
+//     "get_quantao_1",
+//     "get_quantao_2",
+//     "get_quantao_3",
+//     "get_erfan_1",
+//     "get_erfan_2",
+//     "get_erfan_3",
+//     "get_yuepu_1",
+//     "get_yuepu_1_erfan_1",
+//     "get_cd_1_yuepu_1",
+// ];
+
 const TASK = [
     {
         "chapter": "序章",
+        "chapterID": 0,
         "common": [
             {
                 "name": "拳击女皇",
@@ -69,6 +82,7 @@ const TASK = [
     },
     {
         "chapter": "第一章",
+        "chapterID": 1,
         "common": [
             {
                 "name": "和弦初起",
@@ -170,6 +184,7 @@ const TASK = [
     },
     {
         "chapter": "第二章、第三章",
+        "chapterID": 2,
         "common": [
             {
                 "name": "中招？！",
@@ -278,13 +293,18 @@ const TASK = [
                     "type": "chapter",
                     "cid": 3
                 },
-                "reward": "少女情怀·林薄荷",
-                "id": "2-1-3"
+                "reward": [{
+                    "type": "goods",
+                    "id": "101004"
+                }],
+                "id": "2-1-3",
+                "icon": ""
             }
         ]
     },
     {
         "chapter": "第四章、第五章",
+        "chapterID": 4,
         "common": [
             {
                 "name": "乐动心弦",
@@ -359,6 +379,7 @@ const TASK = [
     },
     {
         "chapter": "第六章",
+        "chapterID": 6,
         "common": [
             {
                 "name": "和弦对拍",
@@ -536,13 +557,17 @@ const TASK = [
                     "type": "chapter",
                     "cid": 6
                 },
-                "reward": "梦想的模样·林薄荷&夏子豪 SR",
+                "reward": [{
+                    "type": "goods",
+                    "id": "102001"
+                }],
                 "id": "4-1-6"
             }
         ]
     },
     {
         "chapter": "第七章、第八章",
+        "chapterID": 7,
         "common": [
             {
                 "name": "平行不相交",
@@ -719,6 +744,7 @@ const TASK = [
     },
     {
         "chapter": "第九章",
+        "chapterID": 9,
         "common": [
             {
                 "name": "专属骑士",
@@ -845,7 +871,10 @@ const TASK = [
                     "type": "video",
                     "vid": "V908"
                 },
-                "reward": "愿星伴你·江雪",
+                "reward": [{
+                    "type": "goods",
+                    "id": "101003"
+                }],
                 "id": "6-1-3"
             },
             {
@@ -882,6 +911,7 @@ const TASK = [
     },
     {
         "chapter": "第十、十一章",
+        "chapterID": 10,
         "common": [
             {
                 "name": "夏子豪",
@@ -958,6 +988,7 @@ const TASK = [
     },
     {
         "chapter": "第十二章",
+        "chapterID": 12,
         "common": [
             {
                 "name": "竹马青梅",
@@ -966,7 +997,10 @@ const TASK = [
                     "type": "video",
                     "vid": "VX1204"
                 },
-                "reward": "美梦酩酊·夏子豪",
+                "reward": [{
+                    "type": "goods",
+                    "id": "102017"
+                }],
                 "id": "8-0-0"
             },
             {
@@ -1021,7 +1055,10 @@ const TASK = [
                     "type": "video",
                     "vid": "VY1206"
                 },
-                "reward": "B面人生·肖千也",
+                "reward": [{
+                    "type": "goods",
+                    "id": "103008"
+                }],
                 "id": "8-1-0"
             },
             {
@@ -1031,7 +1068,10 @@ const TASK = [
                     "type": "video",
                     "vid": "VW1206"
                 },
-                "reward": "B面人生·肖万寻",
+                "reward": [{
+                    "type": "goods",
+                    "id": "103009"
+                }],
                 "id": "8-1-1"
             },
             {
@@ -1041,7 +1081,10 @@ const TASK = [
                     "type": "video",
                     "vid": "VH1204"
                 },
-                "reward": "B面人生·韩小白",
+                "reward": [{
+                    "type": "goods",
+                    "id": "103007"
+                }],
                 "id": "8-1-2"
             },
             {
@@ -1065,7 +1108,10 @@ const TASK = [
                     "type": "video",
                     "vid": "VW1207"
                 },
-                "reward": "兄弟？兄弟！·肖千也&肖万寻",
+                "reward": [{
+                    "type": "goods",
+                    "id": "103001"
+                }],
                 "id": "8-1-4"
             },
             {
@@ -1091,6 +1137,7 @@ const TASK = [
 
 enum TASK_STATES {
     LOCKED,
+    UNLOCKED,
     UNCOMPLETED,
     RECEIVABLE,
     RECEIVED,
@@ -1109,10 +1156,32 @@ class TaskManager {
         return TaskManager._instance;
     }
 
+    private _playedMaxChapter: number = 0;
+
+    public get playedMaxChapter() {
+        return this._playedMaxChapter;
+    };
+
+    public set playedMaxChapter(n) {
+        this._playedMaxChapter = n;
+    }
+
+    public hasReceivableReward(): boolean {
+        for (const tid in this.tasks) {
+            if (this.tasks.hasOwnProperty(tid)) {
+                if (this.tasks[tid] === TASK_STATES.RECEIVABLE) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public init(data) {
         if (data) {
             this.tasks = data.tasks;
             this.duration = data.duration;
+            this.playedMaxChapter = data.playedMaxChapter || 0;
             UserInfo._suipianMoney = data.suipian;
         }
     }
@@ -1121,6 +1190,7 @@ class TaskManager {
         return {
             tasks: this.tasks,
             duration: this.duration,
+            playedMaxChapter: this.playedMaxChapter,
             suipian: UserInfo.suipianMoney
         };
     }
@@ -1135,7 +1205,11 @@ class TaskManager {
         if (this.tasks[tid] === TASK_STATES.RECEIVED) {
             return TASK_STATES.RECEIVED;
         }
-        return TASK_STATES.UNCOMPLETED;
+        if (this.playedMaxChapter >= this.getTaskChapterIndex(tid)) {
+            return TASK_STATES.UNLOCKED;
+        } else {
+            return TASK_STATES.UNCOMPLETED;
+        }
     }
 
     public checkQuestionTask() {
@@ -1211,17 +1285,69 @@ class TaskManager {
     }
 
     public receiveTaskReward(task) {
-        task.reward.forEach(reward => {
+        const rewards = task.reward;
+        for (let i = 0; i < REWARD_ICON.length; i++) {
+            const {type, icon} = REWARD_ICON[i];
+            if (!rewards.some((reward, i) => reward.type !== type[i])) {
+                return icon;
+            }
+        }
+        let eventId = "get";
+        rewards.forEach(reward => {
             switch (reward.type) {
                 case "suipian": {
                     UserInfo.suipianMoney += reward.num;
+                    GameCommon.getInstance().showCommomTips("奖励领取成功");
                     break;
+                }
+                case "goods": {
+                    ShopManager.getInstance().addGoods(parseInt(reward.id), 1, () => {
+                    }, false);
+                    break;
+                }
+                default: {
+                    eventId += `_${reward.type}_${reward.num || 1}`
                 }
             }
         });
-        this.tasks[task.id] = TASK_STATES.RECEIVED;
-        GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
+        const handler = () => {
+            this.tasks[task.id] = TASK_STATES.RECEIVED;
+            GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
+        };
+        console.log("eventId", eventId);
+        if (eventId.length > 3) {
+            platform.sendRequest({
+                "bookId": GameDefine.BOOKID,
+                "cmd": "reportBookGiftPkgEvent",
+                "eventId": eventId,
+            }, (data) => {
+                if (data.code == 0) {
+                    GameCommon.getInstance().showCommomTips("奖励领取成功");
+                    handler();
+                } else {
+                    GameCommon.getInstance().showCommomTips("奖励领取失败，请稍后重试");
+                }
+            });
+        } else {
+            handler();
+        }
+    }
+
+    private getTaskChapterIndex(tid: number): number {
+        let chapterIndex = -1;
+        const taskRarity = ["common", "luxury"];
+        TASK.some(chapter => {
+            return taskRarity.some(rarity => {
+                return chapter[rarity].some(task => {
+                    if (task && task.id === tid) {
+                        chapterIndex = chapter.chapterID;
+                        return true;
+                    }
+                });
+            });
+        });
+        return chapterIndex;
     }
 
     private iterUncompletedTask(handler: (task: any) => void) {

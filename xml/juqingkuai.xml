@@ -29,11 +29,11 @@
     <juqingkuai id="27" show="5" scal="0.58" wentiId="26" videoId="V414" openVideo="V411" lastKuai="24" BE="0" name="区域C"/>
     <juqingkuai id="28" show="5" scal="0.58" wentiId="26" videoId="V415" openVideo="V411" lastKuai="24" BE="0" name="区域D"/>
     <juqingkuai id="29" show="5" scal="1" wentiId="27" videoId="V501" openVideo="V416" lastKuai="25,26,27,28" BE="0" name="5-1 合宿练习"/>
-    <juqingkuai id="30" show="6" scal="0.58" wentiId="28" videoId="V502" openVideo="V501" lastKuai="27" BE="0" name="肖千也的游乐场"/>
-    <juqingkuai id="31" show="6" scal="0.58" wentiId="30" videoId="V508" openVideo="V501" lastKuai="27" BE="0" name="夏子豪的篮球场"/>
-    <juqingkuai id="32" show="6" scal="0.58" wentiId="31" videoId="V511" openVideo="V501" lastKuai="27" BE="0" name="肖万寻的西餐厅"/>
-    <juqingkuai id="33" show="6" scal="0.58" wentiId="32" videoId="V514" openVideo="V501" lastKuai="27" BE="0" name="韩小白的蛋糕店"/>
-    <juqingkuai id="34" show="6" scal="0.58" wentiId="0" videoId="V517" openVideo="V501" lastKuai="27" BE="0" name="江雪的探班"/>
+    <juqingkuai id="30" show="6" scal="0.58" wentiId="28" videoId="V502" openVideo="V501" lastKuai="29" BE="0" name="肖千也的游乐场"/>
+    <juqingkuai id="31" show="6" scal="0.58" wentiId="30" videoId="V508" openVideo="V501" lastKuai="29" BE="0" name="夏子豪的篮球场"/>
+    <juqingkuai id="32" show="6" scal="0.58" wentiId="31" videoId="V511" openVideo="V501" lastKuai="29" BE="0" name="肖万寻的西餐厅"/>
+    <juqingkuai id="33" show="6" scal="0.58" wentiId="32" videoId="V514" openVideo="V501" lastKuai="29" BE="0" name="韩小白的蛋糕店"/>
+    <juqingkuai id="34" show="6" scal="0.58" wentiId="0" videoId="V517" openVideo="V501" lastKuai="29" BE="0" name="江雪的探班"/>
     <juqingkuai id="35" show="6" scal="1" wentiId="33" videoId="V601" openVideo="V518" lastKuai="30,31,32,33,34" BE="0" name="6-1 停电危机"/>
     <juqingkuai id="36" show="6" scal="0.58" wentiId="35" videoId="V605" openVideo="V604" lastKuai="35" BE="0" name="寻找肖千也"/>
     <juqingkuai id="37" show="6" scal="0.58" wentiId="36" videoId="V608" openVideo="V604" lastKuai="35" BE="0" name="寻找夏子豪"/>

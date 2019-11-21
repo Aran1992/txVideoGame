@@ -5,6 +5,14 @@ const REWARD_ICON = [
     {type: ["quantao"], icon: "pass_icon_task_7_png"},
     {type: ["yuepu", "erfan"], icon: "pass_icon_task_11_png"},
     {type: ["CD", "yuepu"], icon: "pass_icon_task_12_png"},
+    {type: [101003], icon: "pass_icon_task_101003_png"},
+    {type: [101004], icon: "pass_icon_task_101004_png"},
+    {type: [102001], icon: "pass_icon_task_102001_png"},
+    {type: [102017], icon: "pass_icon_task_102017_png"},
+    {type: [103001], icon: "pass_icon_task_103001_png"},
+    {type: [103007], icon: "pass_icon_task_103007_png"},
+    {type: [103008], icon: "pass_icon_task_103008_png"},
+    {type: [103009], icon: "pass_icon_task_103009_png"},
 ];
 
 const REWARD_DSC = {
@@ -28,35 +36,35 @@ const REWARD_DSC = {
         name: "原版CD",
         dsc: "乐手们最珍爱的原版CD，在《一零零一》中《拳拳四重奏》专区内使用，可以为心仪的TA增加大量的花语值。",
     },
-    a: {
+    101004: {
         name: "少女情怀*林薄荷",
         dsc: "看剧特权限定藏品，永久收藏林薄荷精品剧照卡5张。",
     },
-    b: {
+    102001: {
         name: "梦想的模样·林薄荷&夏子豪 SR",
         dsc: "看剧特权限定藏品，永久收藏林薄荷&夏子豪高清精品剧照卡5张。",
     },
-    c: {
+    101003: {
         name: "愿星伴你·江雪 ",
         dsc: "看剧特权限定藏品，永久收藏江雪精品剧照卡5张。",
     },
-    d: {
+    102017: {
         name: "美梦酩酊·夏子豪",
         dsc: "看剧特权限定藏品，永久收藏夏子豪高清精品剧照卡5张。",
     },
-    e: {
+    103008: {
         name: "B面人生·肖千也",
         dsc: "看剧特权限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖千也的专属纪念照。",
     },
-    f: {
+    103009: {
         name: "B面人生·肖万寻",
         dsc: "看剧特权限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖万寻的专属纪念照。",
     },
-    g: {
+    103007: {
         name: "B面人生·韩小白",
         dsc: "看剧特权限定的心动藏品，《拳拳四重奏》制作组倾情奉上，韩小白的专属纪念照。",
     },
-    h: {
+    103001: {
         name: "兄弟？兄弟！·肖千也&肖万寻",
         dsc: "看剧特权限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖千也&肖万寻的专属纪念照。",
     },
@@ -65,8 +73,14 @@ const REWARD_DSC = {
 function getRewardIcon(rewards): string {
     for (let i = 0; i < REWARD_ICON.length; i++) {
         const {type, icon} = REWARD_ICON[i];
-        if (typeof rewards !== "string" && !rewards.some((reward, i) => reward.type !== type[i])) {
-            return icon;
+        if (rewards[0].type === "goods") {
+            if (rewards[0].id == type[0]) {
+                return icon;
+            }
+        } else {
+            if (!rewards.some((reward, i) => reward.type !== type[i])) {
+                return icon;
+            }
         }
     }
     return "pass_icon_task_3_png";
@@ -92,7 +106,7 @@ class TicketPanel extends eui.Component {
     private idGroupDescSpecialTxsp: eui.Group;//活动观礼描述
     private idGroupDiscount: eui.Group;
     private idGroupDiscountTxsp: eui.Group;
-    private idGroupTips:eui.Group;
+    private idGroupTips: eui.Group;
 
     private idBtnBuyTicketOriPrize: eui.Button;
     private idBtnBuyTicketSpecailPrize: eui.Button;
@@ -101,13 +115,13 @@ class TicketPanel extends eui.Component {
     private idCode: eui.Label;
     private idNoCode: eui.Label;
     private idShareCode: eui.Label;
-    private idShareText:eui.Label;
+    private idShareText: eui.Label;
     private idHasCodeText: eui.Label;
     private idExpireText: eui.Label;
     private idTicketNum: eui.Label;
     private suipNum: eui.Label;
 
-    private idRectBuy:eui.Rect;
+    private idRectBuy: eui.Rect;
 
     private taskGroupContainer: eui.Group;
 
@@ -132,7 +146,7 @@ class TicketPanel extends eui.Component {
             else
                 price = 180;
         }
-        return price*platform.getPriceRate()
+        return price * platform.getPriceRate()
     }
 
     protected onSkinName(): void {
@@ -179,8 +193,8 @@ class TicketPanel extends eui.Component {
         let discountDay = Tool.formatAddDay(Number(cfg.params), platform.getSaleBeginTime());
         this.bSpecail = today <= discountDay;//是否在优惠期间
         this.idGroupDescCommon.visible = !this.bSpecail;
-        this.idGroupDescSpecial.visible = this.bSpecail && platform.getPlatform()!="plat_txsp";
-        this.idGroupDescSpecialTxsp.visible = this.bSpecail && platform.getPlatform()=="plat_txsp";
+        this.idGroupDescSpecial.visible = this.bSpecail && platform.getPlatform() != "plat_txsp";
+        this.idGroupDescSpecialTxsp.visible = this.bSpecail && platform.getPlatform() == "plat_txsp";
 
         this.idCode.visible = false;
         this.idNoCode.visible = true;
@@ -203,15 +217,15 @@ class TicketPanel extends eui.Component {
         this.createTasks();
         this.suipNum.text = UserInfo.suipianMoney + "";
 
-        if(platform.getPlatform() != "plat_txsp")
+        if (platform.getPlatform() != "plat_txsp")
             this.idRectBuy.alpha = 0.9
     }
 
     private updateBuyBtnState() {
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         this.idBtnBuyNow.label = itemNum > 0 ? "已拥有" : "立即购买"
-        this.idBtnBuyNow.visible = itemNum<=0;
-        this.idGroupTips.visible = itemNum<=0;
+        this.idBtnBuyNow.visible = itemNum <= 0;
+        this.idGroupTips.visible = itemNum <= 0;
     }
 
     private refreshActiveCode() {
@@ -359,9 +373,9 @@ class TicketPanel extends eui.Component {
             this.onCloseBuyTicketClick();
             this.refreshActiveCode();
             this.updateBuyBtnState();
-            if(platform.getPlatform()=="plat_txsp"){
+            if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
-            }else
+            } else
                 GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“激活码”处查看');
         };
         if (platform.getPlatform() == "plat_txsp" || platform.getPlatform() == "plat_pc") {
@@ -458,6 +472,9 @@ class TaskItem extends eui.Component {
                 this.uncompleted.visible = true;
                 break;
             }
+            case TASK_STATES.UNLOCKED: {
+                break;
+            }
             case TASK_STATES.UNCOMPLETED: {
                 this.uncompleted.visible = true;
                 break;
@@ -524,9 +541,21 @@ class TaskDetail extends eui.Component {
         this.icon.source = getRewardIcon(task.reward);
         this.taskName.text = `${TaskManager.instance.isLuxuryTask(task.id) ? "豪华任务" : "普通任务"}：${task.name}`;
         this.getDsc.text = `获得条件：${task.dsc}`;
-        const rewardNameStr = task.reward.map(reward => `${REWARD_DSC[reward.type].name}*${reward.num || 1}`).join(";");
+        const rewardNameStr = task.reward.map(reward => {
+            if (reward.type === "goods") {
+                return `${REWARD_DSC[reward.id].name}`;
+            } else {
+                return `${REWARD_DSC[reward.type].name}*${reward.num || 1}`;
+            }
+        }).join(";");
         this.rewardCount.text = `奖励：${rewardNameStr}`;
-        const rewardDscStr = task.reward.map(reward => `${REWARD_DSC[reward.type].name}：${REWARD_DSC[reward.type].dsc}`).join("\n");
+        const rewardDscStr = task.reward.map(reward => {
+            if (reward.type === "goods") {
+                return `${REWARD_DSC[reward.id].dsc}`;
+            } else {
+                return `${REWARD_DSC[reward.type].name}：${REWARD_DSC[reward.type].dsc}`;
+            }
+        }).join("\n");
         this.rewardDsc.text = `${rewardDscStr}`;
         this.width = size.width;
         this.height = size.height;
@@ -537,7 +566,6 @@ class TaskDetail extends eui.Component {
     }
 
     private onClickReceiveBtn() {
-        GameCommon.getInstance().showCommomTips("你已经领取了奖励，到对应的地方进行查看吧~");
         TaskManager.instance.receiveTaskReward(this.task);
     }
 }

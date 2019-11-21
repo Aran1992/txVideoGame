@@ -88,9 +88,7 @@ class ActionMsg extends ActionSceneBase {
                 await this.playInput(msg);
             }
             if (waitTime) {
-                await new Promise(resolve => {
-                    setTimeout(() => resolve, waitTime);
-                });
+                await new Promise(resolve => setTimeout(resolve, waitTime));
             }
             const item = new ActionMsgItem(msg, isSelf, role);
             itemList.push(item);

@@ -55,8 +55,13 @@ class UserInfo {
     }
 
     public static set curchapter(n) {
-        console.trace('set curchapter ' + n);
         UserInfo._curchapter = n;
+        if (Tool.readZipToJson("chapter.json")) {
+            let chapterIndex = GameCommon.getInstance().getChapterIndex(UserInfo.curchapter);
+            if (chapterIndex > TaskManager.instance.playedMaxChapter) {
+                TaskManager.instance.playedMaxChapter = chapterIndex;
+            }
+        }
     }
 }
 
