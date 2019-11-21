@@ -125,33 +125,35 @@ class ShopManager {
     public loadFromServer(record?: string) {
         if (this._serverItemNums["loaded"])
             return;
-        if (platform.getPlatform() == "plat_txsp" && record) {//腾讯视频数量初始化
+        //存档中的数量初始化
+        if (record) {
             let r = JSON.parse(record);
             for (let itemId in r) {
                 let shopdata: ShopInfoData = this._shopDataDict[Number(itemId)];
                 shopdata.num = Number(r[itemId].num);
             }
-            this._serverItemNums["loaded"] = true;            
+            this._serverItemNums["loaded"] = true;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
-            return;
         }
-        let callback = (data) => {
-            if (data.code == 0) {
-                let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
-                //console.log(values);
-                values.forEach(element => {
-                    this._serverItemNums[element.saleId] = element.num;
-                });
-                this._serverItemNums["loaded"] = true;
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
-                console.log(this._serverItemNums);
-                //把本地的值+服务器的值
-            } else {
-                GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
-            }
-        };
-        let currentSlotId: number = 0;
-        platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
+        //1001需要从服务器上取得物品数量
+        if(platform.getPlatform() != "plat_txsp"){
+            let callback = (data) => {
+                if (data.code == 0) {
+                    let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
+                    values.forEach(element => {
+                        this._serverItemNums[element.saleId] = element.num;
+                    });
+                    this._serverItemNums["loaded"] = true;
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
+                    console.log(this._serverItemNums);
+                    //把本地的值+服务器的值
+                } else {
+                    GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
+                }
+            };
+            let currentSlotId: number = 0;
+            platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
+        }
     }
 
     public getServerItemNum(id) {
