@@ -32,8 +32,8 @@ class ImageShopPreviewPanel extends eui.Component {
         this.banner_img.source = this.shoucangModel.id+"_desc_png";//this.data.model.preview;
         this.name_lab.text = this.data.model.name;
         this.desc_lab.text = this.data.model.desc;
-        let srcAry: string[] = this.shoucangModel.src.split(";");
-        this.count_lab.text = srcAry.length + "P";
+        //let srcAry: string[] = this.shoucangModel.src.split(";");
+        this.count_lab.text = Math.min(Number(this.shoucangModel.src),5)+"P";//srcAry.length + "P";
         this.pingfen_img.source = `shop_image_${this.shoucangModel.level}_png`;        
         let num = ShopManager.getInstance().getItemNum(this.data.id);
         if (num > 0) {
@@ -55,6 +55,7 @@ class ImageShopPreviewPanel extends eui.Component {
                 this.discount_bar.visible = false;
             }
             this.buy_btn.enabled = true;
+            this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = this.data.model.currPrice.toFixed(2);
         }

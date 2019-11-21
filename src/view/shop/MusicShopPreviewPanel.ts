@@ -119,6 +119,7 @@ class MusicShopPreviewPanel extends eui.Component {
                 this.discount_bar.visible = false;
             }
             this.buy_btn.enabled = true;
+            this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = this.data.currPrice.toFixed(2);
         }

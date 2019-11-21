@@ -443,8 +443,8 @@ class ImagesShopItem extends eui.ItemRenderer {
             return;
         }
         this.banner_img.source =  shoucangModel.id+"_view_png"
-        let srcAry: string[] = shoucangModel.src.split(";");
-        this.imgs_num_lab.text = srcAry.length + "P";
+        //let srcAry: string[] = shoucangModel.src.split(";");
+        this.imgs_num_lab.text = shoucangModel.src + "P";//srcAry.length + "P";
         this.title_lab.text = GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] + '图集';
         this.style_name_lab.text = shopInfoDt.model.name;
         this.pingfen_img.source = `shop_image_${shoucangModel.level}_png`;
@@ -465,6 +465,7 @@ class ImagesShopItem extends eui.ItemRenderer {
                 this.discount_bar.visible = false;
             }
             this.buy_btn.enabled = true;
+            this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
@@ -530,6 +531,7 @@ class VideosShopItem extends eui.ItemRenderer {
                 this.discount_bar.visible = false;
             }
             this.buy_btn.enabled = true;
+            this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
@@ -604,6 +606,7 @@ class MusicsShopItem extends eui.ItemRenderer {
                 }
             }
             this.buy_btn.enabled = true;
+            this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
@@ -661,6 +664,7 @@ class ChapterShopItem extends eui.ItemRenderer {
                 this.discount_bar.visible = false;
             }
             this.buy_btn.enabled = true;
+            this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
@@ -721,6 +725,7 @@ class DaojuShopItem extends eui.ItemRenderer {
                 }
             }
             this.buy_btn.enabled = true;
+            this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
