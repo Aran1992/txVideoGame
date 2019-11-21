@@ -32,6 +32,7 @@ class JuQingPanel extends eui.Component {
     private imgMaxNumb: number = 5;
     private _playTween: boolean;
     private _guideIndex: number = 0;
+    private idGainShuipian:eui.Button;
 
     constructor() {
         super();
@@ -45,6 +46,9 @@ class JuQingPanel extends eui.Component {
         }
     }
 
+    private static onGetSuipian(){
+        UserInfo.suipianMoney  = UserInfo.suipianMoney+1000
+    }
     private static onCleanCache() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         for (let i: number = 1; i < FILE_TYPE.SIZE; i++) {
@@ -82,6 +86,7 @@ class JuQingPanel extends eui.Component {
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
+        this.idGainShuipian.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onGetSuipian, this);
         this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
         this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
     }
