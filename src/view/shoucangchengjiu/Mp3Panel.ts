@@ -188,7 +188,7 @@ class Mp3Panel extends eui.Component {
         var md = JsonModelManager.instance.getModelgeci()[data.data.name];
         this.musicName.text = data.data.name + '';
         mp.name = data.data.src;
-        this.desc.text = data.data.data.kuozhan;
+        this.desc.text = data.data.data.name;
         GameCommon.getInstance().showLoading();
         var str: string = '';
         this._geci = [];

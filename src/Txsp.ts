@@ -8,12 +8,12 @@ const txsp_vip = false;
 
 class Txsp {
     public init(){
-        if (txsp_debug){
-            bridgeHelper = new BridgeHelper({
-                origin: location.protocol + '//m.v.qq.com',
-                appid: txsp_appid,
-            });
+        bridgeHelper = new BridgeHelper({
+            origin: location.protocol + '//m.v.qq.com',
+            appid: txsp_appid,
+        });
 
+        if (txsp_debug){
             bridgeHelper.setBridgeEnableLog(true) 
         }
     }
@@ -117,7 +117,7 @@ class Txsp {
                     leftMoney = res.result.balance;
                 }else{
                     console.log(res.msg)
-                    if(txsp_debug)
+                    //if(txsp_debug)
                         GameCommon.getInstance().showConfirmTips(`我的余额查询失败，请重新发起购买;${res.msg}`,()=>{})
                 }
             })

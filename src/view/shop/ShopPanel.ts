@@ -271,7 +271,7 @@ class ShopPanel extends eui.Component {
         if (this.musics_list.dataProvider) {
             // this.musics_shop_scroll.viewport.scrollV = 0;
             for (let i: number = 0; i < this.musics_list.numChildren; i++) {
-                let item: MusicsShopItem = this.musics_list.getChildAt(0) as MusicsShopItem;
+                let item: MusicsShopItem = this.musics_list.getChildAt(i) as MusicsShopItem;
                 item.data = item.data;
             }
         } else {
