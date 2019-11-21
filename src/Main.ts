@@ -23,7 +23,6 @@ class Main extends eui.UILayer {
         div.style["-webkit-transform"] = 'translate3d(' + tx + 'px, ' + ty + 'px, 0px) rotate3d(0, 0, 1, ' + value + 'deg) scale3d(1, 1, 1)';
         div.style.width = videoSize.width + "px";
         div.style.height = videoSize.height + "px";
-        // div.style.zoom = 1;
     }
 
     protected createChildren(): void {

@@ -18,11 +18,7 @@ const saveValues = [
 
 class GameCommon {
     private static instance: GameCommon = null;
-    // 每多少毫秒可以进行多少次存储
-    private static MAX_SAVE_TIMES: number = 2;
-    private static SAVE_TIME_INTERVAL: number = 10000;
-    // 存档延迟
-    private static SAVE_DELAY: number = 100;
+    private static SAVE_TIME_INTERVAL: number = 1000;
     public getLockedOptionIDs = {
         5: () => {
             if (GameCommon.getRoleLike(2) === 1) {
@@ -96,14 +92,7 @@ class GameCommon {
         },
     };
     private readonly sd: egret.Sound;
-    // 重置存档状态计时器
-    private resetSaveTimesTimer: number;
-    // 存档次数
-    private saveTimes: number = 0;
-    // 存档抖动计时器
-    private saveTimer: number = 0;
-    // 在阻挡存储期间是否有存储请求被驳回
-    private hasWaitSaveData: boolean = false;
+    private retrySaveTimerTable = {};
 
     private constructor() {
         if (!this.sd) {
@@ -246,45 +235,25 @@ class GameCommon {
         if (curChapterCfg) {
             cundangTitle = curChapterCfg.name;
         }
-        if (this.saveTimes >= GameCommon.MAX_SAVE_TIMES) {
-            console.warn("请求过于频繁");
-            // 如果有失败回调的话 就不尝试自动存储了
-            if (failedCallback) {
-                failedCallback();
-            } else {
-                this.hasWaitSaveData = true;
-            }
-            return;
-        }
-        // 延迟一定事件之后执行，这样能够确保如果短时间之内请求多次存档，可以合并在一起请求，减少请求次数
-        clearTimeout(this.saveTimer);
-        this.saveTimer = setTimeout(() => {
-            this.saveTimes++;
-            platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str, data => {
-                if (data.code !== 0) {
-                    // 如果有失败回调的话 就不尝试自动存储了
-                    if (failedCallback) {
-                        failedCallback();
-                    } else {
-                        // 请求过于频繁的话 那么就等上充足的时间进行存档
-                        setTimeout(() => this.setBookData(tp), GameCommon.SAVE_TIME_INTERVAL);
-                    }
+        console.log("save book history", tp, str);
+        platform.saveBookHistory(GameDefine.BOOKID, tp, cundangTitle, str, data => {
+            console.log("save book history result", tp, data);
+            if (data.code !== 0) {
+                if (failedCallback) {
+                    failedCallback();
                 } else {
-                    // 存储成功之后 设置一个计时器 这个时间过了之后 就能够把存储限制移除
-                    if (this.resetSaveTimesTimer === undefined) {
-                        this.resetSaveTimesTimer = setTimeout(() => {
-                            this.resetSaveTimesTimer = undefined;
-                            this.saveTimes = 0;
-                            if (this.hasWaitSaveData) {
-                                this.hasWaitSaveData = false;
-                                this.setBookData(tp);
-                            }
-                        }, GameCommon.SAVE_TIME_INTERVAL);
+                    if (this.retrySaveTimerTable[tp]) {
+                        return;
                     }
-                    GameCommon.getInstance().parseFile(data.data.slotId);
+                    this.retrySaveTimerTable[tp] = setTimeout(() => {
+                        this.retrySaveTimerTable[tp] = undefined;
+                        this.setBookData(tp);
+                    }, GameCommon.SAVE_TIME_INTERVAL);
                 }
-            });
-        }, GameCommon.SAVE_DELAY);
+            } else {
+                GameCommon.getInstance().parseFile(data.data.slotId);
+            }
+        });
     }
 
     /*所有数据存档*/
@@ -390,7 +359,7 @@ class GameCommon {
                 case FILE_TYPE.GOODS_FILE:
                     // GameCommon.getInstance().addChengJiuTips(JSON.stringify(data.data.content));
                     //ShopManager.getInstance().debugShopInfos = JSON.parse(data.data.content);
-                    ShopManager.getInstance().initShopInfos(data.data.content);                    
+                    ShopManager.getInstance().initShopInfos(data.data.content);
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
                     break;
                 case FILE_TYPE.TASK: {
