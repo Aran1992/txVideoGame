@@ -87,7 +87,7 @@
                 </e:layout>
             </e:Group>
         </e:Group>
-			<e:Image source="ad_icon_png" left="77" bottom="62"/>
+			<e:Image source="ad_icon_png" left="77" bottom="80"/>
         <e:Button id="bgBtn" left="40" top="35" label="我的回忆" width="300" height="62">
             <e:skinName>
                 <e:Skin states="up,down,disabled" width="190" height="62">

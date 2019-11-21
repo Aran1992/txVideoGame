@@ -1021,7 +1021,6 @@ class VideoData extends egret.DisplayObjectContainer {
 
         VideoManager.getInstance().onLoad(videoSrc);
         VideoManager.getInstance().loadSrc = videoSrc;
-        TaskManager.instance.checkChapterTask();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ResultWinPanel', isEnd));
     }
 
