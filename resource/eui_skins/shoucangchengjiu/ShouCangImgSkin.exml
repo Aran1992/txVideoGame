@@ -11,7 +11,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img0" anchorOffsetY="0" touchEnabled="true" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong0" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -23,7 +23,7 @@
                     <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
                              bottom="-2" width="1062">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
-                                 source="sc_img_mask_png" width="1062" x="-7" />
+                                 source="sc_img_mask_png" width="1184" x="-60"  anchorOffsetX="0"/>
                         <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
                                  horizontalCenter="0">
                             <e:Image id='shengyin0' anchorOffsetY="0" touchEnabled="false" y="11"
@@ -39,7 +39,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img2" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong2" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -51,7 +51,7 @@
                     <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
                              bottom="-2" width="1062">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
-                                 source="sc_img_mask_png" width="1062" x="-7" />
+                                 source="sc_img_mask_png" width="1184" x="-60" />
                         <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
                                  horizontalCenter="0">
                             <e:Image id='shengyin2' anchorOffsetY="0" touchEnabled="false" y="11"
@@ -67,7 +67,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img1" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong1" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -79,7 +79,7 @@
                     <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
                              bottom="-2" width="1062">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
-                                 source="sc_img_mask_png" width="1062" x="-7" />
+                                 source="sc_img_mask_png" width="1184" x="-60" />
                         <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
                                  horizontalCenter="0">
                             <e:Image id='shengyin1' anchorOffsetY="0" touchEnabled="false" y="11"
@@ -95,7 +95,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img3" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong3" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -107,7 +107,7 @@
                     <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
                              bottom="-2" width="1062">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
-                                 source="sc_img_mask_png" width="1062" x="-7" />
+                                 source="sc_img_mask_png" width="1184" x="-60" />
                         <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
                                  horizontalCenter="0">
                             <e:Image id='shengyin3' anchorOffsetY="0" touchEnabled="false" y="11"
@@ -123,7 +123,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img4" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0" />
+                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong4" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -135,7 +135,7 @@
                     <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" horizontalCenter="0"
                              bottom="-2" width="1062">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250"
-                                 source="sc_img_mask_png" width="1062" x="-7" />
+                                 source="sc_img_mask_png" width="1184" x="-60" />
                         <e:Group touchChildren="false" touchEnabled="false" anchorOffsetX="0" y="13"
                                  horizontalCenter="0">
                             <e:Image id='shengyin4' anchorOffsetY="0" touchEnabled="false" y="11"
