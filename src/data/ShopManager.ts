@@ -155,6 +155,8 @@ class ShopManager {
     }
 
     public getServerItemNum(id) {
+        if (platform.getPlatform()=="plat_txsp")
+            return 0;
         if (!this._serverItemNums["loaded"]) {
             this.loadFromServer()
             return 0;
