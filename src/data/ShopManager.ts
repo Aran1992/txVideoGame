@@ -23,7 +23,7 @@ class ShopManager {
 
     public takeOffAllBookValue() {
         for (let k in this._serverItemNums) {
-            if (k != 'loaded' && this._serverItemNums[k] > 0) {
+            if (typeof(this._serverItemNums[k]) == "number" && this._serverItemNums[k] > 0) {
                 this.takeOffBookValue(GameDefine.BOOKID, k, 0, this._serverItemNums[k]);//this._serverItemNums[k]
             }
         }
@@ -123,20 +123,18 @@ class ShopManager {
 
     //不从服务器上取了。因为TXSP从服务器上也取不到
     public loadFromServer(record?: string) {
-        if (this._serverItemNums["loaded"])
-            return;
-        //存档中的数量初始化
-        if (record) {
+        if (!this._serverItemNums["loadedRecord"] && record){
+            //存档中的数量初始化
             let r = JSON.parse(record);
             for (let itemId in r) {
                 let shopdata: ShopInfoData = this._shopDataDict[Number(itemId)];
                 shopdata.num = Number(r[itemId].num);
             }
-            this._serverItemNums["loaded"] = true;
+            this._serverItemNums["loadedRecord"] = true;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
         }
-        //1001需要从服务器上取得物品数量
-        if(platform.getPlatform() != "plat_txsp"){
+        //1001需要从服务器上取得物品数量;loaded代表平台数量是否已获取
+        if(platform.getPlatform() != "plat_txsp" && !this._serverItemNums["loaded"]){
             let callback = (data) => {
                 if (data.code == 0) {
                     let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
