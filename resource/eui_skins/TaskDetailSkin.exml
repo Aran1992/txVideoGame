@@ -14,12 +14,6 @@
 		<e:Label id="getDsc" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="80" x="730" y="536" width="800" textAlign="center"/>
 		<e:Label id="rewardCount" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="120" x="730" y="586" width="800" textAlign="center"/>
 		<e:Label id="rewardDsc" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="200" x="730" y="636" width="800" textAlign="center"/>
-		<e:Button id="receiveBtn" width="91" height="91" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="300" label="领取">
-			<e:skinName>
-			<e:Skin states="up,down,disabled" xmlns:n1s="*" xmlns:ns1="*">
-				<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png" horizontalCenter="0" verticalCenter="0" width="91" height="91"/>
-			</e:Skin>
-			</e:skinName>
-		</e:Button>
+		<e:Button id="receiveBtn" skinName="skins.Button_ShopStyle1_Skin" label="领取" horizontalCenter="0" x="706" scaleX="1" scaleY="1" verticalCenter="300"/>
 	</e:Group>
 </e:Skin>
