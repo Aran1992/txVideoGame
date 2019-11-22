@@ -10,10 +10,13 @@
 		</e:skinName>
 		</e:Button>
 		<e:Image id="icon" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="-150" x="706" y="206" source="pass_icon_task_1_png" touchEnabled="true"/>
+		<e:Group width="200" height="200" verticalCenter="0" horizontalCenter="0" x="700" y="350" scaleX="1" scaleY="1">
+			<e:Label id="rewardDsc" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" x="-300" width="800" textAlign="center" top="246"/>
+		</e:Group>
 		<e:Label id="taskName" text="开始四重奏" size="50" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" x="675" y="425"/>
 		<e:Label id="getDsc" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="80" x="730" y="536" width="800" textAlign="center"/>
 		<e:Label id="rewardCount" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="120" x="730" y="586" width="800" textAlign="center"/>
-		<e:Label id="rewardDsc" text="开始四重奏" size="28" anchorOffsetX="0.5" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="200" x="730" y="636" width="800" textAlign="center"/>
 		<e:Button id="receiveBtn" skinName="skins.Button_ShopStyle1_Skin" label="领取" horizontalCenter="0" x="706" scaleX="1" scaleY="1" verticalCenter="300"/>
+		<e:Button id="receivedBtn" skinName="skins.Button_ShopStyle1_Skin" label="已领取" horizontalCenter="0" x="706" scaleX="1" scaleY="1" verticalCenter="300" enabled="false" touchEnabled="false"/>
 	</e:Group>
 </e:Skin>

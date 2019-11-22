@@ -3613,7 +3613,7 @@
         {
             "name": "loading_bg_jpg",
             "type": "image",
-            "url": "assets/loading/loading_bg.jpg?v=542"
+            "url": "assets/loading/loading_bg.jpg?v=767"
         },
         {
             "name": "loading_head_1_png",
@@ -3649,6 +3649,21 @@
             "name": "loading_progress_icon_png",
             "type": "image",
             "url": "assets/loading/loading_progress_icon.png?v=504"
+        },
+        {
+            "name": "loading_text_png",
+            "type": "image",
+            "url": "assets/loading/loading_text.png?v=795"
+        },
+        {
+            "name": "loading_title_1_png",
+            "type": "image",
+            "url": "assets/loading/loading_title_1.png?v=708"
+        },
+        {
+            "name": "loading_title_2_png",
+            "type": "image",
+            "url": "assets/loading/loading_title_2.png?v=981"
         },
         {
             "name": "resule_dian_png",
@@ -8398,7 +8413,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=594"
+            "url": "config/config.bin?v=641"
         }
     ]
 }
