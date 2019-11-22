@@ -31,10 +31,10 @@
     <shop id="205003" name="为你担心" preview="QDLCS" params="5003" currPrice="60" origPrice="10" currSuipian="6000" origSuipian="100" show="1" shaixuan_params="*" desc="为你担心"/>    
     <shop id="205004" name="他的娇纵" preview="WDLCS" params="5004" currPrice="60" origPrice="10" currSuipian="6000" origSuipian="100" show="1" shaixuan_params="*" desc="他的娇纵"/>    
 
-    <shop id="306001" name="如果你也有梦想"  preview="*" desc="如果你也有梦想专辑" params="6001" currPrice="30" origPrice="0" currSuipian="300" origSuipian="0" show="1" shaixuan_params="等级,sr"/>   
-    <shop id="306002" name="梦想映射"  preview="*" desc="梦想映射专辑" params="6002" currPrice="50" origPrice="0" currSuipian="300" origSuipian="0" show="1" shaixuan_params="等级,sr"/>   
-    <shop id="306003" name="因为Forteen"  preview="*" desc="因为Forteen专辑" params="6003" currPrice="60" origPrice="0" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
-    <shop id="306004" name="默默吟唱"  preview="*" desc="默默吟唱专辑" params="6004" currPrice="60" origPrice="0" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
+    <shop id="306001" name="如果你也有梦想"  preview="*" desc="如果你也有梦想专辑" params="6001" currPrice="30" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
+    <shop id="306002" name="梦想映射"  preview="*" desc="梦想映射专辑" params="6002" currPrice="50" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
+    <shop id="306003" name="因为Forteen"  preview="*" desc="因为Forteen专辑" params="6003" currPrice="60" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
+    <shop id="306004" name="默默吟唱"  preview="*" desc="默默吟唱专辑" params="6004" currPrice="60" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
 
 
     <shop id="101001"   name="得分后卫"       preview="*"  params="1001" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你在他心里，永远需要守护"                        />

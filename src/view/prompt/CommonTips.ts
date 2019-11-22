@@ -348,6 +348,11 @@ class CommonTips extends eui.Component {
                     });
                 break;
             case GOODS_TYPE.SUIPIAN:
+                let shopdata:ShopInfoData = ShopManager.getInstance().getShopInfoData(this.itemId);
+                if (shopdata.model.currSuipian == 0 ){
+                    GameCommon.getInstance().showCommomTips("此商品不能用碎片购买！")
+                    return;
+                }
                 ShopManager.getInstance().buyGoodsSuip(this.itemId,1,()=>{
                     if (this._buyCallBack) 
                         this._buyCallBack()

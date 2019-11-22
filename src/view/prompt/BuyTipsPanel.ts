@@ -46,7 +46,7 @@ class BuyTipsPanel extends eui.Component {
         this.icon.scaleX = 0.5;//Number(scale.toFixed(2))
         this.icon.scaleY = 0.5;//Number(scale.toFixed(2))
         var spModel: Modelshop = JsonModelManager.instance.getModelshop()[this.param.shopInfo.id];
-        this.money1.text = spModel.currSuipian + '';
+        this.money1.text = spModel.currSuipian == 0?"不可购买":spModel.currSuipian + '';
         this.money2.text = spModel.currPrice + '';
         this.idBuyItemName.text = "“"+spModel.name+"”";
         this._curModel = spModel;
@@ -98,6 +98,11 @@ class BuyTipsPanel extends eui.Component {
     }
 
     private onSuiPian() {
+        let shopdata:ShopInfoData = ShopManager.getInstance().getShopInfoData(this.param.shopInfo.id);
+        if (shopdata.model.currSuipian == 0 ){
+            GameCommon.getInstance().showCommomTips("此商品不能用碎片购买！")
+            return;
+        }
         ShopManager.getInstance().buyGoodsSuip(this.param.shopInfo.id);
         //GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currSuipian, GOODS_TYPE.SUIPIAN);
         this.onclose();
