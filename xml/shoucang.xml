@@ -17,12 +17,12 @@
     <shoucang id="1004" src="5" shengyin="1" time="*" level="r" mulu2="1" name="少女情怀"       kuozhan="一觉醒来就能收到你的回信吧"    mulu1="6"/>
     <shoucang id="1005" src="5" shengyin="1" time="*" level="r" mulu2="1" name="重忆少时"       kuozhan="永远不要像我，放弃少年的梦"    mulu1="6"/>
     <shoucang id="1006" src="5" shengyin="1" time="*" level="r" mulu2="1" name="加载过去"       kuozhan="现在的我就像读档一样，重述着那些曾经"    mulu1="6"/>
-    <shoucang id="1007" src="5" shengyin="1" time="*" level="r" mulu2="1" name="电气霓虹"       kuozhan="愿我成为你黑夜梦境中的一模幻彩霓虹"    mulu1="3"/>
+    <shoucang id="1007" src="5" shengyin="1" time="*" level="r" mulu2="1" name="电气霓虹"       kuozhan="我要成为你黑夜梦境中的，一抹霓虹"    mulu1="3"/>
     <shoucang id="1008" src="5" shengyin="1" time="*" level="r" mulu2="1" name="默默伴奏"       kuozhan="只要你快乐，我愿意永远只站在角落，为你伴奏。"    mulu1="4"/>
     <shoucang id="1009" src="5" shengyin="1" time="*" level="r" mulu2="1" name="青涩微甜"       kuozhan="这样的我，也想给你属于我的甜蜜"    mulu1="1"/>
-    <shoucang id="1010" src="5" shengyin="1" time="*" level="r" mulu2="1" name="五分微熟"       kuozhan="五分熟？我可想和你更熟一些。"    mulu1="4"/>
+    <shoucang id="1010" src="5" shengyin="1" time="*" level="r" mulu2="1" name="五分微熟"       kuozhan="五分熟？可我想和你更熟一些。"    mulu1="4"/>
     <shoucang id="1011" src="5" shengyin="1" time="*" level="r" mulu2="1" name="偏执之心"       kuozhan="我不是为了欺负你，我只想让你注意我。"    mulu1="6"/>
-    <shoucang id="1012" src="5" shengyin="1" time="*" level="r" mulu2="1" name="缄口不言"       kuozhan="如果我留下是对你是伤害，对不起，我离开。"    mulu1="3"/>
+    <shoucang id="1012" src="5" shengyin="1" time="*" level="r" mulu2="1" name="缄口不言"       kuozhan="如果我留下是对你的伤害，对不起，我离开。"    mulu1="3"/>
     <shoucang id="1013" src="5" shengyin="1" time="*" level="r" mulu2="1" name="黑暗里，靠近你" kuozhan="再多待一会，就一会，我想和你靠得更近"    mulu1="1"/>
     <shoucang id="1014" src="5" shengyin="1" time="*" level="r" mulu2="1" name="词不达意"       kuozhan="你是相信的我的吧，即使我说了违心的话"    mulu1="1"/>
     <shoucang id="1015" src="5" shengyin="1" time="*" level="r" mulu2="1" name="伴我之歌"       kuozhan="单曲循环开始是因为喜欢，后来就成了习惯"    mulu1="2"/>
@@ -31,12 +31,12 @@
     
     <shoucang id="2001" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="梦想的模样"     kuozhan="这是我送你的礼物;这是我和你的梦想;唱吧！如果你也有梦想"    mulu1="3"/>
     <shoucang id="2002" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="隐藏高手"       kuozhan="三、二、一，表演时间到;你的事我拼尽全力都要完成;你的梦想就是我的目标"    mulu1="1"/>
-    <shoucang id="2003" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="斯人垂目"       kuozhan="为什么，你还不来;快坐下，来的这么晚;快坐下，来的这么晚;你不知道，我会担心么"    mulu1="4"/>
-    <shoucang id="2004" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="满分拍档"       kuozhan="你看你那是什么样子;不过是一次失败，怎么会打垮你;有我在，什么路都会陪你走"    mulu1="6"/>
-    <shoucang id="2005" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="长姐如虎"       kuozhan="姐，我错了啊……（哭唧唧）;你看我这么乖，这么可爱;啊别动手，你们怎么都这么凶"    mulu1="3"/>
+    <shoucang id="2003" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="斯人垂目"       kuozhan="为什么，你还不来;快坐下，来的这么晚;你不知道，我会担心么"    mulu1="4"/>
+    <shoucang id="2004" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="满分拍档"       kuozhan="你看你那是什么样子;不过是一次失败，怎么会打垮你;有我在，什么路都会陪着你走"    mulu1="6"/>
+    <shoucang id="2005" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="长姐如虎"       kuozhan="姐，我错了啊……;你看我这么乖，这么可爱;啊~别动手，你们怎么都这么凶"    mulu1="3"/>
     <shoucang id="2006" src="5" shengyin="4" time="*" level="sr" mulu2="1" name="有你的样子"     kuozhan="看你这么依赖我，我应该高兴么？;今天之后，我们就该告别了。;谢谢你，给我的一切;谢谢你，给我的一切"    mulu1="6"/>
     <shoucang id="2007" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="不过少年游"     kuozhan="怎么，没有准备好么？;即使是旋转木马，我也是你的王子;闭上眼，别说话，再陪我一会"    mulu1="2"/>
-    <shoucang id="2008" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="纯白少年"       kuozhan="这床被子好软啊;你不来试试么？真的很舒服;让我再躺一会一会就好~~"    mulu1="1"/>
+    <shoucang id="2008" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="纯白少年"       kuozhan="这床被子好软啊;你不来试试么？真的很舒服;让我再躺一会，一会就好~~"    mulu1="1"/>
     <shoucang id="2009" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="舞台之上·主唱"  kuozhan="这一切都好象是梦里的样子;一切都变成了真的;这都是因为你啊"    mulu1="1"/>
     <shoucang id="2010" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="舞台之上·贝斯"  kuozhan="怎么觉得我们配合的不好么？;还是，你觉得我哪里不好;给你一个机会，不要说错话"    mulu1="2"/>
     <shoucang id="2011" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="舞台之上·键盘"  kuozhan="这首歌，是你写的，但是我送给你的;是不是已经和原来很不一样了？;我们也不一样了"    mulu1="4"/>
@@ -51,13 +51,13 @@
     <shoucang id="3001" src="5" shengyin="4" time="*" level="ssr" mulu2="1" name="兄弟？兄弟！"   kuozhan="你看她在看我们;她为什么一直盯着看呢;如果她看的是哥哥怎么办啊？;她究竟看上弟弟的什么地方了呢？"    mulu1="6"/>
     <shoucang id="3002" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="阳光正好"       kuozhan="这么好的天气不出来走走好可惜啊;你那是什么表情啊;有时候和小孩一样玩挺好的啊;本宝宝要许个愿望;每天都要爱我哟"    mulu1="1"/>
     <shoucang id="3003" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="你是答案"       kuozhan="为什么我总是看不透你;每一天的你都像是新的;尽管你的每句话我都会记得;如果每一天都是一个谜语;你就是我的答案"    mulu1="3"/>
-    <shoucang id="3004" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="纱幔朦胧"       kuozhan="距离到底会产生什么;就像是你和我距离;看得到你又碰不到你;我想和你在一起;可我们就像隔着纱幔，这么远又那么近"    mulu1="2"/>
+    <shoucang id="3004" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="纱幔朦胧"       kuozhan="距离到底会产生什么;就像你和我距离;看得到你又碰不到你;我想和你在一起;可我们就像隔着纱幔，这么远又那么近"    mulu1="2"/>
     <shoucang id="3005" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="雨后清明"       kuozhan="来，和我坐一会吧;为什么你总是像在躲我;是因为，考虑那个人的感受么？;让这场雨冲刷一切吧;忘了他，陪着我"    mulu1="4"/>
-    <shoucang id="3006" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="B面人生"        kuozhan="啦你别叨叨啦，我好好看书行了吧;不就是考试吗，反正有你就好啦;啊呀疼疼疼，你就只对我这么凶;如果我乖乖的，给我点奖励怎么样;不如让我……"    mulu1="3"/>
+    <shoucang id="3009" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="B面人生"        kuozhan="啦你别叨叨啦，我好好看书行了吧;不就是考试吗，反正有你就好啦;啊呀疼疼疼，你就只对我这么凶;如果我乖乖的，给我点奖励怎么样;不如让我……"    mulu1="3"/>
     <shoucang id="3007" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="B面人生"        kuozhan="你面前！我不能输！;耶！漂亮！;我刚才，发挥的还不错吧~？;该我上场了！有你的鼓励我会更强的！;现在，表演时间到！"    mulu1="1"/>
     <shoucang id="3008" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="B面人生"        kuozhan="么不说话，这可不像你;这么盯着我有什么问题么？;是不是没看我穿成这样过？;这样的我是不是，让你惊讶。;你要是喜欢我每天都给你看。只给你。"    mulu1="2"/>
-    <shoucang id="3009" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="B面人生"        kuozhan="那是什么眼神，我没有喝醉;靠这么近，你难道是故意的？;不知道现在的我很危险么？;你……我觉得我需要再喝一点;呵……你比酒，更让我沉醉"    mulu1="4"/>
-    <shoucang id="3010" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="半梦半醒"       kuozhan="zzZ（伸懒腰）;嗯？我还没睡醒呢？;要知道，吵醒我后果可是很严重的;要我陪你去玩，那你得做一件事;只有你拉我起来，才行哦"    mulu1="2"/>
+    <shoucang id="3006" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="B面人生"        kuozhan="那是什么眼神，我没有喝醉;靠这么近，你难道是故意的？;不知道现在的我很危险么？;你……我觉得我需要再喝一点;呵……你比酒，更让我沉醉"    mulu1="4"/>
+    <shoucang id="3010" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="半梦半醒"       kuozhan="zzZ;嗯？我还没睡醒呢？;要知道，吵醒我后果可是很严重的;要我陪你去玩，那你得做一件事;只有你拉我起来，才行哦"    mulu1="2"/>
     <shoucang id="3011" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="焙香馥郁"       kuozhan="睡懒觉？那可不是我的习惯。;渴了？要喝点什么么？;别老是喝可乐，太甜了;茶和咖啡是令人清醒的好东西;苦？有你怎么还会苦呢"    mulu1="4"/>
     <shoucang id="3012" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="谁家少年不戴花" kuozhan="如果你的心情，和程序一样好琢磨就好了;我不光喜欢程序，我也喜欢……这些花！;当然不只是花，还有……;对了，你喜欢花么？;那，是喜欢花还是喜欢我呢？"    mulu1="1"/>
     <shoucang id="3013" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="与你共度"       kuozhan="啊？你来了，等你吃早饭等得要睡着了;怎么，我就先喝牛奶都不可以吗？;怎么样，贴心等你的我，是不是，让人心动。;不夸我，这些都不给你了。;给你都给你还不行吗，别走啦~"    mulu1="3"/>
@@ -65,8 +65,8 @@
     <shoucang id="3015" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="Hush！Hush！"   kuozhan="最近我好像在哪都能看到你;为什么我喜欢什么你都知道？;没事的小伤，我能处理好;你别这样看着我，我真的没事;好啦，一起走吧"    mulu1="2"/>
     <shoucang id="3016" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="错过的拥抱"     kuozhan="我等了好久都没等到你;雨停了，是不是你也要走了;你能再看我一眼么;如果能抱住你就好了;你还会给我这个机会么"    mulu1="3"/>
     <shoucang id="3017" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="指尖飞舞"       kuozhan="这个地方好像不太通顺;这样她好像不太喜欢;你即使不说话也很难让人不注意到;这首歌你都听见了？;这种惊喜被打破的感觉真让人难受呢。"    mulu1="4"/>
-    <shoucang id="3018" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="光暗之间"       kuozhan="你看到我了？;嘘，别说话，其实你看到的不是我;我只是你的梦;我要做的就是超过那个你认识的我;让你沉迷，让你不会离开;好希望这不是梦，和我永远在一起吧……"    mulu1="2"/>
-    <shoucang id="3019" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="轻舞泡沫"       kuozhan="泡泡浴什么的最好玩了;你怎么还不过来啊;爱心攻击！你收到我的心了吗？;不接收，看我的爱心泡泡;好累啊，你都不和我玩;不管干什么，我都想和你在一起啊"    mulu1="1"/>
-    <shoucang id="3020" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="清涧涌泉"       kuozhan="一个⼈泡在水⾥的感觉，让人很安心;和你在一起，也让我觉得觉得很安心;你和我在一起的时候，也有这种感觉吗;如果害羞的话，不如悄悄对我说;你还是这么淘气;别玩了，我们该上场了，一起走吧"    mulu1="4"/>
-    <shoucang id="3021" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="濡湿之梦"       kuozhan="你能陪我一会么？;我需要你陪着我;你觉得我们真的会一切好好的么？;说真的，我只在乎你，但你只有我么？;你能多看我一眼么？;就像以前那样"    mulu1="3"/>
+    <shoucang id="3018" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="光暗之间"       kuozhan="你看到我了？;嘘，别说话，其实你看到的不是我;我只是你的梦;让你沉迷，让你不会离开;好希望这不是梦，和我永远在一起吧……"    mulu1="2"/>
+    <shoucang id="3019" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="轻舞泡沫"       kuozhan="泡泡浴什么的最好玩了;爱心攻击！你收到我的心了吗？;不接收，看我的爱心泡泡;好累啊，你都不和我玩;不管干什么，我都想和你在一起啊"    mulu1="1"/>
+    <shoucang id="3020" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="清涧涌泉"       kuozhan="一个⼈泡在水⾥的感觉，让人很安心;和你在一起，也让我觉得觉得很安心;你和我在一起的时候，也有这种感觉吗;如果害羞的话，不如悄悄对我说;别玩了，我们该上场了，一起走吧"    mulu1="4"/>
+    <shoucang id="3021" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="濡湿之梦"       kuozhan="你能陪我一会么？;我需要你陪着我;你觉得我们真的会一直好好的么？;说真的，我只在乎你，但你只有我么？;你能多看我一眼么？;就像以前那样"    mulu1="3"/>
 </shoucang>

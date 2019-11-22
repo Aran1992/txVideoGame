@@ -5828,7 +5828,7 @@
         {
             "name": "2016_2_mp3",
             "type": "sound",
-            "url": "assets/shopimages/2016/2016_2.mp3?v=646"
+            "url": "assets/shopimages/2016/2016_2.mp3?v=606"
         },
         {
             "name": "2016_3_jpg",
@@ -5838,7 +5838,7 @@
         {
             "name": "2016_3_mp3",
             "type": "sound",
-            "url": "assets/shopimages/2016/2016_3.mp3?v=606"
+            "url": "assets/shopimages/2016/2016_3.mp3?v=646"
         },
         {
             "name": "2016_4_jpg",
@@ -7093,7 +7093,7 @@
         {
             "name": "3018_3_jpg",
             "type": "image",
-            "url": "assets/shopimages/3018/3018_3.jpg?v=849"
+            "url": "assets/shopimages/3018/3018_3.jpg?v=363"
         },
         {
             "name": "3018_3_mp3",
@@ -7103,22 +7103,22 @@
         {
             "name": "3018_4_jpg",
             "type": "image",
-            "url": "assets/shopimages/3018/3018_4.jpg?v=363"
+            "url": "assets/shopimages/3018/3018_4.jpg?v=61"
         },
         {
             "name": "3018_4_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3018/3018_4.mp3?v=470"
+            "url": "assets/shopimages/3018/3018_4.mp3?v=830"
         },
         {
             "name": "3018_5_jpg",
             "type": "image",
-            "url": "assets/shopimages/3018/3018_5.jpg?v=61"
+            "url": "assets/shopimages/3018/3018_5.jpg?v=129"
         },
         {
             "name": "3018_5_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3018/3018_5.mp3?v=830"
+            "url": "assets/shopimages/3018/3018_5.mp3?v=902"
         },
         {
             "name": "3018_6_jpg",
@@ -7158,42 +7158,42 @@
         {
             "name": "3019_2_jpg",
             "type": "image",
-            "url": "assets/shopimages/3019/3019_2.jpg?v=242"
+            "url": "assets/shopimages/3019/3019_2.jpg?v=692"
         },
         {
             "name": "3019_2_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3019/3019_2.mp3?v=142"
+            "url": "assets/shopimages/3019/3019_2.mp3?v=158"
         },
         {
             "name": "3019_3_jpg",
             "type": "image",
-            "url": "assets/shopimages/3019/3019_3.jpg?v=692"
+            "url": "assets/shopimages/3019/3019_3.jpg?v=211"
         },
         {
             "name": "3019_3_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3019/3019_3.mp3?v=158"
+            "url": "assets/shopimages/3019/3019_3.mp3?v=870"
         },
         {
             "name": "3019_4_jpg",
             "type": "image",
-            "url": "assets/shopimages/3019/3019_4.jpg?v=211"
+            "url": "assets/shopimages/3019/3019_4.jpg?v=384"
         },
         {
             "name": "3019_4_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3019/3019_4.mp3?v=870"
+            "url": "assets/shopimages/3019/3019_4.mp3?v=470"
         },
         {
             "name": "3019_5_jpg",
             "type": "image",
-            "url": "assets/shopimages/3019/3019_5.jpg?v=384"
+            "url": "assets/shopimages/3019/3019_5.jpg?v=242"
         },
         {
             "name": "3019_5_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3019/3019_5.mp3?v=470"
+            "url": "assets/shopimages/3019/3019_5.mp3?v=214"
         },
         {
             "name": "3019_6_jpg",
@@ -7263,12 +7263,12 @@
         {
             "name": "3020_5_jpg",
             "type": "image",
-            "url": "assets/shopimages/3020/3020_5.jpg?v=76"
+            "url": "assets/shopimages/3020/3020_5.jpg?v=579"
         },
         {
             "name": "3020_5_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3020/3020_5.mp3?v=167"
+            "url": "assets/shopimages/3020/3020_5.mp3?v=671"
         },
         {
             "name": "3020_6_jpg",
@@ -7328,22 +7328,22 @@
         {
             "name": "3021_4_jpg",
             "type": "image",
-            "url": "assets/shopimages/3021/3021_4.jpg?v=444"
+            "url": "assets/shopimages/3021/3021_4.jpg?v=699"
         },
         {
             "name": "3021_4_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3021/3021_4.mp3?v=190"
+            "url": "assets/shopimages/3021/3021_4.mp3?v=998"
         },
         {
             "name": "3021_5_jpg",
             "type": "image",
-            "url": "assets/shopimages/3021/3021_5.jpg?v=699"
+            "url": "assets/shopimages/3021/3021_5.jpg?v=630"
         },
         {
             "name": "3021_5_mp3",
             "type": "sound",
-            "url": "assets/shopimages/3021/3021_5.mp3?v=998"
+            "url": "assets/shopimages/3021/3021_5.mp3?v=110"
         },
         {
             "name": "3021_6_jpg",
@@ -7391,9 +7391,19 @@
             "url": "assets/shopmusic/6001_view_yuan.png?v=431"
         },
         {
+            "name": "6002_1_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6002_1.mp3?v=46"
+        },
+        {
             "name": "6002_1_try_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6002_1_try.mp3?v=523"
+        },
+        {
+            "name": "6002_2_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6002_2.mp3?v=365"
         },
         {
             "name": "6002_2_try_mp3",
@@ -7401,9 +7411,19 @@
             "url": "assets/shopmusic/6002_2_try.mp3?v=392"
         },
         {
+            "name": "6002_3_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6002_3.mp3?v=223"
+        },
+        {
             "name": "6002_3_try_mp3",
             "type": "sound",
             "url": "assets/shopmusic/6002_3_try.mp3?v=965"
+        },
+        {
+            "name": "6002_4_mp3",
+            "type": "sound",
+            "url": "assets/shopmusic/6002_4.mp3?v=800"
         },
         {
             "name": "6002_4_try_mp3",
@@ -8398,7 +8418,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=594"
+            "url": "config/config.bin?v=527"
         }
     ]
 }
