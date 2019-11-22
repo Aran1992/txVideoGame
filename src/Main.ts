@@ -113,7 +113,7 @@ class Main extends eui.UILayer {
         } catch (e) {
             console.error(e);
         }
-        // this.stage.removeChild(loadingView);
+        this.stage.removeChild(loadingView);
     }
 
     private loadTheme() {
