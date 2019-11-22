@@ -208,8 +208,9 @@ class Mp3Panel extends eui.Component {
         var obj = this;
         var index: number = 0;
         setInterval(function () {
+            obj.drawArc(obj.share, window['audioMp3'].currentTime, window['audioMp3'].duration, 600);            
+            obj.timeImg.mask = obj.share;
             if (obj._geci[obj.geciIdx]) {
-                obj.drawArc(obj.share, window['audioMp3'].currentTime, window['audioMp3'].duration, 600);
                 if (obj._geci[obj.geciIdx].name >= window['audioMp3'].currentTime && obj._geci[obj.geciIdx].name <= window['audioMp3'].currentTime + 1) {
                     if (obj._geci[obj.geciIdx - 1]) {
                         obj._geci[obj.geciIdx - 1].style.textColor = 0x545454;
@@ -267,7 +268,7 @@ class Mp3Panel extends eui.Component {
         var mp = window['audioMp3'];
         var obj = this;
         mp.addEventListener("error",
-            obj.musicErrorFun = function (tim) { //监听暂停
+            obj.musicErrorFun = function (tim) { 
                 console.log('报错了');
             }, false);
         mp.addEventListener("loadeddata", //歌曲一经完整的加载完毕( 也可以写成上面提到的那些事件类型)
@@ -276,12 +277,13 @@ class Mp3Panel extends eui.Component {
                 // obj['timeBar4'].maximum = 100;
                 window['audioMp3'].play();
             }, false);
-        mp.addEventListener("ended", //歌曲一经完整的加载完毕( 也可以写成上面提到的那些事件类型)
+        mp.addEventListener("ended", //歌曲播放完成
             obj.musicEndedFun = function (tim) {
                 obj.playStage = false;
                 obj.isPlay = false;
+                obj.lastData.state = 1;
             }, false);
-        mp.addEventListener("pause", //歌曲一经完整的加载完毕( 也可以写成上面提到的那些事件类型)
+        mp.addEventListener("pause", //歌曲暂停
             obj.musicPauseFun = function (tim) {
                 obj.playStage = false;
                 obj.isPlay = false;
@@ -297,12 +299,13 @@ class Mp3Panel extends eui.Component {
     }
 
     private drawArc(shape: egret.Shape, value: number, max: number, wd: number) {
-        var r = wd / 2 - 50;
+        var r = 250//wd / 2 - 50;
         shape.graphics.clear();
         shape.graphics.beginFill(0xFFFFFF);
         shape.graphics.moveTo(0, 0);
         shape.graphics.lineTo(0, -r);//画线到弧的起始点
-        shape.graphics.drawArc(0, 0, r, (Math.min(value / max * 360, 360) - 90) * Math.PI / 180, (0 - 90) * Math.PI / 180, false);//从起始点顺时针画弧到终点
+        //shape.graphics.drawArc(0, 0, r, (Math.min(value / max * 360, 360) - 90) * Math.PI / 180, (0 - 90) * Math.PI / 180, false);//从起始点顺时针画弧到终点
+        shape.graphics.drawArc(0, 0, r, -(1/2)*Math.PI+2*Math.PI*(value/max), (3/2)*Math.PI, false);//从起始点顺时针画弧到终点
         shape.graphics.lineTo(0, 0);//从终点画线到圆形。到此扇形的封闭区域形成
         shape.graphics.endFill();
     }

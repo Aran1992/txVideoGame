@@ -31,10 +31,10 @@
     <shop id="205003" name="为你担心" preview="QDLCS" params="5003" currPrice="60" origPrice="10" currSuipian="6000" origSuipian="100" show="1" shaixuan_params="*" desc="为你担心"/>    
     <shop id="205004" name="他的娇纵" preview="WDLCS" params="5004" currPrice="60" origPrice="10" currSuipian="6000" origSuipian="100" show="1" shaixuan_params="*" desc="他的娇纵"/>    
 
-    <shop id="306001" name="如果你也有梦想"  preview="*" desc="如果你也有梦想专辑" params="6001" currPrice="30" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
-    <shop id="306002" name="梦想映射"  preview="*" desc="梦想映射专辑" params="6002" currPrice="50" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
-    <shop id="306003" name="因为Forteen"  preview="*" desc="因为Forteen专辑" params="6003" currPrice="60" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
-    <shop id="306004" name="默默吟唱"  preview="*" desc="默默吟唱专辑" params="6004" currPrice="60" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
+    <shop id="306001" name="如果你也有梦想"  preview="*" desc="如果你也有梦想专辑" params="6001" currPrice="30" origPrice="0" currSuipian="300" origSuipian="0" show="1" shaixuan_params="等级,sr"/>   
+    <shop id="306002" name="梦想映射"  preview="*" desc="梦想映射专辑" params="6002" currPrice="50" origPrice="0" currSuipian="300" origSuipian="0" show="1" shaixuan_params="等级,sr"/>   
+    <shop id="306003" name="因为Forteen"  preview="*" desc="因为Forteen专辑" params="6003" currPrice="60" origPrice="0" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
+    <shop id="306004" name="默默吟唱"  preview="*" desc="默默吟唱专辑" params="6004" currPrice="60" origPrice="0" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>   
 
 
     <shop id="101001"   name="得分后卫"       preview="*"  params="1001" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你在他心里，永远需要守护"                        />
@@ -79,10 +79,10 @@
     <shop id="103003"   name="你是答案"       preview="*"  params="3003" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="少年眼睛里的谜语是你"                          />
     <shop id="103004"   name="纱幔朦胧"       preview="*"  params="3004" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="雾里看花，花飞花落花满天"                        />
     <shop id="103005"   name="雨后清明"       preview="*"  params="3005" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="清冷如他，也想温暖一人"                         />
-    <shop id="103006"   name="B面人生"        preview="*"  params="3006" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="顽劣少年也想为你正经一回，你会帮他吗"         />      
+    <shop id="103006"   name="B面人生"        preview="*"  params="3009" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="顽劣少年也想为你正经一回，你会援助吗"         />      
     <shop id="103007"   name="B面人生"        preview="*"  params="3007" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="害羞少年在球场也能挥洒自如，你会喝彩吗"            />      
-    <shop id="103008"   name="B面人生"        preview="*"  params="3008" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="冷都少年在弹奏也会令人陶醉，你会陶醉吗"            />      
-    <shop id="103009"   name="B面人生"        preview="*"  params="3009" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="优雅少年在这时也会放下身段，你会心醉吗"            />      
+    <shop id="103008"   name="B面人生"        preview="*"  params="3008" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="冷都少年在弹奏也会令人陶醉，你会欣赏吗"            />      
+    <shop id="103009"   name="B面人生"        preview="*"  params="3006" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="优雅少年在这时也会放下身段，你会心醉吗"            />      
     <shop id="103010"   name="半梦半醒"       preview="*"  params="3010" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="睡眼惺忪但也要和你在一起"                        />
     <shop id="103011"   name="焙香馥郁"       preview="*"  params="3011" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="早晨的活力，除了咖啡还有你"                       />
     <shop id="103012"   name="谁家少年不戴花" preview="*"  params="3012" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="少年沉迷的事情，居然不能少了你"                    />
