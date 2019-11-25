@@ -223,6 +223,8 @@ class Mp3Panel extends eui.Component {
                     obj._geci[obj.geciIdx].style.textColor = 0XF2658C;
                     obj.lyricsLab.textFlow = obj._geci;
                     obj.geciIdx = obj.geciIdx + 1;
+                }else if (obj._geci[obj.geciIdx].name <= window['audioMp3'].currentTime+1){
+                    obj.geciIdx = obj.geciIdx + 1;
                 }
             }
             // obj['timeBar4'].value = window['audioMp3'].currentTime / window['audioMp3'].duration * 100;
