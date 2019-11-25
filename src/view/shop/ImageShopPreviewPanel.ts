@@ -46,11 +46,11 @@ class ImageShopPreviewPanel extends eui.Component {
             //this.idHasBuyed.visible = false;
             this.idHasBuyed.text="——  仅支持封面预览，购买后可在收藏查看完整图集 —— ";    
             let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
-            if (this.data.model.origPrice > this.data.model.currPrice) {
+            if (this.data.origPrice > this.data.currPrice) {
                 this.discount_bar.visible = true;
                 this.discount_bar['icon_img'].source = currencyIcon;
                 this.discount_bar['price_lab'].text = this.data.model.origPrice.toFixed(2);
-                this.discount_bar['discout_lab'].text = ((this.data.model.currPrice / this.data.model.origPrice * 10).toFixed(1)) + "折";
+                this.discount_bar['discout_lab'].text = ((this.data.currPrice / this.data.origPrice* 10).toFixed(1)) + "折";
             } else {
                 this.discount_bar.visible = false;
             }

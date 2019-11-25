@@ -7,9 +7,9 @@
     <shoucang id="5004" src="WDLC" shengyin="0" time="1:07" level="ssr" mulu2="2" name="他的娇纵" kuozhan="*" mulu1="4"/>
         
     <shoucang id="6001" src="" shengyin="0" time="*" level="sr" mulu2="3" name="如果你也有梦想" kuozhan="如果你也有梦想" mulu1="5" />
-    <shoucang id="6002" src="" shengyin="0" time="*" level="sr" mulu2="3" name="梦想映射" kuozhan="You Cool;我;Missed Call" mulu1="5" />
-    <shoucang id="6003" src="" shengyin="0" time="*" level="sr" mulu2="3" name="因为Forteen" kuozhan="最美的时刻;低音弦上的呐喊;芝士的味道;我的爱呢" mulu1="5" />
-    <shoucang id="6004" src="" shengyin="0" time="*" level="sr" mulu2="3" name="默默吟唱" kuozhan="Boom Shero;竹马机密;滑板少年;薄荷味的思绪;棉花糖一样;咫尺的梦啊;念念回忆;脚印两行;在一起刚刚好;.我的沉默;过火焦糖;芝士甜事;追逐余晖;逼近真相;无处安放的爱" mulu1="5" />
+    <shoucang id="6002" src="" shengyin="0" time="*" level="sr" mulu2="3" name="梦想映射" kuozhan="You Cool;我;Missed Call;Summer song" mulu1="5" />
+    <shoucang id="6003" src="" shengyin="0" time="*" level="sr" mulu2="3" name="因为For-teen" kuozhan="最美的时刻;低音弦上的呐喊;芝士的味道;我的爱呢" mulu1="5" />
+    <shoucang id="6004" src="" shengyin="0" time="*" level="sr" mulu2="3" name="默默吟唱" kuozhan="Boom Shero;竹马机密;滑板少年;薄荷味的思绪;棉花糖一样;咫尺的梦啊;念念回忆;脚印两行;在一起刚刚好;我的沉默;过火焦糖;芝士甜事;追逐余晖;逼近真相;无处安放的爱" mulu1="5" />
 
     <shoucang id="1001" src="5" shengyin="1" time="*" level="r" mulu2="1" name="得分后卫"       kuozhan="你就是我的禁区，生人勿近"    mulu1="3"/>
     <shoucang id="1002" src="5" shengyin="1" time="*" level="r" mulu2="1" name="沉思旋律"       kuozhan="旋律和你一样让我捉摸不清"    mulu1="2"/>

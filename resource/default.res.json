@@ -8133,7 +8133,7 @@
         {
             "name": "sc_xuanding_tu2_jpg",
             "type": "image",
-            "url": "assets/shoucang/sc_xuanding_tu2.jpg?v=239"
+            "url": "assets/shoucang/sc_xuanding_tu2.jpg?v=451"
         },
         {
             "name": "sc_xuanding_tu2_png",
@@ -8433,7 +8433,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=572"
+            "url": "config/config.bin?v=539"
         }
     ]
 }
