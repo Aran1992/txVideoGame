@@ -47,7 +47,7 @@ class BuyTipsPanel extends eui.Component {
         this.icon.scaleY = 0.5;//Number(scale.toFixed(2))
         var spModel: Modelshop = JsonModelManager.instance.getModelshop()[this.param.shopInfo.id];
         this.money1.text = spModel.currSuipian == 0?"不可购买":spModel.currSuipian + '';
-        this.money2.text = spModel.currPrice + '';
+        this.money2.text = spModel.currPrice*platform.getPriceRate() + '';
         this.idBuyItemName.text = "“"+spModel.name+"”";
         this._curModel = spModel;
         // GameCommon.getInstance().onShowBuyTips(spModel.id, spModel.pay_tp, spModel.currPrice);
@@ -90,7 +90,7 @@ class BuyTipsPanel extends eui.Component {
 
     private onZuanShi() {        
         if (platform.getPlatform() == "plat_txsp" || platform.getPlatform()== "plat_pc")
-            GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currPrice, GOODS_TYPE.DIAMOND);
+            GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currPrice*platform.getPriceRate(), GOODS_TYPE.DIAMOND);
         else
             ShopManager.getInstance().buyGoods(this.param.shopInfo.id);
         // this.moneyIcon.source = 'common_zuanshi1_png';

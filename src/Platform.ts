@@ -61,6 +61,7 @@ class DebugPlatform implements Platform {
     }
 
     public getPriceRate(){
+        return 10
         if (this.getPlatform() == "plat_txsp") {
             return 10;
         }else

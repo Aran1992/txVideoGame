@@ -195,7 +195,7 @@ class CommonTips extends eui.Component {
 
     public onShowBuyHaoGan(wentiId:number=0,id: number = 0) {
         if (id > 0) {
-            let price = ShopManager.getInstance().getShopInfoData(SHOP_TYPE.DAOJU*100000+wentiId*100+id).model.currPrice;            
+            let price = ShopManager.getInstance().getShopInfoData(SHOP_TYPE.DAOJU*100000+wentiId*100+id).model.currPrice*platform.getPriceRate();            
             this.btnConfirm_haogan['money'].text = price;//platform.getPriceRate()*price;
         }
         this._buyhaoganparams.wentiId= wentiId;

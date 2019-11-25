@@ -112,8 +112,8 @@ class ShopManager {
             GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
             this._shopDataDict = {};
             for (let id in JsonModelManager.instance.getModelshop()) {
-                let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
-                let valueObj = {saleId: model.id, currPrice: model.currPrice, origPrice: model.origPrice};
+                let model: Modelshop = JsonModelManager.instance.getModelshop()[id];        
+                let valueObj = {saleId: model.id, currPrice: model.currPrice*platform.getPriceRate(), origPrice: model.origPrice*platform.getPriceRate()};
                 let shopData: ShopInfoData = new ShopInfoData(valueObj);
                 this._shopDataDict[shopData.id] = shopData;
             }
@@ -300,7 +300,7 @@ class ShopInfoData {
     public updateShopData(info): void {
         this.saleId = info.saleId;
         this.id = parseInt(this.saleId);
-        this.currPrice = info.currPrice*platform.getPriceRate();
+        this.currPrice = info.currPrice;
         if (info.pay) this.pay = info.pay;
         if (info.origPrice) this.origPrice = info.origPrice;
         if (info.saleIntro) this.saleIntro = info.saleIntro;
