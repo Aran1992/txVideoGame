@@ -39,7 +39,7 @@
     <answer qid="17" chengjiuId="16" ansid="1" des="成功" like="0,1,0,0" videos="V216,V218,V219" nextid="18" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="17" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="V217,V218,V219" nextid="18" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="18" chengjiuId="*" ansid="1" des="固执己见" like="0,0,0,0" videos="V220" nextid="0" isdie="1" nextChapterId="0" shanhuiid="*"/>
-    <answer qid="18" chengjiuId="*" ansid="2" des="他们说的有道理…" like="0,0,0,0" videos="V221A,V221B" nextid="19" isdie="0" nextChapterId="0" shanhuiid="*"/>
+    <answer qid="18" chengjiuId="*" ansid="2" des="他们说的有道理" like="0,0,0,0" videos="V221A,V221B" nextid="19" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="19" chengjiuId="*" ansid="1" des="想起夏子豪" like="0,0,1,0" videos="V222,V226" nextid="0" isdie="0" nextChapterId="3" shanhuiid="*"/>
     <answer qid="19" chengjiuId="*" ansid="2" des="想起韩小白" like="1,0,0,0" videos="V223,V226" nextid="0" isdie="0" nextChapterId="3" shanhuiid="*"/>
     <answer qid="19" chengjiuId="*" ansid="3" des="想起肖千也" like="0,1,0,0" videos="V224,V226" nextid="0" isdie="0" nextChapterId="3" shanhuiid="*"/>

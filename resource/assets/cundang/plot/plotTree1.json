@@ -1,1 +1,466 @@
-{"name":"plotTree1","version":"4.5","armature":[{"name":"armatureName","aabb":{"width":1600,"height":900},"bone":[{"name":"root"}],"slot":[{"name":"BE_plot5","parent":"root"},{"name":"BE_plot3","parent":"root"},{"name":"page1_last_grayLine","parent":"root"},{"name":"plot5_grayLine","parent":"root"},{"name":"plot6_grayLine","parent":"root"},{"name":"plot3_grayLine","parent":"root"},{"name":"plot4_grayLine","parent":"root"},{"name":"plot2_grayLine","parent":"root"},{"name":"page1_last_lightLine","parent":"root"},{"name":"plot5_lightLine","parent":"root"},{"name":"plot6_lightLine","parent":"root"},{"name":"plot3_lightLine","parent":"root"},{"name":"plot4_lightLine","parent":"root"},{"name":"plot2_lightLine","parent":"root"},{"name":"plot6_txt","parent":"root"},{"name":"plot4_txt","parent":"root"},{"name":"plot2_txt","parent":"root"},{"name":"plot1_txt","parent":"root"},{"name":"plot1_image","parent":"root"},{"name":"plot2_image","parent":"root"},{"name":"plot4_image","parent":"root"},{"name":"plot6_image","parent":"root"}],"skin":[{"slot":[{"name":"BE_plot5","display":[{"name":"BE_plot5","transform":{"x":1229.5,"y":543.5},"pivot":{"x":0.5,"y":0.5}}]},{"name":"BE_plot3","display":[{"name":"BE_plot3","transform":{"x":796.5,"y":378.5},"pivot":{"x":0.5,"y":0.5}}]},{"name":"page1_last_grayLine","display":[{"name":"page1_last_grayLine","transform":{"x":1572,"y":460},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot5_grayLine","display":[{"name":"plot5_grayLine","transform":{"x":1148,"y":487},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot6_grayLine","display":[{"name":"plot6_grayLine","transform":{"x":1214,"y":460},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot3_grayLine","display":[{"name":"plot3_grayLine","transform":{"x":704.5,"y":434},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot4_grayLine","display":[{"name":"plot4_grayLine","transform":{"x":761.5,"y":460},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot2_grayLine","display":[{"name":"plot2_grayLine","transform":{"x":357,"y":460},"pivot":{"x":0.5,"y":0.5}}]},{"name":"page1_last_lightLine","display":[{"name":"page1_last_lightLine","transform":{"x":1572,"y":460},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot5_lightLine","display":[{"name":"plot5_lightLine","transform":{"x":1148,"y":487},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot6_lightLine","display":[{"name":"plot6_lightLine","transform":{"x":1214,"y":460},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot3_lightLine","display":[{"name":"plot3_lightLine","transform":{"x":704.5,"y":434},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot4_lightLine","display":[{"name":"plot4_lightLine","transform":{"x":761.5,"y":460},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot2_lightLine","display":[{"name":"plot2_lightLine","transform":{"x":357,"y":460},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot6_txt","display":[{"name":"plot6_txt","transform":{"x":1440,"y":600.5},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot4_txt","display":[{"name":"plot4_txt","transform":{"x":986,"y":600.5},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot2_txt","display":[{"name":"plot2_txt","transform":{"x":530.5,"y":600.5},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot1_txt","display":[{"name":"plot1_txt","transform":{"x":177,"y":600.5},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot1_image","display":[{"name":"plot1_image","transform":{"x":180,"y":459},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot2_image","display":[{"name":"plot2_image","transform":{"x":534,"y":459},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot4_image","display":[{"name":"plot4_image","transform":{"x":989,"y":459},"pivot":{"x":0.5,"y":0.5}}]},{"name":"plot6_image","display":[{"name":"plot6_image","transform":{"x":1439,"y":459},"pivot":{"x":0.5,"y":0.5}}]}]}]}]}
+{
+  "name": "plotTree1",
+  "version": "4.5",
+  "armature": [
+    {
+      "name": "armatureName",
+      "aabb": {
+        "width": 1600,
+        "height": 900
+      },
+      "bone": [
+        {
+          "name": "root"
+        }
+      ],
+      "slot": [
+        {
+          "name": "BE_plot5",
+          "parent": "root"
+        },
+        {
+          "name": "BE_plot3",
+          "parent": "root"
+        },
+        {
+          "name": "page1_last_grayLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot5_grayLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot6_grayLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot3_grayLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot4_grayLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot2_grayLine",
+          "parent": "root"
+        },
+        {
+          "name": "page1_last_lightLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot5_lightLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot6_lightLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot3_lightLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot4_lightLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot2_lightLine",
+          "parent": "root"
+        },
+        {
+          "name": "plot6_txt",
+          "parent": "root"
+        },
+        {
+          "name": "plot4_txt",
+          "parent": "root"
+        },
+        {
+          "name": "plot2_txt",
+          "parent": "root"
+        },
+        {
+          "name": "plot1_txt",
+          "parent": "root"
+        },
+        {
+          "name": "plot1_image",
+          "parent": "root"
+        },
+        {
+          "name": "plot2_image",
+          "parent": "root"
+        },
+        {
+          "name": "plot4_image",
+          "parent": "root"
+        },
+        {
+          "name": "plot6_image",
+          "parent": "root"
+        }
+      ],
+      "skin": [
+        {
+          "slot": [
+            {
+              "name": "BE_plot5",
+              "display": [
+                {
+                  "name": "BE_plot5",
+                  "transform": {
+                    "x": 1229.5,
+                    "y": 543.5
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "BE_plot3",
+              "display": [
+                {
+                  "name": "BE_plot3",
+                  "transform": {
+                    "x": 796.5,
+                    "y": 378.5
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "page1_last_grayLine",
+              "display": [
+                {
+                  "name": "page1_last_grayLine",
+                  "transform": {
+                    "x": 1572,
+                    "y": 460
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot5_grayLine",
+              "display": [
+                {
+                  "name": "plot5_grayLine",
+                  "transform": {
+                    "x": 1148,
+                    "y": 487
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot6_grayLine",
+              "display": [
+                {
+                  "name": "plot6_grayLine",
+                  "transform": {
+                    "x": 1214,
+                    "y": 460
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot3_grayLine",
+              "display": [
+                {
+                  "name": "plot3_grayLine",
+                  "transform": {
+                    "x": 704.5,
+                    "y": 434
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot4_grayLine",
+              "display": [
+                {
+                  "name": "plot4_grayLine",
+                  "transform": {
+                    "x": 761.5,
+                    "y": 460
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot2_grayLine",
+              "display": [
+                {
+                  "name": "plot2_grayLine",
+                  "transform": {
+                    "x": 357,
+                    "y": 460
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "page1_last_lightLine",
+              "display": [
+                {
+                  "name": "page1_last_lightLine",
+                  "transform": {
+                    "x": 1572,
+                    "y": 460
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot5_lightLine",
+              "display": [
+                {
+                  "name": "plot5_lightLine",
+                  "transform": {
+                    "x": 1148,
+                    "y": 487
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot6_lightLine",
+              "display": [
+                {
+                  "name": "plot6_lightLine",
+                  "transform": {
+                    "x": 1214,
+                    "y": 460
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot3_lightLine",
+              "display": [
+                {
+                  "name": "plot3_lightLine",
+                  "transform": {
+                    "x": 704.5,
+                    "y": 434
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot4_lightLine",
+              "display": [
+                {
+                  "name": "plot4_lightLine",
+                  "transform": {
+                    "x": 761.5,
+                    "y": 460
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot2_lightLine",
+              "display": [
+                {
+                  "name": "plot2_lightLine",
+                  "transform": {
+                    "x": 357,
+                    "y": 460
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot6_txt",
+              "display": [
+                {
+                  "name": "plot6_txt",
+                  "transform": {
+                    "x": 1440,
+                    "y": 600.5
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot4_txt",
+              "display": [
+                {
+                  "name": "plot4_txt",
+                  "transform": {
+                    "x": 986,
+                    "y": 600.5
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot2_txt",
+              "display": [
+                {
+                  "name": "plot2_txt",
+                  "transform": {
+                    "x": 530.5,
+                    "y": 600.5
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot1_txt",
+              "display": [
+                {
+                  "name": "plot1_txt",
+                  "transform": {
+                    "x": 177,
+                    "y": 600.5
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot1_image",
+              "display": [
+                {
+                  "name": "plot1_image",
+                  "transform": {
+                    "x": 180,
+                    "y": 459
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot2_image",
+              "display": [
+                {
+                  "name": "plot2_image",
+                  "transform": {
+                    "x": 534,
+                    "y": 459
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot4_image",
+              "display": [
+                {
+                  "name": "plot4_image",
+                  "transform": {
+                    "x": 989,
+                    "y": 459
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            },
+            {
+              "name": "plot6_image",
+              "display": [
+                {
+                  "name": "plot6_image",
+                  "transform": {
+                    "x": 1439,
+                    "y": 459
+                  },
+                  "pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -32,7 +32,7 @@ class JuQingPanel extends eui.Component {
     private imgMaxNumb: number = 5;
     private _playTween: boolean;
     private _guideIndex: number = 0;
-    private idGainShuipian:eui.Button;
+    private idGainShuipian: eui.Button;
 
     constructor() {
         super();
@@ -46,9 +46,10 @@ class JuQingPanel extends eui.Component {
         }
     }
 
-    private static onGetSuipian(){
-        UserInfo.suipianMoney  = UserInfo.suipianMoney+1000
+    private static onGetSuipian() {
+        UserInfo.suipianMoney = UserInfo.suipianMoney + 1000
     }
+
     private static onCleanCache() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         for (let i: number = 1; i < FILE_TYPE.SIZE; i++) {
@@ -545,6 +546,10 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         let plot_slots = tree_json.armature[0].skin[0].slot;
         plot_slots.forEach(slotObj => {
             let displayName: string = slotObj["name"];
+            // 剧情3被删除掉了 不好改动配置 直接在代码里忽略掉相关的界面配置
+            if (["BE_plot3", "plot3_grayLine", "plot3_lightLine"].indexOf(displayName) !== -1) {
+                return;
+            }
             let transform = slotObj["display"][0]["transform"];
             let slotDisplay: eui.UIComponent;
             if (displayName.indexOf("txt") !== -1) {

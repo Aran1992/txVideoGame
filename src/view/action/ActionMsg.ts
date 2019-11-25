@@ -84,16 +84,19 @@ class ActionMsg extends ActionSceneBase {
             const [roleAndWaitTime, msg] = this.msgList[i].split(":");
             const [role, waitTime] = roleAndWaitTime.split("=").map(s => s && parseInt(s));
             const isSelf = role === GameDefine.SELF_ROLE_HEAD_INDEX;
+            let result = true;
             if (i === this.msgList.length - 1 && isSelf && this.needClickSend) {
-                await this.playInput(msg);
+                result = await this.playInput(msg);
             }
-            if (waitTime) {
-                await new Promise(resolve => setTimeout(resolve, waitTime));
+            if (result) {
+                if (waitTime) {
+                    await new Promise(resolve => setTimeout(resolve, waitTime));
+                }
+                const item = new ActionMsgItem(msg, isSelf, role);
+                itemList.push(item);
+                this.msgItemGroup.addChild(item);
+                await this.playShow(itemList);
             }
-            const item = new ActionMsgItem(msg, isSelf, role);
-            itemList.push(item);
-            this.msgItemGroup.addChild(item);
-            await this.playShow(itemList);
         }
         this.onBackSuccess();
     }
@@ -110,8 +113,8 @@ class ActionMsg extends ActionSceneBase {
         });
     }
 
-    private async playInput(msg) {
-        return new Promise((resolve => {
+    private async playInput(msg): Promise<any> {
+        return new Promise(resolve => {
             let length = 0;
             this.sendButton.visible = true;
             this.sendButton.enabled = false;
@@ -131,19 +134,19 @@ class ActionMsg extends ActionSceneBase {
                     func();
                     clearInterval(intervalTimer);
                     const remainTime = parseInt(this.paramList[1]) * 1000 - (this.videoCurrTime - this.videoStartTime);
-                    const timeoutTimer = setTimeout(() => this.sendButtonClickCallback(), remainTime);
+                    const timeoutTimer = setTimeout(() => resolve(false), remainTime);
                     this.sendButtonClickCallback = () => {
                         this.sendButton.visible = false;
                         this.input.visible = false;
                         this.inputBg.visible = false;
                         clearTimeout(timeoutTimer);
-                        resolve();
+                        resolve(true);
                     };
                 } else {
                     setLabelTextWithBgAdapt(this.input, this.inputBg, msg.substr(0, length));
                 }
             }, ActionMsg.TYPE_INTERVAL);
-        }));
+        });
     }
 
     private onClickSendButton() {

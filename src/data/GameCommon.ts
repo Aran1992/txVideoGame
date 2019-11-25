@@ -476,32 +476,17 @@ class GameCommon {
     }
 
     public getSortLike(idx: number = 0, bookData?: BookData) {
-        let items = [];
-        for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
-            items.push({
-                id: i,
-                num: this.getRoleLikeAll(i, bookData),
-            });
-        }
-        items.sort((arg1, arg2) => {
-            if (arg2.num > arg1.num) {
-                return 1;
-            } else if (arg2.num < arg1.num) {
-                return -1;
-            } else {
-                return arg1.id - arg2.id;
-            }
-        });
+        let items = this.getSortLikeAry(bookData);
         return items[idx];
     }
 
-    public getSortLikeAry() {
+    public getSortLikeAry(bookData?: BookData) {
         // 当好感度相同时 按照这个顺序 越前面越大
         const list = [ROLE_INDEX.ZiHao_Xia, ROLE_INDEX.XiaoBai_Han, ROLE_INDEX.WanXun_Xiao, ROLE_INDEX.QianYe_Xiao];
         let items = [];
         for (let i: number = 0; i < ROLE_INDEX.SIZE; i++) {
             let data = {num: 0, id: i};
-            data.num = this.getRoleLikeAll(i);
+            data.num = this.getRoleLikeAll(i, bookData);
             items.push(data);
         }
         items.sort(function (arg1, arg2) {
@@ -793,7 +778,7 @@ class GameCommon {
         for (let k in UserInfo.curBokData.videoDic) {
             let videoCfg: Modelshipin = JsonModelManager.instance.getModelshipin()[UserInfo.curBokData.videoDic[k]];
             if (videoCfg) {
-                if (videoCfg.juqing >= cfg.id) {
+                if (videoCfg.juqing > cfg.id) {
                     UserInfo.curBokData.videoDic[k] = null;
                 }
             }

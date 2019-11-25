@@ -1258,7 +1258,7 @@ class TaskManager {
             switch (reward.type) {
                 case "suipian": {
                     UserInfo.suipianMoney += reward.num;
-                    GameCommon.getInstance().onShowResultTips('奖励领取成功');
+                    GameCommon.getInstance().onShowResultTips('领取成功');
                     break;
                 }
                 case "goods": {
@@ -1284,10 +1284,10 @@ class TaskManager {
                 "eventId": eventId,
             }, (data) => {
                 if (data.code == 0) {
-                    GameCommon.getInstance().showCommomTips("奖励领取成功");
+                    GameCommon.getInstance().showCommomTips("领取成功");
                     handler();
                 } else {
-                    GameCommon.getInstance().showCommomTips("奖励领取失败，请稍后重试");
+                    GameCommon.getInstance().showCommomTips("领取成功，请稍后重试");
                 }
             });
         } else {
