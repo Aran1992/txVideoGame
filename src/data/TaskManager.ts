@@ -1253,7 +1253,7 @@ class TaskManager {
     }
 
     public receiveTaskReward(task) {
-        let eventId = "get";
+        let eventId = "";
         task.reward.forEach(reward => {
             switch (reward.type) {
                 case "suipian": {
@@ -1267,7 +1267,7 @@ class TaskManager {
                     break;
                 }
                 default: {
-                    eventId += `_${reward.type}_${reward.num || 1}`
+                    eventId += `completed_task_${task.id}`
                 }
             }
         });
@@ -1277,7 +1277,7 @@ class TaskManager {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
         };
         console.log("eventId", eventId);
-        if (eventId.length > 3) {
+        if (eventId.length !== 0) {
             platform.sendRequest({
                 "bookId": GameDefine.BOOKID,
                 "cmd": "reportBookGiftPkgEvent",
