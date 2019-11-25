@@ -38,11 +38,15 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
     public updateResize() {
         this.width = size.width;
         this.height = size.height;
-        this.bg.height = this.height;
-        this.bg.width = this.height / 9 * 16;
-        if (this.bg.width > this.width) {
-            this.bg.width = this.width;
-            this.bg.height = this.bg.width / 16 * 9;
+        const rate1 = GameDefine.GAME_VIEW_WIDTH / GameDefine.GAME_VIEW_HEIGHT;
+        const rate2 = size.width / size.height;
+        let scale;
+        if (rate1 < rate2) {
+            scale = size.width / GameDefine.GAME_VIEW_WIDTH;
+        } else {
+            scale = size.height / GameDefine.GAME_VIEW_HEIGHT;
         }
+        this.bg.scaleX = scale;
+        this.bg.scaleY = scale;
     }
 }

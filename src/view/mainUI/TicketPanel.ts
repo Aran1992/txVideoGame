@@ -529,6 +529,7 @@ class TaskDetail extends eui.Component {
     private rewardDsc: eui.Label;
     private closeBtn: eui.Button;
     private receiveBtn: eui.Button;
+    private receivedBtn: eui.Button;
     private readonly task;
 
     constructor(task) {
@@ -538,6 +539,7 @@ class TaskDetail extends eui.Component {
         this.closeBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickCloseBtn, this);
         this.receiveBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickReceiveBtn, this);
         this.receiveBtn.visible = TaskManager.instance.getTaskState(task.id) === TASK_STATES.RECEIVABLE;
+        this.receivedBtn.visible = TaskManager.instance.getTaskState(task.id) === TASK_STATES.RECEIVED;
         this.icon.source = getRewardIcon(task.reward);
         this.taskName.text = `${TaskManager.instance.isLuxuryTask(task.id) ? "豪华任务" : "普通任务"}：${task.name}`;
         this.getDsc.text = `获得条件：${task.dsc}`;
@@ -567,5 +569,7 @@ class TaskDetail extends eui.Component {
 
     private onClickReceiveBtn() {
         TaskManager.instance.receiveTaskReward(this.task);
+        this.receiveBtn.visible = false;
+        this.receivedBtn.visible = true;
     }
 }

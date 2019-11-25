@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="skins.LoadingUISkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="bg" source="loading_bg_jpg" scaleX="1" scaleY="1" scale9Grid="240,135,1440,810" fillMode="scale" width="1600" horizontalCenter="0" verticalCenter="0" height="900"/>
+	<e:Image id="bg" source="loading_bg_jpg" scaleX="1" scaleY="1" scale9Grid="240,135,1440,810" fillMode="scale" horizontalCenter="0" verticalCenter="0"/>
 	<e:Group id="progressGroup" width="647" height="33" horizontalCenter="0" bottom="90">
 		<e:Image source="loading_progress_bg_png" x="0" y="0" scaleX="1" scaleY="1"/>
 		<e:Image id="progress" source="loading_progress_front_png" x="0" verticalCenter="0" scale9Grid="11,0,268,29"/>
@@ -10,5 +10,8 @@
 		<e:Image id="head4" source="loading_head_4_png" x="283" y="-100" scaleX="1" scaleY="1" horizontalCenter="135"/>
 		<e:Label id="percent" text="39%" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" fontFamily="Arial" size="30" borderColor="0x000000" border="false" bold="false" stroke="1"/>
 		<e:Image source="loading_progress_icon_png" scaleX="1" scaleY="1" verticalCenter="0" horizontalCenter="-350"/>
+		<e:Image source="loading_text_png" scaleX="1" scaleY="1" horizontalCenter="0" bottom="-50"/>
 	</e:Group>
+	<e:Image source="loading_title_1_png" left="40" bottom="40"/>
+	<e:Image source="loading_title_2_png" right="40" bottom="40"/>
 </e:Skin>

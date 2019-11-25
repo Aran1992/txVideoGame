@@ -1,13 +1,6 @@
 {
     "groups": [
-        {
-            "keys": "action_font_0_png,action_font_1_png,action_arrow_png,action_hand_png,duqucundang2_png,result_bjzhezhao_png,result_yuandi_png,result_diezi_png,result_biaoqian_png,result_rect1_png,result_rect2_png,result_laba_png,result_luozheng_png,result_namebiaoqian_png,result_zidi_png,result_music_icon_png,result_head_icon_png,result_gongxiwanc_png,perfect_png,cj_biaoqian_png,chengjiuFont_fnt,chengjiuFont_png,setting_pro2_png,main_icon_png,result_zhezhao_png,resultIcon1_png,resultIcon0_png,resultIcon2_png,resultIcon3_png,resultRoleImg0_png,resultRoleImg1_png,resultRoleImg2_png,resultRoleImg3_png,zhangjieyulan_png,music_bg_effect_png,music_bg_effect_json,shop_banner_jpg,sc_xuanding_tu1_jpg,sc_xuanding_tu2_jpg,sc_xuanding_tu3_jpg,sc_xuanding_tu4_jpg,sc_xuanding_tu5_jpg,sc_video_tu_xiazihao1_jpg,sc_video_tu_xiazihao2_jpg,sc_video_tu_xiazihao3_jpg,music_ui_effect_png,music_ui_effect_json,loading_json,loading_png,commom_zuanshidi_png,common_zuanshi_png,kaimen_yuan_png,kaimen_di_png,kaimen_huadongkaimen_png,zuanshiFont_fnt,zuanshiFont_png,action_tanqin_png,tanqin_effect_json,tanqin_effect_png,piaofu_xin_json,piaofu_xin_png,lingxing_effect_json,lingxing_effect_png,huxi_effect_json,huxi_effect_png,head3_png,head4_png,shop_banner2_jpg,actionLv_png,action_baiquanxiao_png,action_baiquan_png,music_effect_json,music_effect_png,tips_di_yuan_png,chengjiu_tips_di_png,common_chengjiu_icon_png,common_like_icon_png,main_jiantou1_png,main_btn1_png,main_btn1_select_png,left_btn_di_png,main_jixuBtn_di_png,genggaibizhi_png,quanquan_title_png,main_bj1_jpg,action_kaimen_jiantou_png,action_men_png,action_shengyin_png,action_shou_png,huiyi_head_di_png,huiyi_head_di1_png,huiyi_head_di2_png,huiyi_icon1_png,huiyi_icon2_png,huiyi_icon3_png,huiyi_icon4_png,huiyi_name_di_png,action_Music_qiu4_png,slide_zi_quan_png,hudong_topdi_png,effect_zhi_json,effect_zhi_png,effect_zouma_json,effect_zouma_png,syht_fnt,syht_png,xiangji_png,result_cj_role1_png,result_cj_role2_png,result_cj_role_di_png,result_cj_role_di1_png,result_role_di1_png,result_role_di2_png,result_role_di3_png,result_role_di4_png,result_fenjiexian_png,role_biaoqian_png,result_role_di_png,result_role_di2_mask_png,result_role_di3_mask_png,result_role_di1_mask_png,result_role_di4_mask_png,resule_xin_png,resule_xin2_png,resule_huatong_png,resule_dian_png,result_zi3_png,result_zi4_png,result_zi1_png,result_zi2_png,control_kuaijin_png,control_kuaitiao_png,control_jietu_png,control_cundang_png,control_zidi_png,control_beisudi_png,control_zidi_select_png,juqing_kuang_png,juqing_kuang_json,role_xin_png,role_xin_json,shop_banner3_png,shop_daoju_bg_png,kuosan_json,kuosan_png,shoucang_baikuang_png,sc_music_Pro_di_png,shop_tiao2_png,shop_tiao3_png,shop_shaixuan_toggle1_png,shop_shaixuan_toggle2_png,shop_btn_style2_png,shop_banner4_png,shop_image_maskbg_png,effect_kaimen_png,effect_kaimen_json,action_timedi2_png,action_timedi3_png,main_bj2_jpg,effect_zhiyin_png,effect_zhiyin_json,effect_motou_json,effect_motou_png,music_kuosan_json,music_kuosan_png,plot1_image_png,plot1_txt_png,plot2_grayLine_png,plot2_image_png,plot2_lightLine_png,plot2_txt_png,plot3_grayLine_png,plot3_lightLine_png,plot4_grayLine_png,plot4_image_png,plot4_lightLine_png,plot4_txt_png,plot5_grayLine_png,plot5_lightLine_png,plot6_grayLine_png,plot6_image_png,plot6_lightLine_png,plot6_txt_png,plot7_grayLine_png,plot7_lightLine_png,plotTree1_json,plotTree2_json,plotTree3_json,plot12_grayLine_png,effect_shanghuadong_png,effect_shanghuadong_json,wentikuang_png,wentikuang1_png,action_checkbtn1_select_png,action_check1_select_png,action_check1_com_png,action_checkbtn1_com_png,effect_motou2_png,effect_motou2_json,effect_tansuo_png,effect_tansuo_json,plotTree4_json,plotTree5_json,plotTree6_json,sc_img_fenxiang_png,cundagn_xinshou_step5_png,cundagn_xinshou_step4_png,cundagn_xinshou_step3_png,cundagn_xinshou_step2_png,cundagn_xinshou_step1_png,plotTree10_json,plotTree11_json,plotTree20_json,plotTree21_json,plotTree30_json,plotTree31_json,plotTree41_json,plotTree7_json,plotTree8_json,plotTree9_json,effect_motou3_png,effect_motou3_json,action_music_miss_png,action_music_good_png,action_msg_bg_self_png,action_msg_bg_your_png,action_msg_head_self_png,action_msg_head_your_png,action_msg_input_png,action_msg_send_png,msg_shurukuang_png,action_check_drink_5_png,action_check_drink_1_png,action_check_drink_2_png,action_check_drink_3_png,action_check_drink_4_png,common_chengjiu_png,common_qinmi_png,shop_shaixuan2_toggle2_png,shop_shaixuan2_toggle1_png,common_scalebk1_png,guide_bg_jpg,action_listen_1_png,action_listen_2_png,action_msg_head_0_png,action_msg_head_1_png,action_msg_head_2_png,action_msg_head_3_png,action_msg_head_4_png,action_msg_head_5_png,action_msg_head_6_png,guide_1_jpg,guide_2_jpg,guide_3_jpg,guide_4_jpg,ad_icon_png,cundang_betu_jiang2_png,yapin_1_png,yapin_2_png,ope_click_01_mp3,ope_click_02_mp3,ope_click_03_mp3",
-            "name": "preload"
-        },
-        {
-            "keys": "loading_bg_jpg,loading_head_1_png,loading_head_2_png,loading_head_3_png,loading_head_4_png,loading_progress_bg_png,loading_progress_front_png,loading_progress_icon_png",
-            "name": "loading"
-        }
+
     ],
     "resources": [
         {
@@ -3613,7 +3606,7 @@
         {
             "name": "loading_bg_jpg",
             "type": "image",
-            "url": "assets/loading/loading_bg.jpg?v=542"
+            "url": "assets/loading/loading_bg.jpg?v=767"
         },
         {
             "name": "loading_head_1_png",
@@ -3649,6 +3642,21 @@
             "name": "loading_progress_icon_png",
             "type": "image",
             "url": "assets/loading/loading_progress_icon.png?v=504"
+        },
+        {
+            "name": "loading_text_png",
+            "type": "image",
+            "url": "assets/loading/loading_text.png?v=795"
+        },
+        {
+            "name": "loading_title_1_png",
+            "type": "image",
+            "url": "assets/loading/loading_title_1.png?v=708"
+        },
+        {
+            "name": "loading_title_2_png",
+            "type": "image",
+            "url": "assets/loading/loading_title_2.png?v=981"
         },
         {
             "name": "resule_dian_png",
