@@ -1,4 +1,7 @@
-class ActionSearch extends ActionTimerSceneBase {
+class ActionSearch extends ActionSceneBase {
+    private timeBar1: eui.ProgressBar;
+    private timeBar2: eui.ProgressBar;
+    private desc: eui.Label;
     private hudong_grp: eui.Group;
 
     private TanSuo_Pos_Ary: number[][] = [[400, 320], [780, 320], [1110, 350], [580, 550]];
@@ -19,6 +22,12 @@ class ActionSearch extends ActionTimerSceneBase {
         this.maxTime = this.runTime = this.model.time * 1000;
         this.delTime = this.model.time * 1000;
         this.updateResize();
+        this.timeBar1.maximum = this.maxTime;
+        this.timeBar1.slideDuration = 0;
+        this.timeBar1.value = this.maxTime;
+        this.timeBar2.slideDuration = 0;
+        this.timeBar2.maximum = this.maxTime;
+        this.timeBar2.value = this.maxTime;
         this.ansId = this.model.moren;
         let isselectIdx: number = 0;
         if (this.model.id == 76) {
@@ -44,6 +53,13 @@ class ActionSearch extends ActionTimerSceneBase {
             if (i == isselectIdx) anim.visible = false;
             else anim.onPlay();
         }
+        this.initTimeInfo();
+    }
+
+    protected update(dt): void {
+        super.update(dt);
+        this.timeBar1.value = this.runTime;
+        this.timeBar2.value = this.runTime;
     }
 
     protected onBackFail() {
@@ -57,6 +73,13 @@ class ActionSearch extends ActionTimerSceneBase {
             click: 1
         });
         this.exit();
+    }
+
+    private initTimeInfo() {
+        const hdCfg: Modelhudong = JsonModelManager.instance.getModelhudong()[this.model.type];
+        if (hdCfg && hdCfg.des) {
+            this.desc.text = hdCfg.des;
+        }
     }
 
     private onSelect(event: egret.Event): void {

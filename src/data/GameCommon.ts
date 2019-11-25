@@ -661,8 +661,6 @@ class GameCommon {
     //用户钻石余额区间，假设用户钻石数为n，共分为五个区间：n=0、0<n<=50、
 
     public shock(tp: number = 0, iswin: boolean = false) {
-        // this.sd.play(0, 1);
-
         if (tp == 1) {
             if (iswin) {
                 if (Tool.isAndroid()) {

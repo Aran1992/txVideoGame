@@ -90,7 +90,7 @@ class ActionMsg extends ActionSceneBase {
             }
             if (result) {
                 if (waitTime) {
-                    await new Promise(resolve => setTimeout(resolve, waitTime));
+                    await new Promise(resolve => setTimeout(resolve, 16000));
                 }
                 const item = new ActionMsgItem(msg, isSelf, role);
                 itemList.push(item);
