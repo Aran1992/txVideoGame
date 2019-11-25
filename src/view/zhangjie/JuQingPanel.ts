@@ -546,10 +546,6 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         let plot_slots = tree_json.armature[0].skin[0].slot;
         plot_slots.forEach(slotObj => {
             let displayName: string = slotObj["name"];
-            // 剧情3被删除掉了 不好改动配置 直接在代码里忽略掉相关的界面配置
-            if (["BE_plot3", "plot3_grayLine", "plot3_lightLine"].indexOf(displayName) !== -1) {
-                return;
-            }
             let transform = slotObj["display"][0]["transform"];
             let slotDisplay: eui.UIComponent;
             if (displayName.indexOf("txt") !== -1) {
@@ -653,6 +649,10 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
     }
 
     private getOpenStatus(juqingCfg: Modeljuqingkuai) {
+        // 剧情3被删除掉了 不好改动配置 直接在代码里设置为不可见
+        if (juqingCfg.id === 3) {
+            return this.NOT_SHOW;
+        }
         if (!UserInfo.curBokData) {
             return this.NOT_SHOW;
         }
