@@ -5,14 +5,14 @@
     <e:Label id="state_lab" text="——  支持每首歌试听15S —— " y="50" fontFamily="SimHei" textColor="0xff5fa5" size="28"
                  horizontalCenter="0" />
     <e:Group width="1600" height="900" horizontalCenter="0" verticalCenter="0">
-        <e:Group top="160" horizontalCenter="-468">
+        <e:Group x="276" y="207">
             <e:Image source="shop_music_bg_png" width="384" height="384" horizontalCenter="0" verticalCenter="0" />
             <e:Image id="banner_img" width="355" height="355" horizontalCenter="0" verticalCenter="0"
                       source=""/>
             <e:Image id="timeImg" source="sc_music_baiquan_png" horizontalCenter="0" verticalCenter="0" width="364"
                      height="364" />
         </e:Group>
-        <e:Group y="700" horizontalCenter="-435">
+        <e:Group y="700" x="246">
             <e:Group>
                 <e:Label id="name_lab" text="歌曲名称" size="30" fontFamily="SimHei" textAlign="center" touchEnabled="false"
                          textColor="0xffffff" />
@@ -29,7 +29,7 @@
             <e:Label id="desc_lab" text="" size="22" fontFamily="SimHei" x="0" y="60" touchEnabled="false"
                      textColor="0xcecece" width="470" />
         </e:Group>
-        <e:Scroller id="scrollBar" height="500" skinName="skins.ScrollerSkin" width="800" y="180" horizontalCenter="280">
+        <e:Scroller id="scrollBar" height="500" skinName="skins.ScrollerSkin" width="480" y="180" horizontalCenter="280">
             <e:Group>
                 <e:Group id="music_item_grp" horizontalCenter="0">
                     <e:layout>

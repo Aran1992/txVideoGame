@@ -86,75 +86,75 @@
     <geci videoId="如果你也有梦想" start="258" text="我会为你鼓掌"/>
     <geci videoId="如果你也有梦想" start="260" text="因为爱和希望会为它插上翅膀"/>
 
-    <geci videoId="you cool" start="0" text="You Cool"/>
-    <geci videoId="you cool" start="5" text="词曲：耀乐团 演唱：耀乐团"/>
-    <geci videoId="you cool" start="10" text="Bass"/>
-    <geci videoId="you cool" start="13" text="Hello"/>
-    <geci videoId="you cool" start="16" text="Bring"/>
-    <geci videoId="you cool" start="19" text="With me"/>
-    <geci videoId="you cool" start="21" text="With me"/>
-    <geci videoId="you cool" start="26" text="Yao homie I made this beat"/>
-    <geci videoId="you cool" start="28" text="I made this beat so go with me"/>
-    <geci videoId="you cool" start="30" text="用影像记录"/>
-    <geci videoId="you cool" start="31" text="用生命记住"/>
-    <geci videoId="you cool" start="32" text="用身体叙述"/>
-    <geci videoId="you cool" start="33" text="向风景寄宿"/>
-    <geci videoId="you cool" start="34" text="沿途的来客走各色各样的路"/>
-    <geci videoId="you cool" start="36" text="想活得更赞就拿出你的态度"/>
-    <geci videoId="you cool" start="38" text="这条路我一步你一步他一步"/>
-    <geci videoId="you cool" start="40" text="把梦想握住"/>
-    <geci videoId="you cool" start="41" text="我们永远不孤独"/>
-    <geci videoId="you cool" start="42" text="如果说精神是食粮"/>
-    <geci videoId="you cool" start="44" text="那影像就是食堂"/>
-    <geci videoId="you cool" start="46" text="喂饱饥饿的双眼"/>
-    <geci videoId="you cool" start="48" text="盯住精彩的瞬间"/>
-    <geci videoId="you cool" start="50" text="我们在不同地域"/>
-    <geci videoId="you cool" start="51" text="因为相同的兴趣"/>
-    <geci videoId="you cool" start="53" text="独一无二的你和我相遇"/>
-    <geci videoId="you cool" start="54" text="流星滑过天际说谜语"/>
-    <geci videoId="you cool" start="57" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="you cool" start="61" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="you cool" start="65" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="you cool" start="69" text="Do mi re mi fa mi so mi with me yeah"/>
-    <geci videoId="you cool" start="73" text="Na..."/>
-    <geci videoId="you cool" start="80" text="You cool"/>
-    <geci videoId="you cool" start="81" text="Na..."/>
-    <geci videoId="you cool" start="87" text="I'm cool"/>
-    <geci videoId="you cool" start="88" text="Na..."/>
-    <geci videoId="you cool" start="95" text="Yao cool"/>
-    <geci videoId="you cool" start="96" text="Na..."/>
-    <geci videoId="you cool" start="103" text="Yao cool"/>
-    <geci videoId="you cool" start="104" text="Yao homie I made this beat"/>
-    <geci videoId="you cool" start="105" text="I made this beat so go with me"/>
-    <geci videoId="you cool" start="107" text="用影像记录"/>
-    <geci videoId="you cool" start="108" text="用生命记住"/>
-    <geci videoId="you cool" start="109" text="用身体叙述"/>
-    <geci videoId="you cool" start="110" text="向风景寄宿"/>
-    <geci videoId="you cool" start="111" text="沿途的来客走各色各样的路"/>
-    <geci videoId="you cool" start="113" text="想活得更赞就拿出你的态度"/>
-    <geci videoId="you cool" start="115" text="这条路我一步你一步他一步"/>
-    <geci videoId="you cool" start="117" text="把梦想握住"/>
-    <geci videoId="you cool" start="118" text="我们永远不孤独"/>
-    <geci videoId="you cool" start="119" text="如果说精神是食粮"/>
-    <geci videoId="you cool" start="121" text="那影像就是食堂"/>
-    <geci videoId="you cool" start="123" text="喂饱饥饿的双眼"/>
-    <geci videoId="you cool" start="125" text="盯住精彩的瞬间"/>
-    <geci videoId="you cool" start="127" text="我们在不同地域"/>
-    <geci videoId="you cool" start="129" text="因为相同的兴趣"/>
-    <geci videoId="you cool" start="130" text="独一无二的你和我相遇"/>
-    <geci videoId="you cool" start="132" text="流星滑过天际说谜语"/>
-    <geci videoId="you cool" start="134" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="you cool" start="138" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="you cool" start="142" text="Do mi re mi fa mi so mi with me up"/>
-    <geci videoId="you cool" start="145" text="Do mi re mi fa mi so mi with me yeah"/>
-    <geci videoId="you cool" start="149" text="Na..."/>
-    <geci videoId="you cool" start="156" text="You cool"/>
-    <geci videoId="you cool" start="157" text="Na..."/>
-    <geci videoId="you cool" start="164" text="I'm cool"/>
-    <geci videoId="you cool" start="165" text="Na..."/>
-    <geci videoId="you cool" start="172" text="Yao cool"/>
-    <geci videoId="you cool" start="173" text="Na..."/>
-    <geci videoId="you cool" start="179" text="Yao cool"/>
+    <geci videoId="You Cool" start="0" text="You Cool"/>
+    <geci videoId="You Cool" start="5" text="词曲：耀乐团 演唱：耀乐团"/>
+    <geci videoId="You Cool" start="10" text="Bass"/>
+    <geci videoId="You Cool" start="13" text="Hello"/>
+    <geci videoId="You Cool" start="16" text="Bring"/>
+    <geci videoId="You Cool" start="19" text="With me"/>
+    <geci videoId="You Cool" start="21" text="With me"/>
+    <geci videoId="You Cool" start="26" text="Yao homie I made this beat"/>
+    <geci videoId="You Cool" start="28" text="I made this beat so go with me"/>
+    <geci videoId="You Cool" start="30" text="用影像记录"/>
+    <geci videoId="You Cool" start="31" text="用生命记住"/>
+    <geci videoId="You Cool" start="32" text="用身体叙述"/>
+    <geci videoId="You Cool" start="33" text="向风景寄宿"/>
+    <geci videoId="You Cool" start="34" text="沿途的来客走各色各样的路"/>
+    <geci videoId="You Cool" start="36" text="想活得更赞就拿出你的态度"/>
+    <geci videoId="You Cool" start="38" text="这条路我一步你一步他一步"/>
+    <geci videoId="You Cool" start="40" text="把梦想握住"/>
+    <geci videoId="You Cool" start="41" text="我们永远不孤独"/>
+    <geci videoId="You Cool" start="42" text="如果说精神是食粮"/>
+    <geci videoId="You Cool" start="44" text="那影像就是食堂"/>
+    <geci videoId="You Cool" start="46" text="喂饱饥饿的双眼"/>
+    <geci videoId="You Cool" start="48" text="盯住精彩的瞬间"/>
+    <geci videoId="You Cool" start="50" text="我们在不同地域"/>
+    <geci videoId="You Cool" start="51" text="因为相同的兴趣"/>
+    <geci videoId="You Cool" start="53" text="独一无二的你和我相遇"/>
+    <geci videoId="You Cool" start="54" text="流星滑过天际说谜语"/>
+    <geci videoId="You Cool" start="57" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="You Cool" start="61" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="You Cool" start="65" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="You Cool" start="69" text="Do mi re mi fa mi so mi with me yeah"/>
+    <geci videoId="You Cool" start="73" text="Na..."/>
+    <geci videoId="You Cool" start="80" text="You Cool"/>
+    <geci videoId="You Cool" start="81" text="Na..."/>
+    <geci videoId="You Cool" start="87" text="I'm cool"/>
+    <geci videoId="You Cool" start="88" text="Na..."/>
+    <geci videoId="You Cool" start="95" text="Yao cool"/>
+    <geci videoId="You Cool" start="96" text="Na..."/>
+    <geci videoId="You Cool" start="103" text="Yao cool"/>
+    <geci videoId="You Cool" start="104" text="Yao homie I made this beat"/>
+    <geci videoId="You Cool" start="105" text="I made this beat so go with me"/>
+    <geci videoId="You Cool" start="107" text="用影像记录"/>
+    <geci videoId="You Cool" start="108" text="用生命记住"/>
+    <geci videoId="You Cool" start="109" text="用身体叙述"/>
+    <geci videoId="You Cool" start="110" text="向风景寄宿"/>
+    <geci videoId="You Cool" start="111" text="沿途的来客走各色各样的路"/>
+    <geci videoId="You Cool" start="113" text="想活得更赞就拿出你的态度"/>
+    <geci videoId="You Cool" start="115" text="这条路我一步你一步他一步"/>
+    <geci videoId="You Cool" start="117" text="把梦想握住"/>
+    <geci videoId="You Cool" start="118" text="我们永远不孤独"/>
+    <geci videoId="You Cool" start="119" text="如果说精神是食粮"/>
+    <geci videoId="You Cool" start="121" text="那影像就是食堂"/>
+    <geci videoId="You Cool" start="123" text="喂饱饥饿的双眼"/>
+    <geci videoId="You Cool" start="125" text="盯住精彩的瞬间"/>
+    <geci videoId="You Cool" start="127" text="我们在不同地域"/>
+    <geci videoId="You Cool" start="129" text="因为相同的兴趣"/>
+    <geci videoId="You Cool" start="130" text="独一无二的你和我相遇"/>
+    <geci videoId="You Cool" start="132" text="流星滑过天际说谜语"/>
+    <geci videoId="You Cool" start="134" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="You Cool" start="138" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="You Cool" start="142" text="Do mi re mi fa mi so mi with me up"/>
+    <geci videoId="You Cool" start="145" text="Do mi re mi fa mi so mi with me yeah"/>
+    <geci videoId="You Cool" start="149" text="Na..."/>
+    <geci videoId="You Cool" start="156" text="You Cool"/>
+    <geci videoId="You Cool" start="157" text="Na..."/>
+    <geci videoId="You Cool" start="164" text="I'm cool"/>
+    <geci videoId="You Cool" start="165" text="Na..."/>
+    <geci videoId="You Cool" start="172" text="Yao cool"/>
+    <geci videoId="You Cool" start="173" text="Na..."/>
+    <geci videoId="You Cool" start="179" text="Yao cool"/>
     
     <geci videoId="我" start="0" text="《我》"/>
     <geci videoId="我" start="6" text="词曲：王鹏飞"/>
