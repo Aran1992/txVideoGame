@@ -126,7 +126,7 @@ class Txsp {
             return;
         }
         //钱够直接买
-        let price = shopdata.model.currPrice*platform.getPriceRate();
+        let price = shopdata.model.currPrice;//*platform.getPriceRate();
         if (leftMoney>=price){//){shopdata.currPrice
             let okFunc=()=>{
                             if(txsp_debug)

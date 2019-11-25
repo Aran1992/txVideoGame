@@ -11,7 +11,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img0" anchorOffsetY="0" touchEnabled="true" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
+                             source="sc_xuanding_tu2_jpg" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong0" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -39,7 +39,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img2" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
+                             source="sc_xuanding_tu2_jpg" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong2" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -67,7 +67,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img1" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
+                             source="sc_xuanding_tu2_jpg" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong1" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -95,7 +95,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img3" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
+                             source="sc_xuanding_tu2_jpg" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong3" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -123,7 +123,7 @@
                     <e:Image anchorOffsetY="0" touchEnabled="false" source="sc_img_di_png" horizontalCenter="-2"
                              verticalCenter="0" />
                     <e:Image id="img4" anchorOffsetY="0" touchEnabled="false" scale9Grid="278,0,16,250"
-                             source="sc_xuanding_tu2_png" horizontalCenter="-2" verticalCenter="0"  height="565"/>
+                             source="sc_xuanding_tu2_jpg" horizontalCenter="-2" verticalCenter="0"  height="565"/>
                     <e:Group id="xindong4" touchChildren="false" touchEnabled="false" anchorOffsetX="0" right="29"
                              top="26">
                         <e:Image anchorOffsetY="0" touchEnabled="false" y="0" scale9Grid="278,0,16,250" x="0"
@@ -212,6 +212,6 @@
             </e:skinName>
         </e:Button>
     </e:Group>
-    <e:Image id="datu" anchorOffsetY="0" touchEnabled="true" source="sc_xuanding_tu2_png" horizontalCenter="-2"
+    <e:Image id="datu" anchorOffsetY="0" touchEnabled="true" source="sc_xuanding_tu2_jpg" horizontalCenter="-2"
              verticalCenter="0" visible="false" />
 </e:Skin>

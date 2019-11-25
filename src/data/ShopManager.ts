@@ -300,10 +300,7 @@ class ShopInfoData {
     public updateShopData(info): void {
         this.saleId = info.saleId;
         this.id = parseInt(this.saleId);
-        if (info.currPrice == 180) {
-            console.trace();
-        }
-        this.currPrice = info.currPrice;
+        this.currPrice = info.currPrice*platform.getPriceRate();
         if (info.pay) this.pay = info.pay;
         if (info.origPrice) this.origPrice = info.origPrice;
         if (info.saleIntro) this.saleIntro = info.saleIntro;
