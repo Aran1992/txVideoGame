@@ -1,15 +1,3 @@
-// const list = [
-//     "get_quantao_1",
-//     "get_quantao_2",
-//     "get_quantao_3",
-//     "get_erfan_1",
-//     "get_erfan_2",
-//     "get_erfan_3",
-//     "get_yuepu_1",
-//     "get_yuepu_1_erfan_1",
-//     "get_cd_1_yuepu_1",
-// ];
-
 const TASK = [
     {
         "chapter": "序章",
@@ -40,7 +28,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 100
+                        "num": 200
                     }
                 ],
                 "id": "0-0-1"
@@ -112,7 +100,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 200
+                        "num": 300
                     }
                 ],
                 "id": "1-0-1"
@@ -147,7 +135,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 300
+                        "num": 400
                     }
                 ],
                 "id": "1-1-0"
@@ -214,7 +202,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 300
+                        "num": 400
                     }
                 ],
                 "id": "2-0-2"
@@ -248,7 +236,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 300
+                        "num": 400
                     }
                 ],
                 "id": "2-1-0"
@@ -266,7 +254,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 300
+                        "num": 500
                     }
                 ],
                 "id": "2-1-1"
@@ -355,7 +343,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 500
+                        "num": 700
                     }
                 ],
                 "id": "3-1-0"
@@ -451,7 +439,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 800
+                        "num": 900
                     }
                 ],
                 "id": "4-1-0"
@@ -468,7 +456,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 800
+                        "num": 900
                     }
                 ],
                 "id": "4-1-1"
@@ -485,7 +473,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 800
+                        "num": 900
                     }
                 ],
                 "id": "4-1-2"
@@ -657,7 +645,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 800
+                        "num": 1000
                     }
                 ],
                 "id": "5-1-0"
@@ -678,7 +666,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 1000
+                        "num": 1100
                     }
                 ],
                 "id": "5-1-1"
@@ -699,7 +687,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 1000
+                        "num": 1100
                     }
                 ],
                 "id": "5-1-2"
@@ -720,7 +708,7 @@ const TASK = [
                 "reward": [
                     {
                         "type": "suipian",
-                        "num": 1000
+                        "num": 1100
                     }
                 ],
                 "id": "5-1-3"
@@ -1265,12 +1253,12 @@ class TaskManager {
     }
 
     public receiveTaskReward(task) {
-        let eventId = "get";
+        let eventId = "";
         task.reward.forEach(reward => {
             switch (reward.type) {
                 case "suipian": {
                     UserInfo.suipianMoney += reward.num;
-                    GameCommon.getInstance().onShowResultTips('奖励领取成功');
+                    GameCommon.getInstance().onShowResultTips('领取成功');
                     break;
                 }
                 case "goods": {
@@ -1279,7 +1267,7 @@ class TaskManager {
                     break;
                 }
                 default: {
-                    eventId += `_${reward.type}_${reward.num || 1}`
+                    eventId += `completed_task_${task.id}`
                 }
             }
         });
@@ -1289,17 +1277,17 @@ class TaskManager {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
         };
         console.log("eventId", eventId);
-        if (eventId.length > 3) {
+        if (eventId.length !== 0) {
             platform.sendRequest({
                 "bookId": GameDefine.BOOKID,
                 "cmd": "reportBookGiftPkgEvent",
                 "eventId": eventId,
             }, (data) => {
                 if (data.code == 0) {
-                    GameCommon.getInstance().showCommomTips("奖励领取成功");
+                    GameCommon.getInstance().showCommomTips("领取成功");
                     handler();
                 } else {
-                    GameCommon.getInstance().showCommomTips("奖励领取失败，请稍后重试");
+                    GameCommon.getInstance().showCommomTips("领取成功，请稍后重试");
                 }
             });
         } else {

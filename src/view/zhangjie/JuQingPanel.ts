@@ -32,7 +32,7 @@ class JuQingPanel extends eui.Component {
     private imgMaxNumb: number = 5;
     private _playTween: boolean;
     private _guideIndex: number = 0;
-    private idGainShuipian:eui.Button;
+    private idGainShuipian: eui.Button;
 
     constructor() {
         super();
@@ -46,9 +46,10 @@ class JuQingPanel extends eui.Component {
         }
     }
 
-    private static onGetSuipian(){
-        UserInfo.suipianMoney  = UserInfo.suipianMoney+1000
+    private static onGetSuipian() {
+        UserInfo.suipianMoney = UserInfo.suipianMoney + 1000
     }
+
     private static onCleanCache() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         for (let i: number = 1; i < FILE_TYPE.SIZE; i++) {
@@ -648,6 +649,10 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
     }
 
     private getOpenStatus(juqingCfg: Modeljuqingkuai) {
+        // 剧情3被删除掉了 不好改动配置 直接在代码里设置为不可见
+        if (juqingCfg.id === 3) {
+            return this.NOT_SHOW;
+        }
         if (!UserInfo.curBokData) {
             return this.NOT_SHOW;
         }

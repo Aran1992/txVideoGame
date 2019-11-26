@@ -1037,6 +1037,15 @@ class VideoData extends egret.DisplayObjectContainer {
             GameCommon.getInstance().showCommomTips('视频初始不可回退');
             return;
         }
+
+        if (this.curWentiId) {
+            let wentiLastTime: number = Number(wentiModels[this.curWentiId].time) + Number(videoModels[this.videoIdx].time);
+            if (VideoManager.getInstance().videoCurrTime() - 10 <= wentiLastTime) {
+                GameCommon.getInstance().showCommomTips('不可回退到互动');
+                return;
+            }
+        }
+
         if (VideoManager.getInstance().videoCurrTime() - 12 > 0) {
             VideoManager.getInstance().videoPause();
             widPlayer.seek(VideoManager.getInstance().videoCurrTime() - 10);
@@ -1170,10 +1179,12 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
             }
         }
-        if (wentiModels[data.data.wentiId].type != ActionType.OPTION) {
-            GameCommon.getInstance().shock(1, data.data.click);
-        } else {
-            GameCommon.getInstance().shock();
+        if (["V302", "V304A"].indexOf(this.videoIdx) === -1) {
+            if (wentiModels[data.data.wentiId].type != ActionType.OPTION) {
+                GameCommon.getInstance().shock(1, data.data.click);
+            } else {
+                GameCommon.getInstance().shock();
+            }
         }
         VideoManager.getInstance().setSpeed(GameDefine.CUR_SPEED);
         this.fileTimerIdx = 0;

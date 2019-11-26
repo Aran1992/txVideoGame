@@ -61,6 +61,7 @@ class VideoManager {
         switch (chapterID) {
             case 0:
                 isComplete = true;
+                UserInfo.curchapter = chapterID;
                 break;
             case 10:
                 const likeDataList = GameCommon.getInstance().getSortLikeAry();

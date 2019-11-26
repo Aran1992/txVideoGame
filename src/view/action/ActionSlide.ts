@@ -64,7 +64,7 @@ class ActionSlide extends ActionSceneBase {
             this.handAni = new my.Animation('effect_motou3', -1);
             this.dangaoGroup.addChild(this.handAni);
             this.handAni.onPlay();
-            this.handMoveDis = [50, 0];
+            this.handMoveDis = [100, -100];
         } else {
             this.curGroup = this.groupHand;
             this.groupHand.anchorOffsetX = this.groupHand.width / 2;

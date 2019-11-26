@@ -14,20 +14,20 @@
     <juqingkuai id="12" show="3" scal="1" wentiId="18" videoId="V219" openVideo="V215,V218" lastKuai="11" BE="0" name="2-3 讨论参加蓝加仑"/>
     <juqingkuai id="13" show="3" scal="1" wentiId="18" videoId="V220" openVideo="V219" lastKuai="12" BE="1" name="*"/>
     <juqingkuai id="14" show="3" scal="1" wentiId="19" videoId="V221B" openVideo="V221A" lastKuai="12" BE="0" name="2-4 想起了谁"/>
-    <juqingkuai id="15" show="3" scal="0.58" wentiId="19" videoId="V223" openVideo="V221B" lastKuai="14" BE="0" name="想起韩小白"/>
-    <juqingkuai id="16" show="3" scal="0.58" wentiId="19" videoId="V224" openVideo="V221B" lastKuai="14" BE="0" name="想起肖千也"/>
-    <juqingkuai id="17" show="3" scal="0.58" wentiId="19" videoId="V225" openVideo="V221B" lastKuai="14" BE="0" name="想起肖万寻"/>
-    <juqingkuai id="18" show="3" scal="0.58" wentiId="19" videoId="V222" openVideo="V221B" lastKuai="14" BE="0" name="想起夏子豪"/>
+    <juqingkuai id="15" show="3" scal="0.58" wentiId="20" videoId="V223" openVideo="V221B" lastKuai="14" BE="0" name="想起韩小白"/>
+    <juqingkuai id="16" show="3" scal="0.58" wentiId="20" videoId="V224" openVideo="V221B" lastKuai="14" BE="0" name="想起肖千也"/>
+    <juqingkuai id="17" show="3" scal="0.58" wentiId="20" videoId="V225" openVideo="V221B" lastKuai="14" BE="0" name="想起肖万寻"/>
+    <juqingkuai id="18" show="3" scal="0.58" wentiId="20" videoId="V222" openVideo="V221B" lastKuai="14" BE="0" name="想起夏子豪"/>
     <juqingkuai id="19" show="4" scal="1" wentiId="20" videoId="V301" openVideo="V226" lastKuai="15,16,17,18" BE="0" name="3-1 夏迪的帮助"/>
     <juqingkuai id="20" show="4" scal="1" wentiId="21" videoId="V304" openVideo="V303" lastKuai="19" BE="0" name="3-2 万寻与千也的争吵"/>
     <juqingkuai id="21" show="4" scal="1" wentiId="22" videoId="V401" openVideo="V307" lastKuai="20" BE="0" name="4-1 希亚小舞台的试演"/>
     <juqingkuai id="22" show="4" scal="1" wentiId="24" videoId="V404B" openVideo="V404A" lastKuai="21" BE="0" name="4-2 乐队争执"/>
     <juqingkuai id="23" show="4" scal="1" wentiId="0" videoId="V408" openVideo="V407" lastKuai="22" BE="1" name="*"/>
     <juqingkuai id="24" show="5" scal="1" wentiId="26" videoId="V411" openVideo="V409,V410" lastKuai="22" BE="0" name="4-3 观众的议论"/>
-    <juqingkuai id="25" show="5" scal="0.58" wentiId="26" videoId="V412" openVideo="V411" lastKuai="24" BE="0" name="区域A"/>
-    <juqingkuai id="26" show="5" scal="0.58" wentiId="26" videoId="V413" openVideo="V411" lastKuai="24" BE="0" name="区域B"/>
-    <juqingkuai id="27" show="5" scal="0.58" wentiId="26" videoId="V414" openVideo="V411" lastKuai="24" BE="0" name="区域C"/>
-    <juqingkuai id="28" show="5" scal="0.58" wentiId="26" videoId="V415" openVideo="V411" lastKuai="24" BE="0" name="区域D"/>
+    <juqingkuai id="25" show="5" scal="0.58" wentiId="27" videoId="V412" openVideo="V411" lastKuai="24" BE="0" name="区域A"/>
+    <juqingkuai id="26" show="5" scal="0.58" wentiId="27" videoId="V413" openVideo="V411" lastKuai="24" BE="0" name="区域B"/>
+    <juqingkuai id="27" show="5" scal="0.58" wentiId="27" videoId="V414" openVideo="V411" lastKuai="24" BE="0" name="区域C"/>
+    <juqingkuai id="28" show="5" scal="0.58" wentiId="27" videoId="V415" openVideo="V411" lastKuai="24" BE="0" name="区域D"/>
     <juqingkuai id="29" show="5" scal="1" wentiId="27" videoId="V501" openVideo="V416" lastKuai="25,26,27,28" BE="0" name="5-1 合宿练习"/>
     <juqingkuai id="30" show="6" scal="0.58" wentiId="28" videoId="V502" openVideo="V501" lastKuai="29" BE="0" name="肖千也的游乐场"/>
     <juqingkuai id="31" show="6" scal="0.58" wentiId="30" videoId="V508" openVideo="V501" lastKuai="29" BE="0" name="夏子豪的篮球场"/>
@@ -49,10 +49,10 @@
     <juqingkuai id="47" show="8" scal="1" wentiId="49" videoId="V803" openVideo="V801" lastKuai="45" BE="0" name="8-2 众人登台"/>
     <juqingkuai id="48" show="8" scal="1" wentiId="49" videoId="V804" openVideo="V803" lastKuai="47" BE="1" name="*"/>
     <juqingkuai id="49" show="8" scal="1" wentiId="50" videoId="V807" openVideo="V803" lastKuai="47" BE="0" name="8-3 开始表演"/>
-    <juqingkuai id="50" show="9" scal="0.58" wentiId="0" videoId="V808" openVideo="V807" lastKuai="49" BE="0" name="看向夏子豪"/>
-    <juqingkuai id="51" show="9" scal="0.58" wentiId="0" videoId="V809" openVideo="V807" lastKuai="49" BE="0" name="看向韩小白"/>
-    <juqingkuai id="52" show="9" scal="0.58" wentiId="0" videoId="V810" openVideo="V807" lastKuai="49" BE="0" name="看向肖万寻"/>
-    <juqingkuai id="53" show="9" scal="0.58" wentiId="0" videoId="V811" openVideo="V807" lastKuai="49" BE="0" name="看向肖千也"/>
+    <juqingkuai id="50" show="9" scal="0.58" wentiId="51" videoId="V808" openVideo="V807" lastKuai="49" BE="0" name="看向夏子豪"/>
+    <juqingkuai id="51" show="9" scal="0.58" wentiId="51" videoId="V809" openVideo="V807" lastKuai="49" BE="0" name="看向韩小白"/>
+    <juqingkuai id="52" show="9" scal="0.58" wentiId="51" videoId="V810" openVideo="V807" lastKuai="49" BE="0" name="看向肖万寻"/>
+    <juqingkuai id="53" show="9" scal="0.58" wentiId="51" videoId="V811" openVideo="V807" lastKuai="49" BE="0" name="看向肖千也"/>
     <juqingkuai id="54" show="9" scal="1" wentiId="51" videoId="V901" openVideo="V812" lastKuai="50,51,52,53" BE="0" name="9-1 大家冰释前嫌"/>
     <juqingkuai id="55" show="9" scal="1" wentiId="53" videoId="V907" openVideo="V905,V906" lastKuai="54" BE="0" name="9-2 准备迎接决战"/>
     <juqingkuai id="56" show="9" scal="1" wentiId="0" videoId="V908" openVideo="V907" lastKuai="54" BE="1" name="Ge：江雪结局"/>
