@@ -63,16 +63,7 @@ class VideoData extends egret.DisplayObjectContainer {
             nextVid: "VW1207"
         },
         {
-            check: () => {
-                const list = [59, 60, 61, 62, 63];
-                let a = 0;
-                list.forEach(id => {
-                    if (UserInfo.curBokData.answerId[id] === 1) {
-                        a++;
-                    }
-                });
-                return a >= 4;
-            },
+            check: () => GameCommon.getInstance().getRoleLikeAll(ROLE_INDEX.ZiHao_Xia) >= 12,
             curVidList: ["VX1204"],
             nextVid: "VX1205"
         },
