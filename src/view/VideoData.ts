@@ -23,10 +23,6 @@ class VideoData extends egret.DisplayObjectContainer {
     public videoPauseTime: number = 0;
     private actionScene: egret.DisplayObjectContainer;
     private pauseByPauseEvent: boolean = false;
-    /**
-     * 下一个视频需要好感度才能播放的 否则进BE规则
-     * 视频ID对应数组 是每个角色的好感度值
-     */
     private Video_Like_Condition = {
         "V801": {
             check: () => !([0, 1, 2, 3].some(roleIndex => GameCommon.getInstance().getRoleLikeAll(roleIndex) >= 7))
@@ -42,10 +38,45 @@ class VideoData extends egret.DisplayObjectContainer {
     };
     private Video_Opt_Condition = {
         "VH1116": {options: {"54": 1, "55": 1, "56": 1}, nextVideoId: "VH1117"},
-        "VX1204": {options: {"59": 1, "61": 1, "62": 1, "63": 1}, nextVideoId: "VX1205"},
         "VY1204": {options: {"68": 1, "69": 1, "70": 1}, nextVideoId: "VY1205"},
         "VW1201": {options: {"71": 1, "72": 1}, nextVideoId: "VW1202"},
+        "VH1113": {options: {"57": 2}, nextVideoId: "VH1116,VH1118"},
+        "VH1114": {options: {"57": 1, "76": 2}, nextVideoId: "VH1116,VH1118"},
+        "VX1110": {options: {"59": 1, "60": 1, "61": 1, "62": 1}, rightNum: 3, nextVideoId: "VX1111"},
     };
+    private caidanList = [
+        {
+            check: () => {
+                const list = [64, 65, 66, 67];
+                let a = 0;
+                let b = 0;
+                list.forEach(id => {
+                    if (UserInfo.curBokData.answerId[id] === 1) {
+                        a++;
+                    } else {
+                        b++;
+                    }
+                });
+                return a === b;
+            },
+            curVidList: ["VW1206", "VY1206"],
+            nextVid: "VW1207"
+        },
+        {
+            check: () => {
+                const list = [59, 60, 61, 62, 63];
+                let a = 0;
+                list.forEach(id => {
+                    if (UserInfo.curBokData.answerId[id] === 1) {
+                        a++;
+                    }
+                });
+                return a >= 4;
+            },
+            curVidList: ["VX1204"],
+            nextVid: "VX1205"
+        },
+    ];
     private againTime: number = 0;
     private againFlg: boolean = false;
     private touchId: string;
@@ -419,8 +450,22 @@ class VideoData extends egret.DisplayObjectContainer {
                     } else {
                         if (videoModels[this.videoIdx].tiaozhuan == TIAOZHUAN_Type.RESULT) {
                             if (videoCurTime >= jtime && !isShowRes) {
-                                this.onShowResult();
                                 isShowRes = true;
+                                const list = this.caidanList;
+                                for (let i = 0; i < list.length; i++) {
+                                    const item = list[i];
+                                    if (item.check() && item.curVidList.indexOf(this.videoIdx) !== -1) {
+                                        this.curVideoIDs = [item.nextVid];
+                                        this.curVideoIndex = 0;
+                                        let nextVideoSrc: string = this.curVideoIDs[this.curVideoIndex];
+                                        VideoManager.getInstance().isReadySet = true;
+                                        VideoManager.getInstance().onLoadSrc(nextVideoSrc);
+                                        this._nextVid = nextVideoSrc;
+                                        tips.hideTips();
+                                        return;
+                                    }
+                                }
+                                this.onShowResult();
                                 return;
                             }
                             if (!videoNextFlg || isShowRes) {
@@ -516,8 +561,10 @@ class VideoData extends egret.DisplayObjectContainer {
                                             }
                                         }
                                     }
-                                    if (rightNum < totalNum) {
-                                        this.curVideoIDs = [optConditionData.nextVideoId];
+                                    if (optConditionData.rightNum ?
+                                        rightNum < optConditionData.rightNum :
+                                        rightNum < totalNum) {
+                                        this.curVideoIDs = optConditionData.nextVideoId.split(",");
                                         this.curVideoIndex = 0;
                                     }
                                 }
@@ -825,31 +872,6 @@ class VideoData extends egret.DisplayObjectContainer {
     protected createGameScene(): void {
         VideoManager.getInstance().init(this);
         this.onCreateData();
-    }
-
-    private checkCaidan1() {
-        const list = [64, 65, 66, 67];
-        let a = 0;
-        let b = 0;
-        list.forEach(id => {
-            if (UserInfo.curBokData.answerId[id] === 1) {
-                a++;
-            } else {
-                b++;
-            }
-        });
-        return a === b;
-    }
-
-    private checkCaidan2() {
-        const list = [59, 60, 61, 62, 63];
-        let a = 0;
-        list.forEach(id => {
-            if (UserInfo.curBokData.answerId[id] === 1) {
-                a++;
-            }
-        });
-        return a >= 4;
     }
 
     private onRegistEvent(): void {

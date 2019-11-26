@@ -152,8 +152,8 @@
     <answer qid="68" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VY1103,VY1104" nextid="69" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="69" chengjiuId="*" ansid="1" des="成功" like="0,0,0,0" videos="VY1105,VY1107" nextid="0" isdie="0" nextChapterId="32" shanhuiid="*"/>
     <answer qid="69" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VY1106,VY1107" nextid="0" isdie="0" nextChapterId="32" shanhuiid="*"/>
-    <answer qid="70" chengjiuId="*" ansid="1" des="成功" like="0,0,0,0" videos="VY1203,VY1204,VY1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
-    <answer qid="70" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VY1202,VY1204,VY1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
+    <answer qid="70" chengjiuId="*" ansid="1" des="成功" like="0,0,0,0" videos="VY1202,VY1204,VY1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
+    <answer qid="70" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VY1203,VY1204,VY1206" nextid="0" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="71" chengjiuId="*" ansid="1" des="成功" like="0,0,0,0" videos="VW1102,VW1104" nextid="72" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="71" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="VW1103,VW1104" nextid="72" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="72" chengjiuId="*" ansid="1" des="成功" like="0,0,0,0" videos="VW1105,VW1107" nextid="0" isdie="0" nextChapterId="42" shanhuiid="*"/>
@@ -165,9 +165,9 @@
     <answer qid="75" chengjiuId="13" ansid="1" des="弹琴combo全连" like="0,0,0,2" videos="V116" nextid="12" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="75" chengjiuId="*" ansid="2" des="弹琴点了部分" like="0,0,0,1" videos="V116" nextid="12" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="75" chengjiuId="*" ansid="3" des="弹琴一个都没点到" like="0,0,0,0" videos="V116" nextid="12" isdie="0" nextChapterId="0" shanhuiid="*"/>
-    <answer qid="76" chengjiuId="*" ansid="1" des="电脑" like="0,0,0,0" videos="VH1113,VH1114,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
-    <answer qid="76" chengjiuId="*" ansid="2" des="书架" like="0,0,0,0" videos="VH1111,VH1114,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
-    <answer qid="76" chengjiuId="*" ansid="3" des="抽屉" like="0,0,0,0" videos="VH1112,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
+    <answer qid="76" chengjiuId="*" ansid="1" des="电脑" like="0,0,0,0" videos="VH1113,VH1115,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
+    <answer qid="76" chengjiuId="*" ansid="2" des="书架" like="0,0,0,0" videos="VH1111,VH1114,VH1115,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
+    <answer qid="76" chengjiuId="*" ansid="3" des="抽屉" like="0,0,0,0" videos="VH1112,VH1114,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
     <answer qid="76" chengjiuId="*" ansid="4" des="桌子" like="0,0,0,0" videos="VH1110,VH1114,VH1116,VH1118" nextid="0" isdie="0" nextChapterId="12" shanhuiid="*"/>
     <answer qid="77" chengjiuId="*" ansid="1" des="发送" like="0,0,0,0" videos="V304A" nextid="78" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="77" chengjiuId="*" ansid="2" des="不发送" like="0,0,0,0" videos="V304A" nextid="78" isdie="0" nextChapterId="0" shanhuiid="*"/>
