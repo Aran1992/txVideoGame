@@ -81,8 +81,8 @@
     <answer qid="34" chengjiuId="*" ansid="2" des="找夏子豪" like="0,0,1,0" videos="V608" nextid="36" isdie="0" nextChapterId="0" shanhuiid="*"/>
     <answer qid="34" chengjiuId="*" ansid="3" des="陪肖万寻" like="0,0,0,1" videos="V612,V620" nextid="0" isdie="0" nextChapterId="7" shanhuiid="*"/>
     <answer qid="34" chengjiuId="*" ansid="4" des="找韩小白" like="1,0,0,0" videos="V613" nextid="38" isdie="0" nextChapterId="0" shanhuiid="*"/>
-    <answer qid="35" chengjiuId="*" ansid="1" des="向左走" like="0,1,0,0" videos="V606,V619,V620" nextid="0" isdie="0" nextChapterId="7" shanhuiid="*"/>
-    <answer qid="35" chengjiuId="*" ansid="2" des="向右走" like="0,0,0,0" videos="V607,V620" nextid="0" isdie="0" nextChapterId="7" shanhuiid="*"/>
+    <answer qid="35" chengjiuId="*" ansid="1" des="向左走" like="0,1,0,0" videos="V606,V620" nextid="0" isdie="0" nextChapterId="7" shanhuiid="*"/>
+    <answer qid="35" chengjiuId="*" ansid="2" des="向右走" like="0,0,0,0" videos="V607,V619,V620" nextid="0" isdie="0" nextChapterId="7" shanhuiid="*"/>
     <answer qid="36" chengjiuId="*" ansid="1" des="成功" like="0,0,1,0" videos="V609,V611,V620" nextid="0" isdie="0" nextChapterId="7" shanhuiid="*"/>
     <answer qid="36" chengjiuId="*" ansid="2" des="失败" like="0,0,0,0" videos="V610,V611,V620" nextid="0" isdie="0" nextChapterId="7" shanhuiid="*"/>
     <answer qid="38" chengjiuId="*" ansid="1" des="向左走" like="0,0,0,0" videos="V614" nextid="39" isdie="0" nextChapterId="0" shanhuiid="*"/>
