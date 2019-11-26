@@ -50,16 +50,16 @@ class GameCommon {
         19: () => {
             const list = [];
             if (GameCommon.getRoleLike(2) < 3) {
-                list.push(1);
-            }
-            if (GameCommon.getRoleLike(0) < 2) {
                 list.push(2);
             }
+            if (GameCommon.getRoleLike(0) < 2) {
+                list.push(0);
+            }
             if (GameCommon.getRoleLike(3) < 2) {
-                list.push(4);
+                list.push(3);
             }
             if (GameCommon.getRoleLike(1) < 1) {
-                list.push(3);
+                list.push(1);
             }
             return list;
         },
