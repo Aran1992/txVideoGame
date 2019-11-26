@@ -25,6 +25,8 @@ class Mp3Panel extends eui.Component {
     private musicEndedFun: Function;
     private musicLoadFun: Function;
     private musicErrorFun: Function;
+    private dragTimer;
+
 
     // private musicDic: string[] = ['如果你也有梦想', '不知道叫什么歌好', '六个字的名字']
     constructor(data) {
@@ -107,7 +109,7 @@ class Mp3Panel extends eui.Component {
         this.share.y = 355 / 2;
         this.drawArc(this.share, 0, 400, 600);
         this.timeImg.parent.addChild(this.share);
-        this.timeImg.mask = this.share;
+        //this.timeImg.mask = this.share;
         this.onCreateMp3();
         this.banner_img.source = `${this.scCfg.id}_view_yuan_png`
     }
@@ -207,9 +209,9 @@ class Mp3Panel extends eui.Component {
     private dragMove() {
         var obj = this;
         var index: number = 0;
-        setInterval(function () {
+        this.dragTimer = setInterval(function () {
             obj.drawArc(obj.share, window['audioMp3'].currentTime, window['audioMp3'].duration, 600);            
-            obj.timeImg.mask = obj.share;
+            //obj.timeImg.mask = obj.share;
             if (obj._geci[obj.geciIdx]) {
                 if (obj._geci[obj.geciIdx].name >= window['audioMp3'].currentTime && obj._geci[obj.geciIdx].name <= window['audioMp3'].currentTime + 1) {
                     if (obj._geci[obj.geciIdx - 1]) {
@@ -232,7 +234,10 @@ class Mp3Panel extends eui.Component {
     }
 
     private stopDragMove() {
-        clearInterval(500);
+        if (this.dragTimer){
+            clearInterval(this.dragTimer);
+            this.dragTimer = null;
+        }
     }
 
     //播放时间
