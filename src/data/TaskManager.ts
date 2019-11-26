@@ -1284,10 +1284,10 @@ class TaskManager {
                 "eventId": eventId,
             }, (data) => {
                 if (data.code == 0) {
-                    GameCommon.getInstance().showCommomTips("领取成功");
+                    GameCommon.getInstance().onShowResultTips("领取成功\n可在1001邮件中查看");
                     handler();
                 } else {
-                    GameCommon.getInstance().showCommomTips("领取成功，请稍后重试");
+                    GameCommon.getInstance().showCommomTips("领取失败，请稍后重试");
                 }
             });
         } else {

@@ -456,17 +456,14 @@ class GameCommon {
         let likeNum = 0;
         for (let wentiID in likeData) {
             if (likeData.hasOwnProperty(wentiID)) {
-                const wentiModel: Modelwenti = JsonModelManager.instance.getModelwenti()[wentiID];
-                if (GameCommon.isChapterInRoleJuqingTree(wentiModel.chapter, bookData.curchapter)) {
-                    let wentiAnswerModels = JsonModelManager.instance.getModelanswer()[wentiID];
-                    if (wentiAnswerModels) {
-                        let answerList: string[] = likeData[wentiID].toString().split(",");
-                        for (let i: number = 0; i < answerList.length; i++) {
-                            let answerID: number = Number(answerList[i]) - 1;
-                            let ansCfg: Modelanswer = wentiAnswerModels[answerID];
-                            if (ansCfg) {
-                                likeNum = likeNum + this.getCurRoleLike(index, ansCfg.like);
-                            }
+                let wentiAnswerModels = JsonModelManager.instance.getModelanswer()[wentiID];
+                if (wentiAnswerModels) {
+                    let answerList: string[] = likeData[wentiID].toString().split(",");
+                    for (let i: number = 0; i < answerList.length; i++) {
+                        let answerID: number = Number(answerList[i]) - 1;
+                        let ansCfg: Modelanswer = wentiAnswerModels[answerID];
+                        if (ansCfg) {
+                            likeNum = likeNum + this.getCurRoleLike(index, ansCfg.like);
                         }
                     }
                 }
@@ -861,10 +858,9 @@ class GameCommon {
 
     //确定章节是否已开启
     public checkChapterLocked() {
-        let curChapterId = this.getPlayingChapterId();
-        if (curChapterId == 0)
+        let nextChapterId = UserInfo.curchapter;
+        if (nextChapterId == 0)
             return true;
-        let nextChapterId = this.getNextChapterId(curChapterId);
         let onSale = this.isChapterOnSale(nextChapterId);
         //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
         //let isVip = item.num > 0;

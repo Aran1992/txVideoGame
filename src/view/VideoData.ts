@@ -501,7 +501,6 @@ class VideoData extends egret.DisplayObjectContainer {
                                 if (likeConditionData && likeConditionData.check()) {
                                     this.curVideoIDs = [likeConditionData.BEVideo];
                                     this.curVideoIndex = 0;
-                                    this.tipsPanel.hideTips();
                                 }
                                 let optConditionData = this.Video_Opt_Condition[this.videoIdx];
                                 if (optConditionData) {
@@ -522,7 +521,6 @@ class VideoData extends egret.DisplayObjectContainer {
                                         this.curVideoIndex = 0;
                                     }
                                 }
-
                                 let nextVideoSrc: string = this.curVideoIDs[this.curVideoIndex];
                                 VideoManager.getInstance().onLoadSrc(nextVideoSrc);
                                 this._nextVid = nextVideoSrc;
@@ -829,6 +827,31 @@ class VideoData extends egret.DisplayObjectContainer {
         this.onCreateData();
     }
 
+    private checkCaidan1() {
+        const list = [64, 65, 66, 67];
+        let a = 0;
+        let b = 0;
+        list.forEach(id => {
+            if (UserInfo.curBokData.answerId[id] === 1) {
+                a++;
+            } else {
+                b++;
+            }
+        });
+        return a === b;
+    }
+
+    private checkCaidan2() {
+        const list = [59, 60, 61, 62, 63];
+        let a = 0;
+        list.forEach(id => {
+            if (UserInfo.curBokData.answerId[id] === 1) {
+                a++;
+            }
+        });
+        return a >= 4;
+    }
+
     private onRegistEvent(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.ONSHOW_VIDEO, this.onRefreshVideo, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.REDUCE_VIDEO_SPEED, this.onReduceVideo, this);
@@ -1038,7 +1061,7 @@ class VideoData extends egret.DisplayObjectContainer {
             return;
         }
 
-        if (this.curWentiId) {
+        if (this.curWentiId && videoModels[this.videoIdx].time) {
             let wentiLastTime: number = Number(wentiModels[this.curWentiId].time) + Number(videoModels[this.videoIdx].time);
             if (VideoManager.getInstance().videoCurrTime() - 10 <= wentiLastTime) {
                 GameCommon.getInstance().showCommomTips('不可回退到互动');
