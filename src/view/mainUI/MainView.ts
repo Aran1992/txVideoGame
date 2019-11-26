@@ -114,10 +114,12 @@ class MainView extends eui.Component {
     }
 
     private updateNewPoint() {
+        this.btnShouCang["idNewPoint"].x = this.btnShouCang["idTitle"].x + this.btnShouCang["idTitle"].width;
         this.btnShouCang["idNewPoint"].visible = ShopManager.getInstance().getNewPoint(0) > 0;
     }
 
     private updateTicketButtonPoint() {
+        this.btnChengjiu["idNewPoint1"].x = this.btnChengjiu["idTitle1"].x + this.btnChengjiu["idTitle1"].width;
         this.btnChengjiu["idNewPoint1"].visible = TaskManager.instance.hasReceivableReward();
     }
 
