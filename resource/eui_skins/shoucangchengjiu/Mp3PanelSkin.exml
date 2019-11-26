@@ -11,8 +11,8 @@
 		
 		<e:Image touchEnabled="true" source="control_zidi_select_png" x="281" y="391" scaleX="0.5" scaleY="0.5" />
 		<e:Label id="musicNum" text="8首" size="20" fontFamily="SimHei" textAlign="left" x="299" y="395" />
-		<e:Label id="musicName" text="" size="30" fontFamily="Arial" textAlign="left" x="75" y="390" width="164"
-		         height="34" touchEnabled="false" textColor="0xffffff" bold="true" />
+		<e:Label id="musicName" text="" size="30" fontFamily="Arial" textAlign="center" x="15.91" y="390" width="251.88"
+		         height="34" touchEnabled="false" textColor="0xffffff" bold="true"  anchorOffsetX="0"/>
 		<e:Label id="desc" text="" size="20" fontFamily="Arial" textAlign="left" x="74" y="429" width="265"
 		         touchEnabled="false" textColor="0xcecece" />
 	</e:Group>
