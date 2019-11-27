@@ -49,17 +49,17 @@ class GameCommon {
         },
         19: () => {
             const list = [];
-            if (GameCommon.getRoleLike(2) < 3) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.ZiHao_Xia) < 3) {
+                list.push(1);
+            }
+            if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) < 2) {
                 list.push(2);
             }
-            if (GameCommon.getRoleLike(0) < 2) {
-                list.push(0);
-            }
-            if (GameCommon.getRoleLike(3) < 2) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) < 2) {
                 list.push(3);
             }
-            if (GameCommon.getRoleLike(1) < 1) {
-                list.push(1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) < 1) {
+                list.push(4);
             }
             return list;
         },

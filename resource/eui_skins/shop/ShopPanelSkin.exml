@@ -9,8 +9,8 @@
 				<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
 					<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png"
 					         verticalCenter="0" left="0" />
-					<e:Label id="labelDisplay" size="50" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9"
-					         left="30" />
+					<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9"
+					         left="50" />
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
@@ -57,9 +57,9 @@
 			<e:RadioButton id="shopBtn2" groupName="tabGroup" label="音乐" skinName="skins.Common_TabButtonSkin1" width="260"
 			               height="90" value="2" />
 			<e:RadioButton id="shopBtn3" groupName="tabGroup" label="章节" skinName="skins.Common_TabButtonSkin1" width="260"
-			               height="90" value="3"  visible="false"/>
+			               height="90" value="3" visible="false" />
 			<e:RadioButton id="shopBtn4" groupName="tabGroup" label="道具" skinName="skins.Common_TabButtonSkin1" width="260"
-			               height="90" value="4"  visible="false"/>
+			               height="90" value="4" visible="false" />
 			<e:layout>
 				<e:VerticalLayout gap="15" />
 			</e:layout>
@@ -122,7 +122,7 @@
 			</e:Group>
 			<e:Group id="xinshoubao_grp" width="100%" height="765">
 				<e:Image source="shop_xinshou_bg_png" scale9Grid="15,3,91,50" bottom="40" top="20" left="10" right="40"
-				          locked="true"/>
+				         locked="true" />
 				<e:Scroller left="20" right="50" top="30" bottom="200">
 					<e:Group>
 						<e:Group id="xinshoubao_list" horizontalCenter="0">

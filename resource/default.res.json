@@ -7403,7 +7403,7 @@
         {
             "name": "6001_1_mp3",
             "type": "sound",
-            "url": "assets/shopmusic/6001_1.mp3?v=479"
+            "url": "assets/shopmusic/6001_1.mp3?v=62"
         },
         {
             "name": "6001_1_try_mp3",
@@ -8448,7 +8448,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=923"
+            "url": "config/config.bin?v=917"
         }
     ]
 }
