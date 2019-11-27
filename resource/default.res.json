@@ -43,12 +43,27 @@
         {
             "name": "guide_4_jpg",
             "type": "image",
-            "url": "assets/about/guide_4.jpg?v=266"
+            "url": "assets/about/guide_4.jpg?v=681"
         },
         {
             "name": "guide_5_jpg",
             "type": "image",
-            "url": "assets/about/guide_5.jpg?v=831"
+            "url": "assets/about/guide_5.jpg?v=413"
+        },
+        {
+            "name": "guide_6_jpg",
+            "type": "image",
+            "url": "assets/about/guide_6.jpg?v=357"
+        },
+        {
+            "name": "guide_7_jpg",
+            "type": "image",
+            "url": "assets/about/guide_7.jpg?v=439"
+        },
+        {
+            "name": "guide_8_jpg",
+            "type": "image",
+            "url": "assets/about/guide_8.jpg?v=382"
         },
         {
             "name": "guide_bg_jpg",
@@ -8433,7 +8448,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=876"
+            "url": "config/config.bin?v=923"
         }
     ]
 }

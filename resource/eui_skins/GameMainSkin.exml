@@ -18,7 +18,7 @@
 						<e:Skin states="up,down" width="260" height="88">
 							<e:Image source="left_btn_di_png" visible.down='true' left='0' verticalCenter="0" width="272" height="88"
 							         visible="false" />
-							<e:Label id="idTitle" text="纪 念 册" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
+							<e:Label id="idTitle" text="收  藏" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
 							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
 							<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" verticalCenter="-20"/>
 						</e:Skin>
