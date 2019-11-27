@@ -274,13 +274,20 @@ class Mp3Panel extends eui.Component {
     private onCreateMp3() {
         var mp = window['audioMp3'];
         var obj = this;
+        let events=["abort","canplay","canplaythrough","durationchange","emptied","ended","error","loadeddata","loadedmetadata","loadstart","pause","play","playing","progress","ratechange","seeked","seeking","stalled","suspend","timeupdate","volumechange","waiting"]
+        events.forEach(element => {
+            mp.addEventListener(element,()=>{
+                console.log("==============mp3"+element);
+            })
+        });
         mp.addEventListener("error",
             obj.musicErrorFun = function (tim) { 
+                GameCommon.getInstance().removeLoading();
                 console.log('报错了');
             }, false);
         mp.addEventListener("loadeddata", //歌曲一经完整的加载完毕( 也可以写成上面提到的那些事件类型)
             obj.musicLoadFun = function (tim) {
-                //GameCommon.getInstance().removeLoading();
+                GameCommon.getInstance().removeLoading();
                 // obj['timeBar4'].maximum = 100;
                 window['audioMp3'].play();
             }, false);
@@ -298,7 +305,7 @@ class Mp3Panel extends eui.Component {
             }, false);
         mp.addEventListener("play",
             obj.musicPlayFun = function (tim) {
-                GameCommon.getInstance().removeLoading();
+                //GameCommon.getInstance().removeLoading();
                 obj.playStage = true;
                 obj.isPlay = true;
                 obj.dragMove();
