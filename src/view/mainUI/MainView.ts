@@ -21,6 +21,61 @@ function copyLog() {
     GameCommon.getInstance().showCommomTips("复制成功，可以直接粘贴到聊天栏发送给开发人员");
 }
 
+function createFile(role) {
+    const answerId = {};
+    const wentiId = [];
+    const videoDic = {};
+    const videoNames = {};
+    const chapterDatas = [];
+    let curVideoID = "";
+    let tree = [0].concat(GameDefine.ROLE_JUQING_TREE[role]);
+    tree.forEach(chapter => {
+        chapterDatas.push(chapter);
+        const chapterConfig = JsonModelManager.instance.getModelchapter()[chapter];
+        let wentiID = chapterConfig.wenti;
+        chapterConfig.videoSrc.split(",").forEach((vid, i, list) => {
+            videoDic[vid] = vid;
+            curVideoID = vid;
+            if (list.length - 1 === i) {
+                videoNames[wentiID] = vid;
+            }
+        });
+        do {
+            const answersConfig = JsonModelManager.instance.getModelanswer()[wentiID];
+            let maxLike = -1;
+            let selectedAnswerIdx = "";
+            for (let answerIdx in answersConfig) {
+                const answerConfig = answersConfig[answerIdx];
+                const like = answerConfig.like.split(",")[role];
+                if (like > maxLike) {
+                    maxLike = like;
+                    selectedAnswerIdx = answerIdx;
+                    answerId[wentiID] = answerConfig.ansid;
+                    answerConfig.videos.split(",").forEach((vid, i, list) => {
+                        videoDic[vid] = vid;
+                        curVideoID = vid;
+                        if (list.length - 1 === i) {
+                            videoNames[answersConfig[selectedAnswerIdx].nextid] = vid;
+                        }
+                    });
+                }
+            }
+            wentiId.push(wentiID);
+            wentiID = answersConfig[selectedAnswerIdx].nextid;
+        } while (wentiID);
+    });
+    const curchapter = chapterDatas[chapterDatas.length - 1];
+    return {
+        answerId,
+        wentiId,
+        videoDic,
+        videoNames,
+        chapterDatas,
+        curchapter,
+        curVideoID
+    };
+}
+
 class MainView extends eui.Component {
     private gameWorld: GameWorld;
     private mainGroup: eui.Group;
@@ -196,6 +251,8 @@ class MainView extends eui.Component {
     }
 
     private onXinkaishi(): void {
+        // const bookData: BookData = <BookData>createFile(ROLE_INDEX.ZiHao_Xia);
+        // UserInfo.curBokData = bookData;
         SoundManager.getInstance().playSound("ope_click.mp3");
         if (DEBUG) {
             if (typeof GameDefine.START_CHAPTER === "number") {

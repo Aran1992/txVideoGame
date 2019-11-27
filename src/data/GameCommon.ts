@@ -535,6 +535,15 @@ class GameCommon {
         let shipinCfg: Modelshipin;
         let videoID: string;
         if (flieData.curVideoID) {
+            if (flieData.curVideoID === "VW1207") {
+                if (GameCommon.getInstance().getSortLike(0, flieData).id === ROLE_INDEX.WanXun_Xiao) {
+                    return 86;
+                } else {
+                    return 78;
+                }
+            } else if (flieData.curVideoID === "VX1205") {
+                return 71;
+            }
             videoID = flieData.curVideoID;
             shipinCfg = JsonModelManager.instance.getModelshipin()[videoID];
             if (shipinCfg) {
