@@ -53,7 +53,7 @@ class MusicShopPreviewPanel extends eui.Component {
             }, false);
         mp.addEventListener("loadeddata", //歌曲一经完整的加载完毕( 也可以写成上面提到的那些事件类型)
             obj.musicLoadFun = function (tim) {
-                //GameCommon.getInstance().removeLoading();
+                GameCommon.getInstance().removeLoading();
                 // obj['timeBar4'].maximum = 100;
                 window['audioMp3'].play();
             }, false);
@@ -70,7 +70,7 @@ class MusicShopPreviewPanel extends eui.Component {
             }, false);
         mp.addEventListener("play",
             obj.musicPlayFun = function (tim) {
-                GameCommon.getInstance().removeLoading();
+                //GameCommon.getInstance().removeLoading();
                 obj.playStage = true;
                 obj.isPlay = true;
                 obj.dragMove();
