@@ -50,10 +50,17 @@ declare interface Platform {
     close();
 
     getPriceRate();
+
+    getOffsetTime();
+
+    setTestTime(time);
 }
 
 class DebugPlatform implements Platform {
-    private static s_serverTime: Number;
+    private static s_serverTime: number;
+    private static s_offsetTime: number = 43200;
+
+    private _testTime;
 
     async getUserInfo() {
         await window["getUserInfo"](() => {
@@ -78,8 +85,20 @@ class DebugPlatform implements Platform {
         return true;
     }
 
+    public getOffsetTime(){
+        return DebugPlatform.s_offsetTime;
+    }
+
+    public setTestTime(time){
+        this._testTime = time;
+    }
     public getServerTime() {
-        return DebugPlatform.s_serverTime;
+        if (this._testTime)
+            return this._testTime;
+        if(DebugPlatform.s_serverTime)
+            return DebugPlatform.s_serverTime;
+        else
+            return new Date().getTime();
     }
 
     public updateServerTime() {
@@ -99,8 +118,7 @@ class DebugPlatform implements Platform {
 
     //获得上线时间，其它时间可以此时间上叠加
     public getSaleBeginTime() {
-        return 1574179200 //2019/11/20 0:0:0
-        //return 1572364800 + 86400 * 6;//2019-10-30 00:00:00
+        return 1575043200 + DebugPlatform.s_offsetTime;//2019/11/30 12:0:0
     }
 
     public getPlatform() {

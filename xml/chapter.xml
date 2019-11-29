@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chapter>
-    <chapter id="0" wenti="1" videoSrc="V001" name="序章「青藤学院」" saleTime="0" freeTime="0" next="1" des="*"/>
+    <chapter id="0" wenti="1" videoSrc="V001" name="序章「青藤学院」" saleTime="-100" freeTime="0" next="1" des="*"/>
     <chapter id="1" wenti="8" videoSrc="V101" name="第一章「For-teen！」" saleTime="0" freeTime="1" next="2" des="本章没有好感度选项;本章没有好感度选项;我不是一定赢不过你，而是在你赢了我的时候，一转身我就在你身后。;不好捕获的猎物，永远是猎人一生的追求。"/>
     <chapter id="2" wenti="13" videoSrc="V201" name="第二章「向着蓝加仑」" saleTime="0" freeTime="1"  next="3" des="有一天我一定要站在舞台上，和你一起唱属于我们的歌！;下一次，一定要换我替你挡下一切，给我这个机会。;谢谢你，在兜兜转转后还是给我留下的机会。;为你谱下的乐章，是只属于我们的旋律。"/>
     <chapter id="3" wenti="20" videoSrc="V301" name="第三章「S.I.A」" saleTime="0" freeTime="2"  next="4" des="因为有你，所以我要放声歌唱，唱出你的梦想。;我全速冲向你，都想在你摔倒的一刻抓紧你的手。;我用尽我所有的力气，都想要成全你的一次满意。;节奏、旋律、调式、和声、和弦，我学会一切，仍然写不出像你一样美的曲。"/>

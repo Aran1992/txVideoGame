@@ -32,7 +32,10 @@ class JuQingPanel extends eui.Component {
     private imgMaxNumb: number = 5;
     private _playTween: boolean;
     private _guideIndex: number = 0;
-    private idGainShuipian: eui.Button;
+    private idGainShuipian: eui.Label;
+    private idAddHour: eui.Label;
+    private idOpenTime:eui.Label;
+
 
     constructor() {
         super();
@@ -48,6 +51,13 @@ class JuQingPanel extends eui.Component {
 
     private static onGetSuipian() {
         UserInfo.suipianMoney = UserInfo.suipianMoney + 1000
+    }
+    private onAddHour(){
+        platform.setTestTime(platform.getServerTime()+60*60*1000);
+        this.idAddHour.text = Tool.dateFormat("mm-dd HH:MM",new Date(platform.getServerTime()));
+        let t= platform.getSaleBeginTime();
+        console.log(t);
+        this.idOpenTime.text = Tool.dateFormat("YY-mm-dd HH:MM",new Date(t*1000));
     }
 
     private static onCleanCache() {
@@ -87,7 +97,8 @@ class JuQingPanel extends eui.Component {
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
-        this.idGainShuipian.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onGetSuipian, this);
+        this.idGainShuipian.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onGetSuipian, this);        
+        this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddHour, this);
         this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
         this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
     }

@@ -306,6 +306,7 @@ class Tool {
         if(!time){
             time=platform.getServerTime();
         }
+        time = time - platform.getOffsetTime();
         const date = time?new Date(time):new Date();
         let str = String(date.getFullYear())+String(Tool.formatZero(date.getMonth()+1,2))+String(Tool.formatZero(date.getDate(),2))
         return Number(str)
@@ -313,6 +314,26 @@ class Tool {
 
     public static formatAddDay(addDay,time:number=null) {
         return Tool.formatTimeDay2Num(time*1000+addDay*(24*60*60*1000));
+    }
+
+    public static dateFormat(fmt, date) {
+        let ret;
+        let opt = {
+            "Y+": date.getFullYear().toString(),        // 年
+            "m+": (date.getMonth() + 1).toString(),     // 月
+            "d+": date.getDate().toString(),            // 日
+            "H+": date.getHours().toString(),           // 时
+            "M+": date.getMinutes().toString(),         // 分
+            "S+": date.getSeconds().toString()          // 秒
+            // 有其他格式化字符需求可以继续添加，必须转化成字符串
+        };
+        for (let k in opt) {
+            ret = new RegExp("(" + k + ")").exec(fmt);
+            if (ret) {
+                fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+            };
+        };
+        return fmt;
     }
 
     public static getCurrTime() {
