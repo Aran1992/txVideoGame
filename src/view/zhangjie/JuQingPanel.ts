@@ -53,7 +53,7 @@ class JuQingPanel extends eui.Component {
         UserInfo.suipianMoney = UserInfo.suipianMoney + 1000
     }
     private onAddHour(){
-        platform.setTestTime(platform.getServerTime()+60*60*1000);
+        platform.setTestTime(platform.getServerTime()+10*60*60*1000);
         this.idAddHour.text = Tool.dateFormat("mm-dd HH:MM",new Date(platform.getServerTime()));
         let t= platform.getSaleBeginTime();
         console.log(t);
