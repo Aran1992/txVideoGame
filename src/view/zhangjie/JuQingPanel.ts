@@ -54,9 +54,11 @@ class JuQingPanel extends eui.Component {
     }
     private onAddHour(){
         platform.setTestTime(platform.getServerTime()+10*60*60*1000);
-        this.idAddHour.text = Tool.dateFormat("mm-dd HH:MM",new Date(platform.getServerTime()));
+        this.updateShowTime();
+    }
+    private updateShowTime(){        
         let t= platform.getSaleBeginTime();
-        console.log(t);
+        this.idAddHour.text = Tool.dateFormat("mm-dd HH:MM",new Date(platform.getServerTime()));
         this.idOpenTime.text = Tool.dateFormat("YY-mm-dd HH:MM",new Date(t*1000));
     }
 
@@ -185,6 +187,7 @@ class JuQingPanel extends eui.Component {
         GameDefine.CUR_IS_MAINVIEW = true;
         this.touchEnabled = false;
         this.onRegist();
+        this.updateShowTime();
         this.updateResize();
         GameDefine.ISFILE_STATE = false;
         GameCommon.getInstance().getBookHistory(FILE_TYPE.FILE2);
