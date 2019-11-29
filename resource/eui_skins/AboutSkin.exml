@@ -22,9 +22,9 @@
 	<e:Group id="idPage2" touchEnabled="false" width="100%" height="100%" x="0" y="0">
 		<e:Group width="1068" height="600" scaleX="1" scaleY="1" verticalCenter="22" x="440">
 			<e:Image width="1068" height="600" scaleX="1" scaleY="1" source="common_scalebk1_png" scale9Grid="18,17,34,19" anchorOffsetX="0" anchorOffsetY="0"/>
-			<e:Label text="欢迎您加入QQ群，有任何问题均可通过群管理员联系我们" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" size="30" verticalCenter="-50" lineSpacing="18" textAlign="center" y="-127" horizontalCenter="0"/>
-			<e:Label text="QQ群：695412609" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" size="30" verticalCenter="0" lineSpacing="18" textAlign="center" y="-127" horizontalCenter="0"/>
-			<e:Button id="idBtnCopyCode" label="复制" scaleX="1" scaleY="1" enabled="true" verticalCenter="60" y="-58" horizontalCenter="0">
+			<e:Label text="欢迎您加入QQ群，有任何问题均可通过群管理员联系我们" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" size="30" verticalCenter="-100" lineSpacing="18" textAlign="center" y="-127" horizontalCenter="0" bold="true"/>
+			<e:Label text="QQ群：695412609" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" size="30" verticalCenter="60" lineSpacing="18" textAlign="center" y="-127" horizontalCenter="-100"/>
+			<e:Button id="idBtnCopyCode" label="复制" scaleX="0.8" scaleY="0.8" enabled="true" verticalCenter="60" y="-58" horizontalCenter="120">
 			<e:skinName>
 				<e:Skin states="up,down,disabled" xmlns:ns1="*">
 				<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
