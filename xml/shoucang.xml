@@ -5,7 +5,7 @@
     <shoucang id="5002" src="XDLC" shengyin="0" time="1:45" level="ssr" mulu2="2" name="陪他一日" kuozhan="*" mulu1="3"/>
     <shoucang id="5003" src="QDLC" shengyin="0" time="1:19" level="ssr" mulu2="2" name="为你担心" kuozhan="*" mulu1="2"/>
     <shoucang id="5004" src="WDLC" shengyin="0" time="1:07" level="ssr" mulu2="2" name="他的娇纵" kuozhan="*" mulu1="4"/>
-        
+
     <shoucang id="6001" src="" shengyin="0" time="*" level="sr" mulu2="3" name="如果你也有梦想" kuozhan="如果你也有梦想" mulu1="5" />
     <shoucang id="6002" src="" shengyin="0" time="*" level="sr" mulu2="3" name="梦想映射" kuozhan="You Cool;我;Missed Call;Summer song" mulu1="5" />
     <shoucang id="6003" src="" shengyin="0" time="*" level="sr" mulu2="3" name="因为For-teen" kuozhan="最美的时刻;低音弦上的呐喊;芝士的味道;我的爱呢" mulu1="5" />
@@ -28,7 +28,7 @@
     <shoucang id="1015" src="5" shengyin="1" time="*" level="r" mulu2="1" name="伴我之歌"       kuozhan="单曲循环开始是因为喜欢，后来就成了习惯"    mulu1="2"/>
     <shoucang id="1016" src="5" shengyin="1" time="*" level="r" mulu2="1" name="过速心率"       kuozhan="想要走，可不是打开门那么简单"    mulu1="2"/>
     <shoucang id="1017" src="5" shengyin="1" time="*" level="r" mulu2="1" name="为你奏响"       kuozhan="愿我的琴声，永远为你而响，为你伴唱"    mulu1="4"/>
-    
+
     <shoucang id="2001" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="梦想的模样"     kuozhan="这是我送你的礼物;这是我和你的梦想;唱吧！如果你也有梦想"    mulu1="3"/>
     <shoucang id="2002" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="隐藏高手"       kuozhan="三、二、一，表演时间到;你的事我拼尽全力都要完成;你的梦想就是我的目标"    mulu1="1"/>
     <shoucang id="2003" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="斯人垂目"       kuozhan="为什么，你还不来;快坐下，来的这么晚;你不知道，我会担心么"    mulu1="4"/>
@@ -47,7 +47,7 @@
     <shoucang id="2016" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="触碰天空"       kuozhan="这，是独属于我的地方，不过现在不是了;我的一切都想分享给你，我的一切都属于你;你呢，要不要把接下来的时光，与我共享"    mulu1="2"/>
     <shoucang id="2017" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="美梦酩酊"       kuozhan="如果每天都能和你在一起有多好;真是想想都高兴的想把这里的酒都喝光;我为什么要喝酒呢，光想你就要醉了啊"    mulu1="3"/>
     <shoucang id="2018" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="与你共度"       kuozhan="我找了很久，才找到这么完美的你;值得我琴声永远为你响起;余生，愿你与我共度"    mulu1="4"/>
-    
+
     <shoucang id="3001" src="5" shengyin="4" time="*" level="ssr" mulu2="1" name="兄弟？兄弟！"   kuozhan="你看她在看我们;她为什么一直盯着看呢;如果她看的是哥哥怎么办啊？;她究竟看上弟弟的什么地方了呢？"    mulu1="6"/>
     <shoucang id="3002" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="阳光正好"       kuozhan="这么好的天气不出来走走好可惜啊;你那是什么表情啊;有时候和小孩一样玩挺好的啊;本宝宝要许个愿望;每天都要爱我哟"    mulu1="1"/>
     <shoucang id="3003" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="你是答案"       kuozhan="为什么我总是看不透你;每一天的你都像是新的;尽管你的每句话我都会记得;如果每一天都是一个谜语;你就是我的答案"    mulu1="3"/>
@@ -61,7 +61,7 @@
     <shoucang id="3011" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="焙香馥郁"       kuozhan="睡懒觉？那可不是我的习惯。;渴了？要喝点什么么？;别老是喝可乐，太甜了;茶和咖啡是令人清醒的好东西;苦？有你怎么还会苦呢"    mulu1="4"/>
     <shoucang id="3012" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="谁家少年不戴花" kuozhan="如果你的心情，和程序一样好琢磨就好了;我不光喜欢程序，我也喜欢……这些花！;当然不只是花，还有……;对了，你喜欢花么？;那，是喜欢花还是喜欢我呢？"    mulu1="1"/>
     <shoucang id="3013" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="与你共度"       kuozhan="啊？你来了，等你吃早饭等得要睡着了;怎么，我就先喝牛奶都不可以吗？;怎么样，贴心等你的我，是不是，让人心动。;不夸我，这些都不给你了。;给你都给你还不行吗，别走啦~"    mulu1="3"/>
-    <shoucang id="3014" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="Bast Hacker"    kuozhan="嘘，等我一下，一会就好;这件事，还真是棘手啊;这可是你的托付，我一定要做好;你，就是让我安心的存在;好了，我不会让别人欺负你的"    mulu1="1"/>
+    <shoucang id="3014" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="Best Hacker"    kuozhan="嘘，等我一下，一会就好;这件事，还真是棘手啊;这可是你的托付，我一定要做好;你，就是让我安心的存在;好了，我不会让别人欺负你的"    mulu1="1"/>
     <shoucang id="3015" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="Hush！Hush！"   kuozhan="最近我好像在哪都能看到你;为什么我喜欢什么你都知道？;没事的小伤，我能处理好;你别这样看着我，我真的没事;好啦，一起走吧"    mulu1="2"/>
     <shoucang id="3016" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="错过的拥抱"     kuozhan="我等了好久都没等到你;雨停了，是不是你也要走了;你能再看我一眼么;如果能抱住你就好了;你还会给我这个机会么"    mulu1="3"/>
     <shoucang id="3017" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="指尖飞舞"       kuozhan="这个地方好像不太通顺;这样她好像不太喜欢;你即使不说话也很难让人不注意到;这首歌你都听见了？;这种惊喜被打破的感觉真让人难受呢。"    mulu1="4"/>

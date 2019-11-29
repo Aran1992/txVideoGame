@@ -21,24 +21,26 @@ class ShouCangImgPanel extends eui.Component {
     private endPos: number = 0;
     private isOne: boolean = false;
     private animRecords: SCImageData[];
-    private _imgIndx: number = 0;
     private imgMaxNumb: number = 5;
     private curImg;
     private imgSound: string[] = [];
-    private imgInfoJson:JSON;
-
-    private get imgIndx(){
-        return this._imgIndx;
-    }
-    private set imgIndx(m){
-        this._imgIndx =m;
-    }
+    private imgInfoJson: JSON;
 
     constructor(data) {
         super();
         this.info = data;
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+    }
+
+    private _imgIndx: number = 0;
+
+    private get imgIndx() {
+        return this._imgIndx;
+    }
+
+    private set imgIndx(m) {
+        this._imgIndx = m;
     }
 
     protected onRegist(): void {
@@ -210,7 +212,7 @@ class ShouCangImgPanel extends eui.Component {
         else
             idx = idx + 1;
         if (this.imgSound[idx]) {
-            SoundManager.getInstance().playSound(this.imgSound[idx],null,true);// + '.mp3');
+            SoundManager.getInstance().playSound(this.imgSound[idx], null, true);// + '.mp3');
         }
     }
 
@@ -226,7 +228,7 @@ class ShouCangImgPanel extends eui.Component {
         else
             idx = idx + 1;
         if (this.imgSound[idx]) {
-            SoundManager.getInstance().playSound(this.imgSound[idx],null,true);// + '.mp3');
+            SoundManager.getInstance().playSound(this.imgSound[idx], null, true);// + '.mp3');
         }
         this.play();
     }
@@ -310,11 +312,12 @@ class ShouCangImgPanel extends eui.Component {
         this.width = size.width;
         this.height = size.height;
     }
-    private getImgArray(){
-        var imgs: string[]=[];
-        let count = Math.min(this.imgMaxNumb,Number(this.info.src));
-        for (let i=1;i<=count;i++){
-            imgs.push(this.info.id+"_"+String(i)+"_jpg");
+
+    private getImgArray() {
+        var imgs: string[] = [];
+        let count = Math.min(this.imgMaxNumb, Number(this.info.src));
+        for (let i = 1; i <= count; i++) {
+            imgs.push(this.info.id + "_" + String(i) + "_jpg");
         }
         return imgs;
         // if (this.info.src.indexOf(";") >= 0) {
@@ -324,6 +327,7 @@ class ShouCangImgPanel extends eui.Component {
         //     }
         // }
     }
+
     private onLoadComplete(): void {
         this.updateResize();
         this.touchEnabled = false;
@@ -332,7 +336,7 @@ class ShouCangImgPanel extends eui.Component {
         this.isOne = true;
         // UserInfo.guideDic[7] = 7;
 
-        var imgs: string[]=this.getImgArray();
+        var imgs: string[] = this.getImgArray();
         // if (this.info.src.indexOf(";") >= 0) {
         //     imgs = this.info.src.split(";");
         //     for(let i=1;i<=imgs.length;i++){
@@ -341,7 +345,7 @@ class ShouCangImgPanel extends eui.Component {
         // }
         var miaoshus: string[];
         //if (this.info.kuozhan.indexOf(";") >= 0) {
-            miaoshus = this.info.kuozhan.split(";");
+        miaoshus = this.info.kuozhan.split(";");
         //}
 
         for (let j = 0; j < imgs.length; j++) {
@@ -385,10 +389,10 @@ class ShouCangImgPanel extends eui.Component {
             this['img' + j].width = 1006;
             this['img' + j].height = 537;
         }
-        var sounds: string[]=[];
+        var sounds: string[] = [];
         let count = Number(this.info.shengyin) || 0;
-        for (let i=1;i<=count;i++){
-            sounds.push("resource/assets/shopimages/"+this.info.id+"/"+this.info.id+"_"+i+".mp3");
+        for (let i = 1; i <= count; i++) {
+            sounds.push("resource/assets/shopimages/" + this.info.id + "/" + this.info.id + "_" + i + ".mp3");
             //sounds[i-1]=
         }
         // if (this.info.shengyin.indexOf(";") >= 0) {
@@ -410,7 +414,7 @@ class ShouCangImgPanel extends eui.Component {
         else
             idx = idx + 1;
         if (this.imgSound[idx]) {
-            SoundManager.getInstance().playSound(this.imgSound[idx],null,true)// + '.mp3');
+            SoundManager.getInstance().playSound(this.imgSound[idx], null, true)// + '.mp3');
         }
         this.play();
         this.onRegist();
@@ -426,16 +430,17 @@ class ShouCangImgPanel extends eui.Component {
     }
 
     private onShare(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
-        var imgs: string[]=this.getImgArray();
-        let idx = this.imgIndx+1
-        if(idx == this.imgMaxNumb){
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        var imgs: string[] = this.getImgArray();
+        let idx = this.imgIndx + 1;
+        if (idx == this.imgMaxNumb) {
             idx = 0;
         }
         let image_src: string = imgs[idx];
         if (!image_src) return;
         let texture: egret.Texture = RES.getRes(image_src);
         if (texture) {
+            isShareCDKey = false;
             platform.shareImage(GameDefine.BOOKID, texture.toDataURL("image/png"));
         }
     }

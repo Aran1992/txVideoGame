@@ -133,7 +133,7 @@ class GameCommon {
     }
 
     public async getUserInfo() {
-        await platform.getUserInfo();
+        return await platform.getUserInfo();
     }
 
     //存档成功返回

@@ -1340,6 +1340,18 @@ class VideoData extends egret.DisplayObjectContainer {
     private setVideoDict(vid: string) {
         UserInfo.curBokData.videoDic[vid] = vid;
         TaskManager.instance.checkVideoTask();
+        const beganCid = Config.getVideoBeganChapter(vid);
+        if (beganCid !== undefined) {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BEGAN_READING_CHAPTER), beganCid);
+        }
+        const endedCid = Config.getVideoEndedChapter(vid);
+        if (endedCid !== undefined) {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ENDED_READING_CHAPTER), endedCid);
+        }
+        const endingID = Config.getVideoAchievedEnding(vid);
+        if (endingID !== undefined) {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ACHIEVED_ENDING), endingID);
+        }
     }
 }
 
