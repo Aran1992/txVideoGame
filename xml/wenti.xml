@@ -24,7 +24,7 @@
     <wenti id="24" chapter="4" des="是否劝架" ans="1,2" moren="1" time="4.5" type="0"/>
     <wenti id="25" chapter="4" des="怎么办" ans="1,2,3" moren="2" time="5.5" type="0"/>
     <wenti id="26" chapter="4" des="谁叫住林薄荷" ans="1,2,3,4" moren="2" time="30" type="11"/>
-    <wenti id="27" chapter="5" des="谁来找林薄荷" ans="1,2,3,4,5" moren="2" time="9" type="37"/>
+    <wenti id="27" chapter="5" des="谁来找林薄荷" ans="1,2,3,4,5" moren="2" time="7" type="37"/>
     <wenti id="28" chapter="5" des="坐旋转木马" ans="1,2" moren="1" time="4" type="0"/>
     <wenti id="29" chapter="5" des="给他带发卡" ans="1,2" moren="2" time="6" type="16"/>
     <wenti id="30" chapter="5" des="放水吗" ans="1,2" moren="1" time="6" type="0"/>

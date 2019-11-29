@@ -19,11 +19,25 @@
 			</e:Group>
 		</e:Group>
 	</e:Group>
-	<e:Group id="idPage2" touchEnabled="false" width="100%" height="100%" x="0" y="0" visible="false">
-		<e:Image width="1068" height="600" scaleX="1" scaleY="1" source="common_scalebk1_png" scale9Grid="18,17,34,19" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="22" x="440"/>
-		<e:Label text="腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的，全视频动态呈现的偶像恋爱互动连续剧腾讯首款由真人演绎的、全视频动态呈现的偶像恋爱互动连续剧..." scaleX="1" scaleY="1" anchorOffsetX="0" width="866.57" anchorOffsetY="0" height="394.24" size="33" verticalCenter="-22" lineSpacing="18" x="493"/>
+	<e:Group id="idPage2" touchEnabled="false" width="100%" height="100%" x="0" y="0">
+		<e:Group width="1068" height="600" scaleX="1" scaleY="1" verticalCenter="22" x="440">
+			<e:Image width="1068" height="600" scaleX="1" scaleY="1" source="common_scalebk1_png" scale9Grid="18,17,34,19" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Label text="欢迎您加入QQ群，有任何问题均可通过群管理员联系我们" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" size="30" verticalCenter="-100" lineSpacing="18" textAlign="center" y="-127" horizontalCenter="0" bold="true"/>
+			<e:Label text="QQ群：695412609" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" size="30" verticalCenter="60" lineSpacing="18" textAlign="center" y="-127" horizontalCenter="-100"/>
+			<e:Button id="idBtnCopyCode" label="复制" scaleX="0.8" scaleY="0.8" enabled="true" verticalCenter="60" y="-58" horizontalCenter="120">
+			<e:skinName>
+				<e:Skin states="up,down,disabled" xmlns:ns1="*">
+				<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+			</e:Button>
+		</e:Group>
+
+
+
 	</e:Group>
-	<e:Group id="idPage3" touchEnabled="false" width="100%" height="100%" x="0" y="0">
+	<e:Group id="idPage3" touchEnabled="false" width="100%" height="100%" x="0" y="0" visible="false">
 		<e:Image width="1068" height="600" scaleX="1" scaleY="1" source="common_scalebk1_png" scale9Grid="18,17,34,19" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="22" x="440"/>
 		<e:Scroller id="idScroller" width="1042.43" height="569.7" x="450" anchorOffsetX="0" anchorOffsetY="0" scrollPolicyV="on" scrollPolicyH="off" bounces="false" verticalCenter="23">
 			<e:Group id="idViewPort">
@@ -33,8 +47,8 @@
 	</e:Group>
 	<e:Group top="170" width="253" anchorOffsetX="0" anchorOffsetY="0" height="594" left="44">
 		<e:Button id="idTab1" label="帮    助" x="48" y="8.18" scaleX="1" scaleY="1" name="1" blendMode="normal" touchEnabled="true" skinName="skins.Common_TabButtonSkin4" width="260" height="80"/>
-		<e:Button id="idTab2" label="关于我们" x="48" y="133" scaleX="1" scaleY="1" name="2" blendMode="normal" skinName="skins.Common_TabButtonSkin4" width="260" height="80"/>
-		<e:Button id="idTab3" label="用户协议" x="48" y="258.73" scaleX="1" scaleY="1" name="3" skinName="skins.Common_TabButtonSkin4" width="260" height="80"/>
+		<e:Button id="idTab2" label="联系我们" x="48" y="133" scaleX="1" scaleY="1" name="2" blendMode="normal" skinName="skins.Common_TabButtonSkin4" width="260" height="80"/>
+		<e:Button id="idTab3" label="用户协议" x="48" y="258.73" scaleX="1" scaleY="1" name="3" skinName="skins.Common_TabButtonSkin4" width="260" height="80" visible="false"/>
 		<e:layout>
 		<e:BasicLayout/>
 		</e:layout>
