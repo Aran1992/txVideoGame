@@ -102,6 +102,7 @@ class DebugPlatform implements Platform {
     }
 
     public updateServerTime() {
+        return;
         var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
         //let url = `http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp`;
         let url = `http://quan.suning.com/getSysTime.do`;
