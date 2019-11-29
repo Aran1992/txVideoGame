@@ -40,7 +40,7 @@ class Tool {
 
     public static randomInt(a, b) {
         //return Math.floor(Math.random() * (b - a)) + a;
-        return Math.floor(Math.random() * (b - a+1)) + a;
+        return Math.floor(Math.random() * (b - a + 1)) + a;
     }
 
     public static randomFloat(a, b) {
@@ -297,22 +297,24 @@ class Tool {
         return date.getFullYear() + "-" + month + "-" + strDate + " "
             + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     }
+
     public static formatZero(num, length) {
         let n = (Array(length).join('0') + num).slice(-length);
         return n;
     }
+
     //把日期格式化为整数
-    public static formatTimeDay2Num(time:number=null){
-        if(!time){
-            time=platform.getServerTime();
+    public static formatTimeDay2Num(time: number = null) {
+        if (!time) {
+            time = platform.getServerTime();
         }
-        const date = time?new Date(time):new Date();
-        let str = String(date.getFullYear())+String(Tool.formatZero(date.getMonth()+1,2))+String(Tool.formatZero(date.getDate(),2))
+        const date = time ? new Date(time) : new Date();
+        let str = String(date.getFullYear()) + String(Tool.formatZero(date.getMonth() + 1, 2)) + String(Tool.formatZero(date.getDate(), 2))
         return Number(str)
     }
 
-    public static formatAddDay(addDay,time:number=null) {
-        return Tool.formatTimeDay2Num(time*1000+addDay*(24*60*60*1000));
+    public static formatAddDay(addDay, time: number = null) {
+        return Tool.formatTimeDay2Num(time * 1000 + addDay * (24 * 60 * 60 * 1000));
     }
 
     public static getCurrTime() {
@@ -499,6 +501,16 @@ class Tool {
         if (r != null)
             return r[2].toString();
         return null;
+    }
+
+    public static iterObj(obj, handler) {
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (handler(obj[key], key, obj)) {
+                    break;
+                }
+            }
+        }
     }
 
     //The end

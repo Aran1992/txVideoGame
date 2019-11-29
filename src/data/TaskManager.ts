@@ -37,8 +37,8 @@ const TASK = [
                 "name": "开始四重奏",
                 "dsc": "完成序章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V019"
+                    "type": "chapter",
+                    "cid": 0
                 },
                 "reward": [
                     {
@@ -56,8 +56,8 @@ const TASK = [
                 "name": "开始四重奏",
                 "dsc": "完成序章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V019"
+                    "type": "chapter",
+                    "cid": 0
                 },
                 "reward": [
                     {
@@ -109,8 +109,8 @@ const TASK = [
                 "name": "完成第一章",
                 "dsc": "完成第一章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V119"
+                    "type": "chapter",
+                    "cid": 1
                 },
                 "reward": [
                     {
@@ -158,8 +158,8 @@ const TASK = [
                 "name": "完成第一章",
                 "dsc": "完成第一章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V119"
+                    "type": "chapter",
+                    "cid": 1
                 },
                 "reward": [
                     {
@@ -211,8 +211,8 @@ const TASK = [
                 "name": "完成二三章",
                 "dsc": "完成第二、三章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V307"
+                    "type": "chapter",
+                    "cid": 3
                 },
                 "reward": [
                     {
@@ -278,13 +278,15 @@ const TASK = [
                 "name": "完成二三章",
                 "dsc": "完成第二、三章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V307"
+                    "type": "chapter",
+                    "cid": 3
                 },
-                "reward": [{
-                    "type": "goods",
-                    "id": "101004"
-                }],
+                "reward": [
+                    {
+                        "type": "goods",
+                        "id": "101004"
+                    }
+                ],
                 "id": "2-1-3",
                 "icon": ""
             }
@@ -316,8 +318,8 @@ const TASK = [
                 "name": "完成四五章",
                 "dsc": "完成第四章、第五章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V519"
+                    "type": "chapter",
+                    "cid": 5
                 },
                 "reward": [
                     {
@@ -352,8 +354,8 @@ const TASK = [
                 "name": "完成四五章",
                 "dsc": "完成第四章、第五章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V519"
+                    "type": "chapter",
+                    "cid": 5
                 },
                 "reward": [
                     {
@@ -414,8 +416,8 @@ const TASK = [
                 "name": "完成第六章",
                 "dsc": "完成第六章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V619"
+                    "type": "chapter",
+                    "cid": 6
                 },
                 "reward": [
                     {
@@ -542,13 +544,15 @@ const TASK = [
                 "name": "完成第六章",
                 "dsc": "完成第六章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V619"
+                    "type": "chapter",
+                    "cid": 6
                 },
-                "reward": [{
-                    "type": "goods",
-                    "id": "102001"
-                }],
+                "reward": [
+                    {
+                        "type": "goods",
+                        "id": "102001"
+                    }
+                ],
                 "id": "4-1-6"
             }
         ]
@@ -620,8 +624,8 @@ const TASK = [
                 "name": "完成七八章",
                 "dsc": "完成第七、八章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V812"
+                    "type": "chapter",
+                    "cid": 8
                 },
                 "reward": [
                     {
@@ -717,8 +721,8 @@ const TASK = [
                 "name": "完成七八章",
                 "dsc": "完成第七、八章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V812"
+                    "type": "chapter",
+                    "cid": 8
                 },
                 "reward": [
                     {
@@ -794,8 +798,8 @@ const TASK = [
                 "name": "完成第九章",
                 "dsc": "完成第九章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V912"
+                    "type": "chapter",
+                    "cid": 9
                 },
                 "reward": [
                     {
@@ -859,10 +863,12 @@ const TASK = [
                     "type": "video",
                     "vid": "V908"
                 },
-                "reward": [{
-                    "type": "goods",
-                    "id": "101003"
-                }],
+                "reward": [
+                    {
+                        "type": "goods",
+                        "id": "101003"
+                    }
+                ],
                 "id": "6-1-3"
             },
             {
@@ -884,8 +890,8 @@ const TASK = [
                 "name": "完成第九章",
                 "dsc": "完成第九章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "V912"
+                    "type": "chapter",
+                    "cid": 9
                 },
                 "reward": [
                     {
@@ -918,8 +924,13 @@ const TASK = [
                 "name": "结局？",
                 "dsc": "完成第十、十一章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "VH1117|VH1118|VX1111|VX1112|VY1107|VW1107"
+                    "type": "chapter",
+                    "cidList": [
+                        11,
+                        21,
+                        31,
+                        41
+                    ],
                 },
                 "reward": [
                     {
@@ -959,8 +970,13 @@ const TASK = [
                 "name": "结局？",
                 "dsc": "完成第十、十一章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "VH1117|VH1118|VX1111|VX1112|VY1107|VW1107"
+                    "type": "chapter",
+                    "cidList": [
+                        11,
+                        21,
+                        31,
+                        41
+                    ],
                 },
                 "reward": [
                     {
@@ -985,10 +1001,12 @@ const TASK = [
                     "type": "video",
                     "vid": "VX1204"
                 },
-                "reward": [{
-                    "type": "goods",
-                    "id": "102017"
-                }],
+                "reward": [
+                    {
+                        "type": "goods",
+                        "id": "102017"
+                    }
+                ],
                 "id": "8-0-0"
             },
             {
@@ -1024,8 +1042,13 @@ const TASK = [
                 "name": "大结局",
                 "dsc": "完成第十二章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "VH1204|VX1205|VY1205|VY1206|VW1102|VW1206"
+                    "type": "chapter",
+                    "cidList": [
+                        12,
+                        22,
+                        32,
+                        42
+                    ]
                 },
                 "reward": [
                     {
@@ -1043,10 +1066,12 @@ const TASK = [
                     "type": "video",
                     "vid": "VY1206"
                 },
-                "reward": [{
-                    "type": "goods",
-                    "id": "103008"
-                }],
+                "reward": [
+                    {
+                        "type": "goods",
+                        "id": "103008"
+                    }
+                ],
                 "id": "8-1-0"
             },
             {
@@ -1056,10 +1081,12 @@ const TASK = [
                     "type": "video",
                     "vid": "VW1206"
                 },
-                "reward": [{
-                    "type": "goods",
-                    "id": "103009"
-                }],
+                "reward": [
+                    {
+                        "type": "goods",
+                        "id": "103009"
+                    }
+                ],
                 "id": "8-1-1"
             },
             {
@@ -1069,10 +1096,12 @@ const TASK = [
                     "type": "video",
                     "vid": "VH1204"
                 },
-                "reward": [{
-                    "type": "goods",
-                    "id": "103007"
-                }],
+                "reward": [
+                    {
+                        "type": "goods",
+                        "id": "103007"
+                    }
+                ],
                 "id": "8-1-2"
             },
             {
@@ -1096,18 +1125,25 @@ const TASK = [
                     "type": "video",
                     "vid": "VW1207"
                 },
-                "reward": [{
-                    "type": "goods",
-                    "id": "103001"
-                }],
+                "reward": [
+                    {
+                        "type": "goods",
+                        "id": "103001"
+                    }
+                ],
                 "id": "8-1-4"
             },
             {
                 "name": "大结局",
                 "dsc": "完成第十二章剧情",
                 "check": {
-                    "type": "video",
-                    "vid": "VH1204|VX1205|VY1205|VY1206|VW1102|VW1206"
+                    "type": "chapter",
+                    "cidList": [
+                        12,
+                        22,
+                        32,
+                        42
+                    ]
                 },
                 "reward": [
                     {
@@ -1134,6 +1170,15 @@ enum TASK_STATES {
 class TaskManager {
     private tasks: any = {};
     private duration: number = 0;
+    private eventHandlerTable = {
+        [GameEvent.ENDED_READING_CHAPTER]: this.onEndedReadingChapter,
+    };
+
+    private constructor() {
+        for (const event in this.eventHandlerTable) {
+            GameDispatcher.getInstance().addEventListener(event, this.eventHandlerTable[event], this);
+        }
+    }
 
     public static _instance: TaskManager;
 
@@ -1152,6 +1197,12 @@ class TaskManager {
 
     public set playedMaxChapter(n) {
         this._playedMaxChapter = n;
+    }
+
+    public destroy() {
+        for (const event in this.eventHandlerTable) {
+            GameDispatcher.getInstance().removeEventListener(event, this.eventHandlerTable[event], this);
+        }
     }
 
     public hasReceivableReward(): boolean {
@@ -1275,6 +1326,7 @@ class TaskManager {
             this.tasks[task.id] = TASK_STATES.RECEIVED;
             GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.RECEIVED_TASK_REWARD), task.id);
         };
         console.log("eventId", eventId);
         if (eventId.length !== 0) {
@@ -1293,6 +1345,33 @@ class TaskManager {
         } else {
             handler();
         }
+    }
+
+    public getTaskName(tid) {
+        let name = "";
+        const taskRarity = ["common", "luxury"];
+        TASK.some(chapter => {
+            return taskRarity.some(rarity => {
+                return chapter[rarity].some(task => {
+                    if (task && task.id === tid) {
+                        name = `${chapter.chapter}${rarity === "common" ? "普通" : "豪华"}任务：${task.name}`;
+                        return true;
+                    }
+                });
+            });
+        });
+        return name;
+    }
+
+    private onEndedReadingChapter(data) {
+        this.iterUncompletedTask(task => {
+            if (task.check.type === "chapter") {
+                if ((task.check.cid !== undefined && task.check.cid == data.data)
+                    || (task.check.cidList && task.check.cidList.indexOf(data.data) !== -1)) {
+                    this.completeTask(task.id);
+                }
+            }
+        });
     }
 
     private getTaskChapterIndex(tid: number): number {
@@ -1404,6 +1483,7 @@ class TaskManager {
         this.tasks[tid] = TASK_STATES.RECEIVABLE;
         GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), tid);
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.COMPLETED_TASK), tid);
     }
 
     // 类似于array的some方法 只是是用来遍历object的

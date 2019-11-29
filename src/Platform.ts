@@ -56,16 +56,16 @@ class DebugPlatform implements Platform {
     private static s_serverTime: Number;
 
     async getUserInfo() {
-        await window["getUserInfo"](() => {
-        });
+        return await new Promise(resolve => window["getUserInfo"](resolve));
     }
 
-    public getPriceRate(){
+    public getPriceRate() {
         if (this.getPlatform() == "plat_txsp") {
             return 10;
-        }else
+        } else
             return 1
     }
+
     public isPlatformVip() {
         if (this.getPlatform() == "plat_txsp") {
             return plattxsp.isPlatformVip();
@@ -85,7 +85,7 @@ class DebugPlatform implements Platform {
     public updateServerTime() {
         var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
         //let url = `http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp`;
-        let url = `http://quan.suning.com/getSysTime.do`
+        let url = `http://quan.suning.com/getSysTime.do`;
         httpRequest.open('GET', url, true);//第二步：打开连接
         httpRequest.send();//第三步：发送请求  将请求参数写在URL中
         httpRequest.onreadystatechange = function () {
@@ -94,7 +94,6 @@ class DebugPlatform implements Platform {
                 DebugPlatform.s_serverTime = new Date(json.sysTime2).getTime();
             }
         };
-
     }
 
     //获得上线时间，其它时间可以此时间上叠加

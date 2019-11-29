@@ -44,4 +44,11 @@ class GameEvent {
     public static TASK_STATE_CHANGED: string = 'task.statechanged';
     public static SUIPIAN_CHANGE: string = 'suipian.change';
     public static SHOUCANG_NEWPOINT: string = 'shoucang.newpoint';
+    public static BEGAN_READING_CHAPTER: string = '1';
+    public static ENDED_READING_CHAPTER: string = '2';
+    public static ACHIEVED_ENDING: string = '3';
+    public static COMPLETED_TASK: string = '4';
+    public static RECEIVED_TASK_REWARD: string = '5';
+    public static SHARE_ACTIVATION_CODE: string = '6';
+    public static SHARE_COLLECTION_IMAGE: string = '7';
 }
