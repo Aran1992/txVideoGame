@@ -272,7 +272,7 @@ class TicketPanel extends eui.Component {
     }
 
     private onBuy600001Complte(shopdata: ShopInfoData) {
-        if (shopdata.id == GameDefine.GUANGLIPINGZHENG) {
+        if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
             if (this._openParam == "confirm")//从弹窗进来的。购买成功后需要继续播放视频
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
             this.onCloseClick();

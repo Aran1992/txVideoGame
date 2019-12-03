@@ -89,12 +89,29 @@ class Txsp {
         callback();
     }
 
-    //获取商业化数值
-    async getBookValues(bookId, slotId, callback) {
-
+    //获取商业化数值,把原来的slot参数做其它用途；兼容两个平台
+    async getBookValues(bookId, itemids, callback) {
+        let res = await bridgeHelper.queryProduct({
+            appid: txsp_appid,  // 应用的appid
+            openid: txsp_userinfo.openid, // 应用的openid            
+            access_token: txsp_userinfo.token, // 互动登录态access_token
+            product_ids:itemids,
+            sandbox: txsp_debug ? 1 : 0,
+        })
+        callback(res);
         //使用本地数据
     }
-
+    async takeOffBookValue(bookId, saleId, currentSlotId, num, callback){        
+        let res = await bridgeHelper.consumeProduct({
+            appid: txsp_appid,  // 应用的appid
+            openid: txsp_userinfo.openid, // 应用的openid
+            access_token: txsp_userinfo.token, // 互动登录态access_token
+            product_id:saleId,
+            count:num,
+            sandbox: txsp_debug ? 1 : 0,
+        })
+        callback();
+    }
     async shareImage(bookId, imageData) {
         return await bridgeHelper.shareImage({
             needPreview: true, // 是否需要预览，是: true, 否：false, 默认: false

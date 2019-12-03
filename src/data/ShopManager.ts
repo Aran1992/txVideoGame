@@ -4,6 +4,7 @@ class ShopManager {
     private _shopDataDict;
     private _openShoucangIds: number[];
     private _serverItemNums = {};
+    private _loadingFromServer = null;
 
     private constructor() {
         this._openShoucangIds = [];
@@ -48,34 +49,43 @@ class ShopManager {
         if (egret.Capabilities.os == 'Windows PC') {
             this.addGoods(itemId, num, callback);
         } else {
-            let callbackBuyGoods = (data) => {
-                let recData = data.data;
-                let jsonObject = data.data.value;
-                if (data.code == 0) {
-                    shopdata = this._shopDataDict[jsonObject.saleId];
-                    shopdata.updateShopData(jsonObject);
-                    this._serverItemNums[jsonObject.saleId] = jsonObject.num;//更新商品数量
-                    //console.log("update item:"+jsonObject.saleId+";"+jsonObject.num);
-                    this.addGoods(itemId, 0, callback)//需要加0以便能调用到回调函数
-                } else {
-                    GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);
-                }
-            };
-            if (platform.getPlatform() == "plat_txsp") {
-                callbackBuyGoods = (res) => {
-                    if (res.code == 0) {
-                        if (itemId == GameDefine.GUANGLIPINGZHENGEX)
-                            itemId = GameDefine.GUANGLIPINGZHENG;
-                        this.addGoods(itemId, num, callback)
+            let callbackBuyGoods = (data) => { 
+                if(platform.getPlatform() == "plat_1001"){
+                    let recData = data.data;
+                    let jsonObject = data.data.value;
+                    if (data.code == 0) {
+                        shopdata = this._shopDataDict[jsonObject.saleId];
+                        shopdata.updateShopData(jsonObject);
+                        this._serverItemNums[jsonObject.saleId] = jsonObject.num;//更新商品数量
+                        //console.log("update item:"+jsonObject.saleId+";"+jsonObject.num);
+                        this.addGoods(itemId, 0, callback)//需要加0以便能调用到回调函数
                     } else {
-                        console.log(res.msg);
-                        GameCommon.getInstance().showCommomTips("购买商品失败" + res.msg);
+                        GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);
+                    }
+                }else if(platform.getPlatform() == "plat_txsp"){
+                    if (data.code == 0) {
+                        this._serverItemNums[itemId] = (this._serverItemNums[itemId]||0) + num;//更新商品数量
+                        this.addGoods(itemId, 0, callback)//需要加0以便能调用到回调函数
+                    } else {
+                        GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + data.msg);
                     }
                 }
-            }
-            let currentSlotId: number = 0;
+            };
+            // if (platform.getPlatform() == "plat_txsp") {
+            //     callbackBuyGoods = (res) => {
+            //         if (res.code == 0) {
+            //             if (itemId == GameDefine.GUANGLIPINGZHENGEX)
+            //                 itemId = GameDefine.GUANGLIPINGZHENG;
+            //             this.addGoods(itemId, num, callback)
+            //         } else {
+            //             console.log(res.msg);
+            //             GameCommon.getInstance().showCommomTips("购买商品失败" + res.msg);
+            //         }
+            //     }
+            // }
+            //let currentSlotId: number = 0;
             //console.log("buy:"+itemId+";"+num+";slot="+currentSlotId);
-            platform.buyGoods(GameDefine.BOOKID, itemId, num, currentSlotId, callbackBuyGoods);
+            platform.buyGoods(GameDefine.BOOKID, itemId, num, 0, callbackBuyGoods);
         }
     }
 
@@ -123,6 +133,9 @@ class ShopManager {
 
     //不从服务器上取了。因为TXSP从服务器上也取不到
     public loadFromServer(record?: string) {
+        if (this._loadingFromServer)
+            return;
+        this._loadingFromServer = true;
         if (!this._serverItemNums["loadedRecord"] && record){
             //存档中的数量初始化
             let r = JSON.parse(record);
@@ -134,7 +147,7 @@ class ShopManager {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
         }
         //1001需要从服务器上取得物品数量;loaded代表平台数量是否已获取
-        if(platform.getPlatform() != "plat_txsp" && !this._serverItemNums["loaded"]){
+        if(platform.getPlatform() == "plat_1001" && !this._serverItemNums["loaded"]){
             let callback = (data) => {
                 if (data.code == 0) {
                     let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
@@ -148,18 +161,57 @@ class ShopManager {
                 } else {
                     GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
                 }
+                this._loadingFromServer = false;
             };
             let currentSlotId: number = 0;
             platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
         }
+        if(platform.getPlatform() == "plat_txsp" && !this._serverItemNums["loaded"]){
+            // let callback = (data) => {
+            //     if (data.code == 0) {
+            //         let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
+            //         values.forEach(element => {
+            //             this._serverItemNums[element.saleId] = element.num;
+            //         });
+            //         this._serverItemNums["loaded"] = true;
+            //         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
+            //         console.log(this._serverItemNums);
+            //         //把本地的值+服务器的值
+            //     } else {
+            //         GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
+            //     }
+            //     this._loadingFromServer = false;
+            // };
+            // let currentSlotId: number = 0;
+            // platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
+            let callback=(data)=>{
+                if (data.code == 0){
+                    for (let product_id in data.result.product_count){
+                        this._serverItemNums[product_id] = data.result.product_count.product_id - data.result.product_consume_count.product_id;
+                    }
+                }else{
+                    GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.msg);
+                }
+                this._loadingFromServer = false;
+            };
+            let itemids = [];
+            let t = JsonModelManager.instance.getModelshop();
+            for (let id in t){
+                itemids.push(id);
+            }
+            platform.getBookValues(GameDefine.BOOKID,itemids,callback);
+        }
     }
 
     public getServerItemNum(id) {
-        if (platform.getPlatform()=="plat_txsp")
-            return 0;
+        // if (platform.getPlatform()=="plat_txsp")
+        //     return 0;
         if (!this._serverItemNums["loaded"]) {
             this.loadFromServer()
             return 0;
+        }
+        if (id == GameDefine.GUANGLIPINGZHENGEX || id == GameDefine.GUANGLIPINGZHENG){
+            return (this._serverItemNums[GameDefine.GUANGLIPINGZHENGEX] || 0) + (this._serverItemNums[GameDefine.GUANGLIPINGZHENG] || 0);
         }
         return this._serverItemNums[id] || 0;
     }
