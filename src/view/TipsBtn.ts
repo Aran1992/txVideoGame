@@ -731,7 +731,7 @@ class TipsBtn extends eui.Component {
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         if (isVip) {
-            GameCommon.getInstance().showCommomTips("你已经购买了心动PASS了");
+            GameCommon.getInstance().showCommomTips("你已经购买了追剧礼包了");
             return;
         }
         VideoManager.getInstance().videoPause();
