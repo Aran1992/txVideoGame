@@ -356,9 +356,10 @@ class ShopPanel extends eui.Component {
                 cur_models.push(shopdata);
             }
         }
-        cur_models.sort((a,b)=>{            
-            let powerA = 10000/Number(a.model.params)+ShopManager.getInstance().getItemNum(a.id)*1000000;
-            let powerB = 10000/Number(b.model.params)+ShopManager.getInstance().getItemNum(b.id)*1000000;            
+        cur_models.sort((a,b)=>{        
+            //如果是图片，则使用param逆序排列，其它按ID正序排列    
+            let powerA = (shoptpye == SHOP_TYPE.IMAGES?(10000/Number(a.model.params)):a.id)+ShopManager.getInstance().getItemNum(a.id)*1000000;
+            let powerB = (shoptpye == SHOP_TYPE.IMAGES?(10000/Number(b.model.params)):b.id)+ShopManager.getInstance().getItemNum(b.id)*1000000;            
             return powerA-powerB;
         })
         return cur_models;
