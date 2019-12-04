@@ -8,6 +8,6 @@
         <e:Image source="main_jiantou1_png" left="0" verticalCenter="0" includeIn="upAndSelected,downAndSelected"
                  scale9Grid.down="8,2,40,17" left.down="0" right.down="175" />
         <e:Label id="labelDisplay" size="40" fontFamily="Microsoft JhengHei" verticalCenter="0"
-                 bold.upAndSelected="true" bold.downAndSelected="true"  text="按难度" left.up="80" width.up="120" left="80" width="120"/>
+                 bold.upAndSelected="true" bold.downAndSelected="true"  text="按难度" left.up="80" left="80"/>
     </e:Group>
 </e:Skin>
