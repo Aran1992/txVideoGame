@@ -33,10 +33,11 @@ class ShopManager {
     public takeOffBookValue(bookId, saleId, currentSlotId, num) {
         let callback = (data) => {
             if (data.code == 0) {
-                this._serverItemNums[data.data.value.saleId] = data.data.value.num;
-                console.log("使用物品：" + data.data.value.saleId + ";" + num + " 剩余:" + data.data.value.num);
+                saleId = Number(saleId);
+                this._serverItemNums[saleId] = this._serverItemNums[saleId] - num;//data.data.value.num;
+                console.log("使用物品：" + saleId + ";" + num + " 剩余:" + this._serverItemNums[saleId]);//data.data.value.num);
             } else {
-                console.log(data.data.msg + ";" + saleId + ";" + num);
+                console.log((data.msg || data.data.msg) + ";" + saleId + ";" + num);
             }
         };
         platform.takeOffBookValue(GameDefine.BOOKID, saleId, currentSlotId, num, callback);
@@ -188,7 +189,8 @@ class ShopManager {
                 this._loadingFromServer = false;
                 if (data.code == 0){
                     for (let product_id in data.result.product_count){
-                        this._serverItemNums[product_id] = data.result.product_count.product_id - data.result.product_consume_count.product_id;
+                        let id = Number(product_id);
+                        this._serverItemNums[id] = data.result.product_count[id] - data.result.product_consumed_count[id];
                     }
                     this._serverItemNums["loaded"] = true;
                 }else{
