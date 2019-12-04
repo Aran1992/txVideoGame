@@ -62,6 +62,13 @@ class BuyTipsPanel extends eui.Component {
         this.suipBuy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSuiPian, this);
         this.updateResize();
         this.onInit();
+
+        
+
+        if (this.param.shopInfo.model.currSuipian == 0){
+            GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this.param.shopInfo.currPrice*platform.getPriceRate(), GOODS_TYPE.DIAMOND);
+            this.onclose();
+        }
     }
 
     private onshowMaskBG(): void {
