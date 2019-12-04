@@ -91,6 +91,8 @@ class Txsp {
 
     //获取商业化数值,把原来的slot参数做其它用途；兼容两个平台
     async getBookValues(bookId, itemids, callback) {
+        if (txsp_debug)
+            bridgeHelper.setServerEnv(true);//await
         let res = await bridgeHelper.queryProduct({
             appid: txsp_appid,  // 应用的appid
             openid: txsp_userinfo.openid, // 应用的openid            
@@ -101,7 +103,9 @@ class Txsp {
         callback(res);
         //使用本地数据
     }
-    async takeOffBookValue(bookId, saleId, currentSlotId, num, callback){        
+    async takeOffBookValue(bookId, saleId, currentSlotId, num, callback){    
+        if (txsp_debug)
+            bridgeHelper.setServerEnv(true);//await    
         let res = await bridgeHelper.consumeProduct({
             appid: txsp_appid,  // 应用的appid
             openid: txsp_userinfo.openid, // 应用的openid
@@ -110,7 +114,7 @@ class Txsp {
             count:num,
             sandbox: txsp_debug ? 1 : 0,
         })
-        callback();
+        callback(res);
     }
     async shareImage(bookId, imageData) {
         return await bridgeHelper.shareImage({
@@ -171,9 +175,9 @@ class Txsp {
 是否购买?`, okFunc);
         } else {
             //钱不够走充值流程
-            if (txsp_debug)
-                GameCommon.getInstance().showConfirmTips(`我的余额${leftMoney};本次需要消费${price}`, () => {
-                })
+            // if (txsp_debug)
+            //     GameCommon.getInstance().showConfirmTips(`我的余额${leftMoney};本次需要消费${price}`, () => {
+            //     })
             await bridgeHelper.openPayPage({
                 actid: '', // 钻石actid
                 appid: txsp_appid, // 应用的appid

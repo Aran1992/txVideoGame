@@ -155,11 +155,11 @@ class ShouCangViewPanel extends eui.Component {
         let keySorted = Object.keys(cfgs).sort((a,b)=>{            
             let powerA = 0
             if (Number(a)<=5000){
-                powerA = Number(a);
+                powerA = 10000/Number(a);
             }           
             let powerB = 0
             if (Number(b)<=5000){
-                powerB = Number(b);
+                powerB = 10000/Number(b);
             }            
             return powerA-powerB;
         })
