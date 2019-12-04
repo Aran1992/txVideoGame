@@ -1,4 +1,5 @@
 const REWARD_ICON = [
+    {type: ["luxury"], icon: "pass_icon_task_0_png"},
     {type: ["suipian"], icon: "pass_icon_task_1_png"},
     {type: ["erfan"], icon: "pass_icon_task_2_png"},
     {type: ["yuepu"], icon: "pass_icon_task_4_png"},
@@ -16,6 +17,10 @@ const REWARD_ICON = [
 ];
 
 const REWARD_DSC = {
+    luxury: {
+        name: "提前看剧特权",
+        dsc: "可立即观看所有剧集。",
+    },
     suipian: {
         name: "碎片",
         dsc: "一种珍贵的材料，可以在《拳拳四重奏》“商城”内兑换美图、音乐等奖励。",

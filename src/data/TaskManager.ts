@@ -50,7 +50,19 @@ const TASK = [
             }
         ],
         "luxury": [
-            null,
+            {
+                "name": "超前观看剧情",
+                "dsc": "解锁追剧礼包",
+                "check": {
+                    "type": "luxury",
+                },
+                "reward": [
+                    {
+                        "type": "luxury"
+                    }
+                ],
+                "id": "0-1-0"
+            },
             null,
             {
                 "name": "开始四重奏",
@@ -1237,6 +1249,9 @@ class TaskManager {
     public getTaskState(tid): TASK_STATES {
         if (this.isLuxuryTask(tid) && !this.isUnlockLuxuryTask()) {
             return TASK_STATES.LOCKED;
+        }
+        if (tid === "0-1-0") {
+            return TASK_STATES.RECEIVED;
         }
         if (this.playedMaxChapter < this.getTaskChapterIndex(tid)) {
             return TASK_STATES.UNCOMPLETED;

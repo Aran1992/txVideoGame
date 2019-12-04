@@ -4,7 +4,7 @@ class ConfigManager {
         for (const cid in chapters) {
             const chapter = chapters[cid];
             if (chapter.videoSrc.split(",")[0] === vid) {
-                return cid;
+                return chapter.id;
             }
         }
     }
@@ -13,33 +13,42 @@ class ConfigManager {
         if (vid === "V019") {
             return 0;
         }
-        let cid = undefined;
         const video = JsonModelManager.instance.getModelshipin()[vid];
-        if (video.tiaozhuan) {
-            cid = this.getChapterIDFromVid(vid);
+        if (video.tiaozhuan == TIAOZHUAN_Type.RESULT) {
+            return this.getChapterIDFromVid(vid);
         }
-        return cid;
     }
 
     public getVideoAchievedEnding(vid: string) {
-        if (vid === "V019") {
-            return "V019";
+        if (vid === "") {
+            return;
         }
-        let endingID = undefined;
+        const noneEndingVideo = [
+            "V019",
+            "V119",
+            "V226",
+            "V307",
+            "V416",
+            "V519",
+            "V620",
+            "V718",
+            "V812",
+            "V912",
+            "VH1007",
+            "VH1118",
+            "VX1004",
+            "VX1112",
+            "VWY1013",
+            "VY1107",
+            "VW1107",
+        ];
+        if (noneEndingVideo.indexOf(vid) !== -1) {
+            return;
+        }
         const video = JsonModelManager.instance.getModelshipin()[vid];
         if (video.tiaozhuan) {
-            endingID = vid;
+            return vid;
         }
-        return endingID;
-    }
-
-    public getChapterName(cid) {
-        return JsonModelManager.instance.getModelchapter()[cid].name;
-    }
-
-    // todo
-    public getEndingName(eid) {
-        return `结局${eid}`;
     }
 
     private getChapterIDFromVid(vid) {

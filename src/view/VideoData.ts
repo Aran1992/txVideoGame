@@ -1338,6 +1338,9 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     private setVideoDict(vid: string) {
+        if (vid === "") {
+            return;
+        }
         UserInfo.curBokData.videoDic[vid] = vid;
         TaskManager.instance.checkVideoTask();
         const beganCid = Config.getVideoBeganChapter(vid);
