@@ -185,14 +185,15 @@ class ShopManager {
             // let currentSlotId: number = 0;
             // platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
             let callback=(data)=>{
+                this._loadingFromServer = false;
                 if (data.code == 0){
                     for (let product_id in data.result.product_count){
                         this._serverItemNums[product_id] = data.result.product_count.product_id - data.result.product_consume_count.product_id;
                     }
+                    this._serverItemNums["loaded"] = true;
                 }else{
                     GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.msg);
                 }
-                this._loadingFromServer = false;
             };
             let itemids = [];
             let t = JsonModelManager.instance.getModelshop();
