@@ -1,6 +1,5 @@
 declare const sendRequest;
-declare const reportBusinessEvent;
-declare const getBusinessEventData;
+declare const report;
 
 if (platform.getPlatform() === "plat_1001") {
     class ReportManager_ {
@@ -28,62 +27,64 @@ if (platform.getPlatform() === "plat_1001") {
 
         private onBeganReadingChapter(data) {
             // 由于服务器上章节id不能为0 所以这边使用999来代替
-            if (data.data === 0) {
-                data.data = 999;
-            }
+            let chapterID = data.data || 999;
             sendRequest({
                 "bookId": GameDefine.BOOKID,
                 "cmd": "addReadChapterInfo",
-                "chapterId": data.data,
+                "chapterId": chapterID,
                 "readState": 1
             }, data => {
-                console.log("onBeganReadingChapter", data);
+                console.log("onBeganReadingChapter sendRequest", data);
+            });
+            report(GameDefine.BOOKID, "章节开始", data.data, data => {
+                console.log("onBeganReadingChapter report", data);
             });
         }
 
         private onEndedReadingChapter(data) {
             // 由于服务器上章节id不能为0 所以这边使用999来代替
-            if (data.data === 0) {
-                data.data = 999;
-            }
+            let chapterID = data.data || 999;
             sendRequest({
                 "bookId": GameDefine.BOOKID,
                 "cmd": "addReadChapterInfo",
-                "chapterId": data.data,
+                "chapterId": chapterID,
                 "readState": 2
             }, data => {
-                console.log("onEndedReadingChapter", data);
+                console.log("onEndedReadingChapter sendRequest", data);
+            });
+            report(GameDefine.BOOKID, "章节结束", data.data, data => {
+                console.log("onEndedReadingChapter report", data);
             });
         }
 
         private onAchievedEnding(data) {
-            reportBusinessEvent(GameDefine.BOOKID, "结局", data.data, data => {
+            report(GameDefine.BOOKID, "结局", data.data, data => {
                 console.log("onAchievedEnding", data);
             });
         }
 
         private onCompletedTask(data) {
             const taskName = TaskManager.instance.getTaskName(data.data);
-            reportBusinessEvent(GameDefine.BOOKID, "完成BP任务", taskName, data => {
+            report(GameDefine.BOOKID, "完成BP任务", taskName, data => {
                 console.log("onCompletedTask", data);
             });
         }
 
         private onReceivedTaskReward(data) {
             const taskName = TaskManager.instance.getTaskName(data.data);
-            reportBusinessEvent(GameDefine.BOOKID, "领取BP任务奖励", taskName, data => {
+            report(GameDefine.BOOKID, "领取BP任务奖励", taskName, data => {
                 console.log("onReceivedTaskReward", data);
             });
         }
 
         private onShareActivationCode() {
-            reportBusinessEvent(GameDefine.BOOKID, "分享激活码", "分享激活码", data => {
+            report(GameDefine.BOOKID, "分享激活码", "分享激活码", data => {
                 console.log("onShareActivationCode", data);
             });
         }
 
         private onShareCollectionImage() {
-            reportBusinessEvent(GameDefine.BOOKID, "分享收藏图片", "分享收藏图片", data => {
+            report(GameDefine.BOOKID, "分享收藏图片", "分享收藏图片", data => {
                 console.log("onShareCollectionImage", data);
             });
         }
@@ -91,16 +92,4 @@ if (platform.getPlatform() === "plat_1001") {
 
     const ReportManager = new ReportManager_();
     ReportManager.init();
-    getBusinessEventData(GameDefine.BOOKID, "完成BP任务", "0-0-0", data => {
-        console.log("完成BP任务", data);
-    });
-    getBusinessEventData(GameDefine.BOOKID, "领取BP任务奖励", "0-0-0", data => {
-        console.log("领取BP任务奖励", data);
-    });
-    getBusinessEventData(GameDefine.BOOKID, "分享激活码", "分享激活码", data => {
-        console.log("分享激活码", data);
-    });
-    getBusinessEventData(GameDefine.BOOKID, "分享收藏图片", "分享收藏图片", data => {
-        console.log("分享收藏图片", data);
-    });
 }

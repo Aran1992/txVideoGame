@@ -112,7 +112,6 @@ class TicketPanel extends eui.Component {
     private idGroupDescSpecialTxsp: eui.Group;//活动观礼描述
     private idGroupDiscount: eui.Group;
     private idGroupDiscountTxsp: eui.Group;
-    private idGroupTips: eui.Group;
 
     private idBtnBuyTicketOriPrize: eui.Button;
     private idBtnBuyTicketSpecailPrize: eui.Button;
@@ -207,7 +206,7 @@ class TicketPanel extends eui.Component {
         this.idBtnCopyCode.visible = false;
         this.idBtnShareCode.visible = false;
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        this.idTicketNum.text = ""//itemNum;
+        this.idTicketNum.text = "";//itemNum;
         this.refreshActiveCode();
         if (itemNum <= 0) {
             this.idGroupBuyTicket.visible = true;
@@ -231,7 +230,6 @@ class TicketPanel extends eui.Component {
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         this.idBtnBuyNow.label = itemNum > 0 ? "已拥有" : "立即购买";
         this.idBtnBuyNow.visible = itemNum <= 0;
-        this.idGroupTips.visible = itemNum <= 0;
         for (let i = 0; i < 4; i++) {
             this[`x${i}`].visible = itemNum <= 0;
         }
