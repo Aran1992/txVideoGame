@@ -1,4 +1,5 @@
 const REWARD_ICON = [
+    {type: ["luxury"], icon: "pass_icon_task_0_png"},
     {type: ["suipian"], icon: "pass_icon_task_1_png"},
     {type: ["erfan"], icon: "pass_icon_task_2_png"},
     {type: ["yuepu"], icon: "pass_icon_task_4_png"},
@@ -16,6 +17,10 @@ const REWARD_ICON = [
 ];
 
 const REWARD_DSC = {
+    luxury: {
+        name: "提前看剧特权",
+        dsc: "可立即观看所有剧集。",
+    },
     suipian: {
         name: "碎片",
         dsc: "一种珍贵的材料，可以在《拳拳四重奏》“商城”内兑换美图、音乐等奖励。",
@@ -107,7 +112,6 @@ class TicketPanel extends eui.Component {
     private idGroupDescSpecialTxsp: eui.Group;//活动观礼描述
     private idGroupDiscount: eui.Group;
     private idGroupDiscountTxsp: eui.Group;
-    private idGroupTips: eui.Group;
 
     private idBtnBuyTicketOriPrize: eui.Button;
     private idBtnBuyTicketSpecailPrize: eui.Button;
@@ -202,7 +206,7 @@ class TicketPanel extends eui.Component {
         this.idBtnCopyCode.visible = false;
         this.idBtnShareCode.visible = false;
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        this.idTicketNum.text = ""//itemNum;
+        this.idTicketNum.text = "";//itemNum;
         this.refreshActiveCode();
         if (itemNum <= 0) {
             this.idGroupBuyTicket.visible = true;
@@ -226,7 +230,6 @@ class TicketPanel extends eui.Component {
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         this.idBtnBuyNow.label = itemNum > 0 ? "已拥有" : "立即购买";
         this.idBtnBuyNow.visible = itemNum <= 0;
-        this.idGroupTips.visible = itemNum <= 0;
         for (let i = 0; i < 4; i++) {
             this[`x${i}`].visible = itemNum <= 0;
         }

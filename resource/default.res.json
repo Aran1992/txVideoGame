@@ -1108,7 +1108,7 @@
         {
             "name": "control_guide_img_png",
             "type": "image",
-            "url": "assets/control/control_guide_img.png?v=912"
+            "url": "assets/control/control_guide_img.png?v=649"
         },
         {
             "name": "control_jietu_png",
@@ -8246,6 +8246,11 @@
             "url": "assets/task/pass_icon_resume.png?v=549"
         },
         {
+            "name": "pass_icon_task_0_png",
+            "type": "image",
+            "url": "assets/task/pass_icon_task_0.png?v=494"
+        },
+        {
             "name": "pass_icon_task_1_png",
             "type": "image",
             "url": "assets/task/pass_icon_task_1.png?v=647"
@@ -8368,7 +8373,7 @@
         {
             "name": "ticket_share_png",
             "type": "image",
-            "url": "assets/ticket/ticket_share.png?v=186"
+            "url": "assets/ticket/ticket_share.png?v=174"
         },
         {
             "name": "huodong_png",
@@ -8448,7 +8453,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=955"
+            "url": "config/config.bin?v=905"
         }
     ]
 }

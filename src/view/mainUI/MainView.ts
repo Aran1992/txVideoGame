@@ -171,6 +171,7 @@ class MainView extends eui.Component {
         this.updateNewPoint();
         this.updateTicketButtonPoint();
         this.logHelper();
+        TipsBtn.Is_Guide_Bool = UserInfo.guideJson["player"] === undefined;
     }
 
     private updateNewPoint() {
@@ -358,7 +359,6 @@ class MainView extends eui.Component {
         this.onRefreshImg();
         this.setMainGroupVisible(false);
         if (!GameDefine.ISFILE_STATE) {
-            TipsBtn.Is_Guide_Bool = !UserInfo.achievementDics[17];
             if (UserInfo.achievementDics[17] && !isTXSP) {
                 this.setMainGroupVisible(true);
                 this.play_Btn.visible = false;
@@ -393,7 +393,6 @@ class MainView extends eui.Component {
             container: "#videoDivMin",
             width: "100%",
             enableUI: true,
-            clip: 4,
         });
         const methodList = [
             "play",

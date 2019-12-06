@@ -79,10 +79,10 @@
 		<e:Group id="idGroupTips" width="1224" height="64" anchorOffsetX="0" anchorOffsetY="0" bottom="102" x="360">
 			<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="1.5" x="26" y="16"/>
 			<e:Label text="看剧完成任务，领取丰厚心动奖励" height="30" size="27" scaleX="1" scaleY="1" verticalCenter="4" left="55" x="60" y="14"/>
-			<e:Image id="x0" source="pass_icon_resume_png" scaleX="1" scaleY="1" left="470" verticalCenter="1.5" x="422" y="16"/>
-			<e:Label id="x1" text="快人一步，超前观看最新剧情" size="27" scaleX="1" scaleY="1" left="500" verticalCenter="1.5" x="452" y="14"/>
-			<e:Image id="x2" source="pass_icon_resume_png" scaleX="1" scaleY="1" left="860" verticalCenter="1.5" x="834" y="16"/>
-			<e:Label id="x3" text="买一赠一，与好友同享拳拳" size="27" scaleX="1" scaleY="1" left="890" verticalCenter="1.5" x="866" y="14"/>
+			<e:Image id="x0" source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="40" x="422" y="16"/>
+			<e:Label id="x1" text="快人一步，超前观看最新剧情" size="27" scaleX="1" scaleY="1" left="55" verticalCenter="40" x="452" y="14"/>
+			<e:Image id="x2" source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="80" x="834" y="16"/>
+			<e:Label id="x3" text="买一赠一，与好友同享拳拳" size="27" scaleX="1" scaleY="1" left="55" verticalCenter="80" x="866" y="14"/>
 
 
 
@@ -224,7 +224,7 @@
 
 
 	</e:Group>
-	<e:Group id="idGroupShareTicket" width="100%" height="100%" x="0" y="0">
+	<e:Group id="idGroupShareTicket" width="100%" height="100%" x="0" y="0" visible="false">
 		<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="video_heidi1_png"/>
 		<e:Image width="1600" height="900" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" source="ticket_share_png"/>
 		<e:Button id="idShareTicketClose" width="91" height="91" top="48" right="63" x="1351" y="113" scaleX="1" scaleY="1" visible="false">
@@ -235,6 +235,8 @@
 		</e:skinName>
 		</e:Button>
 		<e:Label id="idShareCode" text="FFFFFFFFFFFFF" scaleX="1" scaleY="1" size="50" anchorOffsetX="0" width="583.69" anchorOffsetY="0" height="73.39" textAlign="center" verticalAlign="middle" horizontalCenter="-7" verticalCenter="132.5"/>
+		<e:Label text="超前追剧，并享多重福利！" scaleX="1" scaleY="1" size="25" anchorOffsetX="0" anchorOffsetY="0" textAlign="center" verticalAlign="middle" horizontalCenter="10" verticalCenter="-22" bold="true"/>
+		<e:Label text="送您《拳拳四重奏》追剧礼包激活码" scaleX="1" scaleY="1" size="35" anchorOffsetX="0" anchorOffsetY="0" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="35" bold="true"/>
 		<e:Label id="idShareText" text="1. 该激活码可用于在一零零一或腾讯视频激活《拳拳四重奏》追剧礼包；2. 在《拳拳四重奏》剧集内部追剧礼包-礼包赠送可以激活资格；3. 在一零零一重激活追剧礼包，可享受提前看剧以及追剧礼包福利内容，在腾讯视频中激活追剧礼包，仅包含提前追剧礼包;\n4. 激活码有效期至2020年x月xx日。" anchorOffsetY="0" height="139" anchorOffsetX="0" width="1476.33" textAlign="center" bottom="2" horizontalCenter="14" lineSpacing="5"/>
 		<e:Group width="200" height="200" horizontalCenter="0" verticalCenter="0" visible="false">
 		<e:Label text="拳拳四重奏  追剧礼包" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
@@ -245,6 +247,10 @@
 			<e:Label text="激活码：" x="-52.43" y="283.09" scaleX="1" scaleY="1" size="34"/>
 			<e:Label id="idShareCode0" text="123456" x="66.66" y="282.48" scaleX="1" scaleY="1" size="34"/>
 		</e:Group>
+		<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" verticalCenter="215" horizontalCenter="-300"/>
+		<e:Label text="畅享全部剧集，感受全程发糖" height="30" size="22" scaleX="1" scaleY="1" horizontalCenter="-150" verticalCenter="215"/>
+		<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="215"/>
+		<e:Label text="完成专属任务，附赠以下专属奖励" height="30" size="22" scaleX="1" scaleY="1" horizontalCenter="225" verticalCenter="215"/>
 	</e:Group>
 
 

@@ -447,6 +447,8 @@ class TipsBtn extends eui.Component {
         if (TipsBtn.Is_Guide_Bool) {//新手引导 显示一张按钮指引的图
             this.setPauseState();
             TipsBtn.Is_Guide_Bool = false;
+            UserInfo.guideJson["player"] = 1;
+            GameCommon.getInstance().setBookData(FILE_TYPE.AUTO_FILE);
             this.guide_img.visible = true;
             this.mengban.visible = true;
             this.guide_img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onHideGuide, this);
