@@ -36,9 +36,7 @@ if (platform.getPlatform() === "plat_1001") {
             }, data => {
                 console.log("onBeganReadingChapter sendRequest", data);
             });
-            report(GameDefine.BOOKID, "章节开始", data.data, data => {
-                console.log("onBeganReadingChapter report", data);
-            });
+            this.report("章节开始", {chapterID});
         }
 
         private onEndedReadingChapter(data) {
@@ -52,41 +50,34 @@ if (platform.getPlatform() === "plat_1001") {
             }, data => {
                 console.log("onEndedReadingChapter sendRequest", data);
             });
-            report(GameDefine.BOOKID, "章节结束", data.data, data => {
-                console.log("onEndedReadingChapter report", data);
-            });
+            this.report("章节结束", {chapterID});
         }
 
         private onAchievedEnding(data) {
-            report(GameDefine.BOOKID, "结局", data.data, data => {
-                console.log("onAchievedEnding", data);
-            });
+            this.report("结局", {endingVID: data.data});
         }
 
         private onCompletedTask(data) {
             const taskName = TaskManager.instance.getTaskName(data.data);
-            report(GameDefine.BOOKID, "完成BP任务", taskName, data => {
-                console.log("onCompletedTask", data);
-            });
+            this.report("完成BP任务", {taskName});
         }
 
         private onReceivedTaskReward(data) {
             const taskName = TaskManager.instance.getTaskName(data.data);
-            report(GameDefine.BOOKID, "领取BP任务奖励", taskName, data => {
-                console.log("onReceivedTaskReward", data);
-            });
+            this.report("领取BP任务奖励", {taskName});
         }
 
         private onShareActivationCode() {
-            report(GameDefine.BOOKID, "分享激活码", "分享激活码", data => {
-                console.log("onShareActivationCode", data);
-            });
+            this.report("分享激活码");
         }
 
         private onShareCollectionImage() {
-            report(GameDefine.BOOKID, "分享收藏图片", "分享收藏图片", data => {
-                console.log("onShareCollectionImage", data);
-            });
+            this.report("分享收藏图片");
+        }
+
+        private report(event, params = {}) {
+            console.log("start report", event, params);
+            report(GameDefine.BOOKID, event, JSON.stringify(params), data => console.log("end report", data, event, params));
         }
     }
 
