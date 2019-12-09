@@ -41,62 +41,12 @@ class Modelshipin extends ModelJsonBase {
 		return parseFloat(this._json["time"]);
 	}
 
-	private _dlc;
-	public set dlc(value){
-		this._dlc = value;
-	}
-	public get dlc():number{
-		return parseFloat(this._json["dlc"]);
-	}
-
-	private _shanhuiid;
-	public set shanhuiid(value){
-		this._shanhuiid = value;
-	}
-	public get shanhuiid():string{
-		if (this._json["shanhuiid"] == "*") { return ""; }
-		return this._json["shanhuiid"];
-	}
-
-	private _weight;
-	public set weight(value){
-		this._weight = value;
-	}
-	public get weight():number{
-		return parseFloat(this._json["weight"]);
-	}
-
 	private _tiaozhuan;
 	public set tiaozhuan(value){
 		this._tiaozhuan = value;
 	}
 	public get tiaozhuan():number{
 		return parseFloat(this._json["tiaozhuan"]);
-	}
-
-	private _subtitle;
-	public set subtitle(value){
-		this._subtitle = value;
-	}
-	public get subtitle():number{
-		return parseFloat(this._json["subtitle"]);
-	}
-
-	private _payTime;
-	public set payTime(value){
-		this._payTime = value;
-	}
-	public get payTime():number{
-		return parseFloat(this._json["payTime"]);
-	}
-
-	private _haogandu;
-	public set haogandu(value){
-		this._haogandu = value;
-	}
-	public get haogandu():string{
-		if (this._json["haogandu"] == "*") { return ""; }
-		return this._json["haogandu"];
 	}
 
 	private _jtime;
@@ -115,6 +65,23 @@ class Modelshipin extends ModelJsonBase {
 	public get stime():string{
 		if (this._json["stime"] == "*") { return ""; }
 		return this._json["stime"];
+	}
+
+	private _ending;
+	public set ending(value){
+		this._ending = value;
+	}
+	public get ending():string{
+		if (this._json["ending"] == "*") { return ""; }
+		return this._json["ending"];
+	}
+
+	private _be;
+	public set be(value){
+		this._be = value;
+	}
+	public get be():number{
+		return parseFloat(this._json["be"]);
 	}
 
 }

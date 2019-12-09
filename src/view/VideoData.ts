@@ -727,7 +727,7 @@ class VideoData extends egret.DisplayObjectContainer {
             this.isPlay = true;
             return;
         }
-        if (videoModels[this.videoIdx].shanhuiid != '' || videoModels[this.videoIdx].tiaozhuan != 0) {
+        if (videoModels[this.videoIdx].tiaozhuan != 0) {
             this.curVideoIDs = [];
             this.curVideoIndex = 0;
             this.fileTimerIdx = 0;
@@ -1351,9 +1351,9 @@ class VideoData extends egret.DisplayObjectContainer {
         if (endedCid !== undefined) {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ENDED_READING_CHAPTER), endedCid);
         }
-        const endingID = Config.getVideoAchievedEnding(vid);
-        if (endingID !== undefined) {
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ACHIEVED_ENDING), endingID);
+        const endingInfo = Config.getVideoAchievedEnding(vid);
+        if (endingInfo !== undefined) {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ACHIEVED_ENDING), endingInfo);
         }
     }
 }

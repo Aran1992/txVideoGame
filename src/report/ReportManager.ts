@@ -36,7 +36,11 @@ if (platform.getPlatform() === "plat_1001") {
             }, data => {
                 console.log("onBeganReadingChapter sendRequest", data);
             });
-            this.report("章节开始", {chapterID});
+            this.report("章节开始", {chapterID: data.data});
+            const branchName = Config.getChapterBeganBranchName(data.data);
+            if (branchName) {
+                this.report("支线选择", {branchName});
+            }
         }
 
         private onEndedReadingChapter(data) {
@@ -50,21 +54,21 @@ if (platform.getPlatform() === "plat_1001") {
             }, data => {
                 console.log("onEndedReadingChapter sendRequest", data);
             });
-            this.report("章节结束", {chapterID});
+            this.report("章节结束", {chapterID: data.data});
         }
 
         private onAchievedEnding(data) {
-            this.report("结局", {endingVID: data.data});
+            this.report("结局", data.data);
         }
 
         private onCompletedTask(data) {
             const taskName = TaskManager.instance.getTaskName(data.data);
-            this.report("完成BP任务", {taskName});
+            this.report("完成BP任务", {taskName, taskID: data.data});
         }
 
         private onReceivedTaskReward(data) {
             const taskName = TaskManager.instance.getTaskName(data.data);
-            this.report("领取BP任务奖励", {taskName});
+            this.report("领取BP任务奖励", {taskName, taskID: data.data});
         }
 
         private onShareActivationCode() {

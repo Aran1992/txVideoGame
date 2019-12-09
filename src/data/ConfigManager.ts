@@ -23,32 +23,20 @@ class ConfigManager {
         if (vid === "") {
             return;
         }
-        const noneEndingVideo = [
-            "V019",
-            "V119",
-            "V226",
-            "V307",
-            "V416",
-            "V519",
-            "V620",
-            "V718",
-            "V812",
-            "V912",
-            "VH1007",
-            "VH1118",
-            "VX1004",
-            "VX1112",
-            "VWY1013",
-            "VY1107",
-            "VW1107",
-        ];
-        if (noneEndingVideo.indexOf(vid) !== -1) {
-            return;
-        }
         const video = JsonModelManager.instance.getModelshipin()[vid];
-        if (video.tiaozhuan) {
-            return vid;
+        if (video.ending) {
+            return {endingVID: vid, endingName: video.ending, isBadEnding: video.be === 1};
         }
+    }
+
+    public getChapterBeganBranchName(chapter) {
+        const map = {
+            10: "韩小白",
+            20: "夏子豪",
+            31: "肖千也",
+            41: "肖万寻",
+        };
+        return map[chapter];
     }
 
     private getChapterIDFromVid(vid) {
