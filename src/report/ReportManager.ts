@@ -75,9 +75,10 @@ if (platform.getPlatform() === "plat_1001") {
             this.report("分享收藏图片");
         }
 
-        private report(event, params = {}) {
+        private report(event, params = undefined) {
             console.log("start report", event, params);
-            report(GameDefine.BOOKID, event, JSON.stringify(params), data => console.log("end report", data, event, params));
+            event = params ? `${event}-${JSON.stringify(params)}` : event;
+            report(GameDefine.BOOKID, event, "", data => console.log("end report", data, event, params));
         }
     }
 
