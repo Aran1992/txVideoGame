@@ -3,3 +3,5 @@
 /bin-release/
 /wingProperties.json
 /.wing/exml.json
+/resource/config/config.bin
+/resource/default.res.json
