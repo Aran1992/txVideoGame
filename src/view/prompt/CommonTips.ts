@@ -43,16 +43,16 @@ class CommonTips extends eui.Component {
     private isLikeTime: boolean = false;
     private itemTp: number;
     private itemId: number;
-    private _buyhaoganparams={wentiId:0,id:0};
+    private _buyhaoganparams = {wentiId: 0, id: 0};
     /**二级确认框**/
     private _confirmFunc: Function;
-    private _buyCallBack:Function;
+    private _buyCallBack: Function;
     private mcFactory1: egret.MovieClipDataFactory;
     private img_mc: egret.MovieClip;
     private ldState: boolean = false;
     private roleChapterNoticeGroup: eui.Group;
     private roleChapterNoticeLabel: eui.Label;
-    private idBuyItemName:eui.Label;
+    private idBuyItemName: eui.Label;
 
     constructor() {
         super();
@@ -173,7 +173,7 @@ class CommonTips extends eui.Component {
         this.onshowMaskBG();
     }
 
-    public onShowBuyTips(id, money, tp,buycallback) {
+    public onShowBuyTips(id, money, tp, buycallback) {
         SoundManager.getInstance().playSound("ope_click.mp3");
         switch (tp) {
             case GOODS_TYPE.DIAMOND:
@@ -186,20 +186,20 @@ class CommonTips extends eui.Component {
         this.itemTp = tp;
         this.itemId = id;
         this._buyCallBack = buycallback;
-        this.idBuyItemName.text = "“"+ShopManager.getInstance().getShopInfoData(id).model.name+"”";
+        this.idBuyItemName.text = "“" + ShopManager.getInstance().getShopInfoData(id).model.name + "”";
         this.desc6.text = money + "";
         this.buyGroup1.visible = true;
         this.buyGrp.visible = true;
         this.onshowMaskBG();
     }
 
-    public onShowBuyHaoGan(wentiId:number=0,id: number = 0) {
+    public onShowBuyHaoGan(wentiId: number = 0, id: number = 0) {
         if (id > 0) {
-            let price = ShopManager.getInstance().getShopInfoData(SHOP_TYPE.DAOJU*100000+wentiId*100+id).model.currPrice*platform.getPriceRate();            
+            let price = ShopManager.getInstance().getShopInfoData(SHOP_TYPE.DAOJU * 100000 + wentiId * 100 + id).model.currPrice * platform.getPriceRate();
             this.btnConfirm_haogan['money'].text = price;//platform.getPriceRate()*price;
         }
-        this._buyhaoganparams.wentiId= wentiId;
-        this._buyhaoganparams.id= id;
+        this._buyhaoganparams.wentiId = wentiId;
+        this._buyhaoganparams.id = id;
         this.buyGrphaogan.visible = true;
         this.onshowMaskBG();
     }
@@ -231,15 +231,15 @@ class CommonTips extends eui.Component {
         } else {
             this.result_closebtn.visible = false;
             this.btn_qianwang.visible = false;
-            tw.to({alpha: 1}, 50).wait(2000).to({alpha:0},100).wait(0).call(() => {
+            tw.to({alpha: 1}, 50).wait(2000).to({alpha: 0}, 100).wait(0).call(() => {
                 this.buyResult.visible = false;
             });
         }
     }
 
-    public showConfirmTips(desc: string, callBack: Function, desc2?: string,textYes:string="是",textNo:string="否"): void {
+    public showConfirmTips(desc: string, callBack: Function, desc2?: string, textYes: string = "是", textNo: string = "否"): void {
         this.confirm_desc_lab.text = desc;
-        if (desc2) 
+        if (desc2)
             this.confirm_desc2_lab.text = desc2;
         else
             this.confirm_desc2_lab.text = "";
@@ -257,6 +257,7 @@ class CommonTips extends eui.Component {
     }
 
     public showErrorLog(str: string): void {
+        if (!platform.isDebug()) return;
         this.logLab.text += "\n" + str;
     }
 
@@ -342,25 +343,26 @@ class CommonTips extends eui.Component {
         this.buyGrp.visible = false;
         switch (this.itemTp) {
             case GOODS_TYPE.DIAMOND:
-                ShopManager.getInstance().buyGoods(this.itemId,1,()=>{
-                    if (this._buyCallBack) 
+                ShopManager.getInstance().buyGoods(this.itemId, 1, () => {
+                    if (this._buyCallBack)
                         this._buyCallBack()
-                    });
+                });
                 break;
             case GOODS_TYPE.SUIPIAN:
-                let shopdata:ShopInfoData = ShopManager.getInstance().getShopInfoData(this.itemId);
-                if (shopdata.model.currSuipian == 0 ){
+                let shopdata: ShopInfoData = ShopManager.getInstance().getShopInfoData(this.itemId);
+                if (shopdata.model.currSuipian == 0) {
                     GameCommon.getInstance().showCommomTips("此商品不能用碎片购买！")
                     return;
                 }
-                ShopManager.getInstance().buyGoodsSuip(this.itemId,1,()=>{
-                    if (this._buyCallBack) 
+                ShopManager.getInstance().buyGoodsSuip(this.itemId, 1, () => {
+                    if (this._buyCallBack)
                         this._buyCallBack()
-                    });
+                });
                 break;
         }
         this.onhideMaskBG();
     }
+
     private onCancel_buy() {
         SoundManager.getInstance().playSound("ope_click.mp3")
         this.buyGrp.visible = false;
@@ -377,8 +379,8 @@ class CommonTips extends eui.Component {
 
     private onbtnConfirm_haogan() {
         SoundManager.getInstance().playSound("ope_click.mp3")
-        let itemId = GameCommon.getInstance().getWentiItemId( this._buyhaoganparams.wentiId,this._buyhaoganparams.id)
-        ShopManager.getInstance().buyGoods(itemId,1,()=>{
+        let itemId = GameCommon.getInstance().getWentiItemId(this._buyhaoganparams.wentiId, this._buyhaoganparams.id)
+        ShopManager.getInstance().buyGoods(itemId, 1, () => {
             this.buyGrphaogan.visible = false;
             this.onhideMaskBG();
             VideoManager.getInstance().videoResume();

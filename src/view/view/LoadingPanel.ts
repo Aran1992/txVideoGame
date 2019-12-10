@@ -11,11 +11,8 @@ class LoadingPanel extends eui.Component {
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
-    public setText(text: string): void {
-
-    }
-
     public starLoading() {
+        console.trace("starLoading");
         if (!this.ldState) {
             if (!this.mcFactory1) {
                 this.mcFactory1 = new egret.MovieClipDataFactory();
@@ -36,13 +33,12 @@ class LoadingPanel extends eui.Component {
     }
 
     public endLoading() {
-
+        console.trace("endLoading");
         if (this.ldState) {
             if (this.img_mc) {
                 this.img_mc.visible = false;
                 this.img_mc.stop();
             }
-
             this.ldState = false;
         }
     }
@@ -67,7 +63,7 @@ class LoadingPanel extends eui.Component {
         this.height = size.height;
     }
 
-    private onAddToStage(event: egret.Event): void {
+    private onAddToStage(): void {
         this.onSkinName();
     }
 }

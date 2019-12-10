@@ -18,6 +18,7 @@ class JuQingPanel extends eui.Component {
     private timerLab: eui.Label;
     private cunchuBtn: eui.Button;
     private guide_grp: eui.Group;
+    private helperGroup: eui.Group;
     private idGuideGroup: eui.Group;
     private idGuideImage: eui.Image;
     private cleanLab: eui.Label;
@@ -56,7 +57,7 @@ class JuQingPanel extends eui.Component {
         platform.setTestTime(platform.getServerTime()+10*60*60*1000);
         this.updateShowTime();
     }
-    private updateShowTime(){        
+    private updateShowTime(){
         let t= platform.getSaleBeginTime();
         this.idAddHour.text = Tool.dateFormat("mm-dd HH:MM",new Date(platform.getServerTime()));
         this.idOpenTime.text = Tool.dateFormat("YY-mm-dd HH:MM",new Date(t*1000));
@@ -99,7 +100,7 @@ class JuQingPanel extends eui.Component {
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
-        this.idGainShuipian.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onGetSuipian, this);        
+        this.idGainShuipian.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onGetSuipian, this);
         this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddHour, this);
         this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
         this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
@@ -210,6 +211,7 @@ class JuQingPanel extends eui.Component {
         }
 
         this.restartBtn.visible = isTXSP;
+        this.helperGroup.visible = platform.isDebug();
     }
 
     private onTouchGuideGroup() {

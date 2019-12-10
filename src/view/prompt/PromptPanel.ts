@@ -70,7 +70,6 @@ class PromptPanel extends egret.DisplayObjectContainer {
     }
 
     public showErrorLog(logstr: string) {
-        if (!platform.isDebug) return;
         if (this.cjTips) {
             this.cjTips.showErrorLog(logstr);
         }

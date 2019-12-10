@@ -265,6 +265,10 @@ class TipsBtn extends eui.Component {
             this['pinzhi' + k].label = this.pinzhiNames[k];
             this['pinzhi' + k].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectPinZhi, this);
         }
+        if (!isTXSP) {
+            const button = this[`pinzhi${this.pinzhiNames.length - 1}`];
+            button.parent.removeChild(this[`pinzhi${this.pinzhiNames.length - 1}`]);
+        }
         for (let k = 1; k < 4; k++) {
             this['sp' + k].name = k + '';
             this['sp' + k].label = this.spNames[k];
@@ -513,8 +517,11 @@ class TipsBtn extends eui.Component {
                 .getElementsByClassName("mod_overlay setlevel")[0]
                 .getElementsByClassName("select_list")[0]
                 .childNodes[event.target.name];
-            htmlButton.click();
-            this.qualityBtn.label = event.target.label;
+            if (htmlButton) {
+                this.videoD.isChangingQuality = true;
+                htmlButton.click();
+                this.qualityBtn.label = event.target.label;
+            }
         } catch (e) {
         }
     }

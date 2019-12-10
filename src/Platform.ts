@@ -250,7 +250,7 @@ class DebugPlatform implements Platform {
     }
 
     public isDebug(): boolean {
-        return true;
+        return false;
     }
 
     public close() {

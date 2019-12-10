@@ -21,6 +21,7 @@ class VideoData extends egret.DisplayObjectContainer {
     public videoNodeChangeHandle: Function;
     public isLoadSrc = false;
     public videoPauseTime: number = 0;
+    public isChangingQuality: boolean;
     private actionScene: egret.DisplayObjectContainer;
     private pauseByPauseEvent: boolean = false;
     private Video_Like_Condition = {
@@ -585,6 +586,11 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
                 if (data.new === "playing") {
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.HIDE_MAIN_GROUP), data);
+                    GameCommon.getInstance().removeLoading();
+                    this.isChangingQuality = false;
+                }
+                if (this.isChangingQuality && data.new === "pause") {
+                    GameCommon.getInstance().showLoading();
                 }
                 this.log(data.old + '-----------' + data.new);
                 if (data.new == 'buffering' || data.new == 'seeking') {
@@ -594,11 +600,8 @@ class VideoData extends egret.DisplayObjectContainer {
                     this.isEndChapter = true;
                     this.onShowNextVideo();
                     TaskManager.instance.addDuration(widPlayer.getDuration());
-                } else {
-                    GameCommon.getInstance().removeLoading();
-                    if (data.new == 'playing' && this.tiaoState)//强行修复BUG
-                        this.tiaoState = false;
-                }
+                } else if (data.new == 'playing' && this.tiaoState)//强行修复BUG
+                    this.tiaoState = false;
                 this.videoState = data.new;
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_STATE_CHANGE), data);
             });
@@ -624,6 +627,7 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         if (!this.videoNodeChangeHandle) {
             widPlayer.on('videoNodeChange', () => {
+                this.isChangingQuality = false;
                 this.timeoutCallback = undefined;
                 this.timeoutCallbackTime = undefined;
                 GameCommon.getInstance().removeLoading();
