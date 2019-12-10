@@ -1054,10 +1054,10 @@ class VideoData extends egret.DisplayObjectContainer {
         this.tipsPanel.visible = false;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
 
-        if (UserInfo.curchapter == 1) {
-            if (!GameCommon.getInstance().checkChapterLocked())
-                return;
-        }
+        // if (UserInfo.curchapter == 1) {
+        //     if (!GameCommon.getInstance().checkChapterLocked())
+        //         return;
+        // }
 
         VideoManager.getInstance().onLoad(videoSrc);
         VideoManager.getInstance().loadSrc = videoSrc;
