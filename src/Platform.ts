@@ -85,17 +85,18 @@ class DebugPlatform implements Platform {
         return true;
     }
 
-    public getOffsetTime(){
+    public getOffsetTime() {
         return DebugPlatform.s_offsetTime;
     }
 
-    public setTestTime(time){
+    public setTestTime(time) {
         this._testTime = time;
     }
+
     public getServerTime() {
         if (this._testTime)
             return this._testTime;
-        if(DebugPlatform.s_serverTime)
+        if (DebugPlatform.s_serverTime)
             return DebugPlatform.s_serverTime;
         else
             return new Date().getTime();
@@ -250,7 +251,7 @@ class DebugPlatform implements Platform {
     }
 
     public isDebug(): boolean {
-        return false;
+        return DEBUG;
     }
 
     public close() {
