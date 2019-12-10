@@ -1079,8 +1079,10 @@ class VideoData extends egret.DisplayObjectContainer {
         }
 
         if (this.curWentiId && videoModels[this.videoIdx].time) {
-            let wentiLastTime: number = Number(wentiModels[this.curWentiId].time) + Number(videoModels[this.videoIdx].time);
-            if (VideoManager.getInstance().videoCurrTime() - 10 <= wentiLastTime) {
+            let curTime = VideoManager.getInstance().videoCurrTime();
+            let wentiTime = Number(videoModels[this.videoIdx].time);
+            let wentiLastTime: number = wentiTime + Number(wentiModels[this.curWentiId].time);
+            if (curTime > wentiTime && curTime - 10 <= wentiLastTime) {
                 GameCommon.getInstance().showCommomTips('不可回退到互动');
                 return;
             }
