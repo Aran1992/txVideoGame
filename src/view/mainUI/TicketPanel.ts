@@ -129,6 +129,7 @@ class TicketPanel extends eui.Component {
     private idRectBuy: eui.Rect;
 
     private taskGroupContainer: eui.Group;
+    private bg: eui.Image;
 
     private _selectIndex: number = 2;
     private readonly _openParam: string;
@@ -161,6 +162,16 @@ class TicketPanel extends eui.Component {
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
+        const rate1 = GameDefine.GAME_VIEW_WIDTH / GameDefine.GAME_VIEW_HEIGHT;
+        const rate2 = size.width / size.height;
+        let scale;
+        if (rate1 < rate2) {
+            scale = size.width / GameDefine.GAME_VIEW_WIDTH;
+        } else {
+            scale = size.height / GameDefine.GAME_VIEW_HEIGHT;
+        }
+        this.bg.scaleX = scale;
+        this.bg.scaleY = scale;
     }
 
     private onLoadComplete() {
@@ -223,7 +234,7 @@ class TicketPanel extends eui.Component {
         this.suipNum.text = UserInfo.suipianMoney + "";
 
         if (platform.getPlatform() != "plat_txsp")
-            this.idRectBuy.alpha = 0.9
+            this.idRectBuy.alpha = 0.9;
     }
 
     private updateBuyBtnState() {
