@@ -74,7 +74,8 @@ function createFile(role) {
         videoNames,
         chapterDatas,
         curchapter,
-        curVideoID
+        curVideoID,
+        allVideos: videoDic,
     };
 }
 
@@ -259,18 +260,14 @@ class MainView extends eui.Component {
     }
 
     private onXinkaishi(): void {
-        // const bookData: BookData = <BookData>createFile(ROLE_INDEX.ZiHao_Xia);
-        // UserInfo.curBokData = bookData;
         SoundManager.getInstance().playSound("ope_click.mp3");
         if (DEBUG) {
-            if (typeof GameDefine.START_CHAPTER === "number") {
-                this.gameWorld.createGameScene(GameDefine.START_CHAPTER);
-                return;
-            }
+            UserInfo.curBokData = <BookData>createFile(ROLE_INDEX.ZiHao_Xia);
+        } else {
+            GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
+                this.gameWorld.createGameScene();
+            });
         }
-        GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
-            this.gameWorld.createGameScene();
-        });
     }
 
     private onShowShop() {
