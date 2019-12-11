@@ -40,7 +40,7 @@ class ConfigManager {
     }
 
     private getChapterIDFromVid(vid) {
-        vid = vid.replace("V", "");
+        vid = vid.replace(/[a-zA-Z]/, "");
         return parseInt(vid.substring(0, vid.length - 2));
     }
 }
