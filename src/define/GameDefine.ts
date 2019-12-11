@@ -38,7 +38,6 @@ class GameDefine {
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 20, 21, 22],
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 30, 41, 42]
     ];
-    public static VIDEO_PINZHI: number = 1;//清晰度
     public static CUR_ROLEIDX: number = 0;
     public static SHOP_GOODS_STARTID: number = 100000;
     public static SHOP_CHAPTER_STARTID: number = 10000;

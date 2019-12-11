@@ -28,7 +28,6 @@ class TipsBtn extends eui.Component {
     private speedDic: number[] = [0, 1.5, 1.25, 1];
     private spNames: string[] = ['', '1.5X', '1.25X', '1.0X'];
     private pinzhiNames: string[] = ['270P', '480P', '720P', '1080P'];
-    private pinzhi: number = 1;
     private videoCurrentState: boolean = true;
     private timer: egret.Timer;
     private timerIdx: number = 0;
@@ -343,15 +342,6 @@ class TipsBtn extends eui.Component {
         if (this.pinzhiGroup.visible) {
             this.pinzhiGroup.visible = false;
             return;
-        }
-        if (this.pinzhi == 1) {
-            this.pinzhi = 2;
-            GameDefine.VIDEO_PINZHI = 2;
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SWITCH_QUALITY));
-        } else {
-            this.pinzhi = 1;
-            GameDefine.VIDEO_PINZHI = 1;
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SWITCH_QUALITY));
         }
         this.timerIdx = 0;
         this.pinzhiGroup.visible = true;
