@@ -174,7 +174,7 @@ class CommonTips extends eui.Component {
     }
 
     public onShowBuyTips(id, money, tp, buycallback) {
-        SoundManager.getInstance().playSound("ope_click.mp3");
+        //SoundManager.getInstance().playSound("ope_click.mp3");
         switch (tp) {
             case GOODS_TYPE.DIAMOND:
                 this.moneyIcon.source = 'common_zuanshi1_png';
@@ -346,7 +346,7 @@ class CommonTips extends eui.Component {
                 ShopManager.getInstance().buyGoods(this.itemId, 1, () => {
                     if (this._buyCallBack)
                         this._buyCallBack()
-                });
+                    });
                 break;
             case GOODS_TYPE.SUIPIAN:
                 let shopdata: ShopInfoData = ShopManager.getInstance().getShopInfoData(this.itemId);
@@ -357,7 +357,7 @@ class CommonTips extends eui.Component {
                 ShopManager.getInstance().buyGoodsSuip(this.itemId, 1, () => {
                     if (this._buyCallBack)
                         this._buyCallBack()
-                });
+                    });
                 break;
         }
         this.onhideMaskBG();
