@@ -866,8 +866,10 @@ class GameCommon {
     }
 
     //确定章节是否已开启
-    public checkChapterLocked() {
+    public checkChapterLocked(chapterId=null) {
         let nextChapterId = UserInfo.curchapter;
+        if (chapterId !== null)
+            nextChapterId = chapterId;
         if (nextChapterId == 0)
             return true;
         let onSale = this.isChapterOnSale(nextChapterId);

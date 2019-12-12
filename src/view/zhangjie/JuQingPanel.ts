@@ -811,6 +811,9 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         SoundManager.getInstance().playSound("ope_click.mp3");
         let name: number = Number(event.currentTarget.name);
         let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
+        let chapterId = this.index - 1;
+        if (!GameCommon.getInstance().checkChapterLocked(chapterId))
+            return;
         if (allCfg[name]) {
             if (allCfg[name].openVideo) {
                 if (this.getOpenStatus(allCfg[name]) == this.IS_OPEN) {
