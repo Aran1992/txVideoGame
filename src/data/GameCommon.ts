@@ -873,8 +873,6 @@ class GameCommon {
         if (nextChapterId == 0)
             return true;
         let onSale = this.isChapterOnSale(nextChapterId);
-        //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
-        //let isVip = item.num > 0;
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         if (!onSale) {
@@ -884,10 +882,6 @@ class GameCommon {
             return false;
         }
         let freeDay = this.getChapterFreeDay(nextChapterId);
-        // if(!isVip && !platform.isCelebrateTime()){
-        //     GameCommon.getInstance().showCommomTips("试看已结束，继续观看后续章节请购买“追剧礼包”");
-        //     return;
-        // }
         if (!isVip && (freeDay > 0 || !platform.isCelebrateTime()) ) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
