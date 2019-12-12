@@ -825,10 +825,11 @@ class GameCommon {
     }
 
     public isChapterOnSale(chapterId) {
-        const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
-        let saleTime = Tool.formatAddDay(chapterCfg.saleTime, platform.getSaleBeginTime());
-        let curDay = Tool.formatTimeDay2Num();
-        return curDay >= saleTime;
+        return true;
+        // const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
+        // let saleTime = Tool.formatAddDay(chapterCfg.saleTime, platform.getSaleBeginTime());
+        // let curDay = Tool.formatTimeDay2Num();
+        // return curDay >= saleTime;
     }
 
     public getChapterFreeDay(chapterId) {
@@ -881,11 +882,11 @@ class GameCommon {
             return false;
         }
         let freeDay = this.getChapterFreeDay(nextChapterId);
-        if(!isVip && !platform.isCelebrateTime()){
-            GameCommon.getInstance().showCommomTips("免费阅读时间已过，请购买“心动PASS”");
-            return;
-        }
-        if (!isVip && freeDay > 0) {
+        // if(!isVip && !platform.isCelebrateTime()){
+        //     GameCommon.getInstance().showCommomTips("试看已结束，继续观看后续章节请购买“追剧礼包”");
+        //     return;
+        // }
+        if (!isVip && (freeDay > 0 || !platform.isCelebrateTime()) ) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
             VideoManager.getInstance().clear();
