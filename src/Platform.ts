@@ -54,6 +54,8 @@ declare interface Platform {
     getOffsetTime();
 
     setTestTime(time);
+
+    isCelebrateTime();
 }
 
 class DebugPlatform implements Platform {
@@ -82,7 +84,7 @@ class DebugPlatform implements Platform {
 
     //是否是活动期间；
     public isCelebrateTime() {
-        return true;
+        return this.getServerTime() < this.getSaleBeginTime()+11*86400;
     }
 
     public getOffsetTime() {

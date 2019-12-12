@@ -881,6 +881,10 @@ class GameCommon {
             return false;
         }
         let freeDay = this.getChapterFreeDay(nextChapterId);
+        if(!isVip && !platform.isCelebrateTime()){
+            GameCommon.getInstance().showCommomTips("免费阅读时间已过，请购买“心动PASS”");
+            return;
+        }
         if (!isVip && freeDay > 0) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
