@@ -177,7 +177,15 @@ class CommonTips extends eui.Component {
         //SoundManager.getInstance().playSound("ope_click.mp3");
         switch (tp) {
             case GOODS_TYPE.DIAMOND:
-                this.moneyIcon.source = 'common_zuanshi1_png';
+                if(platform.getPlatform() == "plat_txsp"){
+                    this.moneyIcon.source = 'common_zuanshi2_png';
+                    this.desc6.textColor = 0xBE34F9;
+                    this.btnConfirm_buy["btn_icon"].source = "buy_btn_txsp_png";
+                }else{                    
+                    this.moneyIcon.source = 'common_zuanshi1_png';
+                    this.desc6.textColor = 0xF2BD09;
+                    this.btnConfirm_buy["btn_icon"].source = "buy_btn_zhuang_png";
+                }
                 break;
             case GOODS_TYPE.SUIPIAN:
                 this.moneyIcon.source = 'common_yuese_png';

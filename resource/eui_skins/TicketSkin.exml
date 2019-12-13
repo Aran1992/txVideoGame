@@ -186,7 +186,7 @@
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image scaleX.down="0.95" scaleY.down="0.95" source="ticket_btn3_png" source.down="ticket_btn3_png" horizontalCenter="0" verticalCenter="0"/>
-				<e:Image scaleX.down="0.95" scaleY.down="0.95" source="common_zuanshi1_png" source.down="common_zuanshi1_png" horizontalCenter="0" verticalCenter="0"/>
+				<e:Image scaleX.down="0.95" scaleY.down="0.95" source="common_zuanshi2_png" horizontalCenter="0" verticalCenter="0"/>
 				<e:Label scaleX.down="0.95" scaleY.down="0.95" text="解锁" horizontalCenter="60" verticalCenter="0" size="35"/>
 				<e:Label scaleX.down="0.95" scaleY.down="0.95" id="labelDisplay" verticalCenter="0" size="36" horizontalCenter="-60" fontFamily="SimHei"/>
 				</e:Skin>
