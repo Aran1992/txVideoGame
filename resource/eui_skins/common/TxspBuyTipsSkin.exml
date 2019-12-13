@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<e:Skin class="skins.BuyTipsSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
+<e:Skin class="skins.TxspBuyTipsSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="1600"
         height="900">
     <e:Group id="buyGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false" width="820"
              height="385">
@@ -36,7 +36,7 @@
 							</e:Skin>
 						</e:skinName>
 					</e:Button>
-            <e:Button id="suipBuy" label="碎片购买" touchEnabled="true" width="240" height="53" x="274" y="1">
+            <e:Button id="suipBuy" label="钻石购买" touchEnabled="true" width="240" height="53" x="274" y="1">
 							<e:skinName>
 								<e:Skin states="up,down,disabled">
 								<e:Image width="100%" height="100%" source="buy_btn_txsp_png"/>
