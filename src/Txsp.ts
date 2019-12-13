@@ -166,6 +166,7 @@ class Txsp {
                     access_token: txsp_userinfo.token, // 互动登录态access_token
                     product_id: itemId, // 商品id
                     count: num, // 商品数量
+                    sandbox: txsp_debug ? 1 : 0,
                 }).then((res) => {
                     callbackBuyGoods(res)
                 })
