@@ -7,6 +7,7 @@ class GameEvent {
     public static GAME_OVER: string = 'game.over';
     public static READ_ARCHIVES: string = 'read.archives';
     public static UPDATA_REFRESH: string = 'updata.refresh';
+    public static UPDATA_VIP: string = 'updata.vip';
     public static AUTO_UPDATA: string = 'auto.updata';//自动存档
     public static GAME_WIN: string = 'game.win';
     public static CLOSE_VIDEODATA: string = 'close.videodata';

@@ -838,6 +838,12 @@ class GameCommon {
         let curDay = Tool.formatTimeDay2Num();
         return freeTime - curDay;
     }
+    //还差多少毫秒免费
+    public getLeftChapterFreeMS(chapterId){
+        const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
+        let freems = platform.getSaleBeginTime()+chapterCfg.freeTime*68400*1000;
+        return freems - platform.getServerTime()
+    }
 
     public getWentiItemId(wentiId, id) {
         return 500000 + wentiId * 100 + id;
@@ -858,11 +864,11 @@ class GameCommon {
         return curChapterId;
     }
 
-    public getNextChapterFreeDay() {
+    public getNextChapterFreeMs() {
         let curChapterId = this.getPlayingChapterId();
         let nextChapterId = this.getNextChapterId(curChapterId);
-        let freeDay = this.getChapterFreeDay(nextChapterId);
-        return freeDay;
+        let freeMs = this.getLeftChapterFreeMS(nextChapterId);
+        return freeMs;
     }
 
     //确定章节是否已开启
@@ -881,8 +887,8 @@ class GameCommon {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
             return false;
         }
-        let freeDay = this.getChapterFreeDay(nextChapterId);
-        if (!isVip && (freeDay > 0 || !platform.isCelebrateTime()) ) {
+        let freeMs = this.getLeftChapterFreeMS(nextChapterId);
+        if (!isVip && (freeMs > 0 || !platform.isCelebrateTime()) ) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
             VideoManager.getInstance().clear();

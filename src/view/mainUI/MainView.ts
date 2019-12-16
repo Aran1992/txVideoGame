@@ -144,12 +144,12 @@ class MainView extends eui.Component {
         // LocalStorageManager.getInstance().onInit();
         ShopManager.getInstance().initShopInfos();
         GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
-        GameCommon.getInstance().getUserInfo().then(data => {
-            UserInfo.id = data.id;
-            UserInfo.user = data.user;
-            console.log("UserInfo.id", UserInfo.id);
-            console.log("UserInfo.user", UserInfo.user);
-        });
+        // GameCommon.getInstance().getUserInfo().then(data => {
+        //     UserInfo.id = data.id;
+        //     UserInfo.user = data.user;
+        //     console.log("UserInfo.id", UserInfo.id);
+        //     console.log("UserInfo.user", UserInfo.user);
+        // });
         VideoManager.getInstance().updateVideoData("");
         this.play_Btn.visible = true;
         this.play_zi.visible = true;

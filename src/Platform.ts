@@ -56,6 +56,8 @@ declare interface Platform {
     setTestTime(time);
 
     isCelebrateTime();
+
+    openWebview(option);
 }
 
 class DebugPlatform implements Platform {
@@ -64,7 +66,7 @@ class DebugPlatform implements Platform {
 
     private _testTime;
 
-    async getUserInfo() {
+    async getUserInfo() {        
         return await new Promise(resolve => window["getUserInfo"](resolve));
     }
 
@@ -73,6 +75,9 @@ class DebugPlatform implements Platform {
             return 10;
         } else
             return 1
+    }
+    public async openWebview(option){
+        return await plattxsp.openWebview(option);
     }
 
     public isPlatformVip() {

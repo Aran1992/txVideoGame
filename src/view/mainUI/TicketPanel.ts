@@ -194,6 +194,7 @@ class TicketPanel extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SUIPIAN_CHANGE, this.onSuipianChange, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_VIP, this.onUpdateVip, this);
         this.updateTab();
         this.updateResize();
 
@@ -235,6 +236,11 @@ class TicketPanel extends eui.Component {
 
         if (platform.getPlatform() != "plat_txsp")
             this.idRectBuy.alpha = 0.9;
+    }
+    private onUpdateVip(){
+        this.idBtnBuyTicketSpecailPrize_txsp.label = String(TicketPanel.getPingzhengPrize());
+        this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
+        this.idGroupDiscountTxsp.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
     }
 
     private updateBuyBtnState() {
