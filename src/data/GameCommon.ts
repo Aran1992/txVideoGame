@@ -55,10 +55,10 @@ class GameCommon {
             if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) < 2) {
                 list.push(2);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) < 2) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) < 1) {
                 list.push(3);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) < 1) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) < 2) {
                 list.push(4);
             }
             return list;
@@ -72,21 +72,21 @@ class GameCommon {
             }
         },
         34: () => {
-            const list = [1, 2, 3, 4];
-            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) >= 6) {
-                list.splice(list.indexOf(1), 1);
+            let list = [];
+            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) < 6) {
+                list.push(1);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.ZiHao_Xia) >= 6) {
-                list.splice(list.indexOf(2), 1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.ZiHao_Xia) < 6) {
+                list.push(2);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) >= 6) {
-                list.splice(list.indexOf(3), 1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) < 6) {
+                list.push(3);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) >= 5) {
-                list.splice(list.indexOf(4), 1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) < 5) {
+                list.push(4);
             }
             if (list.length === 4) {
-                list.splice(list.indexOf(3), 1);
+                list = [1,2,4];
             }
             return list;
         },
@@ -888,6 +888,10 @@ class GameCommon {
             return false;
         }
         let freeMs = this.getLeftChapterFreeMS(nextChapterId);
+        if(platform.getServerTime()<platform.getSaleBeginTime()){
+            GameCommon.getInstance().showCommomTips("敬请期待");
+            return false;
+        }
         if (!isVip && (freeMs > 0 || !platform.isCelebrateTime()) ) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间

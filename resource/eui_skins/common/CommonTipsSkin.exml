@@ -37,7 +37,7 @@
                  verticalCenter="0" horizontalCenter="0" fontFamily="SimHei" />
     </e:Group>
     <e:Group id="buyGrp" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false"
-            >
+             visible="false">
         <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png"  locked="true"/>
         <e:Group id="buyGroup1" anchorOffsetX="0" width="441.67" anchorOffsetY="0" height="259.99" horizontalCenter="-3" verticalCenter="-16">
             <e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="选择购买以下物品" textAlign="center" x="91" y="13.34"
@@ -86,11 +86,11 @@
     </e:Group>
 
     <e:Group id="buyGrphaogan" horizontalCenter="0" verticalCenter="0" touchChildren="true" touchEnabled="false"
-             visible="false">
+            >
         <e:Image y="0" scale9Grid="128,6,117,33" source="common_heidi2_png" locked="true" />
         <e:Group id="buyGroup3" y="118" horizontalCenter="0">
             <e:Image source="common_yuese_png" x="313" y="5" visible="false" />
-            <e:Image x="192" y="4" source="common_zuanshi1_png" visible="false" />
+            <e:Image id="moneyIcon1" x="192" y="4" source="common_zuanshi1_png"  visible="false"/>
             <e:Label id="desc8" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="回到过去，重新选择，达成条件即可开启该选项"
                      textAlign="center" fontFamily="SimHei" horizontalCenter="0" />
         </e:Group>
@@ -106,9 +106,9 @@
                                  scale9Grid="42,6,135,41" />
                         <e:Label id="labelDisplay" horizontalCenter="-40" verticalCenter="0" size="26"
                                  fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9" />
-                        <e:Image scaleX.down="0.9" verticalCenter="0" scaleY.down="0.9" source="common_zuanshi1_png"
-                                 source.down="common_zuanshi1_png" horizontalCenter="36" />
-                        <e:Label id="money" text="58" horizontalCenter="73" verticalCenter="0" size="26"
+                        <e:Image id="moneyIcon2" scaleX.down="0.9" verticalCenter="0" scaleY.down="0.9" source="common_zuanshi1_png"
+                                 horizontalCenter="36" />
+                        <e:Label id="money" text="58" horizontalCenter="83" verticalCenter="0" size="26"
                                  fontFamily="SimHei" scaleX.down="0.9" scaleY.down="0.9" textColor="0xe0af2c" />
                     </e:Skin>
                 </e:skinName>

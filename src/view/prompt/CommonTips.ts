@@ -29,6 +29,7 @@ class CommonTips extends eui.Component {
     private buyResultImg: eui.Image;
     private desc6: eui.Label;
     private moneyIcon: eui.Image;
+    private moneyIcon1:eui.Image;
     private btn_qianwang: eui.Button;
     private result_closebtn: eui.Button;
     private logLab: eui.Label;
@@ -37,6 +38,7 @@ class CommonTips extends eui.Component {
     private confirm_desc2_lab: eui.Label;
     private confirm_btn: eui.Button;
     private cancel_btn: eui.Button;
+    private buyGroup3:eui.Group;
     //显示蒙板
     private mask_BG: eui.Image;
     private addChengJiuArr = [];
@@ -209,6 +211,10 @@ class CommonTips extends eui.Component {
         this._buyhaoganparams.wentiId = wentiId;
         this._buyhaoganparams.id = id;
         this.buyGrphaogan.visible = true;
+        if(platform.getPlatform()=="plat_txsp"){
+            this.moneyIcon1.source = "common_zuanshi2_png";
+            this.btnConfirm_haogan["moneyIcon2"].source = "common_zuanshi2_png";
+        }
         this.onshowMaskBG();
     }
 
