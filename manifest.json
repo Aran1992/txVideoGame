@@ -83,6 +83,7 @@
 		"bin-debug/view/prompt/CommonTips.js",
 		"bin-debug/view/prompt/PromptInfo.js",
 		"bin-debug/view/prompt/PromptPanel.js",
+		"bin-debug/view/prompt/TxspBuyTipsPanel.js",
 		"bin-debug/view/result/ResultWinPanel.js",
 		"bin-debug/view/shop/ImageShopPreviewPanel.js",
 		"bin-debug/view/shop/MusicShopPreviewPanel.js",

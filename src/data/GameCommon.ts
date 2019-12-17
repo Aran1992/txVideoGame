@@ -55,10 +55,10 @@ class GameCommon {
             if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) < 2) {
                 list.push(2);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) < 2) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) < 1) {
                 list.push(3);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) < 1) {
+            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) < 2) {
                 list.push(4);
             }
             return list;
@@ -72,21 +72,21 @@ class GameCommon {
             }
         },
         34: () => {
-            const list = [1, 2, 3, 4];
-            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) >= 6) {
-                list.splice(list.indexOf(1), 1);
+            let list = [];
+            if (GameCommon.getRoleLike(ROLE_INDEX.QianYe_Xiao) < 6) {
+                list.push(1);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.ZiHao_Xia) >= 6) {
-                list.splice(list.indexOf(2), 1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.ZiHao_Xia) < 6) {
+                list.push(2);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) >= 6) {
-                list.splice(list.indexOf(3), 1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.WanXun_Xiao) < 6) {
+                list.push(3);
             }
-            if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) >= 5) {
-                list.splice(list.indexOf(4), 1);
+            if (GameCommon.getRoleLike(ROLE_INDEX.XiaoBai_Han) < 5) {
+                list.push(4);
             }
             if (list.length === 4) {
-                list.splice(list.indexOf(3), 1);
+                list = [1,2,4];
             }
             return list;
         },
@@ -825,10 +825,11 @@ class GameCommon {
     }
 
     public isChapterOnSale(chapterId) {
-        const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
-        let saleTime = Tool.formatAddDay(chapterCfg.saleTime, platform.getSaleBeginTime());
-        let curDay = Tool.formatTimeDay2Num();
-        return curDay >= saleTime;
+        return true;
+        // const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
+        // let saleTime = Tool.formatAddDay(chapterCfg.saleTime, platform.getSaleBeginTime());
+        // let curDay = Tool.formatTimeDay2Num();
+        // return curDay >= saleTime;
     }
 
     public getChapterFreeDay(chapterId) {
@@ -836,6 +837,12 @@ class GameCommon {
         let freeTime = Tool.formatAddDay(chapterCfg.freeTime, platform.getSaleBeginTime());
         let curDay = Tool.formatTimeDay2Num();
         return freeTime - curDay;
+    }
+    //还差多少毫秒免费
+    public getLeftChapterFreeMS(chapterId){
+        const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
+        let freems = platform.getSaleBeginTime()+chapterCfg.freeTime*68400*1000;
+        return freems - platform.getServerTime()
     }
 
     public getWentiItemId(wentiId, id) {
@@ -857,21 +864,21 @@ class GameCommon {
         return curChapterId;
     }
 
-    public getNextChapterFreeDay() {
+    public getNextChapterFreeMs() {
         let curChapterId = this.getPlayingChapterId();
         let nextChapterId = this.getNextChapterId(curChapterId);
-        let freeDay = this.getChapterFreeDay(nextChapterId);
-        return freeDay;
+        let freeMs = this.getLeftChapterFreeMS(nextChapterId);
+        return freeMs;
     }
 
     //确定章节是否已开启
-    public checkChapterLocked() {
+    public checkChapterLocked(chapterId=null) {
         let nextChapterId = UserInfo.curchapter;
+        if (chapterId !== null)
+            nextChapterId = chapterId;
         if (nextChapterId == 0)
             return true;
         let onSale = this.isChapterOnSale(nextChapterId);
-        //let item: ShopInfoData = ShopManager.getInstance().getShopInfoData(GameDefine.GUANGLIPINGZHENG);
-        //let isVip = item.num > 0;
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         if (!onSale) {
@@ -880,8 +887,12 @@ class GameCommon {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
             return false;
         }
-        let freeDay = this.getChapterFreeDay(nextChapterId);
-        if (!isVip && freeDay > 0) {
+        let freeMs = this.getLeftChapterFreeMS(nextChapterId);
+        if(platform.getServerTime()<platform.getSaleBeginTime()){
+            GameCommon.getInstance().showCommomTips("敬请期待");
+            return false;
+        }
+        if (!isVip && (freeMs > 0 || !platform.isCelebrateTime()) ) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
             VideoManager.getInstance().clear();

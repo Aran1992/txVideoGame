@@ -16,6 +16,10 @@ class Txsp {
         if (txsp_debug) {
             bridgeHelper.setBridgeEnableLog(true)
         }
+        bridgeHelper.onAppEnterForeground(()=>{this.queryUserInfo();})
+    }
+    public async openWebview(option){
+        return await bridgeHelper.openWebview(option);
     }
 
     public isPlatformVip() {
@@ -166,6 +170,7 @@ class Txsp {
                     access_token: txsp_userinfo.token, // 互动登录态access_token
                     product_id: itemId, // 商品id
                     count: num, // 商品数量
+                    sandbox: txsp_debug ? 1 : 0,
                 }).then((res) => {
                     callbackBuyGoods(res)
                 })
@@ -194,6 +199,22 @@ class Txsp {
 
     async openDebug() {
         bridgeHelper.openWebview("http://debugx5.qq.com/");
+    }
+    async queryUserInfo(){
+        let isVip = this.isPlatformVip();
+        let ret = await bridgeHelper.getUserInfo({
+                appid: txsp_appid, // 必填 应用的appid
+                type: ['qq', 'wx'], //  可选 登录类型，默认： ['wx', 'qq']
+            });            
+        if (ret.code == 0) {
+            txsp_userinfo = ret.result;
+        }        
+        //txsp_userinfo.base_info.vip=1;
+        let isVipNew = this.isPlatformVip();
+        if (isVip != isVipNew){
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_VIP));
+        }
+        return ret;
     }
 
     async login() {

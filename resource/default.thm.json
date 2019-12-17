@@ -56,6 +56,7 @@
 		"resource/eui_skins/ChengJiuTipsSkin.exml",
 		"resource/eui_skins/common/BuyTipsSkin.exml",
 		"resource/eui_skins/common/CommonTipsSkin.exml",
+		"resource/eui_skins/common/TxspBuyTipsSkin.exml",
 		"resource/eui_skins/Mp3BarSkin.exml",
 		"resource/eui_skins/VolumeBarSkin.exml",
 		"resource/eui_skins/controlTips/ControlTipsSkin.exml",

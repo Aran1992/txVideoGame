@@ -159,6 +159,10 @@ declare module skins{
 	}
 }
 declare module skins{
+	class TxspBuyTipsSkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class ControlTipsSkin extends eui.Skin{
 	}
 }

@@ -60,7 +60,7 @@ class JuQingPanel extends eui.Component {
     private updateShowTime(){
         let t= platform.getSaleBeginTime();
         this.idAddHour.text = Tool.dateFormat("mm-dd HH:MM",new Date(platform.getServerTime()));
-        this.idOpenTime.text = Tool.dateFormat("YY-mm-dd HH:MM",new Date(t*1000));
+        this.idOpenTime.text = Tool.dateFormat("YY-mm-dd HH:MM",new Date(t));
     }
 
     private static onCleanCache() {
@@ -811,6 +811,9 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         SoundManager.getInstance().playSound("ope_click.mp3");
         let name: number = Number(event.currentTarget.name);
         let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
+        let chapterId = this.index - 1;
+        if (!GameCommon.getInstance().checkChapterLocked(chapterId))
+            return;
         if (allCfg[name]) {
             if (allCfg[name].openVideo) {
                 if (this.getOpenStatus(allCfg[name]) == this.IS_OPEN) {
