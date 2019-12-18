@@ -701,7 +701,7 @@ class TipsBtn extends eui.Component {
             this.idBtnClock.visible = false;
             this.idBtnTicket.visible = false;
         } else {
-            this.idBtnClock.visible = true;
+            this.idBtnClock.visible = false;
         }
         this.idBtnClock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnClockClick, this);
         this.idBtnShopCar.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShopCarClick, this);

@@ -391,11 +391,15 @@ class MainView extends eui.Component {
     }
 
     private logHelper() {
-        let player = new window["Txiplayer"]({
+        const args = {
             container: "#videoDivMin",
             width: "100%",
             enableUI: true,
-        });
+        };
+        if (isTXSP) {
+            args["noPay"] = 1;
+        }
+        let player = new window["Txiplayer"](args);
         const methodList = [
             "play",
             "clear",
