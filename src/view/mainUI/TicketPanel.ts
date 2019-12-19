@@ -400,7 +400,10 @@ class TicketPanel extends eui.Component {
             if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
             } else
-                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“追剧礼包”-“礼包赠送”处查看');
+                if(platform.isCelebrateTime())
+                    GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“追剧礼包”-“礼包赠送”处查看');
+                else
+                    GameCommon.getInstance().onShowResultTips('购买成功');
         };
         //引导购买腾讯会员弹窗
         if(platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()){
