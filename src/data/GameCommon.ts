@@ -18,7 +18,7 @@ const saveValues = [
 
 class GameCommon {
     private static instance: GameCommon = null;
-    private static SAVE_TIME_INTERVAL: number = 1000;
+    private static SAVE_TIME_INTERVAL: number = 10000;
     public getLockedOptionIDs = {
         5: () => {
             if (GameCommon.getRoleLike(2) === 1) {
