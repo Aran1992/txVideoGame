@@ -7,6 +7,7 @@ const txsp_vip = false;
 
 
 class Txsp {
+
     public init() {
         bridgeHelper = new BridgeHelper({
             origin: location.protocol + '//m.v.qq.com',
@@ -16,13 +17,18 @@ class Txsp {
             bridgeHelper.setBridgeEnableLog(true)
             bridgeHelper.setServerEnv(true);//await
         }
-        bridgeHelper.toggleBackButton({hide:1});
-        bridgeHelper.onAppEnterForeground(()=>{this.queryUserInfo();})
-        setInterval(()=>{
+        bridgeHelper.toggleBackButton({hide: 1});
+        bridgeHelper.onAppEnterForeground(() => {
+            this.queryUserInfo();
+        });
+        setInterval(() => {
             this.refreshToken();
-        },36000000)
+        }, 36000000);
+
+        GameDispatcher.getInstance().addEventListener(GameEvent.ONSHOW_VIDEO, this.onRefreshVideo, this);
     }
-    public async openWebview(option){
+
+    public async openWebview(option) {
         return await bridgeHelper.openWebview(option);
     }
 
@@ -101,25 +107,27 @@ class Txsp {
     async getBookValues(bookId, itemids, callback) {
         let res = await bridgeHelper.queryProduct({
             appid: txsp_appid,  // 应用的appid
-            openid: txsp_userinfo.openid, // 应用的openid            
+            openid: txsp_userinfo.openid, // 应用的openid
             access_token: txsp_userinfo.token, // 互动登录态access_token
-            product_ids:itemids,
+            product_ids: itemids,
             sandbox: txsp_debug ? 1 : 0,
         })
         callback(res);
         //使用本地数据
     }
-    async takeOffBookValue(bookId, saleId, currentSlotId, num, callback){    
+
+    async takeOffBookValue(bookId, saleId, currentSlotId, num, callback) {
         let res = await bridgeHelper.consumeProduct({
             appid: txsp_appid,  // 应用的appid
             openid: txsp_userinfo.openid, // 应用的openid
             access_token: txsp_userinfo.token, // 互动登录态access_token
-            product_id:saleId,
-            count:num,
+            product_id: saleId,
+            count: num,
             sandbox: txsp_debug ? 1 : 0,
         })
         callback(res);
     }
+
     async shareImage(bookId, imageData) {
         return await bridgeHelper.shareImage({
             needPreview: true, // 是否需要预览，是: true, 否：false, 默认: false
@@ -196,18 +204,19 @@ class Txsp {
     async openDebug() {
         bridgeHelper.openWebview("http://debugx5.qq.com/");
     }
-    async queryUserInfo(){
+
+    async queryUserInfo() {
         let isVip = this.isPlatformVip();
         let ret = await bridgeHelper.getUserInfo({
-                appid: txsp_appid, // 必填 应用的appid
-                type: ['qq', 'wx'], //  可选 登录类型，默认： ['wx', 'qq']
-            });            
+            appid: txsp_appid, // 必填 应用的appid
+            type: ['qq', 'wx'], //  可选 登录类型，默认： ['wx', 'qq']
+        });
         if (ret.code == 0) {
             txsp_userinfo = ret.result;
-        }        
+        }
         //txsp_userinfo.base_info.vip=1;
         let isVipNew = this.isPlatformVip();
-        if (isVip != isVipNew){
+        if (isVip != isVipNew) {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.UPDATA_VIP));
         }
         return ret;
@@ -229,6 +238,36 @@ class Txsp {
             }
             await bridgeHelper.login();
         }
+    }
+
+    private onRefreshVideo(data) {
+        const wenti = wentiModels[data.data.wentiId];
+        const chapterID = wenti.chapter;
+        const branchID = Config.getChapterBranchName(chapterID);
+        const args = {
+            reportkey: "hdsp_play_detail_page",
+            data_type: "button",
+            chapter_id: chapterID,
+            branch_id: branchID,
+            sub_rtype: data.data.click ? "dft" : "no_dft"
+        };
+        if ([
+            ActionType.CLICK_TIME,
+            ActionType.CLICK,
+            ActionType.SLIDE,
+            ActionType.SLIDE_RECT,
+            ActionType.SLIDE_TWO,
+            ActionType.SEND_MSG,
+        ].indexOf(wenti.type) !== -1) {
+            args["mod_id"] = "slideandclick";
+            args["sub_mod_id"] = data.data.click ? "no_dft" : "dft";
+        } else {
+            args["mod_id"] = "inter_option";
+            args["sub_mod_id"] = data.data.answerId;
+            args["third_mod_id"] = Config.getAnswerConfig(data.data.wentiId, data.data.answerId).des;
+        }
+        console.log("reportAction args", args);
+        bridgeHelper.reportAction(args);
     }
 }
 
