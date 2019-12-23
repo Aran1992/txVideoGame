@@ -450,13 +450,5 @@ class MainView extends eui.Component {
                 }
             };
         });
-        let ps = document.getElementsByTagName("video");
-        for (let i: number = 0; i < ps.length; i++) {
-            if (size.fillType == FILL_TYPE_COVER) {
-                ps[i].style["object-fit"] = "cover";
-            } else {
-                ps[i].style["object-fit"] = "contain";
-            }
-        }
     }
 }
