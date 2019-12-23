@@ -23,10 +23,7 @@ class Txsp {
         });
         setInterval(() => {
             this.refreshToken();
-        }, 36000000);
-
-        GameDispatcher.getInstance().addEventListener(GameEvent.ONSHOW_VIDEO, this.onRefreshVideo, this);
-    }
+        },600000)    }
 
     public async openWebview(option) {
         return await bridgeHelper.openWebview(option);
