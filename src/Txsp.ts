@@ -12,11 +12,15 @@ class Txsp {
             origin: location.protocol + '//m.v.qq.com',
             appid: txsp_appid,
         });
-
         if (txsp_debug) {
             bridgeHelper.setBridgeEnableLog(true)
+            bridgeHelper.setServerEnv(true);//await
         }
+        bridgeHelper.toggleBackButton({hide:1});
         bridgeHelper.onAppEnterForeground(()=>{this.queryUserInfo();})
+        setInterval(()=>{
+            this.refreshToken();
+        },36000000)
     }
     public async openWebview(option){
         return await bridgeHelper.openWebview(option);
@@ -95,8 +99,6 @@ class Txsp {
 
     //获取商业化数值,把原来的slot参数做其它用途；兼容两个平台
     async getBookValues(bookId, itemids, callback) {
-        if (txsp_debug)
-            bridgeHelper.setServerEnv(true);//await
         let res = await bridgeHelper.queryProduct({
             appid: txsp_appid,  // 应用的appid
             openid: txsp_userinfo.openid, // 应用的openid            
@@ -108,8 +110,6 @@ class Txsp {
         //使用本地数据
     }
     async takeOffBookValue(bookId, saleId, currentSlotId, num, callback){    
-        if (txsp_debug)
-            bridgeHelper.setServerEnv(true);//await    
         let res = await bridgeHelper.consumeProduct({
             appid: txsp_appid,  // 应用的appid
             openid: txsp_userinfo.openid, // 应用的openid
@@ -137,8 +137,6 @@ class Txsp {
     async buyGoods(bookId, itemId, num, curSlotId, callbackBuyGoods) {
         let shopdata: ShopInfoData = ShopManager.getInstance().shopInfoDict[itemId];
         let leftMoney = -1
-        if (txsp_debug)
-            await bridgeHelper.setServerEnv(true) //await
         await bridgeHelper.diamondQueryBalance({
             appid: txsp_appid, // 业务id
             openid: txsp_userinfo.openid, // 互动账号openid,
@@ -162,8 +160,6 @@ class Txsp {
         let price = shopdata.model.currPrice * platform.getPriceRate();
         if (leftMoney >= price) {//){shopdata.currPrice
             let okFunc = () => {
-                if (txsp_debug)
-                    bridgeHelper.setServerEnv(true);//await
                 bridgeHelper.diamondConsume({//await
                     appid: txsp_appid, // 业务id
                     openid: txsp_userinfo.openid, // 互动账号openid,
