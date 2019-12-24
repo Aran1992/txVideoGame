@@ -49,7 +49,9 @@ class Main extends eui.UILayer {
         this.resize();
         this.stage.addEventListener(egret.Event.RESIZE, this.resize, this);
 
-        if (!DEBUG) {
+        if (DEBUG) {
+            this.runGame();
+        } else {
             if (platform.getPlatform() === "plat_1001") {
                 this.runGame();
             } else if (platform.getPlatform() === "plat_txsp") {
