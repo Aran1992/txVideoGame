@@ -105,7 +105,7 @@
 			<e:Image y="0" source="main_bofang_png" horizontalCenter="-10" />
 		</e:Group>
 		-->
-		<e:Button id="btnDuQu" label="我的回忆" width="251" height="71" y="38" x="268">
+		<e:Button id="btnDuQu" label="我的进度" width="251" height="71" y="38" x="268">
 			<e:skinName>
 				<e:Skin states="up,down,disabled" width="109">
 					<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png"
