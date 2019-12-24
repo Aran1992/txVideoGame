@@ -15,7 +15,9 @@ class Txsp {
         });
         if (txsp_debug) {
             bridgeHelper.setBridgeEnableLog(true)
-            bridgeHelper.setServerEnv(true);//await
+            // bridgeHelper.setServerEnv(true).then(()=>{
+            //     this.queryUserInfo();
+            // });//await
         }
         bridgeHelper.toggleBackButton({hide: 1});
         bridgeHelper.onAppEnterForeground(() => {
@@ -224,6 +226,8 @@ class Txsp {
         if (window.platform.getPlatform() != "plat_txsp")
             return;
         //登陆
+        if(txsp_debug)
+            await bridgeHelper.setServerEnv(true);
         while (1) {
             let ret = await bridgeHelper.getUserInfo({
                 appid: txsp_appid, // 必填 应用的appid
