@@ -52,7 +52,7 @@ const TASK = [
         "luxury": [
             {
                 "name": "超前观看剧情",
-                "dsc": "解锁追剧礼包",
+                "dsc": "解锁心动PASS",
                 "check": {
                     "type": "luxury",
                 },

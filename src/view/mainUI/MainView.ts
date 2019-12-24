@@ -388,11 +388,15 @@ class MainView extends eui.Component {
     }
 
     private logHelper() {
-        let player = new window["Txiplayer"]({
+        const args = {
             container: "#videoDivMin",
             width: "100%",
             enableUI: true,
-        });
+        };
+        if (isTXSP) {
+            args["noPay"] = 1;
+        }
+        let player = new window["Txiplayer"](args);
         const methodList = [
             "play",
             "clear",
@@ -443,13 +447,5 @@ class MainView extends eui.Component {
                 }
             };
         });
-        let ps = document.getElementsByTagName("video");
-        for (let i: number = 0; i < ps.length; i++) {
-            if (size.fillType == FILL_TYPE_COVER) {
-                ps[i].style["object-fit"] = "cover";
-            } else {
-                ps[i].style["object-fit"] = "contain";
-            }
-        }
     }
 }

@@ -8,10 +8,10 @@
 			<e:Image width="509" height="619" x="22" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Image width="509" height="619" x="594.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Label text="与好友同享" x="183.15" y="159" size="34"/>
-			<e:Label id="idHasCodeText" text="您已通过购买”追剧礼包“获得赠送资格一次，分享激活码给好友，对方将免费获得追剧礼包" x="70.15" y="215.88" size="24" anchorOffsetX="0" width="412.3" anchorOffsetY="0" height="104.31" lineSpacing="10" textColor="0x8c8a8a" visible="false"/>
-			<e:Label text="追剧礼包激活" x="763.15" y="159" size="34"/>
-			<e:Label text="持有激活码的用户，可在下方输入，激活即可获得追剧礼包，无需购买" x="671.54" y="211.33" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10"/>
-			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买追剧礼包即可获得" x="53.33" y="366.91" size="30" textColor="0x898686" lineSpacing="12"/>
+			<e:Label id="idHasCodeText" text="您已通过购买”心动PASS“获得赠送资格一次，分享激活码给好友，对方将免费获得心动PASS" x="70.15" y="215.88" size="24" anchorOffsetX="0" width="412.3" anchorOffsetY="0" height="104.31" lineSpacing="10" textColor="0x8c8a8a" visible="false"/>
+			<e:Label text="心动PASS激活" x="763.15" y="159" size="34"/>
+			<e:Label text="持有激活码的用户，可在下方输入，激活即可获得心动PASS，无需购买" x="671.54" y="211.33" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10"/>
+			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" y="366.91" size="30" textColor="0x898686" lineSpacing="12"/>
 			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" x="54.7" y="379.06"/>
 			<e:Label id="idTicketNum" text="" size="40" textColor="0xFFFFFF" anchorOffsetX="0" width="435.52" textAlign="center" x="78.34" y="633"/>
 			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" width="456.73" textAlign="center" x="46.52" y="472.4" textColor="0xbfbbbb"/>
@@ -78,7 +78,7 @@
 		</e:Group>
 		<e:Group id="idGroupTips" width="1224" height="64" anchorOffsetX="0" anchorOffsetY="0" bottom="102" x="360">
 			<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="1.5" x="26" y="16"/>
-			<e:Label text="看剧完成任务，领取丰厚心动奖励" height="30" size="27" scaleX="1" scaleY="1" verticalCenter="4" left="55" x="60" y="14"/>
+			<e:Label text="看剧完成任务，领取丰厚心动任务" height="30" size="27" scaleX="1" scaleY="1" verticalCenter="4" left="55" x="60" y="14"/>
 			<e:Image id="x0" source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="40" x="422" y="16"/>
 			<e:Label id="x1" text="快人一步，超前观看最新剧情" size="27" scaleX="1" scaleY="1" left="55" verticalCenter="40" x="452" y="14"/>
 			<e:Image id="x2" source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="80" x="834" y="16"/>
@@ -92,8 +92,8 @@
 
 
 	<e:Group id="tabGroup" touchChildren="true" y="180" x="0">
-		<e:RadioButton id="idTab2" groupName="tabGroup" label="心动奖励" skinName="skins.Common_TabButtonSkin1" width="260" height="90" value="1" name="2" x="6" y="-55"/>
-		<e:RadioButton id="idTab1" groupName="tabGroup" label="礼包赠送" skinName="skins.Common_TabButtonSkin1" width="260"
+		<e:RadioButton id="idTab2" groupName="tabGroup" label="心动任务" skinName="skins.Common_TabButtonSkin1" width="260" height="90" value="1" name="2" x="6" y="-55"/>
+		<e:RadioButton id="idTab1" groupName="tabGroup" label="买一赠一" skinName="skins.Common_TabButtonSkin1" width="260"
 						height="90" value="0" selected="true"  name="1"/>
 
 
@@ -102,7 +102,7 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Button id="idClose" label="追剧礼包" width="200" x="44" y="29.5" height="62" scaleX="1" scaleY="1" touchEnabled="true" touchChildren="true" enabled="true">
+	<e:Button id="idClose" label="心动PASS" width="200" x="44" y="29.5" height="62" scaleX="1" scaleY="1" touchEnabled="true" touchChildren="true" enabled="true">
 		<e:skinName>
 		<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
 			<e:Group width="100%" height="100%"/>
@@ -133,7 +133,7 @@
 			<e:Label text="完成专属任务，附赠专属奖励，收藏独家记忆" x="403" y="194" scaleX="1" scaleY="1" size="22"/>
 			<e:Image width="20" height="20" x="358" y="238.17" scaleX="1" scaleY="1" source="ticket_icon_png"/>
 			<e:Label text="截止1月5日，超值购买，还可以与好友共享" x="401.67" y="236.84" scaleX="1" scaleY="1" size="22"/>
-			<e:Label text="《拳拳四重奏》追剧礼包" size="40" x="369" y="92" scaleX="1" scaleY="1" bold="true"/>
+			<e:Label text="《拳拳四重奏》心动PASS" size="40" x="369" y="92" scaleX="1" scaleY="1" bold="true"/>
 			<!--e:Button id="idBtnBuyTicketSpecailPrize" label="120"  y="377.51" x="807.11" enabled="true" icon="common_zuanshi1_png" anchorOffsetX="0" anchorOffsetY="81">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
@@ -181,7 +181,7 @@
 			<e:Label text="购买当日，畅玩全部剧集，感受提前发糖" y="199.15" x="403" scaleX="1" scaleY="1" size="22"/>
 			<e:Image width="20" height="20" x="358" y="205.17" scaleX="1" scaleY="1" source="ticket_icon_png" visible="false"/>
 			<e:Label text="截止1月5日，超值购买" x="401.67" y="205.17" scaleX="1" scaleY="1" size="22" visible="false"/>
-			<e:Label text="《拳拳四重奏》追剧礼包" size="40" x="369" y="110" scaleX="1" scaleY="1" bold="true"/>
+			<e:Label text="《拳拳四重奏》心动PASS" size="40" x="369" y="110" scaleX="1" scaleY="1" bold="true"/>
 			<e:Button id="idBtnBuyTicketSpecailPrize_txsp" label="1200" y="298.99" x="799.38" width="282" height="79">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
@@ -206,7 +206,7 @@
 			</e:Group>
 		</e:Group>
 		<e:Group id="idGroupDescCommon" width="200" height="200" horizontalCenter="0" verticalCenter="0" visible="false">
-			<e:Label text="追剧礼包" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
+			<e:Label text="心动PASS" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
 			<e:Image width="20" height="20" x="-321" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
 			<e:Label text="快人一步，超前观看最新剧情" y="214" x="-285" scaleX="1" scaleY="1"/>
 			<e:Image width="20" height="20" x="142.66" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
@@ -237,10 +237,10 @@
 		</e:Button>
 		<e:Label id="idShareCode" text="FFFFFFFFFFFFF" scaleX="1" scaleY="1" size="50" anchorOffsetX="0" width="583.69" anchorOffsetY="0" height="73.39" textAlign="center" verticalAlign="middle" horizontalCenter="-7" verticalCenter="132.5"/>
 		<e:Label text="超前追剧，并享多重福利！" scaleX="1" scaleY="1" size="25" anchorOffsetX="0" anchorOffsetY="0" textAlign="center" verticalAlign="middle" horizontalCenter="10" verticalCenter="-22" bold="true"/>
-		<e:Label text="送您《拳拳四重奏》追剧礼包激活码" scaleX="1" scaleY="1" size="35" anchorOffsetX="0" anchorOffsetY="0" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="35" bold="true"/>
-		<e:Label id="idShareText" text="1. 该激活码可用于在一零零一或腾讯视频激活《拳拳四重奏》追剧礼包；2. 在《拳拳四重奏》剧集内部追剧礼包-礼包赠送可以激活资格；3. 在一零零一重激活追剧礼包，可享受提前看剧以及追剧礼包福利内容，在腾讯视频中激活追剧礼包，仅包含提前追剧礼包;\n4. 激活码有效期至2020年x月xx日。" anchorOffsetY="0" height="139" anchorOffsetX="0" width="1476.33" textAlign="center" bottom="2" horizontalCenter="14" lineSpacing="5" size="28"/>
+		<e:Label text="送您《拳拳四重奏》心动PASS激活码" scaleX="1" scaleY="1" size="35" anchorOffsetX="0" anchorOffsetY="0" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="35" bold="true"/>
+		<e:Label id="idShareText" text="1. 该激活码可用于在一零零一或腾讯视频激活《拳拳四重奏》心动PASS；2. 在《拳拳四重奏》剧集内部心动PASS-买一赠一可以激活资格；3. 在一零零一重激活心动PASS，可享受提前看剧以及心动PASS福利内容，在腾讯视频中激活心动PASS，仅包含提前心动PASS;\n4. 激活码有效期至2020年x月xx日。" anchorOffsetY="0" height="139" anchorOffsetX="0" width="1476.33" textAlign="center" bottom="2" horizontalCenter="14" lineSpacing="5" size="28"/>
 		<e:Group width="200" height="200" horizontalCenter="0" verticalCenter="0" visible="false">
-		<e:Label text="拳拳四重奏  追剧礼包" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
+		<e:Label text="拳拳四重奏  心动PASS" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
 		<e:Image width="20" height="20" x="-321" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
 		<e:Label text="快人一步，超前观看最新剧情" y="214" x="-285" scaleX="1" scaleY="1"/>
 		<e:Image width="20" height="20" x="142.66" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>

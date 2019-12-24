@@ -49,9 +49,20 @@ class Main extends eui.UILayer {
         this.resize();
         this.stage.addEventListener(egret.Event.RESIZE, this.resize, this);
 
-        this.runGame().catch(e => {
-            console.log(e);
-        })
+        if (DEBUG) {
+            this.runGame();
+        } else {
+            if (platform.getPlatform() === "plat_1001") {
+                this.runGame();
+            } else if (platform.getPlatform() === "plat_txsp") {
+                bridgeHelper.getRuntimePlatform().then((res) => {
+                    console.log(res.result.platform);
+                    if (res.result.platform === "tenvideo_phone") {
+                        this.runGame();
+                    }
+                });
+            }
+        }
     }
 
     /**

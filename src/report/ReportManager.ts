@@ -11,6 +11,7 @@ if (platform.getPlatform() === "plat_1001") {
             [GameEvent.RECEIVED_TASK_REWARD]: this.onReceivedTaskReward,
             [GameEvent.SHARE_ACTIVATION_CODE]: this.onShareActivationCode,
             [GameEvent.SHARE_COLLECTION_IMAGE]: this.onShareCollectionImage,
+            [GameEvent.ONSHOW_VIDEO]: this.onRefreshVideo,
         };
 
         public init() {
@@ -75,8 +76,37 @@ if (platform.getPlatform() === "plat_1001") {
             this.report("分享激活码");
         }
 
-        private onShareCollectionImage() {
-            this.report("分享收藏图片");
+        private onShareCollectionImage(data) {
+            this.report("分享收藏图片", data.data);
+        }
+
+        private onRefreshVideo(data) {
+            const wenti = wentiModels[data.data.wentiId];
+            const chapterID = wenti.chapter;
+            const branchID = Config.getChapterBranchName(chapterID);
+            const args = {
+                reportkey: "hdsp_play_detail_page",
+                data_type: "button",
+                chapter_id: chapterID,
+                branch_id: branchID,
+                sub_rtype: data.data.click ? "dft" : "no_dft"
+            };
+            if ([
+                ActionType.CLICK_TIME,
+                ActionType.CLICK,
+                ActionType.SLIDE,
+                ActionType.SLIDE_RECT,
+                ActionType.SLIDE_TWO,
+                ActionType.SEND_MSG,
+            ].indexOf(wenti.type) !== -1) {
+                args["mod_id"] = "slideandclick";
+                args["sub_mod_id"] = data.data.click ? "no_dft" : "dft";
+            } else {
+                args["mod_id"] = "inter_option";
+                args["sub_mod_id"] = data.data.answerId;
+                args["third_mod_id"] = Config.getAnswerConfig(data.data.wentiId, data.data.answerId).des;
+            }
+            this.report("互动", args);
         }
 
         private report(event, params = undefined) {

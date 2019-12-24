@@ -305,10 +305,10 @@ class GameWorld extends egret.DisplayObjectContainer {
                 case WEB_EVENT_NOTIFY.qq_Share:
                     if (data.code == 1) {
                         GameCommon.getInstance().showCommomTips('分享成功！');
-                        if (isShareCDKey) {
-                            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHARE_ACTIVATION_CODE));
+                        if (shareImageInfo !== undefined) {
+                            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHARE_COLLECTION_IMAGE), shareImageInfo);
                         } else {
-                            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHARE_COLLECTION_IMAGE));
+                            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHARE_ACTIVATION_CODE));
                         }
                     } else {
                         GameCommon.getInstance().showCommomTips('分享失败！errorcode::' + data.code);

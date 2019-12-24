@@ -39,6 +39,36 @@ class ConfigManager {
         return map[chapter];
     }
 
+    public getChapterBranchName(cid) {
+        let roleIndex;
+        for (let ri = 0; ri < GameDefine.ROLE_JUQING_TREE.length; ri++) {
+            const index = GameDefine.ROLE_JUQING_TREE[ri].indexOf(cid);
+            if (index !== -1) {
+                if (roleIndex === undefined) {
+                    roleIndex = ri;
+                } else {
+                    return "共通";
+                }
+            }
+        }
+        if (roleIndex !== undefined) {
+            return GameDefine.ROLE_NAME[roleIndex];
+        }
+        return "共通";
+    }
+
+    public getAnswerConfig(qid, aid) {
+        const answers = answerModels[qid];
+        for (let k in answers) {
+            if (answers.hasOwnProperty(k)) {
+                const answer = answers[k];
+                if (answer.ansid === aid) {
+                    return answer;
+                }
+            }
+        }
+    }
+
     private getChapterIDFromVid(vid) {
         vid = vid.replace(/[a-zA-Z]/, "");
         return parseInt(vid.substring(0, vid.length - 2));
