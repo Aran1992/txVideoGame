@@ -904,9 +904,9 @@ class GameCommon {
                 });
             };
             if (platform.getPlatform() == "plat_txsp") {
-                GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“追剧礼包”立即解锁全部剧集", callback, "活动期间，非追剧礼包用户可通过等待免费解锁，详情请参见活动资讯", "购买追剧礼包", "取消");// "等待" + freeDay + "天"
+                GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
             } else {
-                GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“追剧礼包”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非追剧礼包用户可通过等待免费解锁，详情请参见活动资讯", "购买追剧礼包", "取消");// "等待" + freeDay + "天"
+                GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
             }
             if (isTXSP) {
                 GameDefine.IS_DUDANG = false;

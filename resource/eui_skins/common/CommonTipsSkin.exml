@@ -121,7 +121,7 @@
 	<e:Group id="confirmGrp" horizontalCenter="6" verticalCenter="4" touchChildren="true" touchEnabled="false" height="398" width="784" anchorOffsetY="0" anchorOffsetX="0" visible="false">
 		<e:Image scale9Grid="128,6,117,33" source="common_heidi2_png" left="0" right="0" top="0" bottom="0" locked="true"/>
 		<e:Label id="confirm_desc_lab" size="32" textColor="0xFFFFFF" verticalAlign="middle" textAlign="center" fontFamily="SimHei" horizontalCenter="0" width="690" height="200" verticalCenter="-45" lineSpacing="25"/>
-		<e:Label id="confirm_desc2_lab" size="22" text="活动期间，非追剧礼包用户也可等剧集解锁免费观看，详情请在【一零零一】查看" fontFamily="SimHei" horizontalCenter="3" y="331" textColor="0xffbe56" anchorOffsetX="0" width="774" anchorOffsetY="0" height="56" verticalAlign="middle" textAlign="center"/>
+		<e:Label id="confirm_desc2_lab" size="22" text="活动期间，非心动PASS用户也可等剧集解锁免费观看，详情请在【一零零一】查看" fontFamily="SimHei" horizontalCenter="3" y="331" textColor="0xffbe56" anchorOffsetX="0" width="774" anchorOffsetY="0" height="56" verticalAlign="middle" textAlign="center"/>
 		<e:Group horizontalCenter="2" y="270">
 		<e:Button id="cancel_btn" label="否" bottom="0" horizontalCenter="-255.5" touchEnabled="true" width="217" height="53">
 			<e:skinName>
