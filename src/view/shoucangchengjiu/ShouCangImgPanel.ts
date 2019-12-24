@@ -440,7 +440,7 @@ class ShouCangImgPanel extends eui.Component {
         if (!image_src) return;
         let texture: egret.Texture = RES.getRes(image_src);
         if (texture) {
-            isShareCDKey = false;
+            shareImageInfo = {name: this.info.name, src: image_src};
             platform.shareImage(GameDefine.BOOKID, texture.toDataURL("image/png"));
         }
     }

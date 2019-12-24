@@ -92,7 +92,7 @@ function getRewardIcon(rewards): string {
 }
 
 let taskItemList = [];
-let isShareCDKey = false;
+let shareImageInfo = undefined;
 
 class TicketPanel extends eui.Component {
     private idClose: eui.Button;
@@ -349,7 +349,7 @@ class TicketPanel extends eui.Component {
         this.idGroupShareTicket.visible = false;
         let base64Str = render.toDataURL("image/png");
 
-        isShareCDKey = true;
+        shareImageInfo = undefined;
         platform.shareImage(GameDefine.BOOKID, base64Str);
         //render.saveToFile("image/png", "aa.png");//也可以保存下来
     }
