@@ -7,7 +7,6 @@ const txsp_vip = false;
 
 
 class Txsp {
-
     public init() {
         bridgeHelper = new BridgeHelper({
             origin: location.protocol + '//m.v.qq.com',
@@ -25,7 +24,10 @@ class Txsp {
         });
         setInterval(() => {
             this.refreshToken();
-        },600000)    }
+        }, 600000);
+
+        GameDispatcher.getInstance().addEventListener(GameEvent.ONSHOW_VIDEO, this.onRefreshVideo, this);
+    }
 
     public async openWebview(option) {
         return await bridgeHelper.openWebview(option);
@@ -226,7 +228,7 @@ class Txsp {
         if (window.platform.getPlatform() != "plat_txsp")
             return;
         //登陆
-        if(txsp_debug)
+        if (txsp_debug)
             await bridgeHelper.setServerEnv(true);
         while (1) {
             let ret = await bridgeHelper.getUserInfo({
