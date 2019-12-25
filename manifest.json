@@ -51,6 +51,7 @@
 		"bin-debug/sound/SoundManager.js",
 		"bin-debug/tools/Tool.js",
 		"bin-debug/video/VideoManager.js",
+		"bin-debug/view/BuyVIPPanel.js",
 		"bin-debug/view/CaptionView.js",
 		"bin-debug/view/TipsBtn.js",
 		"bin-debug/view/VideoData.js",
