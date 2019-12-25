@@ -50,6 +50,8 @@ class TipsBtn extends eui.Component {
     private idBtnClock: eui.Button;
     private idBtnShopCar: eui.Button;
     private idBtnTicket: eui.Button;
+    private XSMFButton: eui.Button;
+    private XDPASSButton: eui.Button;
 
     public constructor() {
         super();
@@ -284,6 +286,9 @@ class TipsBtn extends eui.Component {
         this.qualityBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onChangeQuality, this);
         this.fenxiangBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFenXiang, this);
         this.tiaoBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTiao, this);
+        this.XSMFButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickXSMFButton, this);
+        this.XDPASSButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickXDPASSButton, this);
+
         this.updateResize();
     }
 
@@ -314,6 +319,13 @@ class TipsBtn extends eui.Component {
 
     protected onSkinName(): void {
         this.skinName = skins.TipsSkin;
+    }
+
+    private onClickXSMFButton() {
+        
+    }
+
+    private onClickXDPASSButton() {
     }
 
     private onTouchGuideBuyLock() {
@@ -617,6 +629,10 @@ class TipsBtn extends eui.Component {
         this.pauseGroup.visible = false;
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
+        const isTXSP = platform.getPlatform() === "plat_txsp";
+        const isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
+        this.XDPASSButton.visible = !isVIP && isTXSP && !platform.isCelebrateTime();
+        this.XSMFButton.visible = !isVIP && isTXSP && platform.isCelebrateTime();
     }
 
     //获得某个问题解锁需要的物品
@@ -710,7 +726,7 @@ class TipsBtn extends eui.Component {
 
     private idBtnClockClick() {
         let freeMs = GameCommon.getInstance().getNextChapterFreeMs();
-        let freeDay = Math.ceil(freeMs/(86400*1000))
+        let freeDay = Math.ceil(freeMs / (86400 * 1000))
         if (freeDay > 0)
             GameCommon.getInstance().showCommomTips("下一章" + freeDay + "天后免费");
         else {
