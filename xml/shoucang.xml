@@ -48,7 +48,7 @@
     <shoucang id="2017" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="美梦酩酊"       kuozhan="如果每天都能和你在一起有多好;真是想想都高兴得想把这里的酒都喝光;我为什么要喝酒呢，光想你就要醉了啊"    mulu1="3"/>
     <shoucang id="2018" src="5" shengyin="3" time="*" level="sr" mulu2="1" name="与你共度"       kuozhan="我找了很久，才找到这么完美的你;值得我琴声永远为你响起;余生，愿你与我共度"    mulu1="4"/>
 
-    <shoucang id="3001" src="5" shengyin="4" time="*" level="ssr" mulu2="1" name="兄弟？兄弟！"   kuozhan="你看她在看我们;她为什么一直盯着看呢;如果她看的是哥哥怎么办啊？;她究竟看上弟弟的什么地方了呢？"    mulu1="6"/>
+    <shoucang id="3001" src="4" shengyin="4" time="*" level="ssr" mulu2="1" name="兄弟？兄弟！"   kuozhan="你看她在看我们;她为什么一直盯着看呢;如果她看的是哥哥怎么办啊？;她究竟看上弟弟的什么地方了呢？"    mulu1="6"/>
     <shoucang id="3002" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="阳光正好"       kuozhan="这么好的天气不出来走走好可惜啊;你那是什么表情啊;有时候和小孩一样玩挺好的啊;本宝宝要许个愿望;每天都要爱我哟"    mulu1="1"/>
     <shoucang id="3003" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="你是答案"       kuozhan="为什么我总是看不透你;每一天的你都像是新的;尽管你的每句话我都会记得;如果每一天都是一个谜语;你就是我的答案"    mulu1="3"/>
     <shoucang id="3004" src="5" shengyin="5" time="*" level="ssr" mulu2="1" name="纱幔朦胧"       kuozhan="距离到底会产生什么;就像你和我的距离;看得到你又碰不到你;我想和你在一起;可我们就像隔着纱幔，这么远又那么近"    mulu1="2"/>
@@ -69,4 +69,5 @@
     <shoucang id="3019" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="轻舞泡沫"       kuozhan="泡泡浴什么的最好玩了;爱心攻击！你收到我的心了吗？;不接收，看我的爱心泡泡;好累啊，你都不和我玩;不管干什么，我都想和你在一起啊"    mulu1="1"/>
     <shoucang id="3020" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="清涧涌泉"       kuozhan="一个⼈泡在水⾥的感觉，让人很安心;和你在一起，也让我觉得觉得很安心;你和我在一起的时候，也有这种感觉吗;如果害羞的话，不如悄悄对我说;别玩了，我们该上场了，一起走吧"    mulu1="4"/>
     <shoucang id="3021" src="6" shengyin="6" time="*" level="ssr" mulu2="1" name="濡湿之梦"       kuozhan="你能陪我一会么？;我需要你陪着我;你觉得我们真的能一直好好的么？;你能多看我一眼么？;就像以前那样"    mulu1="3"/>
+    <shoucang id="3022" src="4" shengyin="4" time="*" level="ssr" mulu2="1" name="拳拳惊喜"       kuozhan="拳拳惊喜-肖千也·光暗之间;拳拳惊喜-肖万寻·清涧涌泉;拳拳惊喜-夏子豪·濡湿之梦;拳拳惊喜-韩小白·轻舞泡沫"    mulu1="6"/>
 </shoucang>
