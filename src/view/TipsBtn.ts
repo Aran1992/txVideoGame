@@ -322,11 +322,12 @@ class TipsBtn extends eui.Component {
     }
 
     private onClickXSMFButton() {
+        VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
     }
 
     private onClickXDPASSButton() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
+        this.onClickXSMFButton();
     }
 
     private onTouchGuideBuyLock() {
