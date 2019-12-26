@@ -107,8 +107,6 @@ class GameWorld extends egret.DisplayObjectContainer {
         //SoundManager.getInstance().playSound("ope_click.mp3")
         let windowName = data.data;
         if (this.panelDict[windowName]) {
-            this.PupoBar.removeChild(this.panelDict[windowName]);
-            this.panelDict[windowName] = null;
         } else {
             if (data.data.windowName) {
                 windowName = data.data.windowName;
@@ -139,8 +137,6 @@ class GameWorld extends egret.DisplayObjectContainer {
         let window_param: WindowParam = event.data as WindowParam;
         let windowName = window_param.windowname;
         if (this.panelDict[windowName]) {
-            this.PupoBar.removeChild(this.panelDict[windowName]);
-            this.panelDict[windowName] = null;
         } else {
             this.panelDict[windowName] = new window[windowName](window_param.data);
             this.PupoBar.addChild(this.panelDict[windowName]);

@@ -739,7 +739,10 @@ class TipsBtn extends eui.Component {
     }
 
     private idBtnShopCarClick() {
-        VideoManager.getInstance().videoPause();
+        if (!this.pauseGroup.visible) {
+            this.imStatus = 'pauseImg_png';
+            VideoManager.getInstance().videoPause();
+        }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
             windowName: 'TicketPanel',
             data: "tipsbtnshopcar"

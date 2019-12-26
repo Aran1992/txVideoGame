@@ -898,7 +898,6 @@ class GameCommon {
             //每个章节完成时，需要永久记录每个章节的首次完成时间
             VideoManager.getInstance().clear();
             ChengJiuManager.getInstance().curChapterChengJiu = {};
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
             // const callback = function () {
             //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
             //         windowName: 'TicketPanel',
@@ -916,6 +915,7 @@ class GameCommon {
             } else {
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
             }
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
             return false;
         }
         return true;

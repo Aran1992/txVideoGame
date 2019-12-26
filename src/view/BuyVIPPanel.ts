@@ -37,7 +37,7 @@ class BuyVIPPanel extends eui.Component {
         },
     };
     private GroupDetail: eui.Group;
-    private curGroup: eui.Group;
+    private curBuyGroup: eui.Group;
     private CloseGroupDetail: eui.Button;
 
     constructor(from: string) {
@@ -60,7 +60,7 @@ class BuyVIPPanel extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_VIP, this.update, this);
         this.bindMultiple("CloseGroup1001", this.onClickCloseBuyGroup);
-        this.bindMultiple("GroupTXSP", this.onClickCloseBuyGroup);
+        this.bindMultiple("CloseGroupTXSP", this.onClickCloseBuyGroup);
         this.CloseGroupDetail.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickCloseGroupDetail, this);
         this.bindMultiple("ButtonDetail", this.onClickButtonDetail);
         this.bindMultiple("Button1001Buy", this.onClickButton1001Buy);
@@ -74,12 +74,12 @@ class BuyVIPPanel extends eui.Component {
 
     private onClickButtonDetail() {
         this.GroupDetail.visible = true;
-        this.curGroup.visible = false;
+        this.curBuyGroup.visible = false;
     }
 
     private onClickCloseGroupDetail() {
         this.GroupDetail.visible = false;
-        this.curGroup.visible = true;
+        this.curBuyGroup.visible = true;
     }
 
     private onClickButton1001Buy() {
@@ -144,11 +144,12 @@ class BuyVIPPanel extends eui.Component {
     }
 
     private update() {
+        this.GroupDetail.visible = false;
         for (let key in this.groupTable) {
             if (this.groupTable.hasOwnProperty(key)) {
                 if (this.groupTable[key]()) {
                     this[key].visible = true;
-                    this.curGroup = this[key];
+                    this.curBuyGroup = this[key];
                 } else {
                     this[key].visible = false;
                 }
