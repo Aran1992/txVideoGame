@@ -86,9 +86,10 @@
                     <e:HorizontalLayout/>
                 </e:layout>
             </e:Group>
+					<e:Label text="自动存档会随时记录您的进度" fontFamily="SimHei" left="120" bottom="35"/>
         </e:Group>
-			<e:Image source="ad_icon_png" left="77" bottom="80"/>
-        <e:Button id="bgBtn" left="40" top="35" label="我的回忆" width="300" height="62">
+
+        <e:Button id="bgBtn" left="40" top="35" label="我的进度" width="300" height="62">
             <e:skinName>
                 <e:Skin states="up,down,disabled" width="190" height="62">
                     <e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png"
@@ -99,6 +100,7 @@
                 </e:Skin>
             </e:skinName>
         </e:Button>
+			<e:Label text="◆ 更多剧情攻略 尽在【一零零一】◆" left="77" fontFamily="SimHei" bottom="85"/>
         <e:Group id="guide_grp" width="100%" height="100%" visible="false">
             <e:Image id="mengban" alpha="0.8" width="100%" height="100%" x="0" y="-2" touchEnabled="false"
                      source="video_heidi1_png" visible="true" />
@@ -123,7 +125,7 @@
             </e:Skin>
         </e:skinName>
     </e:Button>
-	<e:Button id="restartBtn" label="重新开始" width="251" height="71" scaleX="1" scaleY="1" right="350" bottom="62">
+	<e:Button id="restartBtn" label="重新开始" width="251" height="71" scaleX="1" scaleY="1" right="350" y="767">
 		<e:skinName>
 		<e:Skin states="up,down,disabled" width="109">
 			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png" source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0"/>

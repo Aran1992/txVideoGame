@@ -62,11 +62,11 @@ declare interface Platform {
 
 class DebugPlatform implements Platform {
     private static s_serverTime: number;
-    private static s_offsetTime: number = 43200*1000;
+    private static s_offsetTime: number = 43200 * 1000;
 
     private _testTime;
 
-    async getUserInfo() {        
+    async getUserInfo() {
         return await new Promise(resolve => window["getUserInfo"](resolve));
     }
 
@@ -76,7 +76,8 @@ class DebugPlatform implements Platform {
         } else
             return 1
     }
-    public async openWebview(option){
+
+    public async openWebview(option) {
         return await plattxsp.openWebview(option);
     }
 
@@ -89,7 +90,7 @@ class DebugPlatform implements Platform {
 
     //是否是活动期间；
     public isCelebrateTime() {
-        return this.getServerTime() < (this.getSaleBeginTime()+11*86400*1000);
+        return this.getServerTime() < (this.getSaleBeginTime() + 11 * 86400 * 1000);
     }
 
     public getOffsetTime() {
@@ -126,7 +127,7 @@ class DebugPlatform implements Platform {
 
     //获得上线时间，其它时间可以此时间上叠加
     public getSaleBeginTime() {
-        return 1578585600*1000 + DebugPlatform.s_offsetTime;//2020/1/10 12:0:0
+        return 1578585600 * 1000 + DebugPlatform.s_offsetTime;//2020/1/10 12:0:0
     }
 
     public getPlatform() {
@@ -282,3 +283,5 @@ declare interface Window {
 
 const isTXSP = window.platform.getPlatform() === "plat_txsp"
     || window.location.href.indexOf("txsp") !== -1;
+const is1001 = window.platform.getPlatform() === "plat_1001"
+    || window.location.href.indexOf("1001") !== -1;

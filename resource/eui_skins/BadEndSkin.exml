@@ -4,7 +4,8 @@
 	<e:Group id="group" y="0" x="0">
 	</e:Group>
 	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
-		<e:Image source="ad_icon_png" right="150" bottom="50"/>
+		<e:Label text="◆ 更多剧情攻略 尽在【一零零一】◆" fontFamily="SimHei" bottom="50" right="130" textAlign="center"/>
+
 
 
 	<e:Button id="goMain"  label="返回主界面" width="251" height="71" scaleX="1" scaleY="1" right="434" bottom="141">
@@ -15,7 +16,7 @@
 			</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Button id="goJuqing" label="我的回忆" width="251" height="71" scaleX="1" scaleY="1" right="434" bottom="141">
+		<e:Button id="goJuqing" label="我的进度" width="251" height="71" scaleX="1" scaleY="1" right="434" bottom="141">
 			<e:skinName>
 			<e:Skin states="up,down,disabled" width="109">
 				<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png" source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0"/>

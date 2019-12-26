@@ -36,7 +36,7 @@ class Txsp {
     public isPlatformVip() {
         if (txsp_debug && txsp_vip)
             return true;
-        return txsp_userinfo.base_info.vip == 1
+        return txsp_userinfo.base_info.vip == 1;
     }
 
     async saveBookHistory(bookId, slotId, title, externParam, callback) {

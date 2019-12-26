@@ -255,7 +255,6 @@ class MainView extends eui.Component {
             windowName: "TicketPanel",
             data: "mainview"
         });
-
     }
 
     private onXinkaishi(): void {

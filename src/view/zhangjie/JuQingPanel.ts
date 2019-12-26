@@ -35,7 +35,7 @@ class JuQingPanel extends eui.Component {
     private _guideIndex: number = 0;
     private idGainShuipian: eui.Label;
     private idAddHour: eui.Label;
-    private idOpenTime:eui.Label;
+    private idOpenTime: eui.Label;
 
 
     constructor() {
@@ -52,15 +52,6 @@ class JuQingPanel extends eui.Component {
 
     private static onGetSuipian() {
         UserInfo.suipianMoney = UserInfo.suipianMoney + 1000
-    }
-    private onAddHour(){
-        platform.setTestTime(platform.getServerTime()+10*60*60*1000);
-        this.updateShowTime();
-    }
-    private updateShowTime(){
-        let t= platform.getSaleBeginTime();
-        this.idAddHour.text = Tool.dateFormat("mm-dd HH:MM",new Date(platform.getServerTime()));
-        this.idOpenTime.text = Tool.dateFormat("YY-mm-dd HH:MM",new Date(t));
     }
 
     private static onCleanCache() {
@@ -126,6 +117,17 @@ class JuQingPanel extends eui.Component {
 
     protected onSkinName(): void {
         this.skinName = skins.JuQingSkin;
+    }
+
+    private onAddHour() {
+        platform.setTestTime(platform.getServerTime() + 10 * 60 * 60 * 1000);
+        this.updateShowTime();
+    }
+
+    private updateShowTime() {
+        let t = platform.getSaleBeginTime();
+        this.idAddHour.text = Tool.dateFormat("mm-dd HH:MM", new Date(platform.getServerTime()));
+        this.idOpenTime.text = Tool.dateFormat("YY-mm-dd HH:MM", new Date(t));
     }
 
     //添加到舞台
@@ -567,18 +569,40 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             if (displayName.indexOf("txt") !== -1) {
                 const id = displayName.replace('plot', '').replace('_txt', '');
                 const juqing = JsonModelManager.instance.getModeljuqingkuai();
+                let x = transform.x;
+                let y = transform.y;
                 for (let line in juqing) {
                     if (juqing.hasOwnProperty(line)) {
                         if (juqing[line][id]) {
-                            const label: eui.Label = new eui.Label(juqing[line][id].name);
-                            if (id === "70") {
-                                label.size = 25;
+                            let name = juqing[line][id].name;
+                            if (name.indexOf(" ") !== -1 && name.indexOf(" ") !== -1) {
+                                const map = [
+                                  "序",
+                                  "第一",
+                                  "第二",
+                                  "第三",
+                                  "第四",
+                                  "第五",
+                                  "第六",
+                                  "第七",
+                                  "第八",
+                                  "第九",
+                                  "第十",
+                                  "第十一",
+                                  "第十二",
+                                ];
+                                name = `${map[name.split("-")[0]]}章\n${name.split(" ")[1]}`;
+                                y = y + 15;
                             }
+                            const label: eui.Label = new eui.Label(name);
+                            label.textAlign = egret.HorizontalAlign.CENTER;
                             slotDisplay = label;
                             break;
                         }
                     }
                 }
+                slotDisplay.x = x;
+                slotDisplay.y = y;
                 this.addChild(slotDisplay);
             } else {
                 let slotImage: eui.Image = new eui.Image();
@@ -599,9 +623,9 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                     slotImage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchBtn, this);
                 }
                 slotDisplay = slotImage;
+                slotDisplay.x = transform.x;
+                slotDisplay.y = transform.y;
             }
-            slotDisplay.x = transform.x;
-            slotDisplay.y = transform.y;
             if (this.refreshUIAry.indexOf(displayName) == -1) {
                 this.refreshUIAry.push(displayName);
             }
