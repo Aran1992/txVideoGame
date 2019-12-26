@@ -18,8 +18,8 @@ class TxspBuyTipsPanel extends eui.Component {
     //显示蒙板
     private mask_BG: eui.Image;
     private _curModel: Modelshop;
-    private idBuyItemName:eui.Label;
-    private cancelBuy:eui.Button;
+    private idBuyItemName: eui.Label;
+    private cancelBuy: eui.Button;
 
     constructor(param) {
         super();
@@ -77,9 +77,9 @@ class TxspBuyTipsPanel extends eui.Component {
     }
 
     //此处引导开通会员
-    private async onZuanShi() {        
+    private async onZuanShi() {
         let res = await platform.openWebview({
-            url:"https://film.qq.com/h5/upay/?cid=mzc002003phdd29&tab=vip&ht=1&ptag=interaction&back=1&actid=HLW_7094ZHENGJIA",
+            url: "https://film.qq.com/h5/upay/?cid=mzc002003phdd29&tab=vip&ht=1&ptag=interaction&back=1&actid=HLW_7094ZHENGJIA",
             landscape: 0, // 是否进入横屏webview，1: 是， 0: 不是。默认: 0
             hidetitlebar: 0, // 是否隐藏webview自带状态栏。1: 是， 0: 不是。 默认: 0
             hidestatusbar: 0, // 是否隐藏操作系统的状态栏（网络/运营商/时间等）1: 是，0: 不是。默认: 0
@@ -87,7 +87,7 @@ class TxspBuyTipsPanel extends eui.Component {
             useProxyReport: 1, // 新开的webview是否使用播放器的代理上报，1: 是，0: 不是。默认: 1
             close: 0, // 是否关闭当前webview。1: 关闭, 0: 不关闭。默认：0
             style: 1, // 新开webview的样式: 0: 导航显示更多按钮, 1: 导航不显示更多按钮, 2: 关闭loading（仅android支持）。默认：0
-        }).then(res=>{
+        }).then(res => {
             console.log(res);
             //GameCommon.getInstance().showCommomTips(res.msg);
             this.onclose();
@@ -95,7 +95,7 @@ class TxspBuyTipsPanel extends eui.Component {
     }
 
     //这里实际上是使用钻石；懒得改名；
-    private onSuiPian() {        
+    private onSuiPian() {
         this.param();
         this.onclose();
     }
@@ -106,7 +106,7 @@ class TxspBuyTipsPanel extends eui.Component {
     }
 
     private onclose() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'TxspBuyTipsPanel');
         this.onhideMaskBG();
     }

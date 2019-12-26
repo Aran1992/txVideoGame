@@ -2,38 +2,38 @@ class BuyVIPPanel extends eui.Component {
     private readonly from: string;
     private groupTable = {
         Group1001: () => {
-            return platform.getPlatform() === "plat_1001"
+            return is1001
                 && platform.isCelebrateTime()
                 && this.from === undefined;
         },
         Group10010: () => {
-            return platform.getPlatform() === "plat_1001"
+            return is1001
                 && platform.isCelebrateTime()
                 && this.from === "task";
         },
         Group10011: () => {
-            return platform.getPlatform() === "plat_1001"
+            return is1001
                 && !platform.isCelebrateTime();
         },
         GroupTXSP0: () => {
-            return platform.getPlatform() === "plat_txsp"
+            return isTXSP
                 && platform.isCelebrateTime()
-                && !plattxsp.isPlatformVip();
+                && !platform.isPlatformVip();
         },
         GroupTXSP1: () => {
-            return platform.getPlatform() === "plat_txsp"
+            return isTXSP
                 && platform.isCelebrateTime()
-                && plattxsp.isPlatformVip();
+                && platform.isPlatformVip();
         },
         GroupTXSP2: () => {
-            return platform.getPlatform() === "plat_txsp"
+            return isTXSP
                 && !platform.isCelebrateTime()
-                && plattxsp.isPlatformVip();
+                && platform.isPlatformVip();
         },
         GroupTXSP3: () => {
-            return platform.getPlatform() === "plat_txsp"
+            return isTXSP
                 && !platform.isCelebrateTime()
-                && !plattxsp.isPlatformVip();
+                && !platform.isPlatformVip();
         },
     };
     private GroupDetail: eui.Group;
@@ -49,18 +49,7 @@ class BuyVIPPanel extends eui.Component {
 
     private onLoadComplete() {
         this.registerEvent();
-        for (let key in this.groupTable) {
-            if (this.groupTable.hasOwnProperty(key)) {
-                if (this.groupTable[key]()) {
-                    this[key].visible = true;
-                    this.curGroup = this[key];
-                    console.log("xxxxxxxxxxxxxx", new Date());
-                } else {
-                    this[key].visible = false;
-                }
-            }
-        }
-        this.updateResize();
+        this.update();
     }
 
     private onAddToStage() {
@@ -69,6 +58,7 @@ class BuyVIPPanel extends eui.Component {
 
     private registerEvent() {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_VIP, this.update, this);
         this.bindMultiple("CloseGroup1001", this.onClickCloseBuyGroup);
         this.bindMultiple("GroupTXSP", this.onClickCloseBuyGroup);
         this.CloseGroupDetail.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickCloseGroupDetail, this);
@@ -93,12 +83,48 @@ class BuyVIPPanel extends eui.Component {
     }
 
     private onClickButton1001Buy() {
+        this.onClickButtonTXSPBuyDirect();
     }
 
     private onClickButtonTXSPBuyVIP() {
+        platform.openWebview({
+            url: "https://film.qq.com/h5/upay/?cid=mzc002003phdd29&tab=vip&ht=1&ptag=interaction&back=1&actid=HLW_7094ZHENGJIA",
+            landscape: 0, // 是否进入横屏webview，1: 是， 0: 不是。默认: 0
+            hidetitlebar: 0, // 是否隐藏webview自带状态栏。1: 是， 0: 不是。 默认: 0
+            hidestatusbar: 0, // 是否隐藏操作系统的状态栏（网络/运营商/时间等）1: 是，0: 不是。默认: 0
+            needBridgeHelper: 0, // 新开的webview是否需要bridgeHelper(支付页不要用这个参数），默认: 0
+            useProxyReport: 1, // 新开的webview是否使用播放器的代理上报，1: 是，0: 不是。默认: 1
+            close: 0, // 是否关闭当前webview。1: 关闭, 0: 不关闭。默认：0
+            style: 1, // 新开webview的样式: 0: 导航显示更多按钮, 1: 导航不显示更多按钮, 2: 关闭loading（仅android支持）。默认：0
+        });
     }
 
     private onClickButtonTXSPBuyDirect() {
+        let callback = () => {
+            this.onClickCloseBuyGroup();
+            if (platform.getPlatform() == "plat_txsp") {
+                GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
+            } else if (platform.isCelebrateTime())
+                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
+            else
+                GameCommon.getInstance().onShowResultTips('购买成功');
+        };
+        let itemID = GameDefine.GUANGLIPINGZHENG;
+        if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {//在腾讯视频中。不是会员才买另一个原价物品
+            itemID = GameDefine.GUANGLIPINGZHENGEX;
+        }
+        GameCommon.getInstance().onShowBuyTips(itemID, this.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
+    }
+
+    private getPingzhengPrize() {
+        let price = 120;
+        if (platform.getPlatform() == "plat_txsp") {
+            if (platform.isPlatformVip())
+                price = 120;
+            else
+                price = 180;
+        }
+        return price * platform.getPriceRate()
     }
 
     private bindMultiple(name, handler) {
@@ -115,6 +141,20 @@ class BuyVIPPanel extends eui.Component {
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
+    }
+
+    private update() {
+        for (let key in this.groupTable) {
+            if (this.groupTable.hasOwnProperty(key)) {
+                if (this.groupTable[key]()) {
+                    this[key].visible = true;
+                    this.curGroup = this[key];
+                } else {
+                    this[key].visible = false;
+                }
+            }
+        }
+        this.updateResize();
     }
 }
 

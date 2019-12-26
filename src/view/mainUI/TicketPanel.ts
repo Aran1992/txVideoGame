@@ -237,7 +237,8 @@ class TicketPanel extends eui.Component {
         if (platform.getPlatform() != "plat_txsp")
             this.idRectBuy.alpha = 0.9;
     }
-    private onUpdateVip(){
+
+    private onUpdateVip() {
         this.idBtnBuyTicketSpecailPrize_txsp.label = String(TicketPanel.getPingzhengPrize());
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
         this.idGroupDiscountTxsp.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
@@ -399,18 +400,17 @@ class TicketPanel extends eui.Component {
             this.updateBuyBtnState();
             if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
-            } else
-                if(platform.isCelebrateTime())
-                    GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
-                else
-                    GameCommon.getInstance().onShowResultTips('购买成功');
+            } else if (platform.isCelebrateTime())
+                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
+            else
+                GameCommon.getInstance().onShowResultTips('购买成功');
         };
         //引导购买腾讯会员弹窗
-        if(platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()){
+        if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {
             //GameCommon.getInstance().onOpen
-            let buyfunc=()=>{
+            let buyfunc = () => {
                 GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENGEX, TicketPanel.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
-            }
+            };
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("TxspBuyTipsPanel", buyfunc));
             return
         }

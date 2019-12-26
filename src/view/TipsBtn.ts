@@ -322,10 +322,11 @@ class TipsBtn extends eui.Component {
     }
 
     private onClickXSMFButton() {
-        
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
     }
 
     private onClickXDPASSButton() {
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
     }
 
     private onTouchGuideBuyLock() {
@@ -661,6 +662,7 @@ class TipsBtn extends eui.Component {
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         this.idBtnTicket.visible = !isVip;
+        this.idBtnTicket.visible = false;
     }
 
     private gotoAction(model: Modelwenti) {
@@ -710,6 +712,7 @@ class TipsBtn extends eui.Component {
         let nnextChapterId = Number(arr[0]);
         //是否付费用户，下一章是否已上架
         this.idBtnTicket.visible = platform.getPlatform() == "plat_txsp";
+        this.idBtnTicket.visible = false;
         let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;

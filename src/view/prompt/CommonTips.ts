@@ -29,7 +29,7 @@ class CommonTips extends eui.Component {
     private buyResultImg: eui.Image;
     private desc6: eui.Label;
     private moneyIcon: eui.Image;
-    private moneyIcon1:eui.Image;
+    private moneyIcon1: eui.Image;
     private btn_qianwang: eui.Button;
     private result_closebtn: eui.Button;
     private logLab: eui.Label;
@@ -38,7 +38,7 @@ class CommonTips extends eui.Component {
     private confirm_desc2_lab: eui.Label;
     private confirm_btn: eui.Button;
     private cancel_btn: eui.Button;
-    private buyGroup3:eui.Group;
+    private buyGroup3: eui.Group;
     //显示蒙板
     private mask_BG: eui.Image;
     private addChengJiuArr = [];
@@ -179,11 +179,11 @@ class CommonTips extends eui.Component {
         //SoundManager.getInstance().playSound("ope_click.mp3");
         switch (tp) {
             case GOODS_TYPE.DIAMOND:
-                if(platform.getPlatform() == "plat_txsp"){
+                if (platform.getPlatform() == "plat_txsp") {
                     this.moneyIcon.source = 'common_zuanshi2_png';
                     this.desc6.textColor = 0xBE34F9;
                     this.btnConfirm_buy["btn_icon"].source = "buy_btn_txsp_png";
-                }else{                    
+                } else {
                     this.moneyIcon.source = 'common_zuanshi1_png';
                     this.desc6.textColor = 0xF2BD09;
                     this.btnConfirm_buy["btn_icon"].source = "buy_btn_zhuang_png";
@@ -211,7 +211,7 @@ class CommonTips extends eui.Component {
         this._buyhaoganparams.wentiId = wentiId;
         this._buyhaoganparams.id = id;
         this.buyGrphaogan.visible = true;
-        if(platform.getPlatform()=="plat_txsp"){
+        if (platform.getPlatform() == "plat_txsp") {
             this.moneyIcon1.source = "common_zuanshi2_png";
             this.btnConfirm_haogan["moneyIcon2"].source = "common_zuanshi2_png";
         }
@@ -360,7 +360,7 @@ class CommonTips extends eui.Component {
                 ShopManager.getInstance().buyGoods(this.itemId, 1, () => {
                     if (this._buyCallBack)
                         this._buyCallBack()
-                    });
+                });
                 break;
             case GOODS_TYPE.SUIPIAN:
                 let shopdata: ShopInfoData = ShopManager.getInstance().getShopInfoData(this.itemId);
@@ -371,7 +371,7 @@ class CommonTips extends eui.Component {
                 ShopManager.getInstance().buyGoodsSuip(this.itemId, 1, () => {
                     if (this._buyCallBack)
                         this._buyCallBack()
-                    });
+                });
                 break;
         }
         this.onhideMaskBG();
