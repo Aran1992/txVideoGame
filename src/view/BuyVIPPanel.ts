@@ -70,6 +70,9 @@ class BuyVIPPanel extends eui.Component {
 
     private onClickCloseBuyGroup() {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyVIPPanel');
+        if (this.from === "tips") {
+            VideoManager.getInstance().videoResume();
+        }
     }
 
     private onClickButtonDetail() {

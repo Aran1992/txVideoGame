@@ -53,13 +53,14 @@
 
 
 
-		<e:Button id="idBtnBuyNow" label="解 锁" height="81" scaleX="1" scaleY="1" bottom="21" right="24">
+		<e:Button id="idBtnBuyNow" label="" scaleX="1" scaleY="1" bottom="10" right="10">
 			<e:skinName>
-			<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="pass_btn_unlock_png"/>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="buy_vip_btn_7_png"/>
 				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
+				</e:Skin>
 			</e:skinName>
+
 		</e:Button>
 		<e:Scroller height="576" anchorOffsetX="0" anchorOffsetY="0" left="610" right="0" verticalCenter="0" x="602" y="156" scaleX="1" scaleY="1">
 			<e:Group id="taskGroupContainer" anchorOffsetY="0" height="576">

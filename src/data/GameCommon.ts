@@ -873,7 +873,7 @@ class GameCommon {
     }
 
     //确定章节是否已开启
-    public checkChapterLocked(chapterId = null) {
+    public checkChapterLocked(chapterId = null, isDudang = false) {
         let nextChapterId = UserInfo.curchapter;
         if (chapterId !== null)
             nextChapterId = chapterId;
@@ -909,7 +909,7 @@ class GameCommon {
             //     GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
             // }
             if (isTXSP) {
-                GameDefine.IS_DUDANG = false;
+                GameDefine.IS_DUDANG = isDudang;
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
             } else {
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
