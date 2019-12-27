@@ -3,20 +3,20 @@
 	<w:Config id="16d615f8c43"/>
 	<e:Image scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" width="100%" height="100%" y="0" source="cundang_bj_jpg" left="0"/>
 	<e:Rect width="100%" height="100%" x="2" y="0" fillAlpha="0.6"/>
-	<e:Group id="idPage1" touchEnabled="false" width="100%" height="100%" x="0" y="0" visible="false">
+	<e:Group id="idPage1" touchEnabled="false" width="100%" height="100%" x="0" y="0">
 		<e:Group id="idGroupCDKey" width="1132" height="780" scrollEnabled="true" verticalCenter="0" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="169">
 			<e:Image width="509" height="619" x="22" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Image width="509" height="619" x="594.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
-			<e:Label text="与好友同享" x="183.15" y="159" size="34"/>
+			<e:Label text="与好友同享" x="183.15" size="34" verticalCenter="-214"/>
 			<e:Label id="idHasCodeText" text="您已通过购买”心动PASS“获得赠送资格一次，分享激活码给好友，对方将免费获得心动PASS" x="70.15" y="215.88" size="24" anchorOffsetX="0" width="412.3" anchorOffsetY="0" height="104.31" lineSpacing="10" textColor="0x8c8a8a" visible="false"/>
-			<e:Label text="心动PASS激活" x="763.15" y="159" size="34"/>
-			<e:Label text="持有激活码的用户，可在下方输入，激活即可获得心动PASS，无需购买" x="671.54" y="211.33" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10"/>
+			<e:Label text="心动PASS激活" size="34" verticalCenter="-62" horizontalCenter="280"/>
+			<e:Label text="持有激活码的用户，可在上方输入，激活即可获得心动PASS，无需购买" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10" verticalCenter="0" horizontalCenter="280"/>
 			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" y="366.91" size="30" textColor="0x898686" lineSpacing="12"/>
 			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" x="54.7" y="379.06"/>
 			<e:Label id="idTicketNum" text="" size="40" textColor="0xFFFFFF" anchorOffsetX="0" width="435.52" textAlign="center" x="78.34" y="633"/>
 			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" width="456.73" textAlign="center" x="46.52" y="472.4" textColor="0xbfbbbb"/>
-			<e:Rect width="392" height="120" x="649" y="306" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5"/>
-			<e:Button id="idBtnUseCode" label="激活" y="532" horizontalCenter="278" x="841" scaleX="1" scaleY="1" enabled="true">
+
+			<e:Button id="idBtnUseCode" label="激活" y="532" horizontalCenter="280" x="841" scaleX="1" scaleY="1" enabled="true">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
@@ -40,10 +40,11 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-			<e:EditableText id="idEditText" width="348.49" height="87.88" x="668.88" y="321.11" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="40" textAlign="center" multiline="false" verticalAlign="middle"/>
+			<e:Rect width="392" height="120" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5" verticalCenter="-214" horizontalCenter="280"/>
+			<e:EditableText id="idEditText" width="348.49" height="87.88" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="40" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="-214" horizontalCenter="280"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="idPage2" touchEnabled="false" width="150%" height="100%" x="0" y="0">
+	<e:Group id="idPage2" touchEnabled="false" width="150%" height="100%" x="0" y="0" visible="false">
 
 		<e:Image source="pass_bg_normal_task_png" scaleX="1" scaleY="1" verticalCenter="-160" left="355" right="0" scale9Grid="1190,31,55,188"/>
 		<e:Image source="pass_bg_luxury_task_png" scaleX="1" scaleY="1" verticalCenter="160" left="355" right="0" scale9Grid="1186,31,55,188"/>
@@ -230,7 +231,7 @@
 
 
 	</e:Group>
-	<e:Group id="idGroupShareTicket" width="100%" height="100%" x="0" y="0">
+	<e:Group id="idGroupShareTicket" width="100%" height="100%" x="0" y="0" visible="false">
 		<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="video_heidi1_png"/>
 		<e:Image id="bg" width="1600" height="900" anchorOffsetX="0" anchorOffsetY="0" source="ticket_share_2_png" horizontalCenter="0" verticalCenter="0"/>
 		<e:Image width="1600" height="900" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" source="ticket_share_png"/>
@@ -254,10 +255,10 @@
 			<e:Label text="激活码：" x="-52.43" y="283.09" scaleX="1" scaleY="1" size="34"/>
 			<e:Label id="idShareCode0" text="123456" x="66.66" y="282.48" scaleX="1" scaleY="1" size="34"/>
 		</e:Group>
-		<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" verticalCenter="212" horizontalCenter="-310"/>
-		<e:Label text="畅享全部剧集，感受全程发糖" size="22" scaleX="1" scaleY="1" horizontalCenter="-150" verticalCenter="215"/>
-		<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" horizontalCenter="15" verticalCenter="212"/>
-		<e:Label text="完成专属任务，附赠以下专属奖励" size="22" scaleX="1" scaleY="1" horizontalCenter="195" verticalCenter="215"/>
+
+
+
+
 	</e:Group>
 
 

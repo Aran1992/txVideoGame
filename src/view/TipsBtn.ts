@@ -322,7 +322,8 @@ class TipsBtn extends eui.Component {
         this.skinName = skins.TipsSkin;
     }
 
-    private onBuy600001Complte(shopdata: ShopInfoData) {
+    private onBuy600001Complte(data) {
+        const shopdata: ShopInfoData = data.data;
         if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
             this.updateXSMFButton();
         }

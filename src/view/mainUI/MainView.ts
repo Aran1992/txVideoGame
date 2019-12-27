@@ -180,7 +180,8 @@ class MainView extends eui.Component {
         this.updateXSMFButton();
     }
 
-    private onBuy600001Complte(shopdata: ShopInfoData) {
+    private onBuy600001Complte(data) {
+        const shopdata: ShopInfoData = data.data;
         if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
             this.updateXSMFButton();
         }

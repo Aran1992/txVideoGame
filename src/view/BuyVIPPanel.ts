@@ -40,9 +40,11 @@ class BuyVIPPanel extends eui.Component {
     private curBuyGroup: eui.Group;
     private CloseGroupDetail: eui.Button;
 
-    constructor(from: string) {
+    constructor(from: any) {
         super();
-        this.from = from;
+        if (from != 1) {
+            this.from = from;
+        }
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }

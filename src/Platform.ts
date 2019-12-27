@@ -283,4 +283,5 @@ declare interface Window {
 
 const isTXSP = window.platform.getPlatform() === "plat_txsp"
     || window.location.href.indexOf("txsp") !== -1;
-const is1001 = true;
+const is1001 = window.platform.getPlatform() === "plat_1001"
+    || window.location.href.indexOf("1001") !== -1;
