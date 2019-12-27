@@ -87,7 +87,8 @@ if (platform.getPlatform() === "plat_1001") {
             const args = {
                 chapterID,
                 branchID,
-                isDefault: !data.data.click
+                isDefault: !data.data.click,
+                questionName: wenti.name,
             };
             if ([
                 ActionType.CLICK_TIME,

@@ -730,7 +730,7 @@ class TipsBtn extends eui.Component {
 
     private idBtnClockClick() {
         let freeMs = GameCommon.getInstance().getNextChapterFreeMs();
-        let freeDay = Math.ceil(freeMs / (86400 * 1000))
+        let freeDay = Math.ceil(freeMs / (86400 * 1000));
         if (freeDay > 0)
             GameCommon.getInstance().showCommomTips("下一章" + freeDay + "天后免费");
         else {
