@@ -323,8 +323,7 @@ class TipsBtn extends eui.Component {
 
     private onClickXSMFButton() {
         if (!this.pauseGroup.visible) {
-            this.imStatus = "pauseImg_png";
-            VideoManager.getInstance().videoPause();
+            this.setPauseState();
         }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
     }
@@ -634,7 +633,6 @@ class TipsBtn extends eui.Component {
         this.pauseGroup.visible = false;
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
-        const isTXSP = platform.getPlatform() === "plat_txsp";
         const isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
         this.XDPASSButton.visible = !isVIP && isTXSP && !platform.isCelebrateTime();
         this.XSMFButton.visible = !isVIP && isTXSP && platform.isCelebrateTime();
@@ -742,10 +740,6 @@ class TipsBtn extends eui.Component {
     }
 
     private idBtnShopCarClick() {
-        if (!this.pauseGroup.visible) {
-            this.imStatus = 'pauseImg_png';
-            VideoManager.getInstance().videoPause();
-        }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
             windowName: 'TicketPanel',
             data: "tipsbtnshopcar"

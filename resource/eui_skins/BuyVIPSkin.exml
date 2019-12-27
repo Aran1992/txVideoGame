@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="skins.BuyVIPSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<w:Config id="16d615f8c43"/>
-	<e:Rect width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.75" scaleX="1" scaleY="1"/>
+	<e:Rect width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" alpha="0.5"/>
+
 	<e:Group id="GroupDetail" width="100%" height="100%" visible="false">
 		<e:Image source="buy_vip_img_1_png" horizontalCenter="0" verticalCenter="0"/>
 		<e:Button id="CloseGroupDetail" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
@@ -157,7 +158,7 @@
 
 		</e:Button>
 	</e:Group>
-	<e:Group id="GroupTXSP3" width="100%" height="100%" visible="false">
+	<e:Group id="GroupTXSP3" width="100%" height="100%">
 		<e:Image horizontalCenter="0" verticalCenter="0" source="buy_vip_img_9_png"/>
 		<e:Button id="CloseGroupTXSP3" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
 		<e:skinName>
