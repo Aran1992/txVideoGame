@@ -9,7 +9,7 @@ class ShopPanel extends eui.Component {
     private mainGroup: eui.Group;
     private btnClose: eui.Button;
     private filter_btn: eui.Button;
-    private suip_curreny_grp: eui.Group;
+    private spGroup: eui.Group;
     private suipNum: eui.BitmapLabel;
     private zuanshi_curreny_grp: eui.Group;
     private zuanshiNum: eui.BitmapLabel;
@@ -75,8 +75,13 @@ class ShopPanel extends eui.Component {
         this.btnClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         this.xinshoubao_buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuyXinshoubao, this);
         this.filter_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFilter, this);
+        this.spGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.spGroupClick, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyRefresh, this);
+    }
+
+    private spGroupClick() {
+        GameCommon.getInstance().showCommomTips("心动碎片：可在“福利社”内兑换美图、音乐等奖励");
     }
 
     private onRemoveEvent(): void {
@@ -356,11 +361,11 @@ class ShopPanel extends eui.Component {
                 cur_models.push(shopdata);
             }
         }
-        cur_models.sort((a,b)=>{        
-            //如果是图片，则使用param逆序排列，其它按ID正序排列    
-            let powerA = (shoptpye == SHOP_TYPE.IMAGES?(10000/Number(a.model.params)):a.id)+ShopManager.getInstance().getItemNum(a.id)*1000000;
-            let powerB = (shoptpye == SHOP_TYPE.IMAGES?(10000/Number(b.model.params)):b.id)+ShopManager.getInstance().getItemNum(b.id)*1000000;            
-            return powerA-powerB;
+        cur_models.sort((a, b) => {
+            //如果是图片，则使用param逆序排列，其它按ID正序排列
+            let powerA = (shoptpye == SHOP_TYPE.IMAGES ? (10000 / Number(a.model.params)) : a.id) + ShopManager.getInstance().getItemNum(a.id) * 1000000;
+            let powerB = (shoptpye == SHOP_TYPE.IMAGES ? (10000 / Number(b.model.params)) : b.id) + ShopManager.getInstance().getItemNum(b.id) * 1000000;
+            return powerA - powerB;
         })
         return cur_models;
     }
@@ -402,7 +407,7 @@ class ShopPanel extends eui.Component {
     }
 
     private onClose() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.onRemoveEvent();
         // if (!UserInfo.guideDic[7]) {//关闭界面去进行收藏引导
         //     GuideManager.getInstance().onCloseImg();
@@ -443,7 +448,7 @@ class ImagesShopItem extends eui.ItemRenderer {
             this.title_lab.text = '商品数据出错\n没有找到对应的收藏数据ID:::' + shoucangID;
             return;
         }
-        this.banner_img.source =  shoucangModel.id+"_view_png"
+        this.banner_img.source = shoucangModel.id + "_view_png"
         //let srcAry: string[] = shoucangModel.src.split(";");
         this.imgs_num_lab.text = shoucangModel.src + "P";//srcAry.length + "P";
         this.title_lab.text = GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] + '图集';
@@ -451,7 +456,7 @@ class ImagesShopItem extends eui.ItemRenderer {
         this.pingfen_img.source = `shop_image_${shoucangModel.level}_png`;
 
         let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
-        if ( num> 0) {//shopInfoDt.num
+        if (num > 0) {//shopInfoDt.num
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";

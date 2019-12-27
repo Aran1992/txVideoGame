@@ -13,37 +13,38 @@
 				<e:Image id="icon" source="main_icon_png" x="56" y="25"  visible="false"/>
 			</e:Group>
 			<e:Group verticalCenter="0">
+				<e:Button id="btnChengjiu" icon="yuandianbai_png" width="260" height="93">
+					<e:skinName>
+					<e:Skin states="up,down" width="272" height="88">
+						<e:Image source="left_btn_di_png" visible="false" visible.down="true" left="0" verticalCenter="0"/>
+						<e:Label id="idTitle1" text="心动PASS" fontFamily="SimHei" size="36" x="79" verticalCenter="0"/>
+						<e:Image source="main_jiantou1_png" left="0" verticalCenter="0"/>
+						<e:Image id="idNewPoint1" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" verticalCenter="-20"/>
+					</e:Skin>
+					</e:skinName>
+				</e:Button>
+				<e:Button id="btnShangCheng" icon="yuandianbai_png" width="260" height="93">
+					<e:skinName>
+					<e:Skin states="up,down" width="260" height="88">
+						<e:Image source="left_btn_di_png" visible.down="true" left="0" verticalCenter="0" width="272" height="88" visible="false"/>
+						<e:Label text="福 利 社" fontFamily="SimHei" size="36" x="79" verticalCenter="0"/>
+						<e:Image source="main_jiantou1_png" left="0" verticalCenter="0" scale9Grid="8,2,38,17"/>
+					</e:Skin>
+					</e:skinName>
+				</e:Button>
 				<e:Button id="btnShouCang" icon="yuandianbai_png" height="93" width="260">
 					<e:skinName>
 						<e:Skin states="up,down" width="260" height="88">
 							<e:Image source="left_btn_di_png" visible.down='true' left='0' verticalCenter="0" width="272" height="88"
 							         visible="false" />
-							<e:Label id="idTitle" text="收  藏" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
+							<e:Label id="idTitle" text="已购福利" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
 							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
 							<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" verticalCenter="-20"/>
 						</e:Skin>
 					</e:skinName>
 				</e:Button>
-				<e:Button id="btnChengjiu" icon="yuandianbai_png" width="260" height="93">
-					<e:skinName>
-						<e:Skin states="up,down" width="272" height="88">
-							<e:Image source="left_btn_di_png" visible="false" visible.down='true' left='0' verticalCenter="0" />
-							<e:Label id="idTitle1" text="心动PASS" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
-							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" />
-							<e:Image id="idNewPoint1" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" verticalCenter="-20"/>
-						</e:Skin>
-					</e:skinName>
-				</e:Button>
-				<e:Button id="btnShangCheng" icon="yuandianbai_png" width="260" height="93">
-					<e:skinName>
-						<e:Skin states="up,down" width="260" height="88">
-							<e:Image source="left_btn_di_png" visible.down='true' left='0' verticalCenter="0" width="272" height="88"
-							         visible="false" />
-							<e:Label text="福 利 社" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
-							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
-						</e:Skin>
-					</e:skinName>
-				</e:Button>
+
+
 				<e:Button id="btnSetting" icon="yuandianbai_png" width="260" height="93">
 					<e:skinName>
 						<e:Skin states="up,down" width="260" height="88">
@@ -120,7 +121,7 @@
 				<e:Skin states="up,down,disabled" width="393" height="149">
 					<e:Image scaleX.down="0.9" scaleY.down="0.9" width="393" height="149" source="main_jixuBtn_di_png"
 					         horizontalCenter="0" verticalCenter="0" />
-					<e:Label text="继续章节" fontFamily="SimHei" size="40" scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="26.5"
+					<e:Label text="继续观看" fontFamily="SimHei" size="40" scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="26.5"
 					         verticalCenter="0" />
 				</e:Skin>
 			</e:skinName>
@@ -143,6 +144,14 @@
 			</e:Skin>
 		</e:skinName>
 	</e:Button>
+		<e:Button id="XSMFButton" label="" scaleX="1" scaleY="1" right="0" top="60">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="buy_vip_btn_10_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
 </e:Group>
 <e:Image id="play_zi" source="quanquan_title_png" horizontalCenter="0" verticalCenter="-109" scaleX="2" scaleY="2"
          visible="false" />

@@ -86,6 +86,7 @@ class MainView extends eui.Component {
     private btnChengjiu: eui.Button;
     private btnShangCheng: eui.Button;
     private btnContinueGame: eui.Button;
+    private XSMFButton: eui.Button;
     private desc: eui.Label;
     private bg: eui.Image;
     private bg_grp: eui.Group;
@@ -128,6 +129,7 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.HIDE_MAIN_GROUP, this.onHideMainGroup, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.updateNewPoint, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.TASK_STATE_CHANGED, this.updateTicketButtonPoint, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
@@ -136,6 +138,7 @@ class MainView extends eui.Component {
         this.btnShouCang.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
         this.xindong.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
         this.btnXinkaishi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onXinkaishi, this);
+        this.XSMFButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickXSMFButton, this);
         //
         this.btnSetting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowbtnSetting, this);
         this.btnShangCheng.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShop, this);
@@ -174,6 +177,18 @@ class MainView extends eui.Component {
         this.updateTicketButtonPoint();
         this.logHelper();
         TipsBtn.Is_Guide_Bool = UserInfo.guideJson["player"] === undefined;
+        this.updateXSMFButton();
+    }
+
+    private onBuy600001Complte(shopdata: ShopInfoData) {
+        if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
+            this.updateXSMFButton();
+        }
+    }
+
+    private updateXSMFButton() {
+        let isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
+        this.XSMFButton.visible = platform.isCelebrateTime() && !isVIP;
     }
 
     private updateNewPoint() {
@@ -449,5 +464,9 @@ class MainView extends eui.Component {
                 }
             };
         });
+    }
+
+    private onClickXSMFButton() {
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
     }
 }

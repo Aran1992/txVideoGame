@@ -611,6 +611,11 @@
             "url": "assets/buyvip/buy_vip_btn_1.png?v=841"
         },
         {
+            "name": "buy_vip_btn_10_png",
+            "type": "image",
+            "url": "assets/buyvip/buy_vip_btn_10.png?v=842"
+        },
+        {
             "name": "buy_vip_btn_2_png",
             "type": "image",
             "url": "assets/buyvip/buy_vip_btn_2.png?v=252"
@@ -656,6 +661,11 @@
             "url": "assets/buyvip/buy_vip_img_1.png?v=686"
         },
         {
+            "name": "buy_vip_img_10_png",
+            "type": "image",
+            "url": "assets/buyvip/buy_vip_img_10.png?v=174"
+        },
+        {
             "name": "buy_vip_img_2_png",
             "type": "image",
             "url": "assets/buyvip/buy_vip_img_2.png?v=441"
@@ -678,7 +688,7 @@
         {
             "name": "buy_vip_img_6_png",
             "type": "image",
-            "url": "assets/buyvip/buy_vip_img_6.png?v=614"
+            "url": "assets/buyvip/buy_vip_img_6.png?v=484"
         },
         {
             "name": "buy_vip_img_7_png",
@@ -8171,6 +8181,11 @@
             "url": "assets/shoucang/ren5.png?v=656"
         },
         {
+            "name": "sc_add_button_png",
+            "type": "image",
+            "url": "assets/shoucang/sc_add_button.png?v=425"
+        },
+        {
             "name": "sc_img_role1_png",
             "type": "image",
             "url": "assets/shoucang/sc_img_role1.png?v=700"
@@ -8204,6 +8219,11 @@
             "name": "sc_list_role6_png",
             "type": "image",
             "url": "assets/shoucang/sc_list_role6.png?v=536"
+        },
+        {
+            "name": "sc_mini_role_png",
+            "type": "image",
+            "url": "assets/shoucang/sc_mini_role.png?v=591"
         },
         {
             "name": "sc_music_icon_1_png",
@@ -8538,12 +8558,12 @@
         {
             "name": "ticket_share_png",
             "type": "image",
-            "url": "assets/ticket/ticket_share.png?v=525"
+            "url": "assets/ticket/ticket_share.png?v=774"
         },
         {
             "name": "ticket_share_2_png",
             "type": "image",
-            "url": "assets/ticket/ticket_share_2.png?v=980"
+            "url": "assets/ticket/ticket_share_2.png?v=984"
         },
         {
             "name": "huodong_png",
@@ -8623,7 +8643,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=58"
+            "url": "config/config.bin?v=64"
         }
     ]
 }

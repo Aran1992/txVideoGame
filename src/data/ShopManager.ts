@@ -50,7 +50,7 @@ class ShopManager {
         if (egret.Capabilities.os == 'Windows PC') {
             this.addGoods(itemId, num, callback);
         } else {
-            let callbackBuyGoods = (data) => { 
+            let callbackBuyGoods = (data) => {
                 if(platform.getPlatform() == "plat_1001"){
                     let recData = data.data;
                     let jsonObject = data.data.value;
@@ -123,7 +123,7 @@ class ShopManager {
             GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
             this._shopDataDict = {};
             for (let id in JsonModelManager.instance.getModelshop()) {
-                let model: Modelshop = JsonModelManager.instance.getModelshop()[id];        
+                let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
                 let valueObj = {saleId: model.id, currPrice: model.currPrice*platform.getPriceRate(), origPrice: model.origPrice*platform.getPriceRate()};
                 let shopData: ShopInfoData = new ShopInfoData(valueObj);
                 this._shopDataDict[shopData.id] = shopData;
@@ -278,9 +278,9 @@ class ShopManager {
                 case SHOP_TYPE.VIDEOS:
                 case SHOP_TYPE.MUSICS:
                     if (isBuy) {
-                        GameCommon.getInstance().onShowResultTips('购买成功\n可以在“收藏”中查看');
+                        GameCommon.getInstance().onShowResultTips('购买成功\n可以在“已获福利”中查看');
                     } else {
-                        GameCommon.getInstance().onShowResultTips('获得物品\n可以在“收藏”中查看');
+                        GameCommon.getInstance().onShowResultTips('获得物品\n可以在“已获福利”中查看');
                     }
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
                     // let shoucangID: number = parseInt(shopdata.model.params);

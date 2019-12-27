@@ -258,6 +258,7 @@ class TipsBtn extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.GAME_STATE_CHANGE, this.onGameStateChange, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         for (let i = 1; i < 6; i++) {
             this['btn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }
@@ -319,6 +320,12 @@ class TipsBtn extends eui.Component {
 
     protected onSkinName(): void {
         this.skinName = skins.TipsSkin;
+    }
+
+    private onBuy600001Complte(shopdata: ShopInfoData) {
+        if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
+            this.updateXSMFButton();
+        }
     }
 
     private onClickXSMFButton() {
@@ -631,6 +638,10 @@ class TipsBtn extends eui.Component {
         this.pauseGroup.visible = false;
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
+        this.updateXSMFButton();
+    }
+
+    private updateXSMFButton() {
         const isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
         this.XDPASSButton.visible = !isVIP && isTXSP && !platform.isCelebrateTime();
         this.XSMFButton.visible = !isVIP && isTXSP && platform.isCelebrateTime();

@@ -125,6 +125,9 @@ class TicketPanel extends eui.Component {
     private idExpireText: eui.Label;
     private idTicketNum: eui.Label;
     private suipNum: eui.Label;
+    private unlockNotice: eui.Label;
+    private celebrateNotice: eui.Label;
+    private disCelebrateNotice: eui.Group;
 
     private idRectBuy: eui.Rect;
 
@@ -204,7 +207,7 @@ class TicketPanel extends eui.Component {
         //从购物车按纽进来
         this.idGroupShareTicket.visible = false;
 
-        this.idGroupBuyTicket.visible = this._openParam == "tipsbtnshopcar" || this._openParam == "confirm";
+        this.setUnusedNodeVisible(this.idGroupBuyTicket, this._openParam == "tipsbtnshopcar" || this._openParam == "confirm");
 
         let today = Tool.formatTimeDay2Num();
         let cfg = JsonModelManager.instance.getModelshop()[GameDefine.GUANGLIPINGZHENG];
@@ -222,7 +225,7 @@ class TicketPanel extends eui.Component {
         this.idTicketNum.text = "";//itemNum;
         this.refreshActiveCode();
         if (itemNum <= 0) {
-            this.idGroupBuyTicket.visible = true;
+            this.setUnusedNodeVisible(this.idGroupBuyTicket, true);
         }
         //如果还没有买过凭据，直接拍脸
 
@@ -246,12 +249,12 @@ class TicketPanel extends eui.Component {
     }
 
     private updateBuyBtnState() {
-        let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        this.idBtnBuyNow.label = itemNum > 0 ? "已拥有" : "立即购买";
-        this.idBtnBuyNow.visible = itemNum <= 0;
-        for (let i = 0; i < 4; i++) {
-            this[`x${i}`].visible = itemNum <= 0;
-        }
+        let isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
+        let isCelebrate = platform.isCelebrateTime();
+        this.idBtnBuyNow.visible = !isVIP;
+        this.unlockNotice.visible = !isVIP;
+        this.celebrateNotice.visible = !isVIP && isCelebrate;
+        this.disCelebrateNotice.visible = !isVIP && !isCelebrate;
     }
 
     private refreshActiveCode() {
@@ -265,10 +268,7 @@ class TicketPanel extends eui.Component {
                 this.idCode.visible = true;
                 this.idNoCode.visible = false;
                 this.idShareCode.text = cdk;
-                this.idShareText.text = `1. 该激活码可用于在一零零一激活《拳拳四重奏》心动PASS；
-2. 在《拳拳四重奏》剧集内部心动PASS-买一赠一可以激活资格；
-3. 在一零零一重激活心动PASS，可享受提前看剧以及心动PASS福利内容;
-4. 激活码有效期至${data.data.list[0].expireTime}`;
+                this.idShareText.text = `激活码有效期至：${data.data.list[0].expireTime}`;
                 this.idBtnCopyCode.visible = true;
                 this.idBtnShareCode.visible = true;
                 this.idHasCodeText.visible = true;
@@ -293,14 +293,16 @@ class TicketPanel extends eui.Component {
 
     private idBtnBuyNowClick() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        this.idGroupBuyTicket.visible = true;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM),
+            new WindowParam("BuyVIPPanel", "task"));
     }
 
     private onBuy600001Complte(shopdata: ShopInfoData) {
         if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
-            if (this._openParam == "confirm")//从弹窗进来的。购买成功后需要继续播放视频
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
-            this.onCloseClick();
+            // if (this._openParam == "confirm")//从弹窗进来的。购买成功后需要继续播放视频
+            //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
+            // this.onCloseClick();
+            this.updateBuyBtnState();
         }
     }
 
@@ -345,7 +347,6 @@ class TicketPanel extends eui.Component {
 
     private idBtnShareCodeClick() {
         this.idGroupShareTicket.visible = true;
-
         let render = new egret.RenderTexture();
         render.drawToTexture(this.idGroupShareTicket);//rootLayer是当前显示层的总容器，或者用this.stage
         this.idGroupShareTicket.visible = false;
@@ -375,7 +376,7 @@ class TicketPanel extends eui.Component {
             this.onCloseClick();
             return;
         }
-        this.idGroupBuyTicket.visible = false;
+        this.setUnusedNodeVisible(this.idGroupBuyTicket, false);
     }
 
     private idShareTicketCloseClick() {
@@ -459,7 +460,11 @@ class TicketPanel extends eui.Component {
     }
 
     private spGroupClick() {
-        
+        GameCommon.getInstance().showCommomTips("心动碎片：可在“福利社”内兑换美图、音乐等奖励");
+    }
+
+    private setUnusedNodeVisible(node, visible) {
+        node.visible = false;
     }
 }
 
