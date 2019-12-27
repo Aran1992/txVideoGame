@@ -322,7 +322,10 @@ class TipsBtn extends eui.Component {
     }
 
     private onClickXSMFButton() {
-        VideoManager.getInstance().videoPause();
+        if (!this.pauseGroup.visible) {
+            this.imStatus = "pauseImg_png";
+            VideoManager.getInstance().videoPause();
+        }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
     }
 
