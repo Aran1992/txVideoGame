@@ -95,4 +95,5 @@
     <shop id="103019"   name="轻舞泡沫"       preview="*"  params="3019" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="轻巧的泡沫，松松软软，也好像和你在一起的心情"    />
     <shop id="103020"   name="清涧涌泉"       preview="*"  params="3020" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="让自己放松的方法有千百种，但和你一起最受用"      />
     <shop id="103021"   name="濡湿之梦"       preview="*"  params="3021" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="就像小小的幼兽舔舐伤口，他需要的是你"          />
+    <shop id="103022"   name="拳拳惊喜"       preview="*"  params="3022" currPrice="0" origPrice="0" currSuipian="0" origSuipian="0" show="1" shaixuan_params="*" desc="拳拳惊喜，献给你"          />
 </shop>

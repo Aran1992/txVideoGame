@@ -135,6 +135,10 @@ declare module skins{
 	}
 }
 declare module skins{
+	class BuyVIPSkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class FileBar extends eui.Skin{
 	}
 }

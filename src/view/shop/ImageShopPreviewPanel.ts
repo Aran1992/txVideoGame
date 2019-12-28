@@ -34,17 +34,17 @@ class ImageShopPreviewPanel extends eui.Component {
         this.desc_lab.text = this.data.model.desc;
         //let srcAry: string[] = this.shoucangModel.src.split(";");
         this.count_lab.text = Math.min(Number(this.shoucangModel.src),5)+"P";//srcAry.length + "P";
-        this.pingfen_img.source = `shop_image_${this.shoucangModel.level}_png`;        
+        this.pingfen_img.source = `shop_image_${this.shoucangModel.level}_png`;
         let num = ShopManager.getInstance().getItemNum(this.data.id);
         if (num > 0) {
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
-            this.idHasBuyed.text="——  已购买该商品，可在收藏查看完整内容 —— ";            
+            this.idHasBuyed.text="——  已购买该商品，可在已获福利查看完整内容 —— ";
             //this.idHasBuyed.visible = true;
         } else {
             //this.idHasBuyed.visible = false;
-            this.idHasBuyed.text="——  仅支持封面预览，购买后可在收藏查看完整图集 —— ";    
+            this.idHasBuyed.text="——  仅支持封面预览，购买后可在已获福利查看完整图集 —— ";
             let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
             if (this.data.origPrice > this.data.currPrice) {
                 this.discount_bar.visible = true;
@@ -55,7 +55,10 @@ class ImageShopPreviewPanel extends eui.Component {
                 this.discount_bar.visible = false;
             }
             this.buy_btn.enabled = true;
-            this.buy_btn.label = "购买";
+            if (this.data.model.currPrice == 0 && this.data.model.currSuipian == 0)
+                this.buy_btn.label = "免费购买";
+            else
+                this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = this.data.model.currPrice.toFixed(2);
         }

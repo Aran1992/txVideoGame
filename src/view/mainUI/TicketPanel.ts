@@ -19,59 +19,59 @@ const REWARD_ICON = [
 const REWARD_DSC = {
     luxury: {
         name: "提前看剧特权",
-        dsc: "可立即观看所有剧集。",
+        dsc: "永久解锁全章节",
     },
     suipian: {
         name: "碎片",
-        dsc: "一种珍贵的材料，可以在《拳拳四重奏》“商城”内兑换美图、音乐等奖励。",
+        dsc: "可以在“福利社”内兑换美图、音乐等奖励",
     },
     quantao: {
         name: "拳套",
-        dsc: "特别订制的轻便拳套，在【一零零一】中《拳拳四重奏》专区内使用，可以为心仪的TA增加少量的花语值。",
+        dsc: "可在【一零零一】《拳拳四重奏》应援专区中为角色应援",
     },
     erfan: {
         name: "耳机",
-        dsc: "集降噪和悦耳于一体的专用耳机，在【一零零一】中《拳拳四重奏》专区内使用，可以为心仪的TA增加花语值。",
+        dsc: "可在【一零零一】《拳拳四重奏》应援专区中为角色应援",
     },
     yuepu: {
         name: "乐谱",
-        dsc: "写满某个乐队灵感的原创乐谱，在【一零零一】中《拳拳四重奏》专区内使用，可以为心仪的TA增加花语值。",
+        dsc: "可在【一零零一】《拳拳四重奏》应援专区中为角色应援",
     },
     CD: {
         name: "原版CD",
-        dsc: "乐手们最珍爱的原版CD，在【一零零一】中《拳拳四重奏》专区内使用，可以为心仪的TA增加大量的花语值。",
+        dsc: "可在【一零零一】《拳拳四重奏》应援专区中为角色应援",
     },
     101004: {
         name: "少女情怀*林薄荷",
-        dsc: "心动PASS限定藏品，永久收藏林薄荷精品剧照卡5张。",
+        dsc: "内含林薄荷精品剧照5张，获得后可在“已购福利”中查看",
     },
     102001: {
         name: "梦想的模样·林薄荷&夏子豪 SR",
-        dsc: "心动PASS限定藏品，永久收藏林薄荷&夏子豪高清精品剧照卡5张。",
+        dsc: "内含林薄荷&夏子豪精品剧照5张，获得后可在“已购福利”中查看",
     },
     101003: {
         name: "愿星伴你·江雪 ",
-        dsc: "心动PASS限定藏品，永久收藏江雪精品剧照卡5张。",
+        dsc: "内含江雪精品剧照5张，获得后可在“已购福利”中查看",
     },
     102017: {
         name: "美梦酩酊·夏子豪",
-        dsc: "心动PASS限定藏品，永久收藏夏子豪高清精品剧照卡5张。",
+        dsc: "内含夏子豪精品剧照5张，获得后可在“已购福利”中查看",
     },
     103008: {
         name: "B面人生·肖千也",
-        dsc: "心动PASS限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖千也的专属纪念照。",
+        dsc: "内含肖千也精品剧照5张，获得后可在“已购福利”中查看",
     },
     103009: {
         name: "B面人生·肖万寻",
-        dsc: "心动PASS限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖万寻的专属纪念照。",
+        dsc: "内含肖万寻精品剧照5张，获得后可在“已购福利”中查看",
     },
     103007: {
         name: "B面人生·韩小白",
-        dsc: "心动PASS限定的心动藏品，《拳拳四重奏》制作组倾情奉上，韩小白的专属纪念照。",
+        dsc: "内含韩小白精品剧照5张，获得后可在“已购福利”中查看",
     },
     103001: {
         name: "兄弟？兄弟！·肖千也&肖万寻",
-        dsc: "心动PASS限定的心动藏品，《拳拳四重奏》制作组倾情奉上，肖千也&肖万寻的专属纪念照。",
+        dsc: "内含肖千也、肖万寻精品剧照5张，获得后可在“已购福利”中查看",
     },
 };
 
@@ -125,6 +125,9 @@ class TicketPanel extends eui.Component {
     private idExpireText: eui.Label;
     private idTicketNum: eui.Label;
     private suipNum: eui.Label;
+    private unlockNotice: eui.Label;
+    private celebrateNotice: eui.Label;
+    private disCelebrateNotice: eui.Group;
 
     private idRectBuy: eui.Rect;
 
@@ -187,6 +190,7 @@ class TicketPanel extends eui.Component {
         this.idBtnBuyNow.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnBuyNowClick, this);
 
         this.idShareTicketClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idShareTicketCloseClick, this);
+        this['spGroup'].addEventListener(egret.TouchEvent.TOUCH_TAP, this.spGroupClick, this);
 
         this.idBtnUseCode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnUseCodeClick, this);
         this.idBtnCopyCode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnCopyCodeClick, this);
@@ -203,7 +207,7 @@ class TicketPanel extends eui.Component {
         //从购物车按纽进来
         this.idGroupShareTicket.visible = false;
 
-        this.idGroupBuyTicket.visible = this._openParam == "tipsbtnshopcar" || this._openParam == "confirm";
+        this.setUnusedNodeVisible(this.idGroupBuyTicket, this._openParam == "tipsbtnshopcar" || this._openParam == "confirm");
 
         let today = Tool.formatTimeDay2Num();
         let cfg = JsonModelManager.instance.getModelshop()[GameDefine.GUANGLIPINGZHENG];
@@ -221,7 +225,7 @@ class TicketPanel extends eui.Component {
         this.idTicketNum.text = "";//itemNum;
         this.refreshActiveCode();
         if (itemNum <= 0) {
-            this.idGroupBuyTicket.visible = true;
+            this.setUnusedNodeVisible(this.idGroupBuyTicket, true);
         }
         //如果还没有买过凭据，直接拍脸
 
@@ -237,19 +241,20 @@ class TicketPanel extends eui.Component {
         if (platform.getPlatform() != "plat_txsp")
             this.idRectBuy.alpha = 0.9;
     }
-    private onUpdateVip(){
+
+    private onUpdateVip() {
         this.idBtnBuyTicketSpecailPrize_txsp.label = String(TicketPanel.getPingzhengPrize());
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
         this.idGroupDiscountTxsp.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
     }
 
     private updateBuyBtnState() {
-        let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        this.idBtnBuyNow.label = itemNum > 0 ? "已拥有" : "立即购买";
-        this.idBtnBuyNow.visible = itemNum <= 0;
-        for (let i = 0; i < 4; i++) {
-            this[`x${i}`].visible = itemNum <= 0;
-        }
+        let isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
+        let isCelebrate = platform.isCelebrateTime();
+        this.idBtnBuyNow.visible = !isVIP;
+        this.unlockNotice.visible = !isVIP;
+        this.celebrateNotice.visible = !isVIP && isCelebrate;
+        this.disCelebrateNotice.visible = !isVIP && !isCelebrate;
     }
 
     private refreshActiveCode() {
@@ -263,10 +268,7 @@ class TicketPanel extends eui.Component {
                 this.idCode.visible = true;
                 this.idNoCode.visible = false;
                 this.idShareCode.text = cdk;
-                this.idShareText.text = `1. 该激活码可用于在一零零一激活《拳拳四重奏》心动PASS；
-2. 在《拳拳四重奏》剧集内部心动PASS-买一赠一可以激活资格；
-3. 在一零零一重激活心动PASS，可享受提前看剧以及心动PASS福利内容;
-4. 激活码有效期至${data.data.list[0].expireTime}`;
+                this.idShareText.text = `激活码有效期至：${data.data.list[0].expireTime}`;
                 this.idBtnCopyCode.visible = true;
                 this.idBtnShareCode.visible = true;
                 this.idHasCodeText.visible = true;
@@ -291,14 +293,17 @@ class TicketPanel extends eui.Component {
 
     private idBtnBuyNowClick() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        this.idGroupBuyTicket.visible = true;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM),
+            new WindowParam("BuyVIPPanel", "task"));
     }
 
-    private onBuy600001Complte(shopdata: ShopInfoData) {
+    private onBuy600001Complte(data) {
+        const shopdata: ShopInfoData = data.data;
         if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
-            if (this._openParam == "confirm")//从弹窗进来的。购买成功后需要继续播放视频
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
-            this.onCloseClick();
+            // if (this._openParam == "confirm")//从弹窗进来的。购买成功后需要继续播放视频
+            //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
+            // this.onCloseClick();
+            this.updateBuyBtnState();
         }
     }
 
@@ -343,7 +348,6 @@ class TicketPanel extends eui.Component {
 
     private idBtnShareCodeClick() {
         this.idGroupShareTicket.visible = true;
-
         let render = new egret.RenderTexture();
         render.drawToTexture(this.idGroupShareTicket);//rootLayer是当前显示层的总容器，或者用this.stage
         this.idGroupShareTicket.visible = false;
@@ -373,7 +377,7 @@ class TicketPanel extends eui.Component {
             this.onCloseClick();
             return;
         }
-        this.idGroupBuyTicket.visible = false;
+        this.setUnusedNodeVisible(this.idGroupBuyTicket, false);
     }
 
     private idShareTicketCloseClick() {
@@ -399,18 +403,17 @@ class TicketPanel extends eui.Component {
             this.updateBuyBtnState();
             if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
-            } else
-                if(platform.isCelebrateTime())
-                    GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
-                else
-                    GameCommon.getInstance().onShowResultTips('购买成功');
+            } else if (platform.isCelebrateTime())
+                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
+            else
+                GameCommon.getInstance().onShowResultTips('购买成功');
         };
         //引导购买腾讯会员弹窗
-        if(platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()){
+        if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {
             //GameCommon.getInstance().onOpen
-            let buyfunc=()=>{
+            let buyfunc = () => {
                 GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENGEX, TicketPanel.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
-            }
+            };
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("TxspBuyTipsPanel", buyfunc));
             return
         }
@@ -455,6 +458,14 @@ class TicketPanel extends eui.Component {
 
     private onSuipianChange() {
         this.suipNum.text = UserInfo.suipianMoney + "";
+    }
+
+    private spGroupClick() {
+        GameCommon.getInstance().showCommomTips("心动碎片：可在“福利社”内兑换美图、音乐等奖励");
+    }
+
+    private setUnusedNodeVisible(node, visible) {
+        node.visible = false;
     }
 }
 

@@ -145,45 +145,20 @@ class ShouCangListItem extends eui.Component {
     private roleTp: eui.Label;
     private roleName: eui.Label;
     private music: eui.Group;
-    private idNewPoint:eui.Image;
+    private idNewPoint: eui.Image;
 
     public constructor() {
         super();
         this.skinName = skins.ShouCangItemSkin;
         this.touchEnabled = false;
     }
-    
-    public onRegist(){
-        GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.onShoucangNewPoint, this);
-    }
 
-    public onRemove(){
-        GameDispatcher.getInstance().removeEventListener(GameEvent.SHOUCANG_NEWPOINT, this.onShoucangNewPoint, this);
-    }
-
-    private onShoucangNewPoint(){        
-        if (this.info && this.info>0)
-            this.idNewPoint.visible = ShopManager.getInstance().getNewPoint(this.info)>0;
-    }
     public set data(info) {
-        // this.img.source = '';
-        // if(info>=6)
-        // {
-        //     this.icon.source = 'shoucang_head'+5+'_png';
-        // }
-        // else
-        // {
-        // }
-
-
-        // if(info>4)
-        // this.icon.source = 'sc_list_role' + 1 + '_png';
-        // else
-        this.info = info;        
+        this.info = info;
         this.icon.source = 'sc_list_role' + info + '_png';
         this.roleTp.text = GameDefine.ROLE_OCCUPATION[info - 1];
         this.roleName.text = GameDefine.SHOUCANG_NAME[info - 1];
-        this.idNewPoint.visible = ShopManager.getInstance().getNewPoint(info)>0;
+        this.idNewPoint.visible = ShopManager.getInstance().getNewPoint(info) > 0;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onPlayVideo, this);
         this.info = info;
         this.music.visible = false;
@@ -193,13 +168,26 @@ class ShouCangListItem extends eui.Component {
         }
     }
 
-    private onTouchImg() {        
-        SoundManager.getInstance().playSound("ope_click.mp3")
+    public onRegist() {
+        GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.onShoucangNewPoint, this);
+    }
+
+    public onRemove() {
+        GameDispatcher.getInstance().removeEventListener(GameEvent.SHOUCANG_NEWPOINT, this.onShoucangNewPoint, this);
+    }
+
+    private onShoucangNewPoint() {
+        if (this.info && this.info > 0)
+            this.idNewPoint.visible = ShopManager.getInstance().getNewPoint(this.info) > 0;
+    }
+
+    private onTouchImg() {
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_IMG_TOUCH))
     }
 
     private onPlayVideo() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         if (!UserInfo.guideDic[7])//关闭界面去进行商城引导
         {
             if (this.info != 3 && this.info != 5)

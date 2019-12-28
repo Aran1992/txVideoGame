@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <wenti>
-    <wenti id="1" chapter="0" des="回击教练" ans="1,2" moren="2" time="7" type="1"/>
-    <wenti id="2" chapter="0" des="教练挽留你" ans="1,2" moren="2" time="4.5" type="0"/>
-    <wenti id="3" chapter="0" des="从侧门进入礼堂" ans="1,2" moren="2" time="3.5" type="2"/>
-    <wenti id="4" chapter="0" des="询问夏子豪" ans="1,2" moren="2" time="7" type="0"/>
-    <wenti id="5" chapter="0" des="是否上台" ans="1,2,3" moren="3" time="4.5" type="0"/>
-    <wenti id="6" chapter="0" des="上台表演" ans="1,2,3" moren="2" time="12" type="3"/>
-    <wenti id="8" chapter="1" des="接过来吗" ans="1,2" moren="1" time="3.5" type="0"/>
-    <wenti id="9" chapter="1" des="摸夏子豪的头" ans="1,2" moren="2" time="4.5" type="6"/>
-    <wenti id="10" chapter="1" des="比赛放水吗" ans="1,2,3" moren="1" time="4" type="0"/>
-    <wenti id="11" chapter="1" des="如何记录旋律" ans="1,2,3" moren="1" time="4" type="0"/>
-    <wenti id="12" chapter="1" des="挣扎吗" ans="1,2" moren="2" time="4" type="0"/>
-    <wenti id="13" chapter="2" des="反驳路人" ans="1,2,3" moren="3" time="4" type="0"/>
-    <wenti id="14" chapter="2" des="如何帮助韩小白" ans="1,2,3" moren="3" time="4" type="0"/>
-    <wenti id="15" chapter="2" des="发短信" ans="1,2" moren="2" time="12" type="12"/>
-    <wenti id="16" chapter="2" des="要不要进去帮忙" ans="1,2" moren="2" time="4.5" type="0"/>
-    <wenti id="17" chapter="2" des="挡住一拳" ans="1,2" moren="2" time="1.5" type="8"/>
-    <wenti id="18" chapter="2" des="坚持自己的想法么" ans="1,2" moren="2" time="4.5" type="0"/>
-    <wenti id="19" chapter="2" des="经过精彩的一天你想起了谁?" ans="1,2,3,4" moren="1" time="5.5" type="17"/>
-    <wenti id="20" chapter="3" des="去不去" ans="1,2" moren="1" time="6" type="0"/>
-    <wenti id="21" chapter="3" des="去哪找人" ans="1,2" moren="1" time="5" type="0"/>
-    <wenti id="22" chapter="4" des="音乐游戏" ans="1,2,3" moren="2" time="5" type="9"/>
-    <wenti id="24" chapter="4" des="是否劝架" ans="1,2" moren="1" time="4.5" type="0"/>
-    <wenti id="25" chapter="4" des="怎么办" ans="1,2,3" moren="2" time="5.5" type="0"/>
-    <wenti id="26" chapter="4" des="谁叫住林薄荷" ans="1,2,3,4" moren="2" time="30" type="11"/>
-    <wenti id="27" chapter="5" des="谁来找林薄荷" ans="1,2,3,4,5" moren="2" time="7" type="37"/>
-    <wenti id="28" chapter="5" des="坐旋转木马" ans="1,2" moren="1" time="4" type="0"/>
-    <wenti id="29" chapter="5" des="给他带发卡" ans="1,2" moren="2" time="6" type="16"/>
-    <wenti id="30" chapter="5" des="放水吗" ans="1,2" moren="1" time="6" type="0"/>
-    <wenti id="31" chapter="5" des="跟进西餐厅" ans="1,2" moren="2" time="4.5" type="0"/>
-    <wenti id="32" chapter="5" des="吃蛋糕" ans="1,2" moren="2" time="5.5" type="14"/>
-    <wenti id="33" chapter="6" des="回应千也吗" ans="1,2" moren="2" time="6" type="0"/>`
-    <wenti id="34" chapter="6" des="怎么办" ans="1,2,3,4" moren="2" time="6" type="0"/>
-    <wenti id="35" chapter="6" des="往哪儿走" ans="1,2" moren="1" time="5.5" type="0"/>
-    <wenti id="36" chapter="6" des="夏向你张开了手,抱他" ans="1,2" moren="2" time="4.5" type="15"/>
-    <wenti id="38" chapter="6" des="往哪儿走" ans="1,2" moren="1" time="5.5" type="0"/>
-    <wenti id="39" chapter="6" des="抱住他" ans="1,2" moren="2" time="5.5" type="18"/>
-    <wenti id="40" chapter="7" des="听吗" ans="1,2" moren="2" time="4.5" type="0"/>
-    <wenti id="41" chapter="7" des="怎么办" ans="1,2" moren="1" time="5.5" type="0"/>
-    <wenti id="42" chapter="7" des="问清楚吗" ans="1" moren="1" time="7" type="0"/>
-    <wenti id="44" chapter="7" des="问清楚吗" ans="1" moren="1" time="5" type="0"/>
-    <wenti id="45" chapter="7" des="摸头" ans="1" moren="1" time="5" type="36"/>
-    <wenti id="46" chapter="7" des="点酒" ans="1,2,3,4,5" moren="1" time="6" type="19"/>
-    <wenti id="47" chapter="7" des="听到声音,进去吗" ans="1,2" moren="2" time="6" type="0"/>
-    <wenti id="48" chapter="7" des="问清韩想说什么" ans="1,2" moren="1" time="10" type="0"/>
-    <wenti id="49" chapter="8" des="原谅吗" ans="1,2,3" moren="1" time="6" type="0"/>
-    <wenti id="50" chapter="8" des="看向谁" ans="1,2,3,4" moren="1" time="5.5" type="0"/>
-    <wenti id="51" chapter="9" des="夏子豪叫了你一声" ans="1,2" moren="1" time="6" type="0"/>
-    <wenti id="52" chapter="9" des="说什么" ans="1,2" moren="2" time="6" type="0"/>
-    <wenti id="53" chapter="9" des="准备好了吗" ans="1,2" moren="2" time="4.5" type="0"/>
-    <wenti id="54" chapter="10" des="抹奶油" ans="1,2" moren="2" time="4.5" type="31"/>
-    <wenti id="55" chapter="10" des="擦头发" ans="1,2" moren="2" time="6" type="32"/>
-    <wenti id="56" chapter="11" des="拥抱" ans="1,2" moren="2" time="4.5" type="33"/>
-    <wenti id="57" chapter="11" des="看看哪里" ans="1,2,3,4" moren="2" time="7" type="35"/>
-    <wenti id="58" chapter="12" des="围围巾" ans="1,2" moren="2" time="2.5" type="21"/>
-    <wenti id="59" chapter="20" des="摸头" ans="1,2" moren="2" time="6" type="30"/>
-    <wenti id="60" chapter="21" des="扔枕头" ans="1,2" moren="2" time="5" type="29"/>
-    <wenti id="61" chapter="21" des="推开夏" ans="1,2" moren="2" time="3" type="23"/>
-    <wenti id="62" chapter="21" des="击掌" ans="1,2" moren="2" time="3" type="22"/>
-    <wenti id="63" chapter="22" des="拥抱夏子豪" ans="1,2" moren="2" time="6" type="24"/>
-    <wenti id="64" chapter="30" des="怎么办" ans="1,2" moren="2" time="5" type="0"/>
-    <wenti id="65" chapter="30" des="怎么办" ans="1,2" moren="2" time="6" type="0"/>
-    <wenti id="66" chapter="30" des="躲在哪" ans="1,2" moren="2" time="4" type="0"/>
-    <wenti id="67" chapter="30" des="帮谁说话" ans="1,2" moren="2" time="4" type="0"/>
-    <wenti id="68" chapter="31" des="拍肩膀" ans="1,2" moren="2" time="4" type="28"/>
-    <wenti id="69" chapter="31" des="牵手" ans="1,2" moren="2" time="4" type="25"/>
-    <wenti id="70" chapter="32" des="甩开手" ans="1,2" moren="2" time="5" type="34"/>
-    <wenti id="71" chapter="41" des="系领带" ans="1,2" moren="2" time="6" type="27"/>
-    <wenti id="72" chapter="41" des="牵手" ans="1,2" moren="2" time="3" type="26"/>
-    <wenti id="73" chapter="42" des="喝酒" ans="1,2" moren="2" time="5" type="20"/>
-    <wenti id="74" chapter="0" des="二次滑门" ans="1,2" moren="2" time="4" type="4"/>
-    <wenti id="75" chapter="1" des="弹琴" ans="1,2,3" moren="3" time="9.5" type="13"/>
-    <wenti id="76" chapter="11" des="看看哪里2" ans="1,2,3,4" moren="3" time="6" type="35"/>
-    <wenti id="77" chapter="3" des="发短信" ans="1,2" moren="2" time="11" type="38"/>
-    <wenti id="78" chapter="3" des="发短信" ans="1,2" moren="2" time="45" type="39"/>
+    <wenti id="1" chapter="0" des="回击教练" ans="1,2" moren="2" time="7" type="1" name="Q0-1打拳"/>
+    <wenti id="2" chapter="0" des="教练挽留你" ans="1,2" moren="2" time="4.5" type="0" name="Q0-2教练给水"/>
+    <wenti id="3" chapter="0" des="从侧门进入礼堂" ans="1,2" moren="2" time="3.5" type="2" name="Q0-3进入礼堂（互动）"/>
+    <wenti id="4" chapter="0" des="询问夏子豪" ans="1,2" moren="2" time="7" type="0" name="Q0-4夏拉你到后台"/>
+    <wenti id="5" chapter="0" des="是否上台" ans="1,2,3" moren="3" time="4.5" type="0" name="Q0-5敢不敢上台"/>
+    <wenti id="6" chapter="0" des="上台表演" ans="1,2,3" moren="2" time="12" type="3" name="Q0-6音乐游戏"/>
+    <wenti id="8" chapter="1" des="接过来吗" ans="1,2" moren="1" time="3.5" type="0" name="Q1-1接传单"/>
+    <wenti id="9" chapter="1" des="摸夏子豪的头" ans="1,2" moren="2" time="4.5" type="6" name="Q1-2摸夏子豪头"/>
+    <wenti id="10" chapter="1" des="比赛放水吗" ans="1,2,3" moren="1" time="4" type="0" name="Q1-3比赛跑步"/>
+    <wenti id="11" chapter="1" des="如何记录旋律" ans="1,2,3" moren="1" time="4" type="0" name="Q1-4记录旋律"/>
+    <wenti id="12" chapter="1" des="挣扎吗" ans="1,2" moren="2" time="4" type="0" name="Q1-6帮他吗"/>
+    <wenti id="13" chapter="2" des="反驳路人" ans="1,2,3" moren="3" time="4" type="0" name="Q2-1反驳路人"/>
+    <wenti id="14" chapter="2" des="如何帮助韩小白" ans="1,2,3" moren="3" time="4" type="0" name="Q2-2怎么帮助韩小白"/>
+    <wenti id="15" chapter="2" des="发短信" ans="1,2" moren="2" time="12" type="12" name="Q2-3发短信"/>
+    <wenti id="16" chapter="2" des="要不要进去帮忙" ans="1,2" moren="2" time="4.5" type="0" name="Q2-4进去帮肖千也"/>
+    <wenti id="17" chapter="2" des="挡住一拳" ans="1,2" moren="2" time="1.5" type="8" name="Q2-5挡拳"/>
+    <wenti id="18" chapter="2" des="坚持自己的想法么" ans="1,2" moren="2" time="4.5" type="0" name="Q2-6坚持自己想法吗 ？"/>
+    <wenti id="19" chapter="2" des="经过精彩的一天你想起了谁?" ans="1,2,3,4" moren="1" time="5.5" type="17" name="Q2-7想起谁（好感度判定）"/>
+    <wenti id="20" chapter="3" des="去不去" ans="1,2" moren="1" time="6" type="0" name="Q3-1 去夜店演出吗"/>
+    <wenti id="21" chapter="3" des="去哪找人" ans="1,2" moren="1" time="5" type="0" name="Q3-2 去哪儿找人"/>
+    <wenti id="22" chapter="4" des="音乐游戏" ans="1,2,3" moren="2" time="5" type="9" name="Q4-1音乐游戏（互动）"/>
+    <wenti id="24" chapter="4" des="是否劝架" ans="1,2" moren="1" time="4.5" type="0" name="Q4-2是否劝架"/>
+    <wenti id="25" chapter="4" des="怎么办" ans="1,2,3" moren="2" time="5.5" type="0" name="Q4-3乐队争执怎么办？"/>
+    <wenti id="26" chapter="4" des="谁叫住林薄荷" ans="1,2,3,4" moren="2" time="30" type="11" name="Q4-4看向哪儿（夜店大地图）"/>
+    <wenti id="27" chapter="5" des="谁来找林薄荷" ans="1,2,3,4,5" moren="2" time="7" type="37" name="Q5-1谁来找林薄荷"/>
+    <wenti id="28" chapter="5" des="坐旋转木马" ans="1,2" moren="1" time="4" type="0" name="Q5-2-A坐不坐旋转木马"/>
+    <wenti id="29" chapter="5" des="给他带发卡" ans="1,2" moren="2" time="6" type="16" name="Q5-3-A给肖千也带发卡（互动）"/>
+    <wenti id="30" chapter="5" des="放水吗" ans="1,2" moren="1" time="6" type="0" name="Q5-3-B放水吗？"/>
+    <wenti id="31" chapter="5" des="跟进西餐厅" ans="1,2" moren="2" time="4.5" type="0" name="Q5-3-C进不进西餐厅"/>
+    <wenti id="32" chapter="5" des="吃蛋糕" ans="1,2" moren="2" time="5.5" type="14" name="Q5-3-D喂韩小白吃蛋糕（互动）"/>
+    <wenti id="33" chapter="6" des="回应千也吗" ans="1,2" moren="2" time="6" type="0" name="Q6-1回应肖千也吗"/>`
+    <wenti id="34" chapter="6" des="怎么办" ans="1,2,3,4" moren="2" time="6" type="0" name="Q6-2怎么办（好感度判定）"/>
+    <wenti id="35" chapter="6" des="往哪儿走" ans="1,2" moren="1" time="5.5" type="0" name="Q6-3-A往哪儿走（找肖千也）"/>
+    <wenti id="36" chapter="6" des="夏向你张开了手,抱他" ans="1,2" moren="2" time="4.5" type="15" name="Q6-4-B夏子豪拥抱 （互动）"/>
+    <wenti id="38" chapter="6" des="往哪儿走" ans="1,2" moren="1" time="5.5" type="0" name="Q6-3-D往哪儿走"/>
+    <wenti id="39" chapter="6" des="抱住他" ans="1,2" moren="2" time="5.5" type="18" name="Q6-4-D抱住韩小白（互动）"/>
+    <wenti id="40" chapter="7" des="听吗" ans="1,2" moren="2" time="4.5" type="0" name="Q7-1听CD么"/>
+    <wenti id="41" chapter="7" des="怎么办" ans="1,2" moren="1" time="5.5" type="0" name="Q7-2怎么办？"/>
+    <wenti id="42" chapter="7" des="问清楚吗" ans="1" moren="1" time="7" type="0" name="Q7-3江雪搬走问清楚么"/>
+    <wenti id="44" chapter="7" des="问清楚吗" ans="1" moren="1" time="5" type="0" name="Q7-4问夏子豪为什么么？"/>
+    <wenti id="45" chapter="7" des="摸头" ans="1" moren="1" time="5" type="36" name="Q7-5摸夏子豪的头（互动）"/>
+    <wenti id="46" chapter="7" des="点酒" ans="1,2,3,4,5" moren="1" time="6" type="19" name="Q7-6喝点什么？（拟真选项）"/>
+    <wenti id="47" chapter="7" des="听到声音,进去吗" ans="1,2" moren="2" time="6" type="0" name="Q7-7进排练厅看到众人"/>
+    <wenti id="48" chapter="7" des="问清韩想说什么" ans="1,2" moren="1" time="10" type="0" name="Q7-8问清韩想说什么"/>
+    <wenti id="49" chapter="8" des="原谅吗" ans="1,2,3" moren="1" time="6" type="0" name="Q8-1是否原谅他们？"/>
+    <wenti id="50" chapter="8" des="看向谁" ans="1,2,3,4" moren="1" time="5.5" type="0" name="Q8-2看向谁"/>
+    <wenti id="51" chapter="9" des="夏子豪叫了你一声" ans="1,2" moren="1" time="6" type="0" name="Q9-1夏子豪叫你，你回应么"/>
+    <wenti id="52" chapter="9" des="说什么" ans="1,2" moren="2" time="6" type="0" name="Q9-2得知真相，说点什么"/>
+    <wenti id="53" chapter="9" des="准备好了吗" ans="1,2" moren="2" time="4.5" type="0" name="Q9-3准备好了么"/>
+    <wenti id="54" chapter="10" des="抹奶油" ans="1,2" moren="2" time="4.5" type="31" name="HQ10-1抹韩小白奶油（互动）"/>
+    <wenti id="55" chapter="10" des="擦头发" ans="1,2" moren="2" time="6" type="32" name="HQ10-2帮韩小白擦头发（互动）"/>
+    <wenti id="56" chapter="11" des="拥抱" ans="1,2" moren="2" time="4.5" type="33" name="HQ11-1拥抱韩小白（互动）"/>
+    <wenti id="57" chapter="11" des="看看哪里" ans="1,2,3,4" moren="2" time="7" type="35" name="HQ11-2-1调查哪里？"/>
+    <wenti id="58" chapter="12" des="围围巾" ans="1,2" moren="2" time="2.5" type="21" name="HQ12-1给韩小白围围巾（互动）"/>
+    <wenti id="59" chapter="20" des="摸头" ans="1,2" moren="2" time="6" type="30" name="XQ10-1摸夏子豪的头（互动）"/>
+    <wenti id="60" chapter="21" des="扔枕头" ans="1,2" moren="2" time="5" type="29" name="XQ11-1扔枕头（互动）"/>
+    <wenti id="61" chapter="21" des="推开夏" ans="1,2" moren="2" time="3" type="23" name="XQ11-2推开夏子豪（互动）"/>
+    <wenti id="62" chapter="21" des="击掌" ans="1,2" moren="2" time="3" type="22" name="XQ11-3和夏子豪击掌（互动）"/>
+    <wenti id="63" chapter="22" des="拥抱夏子豪" ans="1,2" moren="2" time="6" type="24" name="000"/>
+    <wenti id="64" chapter="30" des="怎么办" ans="1,2" moren="2" time="5" type="0" name="ΣQ10-1怎么办先和谁说话"/>
+    <wenti id="65" chapter="30" des="怎么办" ans="1,2" moren="2" time="6" type="0" name="ΣQ10-2拉开谁？"/>
+    <wenti id="66" chapter="30" des="躲在哪" ans="1,2" moren="2" time="4" type="0" name="ΣQ10-3躲在哪儿"/>
+    <wenti id="67" chapter="30" des="帮谁说话" ans="1,2" moren="2" time="4" type="0" name="ΣQ10-4帮谁说话"/>
+    <wenti id="68" chapter="31" des="拍肩膀" ans="1,2" moren="2" time="4" type="28" name="YQ11-1拍肩膀（互动）"/>
+    <wenti id="69" chapter="31" des="牵手" ans="1,2" moren="2" time="4" type="25" name="YQ11-2牵肖千也的手（互动）"/>
+    <wenti id="70" chapter="32" des="甩开手" ans="1,2" moren="2" time="5" type="34" name="YQ12-1甩开肖千也的手（互动）"/>
+    <wenti id="71" chapter="41" des="系领带" ans="1,2" moren="2" time="6" type="27" name="WQ11-1帮肖万寻系领带（互动）"/>
+    <wenti id="72" chapter="41" des="牵手" ans="1,2" moren="2" time="3" type="26" name="WQ11-2牵肖万寻的手（互动）"/>
+    <wenti id="73" chapter="42" des="喝酒" ans="1,2" moren="2" time="5" type="20" name="WQ12-1喝闷酒（互动）"/>
+    <wenti id="74" chapter="0" des="二次滑门" ans="1,2" moren="2" time="4" type="4" name="二次滑门"/>
+    <wenti id="75" chapter="1" des="弹琴" ans="1,2,3" moren="3" time="9.5" type="13" name="Q1-5肖万寻弹钢琴（互动）"/>
+    <wenti id="76" chapter="11" des="看看哪里2" ans="1,2,3,4" moren="3" time="6" type="35" name="HQ11-2-2调查哪里？"/>
+    <wenti id="77" chapter="3" des="发短信" ans="1,2" moren="2" time="11" type="38" name="发短信1"/>
+    <wenti id="78" chapter="3" des="发短信" ans="1,2" moren="2" time="45" type="39" name="发短信2"/>
 </wenti>

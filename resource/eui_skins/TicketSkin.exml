@@ -2,21 +2,21 @@
 <e:Skin class="skins.TicketSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<w:Config id="16d615f8c43"/>
 	<e:Image scaleX="1" scaleY="1" fillMode="scale" anchorOffsetX="0" width="100%" height="100%" y="0" source="cundang_bj_jpg" left="0"/>
-	<e:Rect width="100%" height="100%" x="0" y="0" fillAlpha="0.6"/>
-	<e:Group id="idPage1" touchEnabled="false" width="100%" height="100%" x="0" y="0" visible="false">
+	<e:Rect width="100%" height="100%" x="2" y="0" fillAlpha="0.6"/>
+	<e:Group id="idPage1" touchEnabled="false" width="100%" height="100%" x="0" y="0">
 		<e:Group id="idGroupCDKey" width="1132" height="780" scrollEnabled="true" verticalCenter="0" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="169">
 			<e:Image width="509" height="619" x="22" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Image width="509" height="619" x="594.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
-			<e:Label text="与好友同享" x="183.15" y="159" size="34"/>
+			<e:Label text="与好友同享" x="183.15" size="34" verticalCenter="-214"/>
 			<e:Label id="idHasCodeText" text="您已通过购买”心动PASS“获得赠送资格一次，分享激活码给好友，对方将免费获得心动PASS" x="70.15" y="215.88" size="24" anchorOffsetX="0" width="412.3" anchorOffsetY="0" height="104.31" lineSpacing="10" textColor="0x8c8a8a" visible="false"/>
-			<e:Label text="心动PASS激活" x="763.15" y="159" size="34"/>
-			<e:Label text="持有激活码的用户，可在下方输入，激活即可获得心动PASS，无需购买" x="671.54" y="211.33" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10"/>
+			<e:Label text="心动PASS激活" size="34" verticalCenter="-62" horizontalCenter="280"/>
+			<e:Label text="持有激活码的用户，可在上方输入，激活即可获得心动PASS，无需购买" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10" verticalCenter="0" horizontalCenter="280"/>
 			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" y="366.91" size="30" textColor="0x898686" lineSpacing="12"/>
 			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" x="54.7" y="379.06"/>
 			<e:Label id="idTicketNum" text="" size="40" textColor="0xFFFFFF" anchorOffsetX="0" width="435.52" textAlign="center" x="78.34" y="633"/>
 			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" width="456.73" textAlign="center" x="46.52" y="472.4" textColor="0xbfbbbb"/>
-			<e:Rect width="392" height="120" x="649" y="306" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5"/>
-			<e:Button id="idBtnUseCode" label="激活" y="532" horizontalCenter="278" x="841" scaleX="1" scaleY="1" enabled="true">
+
+			<e:Button id="idBtnUseCode" label="激活" y="532" horizontalCenter="280" x="841" scaleX="1" scaleY="1" enabled="true">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
@@ -40,10 +40,11 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-			<e:EditableText id="idEditText" width="348.49" height="87.88" x="668.88" y="321.11" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="40" textAlign="center" multiline="false" verticalAlign="middle"/>
+			<e:Rect width="392" height="120" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5" verticalCenter="-214" horizontalCenter="280"/>
+			<e:EditableText id="idEditText" width="348.49" height="87.88" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="40" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="-214" horizontalCenter="280"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="idPage2" touchEnabled="false" width="150%" height="100%" x="0" y="0">
+	<e:Group id="idPage2" touchEnabled="false" width="150%" height="100%" x="0" y="0" visible="false">
 
 		<e:Image source="pass_bg_normal_task_png" scaleX="1" scaleY="1" verticalCenter="-160" left="355" right="0" scale9Grid="1190,31,55,188"/>
 		<e:Image source="pass_bg_luxury_task_png" scaleX="1" scaleY="1" verticalCenter="160" left="355" right="0" scale9Grid="1186,31,55,188"/>
@@ -53,14 +54,7 @@
 
 
 
-		<e:Button id="idBtnBuyNow" label="解 锁" height="81" scaleX="1" scaleY="1" bottom="21" right="24">
-			<e:skinName>
-			<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="pass_btn_unlock_png"/>
-				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
-			</e:skinName>
-		</e:Button>
+
 		<e:Scroller height="576" anchorOffsetX="0" anchorOffsetY="0" left="610" right="0" verticalCenter="0" x="602" y="156" scaleX="1" scaleY="1">
 			<e:Group id="taskGroupContainer" anchorOffsetY="0" height="576">
 				<e:layout>
@@ -71,18 +65,31 @@
 
 			</e:Group>
 		</e:Scroller>
-		<e:Group id="suip_curreny_grp" height="58" width="240" scaleX="1" scaleY="1" right="100" top="50">
+		<e:Group id="spGroup" height="58" width="240" scaleX="1" scaleY="1" right="100" top="50" touchEnabled="true">
 			<e:Image source="currency_di_png" scale9Grid="30,6,118,39" left="0" right="0" top="0" bottom="0"/>
 			<e:Image verticalCenter="0" left="0" source="common_suipian_pink_png" width="50" height="50"/>
 			<e:Label id="suipNum" text="12345" size="36" fontFamily="Arial" verticalCenter="0" left="60"/>
 		</e:Group>
-		<e:Group id="idGroupTips" width="1224" height="64" anchorOffsetX="0" anchorOffsetY="0" bottom="102" x="360">
-			<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="1.5" x="26" y="16"/>
-			<e:Label text="看剧完成任务，领取丰厚心动任务" height="30" size="27" scaleX="1" scaleY="1" verticalCenter="4" left="55" x="60" y="14"/>
-			<e:Image id="x0" source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="40" x="422" y="16"/>
-			<e:Label id="x1" text="快人一步，超前观看最新剧情" size="27" scaleX="1" scaleY="1" left="55" verticalCenter="40" x="452" y="14"/>
-			<e:Image id="x2" source="pass_icon_resume_png" scaleX="1" scaleY="1" left="25" verticalCenter="80" x="834" y="16"/>
-			<e:Label id="x3" text="买一赠一，与好友同享拳拳" size="27" scaleX="1" scaleY="1" left="55" verticalCenter="80" x="866" y="14"/>
+		<e:Group width="1224" height="64" anchorOffsetX="0" anchorOffsetY="0" bottom="102" left="360">
+
+			<e:Label text="看剧做任务，解锁奖励，边看边领" height="30" size="27" scaleX="1" scaleY="1" verticalCenter="30" left="25" x="60" y="14"/>
+
+			<e:Label id="unlockNotice" text="购买心动PASS，即可开启豪华任务" size="27" scaleX="1" scaleY="1" left="25" verticalCenter="70" x="452" y="14"/>
+			<e:Image id="celebrateNotice" source="buy_vip_img_6_png" x="475" y="46"/>
+			<e:Button id="idBtnBuyNow" label="" scaleX="1" scaleY="1" x="830" y="5">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="buy_vip_btn_7_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Group id="disCelebrateNotice" width="0" height="0" x="0" y="0" scaleX="1" scaleY="1">
+				<e:Label text="180" height="30" size="27" scaleX="1" scaleY="1" x="815" y="63"/>
+				<e:Image source="buy_vip_img_10_png" x="772" scaleX="1" scaleY="1" y="60"/>
+			</e:Group>
+
+
 
 
 
@@ -102,7 +109,7 @@
 		</e:layout>
 	</e:Group>
 
-	<e:Button id="idClose" label="心动PASS" width="200" x="44" y="29.5" height="62" scaleX="1" scaleY="1" touchEnabled="true" touchChildren="true" enabled="true">
+	<e:Button id="idClose" label="心动PASS" x="44" y="29.5" height="62" scaleX="1" scaleY="1" touchEnabled="true" touchChildren="true" enabled="true" width="300">
 		<e:skinName>
 		<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
 			<e:Group width="100%" height="100%"/>
@@ -111,7 +118,7 @@
 		</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0">
+	<e:Group id="idGroupBuyTicket" width="100%" height="100%" x="0" y="0" visible="false">
 		<e:Rect id="idRectBuy" width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0"/>
 
 		<e:Image width="1106" height="592" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" source="ticket_buy_ex_png"/>
@@ -235,10 +242,10 @@
 			</e:Skin>
 		</e:skinName>
 		</e:Button>
-		<e:Label id="idShareCode" text="FFFFFFFFFFFFF" scaleX="1" scaleY="1" size="50" anchorOffsetX="0" width="583.69" anchorOffsetY="0" height="73.39" textAlign="center" verticalAlign="middle" horizontalCenter="-7" verticalCenter="132.5"/>
-		<e:Label text="超前追剧，并享多重福利！" scaleX="1" scaleY="1" size="25" anchorOffsetX="0" anchorOffsetY="0" textAlign="center" verticalAlign="middle" horizontalCenter="10" verticalCenter="-22" bold="true"/>
-		<e:Label text="送您《拳拳四重奏》心动PASS激活码" scaleX="1" scaleY="1" size="35" anchorOffsetX="0" anchorOffsetY="0" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="35" bold="true"/>
-		<e:Label id="idShareText" text="1. 该激活码可用于在一零零一或腾讯视频激活《拳拳四重奏》心动PASS；2. 在《拳拳四重奏》剧集内部心动PASS-买一赠一可以激活资格；3. 在一零零一重激活心动PASS，可享受提前看剧以及心动PASS福利内容，在腾讯视频中激活心动PASS，仅包含提前心动PASS;\n4. 激活码有效期至2020年x月xx日。" anchorOffsetY="0" height="139" anchorOffsetX="0" width="1476.33" textAlign="center" bottom="2" horizontalCenter="14" lineSpacing="5" size="28"/>
+		<e:Label id="idShareCode" text="FFFFFFFFFFFFF" scaleX="1" scaleY="1" size="50" anchorOffsetX="0" width="583.69" anchorOffsetY="0" height="73.39" textAlign="center" verticalAlign="middle" horizontalCenter="-7" verticalCenter="250"/>
+
+
+		<e:Label id="idShareText" text="激活码有效期" anchorOffsetY="0" anchorOffsetX="0" textAlign="center" horizontalCenter="0" lineSpacing="5" size="28" verticalCenter="420"/>
 		<e:Group width="200" height="200" horizontalCenter="0" verticalCenter="0" visible="false">
 		<e:Label text="拳拳四重奏  心动PASS" size="40" horizontalCenter="-6" verticalCenter="69" x="188" y="389" scaleX="1" scaleY="1"/>
 		<e:Image width="20" height="20" x="-321" y="220" scaleX="1" scaleY="1" source="ticket_icon_png"/>
@@ -248,10 +255,10 @@
 			<e:Label text="激活码：" x="-52.43" y="283.09" scaleX="1" scaleY="1" size="34"/>
 			<e:Label id="idShareCode0" text="123456" x="66.66" y="282.48" scaleX="1" scaleY="1" size="34"/>
 		</e:Group>
-		<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" verticalCenter="212" horizontalCenter="-310"/>
-		<e:Label text="畅享全部剧集，感受全程发糖" size="22" scaleX="1" scaleY="1" horizontalCenter="-150" verticalCenter="215"/>
-		<e:Image source="pass_icon_resume_png" scaleX="1" scaleY="1" horizontalCenter="15" verticalCenter="212"/>
-		<e:Label text="完成专属任务，附赠以下专属奖励" size="22" scaleX="1" scaleY="1" horizontalCenter="195" verticalCenter="215"/>
+
+
+
+
 	</e:Group>
 
 

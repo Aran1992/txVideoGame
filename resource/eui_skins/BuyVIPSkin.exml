@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="skins.BuyVIPSkin" width="1600" height="900" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<w:Config id="16d615f8c43"/>
-	<e:Group id="GroupDetail" width="100%" height="100%">
+	<e:Rect id="bg" width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" alpha="0.8"/>
+
+
+	<e:Group id="GroupDetail" width="100%" height="100%" visible="false">
 		<e:Image source="buy_vip_img_1_png" horizontalCenter="0" verticalCenter="0"/>
 		<e:Button id="CloseGroupDetail" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
 			<e:skinName>
@@ -11,10 +14,10 @@
 			</e:skinName>
 		</e:Button>
 	</e:Group>
-	<e:Group id="Group1001A" width="100%" height="100%">
+	<e:Group id="Group1001" width="100%" height="100%" visible="false">
 		<e:Image horizontalCenter="-330" verticalCenter="0" source="buy_vip_img_2_png"/>
 		<e:Image horizontalCenter="330" verticalCenter="0" source="buy_vip_img_3_png"/>
-		<e:Button id="CloseGroup1001A" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
+		<e:Button id="CloseGroup1001" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
 		<e:skinName>
 			<e:Skin states="up,down,disabled" xmlns:n1s="*">
 			<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png" horizontalCenter="0" verticalCenter="0" width="91" height="91"/>
@@ -38,9 +41,9 @@
 			</e:skinName>
 		</e:Button>
 	</e:Group>
-	<e:Group id="Group1001B" width="100%" height="100%">
+	<e:Group id="Group10010" width="100%" height="100%" visible="false">
 		<e:Image source="buy_vip_img_3_png" horizontalCenter="0" verticalCenter="0"/>
-		<e:Button id="CloseGroup1001B" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
+		<e:Button id="CloseGroup10010" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
 		<e:skinName>
 			<e:Skin states="up,down,disabled" xmlns:n1s="*">
 			<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png" horizontalCenter="0" verticalCenter="0" width="91" height="91"/>
@@ -56,9 +59,9 @@
 		</e:skinName>
 		</e:Button>
 	</e:Group>
-	<e:Group id="Group1001C" width="100%" height="100%">
+	<e:Group id="Group10011" width="100%" height="100%" visible="false">
 		<e:Image horizontalCenter="0" verticalCenter="0" source="buy_vip_img_7_png"/>
-		<e:Button id="CloseGroup1001C" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
+		<e:Button id="CloseGroup10011" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
 		<e:skinName>
 			<e:Skin states="up,down,disabled" xmlns:n1s="*">
 			<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png" horizontalCenter="0" verticalCenter="0" width="91" height="91"/>
@@ -74,7 +77,7 @@
 			</e:skinName>
 		</e:Button>
 	</e:Group>
-	<e:Group id="GroupTXSP0" width="100%" height="100%">
+	<e:Group id="GroupTXSP0" width="100%" height="100%" visible="false">
 		<e:Image horizontalCenter="-330" verticalCenter="0" source="buy_vip_img_2_png"/>
 		<e:Image horizontalCenter="330" verticalCenter="0" source="buy_vip_img_4_png"/>
 		<e:Button id="CloseGroupTXSP0" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
@@ -109,7 +112,7 @@
 			</e:skinName>
 		</e:Button>
 	</e:Group>
-	<e:Group id="GroupTXSP1" width="100%" height="100%">
+	<e:Group id="GroupTXSP1" width="100%" height="100%" visible="false">
 		<e:Image horizontalCenter="-330" verticalCenter="0" source="buy_vip_img_2_png"/>
 		<e:Image horizontalCenter="330" verticalCenter="0" source="buy_vip_img_5_png"/>
 		<e:Button id="CloseGroupTXSP1" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
@@ -128,16 +131,17 @@
 		</e:skinName>
 		</e:Button>
 		<e:Button id="ButtonTXSPBuyDirect0" verticalCenter="230" horizontalCenter="330">
-		<e:skinName>
-			<e:Skin states="up,down,disabled">
-			<e:Image width="100%" height="100%" source="buy_vip_btn_3_png"/>
-			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
-		</e:skinName>
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="buy_vip_btn_4_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+
 		</e:Button>
 	</e:Group>
-	<e:Group id="GroupTXSP2" width="100%" height="100%">
-		<e:Image horizontalCenter="0" verticalCenter="0" source="buy_vip_img_5_png"/>
+	<e:Group id="GroupTXSP2" width="100%" height="100%" visible="false">
+		<e:Image horizontalCenter="0" verticalCenter="0" source="buy_vip_img_8_png"/>
 		<e:Button id="CloseGroupTXSP2" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
 		<e:skinName>
 			<e:Skin states="up,down,disabled" xmlns:n1s="*">
@@ -146,16 +150,17 @@
 		</e:skinName>
 		</e:Button>
 		<e:Button id="ButtonTXSPBuyDirect1" verticalCenter="230" horizontalCenter="0">
-		<e:skinName>
-			<e:Skin states="up,down,disabled">
-			<e:Image width="100%" height="100%" source="buy_vip_btn_3_png"/>
-			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
-		</e:skinName>
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="buy_vip_btn_4_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+
 		</e:Button>
 	</e:Group>
-	<e:Group id="GroupTXSP3" width="100%" height="100%">
-		<e:Image horizontalCenter="0" verticalCenter="0" source="buy_vip_img_4_png"/>
+	<e:Group id="GroupTXSP3" width="100%" height="100%" visible="false">
+		<e:Image horizontalCenter="0" verticalCenter="0" source="buy_vip_img_9_png"/>
 		<e:Button id="CloseGroupTXSP3" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
 		<e:skinName>
 			<e:Skin states="up,down,disabled" xmlns:n1s="*">

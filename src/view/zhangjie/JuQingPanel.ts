@@ -577,19 +577,19 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
                             let name = juqing[line][id].name;
                             if (name.indexOf(" ") !== -1 && name.indexOf(" ") !== -1) {
                                 const map = [
-                                  "序",
-                                  "第一",
-                                  "第二",
-                                  "第三",
-                                  "第四",
-                                  "第五",
-                                  "第六",
-                                  "第七",
-                                  "第八",
-                                  "第九",
-                                  "第十",
-                                  "第十一",
-                                  "第十二",
+                                    "序",
+                                    "第一",
+                                    "第二",
+                                    "第三",
+                                    "第四",
+                                    "第五",
+                                    "第六",
+                                    "第七",
+                                    "第八",
+                                    "第九",
+                                    "第十",
+                                    "第十一",
+                                    "第十二",
                                 ];
                                 name = `${map[name.split("-")[0]]}章\n${name.split(" ")[1]}`;
                                 y = y + 15;
@@ -836,7 +836,7 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         let name: number = Number(event.currentTarget.name);
         let allCfg = JsonModelManager.instance.getModeljuqingkuai()[this.index];
         let chapterId = this.index - 1;
-        if (!GameCommon.getInstance().checkChapterLocked(chapterId))
+        if (!GameCommon.getInstance().checkChapterLocked(chapterId, true))
             return;
         if (allCfg[name]) {
             if (allCfg[name].openVideo) {

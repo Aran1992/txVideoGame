@@ -57,4 +57,13 @@ class Modelwenti extends ModelJsonBase {
 		return parseFloat(this._json["type"]);
 	}
 
+	private _name;
+	public set name(value){
+		this._name = value;
+	}
+	public get name():string{
+		if (this._json["name"] == "*") { return ""; }
+		return this._json["name"];
+	}
+
 }

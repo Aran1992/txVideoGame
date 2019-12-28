@@ -100,10 +100,10 @@ class MusicShopPreviewPanel extends eui.Component {
         this.desc_lab.text = this.data.model.desc;
         //this.count_lab.text = srcAry.length + "首";
         this.count_lab.text = musicNameAry.length + "首";
-        
+
         let num = ShopManager.getInstance().getItemNum(this.data.id);
         if (num > 0) {
-            this.state_lab.text = "——  已购买该商品，可在收藏查看完整内容 —— ";
+            this.state_lab.text = "——  已购买该商品，可在已获福利查看完整内容 —— ";
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";

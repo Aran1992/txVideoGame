@@ -86,7 +86,7 @@ class GameCommon {
                 list.push(4);
             }
             if (list.length === 4) {
-                list = [1,2,4];
+                list = [1, 2, 4];
             }
             return list;
         },
@@ -838,10 +838,11 @@ class GameCommon {
         let curDay = Tool.formatTimeDay2Num();
         return freeTime - curDay;
     }
+
     //还差多少毫秒免费
-    public getLeftChapterFreeMS(chapterId){
+    public getLeftChapterFreeMS(chapterId) {
         const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
-        let freems = platform.getSaleBeginTime()+chapterCfg.freeTime*68400*1000;
+        let freems = platform.getSaleBeginTime() + chapterCfg.freeTime * 68400 * 1000;
         return freems - platform.getServerTime()
     }
 
@@ -872,7 +873,7 @@ class GameCommon {
     }
 
     //确定章节是否已开启
-    public checkChapterLocked(chapterId=null) {
+    public checkChapterLocked(chapterId = null, isDudang = false) {
         let nextChapterId = UserInfo.curchapter;
         if (chapterId !== null)
             nextChapterId = chapterId;
@@ -888,32 +889,32 @@ class GameCommon {
             return false;
         }
         let freeMs = this.getLeftChapterFreeMS(nextChapterId);
-        if(platform.getServerTime()<platform.getSaleBeginTime()){
+        if (platform.getServerTime() < platform.getSaleBeginTime()) {
             GameCommon.getInstance().showCommomTips("敬请期待");
             return false;
         }
-        if (!isVip && (freeMs > 0 || !platform.isCelebrateTime()) ) {
+        if (!isVip && (freeMs > 0 || !platform.isCelebrateTime())) {
             //获得当前章节完成时间，计算是出下个章节是否可以阅读。
             //每个章节完成时，需要永久记录每个章节的首次完成时间
-            VideoManager.getInstance().clear();
             ChengJiuManager.getInstance().curChapterChengJiu = {};
-            const callback = function () {
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
-                    windowName: 'TicketPanel',
-                    data: "confirm"
-                });
-            };
-            if (platform.getPlatform() == "plat_txsp") {
-                GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
-            } else {
-                GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
-            }
+            // const callback = function () {
+            //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
+            //         windowName: 'TicketPanel',
+            //         data: "confirm"
+            //     });
+            // };
+            // if (platform.getPlatform() == "plat_txsp") {
+            //     GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
+            // } else {
+            //     GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
+            // }
             if (isTXSP) {
-                GameDefine.IS_DUDANG = false;
+                GameDefine.IS_DUDANG = isDudang;
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
             } else {
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
             }
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
             return false;
         }
         return true;

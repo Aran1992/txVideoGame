@@ -29,6 +29,7 @@ class ShouCangImgPanel extends eui.Component {
     constructor(data) {
         super();
         this.info = data;
+        this.imgMaxNumb = Math.min(Number(this.info.src),5);
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }

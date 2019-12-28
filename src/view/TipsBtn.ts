@@ -258,6 +258,7 @@ class TipsBtn extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.GAME_STATE_CHANGE, this.onGameStateChange, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         for (let i = 1; i < 6; i++) {
             this['btn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }
@@ -321,11 +322,20 @@ class TipsBtn extends eui.Component {
         this.skinName = skins.TipsSkin;
     }
 
+    private onBuy600001Complte(data) {
+        const shopdata: ShopInfoData = data.data;
+        if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
+            this.updateXSMFButton();
+        }
+    }
+
     private onClickXSMFButton() {
-        
+        VideoManager.getInstance().videoPause();
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyVIPPanel", "tips"));
     }
 
     private onClickXDPASSButton() {
+        this.onClickXSMFButton();
     }
 
     private onTouchGuideBuyLock() {
@@ -629,7 +639,10 @@ class TipsBtn extends eui.Component {
         this.pauseGroup.visible = false;
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
-        const isTXSP = platform.getPlatform() === "plat_txsp";
+        this.updateXSMFButton();
+    }
+
+    private updateXSMFButton() {
         const isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
         this.XDPASSButton.visible = !isVIP && isTXSP && !platform.isCelebrateTime();
         this.XSMFButton.visible = !isVIP && isTXSP && platform.isCelebrateTime();
@@ -661,6 +674,7 @@ class TipsBtn extends eui.Component {
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
         this.idBtnTicket.visible = !isVip;
+        this.idBtnTicket.visible = false;
     }
 
     private gotoAction(model: Modelwenti) {
@@ -710,6 +724,7 @@ class TipsBtn extends eui.Component {
         let nnextChapterId = Number(arr[0]);
         //是否付费用户，下一章是否已上架
         this.idBtnTicket.visible = platform.getPlatform() == "plat_txsp";
+        this.idBtnTicket.visible = false;
         let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
         let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         let isVip = vipNum > 0;
@@ -726,7 +741,7 @@ class TipsBtn extends eui.Component {
 
     private idBtnClockClick() {
         let freeMs = GameCommon.getInstance().getNextChapterFreeMs();
-        let freeDay = Math.ceil(freeMs / (86400 * 1000))
+        let freeDay = Math.ceil(freeMs / (86400 * 1000));
         if (freeDay > 0)
             GameCommon.getInstance().showCommomTips("下一章" + freeDay + "天后免费");
         else {
@@ -735,7 +750,6 @@ class TipsBtn extends eui.Component {
     }
 
     private idBtnShopCarClick() {
-        VideoManager.getInstance().videoPause();
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
             windowName: 'TicketPanel',
             data: "tipsbtnshopcar"

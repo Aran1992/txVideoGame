@@ -3,6 +3,7 @@ class ShouCangViewPanel extends eui.Component {
     private mainGroup: eui.Group;
     private bgBtn: eui.Group;
     private goodsLayer: eui.Group;
+    private noneGroup: eui.Group;
     private scroll: eui.Scroller;
     private btnNextImg: eui.Button;
     private btnLastImg: eui.Button;
@@ -11,6 +12,7 @@ class ShouCangViewPanel extends eui.Component {
     // private shoucangGroup:eui.Group;
     private itemGroup: eui.Group;
     private centerGroup: eui.Group;
+    private goToShopButton: eui.Button;
     // private jinruLab1: eui.Group;
     // private jinruLab2: eui.Group;
     // private jinruLab3: eui.Group;
@@ -40,6 +42,7 @@ class ShouCangViewPanel extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.GUIDE_COMPLETE, this.onCompleteGuide, this);
         this.filter_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFilter, this);
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+        this.goToShopButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickGoToShopButton, this);
         // this.addBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddVideo, this);
     }
 
@@ -55,7 +58,6 @@ class ShouCangViewPanel extends eui.Component {
 
     //供子类覆盖
     protected onInit(): void {
-
         this.showGoods();
     }
 
@@ -69,15 +71,13 @@ class ShouCangViewPanel extends eui.Component {
     }
 
     private onClose() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         if (!UserInfo.guideDic[7])//关闭引导图片
         {
             GuideManager.getInstance().onCloseImg();
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_GUIDE_SHOUCANG), 'video')
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_GUIDE_SHOUCANG), 'video');
         }
-        // if (widPlayer1)
-        //     widPlayer1 = null;
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ShouCangViewPanel')
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'ShouCangViewPanel');
     }
 
     private updateResize() {
@@ -110,7 +110,7 @@ class ShouCangViewPanel extends eui.Component {
     }
 
     private onFilter(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         let cur_models = this.getShopDatas();
         if (!cur_models) return;
         this.showFilter = this.showFilter ? false : true;
@@ -152,20 +152,21 @@ class ShouCangViewPanel extends eui.Component {
         this.goodsLayer.removeChildren();
         var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
         //这里需要排序。所以需要把对象转成array再排序
-        let keySorted = Object.keys(cfgs).sort((a,b)=>{            
-            let powerA = 0
-            if (Number(a)<=5000){
-                powerA = 10000/Number(a);
-            }           
-            let powerB = 0
-            if (Number(b)<=5000){
-                powerB = 10000/Number(b);
-            }            
-            return powerA-powerB;
-        })
+        let keySorted = Object.keys(cfgs).sort((a, b) => {
+            let powerA = 0;
+            if (Number(a) <= 5000) {
+                powerA = 10000 / Number(a);
+            }
+            let powerB = 0;
+            if (Number(b) <= 5000) {
+                powerB = 10000 / Number(b);
+            }
+            return powerA - powerB;
+        });
         var curIdx: number = 0;
+        let hasItem = false;
         for (var nk in keySorted) {
-            let k=keySorted[nk];
+            let k = keySorted[nk];
             if (ShopManager.getInstance().onCheckShoucangOpen(cfgs[k].id)) {
                 if (cfgs[k].mulu1 == GameDefine.CUR_ROLEIDX) {
                     if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG || cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
@@ -173,11 +174,19 @@ class ShouCangViewPanel extends eui.Component {
                         var cg: ShouCangViewItem = new ShouCangViewItem();
                         this.goodsLayer.addChild(cg);
                         cg.data = {data: cfgs[k], idx: curIdx};
+                        hasItem = true;
                     }
                 }
             }
         }
-        this.scroll.viewport.scrollV = 0; 
+        this.scroll.viewport.scrollV = 0;
+        if (hasItem) {
+            this.noneGroup.visible = false;
+            this.centerGroup.visible = true;
+        } else {
+            this.noneGroup.visible = true;
+            this.centerGroup.visible = false;
+        }
     }
 
     private onLoadComplete(): void {
@@ -195,39 +204,25 @@ class ShouCangViewPanel extends eui.Component {
         this.onRegist();
         this.updateResize();
 
-        let w = this.centerGroup.width;      
+        let w = this.centerGroup.width;
         let h = 50
         let lightMatrix = new egret.Matrix();
         let cirleLight = new egret.Shape();
         //cirleLight.blendMode = egret.BlendMode.ERASE;
         this.addChild(cirleLight);
-        lightMatrix.createGradientBox(w,h,3.14*3/2);
+        lightMatrix.createGradientBox(w, h, 3.14 * 3 / 2);
         cirleLight.graphics.clear();
-        cirleLight.graphics.beginGradientFill(egret.GradientType.LINEAR, [0x000000,  0x000000], [0.6,0],[0, 255], lightMatrix);
+        cirleLight.graphics.beginGradientFill(egret.GradientType.LINEAR, [0x000000, 0x000000], [0.6, 0], [0, 255], lightMatrix);
         //this.cirleLight.graphics.beginFill(0x00cc00);
-        cirleLight.graphics.drawRect( 0, 0, w, h );
+        cirleLight.graphics.drawRect(0, 0, w, h);
         cirleLight.graphics.endFill();
         this.centerGroup.addChild(cirleLight);
-        cirleLight.y=this.centerGroup.height-h-2
+        cirleLight.y = this.centerGroup.height - h - 2
+    }
 
-
-
-    //     if(!this.cirleLight){
-    //         let cirleLight = new egret.Shape();  
-    //         this.cirleLight = cirleLight
-    //         this.centerGroup.addChild(cirleLight);
-    //     }
-    //     let w = this.centerGroup.width;      
-    //     let lightMatrix = new egret.Matrix();
-    //     //cirleLight.blendMode = egret.BlendMode.ERASE;
-    //     this.addChild(this.cirleLight);
-    //     lightMatrix.createGradientBox(w,50,3.14*3/2);
-    //     this.cirleLight.graphics.clear();
-    //     //this.cirleLight.graphics.beginGradientFill(egret.GradientType.LINEAR, [0x000000,  0x000000], [0.6,0],[0, 255], lightMatrix);
-    //     this.cirleLight.graphics.beginFill(0x00cc00);
-    //     this.cirleLight.graphics.drawRect( 0, 0, w, 50 );
-    //     this.cirleLight.graphics.endFill();
-    //    // this.cirleLight.y=this.centerGroup.height;
+    private onClickGoToShopButton() {
+        this.onClose();
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShopPanel');
     }
 }
 
@@ -268,7 +263,7 @@ class ShouCangViewItem extends eui.Component {
             // if (UserInfo.allCollectionDatas[this.info.id]) {
             this.weijiesuo.visible = false;
             // this.xiadi.visible = true;
-            this.icon.source = info.data.id+"_view_l_png";
+            this.icon.source = info.data.id + "_view_l_png";
             // }
             this.desc.text = GameDefine.ROLE_NAME[this.info.mulu1 - 1] + '的图片'
             // else {
@@ -284,7 +279,7 @@ class ShouCangViewItem extends eui.Component {
         } else if (this.info.mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
             this.tubiao.source = 'sc_shipin_icon_png';
             this.icon.source = `${info.data.id}_view_l_png`
-            
+
             this.pinji.source = '';
             this.desc.text = GameDefine.ROLE_NAME[this.info.mulu1 - 1] + '的视频';
             // if (UserInfo.allCollectionDatas[this.info.id]) {
@@ -304,10 +299,10 @@ class ShouCangViewItem extends eui.Component {
     }
 
     private onPlayVideo() {
-        if(UserInfo.lookAchievement[this.info.id]!=1){
-            UserInfo.lookAchievement[this.info.id] = 1;    
+        if (UserInfo.lookAchievement[this.info.id] != 1) {
+            UserInfo.lookAchievement[this.info.id] = 1;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
-        }    
+        }
         this.newPoint.visible = false;
         SoundManager.getInstance().playSound("ope_click.mp3")
         // if (!UserInfo.allCollectionDatas[this.info.id]) {
