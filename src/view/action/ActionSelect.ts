@@ -33,17 +33,12 @@ class ActionSelect extends ActionTimerSceneBase {
     }
 
     protected onBackSuccess() {
-        if (this.exitTimer) {
-            egret.clearTimeout(this.exitTimer);
-        }
-        GameDispatcher.getInstance().dispatchEvent(
-            new egret.Event(GameEvent.ONSHOW_VIDEO),
-            {
-                answerId: this.answerID,
-                wentiId: this.model.id,
-                click: 1
-            }
-        );
+        egret.clearTimeout(this.exitTimer);
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ONSHOW_VIDEO), {
+            answerId: this.answerID,
+            wentiId: this.model.id,
+            click: 1
+        });
         this.exit();
     }
 

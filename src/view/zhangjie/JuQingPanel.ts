@@ -705,7 +705,14 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         if (juqingCfg.id == 55 && this.getOpenStatus(getJuqingConfig(56)) === this.IS_OPEN) {
             return this._curFile === FILE_TYPE.AUTO_FILE ? this.HAS_LOCK : this.NOT_SHOW;
         }
-        if (["14", "24", "29", "35", "49"].indexOf(juqingCfg.lastKuai) !== -1 && this.getOpenStatus(getJuqingConfig(juqingCfg.lastKuai)) != this.NOT_SHOW) {
+        if (["14", "24", "29", "35", "49"].indexOf(juqingCfg.lastKuai) !== -1) {
+            const openStatus = this.getOpenStatus(getJuqingConfig(juqingCfg.lastKuai));
+            if (openStatus == this.NOT_SHOW) {
+                return this.NOT_SHOW;
+            }
+            if (openStatus == this.HAS_LOCK) {
+                return this.HAS_LOCK;
+            }
             const groupBlocks = this.getGroupBlocks(juqingCfg);
             if (groupBlocks.length > 1) {
                 let qid;

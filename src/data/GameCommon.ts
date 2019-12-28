@@ -874,6 +874,9 @@ class GameCommon {
 
     //确定章节是否已开启
     public checkChapterLocked(chapterId = null, isDudang = false) {
+        if (!GameDefine.ENABLE_CHECK_VIP) {
+            return true;
+        }
         let nextChapterId = UserInfo.curchapter;
         if (chapterId !== null)
             nextChapterId = chapterId;

@@ -353,7 +353,7 @@ class CommonTips extends eui.Component {
     }
 
     private onbtnConfirm_buy() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.buyGrp.visible = false;
         switch (this.itemTp) {
             case GOODS_TYPE.DIAMOND:
@@ -365,7 +365,7 @@ class CommonTips extends eui.Component {
             case GOODS_TYPE.SUIPIAN:
                 let shopdata: ShopInfoData = ShopManager.getInstance().getShopInfoData(this.itemId);
                 if (shopdata.model.currSuipian == 0) {
-                    GameCommon.getInstance().showCommomTips("此商品不能用碎片购买！")
+                    GameCommon.getInstance().showCommomTips("此商品不能用碎片购买！");
                     return;
                 }
                 ShopManager.getInstance().buyGoodsSuip(this.itemId, 1, () => {
@@ -378,41 +378,43 @@ class CommonTips extends eui.Component {
     }
 
     private onCancel_buy() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.buyGrp.visible = false;
         this.onhideMaskBG();
     }
 
 
     private onbtnConfirm_qinmi() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.qinmiGroup.visible = false;
         this.onhideMaskBG();
         VideoManager.getInstance().videoResume();
     }
 
     private onbtnConfirm_haogan() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
-        let itemId = GameCommon.getInstance().getWentiItemId(this._buyhaoganparams.wentiId, this._buyhaoganparams.id)
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        let itemId = GameCommon.getInstance().getWentiItemId(this._buyhaoganparams.wentiId, this._buyhaoganparams.id);
         ShopManager.getInstance().buyGoods(itemId, 1, () => {
             this.buyGrphaogan.visible = false;
             this.onhideMaskBG();
             VideoManager.getInstance().videoResume();
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_HAOGAN));
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_HAOGAN), {
+                wenti: this._buyhaoganparams.wentiId,
+                answer: this._buyhaoganparams.id
+            });
             this.onShowResultTips('解锁成功');
-        })
-
+        });
     }
 
     private onbtnCancel_haogan() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         this.buyGrphaogan.visible = false;
         VideoManager.getInstance().videoResume();
         this.onhideMaskBG();
     }
 
     private onConfirm(event: egret.TouchEvent): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         let name: string = event.currentTarget.name;
         if (name == "sure") {
             if (this._confirmFunc) this._confirmFunc.call(null, null);

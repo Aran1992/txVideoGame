@@ -3,6 +3,7 @@ class ActionHuiYi extends ActionTimerSceneBase {
     private answerID: number = 0;
     private exitTimer: number;
     private defaultAnswerID: number;
+    private buyAnswerID: number;
     private isSelected: boolean;
 
     public exit() {
@@ -18,7 +19,7 @@ class ActionHuiYi extends ActionTimerSceneBase {
         super.onInit();
         this.updateResize();
 
-        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuySuccessCallback, this);
         for (let i: number = 1; i < 5; i++) {
             this['groupHand' + i].touchEnabled = true;
             this['groupHand' + i].name = i;
@@ -78,11 +79,12 @@ class ActionHuiYi extends ActionTimerSceneBase {
         let name: number = Number(event.currentTarget.name);
         GuideManager.getInstance().isGuide = true;
         GuideManager.getInstance().curState = true;
-        this.answerID = name;
         if (this['timeImg' + name].visible) {
+            this.buyAnswerID = name;
             VideoManager.getInstance().videoPause();
             PromptPanel.getInstance().onShowBuyHaoGan(this.model.id, name);
         } else {
+            this.answerID = name;
             this['selected' + name].visible = true;
             this.exitTimer = egret.setTimeout(() => this.onBackSuccess(), this, 1000);
             this.isSelected = true;
@@ -90,8 +92,9 @@ class ActionHuiYi extends ActionTimerSceneBase {
     }
 
     private onBuySuccessCallback() {
-        this['timeImg' + this.answerID].visible = false;
-        this['suo' + this.answerID].visible = false;
+        this['timeImg' + this.buyAnswerID].visible = false;
+        this['suo' + this.buyAnswerID].visible = false;
+        this.defaultAnswerID = this.buyAnswerID;
     }
 
     private onExit() {

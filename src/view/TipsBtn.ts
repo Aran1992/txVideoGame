@@ -52,12 +52,12 @@ class TipsBtn extends eui.Component {
     private idBtnTicket: eui.Button;
     private XSMFButton: eui.Button;
     private XDPASSButton: eui.Button;
+    private buyAnswerID: number;
 
     public constructor() {
         super();
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);
     }
 
     public set imStatus(str) {
@@ -133,6 +133,9 @@ class TipsBtn extends eui.Component {
     }
 
     public onUpdateWenTi(id): void {
+        if (this.buyAnswerID !== undefined) {
+            id = this.buyAnswerID;
+        }
         let button = this['btn' + id];
         if (!button['lock_grp'].visible) {
             this.onSelectWenTi(id);
@@ -172,6 +175,7 @@ class TipsBtn extends eui.Component {
                 }
             }
             this.currentState = 'index' + idx;
+            this.buyAnswerID = undefined;
             /**判断下问题是否带锁**/
             this.onUpdateWentiBtnStatus();
 
@@ -255,10 +259,11 @@ class TipsBtn extends eui.Component {
 
     protected onRegist(): void {
         this.timeGroup.visible = false;
-        GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.GAME_STATE_CHANGE, this.onGameStateChange, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onUpdateWentiBtnStatus, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.GAME_STATE_CHANGE, this.onGameStateChange, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
         for (let i = 1; i < 6; i++) {
             this['btn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }
@@ -667,7 +672,7 @@ class TipsBtn extends eui.Component {
                 lockOptIDs.forEach(id => {
                     let itemNum = this.getWentiItemNum(this.wentiId, id);
                     this[`btn${id}`].lock_grp.visible = itemNum <= 0;
-                })
+                });
             }
         }
 
@@ -699,10 +704,8 @@ class TipsBtn extends eui.Component {
         }
     }
 
-    private onBuySuccessCallback() {
-        for (let i: number = 1; i <= 5; i++) {
-            this[`btn${i}`].lock_grp.visible = false;
-        }
+    private onBuySuccessCallback(data) {
+        this.buyAnswerID = data.data.answer;
     }
 
     private onGameStateChange(data) {
