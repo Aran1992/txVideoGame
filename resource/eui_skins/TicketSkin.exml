@@ -9,10 +9,10 @@
 			<e:Image width="509" height="619" x="594.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Label text="与好友同享" x="183.15" size="34" verticalCenter="-214"/>
 			<e:Label id="idHasCodeText" text="您已通过购买”心动PASS“获得赠送资格一次，分享激活码给好友，对方将免费获得心动PASS" x="70.15" y="215.88" size="24" anchorOffsetX="0" width="412.3" anchorOffsetY="0" height="104.31" lineSpacing="10" textColor="0x8c8a8a" visible="false"/>
-			<e:Label text="心动PASS激活" size="34" verticalCenter="-62" horizontalCenter="280"/>
-			<e:Label text="持有激活码的用户，可在上方输入，激活即可获得心动PASS，无需购买" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10" verticalCenter="0" horizontalCenter="280"/>
-			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" y="366.91" size="30" textColor="0x898686" lineSpacing="12"/>
-			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" x="54.7" y="379.06"/>
+
+
+			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" size="30" textColor="0x898686" lineSpacing="12" verticalCenter="0"/>
+			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" x="54.7" verticalCenter="0"/>
 			<e:Label id="idTicketNum" text="" size="40" textColor="0xFFFFFF" anchorOffsetX="0" width="435.52" textAlign="center" x="78.34" y="633"/>
 			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" width="456.73" textAlign="center" x="46.52" y="472.4" textColor="0xbfbbbb"/>
 
@@ -40,8 +40,15 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-			<e:Rect width="392" height="120" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5" verticalCenter="-214" horizontalCenter="280"/>
-			<e:EditableText id="idEditText" width="348.49" height="87.88" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="40" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="-214" horizontalCenter="280"/>
+
+			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="-200">
+				<e:Label text="心动PASS激活" size="34" verticalCenter="-15" horizontalCenter="0" x="-12" y="221" scaleX="1" scaleY="1"/>
+				<e:Label text="持有激活码的用户，可在上方输入，激活即可获得心动PASS，无需购买" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10" verticalCenter="50" horizontalCenter="0" x="-92" y="273" scaleX="1" scaleY="1"/>
+			</e:Group>
+			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="0">
+				<e:Rect width="392" height="120" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5" verticalCenter="0" horizontalCenter="0" x="-96" y="-174" scaleX="1" scaleY="1"/>
+				<e:EditableText id="idEditText" width="392" height="60" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="50" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="0" horizontalCenter="0" x="-74" y="-158" scaleX="1" scaleY="1"/>
+			</e:Group>
 		</e:Group>
 	</e:Group>
 	<e:Group id="idPage2" touchEnabled="false" width="150%" height="100%" x="0" y="0" visible="false">
