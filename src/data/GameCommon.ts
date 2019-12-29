@@ -953,6 +953,16 @@ class GameCommon {
         }
         return chapterIndex;
     }
+
+    public getPingzhengPrize() {
+        let price;
+        if (platform.getPlatform() == "plat_txsp") {
+            price = platform.isPlatformVip() ? 120 : 180;
+        } else {
+            price = platform.isCelebrateTime() ? 120 : 180;
+        }
+        return price * platform.getPriceRate();
+    }
 }
 
 declare let callbackDeleteBookHistory;

@@ -148,17 +148,6 @@ class TicketPanel extends eui.Component {
         this._openParam = openParam
     }
 
-    private static getPingzhengPrize() {
-        let price = 120;
-        if (platform.getPlatform() == "plat_txsp") {
-            if (platform.isPlatformVip())//是否腾讯视频vip用户， 1: 是， 0: 否
-                price = 120;
-            else
-                price = 180;
-        }
-        return price * platform.getPriceRate()
-    }
-
     protected onSkinName(): void {
         this.skinName = skins.TicketSkin;
     }
@@ -232,8 +221,8 @@ class TicketPanel extends eui.Component {
         }
         //如果还没有买过凭据，直接拍脸
 
-        //this.idBtnBuyTicketSpecailPrize.label = String(TicketPanel.getPingzhengPrize());
-        this.idBtnBuyTicketSpecailPrize_txsp.label = String(TicketPanel.getPingzhengPrize());
+        //this.idBtnBuyTicketSpecailPrize.label = String(GameCommon.getInstance().getPingzhengPrize());
+        this.idBtnBuyTicketSpecailPrize_txsp.label = String(GameCommon.getInstance().getPingzhengPrize());
         this.updateBuyBtnState();
 
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
@@ -246,7 +235,7 @@ class TicketPanel extends eui.Component {
     }
 
     private onUpdateVip() {
-        this.idBtnBuyTicketSpecailPrize_txsp.label = String(TicketPanel.getPingzhengPrize());
+        this.idBtnBuyTicketSpecailPrize_txsp.label = String(GameCommon.getInstance().getPingzhengPrize());
         this.idGroupDiscount.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
         this.idGroupDiscountTxsp.visible = !(platform.getPlatform() == "plat_txsp" && platform.isPlatformVip() == false);
     }
@@ -423,7 +412,7 @@ class TicketPanel extends eui.Component {
         if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {
             //GameCommon.getInstance().onOpen
             let buyfunc = () => {
-                GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENGEX, TicketPanel.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
+                GameCommon.getInstance().onShowBuyTips(GameDefine.GUANGLIPINGZHENGEX, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
             };
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("TxspBuyTipsPanel", buyfunc));
             return
@@ -434,7 +423,7 @@ class TicketPanel extends eui.Component {
             if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {//在腾讯视频中。不是会员才买另一个原价物品
                 itemID = GameDefine.GUANGLIPINGZHENGEX;
             }
-            GameCommon.getInstance().onShowBuyTips(itemID, TicketPanel.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
+            GameCommon.getInstance().onShowBuyTips(itemID, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
         } else {
             ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG, 1, callback);
         }

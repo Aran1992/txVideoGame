@@ -373,7 +373,7 @@ class MainView extends eui.Component {
         this.onRefreshImg();
         this.setMainGroupVisible(false);
         if (!GameDefine.ISFILE_STATE) {
-            if (UserInfo.achievementDics[17] && !isTXSP) {
+            if (!isTXSP) {
                 this.setMainGroupVisible(true);
                 this.play_Btn.visible = false;
                 this.play_zi.visible = false;

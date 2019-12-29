@@ -118,18 +118,7 @@ class BuyVIPPanel extends eui.Component {
         if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {//在腾讯视频中。不是会员才买另一个原价物品
             itemID = GameDefine.GUANGLIPINGZHENGEX;
         }
-        GameCommon.getInstance().onShowBuyTips(itemID, this.getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
-    }
-
-    private getPingzhengPrize() {
-        let price = 120;
-        if (platform.getPlatform() == "plat_txsp") {
-            if (platform.isPlatformVip())
-                price = 120;
-            else
-                price = 180;
-        }
-        return price * platform.getPriceRate()
+        GameCommon.getInstance().onShowBuyTips(itemID, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
     }
 
     private bindMultiple(name, handler) {
