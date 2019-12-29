@@ -43,35 +43,35 @@ const REWARD_DSC = {
     },
     101004: {
         name: "少女情怀*林薄荷",
-        dsc: "内含林薄荷精品剧照5张，获得后可在“已购福利”中查看",
+        dsc: "内含林薄荷精品剧照5张，获得后可在“已获福利”中查看",
     },
     102001: {
         name: "梦想的模样·林薄荷&夏子豪 SR",
-        dsc: "内含林薄荷&夏子豪精品剧照5张，获得后可在“已购福利”中查看",
+        dsc: "内含林薄荷&夏子豪精品剧照5张，获得后可在“已获福利”中查看",
     },
     101003: {
         name: "愿星伴你·江雪 ",
-        dsc: "内含江雪精品剧照5张，获得后可在“已购福利”中查看",
+        dsc: "内含江雪精品剧照5张，获得后可在“已获福利”中查看",
     },
     102017: {
         name: "美梦酩酊·夏子豪",
-        dsc: "内含夏子豪精品剧照5张，获得后可在“已购福利”中查看",
+        dsc: "内含夏子豪精品剧照5张，获得后可在“已获福利”中查看",
     },
     103008: {
         name: "B面人生·肖千也",
-        dsc: "内含肖千也精品剧照5张，获得后可在“已购福利”中查看",
+        dsc: "内含肖千也精品剧照5张，获得后可在“已获福利”中查看",
     },
     103009: {
         name: "B面人生·肖万寻",
-        dsc: "内含肖万寻精品剧照5张，获得后可在“已购福利”中查看",
+        dsc: "内含肖万寻精品剧照5张，获得后可在“已获福利”中查看",
     },
     103007: {
         name: "B面人生·韩小白",
-        dsc: "内含韩小白精品剧照5张，获得后可在“已购福利”中查看",
+        dsc: "内含韩小白精品剧照5张，获得后可在“已获福利”中查看",
     },
     103001: {
         name: "兄弟？兄弟！·肖千也&肖万寻",
-        dsc: "内含肖千也、肖万寻精品剧照5张，获得后可在“已购福利”中查看",
+        dsc: "内含肖千也、肖万寻精品剧照5张，获得后可在“已获福利”中查看",
     },
 };
 
@@ -102,6 +102,7 @@ class TicketPanel extends eui.Component {
     private idGroupShareTicket: eui.Group;
     private idBtnUseCode: eui.Button;
     private idBtnCopyCode: eui.Button;
+    private idBtnBuyPASS: eui.Button;
     private idBtnShareCode: eui.Button;
     private idBtnBuyNow: eui.Button;
 
@@ -195,6 +196,7 @@ class TicketPanel extends eui.Component {
         this.idBtnUseCode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnUseCodeClick, this);
         this.idBtnCopyCode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnCopyCodeClick, this);
         this.idBtnShareCode.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShareCodeClick, this);
+        this.idBtnBuyPASS.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnBuyPASSClick, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SUIPIAN_CHANGE, this.onSuipianChange, this);
@@ -220,6 +222,7 @@ class TicketPanel extends eui.Component {
         this.idCode.visible = false;
         this.idNoCode.visible = true;
         this.idBtnCopyCode.visible = false;
+        this.idBtnBuyPASS.visible = false;
         this.idBtnShareCode.visible = false;
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         this.idTicketNum.text = "";//itemNum;
@@ -270,6 +273,7 @@ class TicketPanel extends eui.Component {
                 this.idShareCode.text = cdk;
                 this.idShareText.text = `激活码有效期至：${data.data.list[0].expireTime}`;
                 this.idBtnCopyCode.visible = true;
+                this.idBtnBuyPASS.visible = false;
                 this.idBtnShareCode.visible = true;
                 this.idHasCodeText.visible = true;
                 if (data.data.list[0].status == 2) {
@@ -283,9 +287,10 @@ class TicketPanel extends eui.Component {
                 this.idCode.visible = false;
                 this.idNoCode.visible = true;
                 this.idBtnCopyCode.visible = false;
+                this.idBtnBuyPASS.visible = true;
                 this.idBtnShareCode.visible = false;
                 this.idHasCodeText.visible = false;
-                this.idExpireText.text = ""
+                this.idExpireText.text = "";
             }
             //console.log(data)
         });
@@ -344,6 +349,12 @@ class TicketPanel extends eui.Component {
         document.execCommand('Copy');
         document.body.removeChild(input);
         GameCommon.getInstance().showCommomTips("已复制到剪贴板");
+    }
+
+    private idBtnBuyPASSClick() {
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM),
+            new WindowParam("BuyVIPPanel", undefined));
     }
 
     private idBtnShareCodeClick() {
