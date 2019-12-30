@@ -187,7 +187,7 @@ class MainView extends eui.Component {
         if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
             this.updateXSMFButton();
         }
-        if(shopdata.id == GameDefine.QUANQUANJINXI_ITEM){
+        if (shopdata.id == GameDefine.QUANQUANJINXI_ITEM) {
             this.updateShangChengPoint();
         }
     }
@@ -207,9 +207,9 @@ class MainView extends eui.Component {
         this.btnChengjiu["idNewPoint1"].visible = TaskManager.instance.hasReceivableReward();
     }
 
-    private updateShangChengPoint(){        
+    private updateShangChengPoint() {
         this.btnShangCheng["idNewPoint"].x = this.btnShangCheng["idTitle2"].x + this.btnShangCheng["idTitle2"].width;
-        this.btnShangCheng["idNewPoint"].visible = ShopManager.getInstance().getItemNum(GameDefine.QUANQUANJINXI_ITEM)<=0;
+        this.btnShangCheng["idNewPoint"].visible = ShopManager.getInstance().getItemNum(GameDefine.QUANQUANJINXI_ITEM) <= 0;
     }
 
     private onRefreshImg() {
@@ -284,14 +284,18 @@ class MainView extends eui.Component {
     }
 
     private onXinkaishi(): void {
+        // const bookData: BookData = <BookData>createFile(ROLE_INDEX.ZiHao_Xia);
+        // UserInfo.curBokData = bookData;
         SoundManager.getInstance().playSound("ope_click.mp3");
         if (DEBUG) {
-            UserInfo.curBokData = <BookData>createFile(ROLE_INDEX.ZiHao_Xia);
-        } else {
-            GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
-                this.gameWorld.createGameScene();
-            });
+            if (typeof GameDefine.START_CHAPTER === "number") {
+                this.gameWorld.createGameScene(GameDefine.START_CHAPTER);
+                return;
+            }
         }
+        GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
+            this.gameWorld.createGameScene();
+        });
     }
 
     private onShowShop() {
