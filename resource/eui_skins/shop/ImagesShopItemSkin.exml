@@ -16,7 +16,7 @@
 				<e:HorizontalLayout verticalAlign="middle" />
 			</e:layout>
 		</e:Group>
-		<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.5" scaleY="0.5" x="5.5" y="6"/>
+		<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" x="5.5" y="6"/>
 		<e:Label id="style_name_lab" size="36" fontFamily="SimHei" text="" horizontalCenter="0" bold="true"  width="270" verticalAlign="middle" textAlign="center" bottom="104"/>
 		<e:Component id="discount_bar" skinName="skins.ShopDiscountBarSkin" horizontalCenter="-45" bottom="146" />
 		<e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" horizontalCenter="0"
