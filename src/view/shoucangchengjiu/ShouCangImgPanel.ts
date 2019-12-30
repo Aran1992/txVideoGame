@@ -29,7 +29,7 @@ class ShouCangImgPanel extends eui.Component {
     constructor(data) {
         super();
         this.info = data;
-        this.imgMaxNumb = Math.min(Number(this.info.src),5);
+        this.imgMaxNumb = Math.min(Number(this.info.src), 5);
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
@@ -441,8 +441,12 @@ class ShouCangImgPanel extends eui.Component {
         if (!image_src) return;
         let texture: egret.Texture = RES.getRes(image_src);
         if (texture) {
-            shareImageInfo = {name: this.info.name, src: image_src};
-            platform.shareImage(GameDefine.BOOKID, texture.toDataURL("image/png"));
+            GameCommon.getInstance().showLoading();
+            setTimeout(() => {
+                shareImageInfo = {name: this.info.name, src: image_src};
+                const imageData = texture.toDataURL("image/png");
+                platform.shareImage(GameDefine.BOOKID, imageData);
+            }, 0);
         }
     }
 }
