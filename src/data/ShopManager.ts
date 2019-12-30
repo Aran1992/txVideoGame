@@ -244,6 +244,9 @@ class ShopManager {
         var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
         for (var k in cfgs) {
             let id = cfgs[k].id;
+            if(UserInfo.lookAchievement[id] == 1 && !ShopManager.getInstance().onCheckShoucangOpen(id)){
+                UserInfo.lookAchievement[id] = 0;
+            }
             if (ShopManager.getInstance().onCheckShoucangOpen(id) && UserInfo.lookAchievement[id] != 1) {
                 subPoints[cfgs[k].mulu1 - 1] = subPoints[cfgs[k].mulu1 - 1] + 1;//有N条未读
             }
