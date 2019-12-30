@@ -114,11 +114,18 @@ class BuyVIPPanel extends eui.Component {
             else
                 GameCommon.getInstance().onShowResultTips('购买成功');
         };
-        let itemID = GameDefine.GUANGLIPINGZHENG;
-        if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {//在腾讯视频中。不是会员才买另一个原价物品
-            itemID = GameDefine.GUANGLIPINGZHENGEX;
+        if (platform.getPlatform() == "plat_txsp" || platform.getPlatform() == "plat_pc") {
+            let itemID = GameDefine.GUANGLIPINGZHENG;
+            if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {//在腾讯视频中。不是会员才买另一个原价物品
+                itemID = GameDefine.GUANGLIPINGZHENGEX;
+            }
+            GameCommon.getInstance().onShowBuyTips(itemID, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
+        } else {
+            let itemID = GameDefine.GUANGLIPINGZHENG;
+            if(!platform.isCelebrateTime())
+                itemID = GameDefine.GUANGLIPINGZHENGEX;
+            ShopManager.getInstance().buyGoods(itemID, 1, callback);
         }
-        GameCommon.getInstance().onShowBuyTips(itemID, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
     }
 
     private bindMultiple(name, handler) {
@@ -127,7 +134,6 @@ class BuyVIPPanel extends eui.Component {
             const button = this[name + suffix];
             if (button) {
                 button.addEventListener(egret.TouchEvent.TOUCH_TAP, handler, this);
-                console.log("addEventListener", name + suffix);
             }
         }
     }

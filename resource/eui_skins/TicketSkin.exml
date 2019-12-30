@@ -5,59 +5,61 @@
 	<e:Rect width="100%" height="100%" x="2" y="0" fillAlpha="0.6"/>
 	<e:Group id="idPage1" touchEnabled="false" width="100%" height="100%" x="0" y="0">
 		<e:Group id="idGroupCDKey" width="1132" height="780" scrollEnabled="true" verticalCenter="0" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="169">
-			<e:Image width="509" height="619" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-289.5"/>
+			<e:Image width="509" height="619" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-290"/>
+
+			<e:Label text="与好友同享" size="34" verticalCenter="-15" bold="true" horizontalCenter="-290"/>
+			<e:Label id="idHasCodeText" text="您已通过购买”心动PASS“获得赠送资格一次，分享激活码给好友，对方将免费获得心动PASS" size="22" anchorOffsetX="0" width="400" anchorOffsetY="0" lineSpacing="10" textColor="0x8c8a8a" horizontalCenter="-290" verticalCenter="66"/>
+
+
+			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" size="30" textColor="0x898686" lineSpacing="12" verticalCenter="-200" horizontalCenter="-290"/>
+			<e:Label id="idCode" text="OOOOOOOO" size="50" textColor="0xffffff" anchorOffsetX="0" textAlign="center" verticalCenter="-210" horizontalCenter="-290"/>
+
+			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" textAlign="center" textColor="0xbfbbbb" horizontalCenter="-290" verticalCenter="-170"/>
+
+
+
+			<e:Button id="idBtnCopyCode" label="复制" horizontalCenter="-404" x="851" scaleX="1" scaleY="1" enabled="true" verticalCenter="200">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button id="idBtnShareCode" label="分享" horizontalCenter="-196" x="861" scaleX="1" scaleY="1" enabled="true" verticalCenter="200">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button id="idBtnBuyPASS" label="立即购买" horizontalCenter="-289.5" x="861" scaleX="1" scaleY="1" enabled="true" verticalCenter="200">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
 			<e:Image width="509" height="619" x="594.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
-			<e:Label text="与好友同享" x="183.15" size="34" verticalCenter="-214"/>
-			<e:Label id="idHasCodeText" text="您已通过购买”心动PASS“获得赠送资格一次，分享激活码给好友，对方将免费获得心动PASS" x="70.15" y="215.88" size="24" anchorOffsetX="0" width="412.3" anchorOffsetY="0" height="104.31" lineSpacing="10" textColor="0x8c8a8a" visible="false"/>
-
-
-			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" x="53.33" size="30" textColor="0x898686" lineSpacing="12" verticalCenter="0"/>
-			<e:Label id="idCode" text="OOOOOOOO" size="40" textColor="0xffffff" anchorOffsetX="0" width="435.52" textAlign="center" verticalCenter="0" x="55"/>
-			<e:Label id="idTicketNum" text="" size="40" textColor="0xFFFFFF" anchorOffsetX="0" width="435.52" textAlign="center" x="78.34" y="633"/>
-			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" width="456.73" textAlign="center" x="46.52" y="472.4" textColor="0xbfbbbb"/>
-
-			<e:Button id="idBtnUseCode" label="激活" y="532" horizontalCenter="280" x="841" scaleX="1" scaleY="1" enabled="true">
-				<e:skinName>
-				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
-					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-				</e:Skin>
-				</e:skinName>
-			</e:Button>
-
-			<e:Button id="idBtnCopyCode" label="复制" y="532" horizontalCenter="-404" x="851" scaleX="1" scaleY="1" enabled="true">
-				<e:skinName>
-				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
-					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-				</e:Skin>
-				</e:skinName>
-			</e:Button>
-			<e:Button id="idBtnShareCode" label="分享" y="532" horizontalCenter="-196" x="861" scaleX="1" scaleY="1" enabled="true">
-				<e:skinName>
-				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
-					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-				</e:Skin>
-				</e:skinName>
-			</e:Button>
-			<e:Button id="idBtnBuyPASS" label="立即购买" y="532" horizontalCenter="-289.5" x="861" scaleX="1" scaleY="1" enabled="true">
-				<e:skinName>
-				<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
-					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-				</e:Skin>
-				</e:skinName>
-			</e:Button>
-
 			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="-200">
-				<e:Label text="心动PASS激活" size="34" verticalCenter="-15" horizontalCenter="0" x="-12" y="221" scaleX="1" scaleY="1"/>
-				<e:Label text="持有激活码的用户，可在上方输入，激活即可获得心动PASS，无需购买" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="383.24" anchorOffsetY="0" height="54.3" lineSpacing="10" verticalCenter="50" horizontalCenter="0" x="-92" y="273" scaleX="1" scaleY="1"/>
-			</e:Group>
-			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="0">
 				<e:Rect width="392" height="120" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5" verticalCenter="0" horizontalCenter="0" x="-96" y="-174" scaleX="1" scaleY="1"/>
 				<e:EditableText id="idEditText" width="392" height="60" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="50" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="0" horizontalCenter="0" x="-74" y="-158" scaleX="1" scaleY="1"/>
 			</e:Group>
+
+			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="0">
+				<e:Label text="心动PASS激活" size="34" verticalCenter="-15" horizontalCenter="0" x="-12" y="221" scaleX="1" scaleY="1"/>
+				<e:Label text="持有激活码的用户，可在上方输入，激活即可获得心动PASS，无需购买" size="22" textAlign="center" textColor="0x7f7c7c" anchorOffsetX="0" width="400" anchorOffsetY="0" lineSpacing="10" verticalCenter="50" horizontalCenter="0" x="-92" y="273" scaleX="1" scaleY="1"/>
+			</e:Group>
+			<e:Button id="idBtnUseCode" label="激活" horizontalCenter="280" x="841" scaleX="1" scaleY="1" enabled="true" verticalCenter="200">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
 		</e:Group>
 	</e:Group>
 	<e:Group id="idPage2" touchEnabled="false" width="150%" height="100%" x="0" y="0" visible="false">
@@ -115,8 +117,8 @@
 
 
 	<e:Group id="tabGroup" touchChildren="true" y="180" x="0">
-		<e:RadioButton id="idTab2" groupName="tabGroup" label="心动任务" skinName="skins.Common_TabButtonSkin1" width="260" height="90" value="1" name="2" x="6" y="-55"/>
-		<e:RadioButton id="idTab1" groupName="tabGroup" label="买一赠一" skinName="skins.Common_TabButtonSkin1" width="260"
+		<e:RadioButton id="idTab2" groupName="tabGroup" label="心动任务" skinName="skins.Common_TabButtonSkin1" width="280" height="90" value="1" name="2" x="6" y="-55"/>
+		<e:RadioButton id="idTab1" groupName="tabGroup" label="买一赠一" skinName="skins.Common_TabButtonSkin1" width="280"
 						height="90" value="0" selected="true"  name="1"/>
 
 

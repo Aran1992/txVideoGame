@@ -543,6 +543,22 @@ class TipsBtn extends eui.Component {
         }
     }
 
+    private updateQualityButtonLabel() {
+        const timer = setInterval(() => {
+            try {
+                const children = document.getElementsByClassName("mod_overlay setlevel")[0].getElementsByClassName("select_list")[0].children;
+                for (let i = 0; i < children.length; i++) {
+                    if (children[i].className.indexOf("current") !== -1) {
+                        this.qualityBtn.label = this.pinzhiNames[i];
+                        clearInterval(timer);
+                        break;
+                    }
+                }
+            } catch (e) {
+            }
+        }, 1000);
+    }
+
     private onSelectSpeed(event: egret.Event) {
         const id: number = Number(event.target.name);
         this.beisuGroup.visible = false;
@@ -645,6 +661,7 @@ class TipsBtn extends eui.Component {
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
         this.updateXSMFButton();
+        this.updateQualityButtonLabel();
     }
 
     private updateXSMFButton() {

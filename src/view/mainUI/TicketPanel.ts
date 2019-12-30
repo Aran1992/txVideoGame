@@ -26,19 +26,19 @@ const REWARD_DSC = {
         dsc: "可以在“福利社”内兑换美图、音乐等奖励",
     },
     quantao: {
-        name: "拳套",
+        name: "拳套(应援道具)",
         dsc: "可在【一零零一】《拳拳四重奏》应援专区中为角色应援",
     },
     erfan: {
-        name: "耳机",
+        name: "耳机(应援道具)",
         dsc: "可在【一零零一】《拳拳四重奏》应援专区中为角色应援",
     },
     yuepu: {
-        name: "乐谱",
+        name: "乐谱(应援道具)",
         dsc: "可在【一零零一】《拳拳四重奏》应援专区中为角色应援",
     },
     CD: {
-        name: "原版CD",
+        name: "原版CD(应援道具)",
         dsc: "可在【一零零一】《拳拳四重奏》应援专区中为角色应援",
     },
     101004: {
@@ -124,7 +124,6 @@ class TicketPanel extends eui.Component {
     private idShareText: eui.Label;
     private idHasCodeText: eui.Label;
     private idExpireText: eui.Label;
-    private idTicketNum: eui.Label;
     private suipNum: eui.Label;
     private unlockNotice: eui.Label;
     private celebrateNotice: eui.Label;
@@ -214,7 +213,6 @@ class TicketPanel extends eui.Component {
         this.idBtnBuyPASS.visible = false;
         this.idBtnShareCode.visible = false;
         let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        this.idTicketNum.text = "";//itemNum;
         this.refreshActiveCode();
         if (itemNum <= 0) {
             this.setUnusedNodeVisible(this.idGroupBuyTicket, true);
@@ -268,7 +266,7 @@ class TicketPanel extends eui.Component {
                 if (data.data.list[0].status == 2) {
                     this.idExpireText.text = "已被使用"
                 } else if (data.data.list[0].isExpire == 0)
-                    this.idExpireText.text = data.data.list[0].expireTime + " 前有效";
+                    this.idExpireText.text = `该激活码 ${data.data.list[0].expireTime} 前有效`;
                 else {
                     this.idExpireText.text = "已过期"
                 }

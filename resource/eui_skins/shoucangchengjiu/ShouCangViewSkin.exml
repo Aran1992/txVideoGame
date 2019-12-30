@@ -27,7 +27,7 @@
 		</e:Group>
 		<e:Group id="noneGroup" width="100%" horizontalCenter="0" anchorOffsetY="0" top="120" bottom="0">
 			<e:Image source="sc_mini_role_png" scaleX="0.8" scaleY="0.8" horizontalCenter="0" verticalCenter="-100"/>
-			<e:Label text="—— 空空如也，快去获取吧 ——" horizontalCenter="0" verticalCenter="80" size="40" bold="true" fontFamily="SimHei"/>
+			<e:Label text="—— 空空如也，快去福利社获得吧 ——" horizontalCenter="0" verticalCenter="80" size="40" bold="true" fontFamily="SimHei"/>
 			<e:Button id="goToShopButton" label="" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="175">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
@@ -37,7 +37,7 @@
 				</e:skinName>
 			</e:Button>
 		</e:Group>
-		<e:Button id="bgBtn" label="已获福利" width="200" x="40" y="28" height="62">
+		<e:Button id="bgBtn" label="已获福利" width="280" x="40" y="28" height="62">
 			<e:skinName>
 				<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
 					<e:Group width="100%" height="100%" />

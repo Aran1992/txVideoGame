@@ -38,7 +38,7 @@
 			</e:Scroller>
 		</e:Group>
 		<e:Group id='closeGroup1' width="268" left="0" top="0">
-			<e:Button id="bgBtn" label="已获福利" width="200" x="40" y="28" height="62">
+			<e:Button id="bgBtn" label="已获福利" width="280" x="40" y="28" height="62">
 				<e:skinName>
 					<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
 						<e:Group width="100%" height="100%" />
