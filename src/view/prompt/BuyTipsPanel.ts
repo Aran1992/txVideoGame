@@ -65,14 +65,13 @@ class BuyTipsPanel extends eui.Component {
 
         
 
-        if(this.param.shopInfo.model.currSuipian == 0 && this.param.shopInfo.model.currPrice == 0){
-                //直接加物品，购买成功 
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
-                this.onhideMaskBG();
-                ShopManager.getInstance().addGoods(this.param.shopInfo.model.id,1);
-                return;
-                //GameCommon.getInstance().onShowResultTips("购买成功");
-        }
+        // if(this.param.shopInfo.model.currSuipian == 0 && this.param.shopInfo.model.currPrice == 0){
+        //         //直接加物品，购买成功 
+        //         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
+        //         this.onhideMaskBG();
+        //         ShopManager.getInstance().addGoods(this.param.shopInfo.model.id,1);
+        //         return;
+        // }
         if (this.param.shopInfo.model.currSuipian == 0){
             GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this.param.shopInfo.currPrice*platform.getPriceRate(), GOODS_TYPE.DIAMOND);            
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');

@@ -9,5 +9,6 @@
                  scale9Grid.down="8,2,40,17" left.down="0" right.down="175" />
         <e:Label id="labelDisplay" size="40" fontFamily="Microsoft JhengHei" verticalCenter="0"
                  bold.upAndSelected="true" bold.downAndSelected="true"  text="按难度" left.up="80" left="80"/>
+		<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" verticalCenter="-20" visible="false"/>
     </e:Group>
 </e:Skin>

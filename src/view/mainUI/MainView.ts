@@ -130,7 +130,7 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.HIDE_MAIN_GROUP, this.onHideMainGroup, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.updateNewPoint, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.TASK_STATE_CHANGED, this.updateTicketButtonPoint, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyItemComplte, this);
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
@@ -176,15 +176,19 @@ class MainView extends eui.Component {
         }
         this.updateNewPoint();
         this.updateTicketButtonPoint();
+        this.updateShangChengPoint();
         this.logHelper();
         TipsBtn.Is_Guide_Bool = UserInfo.guideJson["player"] === undefined;
         this.updateXSMFButton();
     }
 
-    private onBuy600001Complte(data) {
+    private onBuyItemComplte(data) {
         const shopdata: ShopInfoData = data.data;
         if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
             this.updateXSMFButton();
+        }
+        if(shopdata.id == GameDefine.QUANQUANJINXI_ITEM){
+            this.updateShangChengPoint();
         }
     }
 
@@ -201,6 +205,11 @@ class MainView extends eui.Component {
     private updateTicketButtonPoint() {
         this.btnChengjiu["idNewPoint1"].x = this.btnChengjiu["idTitle1"].x + this.btnChengjiu["idTitle1"].width;
         this.btnChengjiu["idNewPoint1"].visible = TaskManager.instance.hasReceivableReward();
+    }
+
+    private updateShangChengPoint(){        
+        this.btnShangCheng["idNewPoint"].x = this.btnShangCheng["idTitle2"].x + this.btnShangCheng["idTitle2"].width;
+        this.btnShangCheng["idNewPoint"].visible = ShopManager.getInstance().getItemNum(GameDefine.QUANQUANJINXI_ITEM)<=0;
     }
 
     private onRefreshImg() {

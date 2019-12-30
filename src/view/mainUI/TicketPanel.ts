@@ -425,7 +425,10 @@ class TicketPanel extends eui.Component {
             }
             GameCommon.getInstance().onShowBuyTips(itemID, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
         } else {
-            ShopManager.getInstance().buyGoods(GameDefine.GUANGLIPINGZHENG, 1, callback);
+            let itemID = GameDefine.GUANGLIPINGZHENG;
+            if(!platform.isCelebrateTime())
+                itemID = GameDefine.GUANGLIPINGZHENGEX;
+            ShopManager.getInstance().buyGoods(itemID, 1, callback);
         }
     }
 

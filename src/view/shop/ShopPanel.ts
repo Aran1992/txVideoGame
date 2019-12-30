@@ -61,10 +61,26 @@ class ShopPanel extends eui.Component {
         //     GuideManager.getInstance().onShowImg(this.shopGroup, this.shopGroup, 'shop');
         // }
 
+        GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyItemComplte, this);
+
         this.onRegistEvent();
         this.updateResize();
         this.updateTabIdx(0);
         this.updateCurrency();
+        this.updateNewPoint();
+        
+    }
+
+    private onBuyItemComplte(data) {
+        const shopdata: ShopInfoData = data.data;
+        if(shopdata.id == GameDefine.QUANQUANJINXI_ITEM){
+            this.updateNewPoint();
+        }
+    }
+
+    private updateNewPoint(){
+        this["shopBtn0"]["idNewPoint"].x = this["shopBtn0"]["labelDisplay"].left + this["shopBtn0"]["labelDisplay"].width;
+        this["shopBtn0"].idNewPoint.visible = ShopManager.getInstance().getItemNum(GameDefine.QUANQUANJINXI_ITEM)<=0;
     }
 
     private onRegistEvent(): void {
@@ -158,6 +174,7 @@ class ShopPanel extends eui.Component {
         //     GuideManager.getInstance().onShowImg(this.mainGroup, this.btnClose, 'leftClose')
         // }
         this.updateCurrency();
+        
     }
 
     private showGoods() {
@@ -434,6 +451,7 @@ class ImagesShopItem extends eui.ItemRenderer {
     public buy_btn: eui.Button;
     private pingfen_img: eui.Image;
     private buyParam: BuyTipsParam;
+    private idNewPoint:eui.Image;
 
     public constructor() {
         super();
@@ -459,7 +477,8 @@ class ImagesShopItem extends eui.ItemRenderer {
         if (num > 0) {//shopInfoDt.num
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
-            this.buy_btn.label = "已购买";
+            this.buy_btn.label = "已购买";        
+            this.idNewPoint.visible = false;
         } else {
             let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
             if (shopInfoDt.origPrice > shopInfoDt.currPrice) {
@@ -471,10 +490,13 @@ class ImagesShopItem extends eui.ItemRenderer {
                 this.discount_bar.visible = false;
             }
             this.buy_btn.enabled = true;
-            if (this.data.model.currPrice == 0 && this.data.model.currSuipian == 0)
+            if (this.data.model.currPrice == 0 && this.data.model.currSuipian == 0){
                 this.buy_btn.label = "免费购买";
-            else
-                this.buy_btn.label = "购买";
+                this.idNewPoint.visible = true;
+            }else{
+                this.buy_btn.label = "购买";                
+                this.idNewPoint.visible = false;
+            }
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }

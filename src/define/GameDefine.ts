@@ -26,6 +26,7 @@ class GameDefine {
     ];
     public static GUANGLIPINGZHENG = 600001;//后台配置特价，本地表中配置特价
     public static GUANGLIPINGZHENGEX = 600003;//后台配置原价，本地表中也配置原价
+    public static QUANQUANJINXI_ITEM = 103022;//后台配置原价，本地表中也配置原价
     public static SHOP_XINSHOU_ID: number = 600002;
     public static SELF_ROLE_HEAD_INDEX: number = 5;
     public static SHOUCANG_NAME: string[] = ['韩小白', '肖千也', '夏子豪', '肖万寻', '音乐', '其他'];
