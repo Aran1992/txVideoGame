@@ -661,6 +661,7 @@ class TipsBtn extends eui.Component {
         this.sd = new egret.Sound();
         this.sd.load('resource/sound/click_sound.mp3');
         this.updateXSMFButton();
+        setInterval(() => this.updateXSMFButton(), 1000);
         this.updateQualityButtonLabel();
     }
 

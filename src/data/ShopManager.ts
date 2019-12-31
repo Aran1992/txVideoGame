@@ -133,24 +133,23 @@ class ShopManager {
                 this._shopDataDict[shopData.id] = shopData;
             }
         }
-        this.loadFromServer(record)
-    }
-
-    //不从服务器上取了。因为TXSP从服务器上也取不到
-    public loadFromServer(record?: string) {
-        if (this._loadingFromServer)
-            return;
-        this._loadingFromServer = true;
-        if (!this._serverItemNums["loadedRecord"] && record) {
+        if (record) {
             //存档中的数量初始化
             let r = JSON.parse(record);
             for (let itemId in r) {
                 let shopdata: ShopInfoData = this._shopDataDict[Number(itemId)];
                 shopdata.num = Number(r[itemId].num);
             }
-            this._serverItemNums["loadedRecord"] = true;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
         }
+        this.loadFromServer();
+    }
+
+    //不从服务器上取了。因为TXSP从服务器上也取不到
+    public loadFromServer() {
+        if (this._loadingFromServer)
+            return;
+        this._loadingFromServer = true;
         //1001需要从服务器上取得物品数量;loaded代表平台数量是否已获取
         if (platform.getPlatform() == "plat_1001" && !this._serverItemNums["loaded"]) {
             let callback = (data) => {
@@ -225,7 +224,7 @@ class ShopManager {
 
     public getItemNum(id) {
         // 如果已经关闭会员检查 且 查询的是会员数量 那么就返回1
-        if (!GameDefine.ENABLE_CHECK_VIP && id === GameDefine.GUANGLIPINGZHENG || id === GameDefine.GUANGLIPINGZHENGEX) {
+        if (!GameDefine.ENABLE_CHECK_VIP && (id === GameDefine.GUANGLIPINGZHENG || id === GameDefine.GUANGLIPINGZHENGEX)) {
             return 1;
         }
         let shopdata: ShopInfoData = this._shopDataDict[id] || {num: 0};

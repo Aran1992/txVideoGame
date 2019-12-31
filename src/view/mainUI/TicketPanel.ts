@@ -295,6 +295,7 @@ class TicketPanel extends eui.Component {
             //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
             // this.onCloseClick();
             this.updateBuyBtnState();
+            this.refreshActiveCode();
         }
     }
 
@@ -321,7 +322,7 @@ class TicketPanel extends eui.Component {
             } else {
                 GameCommon.getInstance().showCommomTips(data.data.msg);
             }
-        })
+        });
     }
 
     private idBtnCopyCodeClick() {
