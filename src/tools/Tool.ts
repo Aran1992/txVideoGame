@@ -40,7 +40,7 @@ class Tool {
 
     public static randomInt(a, b) {
         //return Math.floor(Math.random() * (b - a)) + a;
-        return Math.floor(Math.random() * (b - a+1)) + a;
+        return Math.floor(Math.random() * (b - a + 1)) + a;
     }
 
     public static randomFloat(a, b) {
@@ -285,35 +285,28 @@ class Tool {
     public static getCurrDayTime(tim) {
         const date = new Date(tim);
         let month: string | number = date.getMonth() + 1;
-        let strDate: string | number = date.getDate();
-
-        if (month <= 9) {
-            month = "0" + month;
-        }
-
-        if (strDate <= 9) {
-            strDate = "0" + strDate;
-        }
-        return date.getFullYear() + "-" + month + "-" + strDate + " "
-            + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        let day: string | number = date.getDate();
+        return date.getFullYear() + "-" + this.xxx(month) + "-" + this.xxx(day) + " "
+            + this.xxx(date.getHours()) + ":" + this.xxx(date.getMinutes()) + ":" + this.xxx(date.getSeconds());
     }
+
     public static formatZero(num, length) {
-        let n = (Array(length).join('0') + num).slice(-length);
-        return n;
+        return (Array(length).join('0') + num).slice(-length);
     }
+
     //把日期格式化为整数
-    public static formatTimeDay2Num(time:number=null){
-        if(!time){
-            time=platform.getServerTime();
+    public static formatTimeDay2Num(time: number = null) {
+        if (!time) {
+            time = platform.getServerTime();
         }
         time = time - platform.getOffsetTime();
-        const date = time?new Date(time):new Date();
-        let str = String(date.getFullYear())+String(Tool.formatZero(date.getMonth()+1,2))+String(Tool.formatZero(date.getDate(),2))
+        const date = time ? new Date(time) : new Date();
+        let str = String(date.getFullYear()) + String(Tool.formatZero(date.getMonth() + 1, 2)) + String(Tool.formatZero(date.getDate(), 2));
         return Number(str)
     }
 
-    public static formatAddDay(addDay,time:number=null) {
-        return Tool.formatTimeDay2Num(time+addDay*(24*60*60*1000));
+    public static formatAddDay(addDay, time: number = null) {
+        return Tool.formatTimeDay2Num(time + addDay * (24 * 60 * 60 * 1000));
     }
 
     public static dateFormat(fmt, date) {
@@ -330,13 +323,13 @@ class Tool {
         for (let k in opt) {
             ret = new RegExp("(" + k + ")").exec(fmt);
             if (ret) {
-                if(opt[k].padStart){
+                if (opt[k].padStart) {
                     fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
-                }else{
+                } else {
                     fmt = fmt.replace(ret[1], (opt[k]))
                 }
-            };
-        };
+            }
+        }
         return fmt;
     }
 
@@ -433,39 +426,6 @@ class Tool {
         return chinese_digit;
     }
 
-    // public static getChineseByNum(num: number): string {
-    //     if (num <= 0) {
-    //         return GameDefine.Chinese_Company_Ary[0];
-    //     }
-    //     if (num < 10) {
-    //         return GameDefine.Chinese_Number_Ary[num];
-    //     }
-    //     if (num < 20) {
-    //         return GameDefine.Chinese_Company_Ary[1] + GameDefine.Chinese_Number_Ary[num % 10];
-    //     }
-    //     let result = "";
-    //     let numStr: string = num.toString();
-    //     let length = numStr.length;
-    //     let lastChar: number = -1;
-    //     let wei = 0;
-    //     for (let i = length - 1; i >= 0; --i) {
-    //         let char = parseInt(numStr[i]);
-    //         if (char == 0) {
-    //             if (result.length > 0 && lastChar != 0) {
-    //                 result = GameDefine.Chinese_Company_Ary[0] + result;
-    //             }
-    //         } else {
-    //             if (wei > 0) {
-    //                 result = GameDefine.Chinese_Number_Ary[char] + GameDefine.Chinese_Company_Ary[wei] + result;
-    //             } else {
-    //                 result = GameDefine.Chinese_Number_Ary[char] + result;
-    //             }
-    //         }
-    //         wei++;
-    //         lastChar = char;
-    //     }
-    //     return result;
-
     //转换成汉字格式数字
     public static toChineseNum(num: number): string {
         let chinese_digit: string = '' + num;
@@ -481,7 +441,6 @@ class Tool {
         return chinese_digit;
     }
 
-    // }
     public static currencyTo(sNum): string {
         let nNum = parseFloat(sNum);
         if (!isNaN(nNum)) {
@@ -524,6 +483,10 @@ class Tool {
         if (r != null)
             return r[2].toString();
         return null;
+    }
+
+    private static xxx(n) {
+        return n >= 10 ? n : ('0' + n);
     }
 
     //The end

@@ -14,7 +14,7 @@
                          touchEnabled="false" horizontalCenter="0" verticalCenter="0" textColor="0xffffff" />
             </e:Group>
             <e:Label id='timerLab' text="" size="30" fontFamily="SimHei" textAlign="left" strokeColor="0x3E0909"
-                     height="35" touchEnabled="false" verticalCenter="-190" textColor="0xffffff" right="86" />
+                     height="35" touchEnabled="false" textColor="0xffffff" right="86"  top="243"/>
             <e:Group id="qiuGroup" width="100%" horizontalCenter="0" bottom="160" height="500">
                 <e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0" />
                 <e:Image touchEnabled="false" source="cundang_dian1_png" verticalCenter="0" />
