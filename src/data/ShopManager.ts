@@ -24,7 +24,7 @@ class ShopManager {
 
     public takeOffAllBookValue() {
         for (let k in this._serverItemNums) {
-            if (typeof(this._serverItemNums[k]) == "number" && this._serverItemNums[k] > 0) {
+            if (typeof (this._serverItemNums[k]) == "number" && this._serverItemNums[k] > 0) {
                 this.takeOffBookValue(GameDefine.BOOKID, k, 0, this._serverItemNums[k]);//this._serverItemNums[k]
             }
         }
@@ -51,7 +51,7 @@ class ShopManager {
             this.addGoods(itemId, num, callback);
         } else {
             let callbackBuyGoods = (data) => {
-                if(platform.getPlatform() == "plat_1001"){
+                if (platform.getPlatform() == "plat_1001") {
                     let recData = data.data;
                     let jsonObject = data.data.value;
                     if (data.code == 0) {
@@ -63,9 +63,9 @@ class ShopManager {
                     } else {
                         GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + recData.msg);
                     }
-                }else if(platform.getPlatform() == "plat_txsp"){
+                } else if (platform.getPlatform() == "plat_txsp") {
                     if (data.code == 0) {
-                        this._serverItemNums[itemId] = (this._serverItemNums[itemId]||0) + num;//更新商品数量
+                        this._serverItemNums[itemId] = (this._serverItemNums[itemId] || 0) + num;//更新商品数量
                         this.addGoods(itemId, 0, callback)//需要加0以便能调用到回调函数
                     } else {
                         GameCommon.getInstance().addAlert("商品购买失败~errcode:::" + data.code + "~~errmsg:::" + data.msg);
@@ -124,7 +124,11 @@ class ShopManager {
             this._shopDataDict = {};
             for (let id in JsonModelManager.instance.getModelshop()) {
                 let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
-                let valueObj = {saleId: model.id, currPrice: model.currPrice*platform.getPriceRate(), origPrice: model.origPrice*platform.getPriceRate()};
+                let valueObj = {
+                    saleId: model.id,
+                    currPrice: model.currPrice * platform.getPriceRate(),
+                    origPrice: model.origPrice * platform.getPriceRate()
+                };
                 let shopData: ShopInfoData = new ShopInfoData(valueObj);
                 this._shopDataDict[shopData.id] = shopData;
             }
@@ -137,7 +141,7 @@ class ShopManager {
         if (this._loadingFromServer)
             return;
         this._loadingFromServer = true;
-        if (!this._serverItemNums["loadedRecord"] && record){
+        if (!this._serverItemNums["loadedRecord"] && record) {
             //存档中的数量初始化
             let r = JSON.parse(record);
             for (let itemId in r) {
@@ -148,7 +152,7 @@ class ShopManager {
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
         }
         //1001需要从服务器上取得物品数量;loaded代表平台数量是否已获取
-        if(platform.getPlatform() == "plat_1001" && !this._serverItemNums["loaded"]){
+        if (platform.getPlatform() == "plat_1001" && !this._serverItemNums["loaded"]) {
             let callback = (data) => {
                 if (data.code == 0) {
                     let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
@@ -167,7 +171,7 @@ class ShopManager {
             let currentSlotId: number = 0;
             platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
         }
-        if(platform.getPlatform() == "plat_txsp" && !this._serverItemNums["loaded"]){
+        if (platform.getPlatform() == "plat_txsp" && !this._serverItemNums["loaded"]) {
             // let callback = (data) => {
             //     if (data.code == 0) {
             //         let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
@@ -185,24 +189,24 @@ class ShopManager {
             // };
             // let currentSlotId: number = 0;
             // platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
-            let callback=(data)=>{
+            let callback = (data) => {
                 this._loadingFromServer = false;
-                if (data.code == 0){
-                    for (let product_id in data.result.product_count){
+                if (data.code == 0) {
+                    for (let product_id in data.result.product_count) {
                         let id = Number(product_id);
                         this._serverItemNums[id] = data.result.product_count[id] - data.result.product_consumed_count[id];
                     }
                     this._serverItemNums["loaded"] = true;
-                }else{
+                } else {
                     GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.msg);
                 }
             };
             let itemids = [];
             let t = JsonModelManager.instance.getModelshop();
-            for (let id in t){
+            for (let id in t) {
                 itemids.push(id);
             }
-            platform.getBookValues(GameDefine.BOOKID,itemids,callback);
+            platform.getBookValues(GameDefine.BOOKID, itemids, callback);
         }
     }
 
@@ -213,7 +217,7 @@ class ShopManager {
             this.loadFromServer()
             return 0;
         }
-        if (id == GameDefine.GUANGLIPINGZHENGEX || id == GameDefine.GUANGLIPINGZHENG){
+        if (id == GameDefine.GUANGLIPINGZHENGEX || id == GameDefine.GUANGLIPINGZHENG) {
             return (this._serverItemNums[GameDefine.GUANGLIPINGZHENGEX] || 0) + (this._serverItemNums[GameDefine.GUANGLIPINGZHENG] || 0);
         }
         return this._serverItemNums[id] || 0;
@@ -221,7 +225,7 @@ class ShopManager {
 
     public getItemNum(id) {
         // 如果已经关闭会员检查 且 查询的是会员数量 那么就返回1
-        if (!GameDefine.ENABLE_CHECK_VIP && id === GameDefine.GUANGLIPINGZHENG) {
+        if (!GameDefine.ENABLE_CHECK_VIP && id === GameDefine.GUANGLIPINGZHENG || id === GameDefine.GUANGLIPINGZHENGEX) {
             return 1;
         }
         let shopdata: ShopInfoData = this._shopDataDict[id] || {num: 0};
@@ -244,7 +248,7 @@ class ShopManager {
         var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
         for (var k in cfgs) {
             let id = cfgs[k].id;
-            if(UserInfo.lookAchievement[id] == 1 && !ShopManager.getInstance().onCheckShoucangOpen(id)){
+            if (UserInfo.lookAchievement[id] == 1 && !ShopManager.getInstance().onCheckShoucangOpen(id)) {
                 UserInfo.lookAchievement[id] = 0;
             }
             if (ShopManager.getInstance().onCheckShoucangOpen(id) && UserInfo.lookAchievement[id] != 1) {
@@ -270,6 +274,10 @@ class ShopManager {
         }
         return ShopManager.getInstance().getItemNum(itemId) > 0;
         //return this._openShoucangIds.indexOf(shoucangID) >= 0;
+    }
+
+    public isVIP() {
+        return this.getItemNum(GameDefine.GUANGLIPINGZHENG) > 0 || this.getItemNum(GameDefine.GUANGLIPINGZHENGEX) > 0;
     }
 
     private onBuySuccessHandler(shopdata: ShopInfoData, isBuy: boolean = true): void {

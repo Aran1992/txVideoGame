@@ -13,51 +13,51 @@
 				<e:Image id="icon" source="main_icon_png" x="56" y="25"  visible="false"/>
 			</e:Group>
 			<e:Group verticalCenter="0">
-				<e:Button id="btnChengjiu" icon="yuandianbai_png" width="260" height="93">
+				<e:Button id="btnChengjiu" icon="yuandianbai_png" width="260" height="93" touchEnabled="true" touchChildren="true">
 					<e:skinName>
-					<e:Skin states="up,down" width="272" height="88">
+					<e:Skin states="up,down" width="260" height="93">
 						<e:Image source="left_btn_di_png" visible="false" visible.down="true" left="0" verticalCenter="0"/>
 						<e:Label id="idTitle1" text="心动PASS" fontFamily="SimHei" size="36" x="79" verticalCenter="0"/>
 						<e:Image source="main_jiantou1_png" left="0" verticalCenter="0"/>
 						<e:Image id="idNewPoint1" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" verticalCenter="-20"/>
+						<e:Group width="260" height="93" touchEnabled="true" touchChildren="true"/>
 					</e:Skin>
 					</e:skinName>
 				</e:Button>
 				<e:Button id="btnShangCheng" icon="yuandianbai_png" width="260" height="93">
 					<e:skinName>
-					<e:Skin states="up,down" width="260" height="88">
+					<e:Skin states="up,down" width="260" height="93">
 						<e:Image source="left_btn_di_png" visible.down="true" left="0" verticalCenter="0" width="272" height="88" visible="false"/>
 						<e:Label id="idTitle2" text="福 利 社" fontFamily="SimHei" size="36" x="79" verticalCenter="0"/>
 						<e:Image source="main_jiantou1_png" left="0" verticalCenter="0" scale9Grid="8,2,38,17"/>
 						<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" verticalCenter="-20"/>
+						<e:Group width="260" height="93" touchEnabled="true" touchChildren="true"/>
 					</e:Skin>
 					</e:skinName>
 				</e:Button>
 				<e:Button id="btnShouCang" icon="yuandianbai_png" height="93" width="260">
 					<e:skinName>
-						<e:Skin states="up,down" width="260" height="88">
+						<e:Skin states="up,down" width="260" height="93">
 							<e:Image source="left_btn_di_png" visible.down='true' left='0' verticalCenter="0" width="272" height="88"
 							         visible="false" />
 							<e:Label id="idTitle" text="已获福利" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
 							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
 							<e:Image id="idNewPoint" touchEnabled="false" source="redCircle_png" scaleX="0.3" scaleY="0.3" verticalCenter="-20"/>
+						<e:Group width="260" height="93" touchEnabled="true" touchChildren="true"/>
 						</e:Skin>
 					</e:skinName>
 				</e:Button>
-
-
 				<e:Button id="btnSetting" icon="yuandianbai_png" width="260" height="93">
 					<e:skinName>
-						<e:Skin states="up,down" width="260" height="88">
+						<e:Skin states="up,down" width="260" height="93">
 							<e:Image source="left_btn_di_png" visible.down='true' left='0' verticalCenter="0" width="272" height="88"
 							         visible="false" />
 							<e:Label text="帮  助" fontFamily="SimHei" size="36" x="79" verticalCenter="0" />
 							<e:Image source="main_jiantou1_png" left='0' verticalCenter="0" scale9Grid="8,2,38,17" />
+						<e:Group width="260" height="93" touchEnabled="true" touchChildren="true"/>
 						</e:Skin>
 					</e:skinName>
 				</e:Button>
-
-
 				<e:layout>
 					<e:VerticalLayout gap="12" />
 				</e:layout>

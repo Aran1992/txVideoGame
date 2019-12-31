@@ -665,7 +665,7 @@ class TipsBtn extends eui.Component {
     }
 
     private updateXSMFButton() {
-        const isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
+        const isVIP = ShopManager.getInstance().isVIP();
         this.XDPASSButton.visible = !isVIP && isTXSP && !platform.isCelebrateTime();
         this.XSMFButton.visible = !isVIP && isTXSP && platform.isCelebrateTime();
     }
@@ -746,8 +746,7 @@ class TipsBtn extends eui.Component {
         this.idBtnTicket.visible = platform.getPlatform() == "plat_txsp";
         this.idBtnTicket.visible = false;
         let onSale = GameCommon.getInstance().isChapterOnSale(nnextChapterId);
-        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        let isVip = vipNum > 0;
+        let isVip = ShopManager.getInstance().isVIP();
         if (isVip || nnextChapterId == 0 || !onSale) {
             this.idBtnClock.visible = false;
             this.idBtnTicket.visible = false;
@@ -777,8 +776,7 @@ class TipsBtn extends eui.Component {
     }
 
     private idBtnTicketClick() {
-        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        let isVip = vipNum > 0;
+        let isVip = ShopManager.getInstance().isVIP();
         if (isVip) {
             GameCommon.getInstance().showCommomTips("你已经购买了心动PASS了");
             return;

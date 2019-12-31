@@ -311,10 +311,8 @@ class GameWorld extends egret.DisplayObjectContainer {
                     }
                     break;
             }
-            if (shareImageInfo !== undefined) {
-                shareImageInfo = undefined;
-                GameCommon.getInstance().removeLoading();
-            }
+            shareImageInfo = undefined;
+            GameCommon.getInstance().removeLoading();
         };
     }
 }

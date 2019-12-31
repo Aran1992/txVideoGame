@@ -212,9 +212,8 @@ class TicketPanel extends eui.Component {
         this.idBtnCopyCode.visible = false;
         this.idBtnBuyPASS.visible = false;
         this.idBtnShareCode.visible = false;
-        let itemNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
         this.refreshActiveCode();
-        if (itemNum <= 0) {
+        if (!ShopManager.getInstance().isVIP()) {
             this.setUnusedNodeVisible(this.idGroupBuyTicket, true);
         }
         //如果还没有买过凭据，直接拍脸
@@ -239,7 +238,7 @@ class TicketPanel extends eui.Component {
     }
 
     private updateBuyBtnState() {
-        let isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
+        let isVIP = ShopManager.getInstance().isVIP();
         let isCelebrate = platform.isCelebrateTime();
         this.idBtnBuyNow.visible = !isVIP;
         this.unlockNotice.visible = !isVIP;
@@ -301,8 +300,7 @@ class TicketPanel extends eui.Component {
 
     private idBtnUseCodeClick() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        let isVip = vipNum > 0;
+        let isVip = ShopManager.getInstance().isVIP();
         if (isVip) {
             GameCommon.getInstance().showCommomTips("你已拥有心动PASS，不可以激活。");
             return;
@@ -341,7 +339,7 @@ class TicketPanel extends eui.Component {
     private idBtnBuyPASSClick() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM),
-            new WindowParam("BuyVIPPanel", undefined));
+            new WindowParam("BuyVIPPanel", "task"));
     }
 
     private idBtnShareCodeClick() {
@@ -352,7 +350,10 @@ class TicketPanel extends eui.Component {
         let base64Str = render.toDataURL("image/png");
 
         shareImageInfo = undefined;
-        platform.shareImage(GameDefine.BOOKID, base64Str);
+        GameCommon.getInstance().showLoading();
+        setTimeout(() => {
+            platform.shareImage(GameDefine.BOOKID, base64Str);
+        }, 0);
         //render.saveToFile("image/png", "aa.png");//也可以保存下来
     }
 
@@ -424,7 +425,7 @@ class TicketPanel extends eui.Component {
             GameCommon.getInstance().onShowBuyTips(itemID, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
         } else {
             let itemID = GameDefine.GUANGLIPINGZHENG;
-            if(!platform.isCelebrateTime())
+            if (!platform.isCelebrateTime())
                 itemID = GameDefine.GUANGLIPINGZHENGEX;
             ShopManager.getInstance().buyGoods(itemID, 1, callback);
         }

@@ -193,7 +193,7 @@ class MainView extends eui.Component {
     }
 
     private updateXSMFButton() {
-        let isVIP = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
+        let isVIP = ShopManager.getInstance().isVIP();
         this.XSMFButton.visible = platform.isCelebrateTime() && !isVIP;
     }
 

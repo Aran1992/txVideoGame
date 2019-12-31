@@ -1419,7 +1419,7 @@ class TaskManager {
     }
 
     private isUnlockLuxuryTask(): boolean {
-        return ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG) > 0;
+        return ShopManager.getInstance().isVIP();
     }
 
     private isTaskCompleted(tid): boolean {

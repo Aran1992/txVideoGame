@@ -883,8 +883,7 @@ class GameCommon {
         if (nextChapterId == 0)
             return true;
         let onSale = this.isChapterOnSale(nextChapterId);
-        let vipNum = ShopManager.getInstance().getItemNum(GameDefine.GUANGLIPINGZHENG);
-        let isVip = vipNum > 0;
+        let isVip = ShopManager.getInstance().isVIP();
         if (!onSale) {
             GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。");
             GameDefine.IS_DUDANG = false;
