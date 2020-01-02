@@ -47,7 +47,9 @@ class Main extends eui.UILayer {
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
         // 定义屏幕宽高
         this.resize();
-        this.stage.addEventListener(egret.Event.RESIZE, this.resize, this);
+        if (platform.getPlatform() === "plat_pc") {
+            this.stage.addEventListener(egret.Event.RESIZE, this.resize, this);
+        }
 
         if (DEBUG) {
             this.runGame();
