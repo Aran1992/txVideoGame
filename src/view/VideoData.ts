@@ -619,6 +619,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 errorList.push({type: "video player error", args});
                 GameCommon.getInstance().showErrorLog(JSON.stringify(args));
                 GameCommon.getInstance().showErrorLog('出现未处理错误，请点击上方复制log按钮，将复制到的log发给开发');
+                GameCommon.getInstance().showCommomTips("视频加载失败，请重新打开");
                 VideoManager.getInstance().clear();
                 this.touchEnabled = false;
                 this.touchChildren = false;
