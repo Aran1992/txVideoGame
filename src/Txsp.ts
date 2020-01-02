@@ -4,7 +4,7 @@ declare var txsp_userinfo;
 const txsp_appid = "tivf8061263egmdcyp";
 const txsp_debug = true;
 const txsp_vip = false;
-
+let h5StartedTime = new Date().getTime();
 
 class Txsp {
     public init() {
@@ -25,7 +25,9 @@ class Txsp {
         setInterval(() => {
             this.refreshToken();
         }, 600000);
-
+        bridgeHelper.reportAction({pageid: "hdsp_start"}).then((...args) => {
+            console.log("reportAction({pageid: \"hdsp_start\"}).then", args);
+        });
         GameDispatcher.getInstance().addEventListener(GameEvent.ONSHOW_VIDEO, this.onRefreshVideo, this);
     }
 
@@ -270,7 +272,9 @@ class Txsp {
             args["third_mod_id"] = Config.getAnswerConfig(data.data.wentiId, data.data.answerId).des;
         }
         console.log("reportAction args", args);
-        bridgeHelper.reportAction(args);
+        bridgeHelper.reportAction(args).then((...args) => {
+            console.log("reportAction(args).then", args);
+        });
     }
 }
 

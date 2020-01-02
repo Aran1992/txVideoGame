@@ -366,6 +366,11 @@ class MainView extends eui.Component {
         }
         this.play_Btn.visible = false;
         this.play_zi.visible = false;
+        if (isTXSP && !hasPlayedVideo) {
+            bridgeHelper.reportAction({pageid: "hdsp_play"}).then((...args) => {
+                console.log("reportAction({pageid: \"hdsp_play\"}).then", args);
+            });
+        }
     }
 
     private onBtnContinue(): boolean {

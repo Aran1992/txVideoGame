@@ -13,6 +13,8 @@ const ADShowConfig = [
     }
 ];
 
+let hasPlayedVideo = false;
+
 class VideoData extends egret.DisplayObjectContainer {
     public tipsPanel: TipsBtn;
     public videoUpDataHandle: Function;
@@ -581,6 +583,17 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         if (!this.videoEndHandle) {
             widPlayer.on('statechange', (data) => {
+                if (isTXSP && !hasPlayedVideo) {
+                    hasPlayedVideo = true;
+                    bridgeHelper.reportAction({
+                        reportkey: "hdsp_reday",
+                        data_type: "button",
+                        mod_id: "loadingtime",
+                        sub_mod_id: new Date().getTime() - h5StartedTime,
+                    }).then((...args) => {
+                        console.log("reportAction({pageid: \"hasPlayedVideo\"}).then", args);
+                    });
+                }
                 if (GameDefine.CUR_PLAYER_VIDEO == 2) {
                     return;
                 }

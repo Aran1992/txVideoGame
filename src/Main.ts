@@ -127,6 +127,11 @@ class Main extends eui.UILayer {
             console.error(e);
         }
         this.stage.removeChild(loadingView);
+        if (isTXSP) {
+            bridgeHelper.reportAction({pageid: "hdsp_reday"}).then((...args) => {
+                console.log("reportAction({pageid: \"hdsp_play\"}).then", args);
+            });
+        }
     }
 
     private loadTheme() {
