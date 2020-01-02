@@ -167,7 +167,6 @@ class ShouCangViewPanel extends eui.Component {
         let hasItem = false;
         for (var nk in keySorted) {
             let k = keySorted[nk];
-            if (ShopManager.getInstance().onCheckShoucangOpen(cfgs[k].id)) {
                 if (cfgs[k].mulu1 == GameDefine.CUR_ROLEIDX) {
                     if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG || cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
                         curIdx = curIdx + 1;
@@ -177,7 +176,6 @@ class ShouCangViewPanel extends eui.Component {
                         hasItem = true;
                     }
                 }
-            }
         }
         this.scroll.viewport.scrollV = 0;
         if (hasItem) {

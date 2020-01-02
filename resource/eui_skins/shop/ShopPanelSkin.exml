@@ -63,35 +63,35 @@
 				<e:VerticalLayout gap="15" />
 			</e:layout>
 		</e:Group>
-		<e:Group id="shopGroup" left="300" right="0" top="125" bottom="0">
-			<e:Group id="image_shop_grp" width="100%" height="100%" verticalCenter="0">
-				<e:Scroller id="image_shop_scroll" top="7" bottom="40" left="0" right="9" anchorOffsetY="0" anchorOffsetX="0">
+		<e:Group id="shopGroup" left="300" right="0" top="120" bottom="0">
+			<e:Group id="image_shop_grp" width="100%" height="100%" y="0">
+				<e:Scroller id="image_shop_scroll" width="100%" height="100%">
 					<e:Group width="100%" height="100%">
-						<e:List id="imgs_list" horizontalCenter="0">
+						<e:List id="imgs_list" width="100%" height="100%" x="0">
 							<e:layout>
-								<e:TileLayout requestedColumnCount="4" horizontalGap="60" verticalGap="30" horizontalAlign="center" />
+								<e:TileLayout verticalGap="30" horizontalAlign="left"  columnAlign="justifyUsingGap" paddingRight="50" verticalAlign="top" horizontalGap="6"/>
 							</e:layout>
 						</e:List>
 					</e:Group>
 				</e:Scroller>
 			</e:Group>
-			<e:Group id="video_shop_grp" width="100%" height="100%" visible="false">
-				<e:Scroller id="video_shop_scroll" left="0" right="0" top="40" bottom="40">
+			<e:Group id="video_shop_grp" width="100%" height="100%">
+				<e:Scroller id="video_shop_scroll" width="100%" height="100%">
 					<e:Group width="100%" height="100%">
 						<e:List id="videos_list" width="100%" height="100%">
 							<e:layout>
-								<e:HorizontalLayout gap="30" />
+								<e:HorizontalLayout gap="30"  paddingRight="75"/>
 							</e:layout>
 						</e:List>
 					</e:Group>
 				</e:Scroller>
 			</e:Group>
-			<e:Group id="music_shop_grp" width="100%" height="100%" visible="false">
-				<e:Scroller id="musics_shop_scroll" width="1250" height="730" horizontalCenter="0">
+			<e:Group id="music_shop_grp" width="100%" height="100%">
+				<e:Scroller id="musics_shop_scroll" width="100%" height="100%">
 					<e:Group width="100%" height="100%">
-						<e:List id="musics_list" horizontalCenter="0">
+						<e:List id="musics_list" width="100%" height="100%" x="0">
 							<e:layout>
-								<e:TileLayout requestedColumnCount="3" horizontalGap="55" verticalGap="30" />
+								<e:TileLayout verticalGap="30"  paddingRight="50" horizontalGap="6" horizontalAlign="left" verticalAlign="top" rowAlign="top" columnAlign="justifyUsingGap"/>
 							</e:layout>
 						</e:List>
 					</e:Group>
@@ -119,7 +119,7 @@
 					</e:Group>
 				</e:Scroller>
 			</e:Group>
-			<e:Group id="xinshoubao_grp" width="100%" height="765">
+			<e:Group id="xinshoubao_grp" width="100%" height="765" visible="false">
 				<e:Image source="shop_xinshou_bg_png" scale9Grid="15,3,91,50" bottom="40" top="20" left="10" right="40"
 				         locked="true" />
 				<e:Scroller left="20" right="50" top="30" bottom="200">

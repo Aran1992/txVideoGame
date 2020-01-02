@@ -1,15 +1,10 @@
 // TypeScript file
 class ShouCangMusicPanel extends eui.Component {
-    private mainGroup: eui.Group;
     private bgBtn: eui.Group;
     private goodsLayer: eui.Group;
-    private addBtn: eui.Button;
-    private reduceBtn: eui.Button;
-    private play_pauseBtn: eui.Button;
     private scroll: eui.Scroller;
-    private labScroll: eui.Scroller;
-    private lyricsLab: eui.Label;
-    private musicLab: eui.Group;
+    private centerGroup: eui.Group;
+    private noneGroup: eui.Group;
 
     constructor() {
         super();
@@ -57,16 +52,23 @@ class ShouCangMusicPanel extends eui.Component {
     private showGoods() {
         this.goodsLayer.removeChildren();
         var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
+        let hasItem = false;
         for (var k in cfgs) {
-            if (ShopManager.getInstance().onCheckShoucangOpen(cfgs[k].id)) {
                 if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_MUSIC) {
                     var cg: ShouCangMusicItem = new ShouCangMusicItem();
                     this.goodsLayer.addChild(cg);
                     cg.data = cfgs[k];
+                    hasItem = true;
                 }
-            }
         }
         this.scroll.viewport.scrollV = 0;
+        if (hasItem) {
+            this.noneGroup.visible = false;
+            this.centerGroup.visible = true;
+        } else {
+            this.noneGroup.visible = true;
+            this.centerGroup.visible = false;
+        }
     }
 
     private onLoadComplete(): void {
@@ -111,7 +113,7 @@ class ShouCangMusicItem extends eui.Component {
 
     private onPlayVideo() {
         if(UserInfo.lookAchievement[this.info.id]!=1){
-            UserInfo.lookAchievement[this.info.id] = 1;    
+            UserInfo.lookAchievement[this.info.id] = 1;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
         }
         this.idNewPoint.visible=false;

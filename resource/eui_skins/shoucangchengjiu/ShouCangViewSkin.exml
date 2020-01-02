@@ -13,19 +13,33 @@
 		</e:Button>
 		<e:BitmapLabel id="suipNum" text="15" font="zuanshiFont_fnt" touchEnabled="false" letterSpacing="0" scaleX="0.5"
 		               scaleY="0.5" right="80" top="47"  visible="false"/>
-		<e:Group id="centerGroup" height="779.8" width="1430" horizontalCenter="43" anchorOffsetY="0" verticalCenter="60" visible="false">
+		<e:Group id="centerGroup" anchorOffsetY="0" top="120" bottom="0" left="0" right="0">
 			<e:Group id="itemGroup" touchChildren="true" touchEnabled="true" width="100%" height="100%">
-				<e:Scroller id="scroll" height="100%" skinName="skins.ScrollerSkin" horizontalCenter="0" width="100%">
-					<e:Group id="goodsLayer">
+				<e:Scroller id="scroll" skinName="skins.ScrollerSkin" x="0" width="100%" height="100%">
+					<e:Group id="goodsLayer" width="100%" height="100%">
 						<e:layout>
-							<e:TileLayout requestedColumnCount="4" horizontalGap="50" verticalGap="30"/>
+							<e:TileLayout verticalGap="30" columnAlign="justifyUsingGap" paddingLeft="75" paddingRight="75" horizontalGap="6"/>
 						</e:layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 					</e:Group>
 				</e:Scroller>
 			</e:Group>
 		</e:Group>
-		<e:Group id="noneGroup" width="100%" horizontalCenter="0" anchorOffsetY="0" top="120" bottom="0">
+		<e:Group id="noneGroup" width="100%" horizontalCenter="0" anchorOffsetY="0" top="120" bottom="0" visible="false">
 			<e:Image source="sc_mini_role_png" scaleX="0.8" scaleY="0.8" horizontalCenter="0" verticalCenter="-100"/>
 			<e:Label text="—— 空空如也，快去福利社获得吧 ——" horizontalCenter="0" verticalCenter="80" size="40" bold="true" fontFamily="SimHei"/>
 			<e:Button id="goToShopButton" label="" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="175">
