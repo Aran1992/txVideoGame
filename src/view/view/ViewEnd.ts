@@ -10,6 +10,7 @@ class ViewEnd extends eui.Component {
     private isdie: boolean;
     private goMain: eui.Button;
     private goJuqing: eui.Button;
+    private btnExit: eui.Button;
 
     constructor(isDie, tiaozhuan) {
         super();
@@ -56,11 +57,14 @@ class ViewEnd extends eui.Component {
             this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEvent, this);
             this.goMain.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGoBack, this);
             this.goJuqing.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGoBack, this);
+            this.btnExit.addEventListener(egret.TouchEvent.TOUCH_TAP, this.btnExitClick, this);
             if (isTXSP) {
                 this.goMain.visible = false;
+                this.btnExit.visible = false;
                 this.goJuqing.visible = true;
             } else {
                 this.goMain.visible = true;
+                this.btnExit.visible = true;
                 this.goJuqing.visible = false;
             }
         } else {
@@ -138,6 +142,10 @@ class ViewEnd extends eui.Component {
         if (this.parent) {
             this.parent.removeChild(this);
         }
+    }
+
+    private btnExitClick() {
+        platform.close();
     }
 }
 

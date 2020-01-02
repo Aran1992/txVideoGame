@@ -58,6 +58,7 @@
 					<e:Skin states="up,down,disabled">
 					<e:Image width="50%" height="50%" left="25%" top="25%" source="common_close1_png" source.down="common_close1_png"/>
 					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					<e:Group width="88" height="112" touchEnabled="true" touchChildren="true"/>
 					</e:Skin>
 				</e:skinName>
 

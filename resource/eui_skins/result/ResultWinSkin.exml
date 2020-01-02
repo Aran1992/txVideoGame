@@ -54,6 +54,15 @@
 		</e:layout>
 	</e:Group>
 	<e:Label id="labState" text="一完成章节一" size="30" fontFamily="SimHei" textAlign="left" strokeColor="0x3E0909" height="32" touchEnabled="false" horizontalCenter="0" top="130" textColor="0x60c0d1" x="710" y="130" scaleX="1" scaleY="1"/>
+	<e:Button id="btnExit" width="88" height="112" left="63" top="52" anchorOffsetX="0" anchorOffsetY="0" x="63" y="52" scaleX="1" scaleY="1">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="50%" height="50%" left="25%" top="25%" source="common_close1_png" source.down="common_close1_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			<e:Group width="88" height="112" touchEnabled="true" touchChildren="true"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
 </e:Group>
 
 

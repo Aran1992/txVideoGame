@@ -5,6 +5,7 @@ class ResultWinPanel extends eui.Component {
     private btnMain: eui.Button;
     private btnJuqing: eui.Button;
     private btnNext: eui.Button;
+    private btnExit: eui.Button;
     private readonly _isEnd: boolean;
     private curChapter: number;
 
@@ -38,6 +39,7 @@ class ResultWinPanel extends eui.Component {
         this.width = this.stage.stageWidth;
         this.height = this.stage.stageHeight;
         this.btnNext.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onContinue, this);
+        this.btnExit.addEventListener(egret.TouchEvent.TOUCH_TAP, this.btnExitClick, this);
         this.btnMain.addEventListener(egret.TouchEvent.TOUCH_TAP, ResultWinPanel.onShowMainView, this);
         this.btnJuqing.addEventListener(egret.TouchEvent.TOUCH_TAP, ResultWinPanel.onShowMainView, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
@@ -72,9 +74,11 @@ class ResultWinPanel extends eui.Component {
 
         if (isTXSP) {
             this.btnMain.visible = false;
+            this.btnExit.visible = false;
             this.btnJuqing.visible = true;
         } else {
             this.btnMain.visible = true;
+            this.btnExit.visible = true;
             this.btnJuqing.visible = false;
         }
     }
@@ -115,6 +119,10 @@ class ResultWinPanel extends eui.Component {
         }
         this.touchEnabled = false;
         this.touchChildren = false;
+    }
+
+    private btnExitClick() {
+        platform.close();
     }
 }
 
