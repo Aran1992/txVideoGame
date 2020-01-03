@@ -75,4 +75,12 @@ class Modeljuqingkuai extends ModelJsonBase {
 		return this._json["name"];
 	}
 
+	private _chapter;
+	public set chapter(value){
+		this._chapter = value;
+	}
+	public get chapter():number{
+		return parseFloat(this._json["chapter"]);
+	}
+
 }
