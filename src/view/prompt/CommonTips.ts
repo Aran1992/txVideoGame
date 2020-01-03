@@ -149,15 +149,20 @@ class CommonTips extends eui.Component {
                 str = `—— 由于肖家兄弟的好感度最高，您即将进入肖家兄弟的故事 ——`;
                 break;
         }
-        this.roleChapterNoticeLabel.text = str;
-        this.roleChapterNoticeGroup.visible = true;
-        egret.Tween.get(this.roleChapterNoticeGroup)
-            .wait(3000)
-            .call(() => {
-                this.roleChapterNoticeGroup.visible = false;
-                GameCommon.getInstance().showLoading();
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
-            });
+        const callback = () => {
+            this.roleChapterNoticeGroup.visible = false;
+            GameCommon.getInstance().showLoading();
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_CONTINUE));
+        };
+        if (str) {
+            this.roleChapterNoticeLabel.text = str;
+            this.roleChapterNoticeGroup.visible = true;
+            egret.Tween.get(this.roleChapterNoticeGroup)
+                .wait(3000)
+                .call(callback);
+        } else {
+            callback();
+        }
     }
 
     //互动操作提示
