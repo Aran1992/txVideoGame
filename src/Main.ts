@@ -104,34 +104,62 @@ class Main extends eui.UILayer {
     }
 
     private async runGame() {
-        await plattxsp.login();
-        await this.loadResource();
-        this.createGameScene();
+        plattxsp.login().then(r => console.log(r));
+        this.loadResource(() => this.createGameScene());
     }
 
-    private async loadResource() {
+    private loadResource(callback) {
         GameCommon.getInstance().getBookHistory(FILE_TYPE.AUTO_FILE);
         GameCommon.getInstance().getBookHistory(FILE_TYPE.TASK);
-        await RES.loadConfig("resource/default.res.json", "resource/");
-        await RES.loadGroup("loading", 0);
-        await this.loadTheme();
-        const loadingView = new LoadingUI();
-        this.stage.addChild(loadingView);
-        loadingView.anchorOffsetX = loadingView.width / 2;
-        loadingView.anchorOffsetY = loadingView.height / 2;
-        loadingView.x = size.width / 2;
-        loadingView.y = size.height / 2;
-        try {
-            await RES.loadGroup("preload", 0, loadingView);
-        } catch (e) {
-            console.error(e);
-        }
-        this.stage.removeChild(loadingView);
-        if (isTXSP) {
-            bridgeHelper.reportAction({pageid: "hdsp_reday"}).then((...args) => {
-                console.log("reportAction({pageid: \"hdsp_play\"}).then", args);
+        const table = {
+            loadConfig: false,
+            loadGroup: false,
+            loadTheme: false,
+        };
+        const checkTable = () => {
+            for (const key in table) {
+                if (table.hasOwnProperty(key)) {
+                    if (table[key] === false) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        };
+        const loadedCallback = () => {
+            if (checkTable()) {
+                const loadingView = new LoadingUI();
+                this.stage.addChild(loadingView);
+                loadingView.anchorOffsetX = loadingView.width / 2;
+                loadingView.anchorOffsetY = loadingView.height / 2;
+                loadingView.x = size.width / 2;
+                loadingView.y = size.height / 2;
+                try {
+                    RES.loadGroup("preload", 0, loadingView).then(() => {
+                        this.stage.removeChild(loadingView);
+                        if (isTXSP) {
+                            bridgeHelper.reportAction({pageid: "hdsp_reday"}).then((...args) => {
+                                console.log("reportAction({pageid: \"hdsp_play\"}).then", args);
+                            });
+                        }
+                        callback();
+                    });
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        };
+        RES.loadConfig("resource/default.res.json", "resource/").then(() => {
+            table.loadConfig = true;
+            RES.loadGroup("loading", 0).then(() => {
+                table.loadGroup = true;
+                loadedCallback();
             });
-        }
+            this.loadTheme().then(() => {
+                table.loadTheme = true;
+                loadedCallback();
+            });
+        });
     }
 
     private loadTheme() {
