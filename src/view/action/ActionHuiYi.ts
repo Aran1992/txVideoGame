@@ -102,5 +102,6 @@ class ActionHuiYi extends ActionTimerSceneBase {
             this.parent.removeChild(this);
         GuideManager.getInstance().isGuide = false;
         GuideManager.getInstance().curState = false;
+        GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onBuySuccessCallback, this);
     }
 }

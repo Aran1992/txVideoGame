@@ -68,7 +68,6 @@ class ShopPanel extends eui.Component {
         this.updateTabIdx(0);
         this.updateCurrency();
         this.updateNewPoint();
-        
     }
 
     private onBuyItemComplte(data) {
@@ -109,6 +108,7 @@ class ShopPanel extends eui.Component {
         this.filter_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onFilter, this);
         this.xinshoubao_buy_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuyXinshoubao, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onBuyItemComplte, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onBuyRefresh, this);
         this.cur_models = null;
         this.showFilter = null;
@@ -174,7 +174,7 @@ class ShopPanel extends eui.Component {
         //     GuideManager.getInstance().onShowImg(this.mainGroup, this.btnClose, 'leftClose')
         // }
         this.updateCurrency();
-        
+
     }
 
     private showGoods() {
@@ -477,7 +477,7 @@ class ImagesShopItem extends eui.ItemRenderer {
         if (num > 0) {//shopInfoDt.num
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
-            this.buy_btn.label = "已购买";        
+            this.buy_btn.label = "已购买";
             this.idNewPoint.visible = false;
         } else {
             let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
@@ -494,7 +494,7 @@ class ImagesShopItem extends eui.ItemRenderer {
                 this.buy_btn.label = "免费购买";
                 this.idNewPoint.visible = true;
             }else{
-                this.buy_btn.label = "购买";                
+                this.buy_btn.label = "购买";
                 this.idNewPoint.visible = false;
             }
             // this.buy_btn.icon = currencyIcon;
