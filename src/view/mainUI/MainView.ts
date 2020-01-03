@@ -348,13 +348,9 @@ class MainView extends eui.Component {
             this.onGetDataRefresh();
         } else {
             if (isTXSP) {
-                if (UserInfo.curchapter === 0) {
-                    this.gameWorld.createGameScene();
-                } else {
-                    // 如果没有成功继续 那么就不隐藏按钮
-                    if (!this.onBtnContinue()) {
-                        return;
-                    }
+                // 如果没有成功继续 那么就不隐藏按钮
+                if (!this.onBtnContinue()) {
+                    return;
                 }
             } else {
                 if (this.curDuDang) {
