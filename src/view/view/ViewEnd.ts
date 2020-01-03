@@ -60,12 +60,12 @@ class ViewEnd extends eui.Component {
             this.btnExit.addEventListener(egret.TouchEvent.TOUCH_TAP, this.btnExitClick, this);
             if (isTXSP) {
                 this.goMain.visible = false;
-                this.btnExit.visible = false;
                 this.goJuqing.visible = true;
+                this.btnExit.visible = true;
             } else {
                 this.goMain.visible = true;
-                this.btnExit.visible = true;
                 this.goJuqing.visible = false;
+                this.btnExit.visible = false;
             }
         } else {
             this.mainGroup.visible = false;

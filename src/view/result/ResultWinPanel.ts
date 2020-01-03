@@ -74,12 +74,12 @@ class ResultWinPanel extends eui.Component {
 
         if (isTXSP) {
             this.btnMain.visible = false;
-            this.btnExit.visible = false;
             this.btnJuqing.visible = true;
+            this.btnExit.visible = true;
         } else {
             this.btnMain.visible = true;
-            this.btnExit.visible = true;
             this.btnJuqing.visible = false;
+            this.btnExit.visible = false;
         }
     }
 
