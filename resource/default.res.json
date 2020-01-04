@@ -3738,7 +3738,7 @@
         {
             "name": "loading_bg_jpg",
             "type": "image",
-            "url": "assets/loading/loading_bg.jpg?v=767"
+            "url": "assets/loading/loading_bg.jpg?v=159"
         },
         {
             "name": "loading_head_1_png",
@@ -8643,7 +8643,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=184"
+            "url": "config/config.bin?v=233"
         }
     ]
 }
