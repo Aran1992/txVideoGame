@@ -55,6 +55,10 @@ class CommonTips extends eui.Component {
     private roleChapterNoticeGroup: eui.Group;
     private roleChapterNoticeLabel: eui.Label;
     private idBuyItemName: eui.Label;
+    private restartGrp: eui.Group;
+    private restartConfirmBtn: eui.Button;
+    private restartCancelBtn: eui.Button;
+    private restartJQBtn: eui.Button;
 
     constructor() {
         super();
@@ -309,6 +313,9 @@ class CommonTips extends eui.Component {
         this.btnConfirm_qinmi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm_qinmi, this);
         this.btnCancel_haogan.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnCancel_haogan, this);
         this.btnConfirm_haogan.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm_haogan, this);
+        this.restartConfirmBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.restartConfirmBtnClick, this);
+        this.restartCancelBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.restartCancelBtnClick, this);
+        this.restartJQBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.restartJQBtnClick, this);
         this.updateResize();
         this.onInit();
     }
@@ -428,5 +435,31 @@ class CommonTips extends eui.Component {
         this.confirm_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
         this.cancel_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
         this.onhideMaskBG();
+    }
+
+    public showRestartGroup() {
+        this.restartGrp.visible = true;
+        this.onshowMaskBG();
+    }
+
+    private restartConfirmBtnClick() {
+        this.restartGrp.visible = false;
+        this.onhideMaskBG();
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+            cfg: JsonModelManager.instance.getModeljuqingkuai()[1][1],
+            idx: FILE_TYPE.AUTO_FILE
+        });
+    }
+
+    private restartCancelBtnClick() {
+        this.restartGrp.visible = false;
+        this.onhideMaskBG();
+    }
+
+    private restartJQBtnClick() {
+        this.restartGrp.visible = false;
+        this.onhideMaskBG();
+        GameDefine.IS_DUDANG = false;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
     }
 }

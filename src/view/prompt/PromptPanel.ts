@@ -61,6 +61,10 @@ class PromptPanel extends egret.DisplayObjectContainer {
         this.cjTips.onShowBuyHaoGan(wentiId, id);
     }
 
+    public showRestartGroup() {
+        this.cjTips.showRestartGroup();
+    }
+
     public onShowResultTips(str: string, isRight: boolean, btnlabel: string, callBack: Function, ...arys) {
         this.cjTips.onShowResultTips(str, isRight, btnlabel, callBack, arys);
     }

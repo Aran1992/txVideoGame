@@ -340,6 +340,10 @@ class MainView extends eui.Component {
     }
 
     private onEventPlay() {
+        if (GameCommon.getInstance().isCompleteGame()) {
+            PromptPanel.getInstance().showRestartGroup();
+            return;
+        }
         if (!UserInfo.curBokData) {
             UserInfo.allVideos = {};
             UserInfo.ansWerData = new AnswerData;
@@ -373,6 +377,10 @@ class MainView extends eui.Component {
         SoundManager.getInstance().playSound("ope_click.mp3");
         if (!GameCommon.getInstance().checkChapterLocked())
             return false;
+        if (GameCommon.getInstance().isCompleteGame()) {
+            PromptPanel.getInstance().showRestartGroup();
+            return;
+        }
         if (this.curDuDang) {
             this.curDuDang = false;
             GameDefine.IS_DUDANG = true;

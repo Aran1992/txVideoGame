@@ -12,7 +12,6 @@ class LoadingPanel extends eui.Component {
     }
 
     public starLoading() {
-        console.trace("starLoading");
         if (!this.ldState) {
             if (!this.mcFactory1) {
                 this.mcFactory1 = new egret.MovieClipDataFactory();
@@ -33,7 +32,6 @@ class LoadingPanel extends eui.Component {
     }
 
     public endLoading() {
-        console.trace("endLoading");
         if (this.ldState) {
             if (this.img_mc) {
                 this.img_mc.visible = false;

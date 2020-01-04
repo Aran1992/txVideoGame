@@ -964,6 +964,21 @@ class GameCommon {
         }
         return price * platform.getPriceRate();
     }
+
+    public isCompleteGame(): boolean {
+        const videoIDs = UserInfo.curBokData.videoDic;
+        for (const vid in videoIDs) {
+            if (videoIDs.hasOwnProperty(vid)) {
+                const videoConfig = videoModels[videoIDs[vid]];
+                if (videoConfig) {
+                    if (videoConfig.ending.length && !videoConfig.be) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
 
 declare let callbackDeleteBookHistory;
