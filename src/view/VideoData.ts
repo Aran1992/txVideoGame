@@ -372,6 +372,7 @@ class VideoData extends egret.DisplayObjectContainer {
             this.videoUpDataHandle = new function () {
             };
             widPlayer.on('timeupdate', () => {
+                GameCommon.getInstance().removeLoading();
                 if (widPlayer.getPlayTime() >= this.timeoutCallbackTime) {
                     this.timeoutCallback();
                     this.timeoutCallback = undefined;
