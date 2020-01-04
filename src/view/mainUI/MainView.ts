@@ -95,6 +95,7 @@ class MainView extends eui.Component {
     private cjLab: eui.Group;
     private play_Btn: eui.Button;
     private play_zi: eui.Button;
+    private exitBtn: eui.Button;
     private btnDuQu: eui.Button;
     private xindong: eui.Button;
     private btnXinkaishi: eui.Button;
@@ -134,6 +135,7 @@ class MainView extends eui.Component {
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
+        this.exitBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.exitBtnClick, this);
         this.btnDuQu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onDuDang, this);
         this.btnChengjiu.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChengJiu, this);
         this.btnShouCang.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
@@ -155,8 +157,7 @@ class MainView extends eui.Component {
         //     console.log("UserInfo.user", UserInfo.user);
         // });
         VideoManager.getInstance().updateVideoData("");
-        this.play_Btn.visible = true;
-        this.play_zi.visible = true;
+        this.setStartButtonVisible(true);
         this.setMainGroupVisible(false);
         UserInfo.guideDic[0] = 0;
         UserInfo.guideDic[1] = 1;
@@ -364,8 +365,7 @@ class MainView extends eui.Component {
                 this.gameWorld.createGameScene();
             }
         }
-        this.play_Btn.visible = false;
-        this.play_zi.visible = false;
+        this.setStartButtonVisible(false);
         if (isTXSP && !hasPlayedVideo) {
             bridgeHelper.reportAction({pageid: "hdsp_play"}).then((...args) => {
                 console.log("reportAction({pageid: \"hdsp_play\"}).then", args);
@@ -402,13 +402,11 @@ class MainView extends eui.Component {
         if (!GameDefine.ISFILE_STATE) {
             if (!isTXSP) {
                 this.setMainGroupVisible(true);
-                this.play_Btn.visible = false;
-                this.play_zi.visible = false;
+                this.setStartButtonVisible(false);
                 this.onShowMain();
             } else {
                 this.setMainGroupVisible(false);
-                this.play_Btn.visible = true;
-                this.play_zi.visible = true;
+                this.setStartButtonVisible(true);
             }
             return;
         }
@@ -420,8 +418,7 @@ class MainView extends eui.Component {
     }
 
     private onHideMainGroup() {
-        this.play_Btn.visible = false;
-        this.play_zi.visible = false;
+        this.setStartButtonVisible(false);
         this.setMainGroupVisible(false);
     }
 
@@ -500,5 +497,15 @@ class MainView extends eui.Component {
 
     private onClickXSMFButton() {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
+    }
+
+    private exitBtnClick() {
+        platform.close();
+    }
+
+    private setStartButtonVisible(visible) {
+        this.play_zi.visible = visible;
+        this.play_Btn.visible = visible;
+        this.exitBtn.visible = isTXSP && visible;
     }
 }

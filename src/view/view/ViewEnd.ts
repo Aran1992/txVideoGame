@@ -99,6 +99,9 @@ class ViewEnd extends eui.Component {
 
     private onEvent() {
         this.isOver = true;
+        if (this.parent) {
+            this.parent.removeChild(this);
+        }
         if (this.isdie) {
             switch (this.tiaozhuan) {
                 case TIAOZHUAN_Type.WENTI:
