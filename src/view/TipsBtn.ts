@@ -80,7 +80,6 @@ class TipsBtn extends eui.Component {
     }
 
     public onSetCunDangState(bo) {
-
         this.fileState = bo;
         if (!this.fileState && !this.videoCurrentState) {
             this.timerIdx = 3;

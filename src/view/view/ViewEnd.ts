@@ -87,24 +87,18 @@ class ViewEnd extends eui.Component {
             if (GameDefine.ISMAINVIEW == true) {
                 this.isOver = true;
                 this.parent.removeChild(this);
-
             } else {
                 this.onEvent();
             }
-
         }
     }
 
     private onGoBack() {
-        if (!isTXSP) {
-            this.parent.removeChild(this);
-        }
         VideoManager.getInstance().videoClose();
     }
 
     private onEvent() {
         this.isOver = true;
-        this.parent.removeChild(this);
         if (this.isdie) {
             switch (this.tiaozhuan) {
                 case TIAOZHUAN_Type.WENTI:
@@ -115,20 +109,12 @@ class ViewEnd extends eui.Component {
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
                     break;
                 case TIAOZHUAN_Type.CHAPTER:
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_WIN));
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIDEODATA));
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'JuQingPanel');
                     break;
             }
         } else {
-            var chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
-            let videoSrc = '';
-            if (chapCfg.videoSrc.indexOf(",") >= 0) {
-                let videoIds = chapCfg.videoSrc.split(",");
-                videoSrc = videoIds[0];
-            } else {
-                videoSrc = chapCfg.videoSrc;
-            }
+            let chapCfg = JsonModelManager.instance.getModelchapter()[UserInfo.curchapter];
+            let videoSrc = chapCfg.videoSrc.split(",")[0];
             VideoManager.getInstance().log('隐藏存档');
             UserInfo.curBokData.wentiId.push(chapCfg.wenti);
             UserInfo.curBokData.videoNames[chapCfg.wenti] = videoSrc;
