@@ -1,16 +1,16 @@
 const errorList = [];
+const playerInfoList = [];
 
-if (platform.isDebug()) {
-    const infoDiv = document.createElement("div");
-    document.body.appendChild(infoDiv);
-    infoDiv.outerHTML = `<div style="position: absolute; top: 0; left: 50%; z-index: 99999">
+const infoDiv = document.createElement("div");
+document.body.appendChild(infoDiv);
+infoDiv.outerHTML = `<div style="position: absolute; top: 0; left: 50%; z-index: 99999">
 <button onclick="copyLog();">复制LOG</button>
 </div>`;
-}
 
 function copyLog() {
     const str = JSON.stringify({
         errorList,
+        playerInfoList,
         curBookData: UserInfo.curBokData
     });
     const input = document.createElement("input");
@@ -289,18 +289,18 @@ class MainView extends eui.Component {
     }
 
     private onXinkaishi(): void {
-        const bookData: BookData = <BookData>createFile(ROLE_INDEX.ZiHao_Xia);
-        UserInfo.curBokData = bookData;
-        // SoundManager.getInstance().playSound("ope_click.mp3");
-        // if (DEBUG) {
-        //     if (typeof GameDefine.START_CHAPTER === "number") {
-        //         this.gameWorld.createGameScene(GameDefine.START_CHAPTER);
-        //         return;
-        //     }
-        // }
-        // GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
-        //     this.gameWorld.createGameScene();
-        // });
+        // const bookData: BookData = <BookData>createFile(ROLE_INDEX.WanXun_Xiao);
+        // UserInfo.curBokData = bookData;
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        if (DEBUG) {
+            if (typeof GameDefine.START_CHAPTER === "number") {
+                this.gameWorld.createGameScene(GameDefine.START_CHAPTER);
+                return;
+            }
+        }
+        GameCommon.getInstance().showConfirmTips("重新开始会清空自动存档，是否重新开始？", () => {
+            this.gameWorld.createGameScene();
+        });
     }
 
     private onShowShop() {
@@ -427,6 +427,7 @@ class MainView extends eui.Component {
             width: "100%",
             enableUI: true,
         };
+        window['MediaSource'] = null;
         if (isTXSP) {
             args["noPay"] = 1;
         }
@@ -467,11 +468,17 @@ class MainView extends eui.Component {
                     const [event, handler] = args;
                     player[key].bind(player)(event, (...args) => {
                         console.log("video player event", event, ...args);
+                        if (event === "videoNodeChange") {
+                            playerInfoList.push(["videoNodeChange"]);
+                        } else if (event !== "timeupdate") {
+                            playerInfoList.push([event, ...args]);
+                        }
                         handler(...args);
                     });
                 } else {
                     if (logArgsMethodList.indexOf(key) !== -1) {
                         console.trace(`widPlayer.${key} args`, ...args);
+                        playerInfoList.push([key, ...args]);
                     }
                     const result = player[key].bind(player)(...args);
                     if (logResultMethodList.indexOf(key) !== -1) {
