@@ -599,8 +599,10 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
                 if (data.new === "playing") {
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.HIDE_MAIN_GROUP), data);
-                    GameCommon.getInstance().removeLoading();
                     this.isChangingQuality = false;
+                }
+                if (["playing", "seeked"].indexOf(data.new) !== -1) {
+                    GameCommon.getInstance().removeLoading();
                 }
                 if (this.isChangingQuality && data.new === "pause") {
                     GameCommon.getInstance().showLoading();

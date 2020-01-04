@@ -125,7 +125,7 @@
             </e:Skin>
         </e:skinName>
     </e:Button>
-	<e:Button id="restartBtn" label="重新开始" width="251" height="71" scaleX="1" scaleY="1" right="350" y="767">
+	<e:Button id="restartBtn" label="重新开始" width="251" height="71" scaleX="1" scaleY="1" right="350" bottom="62">
 		<e:skinName>
 		<e:Skin states="up,down,disabled" width="109">
 			<e:Image scaleX.down="0.9" scaleY.down="0.9" width="251" height="71" source="main_btn1_png" source.down="main_btn1_select_png" horizontalCenter="0" verticalCenter="0"/>
