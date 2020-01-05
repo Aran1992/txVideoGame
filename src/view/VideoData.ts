@@ -227,7 +227,9 @@ class VideoData extends egret.DisplayObjectContainer {
                         }
                     }
                 }
-                this.curWentiId = this.curAnswerCfg.nextid;
+                if (this.curAnswerCfg.nextid != 0) {
+                    this.curWentiId = this.curAnswerCfg.nextid;
+                }
                 this.nextWentiId = this.curAnswerCfg.nextid;
                 if (this.curAnswerCfg.nextid == 0 && this.curAnswerCfg.isdie == 0) {
                     VideoManager.getInstance().updateGameChapter(this.curAnswerCfg.nextChapterId);
