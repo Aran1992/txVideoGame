@@ -70,7 +70,7 @@ class ConfigManager {
     }
 
     private getChapterIDFromVid(vid) {
-        vid = vid.replace(/[a-zA-Z]/, "");
+        vid = vid.replace(/[A-Za-z]/g, "");
         return parseInt(vid.substring(0, vid.length - 2));
     }
 }
