@@ -577,12 +577,8 @@ const TASK = [
                 "name": "平行不相交",
                 "dsc": "达成默认结局",
                 "check": {
-                    "type": "question",
-                    "qa": {
-                        "40": 2,
-                        "46": 5,
-                        "47": 2
-                    }
+                    "type": "video",
+                    "vid": "V717"
                 },
                 "reward": [
                     {
@@ -969,7 +965,7 @@ const TASK = [
             {
                 "name": "韩小白",
                 "dsc": "进入韩小白结局",
-                "check": "第十章判定进入夏子豪",
+                "check": "第十章判定进入韩小白",
                 "reward": [
                     {
                         "type": "suipian",
