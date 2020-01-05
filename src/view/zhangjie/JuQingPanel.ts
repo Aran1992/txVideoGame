@@ -156,6 +156,16 @@ class JuQingPanel extends eui.Component {
 
     private onClose() {
         SoundManager.getInstance().playSound("ope_click.mp3");
+        if (isTXSP && GameCommon.getInstance().isCompleteGame()) {
+            GameCommon.getInstance().showConfirmTips("您已观看完所有章节，是否重新开始？", () => {
+                GameCommon.getInstance().showLoading();
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+                    cfg: JsonModelManager.instance.getModeljuqingkuai()[1][1],
+                    idx: FILE_TYPE.AUTO_FILE
+                });
+            });
+            return;
+        }
         this.onRemove();
         this.qiuGroup.removeChildren();
         this.slideGroup.removeChildren();
