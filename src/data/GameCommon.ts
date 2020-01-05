@@ -966,6 +966,9 @@ class GameCommon {
     }
 
     public isCompleteGame(): boolean {
+        if (!UserInfo.curBokData) {
+            return false;
+        }
         const videoIDs = UserInfo.curBokData.videoDic;
         for (const vid in videoIDs) {
             if (videoIDs.hasOwnProperty(vid)) {
