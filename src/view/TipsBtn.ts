@@ -407,7 +407,6 @@ class TipsBtn extends eui.Component {
         }
         this.reduceBtn.touchEnabled = true;
         if (new Date().getTime() - this.touchtime < 250) {
-            this.onPlay_Pause();
         } else {
             if (this.videoD) {
                 this.fileState = true;
