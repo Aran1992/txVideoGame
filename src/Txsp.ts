@@ -42,18 +42,17 @@ class Txsp {
     }
 
     async saveBookHistory(bookId, slotId, title, externParam, callback) {
-        bridgeHelper.accessStore({
+        this.tokenRequest(() => bridgeHelper.accessStore({
             appid: txsp_appid,
             openid: txsp_userinfo.openid,
             access_token: txsp_userinfo.token,
             key: slotId,
             text: externParam,
             op_type: 'update',
-        }).then(res => {
+        }), res => {
             callback({code: res.code, data: {msg: res.msg, slotId: slotId}});
             console.log("save success slotId:" + slotId);
-        })
-        return;
+        });
     }
 
     //获取制定存档
@@ -81,28 +80,31 @@ class Txsp {
         for (var key in FILE_TYPE) {
             callback = (data) => {
                 GameCommon.getInstance().parseChapter(FILE_TYPE[key], data);
-            }
+            };
             await this.getBookHistory('', FILE_TYPE[key], callback)
         }
         return;
     }
 
-    async refreshToken() {
-        bridgeHelper.refreshToken({
-            appid: txsp_appid,  // 应用的appid
-            openid: txsp_userinfo.openid, // 应用的openid
-        }).then((res) => {
-            if (res.code == 0) {
-                txsp_userinfo.token = res.result.accesstoken;
-            } else {
-                console.log("refreshToken failed;" + res.msg);
-            }
+    refreshToken() {
+        return new Promise(resolve => {
+            bridgeHelper.refreshToken({
+                appid: txsp_appid,  // 应用的appid
+                openid: txsp_userinfo.openid, // 应用的openid
+            }).then((res) => {
+                if (res.code == 0) {
+                    txsp_userinfo.token = res.result.accesstoken;
+                } else {
+                    console.log("refreshToken failed;" + res.msg);
+                }
+                resolve(res);
+            });
         });
     }
 
     async deleteBookHistory(bookId, slotId, callback) {
         await this.saveBookHistory(bookId, slotId, "", "", () => {
-        })
+        });
         callback();
     }
 
@@ -114,7 +116,7 @@ class Txsp {
             access_token: txsp_userinfo.token, // 互动登录态access_token
             product_ids: itemids,
             sandbox: txsp_debug ? 1 : 0,
-        })
+        });
         callback(res);
         //使用本地数据
     }
@@ -127,7 +129,7 @@ class Txsp {
             product_id: saleId,
             count: num,
             sandbox: txsp_debug ? 1 : 0,
-        })
+        });
         callback(res);
     }
 
@@ -146,62 +148,62 @@ class Txsp {
     }
 
     async buyGoods(bookId, itemId, num, curSlotId, callbackBuyGoods) {
-        let shopdata: ShopInfoData = ShopManager.getInstance().shopInfoDict[itemId];
-        let leftMoney = -1
-        await bridgeHelper.diamondQueryBalance({
+        this.tokenRequest(() => bridgeHelper.diamondQueryBalance({
             appid: txsp_appid, // 业务id
             openid: txsp_userinfo.openid, // 互动账号openid,
             access_token: txsp_userinfo.token, // 互动登录态access_token
             sandbox: txsp_debug ? 1 : 0,
-        }).then((res) => {
+        }), (res) => {
+            let leftMoney = -1;
             if (res.code == 0) {
                 leftMoney = res.result.balance;
             } else {
-                console.log(res.msg)
+                console.log(res.msg);
                 //if(txsp_debug)
                 GameCommon.getInstance().showConfirmTips(`我的余额查询失败，请重新发起购买;${res.msg}`, () => {
                 })
             }
-        })
-        if (leftMoney == -1) {
-            //GameCommon.getInstance().showCommomTips("我的余额查询失败,请重新发起购买");
-            return;
-        }
-        //钱够直接买
-        let price = shopdata.model.currPrice * platform.getPriceRate();
-        if (leftMoney >= price) {//){shopdata.currPrice
-            let okFunc = () => {
-                bridgeHelper.diamondConsume({//await
-                    appid: txsp_appid, // 业务id
-                    openid: txsp_userinfo.openid, // 互动账号openid,
-                    access_token: txsp_userinfo.token, // 互动登录态access_token
-                    product_id: itemId, // 商品id
-                    count: num, // 商品数量
-                    sandbox: txsp_debug ? 1 : 0,
-                }).then((res) => {
-                    callbackBuyGoods(res)
-                })
+            if (leftMoney == -1) {
+                //GameCommon.getInstance().showCommomTips("我的余额查询失败,请重新发起购买");
+                return;
             }
-            GameCommon.getInstance().showConfirmTips(`你的余额还有${leftMoney}钻
+            let shopdata: ShopInfoData = ShopManager.getInstance().shopInfoDict[itemId];
+            //钱够直接买
+            let price = shopdata.model.currPrice * platform.getPriceRate();
+            if (leftMoney >= price) {//){shopdata.currPrice
+                let okFunc = () => {
+                    this.tokenRequest(() => bridgeHelper.diamondConsume({//await
+                        appid: txsp_appid, // 业务id
+                        openid: txsp_userinfo.openid, // 互动账号openid,
+                        access_token: txsp_userinfo.token, // 互动登录态access_token
+                        product_id: itemId, // 商品id
+                        count: num, // 商品数量
+                        sandbox: txsp_debug ? 1 : 0,
+                    }), (res) => {
+                        callbackBuyGoods(res)
+                    });
+                };
+                GameCommon.getInstance().showConfirmTips(`你的余额还有${leftMoney}钻
 本次购买将花费${price}钻
 是否购买?`, okFunc);
-        } else {
-            //钱不够走充值流程
-            // if (txsp_debug)
-            //     GameCommon.getInstance().showConfirmTips(`我的余额${leftMoney};本次需要消费${price}`, () => {
-            //     })
-            await bridgeHelper.openPayPage({
-                actid: '', // 钻石actid
-                appid: txsp_appid, // 应用的appid
-                orderid: '', // 订单id
-                needpay: Math.abs(Math.ceil(price - leftMoney)), // 本次购买需要的钻石数目
-                close: 1,     //购买成功后是否自动关闭webview 1: 是 0: 不是，默认 0
-                ru: '', // 购买成功后跳转的链接，优先级低于close
-                title: '拳拳四重奏', // 支付页面标题
-                sandbox: txsp_debug ? 1 : 0,
-            }).then((res) => {
-            })
-        }
+            } else {
+                //钱不够走充值流程
+                // if (txsp_debug)
+                //     GameCommon.getInstance().showConfirmTips(`我的余额${leftMoney};本次需要消费${price}`, () => {
+                //     })
+                this.tokenRequest(() => bridgeHelper.openPayPage({
+                    actid: '', // 钻石actid
+                    appid: txsp_appid, // 应用的appid
+                    orderid: '', // 订单id
+                    needpay: Math.abs(Math.ceil(price - leftMoney)), // 本次购买需要的钻石数目
+                    close: 1,     //购买成功后是否自动关闭webview 1: 是 0: 不是，默认 0
+                    ru: '', // 购买成功后跳转的链接，优先级低于close
+                    title: '拳拳四重奏', // 支付页面标题
+                    sandbox: txsp_debug ? 1 : 0,
+                }), () => {
+                });
+            }
+        });
     }
 
     async openDebug() {
@@ -274,6 +276,36 @@ class Txsp {
         console.log("reportAction args", args);
         bridgeHelper.reportAction(args).then((...args) => {
             console.log("reportAction(args).then", args);
+        });
+    }
+
+    /**
+     * 有可能鉴权失败/登录态过期的请求走这个，发生请求失败的情况下，会先刷新一次鉴权，然后再次请求
+     * 记得将失败请求的code放入判断数组内
+     * @param promise
+     * @param callback
+     */
+    private tokenRequest(promise, callback) {
+        promise().then(res => {
+            if (res.code !== 0) {
+                const tokenErrorCodeList = [
+                    -2007, -3003, -5004, -6004, -7004, -9004, -10004, -13004, -14004,
+                    -5005, -6005, -9005, -10005, -14005, -15005,
+                ];
+                if (tokenErrorCodeList.indexOf(res.code) !== -1) {
+                    this.refreshToken().then((res: { code: number }) => {
+                        if (res.code !== 0) {
+                            callback(res);
+                        } else {
+                            promise().then(callback);
+                        }
+                    });
+                } else {
+                    callback(res);
+                }
+            } else {
+                callback(res);
+            }
         });
     }
 }
