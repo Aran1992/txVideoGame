@@ -64,6 +64,15 @@
         video {
             object-fit: cover
         }
+
+        #preloadDiv {
+            width: 100%;
+            height: 100%;
+            background-image: url(loading_bg.jpg);
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+        }
     </style>
 </head>
 <!--<track id='videoZiMu' src="" srclang="zh-cn" label="简体中文" kind="subtitles" kind="caption" default>-->
@@ -135,6 +144,7 @@
     });
     xhr.send(null);
 </script>
+<div id="preloadDiv"></div>
 </body>
 
 </html>

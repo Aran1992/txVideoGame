@@ -128,6 +128,10 @@ class Main extends eui.UILayer {
             if (checkTable()) {
                 const loadingView = new LoadingUI();
                 this.stage.addChild(loadingView);
+                const preloadDiv = document.getElementById("preloadDiv");
+                if (preloadDiv) {
+                    preloadDiv.parentNode.removeChild(preloadDiv);
+                }
                 loadingView.anchorOffsetX = loadingView.width / 2;
                 loadingView.anchorOffsetY = loadingView.height / 2;
                 loadingView.x = size.width / 2;
