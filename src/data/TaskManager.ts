@@ -918,7 +918,10 @@ const TASK = [
             {
                 "name": "夏子豪",
                 "dsc": "进入夏子豪结局",
-                "check": "第十章判定进入夏子豪",
+                "check": {
+                    "type": "video",
+                    "vid": "VX1001",
+                },
                 "reward": [
                     {
                         "type": "suipian",
@@ -953,7 +956,10 @@ const TASK = [
             {
                 "name": "肖家兄弟",
                 "dsc": "进入肖家兄弟",
-                "check": "第十章判定进入肖家兄弟",
+                "check": {
+                    "type": "video",
+                    "vid": "VWY1001",
+                },
                 "reward": [
                     {
                         "type": "suipian",
@@ -965,7 +971,10 @@ const TASK = [
             {
                 "name": "韩小白",
                 "dsc": "进入韩小白结局",
-                "check": "第十章判定进入韩小白",
+                "check": {
+                    "type": "video",
+                    "vid": "VH1001",
+                },
                 "reward": [
                     {
                         "type": "suipian",
@@ -1035,7 +1044,10 @@ const TASK = [
             {
                 "name": "梦想终点",
                 "dsc": "达成全部默认结局",
-                "check": "续命选项全达成",
+                "check": {
+                    "type": "video",
+                    "vid": "VH1117&VX1111&VY1205&VW1202"
+                },
                 "reward": [
                     {
                         "type": "suipian",
@@ -1277,8 +1289,14 @@ class TaskManager {
     public checkVideoTask() {
         this.iterUncompletedTask(task => {
             if (task.check.type === "video") {
-                if (task.check.vid.split("|").some(vid => UserInfo.curBokData.videoDic[vid])) {
-                    this.completeTask(task.id);
+                if (task.check.vid.indexOf("|") !== -1) {
+                    if (task.check.vid.split("|").some(vid => UserInfo.curBokData.videoDic[vid])) {
+                        this.completeTask(task.id);
+                    }
+                } else if (task.check.vid.indexOf("&") !== -1) {
+                    if (!task.check.vid.split("&").some(vid => !UserInfo.curBokData.videoDic[vid])) {
+                        this.completeTask(task.id);
+                    }
                 }
             }
         });
