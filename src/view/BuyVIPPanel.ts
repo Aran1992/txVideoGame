@@ -2,17 +2,17 @@ class BuyVIPPanel extends eui.Component {
     private readonly from: string;
     private groupTable = {
         Group1001: () => {
-            return is1001
+            return !isTXSP
                 && platform.isCelebrateTime()
                 && this.from === undefined;
         },
         Group10010: () => {
-            return is1001
+            return !isTXSP
                 && platform.isCelebrateTime()
                 && this.from === "task";
         },
         Group10011: () => {
-            return is1001
+            return !isTXSP
                 && !platform.isCelebrateTime();
         },
         GroupTXSP0: () => {

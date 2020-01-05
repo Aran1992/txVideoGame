@@ -145,6 +145,9 @@ class Main extends eui.UILayer {
                             });
                         }
                         callback();
+                        if(isTXSP){
+                            RES.loadGroup("restxsp");
+                        }
                     });
                 } catch (e) {
                     console.error(e);

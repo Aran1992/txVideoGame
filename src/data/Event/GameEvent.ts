@@ -52,4 +52,6 @@ class GameEvent {
     public static RECEIVED_TASK_REWARD: string = '5';
     public static SHARE_ACTIVATION_CODE: string = '6';
     public static SHARE_COLLECTION_IMAGE: string = '7';
+    
+    public static MOVE_JUQING_PAGE: string = 'move.juqing.page';
 }
