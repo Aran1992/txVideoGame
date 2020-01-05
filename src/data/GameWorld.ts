@@ -180,6 +180,7 @@ class GameWorld extends egret.DisplayObjectContainer {
         VideoManager.getInstance().updateVideoData(videoIds[0]);
         this.videoData.setVideos(videoIds);
         this.videoData.starVideo(curChapterCfg.wenti);
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.XINKAISHI));
     }
 
     private onStartVideo(data) {

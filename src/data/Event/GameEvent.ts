@@ -20,6 +20,7 @@ class GameEvent {
     public static GAME_STATE_CHANGE: string = 'game.statechange';
     public static BUY_REFRESH: string = 'buy.refresh';
     public static STARTCHAPTER: string = 'start.chapter';
+    public static XINKAISHI: string = 'xinkaishi';
     public static SHOUCANG_IMG_TOUCH: string = 'shoucang.img.touch';
     public static GUIDE_STOP_GAME: string = 'guide.stop.game';
     public static IOS_GAME_PLAY: string = 'ios.game.play';

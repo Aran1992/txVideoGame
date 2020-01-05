@@ -51,6 +51,7 @@ class ViewEnd extends eui.Component {
     private onLoadComplete(): void {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.STARTCHAPTER, this.onStartVideo, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.XINKAISHI, this.onStartVideo, this);
         this.updateResize();
         if (this.isdie) {
             this.mainGroup.visible = true;
@@ -94,6 +95,7 @@ class ViewEnd extends eui.Component {
     }
 
     private onGoBack() {
+        VideoManager.getInstance().dontHideMain = true;
         VideoManager.getInstance().videoClose();
     }
 

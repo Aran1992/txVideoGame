@@ -12,6 +12,8 @@ class VideoManager {
 
     private _loadSrc: string = '';
 
+    public dontHideMain: boolean = false;
+
     public get loadSrc(): string {
         return this._loadSrc;
     }
