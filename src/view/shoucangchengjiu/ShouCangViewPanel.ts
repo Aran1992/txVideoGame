@@ -167,13 +167,15 @@ class ShouCangViewPanel extends eui.Component {
         let hasItem = false;
         for (var nk in keySorted) {
             let k = keySorted[nk];
-            if (cfgs[k].mulu1 == GameDefine.CUR_ROLEIDX) {
-                if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG || cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
-                    curIdx = curIdx + 1;
-                    var cg: ShouCangViewItem = new ShouCangViewItem();
-                    this.goodsLayer.addChild(cg);
-                    cg.data = {data: cfgs[k], idx: curIdx};
-                    hasItem = true;
+            if (ShopManager.getInstance().onCheckShoucangOpen(cfgs[k].id)) {
+                if (cfgs[k].mulu1 == GameDefine.CUR_ROLEIDX) {
+                    if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_IMG || cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_VIDEO) {
+                        curIdx = curIdx + 1;
+                        var cg: ShouCangViewItem = new ShouCangViewItem();
+                        this.goodsLayer.addChild(cg);
+                        cg.data = {data: cfgs[k], idx: curIdx};
+                        hasItem = true;
+                    }
                 }
             }
         }
