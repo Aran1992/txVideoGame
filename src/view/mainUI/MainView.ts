@@ -179,7 +179,6 @@ class MainView extends eui.Component {
         this.updateTicketButtonPoint();
         this.updateShangChengPoint();
         this.logHelper();
-        TipsBtn.Is_Guide_Bool = UserInfo.guideJson["player"] === undefined;
         this.updateXSMFButton();
         setInterval(() => {
             this.updateXSMFButton();
