@@ -1289,12 +1289,21 @@ class TaskManager {
     public checkVideoTask() {
         this.iterUncompletedTask(task => {
             if (task.check.type === "video") {
-                if (task.check.vid.indexOf("|") !== -1) {
-                    if (task.check.vid.split("|").some(vid => UserInfo.curBokData.videoDic[vid])) {
+                if (task.check.vid.indexOf("&") !== -1) {
+                    const fileList = [UserInfo.curBokData];
+                    for (let key in UserInfo.fileDatas) {
+                        if (UserInfo.fileDatas.hasOwnProperty(key)) {
+                            const file = UserInfo.fileDatas[key];
+                            if (file) {
+                                fileList.push(file);
+                            }
+                        }
+                    }
+                    if (!task.check.vid.split("&").some(vid => !fileList.some(file => file.allVideos[vid]))) {
                         this.completeTask(task.id);
                     }
-                } else if (task.check.vid.indexOf("&") !== -1) {
-                    if (!task.check.vid.split("&").some(vid => !UserInfo.curBokData.videoDic[vid])) {
+                } else {
+                    if (task.check.vid.split("|").some(vid => UserInfo.curBokData.videoDic[vid])) {
                         this.completeTask(task.id);
                     }
                 }
