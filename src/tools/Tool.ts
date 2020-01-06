@@ -294,20 +294,6 @@ class Tool {
         return (Array(length).join('0') + num).slice(-length);
     }
 
-    //把日期格式化为整数
-    public static formatTimeDay2Num(time: number = null) {
-        if (!time) {
-            time = platform.getServerTime();
-        }
-        time = time - platform.getOffsetTime();
-        const date = time ? new Date(time) : new Date();
-        let str = String(date.getFullYear()) + String(Tool.formatZero(date.getMonth() + 1, 2)) + String(Tool.formatZero(date.getDate(), 2));
-        return Number(str)
-    }
-
-    public static formatAddDay(addDay, time: number = null) {
-        return Tool.formatTimeDay2Num(time + addDay * (24 * 60 * 60 * 1000));
-    }
 
     public static dateFormat(fmt, date) {
         let ret;

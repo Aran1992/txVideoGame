@@ -832,13 +832,6 @@ class GameCommon {
         // return curDay >= saleTime;
     }
 
-    public getChapterFreeDay(chapterId) {
-        const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
-        let freeTime = Tool.formatAddDay(chapterCfg.freeTime, platform.getSaleBeginTime());
-        let curDay = Tool.formatTimeDay2Num();
-        return freeTime - curDay;
-    }
-
     //还差多少毫秒免费
     public getLeftChapterFreeMS(chapterId) {
         const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];

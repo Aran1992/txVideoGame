@@ -199,10 +199,8 @@ class TicketPanel extends eui.Component {
 
         this.setUnusedNodeVisible(this.idGroupBuyTicket, this._openParam == "tipsbtnshopcar" || this._openParam == "confirm");
 
-        let today = Tool.formatTimeDay2Num();
         let cfg = JsonModelManager.instance.getModelshop()[GameDefine.GUANGLIPINGZHENG];
-        let discountDay = Tool.formatAddDay(Number(cfg.params), platform.getSaleBeginTime());
-        this.bSpecail = today <= discountDay;//是否在优惠期间
+        this.bSpecail = platform.isCelebrateTime();//today <= discountDay;//是否在优惠期间
         this.idGroupDescCommon.visible = !this.bSpecail;
         this.idGroupDescSpecial.visible = this.bSpecail && platform.getPlatform() != "plat_txsp";
         this.idGroupDescSpecialTxsp.visible = this.bSpecail && platform.getPlatform() == "plat_txsp";
