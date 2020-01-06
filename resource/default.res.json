@@ -8144,6 +8144,17 @@
             "url": "assets/task/pass_icon_tip.png?v=909"
         },
         {
+            "name": "task_json",
+            "subkeys": "pass_icon_mask_png,pass_icon_resume_png,pass_icon_task_0_png,pass_icon_task_1_png,pass_icon_task_2_png,pass_icon_task_4_png,pass_icon_task_7_png,pass_icon_task_11_png,pass_icon_task_12_png,pass_icon_task_101003_png,pass_icon_task_101004_png,pass_icon_task_102001_png,pass_icon_task_102017_png,pass_icon_task_103001_png,pass_icon_task_103007_png,pass_icon_task_103008_png,pass_icon_task_103009_png,pass_icon_tip_png,pass_bg_zhangjie_png,pass_bg_zhekou_png,pass_btn_close_png,pass_btn_unlock_png,pass_frame_task_luxury_png,pass_frame_task_normal_png,pass_icon_get_png,pass_icon_lock_png",
+            "type": "sheet",
+            "url": "assets/task/task.json?v=751"
+        },
+        {
+            "name": "task_png",
+            "type": "image",
+            "url": "assets/task/task.png?v=355"
+        },
+        {
             "name": "ticket_bk1_png",
             "type": "image",
             "url": "assets/ticket/ticket_bk1.png?v=812"
