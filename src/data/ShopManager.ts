@@ -45,6 +45,10 @@ class ShopManager {
 
     /**钻石购买商品**/
     public buyGoods(itemId, num: number = 1, callback: () => void = null) {
+        if(ShopManager.getInstance().getItemNum(itemId)>0){            
+            GameCommon.getInstance().showCommomTips("你已经拥有该物品");
+            return;
+        }
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (egret.Capabilities.os == 'Windows PC') {
@@ -72,25 +76,17 @@ class ShopManager {
                     }
                 }
             };
-            // if (platform.getPlatform() == "plat_txsp") {
-            //     callbackBuyGoods = (res) => {
-            //         if (res.code == 0) {
-            //             if (itemId == GameDefine.GUANGLIPINGZHENGEX)
-            //                 itemId = GameDefine.GUANGLIPINGZHENG;
-            //             this.addGoods(itemId, num, callback)
-            //         } else {
-            //             console.log(res.msg);
-            //             GameCommon.getInstance().showCommomTips("购买商品失败" + res.msg);
-            //         }
-            //     }
-            // }
-            //let currentSlotId: number = 0;
-            //console.log("buy:"+itemId+";"+num+";slot="+currentSlotId);
+            
             platform.buyGoods(GameDefine.BOOKID, itemId, num, 0, callbackBuyGoods);
+            
         }
     }
 
     public buyGoodsSuip(itemId: number, num: number = 1, callback: any = null): void {
+        if(ShopManager.getInstance().getItemNum(itemId)>0){            
+            GameCommon.getInstance().showCommomTips("你已经拥有该物品");
+            return;
+        }
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
         if (UserInfo.suipianMoney < shopdata.model.currSuipian) {

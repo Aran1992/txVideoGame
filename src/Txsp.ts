@@ -180,7 +180,11 @@ class Txsp {
                         count: num, // 商品数量
                         sandbox: txsp_debug ? 1 : 0,
                     }), (res) => {
-                        callbackBuyGoods(res)
+                        if(ShopManager.getInstance().getItemNum(shopdata.model.id)>0){
+                            GameCommon.getInstance().showCommomTips("你已经拥有该物品");
+                        }else{
+                            callbackBuyGoods(res)
+                        }
                     });
                 };
                 GameCommon.getInstance().showConfirmTips(`你的余额还有${leftMoney}钻
