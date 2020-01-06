@@ -87,6 +87,7 @@
                 </e:layout>
             </e:Group>
 					<e:Label text="自动存档会随时记录您的进度" fontFamily="SimHei" left="120" bottom="35"/>
+					<e:Group id="openLogGroup" width="75" height="75" right="0" top="0"/>
         </e:Group>
 
         <e:Button id="bgBtn" left="40" top="35" label="我的进度" width="300" height="62">

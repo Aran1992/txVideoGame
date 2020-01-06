@@ -280,7 +280,6 @@ class CommonTips extends eui.Component {
     }
 
     public showErrorLog(str: string): void {
-        if (!platform.isDebug()) return;
         this.logLab.text += "\n" + str;
     }
 
@@ -303,6 +302,7 @@ class CommonTips extends eui.Component {
         this.buyGrphaogan.visible = false;
         this.buyResult.visible = false;
         this.confirmGrp.visible = false;
+        this.logLab.visible = platform.isDebug();
     }
 
     private onLoadComplete(): void {
@@ -461,5 +461,9 @@ class CommonTips extends eui.Component {
         this.onhideMaskBG();
         GameDefine.IS_DUDANG = false;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
+    }
+
+    public toggleLogVisible() {
+        this.logLab.visible = !this.logLab.visible;
     }
 }

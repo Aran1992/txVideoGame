@@ -1450,37 +1450,13 @@ class TaskManager {
     }
 
     private isRoleLikeAllCompleted(rid: number): boolean {
-        // 遍历每个加这个好感的答案 同一个问题内有多个都加的话 找到其中最大的那些 如果其中有一个答案没有回答 那么就是失败了
-        return !this.some(answerModels, answers => {
-            // 找到这个问题里面会增加这个人好感 且是最高好感的选项
-            let roleLikeAnswers = [];
-            for (const key in answers) {
-                if (answers.hasOwnProperty(key)) {
-                    const answer = answers[key];
-                    const roleLike = this.getRoleLike(answer, rid);
-                    if (roleLike !== 0) {
-                        if (roleLikeAnswers.length === 0) {
-                            roleLikeAnswers.push(answer);
-                        } else {
-                            const finalRoleLike = this.getRoleLike(roleLikeAnswers[0], rid);
-                            if (finalRoleLike < roleLike) {
-                                roleLikeAnswers = [answer];
-                            } else if (finalRoleLike === roleLike) {
-                                roleLikeAnswers.push(answer);
-                            }
-                        }
-                    }
-                }
-            }
-            // 有这个好感的选项 但是没有完成其中任意选项 那么就说明没有全部完成 可以直接结束了
-            if (roleLikeAnswers.length !== 0 && !roleLikeAnswers.some(answer => this.isSelectedAnswer(answer))) {
-                return true;
-            }
-        });
-    }
-
-    private getRoleLike(answer: Modelanswer, rid: number): number {
-        return parseInt(answer.like.split(",")[rid]);
+        const ROLE_BEST_LIKE = {
+            [ROLE_INDEX.XiaoBai_Han]: 16,
+            [ROLE_INDEX.ZiHao_Xia]: 16,
+            [ROLE_INDEX.QianYe_Xiao]: 20,
+            [ROLE_INDEX.WanXun_Xiao]: 20,
+        };
+        return GameCommon.getInstance().getRoleLikeAll(rid) >= ROLE_BEST_LIKE[rid];
     }
 
     private isSelectedAnswer(answer: Modelanswer): boolean {
