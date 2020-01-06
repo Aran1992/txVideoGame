@@ -190,6 +190,14 @@ class VideoData extends egret.DisplayObjectContainer {
         this._nextVid = '';
         if (file.wentiId.length > 0 && file.wentiId[file.wentiId.length - 1]) {
             let wentiId: number = file.wentiId[file.wentiId.length - 1];
+            // 如果最后一个问题已经回答了 但是问题对应的视频不存在于答案的视频列表里面 那么就将视频换成答案的视频列表的第一个
+            const answerId = file.answerId[wentiId];
+            if (answerId) {
+                const videos = Config.getAnswerConfig(wentiId, answerId).videos.split(',');
+                if (videos.length && videos.indexOf(file.videoNames[wentiId]) === -1) {
+                    file.videoNames[wentiId] = videos[0];
+                }
+            }
             if (file.wentiId[file.wentiId.length - 2]) {
                 if (wentiModels[wentiId].chapter > wentiModels[file.wentiId[file.wentiId.length - 2]].chapter) {
                     //当前问题的章节大于前一个问题的章节，即当前的问题已经是跨章节了。

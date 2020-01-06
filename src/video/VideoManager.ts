@@ -192,7 +192,14 @@ class VideoManager {
         } else {
             for (const k in cfgs) {
                 if (cfgs.hasOwnProperty(k)) {
-                    videoSrcs.push(cfgs[k].videos.split(",")[0]);
+                    if (cfgs[k].videos.indexOf(",") >= 0) {
+                        videoSrcs = videoSrcs.concat(cfgs[k].videos.split(","));
+                    } else {
+                        if (cfgs[k].videos != '')
+                            videoSrcs.push(cfgs[k].videos);
+                        else
+                            return;
+                    }
                 }
             }
         }
