@@ -1,4 +1,4 @@
-const TASK = [
+﻿const TASK = [
     {
         "chapter": "序章",
         "chapterID": 0,
@@ -824,7 +824,7 @@ const TASK = [
                 "dsc": "肖万寻全部好感度达成",
                 "check": {
                     "type": "question",
-                    "rid": 4
+                    "rid": 3
                 },
                 "reward": [
                     {

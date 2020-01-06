@@ -164,16 +164,17 @@ class VideoData extends egret.DisplayObjectContainer {
     }
 
     public readFile() {
+        const file = UserInfo.curBokData;
         this.curAnswerCfg = null;
-        if (!UserInfo.curBokData) {
+        if (!file) {
             return;
         }
         console.log("readFile>>>>", this.videoIdx);
         this.tiaoState = false;
         if (GameDefine.IS_DUDANG && GameDefine.CUR_PLAYER_VIDEO == 1) {
             let src = '';
-            if (UserInfo.curBokData.wentiId.length > 0) {
-                src = UserInfo.curBokData.videoNames[UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1]]
+            if (file.wentiId.length > 0) {
+                src = file.videoNames[file.wentiId[file.wentiId.length - 1]];
             }
             if (this.videoIdx == src) {
                 VideoManager.getInstance().videoResume();
@@ -187,10 +188,10 @@ class VideoData extends egret.DisplayObjectContainer {
         this.onCreateData();
         GameCommon.getInstance().showLoading();
         this._nextVid = '';
-        if (UserInfo.curBokData.wentiId.length > 0 && UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1]) {
-            let wentiId: number = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 1];
-            if (UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]) {
-                if (wentiModels[wentiId].chapter > wentiModels[UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]].chapter) {
+        if (file.wentiId.length > 0 && file.wentiId[file.wentiId.length - 1]) {
+            let wentiId: number = file.wentiId[file.wentiId.length - 1];
+            if (file.wentiId[file.wentiId.length - 2]) {
+                if (wentiModels[wentiId].chapter > wentiModels[file.wentiId[file.wentiId.length - 2]].chapter) {
                     //当前问题的章节大于前一个问题的章节，即当前的问题已经是跨章节了。
                     let curChapterCfg = JsonModelManager.instance.getModelchapter()[wentiModels[wentiId].chapter];
                     this.curVideoIDs = curChapterCfg.videoSrc.split(",");
@@ -199,7 +200,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     this.curWentiId = wentiId;
                     this.isSelectVideo = false;
                     if (this.videoIdx == '') {
-                        this.videoIdx = UserInfo.curBokData.videoNames[wentiId];
+                        this.videoIdx = file.videoNames[wentiId];
                     }
                     this.againFlg = true;
                     GameDefine.IS_READ_PLAY = true;
@@ -212,16 +213,16 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
             }
             this.curWentiId = wentiId;
-            this.curVideoIDs = [UserInfo.curBokData.curVideoID];
+            this.curVideoIDs = [file.curVideoID];
             this.curVideoIndex = 0;
-            this.videoIdx = UserInfo.curBokData.videoNames[wentiId];
+            this.videoIdx = file.videoNames[wentiId];
             let cfgs = answerModels[wentiId];
             this.isSelectVideo = false;
-            if (UserInfo.curBokData.answerId[wentiId]) {
+            if (file.answerId[wentiId]) {
                 this.isSelectVideo = true;
                 for (let k in cfgs) {
                     if (cfgs.hasOwnProperty(k)) {
-                        if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
+                        if (cfgs[k].ansid == file.answerId[wentiId]) {
                             this.curAnswerCfg = cfgs[k];
                             break;
                         }
@@ -238,12 +239,12 @@ class VideoData extends egret.DisplayObjectContainer {
                     this.curVideoIDs = this.curAnswerCfg.videos.split(",");
                     this.videoIdx = '';
                     for (let i: number = 0; i < this.curVideoIDs.length; i++) {
-                        if (this.curVideoIDs[i] == UserInfo.curBokData.videoNames[wentiId]) {
+                        if (this.curVideoIDs[i] == file.videoNames[wentiId]) {
                             if (i < this.curVideoIDs.length - 1) {
                                 this.isSelectVideo = false;
                             }
                             this.curVideoIndex = i + 1;
-                            this.videoIdx = UserInfo.curBokData.videoNames[wentiId];
+                            this.videoIdx = file.videoNames[wentiId];
                         }
                     }
                     if (this.videoIdx == '') {
@@ -257,13 +258,13 @@ class VideoData extends egret.DisplayObjectContainer {
                     this.curVideoIndex = 0;
                     this.videoIdx = this.curVideoIDs[this.curVideoIndex];
                 }
-            } else if (UserInfo.curBokData.answerId[UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2]]) {
-                wentiId = UserInfo.curBokData.wentiId[UserInfo.curBokData.wentiId.length - 2];
+            } else if (file.answerId[file.wentiId[file.wentiId.length - 2]]) {
+                wentiId = file.wentiId[file.wentiId.length - 2];
                 this.isSelectVideo = true;
                 cfgs = answerModels[wentiId];
                 for (let k in cfgs) {
                     if (cfgs.hasOwnProperty(k)) {
-                        if (cfgs[k].ansid == UserInfo.curBokData.answerId[wentiId]) {
+                        if (cfgs[k].ansid == file.answerId[wentiId]) {
                             this.curAnswerCfg = cfgs[k];
                             break;
                         }
@@ -278,12 +279,12 @@ class VideoData extends egret.DisplayObjectContainer {
                     this.curVideoIDs = this.curAnswerCfg.videos.split(",");
                     this.videoIdx = '';
                     for (let i: number = 0; i < this.curVideoIDs.length; i++) {
-                        if (this.curVideoIDs[i] == UserInfo.curBokData.videoNames[wentiId]) {
+                        if (this.curVideoIDs[i] == file.videoNames[wentiId]) {
                             this.curVideoIndex = i + 1;
                             if (i < this.curVideoIDs.length - 1) {
                                 this.isSelectVideo = false;
                             }
-                            this.videoIdx = UserInfo.curBokData.videoNames[wentiId];
+                            this.videoIdx = file.videoNames[wentiId];
                         }
                     }
                     if (this.videoIdx == '') {
@@ -300,7 +301,7 @@ class VideoData extends egret.DisplayObjectContainer {
                 }
             }
             if (this.videoIdx == '') {
-                this.videoIdx = UserInfo.curBokData.videoNames[wentiId];
+                this.videoIdx = file.videoNames[wentiId];
             }
             this.againFlg = true;
             GameDefine.IS_READ_PLAY = true;
