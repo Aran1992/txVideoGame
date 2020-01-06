@@ -143,8 +143,8 @@ class JuQingPanel extends eui.Component {
     }
 
     private onClearItem(){
-        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENG, 0, 1,null);
-        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENGEX, 0, 1,null);
+        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENG, 0, 1,()=>{});
+        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENGEX, 0, 1,()=>{});
     }
 
     private updateShowTime() {
