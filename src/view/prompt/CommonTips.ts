@@ -38,6 +38,8 @@ class CommonTips extends eui.Component {
     private confirm_desc2_lab: eui.Label;
     private confirm_btn: eui.Button;
     private cancel_btn: eui.Button;
+    private centerConfirmBtn: eui.Button;
+    private multiBtnGrp: eui.Group;
     private buyGroup3: eui.Group;
     //显示蒙板
     private mask_BG: eui.Image;
@@ -262,10 +264,9 @@ class CommonTips extends eui.Component {
 
     public showConfirmTips(desc: string, callBack: Function, desc2?: string, textYes: string = "是", textNo: string = "否"): void {
         this.confirm_desc_lab.text = desc;
-        if (desc2)
-            this.confirm_desc2_lab.text = desc2;
-        else
-            this.confirm_desc2_lab.text = "";
+        this.confirm_desc2_lab.text = desc2 || "";
+        this.multiBtnGrp.visible = true;
+        this.centerConfirmBtn.visible = false;
         this._confirmFunc = callBack;
         if (!this.confirmGrp.visible) {
             this.confirmGrp.visible = true;
@@ -273,9 +274,17 @@ class CommonTips extends eui.Component {
             this.cancel_btn.name = "cancel";
             this.confirm_btn.label = textYes;
             this.cancel_btn.label = textNo;
-            this.confirm_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
-            this.cancel_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
         }
+        this.onshowMaskBG();
+    }
+
+    public showStrongTips(desc: string, callBack: Function) {
+        this.confirm_desc_lab.text = desc;
+        this.confirm_desc2_lab.text = "";
+        this._confirmFunc = callBack;
+        this.multiBtnGrp.visible = false;
+        this.centerConfirmBtn.visible = true;
+        this.confirmGrp.visible = true;
         this.onshowMaskBG();
     }
 
@@ -316,6 +325,9 @@ class CommonTips extends eui.Component {
         this.restartConfirmBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.restartConfirmBtnClick, this);
         this.restartCancelBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.restartCancelBtnClick, this);
         this.restartJQBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.restartJQBtnClick, this);
+        this.confirm_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
+        this.cancel_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
+        this.centerConfirmBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.centerConfirmBtnClick, this);
         this.updateResize();
         this.onInit();
     }
@@ -432,8 +444,15 @@ class CommonTips extends eui.Component {
             if (this._confirmFunc) this._confirmFunc.call(null, null);
         }
         this.confirmGrp.visible = false;
-        this.confirm_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
-        this.cancel_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onConfirm, this);
+        this.onhideMaskBG();
+    }
+
+    private centerConfirmBtnClick() {
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        if (this._confirmFunc) {
+            this._confirmFunc();
+        }
+        this.confirmGrp.visible = false;
         this.onhideMaskBG();
     }
 

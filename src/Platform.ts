@@ -112,14 +112,14 @@ class DebugPlatform implements Platform {
 
     public updateServerTime() {
         return;
-        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        const httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
         //let url = `http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp`;
         let url = `http://quan.suning.com/getSysTime.do`;
         httpRequest.open('GET', url, true);//第二步：打开连接
         httpRequest.send();//第三步：发送请求  将请求参数写在URL中
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-                var json = JSON.parse(httpRequest.responseText);//获取到json字符串，还需解析
+                const json = JSON.parse(httpRequest.responseText);//获取到json字符串，还需解析
                 DebugPlatform.s_serverTime = new Date(json.sysTime2).getTime();
             }
         };
@@ -265,6 +265,8 @@ class DebugPlatform implements Platform {
     public close() {
         if (this.getPlatform() == "plat_txsp") {
             bridgeHelper.close();
+        } else if (this.getPlatform() === "plat_1001") {
+            window["finishPage"]();
         }
     }
 }

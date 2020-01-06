@@ -73,6 +73,10 @@ class PromptPanel extends egret.DisplayObjectContainer {
         this.cjTips.showConfirmTips(desc, callBack, desc2, textYes, textNo);
     }
 
+    public showStrongTips(desc: string, callBack: Function) {
+        this.cjTips.showStrongTips(desc, callBack);
+    }
+
     public showErrorLog(logstr: string) {
         if (this.cjTips) {
             this.cjTips.showErrorLog(logstr);
@@ -96,7 +100,7 @@ class PromptPanel extends egret.DisplayObjectContainer {
         this.addChild(this.loadPanel);
     }
 
-    public toggleLogVisible(){
+    public toggleLogVisible() {
         this.cjTips.toggleLogVisible();
     }
 }

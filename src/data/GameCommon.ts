@@ -660,6 +660,10 @@ class GameCommon {
         PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2, textYes, textNo);
     }
 
+    public showStrongTips(desc: string, callBack: Function) {
+        PromptPanel.getInstance().showStrongTips(desc, callBack);
+    }
+
     public showErrorLog(logstr: string): void {
         PromptPanel.getInstance().showErrorLog(logstr);
     }
