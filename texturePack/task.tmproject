@@ -1,0 +1,39 @@
+{
+    "options": {
+        "useExtension": 1,
+        "layoutGap": 1,
+        "extend": 0,
+        "layoutMath": "3",
+        "sizeMode": "2n"
+    },
+    "files": [
+        "./../resource/assets/task/pass_icon_lock.png",
+        "./../resource/assets/task/pass_icon_get.png",
+        "./../resource/assets/task/pass_frame_task_normal.png",
+        "./../resource/assets/task/pass_frame_task_luxury.png",
+        "./../resource/assets/task/pass_btn_unlock.png",
+        "./../resource/assets/task/pass_btn_close.png",
+        "./../resource/assets/task/pass_bg_zhekou.png",
+        "./../resource/assets/task/pass_bg_zhangjie.png",
+        "./../resource/assets/task/pass_icon_tip.png",
+        "./../resource/assets/task/pass_icon_task_103009.png",
+        "./../resource/assets/task/pass_icon_task_103008.png",
+        "./../resource/assets/task/pass_icon_task_103007.png",
+        "./../resource/assets/task/pass_icon_task_103001.png",
+        "./../resource/assets/task/pass_icon_task_102017.png",
+        "./../resource/assets/task/pass_icon_task_102001.png",
+        "./../resource/assets/task/pass_icon_task_101004.png",
+        "./../resource/assets/task/pass_icon_task_101003.png",
+        "./../resource/assets/task/pass_icon_task_12.png",
+        "./../resource/assets/task/pass_icon_task_11.png",
+        "./../resource/assets/task/pass_icon_task_7.png",
+        "./../resource/assets/task/pass_icon_task_4.png",
+        "./../resource/assets/task/pass_icon_task_2.png",
+        "./../resource/assets/task/pass_icon_task_1.png",
+        "./../resource/assets/task/pass_icon_task_0.png",
+        "./../resource/assets/task/pass_icon_resume.png",
+        "./../resource/assets/task/pass_icon_mask.png"
+    ],
+    "version": 5,
+    "projectName": "task"
+}
