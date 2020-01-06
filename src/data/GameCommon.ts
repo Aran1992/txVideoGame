@@ -835,7 +835,7 @@ class GameCommon {
     //还差多少毫秒免费
     public getLeftChapterFreeMS(chapterId) {
         const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
-        let freems = platform.getSaleBeginTime() + chapterCfg.freeTime * 68400 * 1000;
+        let freems = platform.getSaleBeginTime() + chapterCfg.freeTime * 86400 * 1000;
         return freems - platform.getServerTime()
     }
 

@@ -36,6 +36,7 @@ class JuQingPanel extends eui.Component {
     private idGainShuipian: eui.Label;
     private idAddHour: eui.Label;
     private idOpenTime: eui.Label;
+    private idClearItem: eui.Label;
     private openLogGroup: eui.Label;
 
 
@@ -94,6 +95,7 @@ class JuQingPanel extends eui.Component {
         this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
         this.idGainShuipian.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onGetSuipian, this);
         this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddHour, this);
+        this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClearItem, this);
         this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
         this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
         this.openLogGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.openLogGroupClick, this);
@@ -138,6 +140,11 @@ class JuQingPanel extends eui.Component {
     private onAddHour() {
         platform.setTestTime(platform.getServerTime() + 10 * 60 * 60 * 1000);
         this.updateShowTime();
+    }
+
+    private onClearItem(){
+        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENG, 0, 1,null);
+        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENGEX, 0, 1,null);
     }
 
     private updateShowTime() {
@@ -239,7 +246,8 @@ class JuQingPanel extends eui.Component {
         }
 
         this.restartBtn.visible = isTXSP;
-        this.helperGroup.visible = platform.isDebug();
+        let debug = window.location.href.indexOf('debug') != -1;
+        this.helperGroup.visible = platform.isDebug() || debug;
     }
 
     private onTouchGuideGroup() {
