@@ -186,9 +186,9 @@ class VideoData extends egret.DisplayObjectContainer {
         }
         GameDefine.CUR_PLAYER_VIDEO = 1;
         this.onCreateData();
-        GameCommon.getInstance().showLoading();
         this._nextVid = '';
         if (file.wentiId.length > 0 && file.wentiId[file.wentiId.length - 1]) {
+            GameCommon.getInstance().showLoading();
             let wentiId: number = file.wentiId[file.wentiId.length - 1];
             // 如果最后一个问题已经回答了 但是问题对应的视频不存在于答案的视频列表里面 那么就将视频换成答案的视频列表的第一个
             const answerId = file.answerId[wentiId];
@@ -321,6 +321,11 @@ class VideoData extends egret.DisplayObjectContainer {
             } else {
                 VideoManager.getInstance().onPlay(this.videoIdx);
             }
+        } else {
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
+                cfg: JsonModelManager.instance.getModeljuqingkuai()[1][1],
+                idx: FILE_TYPE.AUTO_FILE
+            });
         }
     }
 
