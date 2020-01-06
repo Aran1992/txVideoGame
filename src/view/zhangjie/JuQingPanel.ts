@@ -36,6 +36,7 @@ class JuQingPanel extends eui.Component {
     private idGainShuipian: eui.Label;
     private idAddHour: eui.Label;
     private idOpenTime: eui.Label;
+    private openLogGroup: eui.Label;
 
 
     constructor() {
@@ -95,9 +96,24 @@ class JuQingPanel extends eui.Component {
         this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddHour, this);
         this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
         this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
+        this.openLogGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.openLogGroupClick, this);
+    }
+
+    private clickOpenLogGroupTimes: number = 0;
+    private clickOpenLogGroupTimer: number;
+
+    private openLogGroupClick() {
+        this.clickOpenLogGroupTimes++;
+        clearTimeout(this.clickOpenLogGroupTimer);
+        if (this.clickOpenLogGroupTimes > 5) {
+            PromptPanel.getInstance().toggleLogVisible();
+        }
+        this.clickOpenLogGroupTimer = setTimeout(() => this.clickOpenLogGroupTimes = 0, 1000);
     }
 
     protected onRemove(): void {
+        clearTimeout(this.clickOpenLogGroupTimer);
+
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.AUTO_UPDATA, JuQingPanel.onRefreshUpdata, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.REFRESH_JUQING, this.onRefresh, this);
@@ -280,8 +296,8 @@ class JuQingPanel extends eui.Component {
             this.imgIndx--;
             egret.Tween.get(this.slideGroup).to({x: -(this.imgIndx * size.width)}, 150, egret.Ease.sineIn).call(tweenEnd, this);
         }
-        
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.MOVE_JUQING_PAGE),this.imgIndx);
+
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.MOVE_JUQING_PAGE), this.imgIndx);
 
         this.qiuImgs[currIndex].source = 'cundang_dian2_png';
         this.qiuImgs[this.imgIndx].source = 'cundang_dian1_png';
@@ -366,7 +382,7 @@ class JuQingPanel extends eui.Component {
         for (let i: number = models.length - 1; i >= 0; i--) {
             let cfg: Modeljuqingkuai = models[i];
             let nextkuaiID = juqingAry[Math.min(juqingAry.indexOf(cfg.show) + 1, juqingAry.length - 1)];
-            item = new PlotTreeItem(cfg.show, nextkuaiID, tp,i);
+            item = new PlotTreeItem(cfg.show, nextkuaiID, tp, i);
             item.x = i * size.width + ((size.width - GameDefine.GAME_VIEW_WIDTH) / 2);
             this.slideGroup.addChild(item);
         }
@@ -394,8 +410,8 @@ class JuQingPanel extends eui.Component {
             this.setPage(models);
         }
 
-        
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.MOVE_JUQING_PAGE),this.imgIndx);
+
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.MOVE_JUQING_PAGE), this.imgIndx);
     }
 
     private setPage(models) {
@@ -451,26 +467,26 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
     private readonly IS_OPEN: number = 1;
     private readonly _curFile: number = 0;
     private statusData = {};
-    private _init=false;
-    private _parentCurPageIndex=null;
-    private _pageIdx=null;
+    private _init = false;
+    private _parentCurPageIndex = null;
+    private _pageIdx = null;
 
-    public constructor(index: number, nextIdx: number, tp,pageIdx:number) {
+    public constructor(index: number, nextIdx: number, tp, pageIdx: number) {
         super();
         this.width = GameDefine.GAME_VIEW_WIDTH;
         this.height = GameDefine.GAME_VIEW_HEIGHT;
         this._curFile = tp;
         this.index = index;
         this.nextIdx = nextIdx;
-        this._parentCurPageIndex=null;
-        this._pageIdx=pageIdx;
+        this._parentCurPageIndex = null;
+        this._pageIdx = pageIdx;
         this.models = JsonModelManager.instance.getModeljuqingkuai()[this.index];
         this.onInitUI();
-        
+
         GameDispatcher.getInstance().addEventListener(GameEvent.MOVE_JUQING_PAGE, this.onMoveJuqingPage, this);
     }
 
-    public onMoveJuqingPage(data){
+    public onMoveJuqingPage(data) {
         this._parentCurPageIndex = data.data;
         this.onInitUI();
     }
@@ -579,9 +595,9 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
         this.nextkuaiHandler();
     }
 
-    private onInitUI(): void {        
+    private onInitUI(): void {
         //不是当前页或者不是第一页
-        if(this._init || this._parentCurPageIndex != this._pageIdx){
+        if (this._init || this._parentCurPageIndex != this._pageIdx) {
             return;
         }
         this._init = true;

@@ -95,6 +95,10 @@ class PromptPanel extends egret.DisplayObjectContainer {
         this.loadPanel.touchEnabled = false;
         this.addChild(this.loadPanel);
     }
+
+    public toggleLogVisible(){
+        this.cjTips.toggleLogVisible();
+    }
 }
 
 enum PROMPT_TYPE {
