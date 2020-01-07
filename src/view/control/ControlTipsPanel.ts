@@ -260,13 +260,16 @@ class ControlTipsPanel extends eui.Component {
                 this.timerIdx = 0;
                 this.timer.stop();
             }
-            if (widPlayer.getPlayTime() >= widPlayer.getDuration()) {
-                widPlayer.seek(0);
-                var obj = this;
+            if (widPlayer.getPlayTime() >= widPlayer.getDuration()-1) {
+               // widPlayer.seek(0);
+               let vid = widPlayer.getVid()
+                widPlayer.clear();
+                //var obj = this;
 
-                Tool.callbackTime(function () {
-                    widPlayer.resume();
-                }, obj, 100);
+                Tool.callbackTime( () => {
+                    //widPlayer.resume();
+                    widPlayer.play(vid);//widPlayer.getVid()
+                }, this, 100);
                 return;
             }
             widPlayer.resume();
@@ -305,9 +308,9 @@ class ControlTipsPanel extends eui.Component {
         this.videoPro.slideDuration = 0;
         widPlayer.on('timeupdate', () => {
             if (this.videoPro) {
-                if (this.videoPro.maximum < 5) {
+                //if (this.videoPro.maximum < 5) {//不知道用来干嘛
                     this.videoPro.maximum = widPlayer.getDuration();
-                }
+                //}
                 GameCommon.getInstance().removeLoading();
                 this.videoPro.value = widPlayer.getPlayTime();
             }
@@ -319,6 +322,7 @@ class ControlTipsPanel extends eui.Component {
                 this.pauseGroup.visible = true;
                 this.controlGroup.visible = true;
                 this.play_pauseBtn['iconDisplay'].source = 'playImg_png';
+                //widPlayer.originPlayer.playList.playtime = widPlayer.getDuration();//会被改回去，没用
             }
         })
     }

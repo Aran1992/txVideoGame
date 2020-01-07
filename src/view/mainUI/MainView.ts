@@ -450,6 +450,8 @@ class MainView extends eui.Component {
             "on",
             "showLevelPanel",
             "hideLevelPanel",
+            "stop",
+            "getVid",
         ];
         const logArgsMethodList = [
             "play",
@@ -463,9 +465,11 @@ class MainView extends eui.Component {
             "on",
             "showLevelPanel",
             "hideLevelPanel",
+            "stop",
+            "getVid",
         ];
         const logResultMethodList = [];
-        widPlayer = {};
+        widPlayer = {originPlayer:player};
         methodList.forEach(key => {
             widPlayer[key] = (...args) => {
                 if (key === "on") {
