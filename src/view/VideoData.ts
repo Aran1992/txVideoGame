@@ -1235,6 +1235,7 @@ class VideoData extends egret.DisplayObjectContainer {
             if (this.pauseByPauseEvent) {
                 this.tipsPanel.imStatus = 'pauseImg_png';
                 VideoManager.getInstance().videoResume();
+                this.tipsPanel.removePauseState();
                 this.pauseByPauseEvent = false;
             }
         }

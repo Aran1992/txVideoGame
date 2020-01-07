@@ -1,4 +1,5 @@
 class GameEvent {
+    public static SHOW_PAUSE_STATE: string = 'show.pause.state';
     public static GAME_JSON_PARSE_OK: string = 'game.json.parse.complete';
     public static ONSHOW_VIDEO: string = 'show.video';
     public static REDUCE_VIDEO_SPEED: string = 'reduce.video.speed';
