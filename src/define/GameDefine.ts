@@ -61,6 +61,10 @@ class GameDefine {
     };
     // 控制是否检查章节开启
     public static ENABLE_CHECK_VIP = true;
+    // 是否显示控制面板
+    public static SHOW_HELPER_GROUP: boolean = true;
+    // 是否显示视频错误信息
+    public static SHOW_VIDEO_ERROR_INFO: boolean = true;
 
     public static get sizeScaleX() {// 白鹭UI和视频的尺寸比（横向）
         return size.width / GameDefine.VIDEO_FULL_WIDTH;

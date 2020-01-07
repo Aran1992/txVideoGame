@@ -890,6 +890,8 @@ class GameCommon {
         let freeMs = this.getLeftChapterFreeMS(nextChapterId);
         if (platform.getServerTime() < platform.getSaleBeginTime()) {
             GameCommon.getInstance().showCommomTips("敬请期待");
+            GameDefine.IS_DUDANG = false;
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
             return false;
         }
         if (!isVip && (freeMs > 0 || !platform.isCelebrateTime())) {
