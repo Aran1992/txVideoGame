@@ -247,7 +247,7 @@ class JuQingPanel extends eui.Component {
 
         this.restartBtn.visible = isTXSP;
         let debug = window.location.href.indexOf('debug') != -1;
-        this.helperGroup.visible = platform.isDebug() || debug;
+        this.helperGroup.visible = platform.isDebug() || debug || GameDefine.SHOW_HELPER_GROUP;
     }
 
     private onTouchGuideGroup() {
