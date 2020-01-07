@@ -131,6 +131,14 @@ class TipsBtn extends eui.Component {
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.PLAY_PAUSE), false);
     }
 
+    public removePauseState() {
+        this.play_pauseBtn.touchEnabled = false;
+        this.controlGroup.visible = false;
+        this.mengban.visible = false;
+        this.pauseGroup.visible = false;
+        this.play_pauseBtn['iconDisplay'].source = 'pauseImg_png';
+    }
+
     public onUpdateWenTi(id): void {
         if (this.buyAnswerID !== undefined) {
             id = this.buyAnswerID;
@@ -263,6 +271,7 @@ class TipsBtn extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.GAME_STATE_CHANGE, this.onGameStateChange, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_HAOGAN, this.onBuySuccessCallback, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.SHOW_PAUSE_STATE, this.setPauseState, this);
         for (let i = 1; i < 6; i++) {
             this['btn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }

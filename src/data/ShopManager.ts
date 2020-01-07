@@ -209,7 +209,7 @@ class ShopManager {
         // if (platform.getPlatform()=="plat_txsp")
         //     return 0;
         if (!this._serverItemNums["loaded"]) {
-            this.loadFromServer()
+            this.loadFromServer();
             return 0;
         }
         if (id == GameDefine.GUANGLIPINGZHENGEX || id == GameDefine.GUANGLIPINGZHENG) {

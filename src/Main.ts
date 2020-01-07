@@ -30,18 +30,18 @@ class Main extends eui.UILayer {
         this.stage.scaleMode = egret.StageScaleMode.FIXED_NARROW;
         this.stage.maxTouches = 100;//最大触摸点
 
-        if(is1001 && egret.Capabilities.os == 'IOS'){
-            document.addEventListener("visibilitychange", () => { 
-                if(document.hidden) {
+        if (is1001 && egret.Capabilities.os == 'iOS') {
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
                     // 页面被挂起
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
-                }
-                else {
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_PAUSE_STATE));
+                } else {
                     // 页面呼出
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'start');
                 }
             });
-        }else{
+        } else {
             egret.lifecycle.onPause = () => {
                 // egret.ticker.pause();
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
@@ -158,7 +158,7 @@ class Main extends eui.UILayer {
                             });
                         }
                         callback();
-                        if(isTXSP){
+                        if (isTXSP) {
                             RES.loadGroup("restxsp");
                         }
                     });
