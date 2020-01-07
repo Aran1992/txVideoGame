@@ -30,15 +30,28 @@ class Main extends eui.UILayer {
         this.stage.scaleMode = egret.StageScaleMode.FIXED_NARROW;
         this.stage.maxTouches = 100;//最大触摸点
 
-        egret.lifecycle.onPause = () => {
-            // egret.ticker.pause();
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
-        };
+        if(is1001 && egret.Capabilities.os == 'IOS'){
+            document.addEventListener("visibilitychange", () => { 
+                if(document.hidden) {
+                    // 页面被挂起
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
+                }
+                else {
+                    // 页面呼出
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'start');
+                }
+            });
+        }else{
+            egret.lifecycle.onPause = () => {
+                // egret.ticker.pause();
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'stop');
+            };
 
-        egret.lifecycle.onResume = () => {
-            // egret.ticker.resume();
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'start');
-        };
+            egret.lifecycle.onResume = () => {
+                // egret.ticker.resume();
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GUIDE_STOP_GAME), 'start');
+            };
+        }
 
         //inject the custom material parser
         //注入自定义的素材解析器
