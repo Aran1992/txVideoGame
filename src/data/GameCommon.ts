@@ -888,7 +888,8 @@ class GameCommon {
             return false;
         }
         let freeMs = this.getLeftChapterFreeMS(nextChapterId);
-        if (platform.getServerTime() < platform.getSaleBeginTime()) {
+        //提前半天开放，10号凌晨就可以看了
+        if (platform.getServerTime() < platform.getSaleBeginTime()-platform.getOffsetTime()) {
             GameCommon.getInstance().showCommomTips("敬请期待");
             GameDefine.IS_DUDANG = false;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
