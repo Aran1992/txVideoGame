@@ -193,7 +193,7 @@ class VideoManager {
             for (const k in cfgs) {
                 if (cfgs.hasOwnProperty(k)) {
                     if (cfgs[k].videos.indexOf(",") >= 0) {
-                        videoSrcs = videoSrcs.concat(cfgs[k].videos.split(","));
+                        videoSrcs = videoSrcs.concat(cfgs[k].videos.split(",")[0]);
                     } else {
                         if (cfgs[k].videos != '')
                             videoSrcs.push(cfgs[k].videos);
