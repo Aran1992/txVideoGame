@@ -65,7 +65,7 @@ class BuyTipsPanel extends eui.Component {
 
         
 
-        if(this.param.shopInfo.model.currSuipian == 0 && this.param.shopInfo.model.currPrice == 0){
+        if(this.param.shopInfo.model.currSuipian == 0 && this.param.shopInfo.model.currPrice == 0 && ShopManager.getInstance().getItemNum(this.param.shopInfo.model.id)==0){
                 //直接加物品，购买成功 
                 GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
                 this.onhideMaskBG();
@@ -112,7 +112,7 @@ class BuyTipsPanel extends eui.Component {
         this.onclose();
     }
 
-    private onSuiPian() {
+    private onSuiPian() {        
         let shopdata:ShopInfoData = ShopManager.getInstance().getShopInfoData(this.param.shopInfo.id);
         if (shopdata.model.currSuipian == 0 ){
             GameCommon.getInstance().showCommomTips("此商品不能用碎片购买！")
