@@ -308,7 +308,16 @@ class GameWorld extends egret.DisplayObjectContainer {
                             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHARE_ACTIVATION_CODE));
                         }
                     } else {
-                        GameCommon.getInstance().showCommomTips('分享失败！errorcode::' + data.code);
+                        switch (data.code) {
+                            case 0: {
+                                GameCommon.getInstance().showCommomTips('分享失败！');
+                                break;
+                            }
+                            case -1: {
+                                // 这是取消分享 不需要进行提示
+                                break;
+                            }
+                        }
                     }
                     break;
             }

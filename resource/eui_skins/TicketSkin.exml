@@ -12,7 +12,7 @@
 
 
 			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" size="30" textColor="0x898686" lineSpacing="12" verticalCenter="-200" horizontalCenter="-290"/>
-			<e:Label id="idCode" text="OOOOOOOO" size="50" textColor="0xffffff" anchorOffsetX="0" textAlign="center" verticalCenter="-210" horizontalCenter="-290"/>
+			<e:Label id="idCode" text="ABCDEFGHIJKLMNOP" size="40" textColor="0xffffff" anchorOffsetX="0" textAlign="center" verticalCenter="-210" horizontalCenter="-290"/>
 
 			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" textAlign="center" textColor="0xbfbbbb" horizontalCenter="-290" verticalCenter="-170"/>
 
@@ -45,7 +45,7 @@
 			<e:Image width="509" height="619" x="594.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="-200">
 				<e:Rect width="392" height="120" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5" verticalCenter="0" horizontalCenter="0" x="-96" y="-174" scaleX="1" scaleY="1"/>
-				<e:EditableText id="idEditText" width="392" height="60" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="50" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="0" horizontalCenter="0" x="-74" y="-158" scaleX="1" scaleY="1"/>
+				<e:EditableText id="idEditText" width="392" height="80" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="40" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="0" horizontalCenter="0" x="-74" y="-158" scaleX="1" scaleY="1"/>
 			</e:Group>
 
 			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="0">
