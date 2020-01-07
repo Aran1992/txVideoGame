@@ -266,7 +266,7 @@ class DebugPlatform implements Platform {
         if (this.getPlatform() == "plat_txsp") {
             bridgeHelper.close();
         } else if (this.getPlatform() === "plat_1001") {
-            window["finishPage"]();
+            window["exit"]();
         }
     }
 }
