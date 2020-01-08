@@ -227,6 +227,12 @@ class TicketPanel extends eui.Component {
 
         if (platform.getPlatform() != "plat_txsp")
             this.idRectBuy.alpha = 0.9;
+
+        const inputs = document.getElementsByTagName("input");
+        for (let i = 0; i < inputs.length; i++) {
+            const input = inputs[i];
+            input.addEventListener('blur', () => window.scroll(0, 0));
+        }
     }
 
     private onUpdateVip() {

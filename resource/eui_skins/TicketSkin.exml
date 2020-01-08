@@ -45,7 +45,7 @@
 			<e:Image width="509" height="619" x="594.85" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0"/>
 			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="-200">
 				<e:Rect width="392" height="120" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.5" verticalCenter="0" horizontalCenter="0" x="-96" y="-174" scaleX="1" scaleY="1"/>
-				<e:EditableText id="idEditText" width="392" height="80" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="40" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="0" horizontalCenter="0" x="-74" y="-158" scaleX="1" scaleY="1"/>
+				<e:EditableText id="idEditText" width="392" height="120" prompt="输入激活码" anchorOffsetX="0" anchorOffsetY="0" size="40" textAlign="center" multiline="false" verticalAlign="middle" verticalCenter="0" horizontalCenter="0" x="-74" y="-158" scaleX="1" scaleY="1"/>
 			</e:Group>
 
 			<e:Group width="200" height="200" horizontalCenter="280" verticalCenter="0">

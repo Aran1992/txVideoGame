@@ -159,9 +159,7 @@ class ControlTipsPanel extends eui.Component {
             return;
         }
         if (new Date().getTime() - this.touchtime < 250) {
-            this.onPlay_Pause();
         } else {
-
             this.touchtime = new Date().getTime();
             if (!this.controlGroup.visible) {
                 this.controlGroup.visible = true;
@@ -186,14 +184,11 @@ class ControlTipsPanel extends eui.Component {
                     this.timer.stop();
                     this.hideControl();
                 }
-
                 this.controlGroup.visible = false;
                 this.videoCurrentState = true;
                 this.timerIdx = 4;
                 return;
             }
-
-
         }
     }
 

@@ -60,7 +60,7 @@ class GameDefine {
         DIAMOND: "common_zuanshi_png"
     };
     // 控制是否检查章节开启
-    public static ENABLE_CHECK_VIP = false;
+    public static ENABLE_CHECK_VIP = true;
     // 是否显示控制面板
     public static SHOW_HELPER_GROUP: boolean = false;
     // 是否显示视频错误信息

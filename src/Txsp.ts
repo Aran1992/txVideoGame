@@ -2,7 +2,7 @@ declare const BridgeHelper;
 declare var bridgeHelper;
 declare var txsp_userinfo;
 const txsp_appid = "tivf8061263egmdcyp";
-const txsp_debug = true;
+const txsp_debug = false;
 const txsp_vip = false;
 let h5StartedTime = new Date().getTime();
 
@@ -180,9 +180,9 @@ class Txsp {
                         count: num, // 商品数量
                         sandbox: txsp_debug ? 1 : 0,
                     }), (res) => {
-                        if(ShopManager.getInstance().getItemNum(shopdata.model.id)>0){
+                        if (ShopManager.getInstance().getItemNum(shopdata.model.id) > 0) {
                             GameCommon.getInstance().showCommomTips("你已经拥有该物品");
-                        }else{
+                        } else {
                             callbackBuyGoods(res)
                         }
                     });
@@ -196,7 +196,7 @@ class Txsp {
                 //     GameCommon.getInstance().showConfirmTips(`我的余额${leftMoney};本次需要消费${price}`, () => {
                 //     })
                 this.tokenRequest(() => bridgeHelper.openPayPage({
-                    actid: '', // 钻石actid
+                    actid: 'ZS_37', // 钻石actid
                     appid: txsp_appid, // 应用的appid
                     orderid: '', // 订单id
                     needpay: Math.abs(Math.ceil(price - leftMoney)), // 本次购买需要的钻石数目

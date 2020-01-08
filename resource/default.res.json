@@ -8276,7 +8276,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=184"
+            "url": "config/config.bin?v=232"
         }
     ]
 }
