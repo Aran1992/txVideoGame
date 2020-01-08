@@ -83,6 +83,8 @@ class ShouCangViewPanel extends eui.Component {
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
+        const layout = this.goodsLayer.layout as eui.TileLayout;
+        layout.horizontalGap = Tool.calcGap(size.width - layout.paddingLeft - layout.paddingRight, 318, 10);
     }
 
     private onShowView(): void {
@@ -205,7 +207,7 @@ class ShouCangViewPanel extends eui.Component {
         this.updateResize();
 
         let w = this.centerGroup.width;
-        let h = 50
+        let h = 50;
         let lightMatrix = new egret.Matrix();
         let cirleLight = new egret.Shape();
         //cirleLight.blendMode = egret.BlendMode.ERASE;

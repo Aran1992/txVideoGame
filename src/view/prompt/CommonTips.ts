@@ -61,6 +61,7 @@ class CommonTips extends eui.Component {
     private restartConfirmBtn: eui.Button;
     private restartCancelBtn: eui.Button;
     private restartJQBtn: eui.Button;
+    private backgroundRect: eui.Rect;
 
     constructor() {
         super();
@@ -87,19 +88,6 @@ class CommonTips extends eui.Component {
         }
         this.isLikeTime = false;
     }
-
-    // public setLike(text: string): void {
-    //     this.isLikeTime = true;
-    //     this.grp1.x = -1000;
-    //     this.grp1.alpha = 1;
-    //     this.desc1.text = text;
-    //     this.grp1.y = 148;
-    //     egret.Tween.get(this.grp1)
-    //         .to({x: 43}, 800)
-    //         .to({alpha: 0.9}, 2000)
-    //         .to({alpha: 0}, 1500);
-    // }
-
 
     //互动即将到来提示
     public setTipsHuDong() {
@@ -278,14 +266,15 @@ class CommonTips extends eui.Component {
         this.onshowMaskBG();
     }
 
-    public showStrongTips(desc: string, callBack: Function) {
+    public showStrongTips(desc: string, callBack: Function, textYes: string = "确定") {
         this.confirm_desc_lab.text = desc;
         this.confirm_desc2_lab.text = "";
         this._confirmFunc = callBack;
         this.multiBtnGrp.visible = false;
         this.centerConfirmBtn.visible = true;
         this.confirmGrp.visible = true;
-        this.onshowMaskBG();
+        this.centerConfirmBtn.label = textYes;
+        this.backgroundRect.visible = true;
     }
 
     public showErrorLog(str: string): void {
@@ -311,7 +300,7 @@ class CommonTips extends eui.Component {
         this.buyGrphaogan.visible = false;
         this.buyResult.visible = false;
         this.confirmGrp.visible = false;
-        this.logLab.visible = platform.isDebug();
+        this.logLab.visible = platform.isDebug() || GameDefine.SHOW_LOG;
     }
 
     private onLoadComplete(): void {
@@ -453,7 +442,7 @@ class CommonTips extends eui.Component {
             this._confirmFunc();
         }
         this.confirmGrp.visible = false;
-        this.onhideMaskBG();
+        this.backgroundRect.visible = false;
     }
 
     public showRestartGroup() {

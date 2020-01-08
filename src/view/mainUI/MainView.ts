@@ -1,11 +1,13 @@
 const errorList = [];
 const playerInfoList = [];
 
-const infoDiv = document.createElement("div");
-document.body.appendChild(infoDiv);
-infoDiv.outerHTML = `<div style="position: absolute; top: 0; left: 50%; z-index: 99999">
+if (GameDefine.SHOW_COPY_LOG_BTN) {
+    const infoDiv = document.createElement("div");
+    document.body.appendChild(infoDiv);
+    infoDiv.outerHTML = `<div style="position: absolute; top: 0; left: 50%; z-index: 99999">
 <button onclick="copyLog();">复制LOG</button>
 </div>`;
+}
 
 function copyLog() {
     const str = JSON.stringify({
@@ -469,7 +471,7 @@ class MainView extends eui.Component {
             "getVid",
         ];
         const logResultMethodList = [];
-        widPlayer = {originPlayer:player};
+        widPlayer = {originPlayer: player};
         methodList.forEach(key => {
             widPlayer[key] = (...args) => {
                 if (key === "on") {

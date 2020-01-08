@@ -73,8 +73,8 @@ class PromptPanel extends egret.DisplayObjectContainer {
         this.cjTips.showConfirmTips(desc, callBack, desc2, textYes, textNo);
     }
 
-    public showStrongTips(desc: string, callBack: Function) {
-        this.cjTips.showStrongTips(desc, callBack);
+    public showStrongTips(desc: string, callBack: Function, textYes: string = "确定") {
+        this.cjTips.showStrongTips(desc, callBack, textYes);
     }
 
     public showErrorLog(logstr: string) {

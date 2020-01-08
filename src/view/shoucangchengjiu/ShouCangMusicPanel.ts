@@ -5,6 +5,7 @@ class ShouCangMusicPanel extends eui.Component {
     private scroll: eui.Scroller;
     private centerGroup: eui.Group;
     private noneGroup: eui.Group;
+    private goToShopButton: eui.Button;
 
     constructor() {
         super();
@@ -16,6 +17,7 @@ class ShouCangMusicPanel extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
 
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+        this.goToShopButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickGoToShopButton, this);
     }
 
     protected onRemove(): void {
@@ -47,6 +49,8 @@ class ShouCangMusicPanel extends eui.Component {
     private updateResize() {
         this.width = size.width;
         this.height = size.height;
+        const layout = this.goodsLayer.layout as eui.TileLayout;
+        layout.horizontalGap = Tool.calcGap(size.width - layout.paddingLeft - layout.paddingRight, 320, 10);
     }
 
     private showGoods() {
@@ -54,12 +58,14 @@ class ShouCangMusicPanel extends eui.Component {
         var cfgs = ChengJiuManager.getInstance().shoucangCfgs;
         let hasItem = false;
         for (var k in cfgs) {
+            if (ShopManager.getInstance().onCheckShoucangOpen(cfgs[k].id)) {
                 if (cfgs[k].mulu2 == SHOUCANG_SUB_TYPE.SHOUCANG_MUSIC) {
                     var cg: ShouCangMusicItem = new ShouCangMusicItem();
                     this.goodsLayer.addChild(cg);
                     cg.data = cfgs[k];
                     hasItem = true;
                 }
+            }
         }
         this.scroll.viewport.scrollV = 0;
         if (hasItem) {
@@ -77,6 +83,11 @@ class ShouCangMusicPanel extends eui.Component {
         this.onRegist();
         this.updateResize();
     }
+
+    private onClickGoToShopButton() {
+        this.onClose();
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShopPanel');
+    }
 }
 
 class ShouCangMusicItem extends eui.Component {
@@ -87,7 +98,7 @@ class ShouCangMusicItem extends eui.Component {
     private icon: eui.Image;
     private musicNum: eui.Label;
     private musicName: eui.Label;
-    private idNewPoint:eui.Image;
+    private idNewPoint: eui.Image;
 
     public constructor() {
         super();
@@ -112,11 +123,11 @@ class ShouCangMusicItem extends eui.Component {
     }
 
     private onPlayVideo() {
-        if(UserInfo.lookAchievement[this.info.id]!=1){
+        if (UserInfo.lookAchievement[this.info.id] != 1) {
             UserInfo.lookAchievement[this.info.id] = 1;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
         }
-        this.idNewPoint.visible=false;
+        this.idNewPoint.visible = false;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
             windowName: 'Mp3Panel',
             data: this.info

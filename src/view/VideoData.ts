@@ -315,9 +315,7 @@ class VideoData extends egret.DisplayObjectContainer {
             GameDefine.IS_READ_PLAY = true;
             if (VideoManager.getInstance().getVideoData() && widPlayer) {
                 VideoManager.getInstance().clear();
-                Tool.callbackTime(() => {
-                    VideoManager.getInstance().onAgainGame(this.videoIdx);
-                }, this, 100);
+                VideoManager.getInstance().onAgainGame(this.videoIdx);
             } else {
                 VideoManager.getInstance().onPlay(this.videoIdx);
             }

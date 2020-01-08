@@ -660,8 +660,8 @@ class GameCommon {
         PromptPanel.getInstance().showConfirmTips(desc, callBack, desc2, textYes, textNo);
     }
 
-    public showStrongTips(desc: string, callBack: Function) {
-        PromptPanel.getInstance().showStrongTips(desc, callBack);
+    public showStrongTips(desc: string, callBack: Function, textYes: string = "确定") {
+        PromptPanel.getInstance().showStrongTips(desc, callBack, textYes);
     }
 
     public showErrorLog(logstr: string): void {
@@ -889,7 +889,7 @@ class GameCommon {
         }
         let freeMs = this.getLeftChapterFreeMS(nextChapterId);
         //提前半天开放，10号凌晨就可以看了
-        if (platform.getServerTime() < platform.getSaleBeginTime()-platform.getOffsetTime()) {
+        if (platform.getServerTime() < platform.getSaleBeginTime() - platform.getOffsetTime()) {
             GameCommon.getInstance().showCommomTips("敬请期待");
             GameDefine.IS_DUDANG = false;
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");

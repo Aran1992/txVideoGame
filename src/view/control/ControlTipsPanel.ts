@@ -260,16 +260,11 @@ class ControlTipsPanel extends eui.Component {
                 this.timerIdx = 0;
                 this.timer.stop();
             }
-            if (widPlayer.getPlayTime() >= widPlayer.getDuration()-1) {
-               // widPlayer.seek(0);
-               let vid = widPlayer.getVid()
+            if (widPlayer.getPlayTime() >= widPlayer.getDuration() - 1) {
+                // widPlayer.seek(0);
+                let vid = widPlayer.getVid();
                 widPlayer.clear();
-                //var obj = this;
-
-                Tool.callbackTime( () => {
-                    //widPlayer.resume();
-                    widPlayer.play(vid);//widPlayer.getVid()
-                }, this, 100);
+                widPlayer.play(vid);//widPlayer.getVid()
                 return;
             }
             widPlayer.resume();

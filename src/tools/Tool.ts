@@ -475,6 +475,12 @@ class Tool {
         return n >= 10 ? n : ('0' + n);
     }
 
+    public static calcGap(rootWidth, itemWidth, minGap) {
+        const itemCount = Math.floor((rootWidth + minGap) / (itemWidth + minGap));
+        const remainWidth = rootWidth - itemWidth * itemCount;
+        return remainWidth / (itemCount - 1);
+    }
+
     //The end
 }
 

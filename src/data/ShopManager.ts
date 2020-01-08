@@ -45,13 +45,13 @@ class ShopManager {
 
     /**钻石购买商品**/
     public buyGoods(itemId, num: number = 1, callback: () => void = null) {
-        if(ShopManager.getInstance().getItemNum(itemId)>0){            
+        if (ShopManager.getInstance().getItemNum(itemId) > 0) {
             GameCommon.getInstance().showCommomTips("你已经拥有该物品");
             return;
         }
         let shopdata: ShopInfoData = this._shopDataDict[itemId];
         if (!shopdata) return;
-        if (egret.Capabilities.os == 'Windows PC') {
+        if (platform.getPlatform() === "plat_pc") {
             this.addGoods(itemId, num, callback);
         } else {
             let callbackBuyGoods = (data) => {
@@ -76,14 +76,14 @@ class ShopManager {
                     }
                 }
             };
-            
+
             platform.buyGoods(GameDefine.BOOKID, itemId, num, 0, callbackBuyGoods);
-            
+
         }
     }
 
     public buyGoodsSuip(itemId: number, num: number = 1, callback: any = null): void {
-        if(ShopManager.getInstance().getItemNum(itemId)>0){            
+        if (ShopManager.getInstance().getItemNum(itemId) > 0) {
             GameCommon.getInstance().showCommomTips("你已经拥有该物品");
             return;
         }
