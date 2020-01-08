@@ -231,6 +231,7 @@ class TicketPanel extends eui.Component {
         const inputs = document.getElementsByTagName("input");
         for (let i = 0; i < inputs.length; i++) {
             const input = inputs[i];
+            input.addEventListener('blur', () => input.style.padding = '');
             input.addEventListener('blur', () => window.scroll(0, 0));
         }
     }
