@@ -1291,14 +1291,12 @@ class TaskManager {
             if (task.check.type === "video") {
                 if (task.check.vid.indexOf("&") !== -1) {
                     const fileList = [UserInfo.curBokData];
-                    for (let key in UserInfo.fileDatas) {
-                        if (UserInfo.fileDatas.hasOwnProperty(key)) {
-                            const file = UserInfo.fileDatas[key];
-                            if (file) {
-                                fileList.push(file);
-                            }
+                    [FILE_TYPE.FILE2, FILE_TYPE.FILE3, FILE_TYPE.FILE4, FILE_TYPE.FILE5, FILE_TYPE.FILE6].forEach(key => {
+                        const file = UserInfo.fileDatas[key];
+                        if (file) {
+                            fileList.push(file);
                         }
-                    }
+                    });
                     if (!task.check.vid.split("&").some(vid => !fileList.some(file => file.allVideos[vid]))) {
                         this.completeTask(task.id);
                     }
