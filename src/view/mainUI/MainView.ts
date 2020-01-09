@@ -134,7 +134,7 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.updateNewPoint, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.TASK_STATE_CHANGED, this.updateTicketButtonPoint, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyItemComplte, this);
-        GameDispatcher.getInstance().addEventListener(GameEvent.START_PLAY, this.onEventPlay, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.CLICK_START_PLAY_BTN, this.onEventPlay, this);
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
@@ -148,17 +148,8 @@ class MainView extends eui.Component {
         //
         this.btnSetting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowbtnSetting, this);
         this.btnShangCheng.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowShop, this);
-        // GameCommon.getInstance().getWenTi();
-        // this.onGetDataRefresh();
-        // LocalStorageManager.getInstance().onInit();
         ShopManager.getInstance().initShopInfos();
         GameCommon.getInstance().getBookHistory(FILE_TYPE.GOODS_FILE);
-        // GameCommon.getInstance().getUserInfo().then(data => {
-        //     UserInfo.id = data.id;
-        //     UserInfo.user = data.user;
-        //     console.log("UserInfo.id", UserInfo.id);
-        //     console.log("UserInfo.user", UserInfo.user);
-        // });
         VideoManager.getInstance().updateVideoData("");
         this.setStartButtonVisible(true);
         this.setMainGroupVisible(false);
@@ -343,6 +334,7 @@ class MainView extends eui.Component {
     }
 
     private onEventPlay() {
+        window['startPlayBtn'].hidden = true;
         if (GameCommon.getInstance().isCompleteGame()) {
             PromptPanel.getInstance().showRestartGroup();
             return;

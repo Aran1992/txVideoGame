@@ -144,8 +144,12 @@
     });
     xhr.send(null);
 </script>
-<div id="startPlayBtn" hidden onclick="GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.START_PLAY));"
+<div id="startPlayBtn" hidden
+     onclick="GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLICK_START_PLAY_BTN));"
      style="position:absolute;left:25%;top:25%;right:25%;bottom:25%;z-index:99999;"></div>
+<div id="confirmBtn" hidden
+     onclick="GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLICK_CONFIRM_BTN));"
+     style="position:absolute;left:50%;right:25%;top:25%;bottom:25%;z-index:99999;"></div>
 <div id="preloadDiv"></div>
 </body>
 

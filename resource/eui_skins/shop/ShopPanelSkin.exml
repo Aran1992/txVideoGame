@@ -4,14 +4,13 @@
 	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
 		<e:Image alpha="1" anchorOffsetY="0" touchEnabled="false" y="0" left="0" width="100%" height="100%"
 		         source="cundang_bj_jpg" locked="true" />
-		<e:Button id="btnClose" left="47" top="40" label="福利社" width="220" height="62">
+		<e:Button id="btnClose" label="福利社" width="350" x="0" y="0" height="125" touchEnabled="true" touchChildren="true" enabled="true">
 			<e:skinName>
-				<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
-					<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png"
-					         verticalCenter="0" left="0" />
-					<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9"
-					         left="50" />
-				</e:Skin>
+			<e:Skin states="up,down,disabled" width="350" height="125" xmlns:n1s="*">
+				<e:Group width="100%" height="100%"/>
+				<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png" verticalCenter="0" left="40" locked="true"/>
+				<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9" left="90" text=""/>
+			</e:Skin>
 			</e:skinName>
 		</e:Button>
 		<e:Button id="filter_btn" right="75" y="32" width="80" height="80" visible="false">

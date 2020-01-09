@@ -8,7 +8,7 @@ class AboutPanel extends eui.Component {
     private qiuImgs: eui.Image[];
     private starPos: number = 0;
     private imgIndx: number = 1;
-    private imgMaxNumb: number = 8;
+    private imgMaxNumb: number = 7;
     private _playTween: boolean;
     private _imageWidth: number = 0;
 

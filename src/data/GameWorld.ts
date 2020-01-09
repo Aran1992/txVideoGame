@@ -272,14 +272,12 @@ class GameWorld extends egret.DisplayObjectContainer {
             VideoManager.getInstance().clear();
         }
         VideoManager.getInstance().updateVideoData(src);
-        setTimeout(() => {
-            if (this.isAgaig) {
-                this.isAgaig = false;
-                this.videoData.againGame(wentiId);
-            } else {
-                this.videoData.starVideo(wentiId);
-            }
-        }, 100);
+        if (this.isAgaig) {
+            this.isAgaig = false;
+            this.videoData.againGame(wentiId);
+        } else {
+            this.videoData.starVideo(wentiId);
+        }
     }
 
     /**事件注册**/

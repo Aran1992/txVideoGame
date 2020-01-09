@@ -51,27 +51,22 @@
         {
             "name": "guide_4_jpg",
             "type": "image",
-            "url": "assets/about/guide_4.jpg?v=681"
+            "url": "assets/about/guide_4.jpg?v=413"
         },
         {
             "name": "guide_5_jpg",
             "type": "image",
-            "url": "assets/about/guide_5.jpg?v=413"
+            "url": "assets/about/guide_5.jpg?v=357"
         },
         {
             "name": "guide_6_jpg",
             "type": "image",
-            "url": "assets/about/guide_6.jpg?v=357"
+            "url": "assets/about/guide_6.jpg?v=439"
         },
         {
             "name": "guide_7_jpg",
             "type": "image",
-            "url": "assets/about/guide_7.jpg?v=439"
-        },
-        {
-            "name": "guide_8_jpg",
-            "type": "image",
-            "url": "assets/about/guide_8.jpg?v=382"
+            "url": "assets/about/guide_7.jpg?v=382"
         },
         {
             "name": "guide_bg_jpg",
@@ -3362,11 +3357,6 @@
             "name": "syht_png",
             "type": "image",
             "url": "assets/font/syht.png?v=71"
-        },
-        {
-            "name": "buylock_png",
-            "type": "image",
-            "url": "assets/guide/buylock.png?v=632"
         },
         {
             "name": "loading_bg_jpg",
