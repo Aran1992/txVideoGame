@@ -90,7 +90,7 @@ class DebugPlatform implements Platform {
 
     //是否是活动期间；
     public isCelebrateTime() {
-        return this.getServerTime() < (this.getSaleBeginTime() + 11 * 86400 * 1000);
+        return this.getServerTime() < (this.getSaleBeginTime() + 13 * 86400 * 1000);
     }
 
     public getOffsetTime() {
