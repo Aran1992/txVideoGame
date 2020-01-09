@@ -134,6 +134,7 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.SHOUCANG_NEWPOINT, this.updateNewPoint, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.TASK_STATE_CHANGED, this.updateTicketButtonPoint, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyItemComplte, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.START_PLAY, this.onEventPlay, this);
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
@@ -512,5 +513,6 @@ class MainView extends eui.Component {
         this.play_zi.visible = visible;
         this.play_Btn.visible = visible;
         this.exitBtn.visible = isTXSP && visible;
+        window["startPlayBtn"].hidden = !visible;
     }
 }

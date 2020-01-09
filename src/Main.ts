@@ -30,7 +30,7 @@ class Main extends eui.UILayer {
         this.stage.scaleMode = egret.StageScaleMode.FIXED_NARROW;
         this.stage.maxTouches = 100;//最大触摸点
 
-        if (is1001 && egret.Capabilities.os == 'iOS') {
+        if (egret.Capabilities.os == 'iOS') {
             document.addEventListener("visibilitychange", () => {
                 if (document.hidden) {
                     // 页面被挂起

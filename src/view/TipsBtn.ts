@@ -123,7 +123,6 @@ class TipsBtn extends eui.Component {
             this.timerIdx = 0;
             this.timer.stop();
         }
-        this.play_pauseBtn.touchEnabled = true;
         this.controlGroup.visible = true;
         this.mengban.visible = true;
         this.pauseGroup.visible = true;
@@ -132,7 +131,6 @@ class TipsBtn extends eui.Component {
     }
 
     public removePauseState() {
-        this.play_pauseBtn.touchEnabled = false;
         this.controlGroup.visible = false;
         this.mengban.visible = false;
         this.pauseGroup.visible = false;
@@ -405,8 +403,6 @@ class TipsBtn extends eui.Component {
         if (this.videoD.getIsClick(this.videoD) == 3) {
             if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
                 this.controlGroup.visible = true;
-                this.addBtn.touchEnabled = false;
-                this.reduceBtn.touchEnabled = false;
                 return;
             }
             if (this.timer)
@@ -414,7 +410,6 @@ class TipsBtn extends eui.Component {
             this.hideControl();
             return;
         }
-        this.reduceBtn.touchEnabled = true;
         if (new Date().getTime() - this.touchtime < 250) {
         } else {
             if (this.videoD) {
@@ -436,7 +431,6 @@ class TipsBtn extends eui.Component {
                         this.timer.start();
                     }
                 } else {
-                    this.addBtn.touchEnabled = true;
                     if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
                         return;
                     }
@@ -496,9 +490,6 @@ class TipsBtn extends eui.Component {
             this.direction = 1;
         }
         this.isClick = true;
-        if (this.play_pauseBtn['iconDisplay'].source == 'playImg_png') {
-            this.play_pauseBtn.touchEnabled = true;
-        }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_END, this.onEnd, this);
     }
 

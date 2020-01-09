@@ -144,6 +144,8 @@
     });
     xhr.send(null);
 </script>
+<div id="startPlayBtn" hidden onclick="GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.START_PLAY));"
+     style="position:absolute;left:25%;top:25%;right:25%;bottom:25%;z-index:99999;"></div>
 <div id="preloadDiv"></div>
 </body>
 

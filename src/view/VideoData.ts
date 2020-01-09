@@ -90,6 +90,7 @@ class VideoData extends egret.DisplayObjectContainer {
     private tiaoState: boolean = false;
     private timeoutCallbackTime: number;
     private timeoutCallback: Function;
+    private isShowHuDong: boolean;
 
     public constructor() {
         super();
@@ -378,7 +379,7 @@ class VideoData extends egret.DisplayObjectContainer {
         this.fileTimerIdx = 6500;
         let isShowRes: boolean = false;
         let isShowEnd: boolean = false;
-        let isShowHuDong: boolean = false;
+        this.isShowHuDong = false;
         let isShowChengJiu: boolean = false;
         let isResult: boolean = false;
         let isFile: boolean = false;
@@ -500,8 +501,8 @@ class VideoData extends egret.DisplayObjectContainer {
                             if (wtTime > videoDuration) {
                                 wtTime = videoDuration - 5;
                             }
-                            if (videoCurTime >= wtTime - 3 && !isShowHuDong) {
-                                isShowHuDong = true;
+                            if (videoCurTime >= wtTime - 3 && !this.isShowHuDong) {
+                                this.isShowHuDong = true;
                                 if (this.curWentiId != 77 && this.curWentiId != 78) {
                                     GameCommon.getInstance().setTipsHuDong();
                                 }
@@ -621,6 +622,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     }
                     vm.dontHideMain = false;
                     this.isChangingQuality = false;
+                    this.tipsPanel.removePauseState();
                 }
                 if (["playing", "seeked"].indexOf(data.new) !== -1) {
                     GameCommon.getInstance().removeLoading();
@@ -680,7 +682,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     isShowEnd = false;
                     isResult = false;
                     isFile = false;
-                    isShowHuDong = false;
+                    this.isShowHuDong = false;
                     videoAdvanceLoad = false;
                     videoNextFlg = true;
                     videoNextFlg1 = true;
@@ -1139,6 +1141,8 @@ class VideoData extends egret.DisplayObjectContainer {
             VideoManager.getInstance().videoResume();
             this.tipsPanel.onShowAddTime();
         }
+        this.isShowHuDong = false;
+        GameCommon.getInstance().hideTipsHuDong();
     }
 
     private onAddVideo() {
