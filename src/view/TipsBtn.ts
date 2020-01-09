@@ -45,7 +45,6 @@ class TipsBtn extends eui.Component {
     private tp: number = 0;
     private modelHuDong: Modelhudong;
     private hideTipTimer: number;
-    private idGuideBuyLock: eui.Group;
     private tipsTotalTime: number;
     private idBtnClock: eui.Button;
     private idBtnShopCar: eui.Button;
@@ -204,18 +203,6 @@ class TipsBtn extends eui.Component {
             this.hideTipTimer = undefined;
 
             this.tipsTotalTime = model.time;
-
-            //新手引导问题
-            if (this.wentiId == 5 && !UserInfo.guideJson["buyLock"]) {
-                UserInfo.guideJson["buyLock"] = 100;
-                VideoManager.getInstance().videoPause();
-                this.idGuideBuyLock.visible = true;
-                this.idGuideBuyLock.touchEnabled = true;
-                this.idGuideBuyLock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchGuideBuyLock, this);
-                GuideManager.getInstance().isGuide = true;
-                GuideManager.getInstance().curState = true;
-            }
-
         } else {
             this.modelHuDong = JsonModelManager.instance.getModelhudong()[model.type];
             this.showBtns.visible = false;
@@ -347,14 +334,6 @@ class TipsBtn extends eui.Component {
 
     private onClickXDPASSButton() {
         this.onClickXSMFButton();
-    }
-
-    private onTouchGuideBuyLock() {
-        this.idGuideBuyLock.visible = false;
-        GuideManager.getInstance().isGuide = false;
-        GuideManager.getInstance().curState = false;
-
-        VideoManager.getInstance().videoResume();
     }
 
     //添加到舞台
