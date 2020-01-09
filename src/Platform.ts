@@ -60,6 +60,16 @@ declare interface Platform {
     openWebview(option);
 }
 
+const str2time = str => {
+    const year = parseInt(str.substr(0, 4));
+    const month = parseFloat(str.substr(4, 2)) - 1;
+    const day = parseFloat(str.substr(6, 2));
+    const hour = parseFloat(str.substr(8, 2));
+    const minute = parseFloat(str.substr(10, 2));
+    const second = parseFloat(str.substr(12, 2));
+    return new Date(year, month, day, hour, minute, second);
+};
+
 class DebugPlatform implements Platform {
     private static s_serverTime: number;
     private static s_offsetTime: number = 43200 * 1000;
@@ -119,7 +129,7 @@ class DebugPlatform implements Platform {
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState == 4 && httpRequest.status == 200) {
                 const json = JSON.parse(httpRequest.responseText);//获取到json字符串，还需解析
-                DebugPlatform.s_serverTime = new Date(json.sysTime2).getTime();
+                DebugPlatform.s_serverTime = str2time(json.sysTime1).getTime();
             }
         };
     }
