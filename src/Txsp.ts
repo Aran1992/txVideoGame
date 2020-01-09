@@ -247,9 +247,16 @@ class Txsp {
                 txsp_userinfo = ret.result;
                 break;
             }
-            await bridgeHelper.login();
+            while(1){
+                let loginRet = await bridgeHelper.login();             
+                if(loginRet.code == 0){
+                    break;
+                }
+                await new Promise(resolve => setTimeout(resolve,500));
+            }
         }
     }
+    
 
     private onRefreshVideo(data) {
         const wenti = wentiModels[data.data.wentiId];
