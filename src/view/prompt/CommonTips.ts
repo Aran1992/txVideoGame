@@ -119,11 +119,9 @@ class CommonTips extends eui.Component {
 
     //购买成功提示
     public setTipsLab(str) {
-        // this.grp3.x = size.width - 350;
-        // this.grp3.y = 50;
         this.desc3.text = str;
         this.grp3.visible = true;
-        if (str == 'preload失败请重新进入游戏')
+        if (str == 'preload失败请重新进入《拳拳四重奏》')
             return;
         Tool.callbackTime(() => {
             this.grp3.visible = false;
