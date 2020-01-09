@@ -157,7 +157,7 @@ class ShopManager {
                     });
                     this._serverItemNums["loaded"] = true;
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH),{});
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH), {data: {}});
                     console.log(this._serverItemNums);
                     //把本地的值+服务器的值
                 } else {
@@ -176,7 +176,7 @@ class ShopManager {
                         this._serverItemNums[id] = data.result.product_count[id] - data.result.product_consumed_count[id];
                     }
                     this._serverItemNums["loaded"] = true;
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH),{});
+                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.BUY_REFRESH), {data: {}});
                 } else {
                     this.loadFromServer();
                 }

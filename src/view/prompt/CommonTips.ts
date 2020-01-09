@@ -263,6 +263,9 @@ class CommonTips extends eui.Component {
             this.confirm_btn.label = textYes;
             this.cancel_btn.label = textNo;
         }
+        if (desc === "是否读取？") {
+            window["confirmBtn"].hidden = false;
+        }
         this.onshowMaskBG();
     }
 
@@ -306,6 +309,7 @@ class CommonTips extends eui.Component {
     private onLoadComplete(): void {
         this.touchEnabled = false;
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.CLICK_CONFIRM_BTN, this.onConfirm, this);
         this.btnCancel_buy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCancel_buy, this);
         this.btnConfirm_buy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm_buy, this);
         this.btnConfirm_qinmi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbtnConfirm_qinmi, this);
@@ -426,13 +430,14 @@ class CommonTips extends eui.Component {
         this.onhideMaskBG();
     }
 
-    private onConfirm(event: egret.TouchEvent): void {
+    private onConfirm(event?: egret.TouchEvent): void {
         SoundManager.getInstance().playSound("ope_click.mp3");
         let name: string = event.currentTarget.name;
-        if (name == "sure") {
+        if (name === undefined || name == "sure") {
             if (this._confirmFunc) this._confirmFunc.call(null, null);
         }
         this.confirmGrp.visible = false;
+        window["confirmBtn"].hidden = true;
         this.onhideMaskBG();
     }
 

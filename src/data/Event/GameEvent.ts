@@ -1,5 +1,6 @@
 class GameEvent {
-    public static START_PLAY: string = 'START_PLAY';
+    public static CLICK_START_PLAY_BTN: string = 'START_PLAY';
+    public static CLICK_CONFIRM_BTN: string = 'CLICK_CONFIRM_BTN';
     public static SHOW_PAUSE_STATE: string = 'show.pause.state';
     public static GAME_JSON_PARSE_OK: string = 'game.json.parse.complete';
     public static ONSHOW_VIDEO: string = 'show.video';
