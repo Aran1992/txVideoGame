@@ -50,11 +50,11 @@ class VideoData extends egret.DisplayObjectContainer {
     private caidanList = [
         {
             check: () => {
-                const list = [64, 65, 66, 67];
+                const list = [[64, 1], [65, 2], [66, 1], [67, 2]];
                 let a = 0;
                 let b = 0;
-                list.forEach(id => {
-                    if (UserInfo.curBokData.answerId[id] === 1) {
+                list.forEach(info => {
+                    if (UserInfo.curBokData.answerId[info[0]] == info[1]) {
                         a++;
                     } else {
                         b++;
