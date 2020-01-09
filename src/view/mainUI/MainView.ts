@@ -192,7 +192,7 @@ class MainView extends eui.Component {
 
     private onBuyItemComplte(data) {
         const shopdata: ShopInfoData = data.data;
-        if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
+        if (!shopdata.id || shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
             this.updateXSMFButton();
         }
         if (shopdata.id == GameDefine.QUANQUANJINXI_ITEM) {

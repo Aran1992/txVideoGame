@@ -72,7 +72,7 @@ class ShopPanel extends eui.Component {
 
     private onBuyItemComplte(data) {
         const shopdata: ShopInfoData = data.data;
-        if(shopdata.id == GameDefine.QUANQUANJINXI_ITEM){
+        if(!shopdata.id || shopdata.id == GameDefine.QUANQUANJINXI_ITEM){
             this.updateNewPoint();
         }
     }

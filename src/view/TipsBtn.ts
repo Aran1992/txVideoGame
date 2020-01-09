@@ -335,7 +335,7 @@ class TipsBtn extends eui.Component {
 
     private onBuy600001Complte(data) {
         const shopdata: ShopInfoData = data.data;
-        if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
+        if (!shopdata.id || shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
             this.updateXSMFButton();
         }
     }
