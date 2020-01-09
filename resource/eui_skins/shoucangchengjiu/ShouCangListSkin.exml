@@ -48,5 +48,7 @@
 				</e:skinName>
 			</e:Button>
 		</e:Group>
+		<e:Label text="部分图片配有语音哟~ " fontFamily="SimHei" bottom="70" left="118" size="26"/>
+		<e:Label text="如蓝牙耳机无法播放，可以关闭蓝牙耳机，重新启动《拳拳四重奏》，即可听到语音啦~" fontFamily="SimHei" bottom="40" left="118" size="20"/>
 	</e:Group>
 </e:Skin>

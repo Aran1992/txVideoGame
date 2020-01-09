@@ -122,7 +122,7 @@ class BuyVIPPanel extends eui.Component {
             GameCommon.getInstance().onShowBuyTips(itemID, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
         } else {
             let itemID = GameDefine.GUANGLIPINGZHENG;
-            if(!platform.isCelebrateTime())
+            if (!platform.isCelebrateTime())
                 itemID = GameDefine.GUANGLIPINGZHENGEX;
             ShopManager.getInstance().buyGoods(itemID, 1, callback);
         }

@@ -1116,7 +1116,7 @@ class VideoData extends egret.DisplayObjectContainer {
 
     private onReduceVideo() {
         if (VideoManager.getInstance().videoCurrTime() < 1) {
-            GameCommon.getInstance().showCommomTips('视频初始不可回退');
+            GameCommon.getInstance().showCommomTips('已经没法后退啦~');
             return;
         }
 
@@ -1125,7 +1125,7 @@ class VideoData extends egret.DisplayObjectContainer {
             let wentiTime = Number(videoModels[this.videoIdx].time);
             let wentiLastTime: number = wentiTime + Number(wentiModels[this.curWentiId].time);
             if (curTime > wentiTime && curTime - 10 <= wentiLastTime) {
-                GameCommon.getInstance().showCommomTips('不可回退到互动');
+                GameCommon.getInstance().showCommomTips('你已做出选择啦~');
                 return;
             }
         }
