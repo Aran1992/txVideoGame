@@ -149,6 +149,7 @@ class ShopManager {
         //1001需要从服务器上取得物品数量;loaded代表平台数量是否已获取
         if (platform.getPlatform() == "plat_1001" && !this._serverItemNums["loaded"]) {
             let callback = (data) => {
+                this._loadingFromServer = false;
                 if (data.code == 0) {
                     let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
                     values.forEach(element => {
@@ -159,31 +160,13 @@ class ShopManager {
                     console.log(this._serverItemNums);
                     //把本地的值+服务器的值
                 } else {
-                    GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
+                    this.loadFromServer();
                 }
-                this._loadingFromServer = false;
             };
             let currentSlotId: number = 0;
             platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
         }
         if (platform.getPlatform() == "plat_txsp" && !this._serverItemNums["loaded"]) {
-            // let callback = (data) => {
-            //     if (data.code == 0) {
-            //         let values = data.data.values;//array{currPrice,date,num,origPrice,pay,saleId,saleIntro}
-            //         values.forEach(element => {
-            //             this._serverItemNums[element.saleId] = element.num;
-            //         });
-            //         this._serverItemNums["loaded"] = true;
-            //         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
-            //         console.log(this._serverItemNums);
-            //         //把本地的值+服务器的值
-            //     } else {
-            //         GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.code);
-            //     }
-            //     this._loadingFromServer = false;
-            // };
-            // let currentSlotId: number = 0;
-            // platform.getBookValues(GameDefine.BOOKID, currentSlotId, callback);
             let callback = (data) => {
                 this._loadingFromServer = false;
                 if (data.code == 0) {
@@ -193,7 +176,7 @@ class ShopManager {
                     }
                     this._serverItemNums["loaded"] = true;
                 } else {
-                    GameCommon.getInstance().addAlert("获取商品列表失败~errcode:::" + data.msg);
+                    this.loadFromServer();
                 }
             };
             let itemids = [];
