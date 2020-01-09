@@ -90,17 +90,15 @@
 					<e:Group id="openLogGroup" width="75" height="75" right="0" top="0"/>
         </e:Group>
 
-        <e:Button id="bgBtn" left="40" top="35" label="我的进度" width="300" height="62">
-            <e:skinName>
-                <e:Skin states="up,down,disabled" width="190" height="62">
-                    <e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png"
-                             source.down="common_close1_png" verticalCenter="0" left="0" />
-                    <e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9"
-                             scaleY.down="0.9" left="60" />
-                    <e:Group width="300" height="100" y="-21" x="-43" />
-                </e:Skin>
-            </e:skinName>
-        </e:Button>
+			<e:Button id="bgBtn" label="我的进度" width="350" x="0" y="0" height="125" touchEnabled="true" touchChildren="true" enabled="true">
+				<e:skinName>
+				<e:Skin states="up,down,disabled" width="350" height="125">
+					<e:Group width="100%" height="100%"/>
+					<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png" verticalCenter="0" left="40" locked="true"/>
+					<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9" left="90" text=""/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
 			<e:Label text="◆ 更多剧情攻略 尽在【一零零一】◆" left="77" fontFamily="SimHei" bottom="85"/>
         <e:Group id="guide_grp" width="100%" height="100%" visible="false">
             <e:Image id="mengban" alpha="0.8" width="100%" height="100%" x="0" y="-2" touchEnabled="false"

@@ -54,18 +54,17 @@
 				</e:skinName>
 			</e:Button>
 		</e:Group>
-		<e:Button id="bgBtn" label="已获福利" width="280" x="40" y="28" height="62">
+
+		<e:Label text="剧情线" size="36" fontFamily="SimHei" left="144" top="72"  visible="false"/>
+		<e:Button id="bgBtn" label="已获福利" width="350" x="0" y="0" height="125" touchEnabled="true" touchChildren="true" enabled="true" scaleX="1" scaleY="1">
 			<e:skinName>
-				<e:Skin states="up,down,disabled" width="190" xmlns:n1s="*" height="62">
-					<e:Group width="100%" height="100%" />
-					<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png"
-					         verticalCenter="0" left="0" locked="true" />
-					<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9"
-					         left="50" text="" />
-				</e:Skin>
+			<e:Skin states="up,down,disabled" width="350" height="125" xmlns:ns1="*" xmlns:n1s="*">
+				<e:Group width="100%" height="100%"/>
+				<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close1_png" source.down="common_close1_png" verticalCenter="0" left="40" locked="true"/>
+				<e:Label id="labelDisplay" size="56" fontFamily="SimHei" verticalCenter="0" scaleX.down="0.9" scaleY.down="0.9" left="90" text=""/>
+			</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Label text="剧情线" size="36" fontFamily="SimHei" left="144" top="72"  visible="false"/>
 		<!--<e:Button id="bgBtn" width="62" height="62" scaleX="1" scaleY="1" left="63" top="58">
 		<e:skinName>
 			<e:Skin states="up,down,disabled" width="62">
