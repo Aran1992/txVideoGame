@@ -115,7 +115,7 @@ class Main extends eui.UILayer {
     }
 
     private async runGame() {
-        plattxsp.login().then(r => console.log(r));
+        await plattxsp.login();
         this.loadResource(() => this.createGameScene());
     }
 

@@ -99,7 +99,7 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-			<e:Label text="◆ 更多剧情攻略 尽在【一零零一】◆" left="77" fontFamily="SimHei" bottom="85"/>
+			<e:Label text="◆ 更多剧情攻略 尽在【一零零一】APP ◆" left="77" fontFamily="SimHei" bottom="85"/>
         <e:Group id="guide_grp" width="100%" height="100%" visible="false">
             <e:Image id="mengban" alpha="0.8" width="100%" height="100%" x="0" y="-2" touchEnabled="false"
                      source="video_heidi1_png" visible="true" />

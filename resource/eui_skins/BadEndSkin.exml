@@ -4,7 +4,7 @@
 	<e:Group id="group" y="0" x="0">
 	</e:Group>
 	<e:Group id="mainGroup" width="100%" touchChildren="true" height="100%" verticalCenter="0" horizontalCenter="0">
-		<e:Label text="◆ 更多剧情攻略 尽在【一零零一】◆" fontFamily="SimHei" bottom="50" right="130" textAlign="center"/>
+		<e:Label text="◆ 更多剧情攻略 尽在【一零零一】APP ◆" fontFamily="SimHei" bottom="50" right="130" textAlign="center"/>
 
 
 
