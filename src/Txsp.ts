@@ -58,14 +58,14 @@ class Txsp {
     //获取制定存档
     async getBookHistory(bookId, slotId, callback) {
         //await this.refreshToken();
-        bridgeHelper.accessStore({
+        this.tokenRequest(() => bridgeHelper.accessStore({
             appid: txsp_appid,
             openid: txsp_userinfo.openid,
             access_token: txsp_userinfo.token,
             key: slotId,
             text: '',
             op_type: 'get',
-        }).then(res => {
+        }), res => {
             if (res.code == 0) {
                 let date = {code: res.code, data: {content: res.result.text_value, slotId: slotId}};
                 callback(date);
@@ -73,7 +73,7 @@ class Txsp {
             } else {
                 console.log("read fail slotId:" + slotId + ";" + res.msg);
             }
-        })
+        });
     }
 
     async getBookHistoryList(bookId, callback) {
@@ -120,15 +120,14 @@ class Txsp {
     }
 
     async takeOffBookValue(bookId, saleId, currentSlotId, num, callback) {
-        let res = await bridgeHelper.consumeProduct({
+        this.tokenRequest(() => bridgeHelper.consumeProduct({
             appid: txsp_appid,  // 应用的appid
             openid: txsp_userinfo.openid, // 应用的openid
             access_token: txsp_userinfo.token, // 互动登录态access_token
             product_id: saleId,
             count: num,
             sandbox: txsp_debug ? 1 : 0,
-        });
-        callback(res);
+        }), callback);
     }
 
     async shareImage(bookId, imageData) {
