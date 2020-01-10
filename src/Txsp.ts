@@ -110,15 +110,13 @@ class Txsp {
 
     //获取商业化数值,把原来的slot参数做其它用途；兼容两个平台
     async getBookValues(bookId, itemids, callback) {
-        let res = await bridgeHelper.queryProduct({
+        this.tokenRequest(() => bridgeHelper.queryProduct({
             appid: txsp_appid,  // 应用的appid
             openid: txsp_userinfo.openid, // 应用的openid
             access_token: txsp_userinfo.token, // 互动登录态access_token
             product_ids: itemids,
             sandbox: txsp_debug ? 1 : 0,
-        });
-        callback(res);
-        //使用本地数据
+        }), callback);
     }
 
     async takeOffBookValue(bookId, saleId, currentSlotId, num, callback) {
