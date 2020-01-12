@@ -106,14 +106,14 @@
             <e:Image id="xinshou_step_img" horizontalCenter="0"  verticalCenter="0"/>
         </e:Group>
     </e:Group>
-	<e:Group id="helperGroup" width="0" height="0" right="0" top="0" touchEnabled="false">
-		<e:Label id="idAddHour" text="增加10小时" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="1019" top="47" x="-1219" y="47"/>
-		<e:Label id="idClearItem" text="删除追剧礼包" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="1019" x="-1209" y="139"/>
-		<e:Label id="idOpenTime" text="开服时间" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="1057" top="91" x="-1217" y="91"/>
-		<e:Label id="idGainShuipian" text="获得1000碎片" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="745" top="46" x="-985" y="46"/>
-		<e:Label id="btnEnableCheck" text="开启会员检查" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="465" top="50" x="-705" y="50"/>
-		<e:Label id="btnDisableCheck" text="关闭会员检查" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="200" top="50" x="-440" y="50"/>
-		<e:Label id="cleanLab" text="清档" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="100" top="50" x="-180" y="50"/>
+	<e:Group id="helperGroup" width="0" height="0" right="0" top="0" touchEnabled="false" visible="false">
+		<e:Label id="idAddHour" text="增加10小时" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="1019" top="47" x="-1219" y="47" visible="false"/>
+		<e:Label id="idClearItem" text="删除追剧礼包" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="1019" x="-1209" y="139" visible="false"/>
+		<e:Label id="idOpenTime" text="开服时间" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="1057" top="91" x="-1217" y="91" visible="false"/>
+		<e:Label id="idGainShuipian" text="获得1000碎片" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="745" top="46" x="-985" y="46" visible="false"/>
+		<e:Label id="btnEnableCheck" text="开启会员检查" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="465" top="50" x="-705" y="50" visible="false"/>
+		<e:Label id="btnDisableCheck" text="关闭会员检查" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="200" top="50" x="-440" y="50" visible="false"/>
+		<e:Label id="cleanLab" text="清档" size="40" fontFamily="SimHei" textAlign="center" verticalAlign="justify" scaleX="1" scaleY="1" right="100" top="50" x="-180" y="50" visible="false"/>
 	</e:Group>
     <e:Button id="cunchuBtn" label="存储" icon='control_cundang_png' width="252" height="71" bottom="62" right="77">
         <e:skinName>

@@ -38,7 +38,8 @@ class JuQingPanel extends eui.Component {
     private idOpenTime: eui.Label;
     private idClearItem: eui.Label;
     private openLogGroup: eui.Label;
-
+    private clickOpenLogGroupTimes: number = 0;
+    private clickOpenLogGroupTimer: number;
 
     constructor() {
         super();
@@ -92,25 +93,15 @@ class JuQingPanel extends eui.Component {
             this['fileBtn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowChapterVideo, this);
         }
         this.bgBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-        this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
-        this.idGainShuipian.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onGetSuipian, this);
-        this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddHour, this);
-        this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClearItem, this);
-        this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
-        this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
         this.openLogGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.openLogGroupClick, this);
-    }
-
-    private clickOpenLogGroupTimes: number = 0;
-    private clickOpenLogGroupTimer: number;
-
-    private openLogGroupClick() {
-        this.clickOpenLogGroupTimes++;
-        clearTimeout(this.clickOpenLogGroupTimer);
-        if (this.clickOpenLogGroupTimes > 5) {
-            PromptPanel.getInstance().toggleLogVisible();
+        if (platform.isDebug() || GameDefine.SHOW_HELPER_GROUP) {
+            this.cleanLab.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onCleanCache, this);
+            this.idGainShuipian.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.onGetSuipian, this);
+            this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAddHour, this);
+            this.idAddHour.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClearItem, this);
+            this.btnDisableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.disableCheck, this);
+            this.btnEnableCheck.addEventListener(egret.TouchEvent.TOUCH_TAP, JuQingPanel.enableCheck, this);
         }
-        this.clickOpenLogGroupTimer = setTimeout(() => this.clickOpenLogGroupTimes = 0, 1000);
     }
 
     protected onRemove(): void {
@@ -137,14 +128,27 @@ class JuQingPanel extends eui.Component {
         this.skinName = skins.JuQingSkin;
     }
 
+    private openLogGroupClick() {
+        this.clickOpenLogGroupTimes++;
+        clearTimeout(this.clickOpenLogGroupTimer);
+        if (this.clickOpenLogGroupTimes > 5) {
+            PromptPanel.getInstance().toggleLogVisible();
+        }
+        this.clickOpenLogGroupTimer = setTimeout(() => this.clickOpenLogGroupTimes = 0, 1000);
+    }
+
     private onAddHour() {
         platform.setTestTime(platform.getServerTime() + 10 * 60 * 60 * 1000);
         this.updateShowTime();
     }
 
-    private onClearItem(){
-        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENGEX, 0, 1,(data)=>{GameCommon.getInstance().showCommomTips('del' + JSON.stringify(data));});
-        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENG, 0, 1,(data)=>{GameCommon.getInstance().showCommomTips('del' + JSON.stringify(data));});
+    private onClearItem() {
+        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENGEX, 0, 1, (data) => {
+            GameCommon.getInstance().showCommomTips('del' + JSON.stringify(data));
+        });
+        platform.takeOffBookValue(GameDefine.BOOKID, GameDefine.GUANGLIPINGZHENG, 0, 1, (data) => {
+            GameCommon.getInstance().showCommomTips('del' + JSON.stringify(data));
+        });
     }
 
     private updateShowTime() {
@@ -246,8 +250,7 @@ class JuQingPanel extends eui.Component {
         }
 
         this.restartBtn.visible = isTXSP;
-        let debug = window.location.href.indexOf('debug') != -1;
-        this.helperGroup.visible = platform.isDebug() || debug || GameDefine.SHOW_HELPER_GROUP;
+        this.helperGroup.visible = platform.isDebug() || GameDefine.SHOW_HELPER_GROUP;
     }
 
     private onTouchGuideGroup() {
