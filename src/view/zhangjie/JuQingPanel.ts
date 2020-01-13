@@ -929,6 +929,9 @@ class PlotTreeItem extends egret.DisplayObjectContainer {
             GameCommon.getInstance().showLoading();
             if (this._curFile != FILE_TYPE.AUTO_FILE) {
                 UserInfo.curBokData = copyBookData(UserInfo.fileDatas[this._curFile]);
+                if (!GameCommon.getInstance().checkCurBookData(UserInfo.curBokData)) {
+                    return GameCommon.getInstance().showStrongTips("游戏异常，请重新打开《拳拳四重奏》", () => platform.close());
+                }
             }
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.STARTCHAPTER), {
                 cfg: cfg,

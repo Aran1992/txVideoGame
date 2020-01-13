@@ -256,6 +256,9 @@ class GameWorld extends egret.DisplayObjectContainer {
                 let fileData = UserInfo.fileDatas[data.data.idx];
                 if (fileData) {
                     UserInfo.curBokData = copyBookData(fileData);
+                    if (!GameCommon.getInstance().checkCurBookData(UserInfo.curBokData)) {
+                        return GameCommon.getInstance().showStrongTips("游戏异常，请重新打开《拳拳四重奏》", () => platform.close());
+                    }
                 }
             }
             let wentiCfg: Modelwenti = wentiModels[wentiId];

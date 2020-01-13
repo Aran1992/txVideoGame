@@ -182,6 +182,9 @@ class GameCommon {
                 UserInfo.curBokData.allVideos = UserInfo.allVideos;
                 UserInfo.curBokData.tipsDick = UserInfo.tipsDick;
                 UserInfo.curBokData.lookAchievement = UserInfo.lookAchievement;
+                if (!this.checkCurBookData(UserInfo.curBokData)) {
+                    return GameCommon.getInstance().showStrongTips("游戏异常，请重新打开《拳拳四重奏》", () => platform.close());
+                }
                 str = JSON.stringify(UserInfo.curBokData);
                 // VideoManager.getInstance().log('村上了');
                 if (egret.Capabilities.os == 'Windows PC') {
@@ -290,6 +293,9 @@ class GameCommon {
                 TaskManager.instance.init(info);
             } else if (tp == FILE_TYPE.AUTO_FILE) {
                 UserInfo.curBokData = info;
+                if (!this.checkCurBookData(UserInfo.curBokData)) {
+                    return GameCommon.getInstance().showStrongTips("游戏异常，请重新打开《拳拳四重奏》", () => platform.close());
+                }
                 saveValues.forEach(element => {
                     if (info[element]) {
                         UserInfo[element] = info[element];
@@ -317,6 +323,9 @@ class GameCommon {
                 //自动存档和手动存档
                 case FILE_TYPE.AUTO_FILE:
                     UserInfo.curBokData = JSON.parse(data.data.content);
+                    if (!this.checkCurBookData(UserInfo.curBokData)) {
+                        return GameCommon.getInstance().showStrongTips("游戏异常，请重新打开《拳拳四重奏》", () => platform.close());
+                    }
                     saveValues.forEach(element => {
                         if (UserInfo.curBokData[element]) {
                             UserInfo[element] = UserInfo.curBokData[element];
@@ -336,6 +345,9 @@ class GameCommon {
                     }
                     if (GameDefine.ISFILE_STATE) {
                         UserInfo.curBokData = JSON.parse(data.data.content);
+                        if (!this.checkCurBookData(UserInfo.curBokData)) {
+                            return GameCommon.getInstance().showStrongTips("游戏异常，请重新打开《拳拳四重奏》", () => platform.close());
+                        }
                         saveValues.forEach(element => {
                             if (UserInfo.curBokData[element]) {
                                 UserInfo[element] = UserInfo.curBokData[element];
@@ -981,6 +993,10 @@ class GameCommon {
             }
         }
         return false;
+    }
+
+    public checkCurBookData(data) {
+        return data.wentiId && ((typeof data.wentiId.length) === "number");
     }
 }
 
