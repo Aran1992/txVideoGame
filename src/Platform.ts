@@ -236,11 +236,11 @@ class DebugPlatform implements Platform {
 
 
     async takeOffBookValue(bookId, saleId, currentSlotId, num, callback) {
-        if (this.getPlatform() == "plat_txsp") {
-            await plattxsp.takeOffBookValue(bookId, saleId, currentSlotId, num, callback);
-        } else {
-            await window["takeOffBookValue"](bookId, saleId, currentSlotId, num, callback);
-        }
+        // if (this.getPlatform() == "plat_txsp") {
+        //     await plattxsp.takeOffBookValue(bookId, saleId, currentSlotId, num, callback);
+        // } else {
+        //     await window["takeOffBookValue"](bookId, saleId, currentSlotId, num, callback);
+        // }
     }
 
     async report(bookId, evt, params, callback) {
