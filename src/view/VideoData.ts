@@ -603,12 +603,8 @@ class VideoData extends egret.DisplayObjectContainer {
                     if (data.new === "playing") {
                         hasPlayedVideo = true;
                         bridgeHelper.reportAction({
-                            reportkey: "hdsp_reday",
-                            data_type: "button",
-                            mod_id: "loadingtime",
-                            sub_mod_id: new Date().getTime() - h5StartedTime,
-                        }).then((...args) => {
-                            console.log("reportAction({pageid: \"hasPlayedVideo\"}).then", args);
+                            type: 'pageview',
+                            pageid: 'hdsp_play',
                         });
                     }
                 }

@@ -25,8 +25,14 @@ class Txsp {
         setInterval(() => {
             this.refreshToken();
         }, 600000);
-        bridgeHelper.reportAction({pageid: "hdsp_start"}).then((...args) => {
-            console.log("reportAction({pageid: \"hdsp_start\"}).then", args);
+        bridgeHelper.reportAction({
+            type: 'init', // 初始化
+            appid: txsp_appid, // 应用的appid，如果不传appid，默认会取初始化bridgeHelper时的appid
+        }).then(() => {
+            bridgeHelper.reportAction({
+                type: 'pageview',
+                pageid: 'hdsp_start',
+            });
         });
         GameDispatcher.getInstance().addEventListener(GameEvent.ONSHOW_VIDEO, this.onRefreshVideo, this);
     }

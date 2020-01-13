@@ -179,6 +179,19 @@ class MainView extends eui.Component {
             this.updateNewPoint();
             this.updateShangChengPoint();
         }, 1000);
+        if (isTXSP && !hasPlayedVideo) {
+            bridgeHelper.reportAction({
+                type: 'pageview',
+                pageid: 'hdsp_reday',
+            });
+            bridgeHelper.reportAction({
+                type: 'expose',
+                reportkey: 'hdsp_reday',
+                data_type: 'button',
+                mod_id: 'loadingtime',
+                sub_mod_id: new Date().getTime() - h5StartedTime,
+            });
+        }
     }
 
     private onBuyItemComplte(data) {
@@ -360,11 +373,6 @@ class MainView extends eui.Component {
             }
         }
         this.setStartButtonVisible(false);
-        if (isTXSP && !hasPlayedVideo) {
-            bridgeHelper.reportAction({pageid: "hdsp_play"}).then((...args) => {
-                console.log("reportAction({pageid: \"hdsp_play\"}).then", args);
-            });
-        }
     }
 
     private onBtnContinue(): boolean {
