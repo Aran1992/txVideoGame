@@ -665,6 +665,12 @@ class VideoData extends egret.DisplayObjectContainer {
                 VideoManager.getInstance().clear();
                 this.touchEnabled = false;
                 this.touchChildren = false;
+                if (isTXSP) {
+                    bridgeHelper.writeLog({
+                        appid: txsp_appid,
+                        content: `script error: ${JSON.stringify(args)}`
+                    });
+                }
             });
         }
         if (!this.videoNodeChangeHandle) {
