@@ -429,6 +429,7 @@ class MainView extends eui.Component {
         window['MediaSource'] = null;
         if (isTXSP) {
             args["noPay"] = 1;
+            args["appid"] = txsp_appid;
         }
         let player = new window["Txiplayer"](args);
         const methodList = [
