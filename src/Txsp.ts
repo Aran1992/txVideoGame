@@ -214,7 +214,7 @@ class Txsp {
     }
 
     async openDebug() {
-        bridgeHelper.openWebview("http://debugx5.qq.com/");
+        bridgeHelper.openWebview("https://debugx5.qq.com/");
     }
 
     async queryUserInfo() {
