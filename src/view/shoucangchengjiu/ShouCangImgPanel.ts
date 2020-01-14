@@ -128,7 +128,9 @@ class ShouCangImgPanel extends eui.Component {
 
     private onPlaySound() {
         SoundManager.getInstance().stopMusicAll();
-        SoundManager.getInstance().playSound(this.imgSound[this.imgIdx], null, true);
+        if (this.imgSound[this.imgIdx]) {
+            SoundManager.getInstance().playSound(this.imgSound[this.imgIdx], null, true);
+        }
     }
 
     private onNextImg() {
@@ -137,8 +139,7 @@ class ShouCangImgPanel extends eui.Component {
         if (this.imgIdx >= this.imgMaxNum) {
             this.imgIdx = 0;
         }
-        SoundManager.getInstance().stopMusicAll();
-        SoundManager.getInstance().playSound(this.imgSound[this.imgIdx], null, true);
+        this.onPlaySound();
     }
 
     private onLastImg() {
@@ -147,8 +148,7 @@ class ShouCangImgPanel extends eui.Component {
         if (this.imgIdx < 0) {
             this.imgIdx = this.imgMaxNum - 1;
         }
-        SoundManager.getInstance().stopMusicAll();
-        SoundManager.getInstance().playSound(this.imgSound[this.imgIdx], null, true);
+        this.onPlaySound();
     }
 
     private play(reverse = false): void {
@@ -205,7 +205,11 @@ class ShouCangImgPanel extends eui.Component {
 
         let imgs: string[] = this.getImgArray();
         let miaoshus: string[] = this.info.kuozhan.split(";");
+        for (let i = 0; i < 5; i++) {
+            this[`img${i}Group`].visible = false;
+        }
         for (let j = 0; j < imgs.length; j++) {
+            this[`img${j}Group`].visible = true;
             this[`xindong${j}`].visible = false;
             this['img' + j].source = imgs[j];
             this['img' + j].width = 1006;
@@ -245,8 +249,7 @@ class ShouCangImgPanel extends eui.Component {
         }
         this.onInit();
         this.imgIdx = 0;
-        SoundManager.getInstance().stopMusicAll();
-        SoundManager.getInstance().playSound(this.imgSound[this.imgIdx], null, true);
+        this.onPlaySound();
         this.onRegist();
         this.updateResize();
         this.datu.visible = false;
