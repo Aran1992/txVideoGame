@@ -1354,7 +1354,7 @@ class TaskManager {
                     break;
                 }
                 default: {
-                    eventId += `completed_task_${task.id}`
+                    eventId = `completed_task_${task.id}`
                 }
             }
         });
