@@ -1179,6 +1179,8 @@
     }
 ];
 
+const specialTaskIDList = ["7-1-2", "8-1-5"];
+
 enum TASK_STATES {
     LOCKED,
     UNLOCKED,
@@ -1189,6 +1191,7 @@ enum TASK_STATES {
 
 class TaskManager {
     private tasks: any = {};
+    private specialTasks: any = {};
     private duration: number = 0;
     private eventHandlerTable = {
         [GameEvent.ENDED_READING_CHAPTER]: this.onEndedReadingChapter,
@@ -1239,6 +1242,7 @@ class TaskManager {
     public init(data) {
         if (data) {
             this.tasks = data.tasks;
+            this.specialTasks = data.specialTasks || {};
             this.duration = data.duration;
             this.playedMaxChapter = data.playedMaxChapter || 0;
             UserInfo._suipianMoney = data.suipian;
@@ -1248,6 +1252,7 @@ class TaskManager {
     public getTaskStates(): any {
         return {
             tasks: this.tasks,
+            specialTasks: this.specialTasks,
             duration: this.duration,
             playedMaxChapter: this.playedMaxChapter,
             suipian: UserInfo.suipianMoney
@@ -1268,7 +1273,11 @@ class TaskManager {
             return TASK_STATES.RECEIVABLE;
         }
         if (this.tasks[tid] === TASK_STATES.RECEIVED) {
-            return TASK_STATES.RECEIVED;
+            if (specialTaskIDList.indexOf(tid) === -1) {
+                return TASK_STATES.RECEIVED;
+            } else {
+                return this.specialTasks[tid] === TASK_STATES.RECEIVED ? TASK_STATES.RECEIVED : TASK_STATES.RECEIVABLE;
+            }
         }
         return TASK_STATES.UNLOCKED;
     }
@@ -1360,6 +1369,9 @@ class TaskManager {
         });
         const handler = () => {
             this.tasks[task.id] = TASK_STATES.RECEIVED;
+            if (specialTaskIDList.indexOf(task.id) !== -1) {
+                this.specialTasks[task.id] = TASK_STATES.RECEIVED;
+            }
             GameCommon.getInstance().setBookData(FILE_TYPE.TASK).then(r => r);
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.TASK_STATE_CHANGED), task.id);
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.RECEIVED_TASK_REWARD), task.id);
