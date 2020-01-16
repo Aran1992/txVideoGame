@@ -312,6 +312,14 @@ class VideoData extends egret.DisplayObjectContainer {
             if (this.videoIdx == '') {
                 this.videoIdx = file.videoNames[wentiId];
             }
+            if (file.wentiId[file.wentiId.length - 1] === 6 && file.answerId[6] !== undefined && file.answerId[6] !== '') {
+                this.isSelectVideo = false;
+                this.curVideoIDs = ['V019'];
+                this.curVideoIndex = 0;
+                this.videoIdx = 'V019';
+                this.curWentiId = 6;
+                this.nextWentiId = 6;
+            }
             this.againFlg = true;
             GameDefine.IS_READ_PLAY = true;
             if (VideoManager.getInstance().getVideoData() && widPlayer) {
