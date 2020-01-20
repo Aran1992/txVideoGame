@@ -7191,7 +7191,7 @@
         {
             "name": "3023_desc_png",
             "type": "image",
-            "url": "assets/shopimages/3023/3023_desc.png?v=971"
+            "url": "assets/shopimages/3023/3023_desc.png?v=31"
         },
         {
             "name": "3023_view_png",
@@ -7206,7 +7206,7 @@
         {
             "name": "3024_desc_png",
             "type": "image",
-            "url": "assets/shopimages/3024/3024_desc.png?v=214"
+            "url": "assets/shopimages/3024/3024_desc.png?v=706"
         },
         {
             "name": "3024_view_png",
@@ -7221,7 +7221,7 @@
         {
             "name": "3025_desc_png",
             "type": "image",
-            "url": "assets/shopimages/3025/3025_desc.png?v=577"
+            "url": "assets/shopimages/3025/3025_desc.png?v=874"
         },
         {
             "name": "3025_view_png",
@@ -7236,7 +7236,7 @@
         {
             "name": "3026_desc_png",
             "type": "image",
-            "url": "assets/shopimages/3026/3026_desc.png?v=322"
+            "url": "assets/shopimages/3026/3026_desc.png?v=255"
         },
         {
             "name": "3026_view_png",
@@ -8317,6 +8317,11 @@
             "name": "zjm_buy_png",
             "type": "image",
             "url": "assets/zhujiemian/zjm_buy.png?v=873"
+        },
+        {
+            "name": "zjm_play_btn_png",
+            "type": "image",
+            "url": "assets/zhujiemian/zjm_play_btn.png?v=771"
         },
         {
             "name": "config_bin",

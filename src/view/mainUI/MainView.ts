@@ -97,6 +97,7 @@ class MainView extends eui.Component {
     private cjLab: eui.Group;
     private play_Btn: eui.Button;
     private play_zi: eui.Button;
+    private play_zi_2: eui.Button;
     private exitBtn: eui.Button;
     private btnDuQu: eui.Button;
     private xindong: eui.Button;
@@ -515,6 +516,7 @@ class MainView extends eui.Component {
 
     private setStartButtonVisible(visible) {
         this.play_zi.visible = visible;
+        this.play_zi_2.visible = visible;
         this.play_Btn.visible = visible;
         this.updateStartBtnSize(this.play_Btn);
         this.exitBtn.visible = isTXSP && visible;
