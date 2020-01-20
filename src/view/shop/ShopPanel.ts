@@ -6,13 +6,10 @@
  *
  */
 class ShopPanel extends eui.Component {
-    private mainGroup: eui.Group;
     private btnClose: eui.Button;
     private filter_btn: eui.Button;
     private spGroup: eui.Group;
     private suipNum: eui.BitmapLabel;
-    private zuanshi_curreny_grp: eui.Group;
-    private zuanshiNum: eui.BitmapLabel;
     private tabGroup: eui.Group;
     private shopGroup: eui.Group;
     private image_shop_scroll: eui.Scroller;
@@ -23,16 +20,11 @@ class ShopPanel extends eui.Component {
     private musics_list: eui.List;
     private chapter_shop_scroll: eui.Scroller;
     private chapter_list: eui.List;
-    private daoju_shop_grp: eui.Group;
     private daoju_shop_scroll: eui.Scroller;
     private daoju_list: eui.List;
-    private dianjicundang: eui.Group;
-    private cloLab: eui.Group;
     private xinshoubao_btn: eui.RadioButton;
     private xinshoubao_grp: eui.Group;
-    private xinshou_discountBar: eui.Component;
     private xinshoubao_buy_btn: eui.Button;
-    private xinshoubao_list: eui.Group;
 
     private currIdx: number;
     private cur_models;
@@ -72,14 +64,14 @@ class ShopPanel extends eui.Component {
 
     private onBuyItemComplte(data) {
         const shopdata: ShopInfoData = data.data;
-        if(!shopdata.id || shopdata.id == GameDefine.QUANQUANJINXI_ITEM){
+        if (!shopdata.id || shopdata.id == GameDefine.QUANQUANJINXI_ITEM) {
             this.updateNewPoint();
         }
     }
 
-    private updateNewPoint(){
+    private updateNewPoint() {
         this["shopBtn0"]["idNewPoint"].x = this["shopBtn0"]["labelDisplay"].left + this["shopBtn0"]["labelDisplay"].width;
-        this["shopBtn0"].idNewPoint.visible = ShopManager.getInstance().getItemNum(GameDefine.QUANQUANJINXI_ITEM)<=0;
+        this["shopBtn0"].idNewPoint.visible = ShopManager.getInstance().getItemNum(GameDefine.QUANQUANJINXI_ITEM) <= 0;
     }
 
     private onRegistEvent(): void {
@@ -123,8 +115,8 @@ class ShopPanel extends eui.Component {
         this.suipNum.text = UserInfo.suipianMoney + '';
     }
 
-    private onTouchXinshoubao(e: egret.Event): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+    private onTouchXinshoubao(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3");
         if (this.xinshou_select) return;
         this.xinshou_select = true;
         for (var i: number = 0; i < this.tabGroup.numChildren; i++) {
@@ -137,7 +129,7 @@ class ShopPanel extends eui.Component {
     }
 
     private onTouchItem(e: egret.Event) {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         let tabButton: eui.RadioButton = e.currentTarget as eui.RadioButton;
 
         this.updateTabIdx(tabButton.value);
@@ -204,55 +196,9 @@ class ShopPanel extends eui.Component {
         }
     }
 
-    private updateXinshoubaoShop() {
-        if (!this.xinshoubaoData) {
-            for (let idx in ShopManager.getInstance().shopInfoDict) {
-                let shopdata = ShopManager.getInstance().shopInfoDict[idx];
-                if (GameDefine.SHOP_XINSHOU_ID == parseInt(shopdata.id)) {
-                    this.xinshoubaoData = shopdata;
-                    break;
-                }
-            }
-            if (!this.xinshoubaoData)
-                return;
-            this.xinshoubao_buy_btn.enabled = true;
-            // this.xinshoubao_buy_btn.label = xinshoubaoData.currPrice.toFixed(2);
-            if (this.xinshoubaoData.origPrice > this.xinshoubaoData.currPrice) {
-                this.xinshou_discountBar.visible = true;
-                this.xinshou_discountBar['icon_img'].source = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
-                this.xinshou_discountBar['price_lab'].text = this.xinshoubaoData.origPrice.toFixed(2);
-                this.xinshou_discountBar['discout_lab'].text = ((this.xinshoubaoData.currPrice / this.xinshoubaoData.origPrice * 10).toFixed(1)) + "折";
-            } else {
-                this.xinshou_discountBar.visible = false;
-            }
-
-            let params: string[] = this.xinshoubaoData.model.params.split(",");
-            let banners: string[] = this.xinshoubaoData.model.preview.split(",");
-            for (let i: number = 0; i < params.length; i++) {
-                let shopid: number = parseInt(params[i]);
-                let banner: string = banners[i];
-                let shopData = ShopManager.getInstance().getShopInfoData(shopid);
-                let xinshoubaoItem: XinshoubaoShopItem = new XinshoubaoShopItem();
-                xinshoubaoItem.updateInfo(shopData, banner);
-                this.xinshoubao_list.addChild(xinshoubaoItem);
-            }
-        }
-
-        if (this.xinshoubaoData && this.xinshoubaoData.num > 0) {
-            this.xinshoubao_buy_btn.enabled = false;
-            this.xinshoubao_buy_btn.label = "已购买";
-            this.xinshou_discountBar.visible = false;
-        }
-    }
-
     /**更新图集商城**/
     private updateImagesShop(): void {
-        if (this.imgs_list.dataProvider) {
-            for (let i: number = 0; i < this.imgs_list.numChildren; i++) {
-                let item: ImagesShopItem = this.imgs_list.getChildAt(i) as ImagesShopItem;
-                item.data = item.data;
-            }
-        } else {
+        if (!this.imgs_list.dataProvider) {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
 
@@ -268,13 +214,7 @@ class ShopPanel extends eui.Component {
     }
 
     private updateVideoShop(): void {
-        if (this.videos_list.dataProvider) {
-            // this.video_shop_scroll.viewport.scrollV = 0;
-            for (let i: number = 0; i < this.videos_list.numChildren; i++) {
-                let item: VideosShopItem = this.videos_list.getChildAt(i) as VideosShopItem;
-                item.data = item.data;
-            }
-        } else {
+        if (!this.videos_list.dataProvider) {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
 
@@ -290,13 +230,7 @@ class ShopPanel extends eui.Component {
     }
 
     private updateMusicShop(): void {
-        if (this.musics_list.dataProvider) {
-            // this.musics_shop_scroll.viewport.scrollV = 0;
-            for (let i: number = 0; i < this.musics_list.numChildren; i++) {
-                let item: MusicsShopItem = this.musics_list.getChildAt(i) as MusicsShopItem;
-                item.data = item.data;
-            }
-        } else {
+        if (!this.musics_list.dataProvider) {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
 
@@ -312,14 +246,7 @@ class ShopPanel extends eui.Component {
     }
 
     private updateChapterShop(): void {
-        if (this.chapter_list.dataProvider) {
-            // this.chapter_shop_scroll.viewport.scrollV = 0;
-            for (let i: number = 0; i < this.chapter_list.numChildren; i++) {
-                let item: ChapterShopItem = this.chapter_list.getChildAt(i) as ChapterShopItem;
-                item.data = item.data;
-            }
-        } else {
-
+        if (!this.chapter_list.dataProvider) {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
                 this.chapter_shop_scroll.horizontalScrollBar.visible = false;
@@ -334,13 +261,7 @@ class ShopPanel extends eui.Component {
     }
 
     private updateDaojuShop(): void {
-        if (this.daoju_list.dataProvider) {
-            // this.daoju_shop_scroll.viewport.scrollV = 0;
-            for (let i: number = 0; i < this.daoju_list.numChildren; i++) {
-                let item: DaojuShopItem = this.daoju_list.getChildAt(i) as DaojuShopItem;
-                item.data = item.data;
-            }
-        } else {
+        if (!this.daoju_list.dataProvider) {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
 
@@ -357,8 +278,8 @@ class ShopPanel extends eui.Component {
     }
 
     /**购买新手包**/
-    private onBuyXinshoubao(event: egret.Event): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+    private onBuyXinshoubao(): void {
+        SoundManager.getInstance().playSound("ope_click.mp3");
         if (this.xinshoubaoData) {
             GameCommon.getInstance().onShowBuyTips(this.xinshoubaoData.id, this.xinshoubaoData.model.currSuipian, GOODS_TYPE.SUIPIAN);
         }
@@ -366,9 +287,8 @@ class ShopPanel extends eui.Component {
 
     /**返回数据数组**/
     private getShopDatas() {
-        let cur_models;
-        if (this.currIdx == null) return cur_models;
-        cur_models = [];
+        if (this.currIdx == null) return;
+        let cur_models = [];
         let shoptpye: SHOP_TYPE = this.TAB_2_SHOPTYPE[this.currIdx];
         for (let idx in ShopManager.getInstance().shopInfoDict) {
             let shopdata = ShopManager.getInstance().shopInfoDict[idx] as ShopInfoData;
@@ -383,15 +303,15 @@ class ShopPanel extends eui.Component {
             let powerA = (shoptpye == SHOP_TYPE.IMAGES ? (10000 / Number(a.model.params)) : a.id) + ShopManager.getInstance().getItemNum(a.id) * 1000000;
             let powerB = (shoptpye == SHOP_TYPE.IMAGES ? (10000 / Number(b.model.params)) : b.id) + ShopManager.getInstance().getItemNum(b.id) * 1000000;
             return powerA - powerB;
-        })
+        });
         return cur_models;
     }
 
     private onFilter(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         let cur_models = this.getShopDatas();
         if (!cur_models) return;
-        this.showFilter = this.showFilter ? false : true;
+        this.showFilter = !this.showFilter;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("ShaixuanBar", new ShaixuanDataParam(cur_models, this.filterCallBack, this)));
     }
 
@@ -450,8 +370,7 @@ class ImagesShopItem extends eui.ItemRenderer {
     public discount_bar: eui.Component;
     public buy_btn: eui.Button;
     private pingfen_img: eui.Image;
-    private buyParam: BuyTipsParam;
-    private idNewPoint:eui.Image;
+    private idNewPoint: eui.Image;
 
     public constructor() {
         super();
@@ -466,7 +385,7 @@ class ImagesShopItem extends eui.ItemRenderer {
             this.title_lab.text = '商品数据出错\n没有找到对应的收藏数据ID:::' + shoucangID;
             return;
         }
-        this.banner_img.source = shoucangModel.id + "_view_png"
+        this.banner_img.source = shoucangModel.id + "_view_png";
         //let srcAry: string[] = shoucangModel.src.split(";");
         this.imgs_num_lab.text = shoucangModel.src + "P";//srcAry.length + "P";
         this.title_lab.text = GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] + '图集';
@@ -490,10 +409,10 @@ class ImagesShopItem extends eui.ItemRenderer {
                 this.discount_bar.visible = false;
             }
             this.buy_btn.enabled = true;
-            if (this.data.model.currPrice == 0 && this.data.model.currSuipian == 0){
+            if (this.data.model.currPrice == 0 && this.data.model.currSuipian == 0) {
                 this.buy_btn.label = "免费购买";
                 this.idNewPoint.visible = true;
-            }else{
+            } else {
                 this.buy_btn.label = "购买";
                 this.idNewPoint.visible = false;
             }
@@ -508,12 +427,12 @@ class ImagesShopItem extends eui.ItemRenderer {
     }
 
     private onBuy(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 
     private onOpenPreview(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('ImageShopPreviewPanel', this.data));
     }
 }
@@ -542,7 +461,7 @@ class VideosShopItem extends eui.ItemRenderer {
             this.name_lab.text = '商品数据出错\n没有找到对应的收藏数据ID:::' + shoucangID;
             return;
         }
-        this.banner_img.source = `${shoucangModel.id}_view_png`
+        this.banner_img.source = `${shoucangModel.id}_view_png`;
         this.name_lab.text = `${GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1]}视频`;
         this.time_lab.text = shoucangModel.time;
         this.style_name_lab.text = shopInfoDt.model.name;
@@ -574,12 +493,12 @@ class VideosShopItem extends eui.ItemRenderer {
     }
 
     private onBuy(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 
     private onPlay(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('VideoShopPreviewPanel', this.data));
     }
 }
@@ -650,12 +569,12 @@ class MusicsShopItem extends eui.ItemRenderer {
     }
 
     private onBuy(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 
     private onPlay(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam('MusicShopPreviewPanel', this.data));
     }
 }
@@ -706,7 +625,7 @@ class ChapterShopItem extends eui.ItemRenderer {
     }
 
     private onBuy(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
     }
 }
@@ -768,79 +687,7 @@ class DaojuShopItem extends eui.ItemRenderer {
     }
 
     private onBuy(): void {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyTipsPanel", new BuyTipsParam(this.data, String(this.banner_img.source))));
-    }
-}
-
-/**
- * 新手包Item
- **/
-class XinshoubaoShopItem extends eui.Component {
-    public banner_img: eui.Image;
-    public type_icon: eui.Image;
-    public title_lab: eui.Label;
-    public style_name_lab: eui.Label;
-    public pingfen_img: eui.Image;
-
-    private isComplete: boolean;
-    private _data;
-    private _bannerImg;
-
-    public constructor() {
-        super();
-        this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
-        this.skinName = skins.XinshoubaoItemSkin;
-    }
-
-    public updateInfo(data, bannerImg): void {
-        this._data = data;
-        this._bannerImg = bannerImg;
-        if (!this.isComplete) return;
-        this.banner_img.source = this._bannerImg;
-        this.style_name_lab.text = data.model.name;
-        let tpName: string = "";
-        let shop_tp: number = ShopManager.getInstance().getShopTP(data.id);
-        let shoucangID: number = parseInt(data.model.params);
-        let shoucangModel: Modelshoucang = JsonModelManager.instance.getModelshoucang()[shoucangID];
-        if (shoucangModel) {
-            let shopicon: string = "";
-            switch (shop_tp) {
-                case SHOP_TYPE.IMAGES:
-                    shopicon = "shop_image_icon_png";
-                    tpName = `${GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1]}的图片`;
-                    break;
-                case SHOP_TYPE.VIDEOS:
-                    shopicon = "shop_video_icon_png";
-                    tpName = `${GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1]}的视频`;
-                    break;
-                case SHOP_TYPE.MUSICS:
-                    shopicon = "shop_music_icon_png";
-                    tpName = "音乐";
-                    break;
-            }
-            this.type_icon.source = shopicon;
-            this.pingfen_img.source = `shop_image_${shoucangModel.level}_png`;
-        } else {
-            this.type_icon.source = "";
-            this.title_lab.text = "";
-            this.pingfen_img.source = ``;
-            switch (shop_tp) {
-                case SHOP_TYPE.CHAPTER:
-                    tpName = "章节";
-                    break;
-                case SHOP_TYPE.DAOJU:
-                    tpName = "道具";
-                    break;
-            }
-        }
-        this.title_lab.text = tpName;
-    }
-
-    private onLoadComplete(): void {
-        this.isComplete = true;
-        if (this._data) {
-            this.updateInfo(this._data, this._bannerImg);
-        }
     }
 }
