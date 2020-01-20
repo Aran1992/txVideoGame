@@ -278,7 +278,7 @@ class TicketPanel extends eui.Component {
                 this.idCode.visible = false;
                 this.idNoCode.visible = true;
                 this.idBtnCopyCode.visible = false;
-                this.idBtnBuyPASS.visible = true;
+                this.idBtnBuyPASS.visible = platform.isCelebrateTime();
                 this.idBtnShareCode.visible = false;
                 this.idHasCodeText.visible = false;
                 this.idExpireText.text = "";
@@ -345,6 +345,10 @@ class TicketPanel extends eui.Component {
 
     private idBtnBuyPASSClick() {
         SoundManager.getInstance().playSound("ope_click.mp3");
+        if (!platform.isCelebrateTime()) {
+            return GameCommon.getInstance().showStrongTips("已经过了活动时间咯，现在购买无法买一送一啦~", () => {
+            });
+        }
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM),
             new WindowParam("BuyVIPPanel", "task"));
     }
