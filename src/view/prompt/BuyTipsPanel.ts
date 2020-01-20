@@ -2,13 +2,7 @@
  * 提示信息
  */
 class BuyTipsPanel extends eui.Component {
-    private grp: eui.Group;
     private icon: eui.Image;
-    private buyGrp: eui.Group;
-    private buyGroup1: eui.Group;
-    private buyGroup2: eui.Group;
-    private btnCancel: eui.Button;
-    private btnConfirm: eui.Button;
     private closeBtn: eui.Label;
     private suipBuy: eui.Button;
     private zuanshiBuy: eui.Button;
@@ -18,19 +12,14 @@ class BuyTipsPanel extends eui.Component {
     //显示蒙板
     private mask_BG: eui.Image;
     private _curModel: Modelshop;
-    private idBuyItemName:eui.Label;
-    private cancelBuy:eui.Button;
+    private idBuyItemName: eui.Label;
+    private cancelBuy: eui.Button;
 
     constructor(param) {
         super();
         this.param = param;
         this.once(egret.Event.COMPLETE, this.onLoadComplete, this);
         this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-    }
-
-    public onShowBuyTips() {
-        this.buyGroup1.visible = true;
-        this.buyGrp.visible = true;
     }
 
     protected onSkinName(): void {
@@ -45,10 +34,10 @@ class BuyTipsPanel extends eui.Component {
         // this.icon.y =
         this.icon.scaleX = 0.5;//Number(scale.toFixed(2))
         this.icon.scaleY = 0.5;//Number(scale.toFixed(2))
-        var spModel: Modelshop = JsonModelManager.instance.getModelshop()[this.param.shopInfo.id];
-        this.money1.text = spModel.currSuipian == 0?"不可购买":spModel.currSuipian + '';
-        this.money2.text = spModel.currPrice*platform.getPriceRate() + '';
-        this.idBuyItemName.text = "“"+spModel.name+"”";
+        const spModel: Modelshop = JsonModelManager.instance.getModelshop()[this.param.shopInfo.id];
+        this.money1.text = spModel.currSuipian == 0 ? "不可购买" : spModel.currSuipian + '';
+        this.money2.text = spModel.currPrice * platform.getPriceRate() + '';
+        this.idBuyItemName.text = "“" + spModel.name + "”";
         this._curModel = spModel;
         // GameCommon.getInstance().onShowBuyTips(spModel.id, spModel.pay_tp, spModel.currPrice);
     }
@@ -63,17 +52,15 @@ class BuyTipsPanel extends eui.Component {
         this.updateResize();
         this.onInit();
 
-        
-
-        if(this.param.shopInfo.model.currSuipian == 0 && this.param.shopInfo.model.currPrice == 0 && ShopManager.getInstance().getItemNum(this.param.shopInfo.model.id)==0){
-                //直接加物品，购买成功 
-                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
-                this.onhideMaskBG();
-                ShopManager.getInstance().addGoods(this.param.shopInfo.model.id,1);
-                return;
+        if (this.param.shopInfo.model.currSuipian == 0 && this.param.shopInfo.model.currPrice == 0 && ShopManager.getInstance().getItemNum(this.param.shopInfo.model.id) == 0) {
+            //直接加物品，购买成功
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
+            this.onhideMaskBG();
+            ShopManager.getInstance().addGoods(this.param.shopInfo.model.id, 1);
+            return;
         }
-        if (this.param.shopInfo.model.currSuipian == 0){
-            GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this.param.shopInfo.currPrice*platform.getPriceRate(), GOODS_TYPE.DIAMOND);            
+        if (this.param.shopInfo.model.currSuipian == 0) {
+            GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this.param.shopInfo.currPrice * platform.getPriceRate(), GOODS_TYPE.DIAMOND);
             GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
             this.onhideMaskBG();
         }
@@ -103,19 +90,19 @@ class BuyTipsPanel extends eui.Component {
         this.y = (size.height - this.height) / 2;
     }
 
-    private onZuanShi() {        
-        if (platform.getPlatform() == "plat_txsp" || platform.getPlatform()== "plat_pc")
-            GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currPrice*platform.getPriceRate(), GOODS_TYPE.DIAMOND);
+    private onZuanShi() {
+        if (platform.getPlatform() == "plat_txsp" || platform.getPlatform() == "plat_pc")
+            GameCommon.getInstance().onShowBuyTips(this.param.shopInfo.id, this._curModel.currPrice * platform.getPriceRate(), GOODS_TYPE.DIAMOND);
         else
             ShopManager.getInstance().buyGoods(this.param.shopInfo.id);
         // this.moneyIcon.source = 'common_zuanshi1_png';
         this.onclose();
     }
 
-    private onSuiPian() {        
-        let shopdata:ShopInfoData = ShopManager.getInstance().getShopInfoData(this.param.shopInfo.id);
-        if (shopdata.model.currSuipian == 0 ){
-            GameCommon.getInstance().showCommomTips("此商品不能用碎片购买！")
+    private onSuiPian() {
+        let shopdata: ShopInfoData = ShopManager.getInstance().getShopInfoData(this.param.shopInfo.id);
+        if (shopdata.model.currSuipian == 0) {
+            GameCommon.getInstance().showCommomTips("此商品不能用碎片购买！");
             return;
         }
         ShopManager.getInstance().buyGoodsSuip(this.param.shopInfo.id);
@@ -124,24 +111,13 @@ class BuyTipsPanel extends eui.Component {
         // this.moneyIcon.source = 'common_yuese_png';
     }
 
-    private onAddToStage(event: egret.Event): void {
+    private onAddToStage(): void {
         this.onSkinName();
         this.onshowMaskBG();
     }
 
-    private onbtnConfirm() {
-        this.buyGrp.visible = false;
-        ShopManager.getInstance().buyGoods(this.param.shopInfo.id);
-        this.onclose();
-    }
-
-    private onCancel() {
-        this.buyGrp.visible = false;
-        this.onclose();
-    }
-
     private onclose() {
-        SoundManager.getInstance().playSound("ope_click.mp3")
+        SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
         this.onhideMaskBG();
     }

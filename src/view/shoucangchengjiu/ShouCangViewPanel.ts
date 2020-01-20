@@ -1,15 +1,8 @@
-// TypeScript file
 class ShouCangViewPanel extends eui.Component {
-    private mainGroup: eui.Group;
     private bgBtn: eui.Button;
     private goodsLayer: eui.Group;
     private noneGroup: eui.Group;
     private scroll: eui.Scroller;
-    private btnNextImg: eui.Button;
-    private btnLastImg: eui.Button;
-    private btnCloseImgGroup: eui.Button;
-    private imgGroup: eui.Group;
-    // private shoucangGroup:eui.Group;
     private itemGroup: eui.Group;
     private centerGroup: eui.Group;
     private goToShopButton: eui.Button;
@@ -101,9 +94,8 @@ class ShouCangViewPanel extends eui.Component {
 
     /**返回数据数组**/
     private getShopDatas() {
-        let cur_models;
-        if (this.currIdx == null) return cur_models;
-        cur_models = [];
+        if (this.currIdx == null) return;
+        let cur_models = [];
         for (let idx in this.allCfgs) {
             let shopdata = this.allCfgs[idx];
             cur_models.push(shopdata);
@@ -111,11 +103,11 @@ class ShouCangViewPanel extends eui.Component {
         return cur_models;
     }
 
-    private onFilter(): void {
+    private onFilter() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         let cur_models = this.getShopDatas();
         if (!cur_models) return;
-        this.showFilter = this.showFilter ? false : true;
+        this.showFilter = !this.showFilter;
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("ShaixuanBar", new ShaixuanDataParam(cur_models, this.filterCallBack, this)));
     }
 

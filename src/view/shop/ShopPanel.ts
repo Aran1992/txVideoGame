@@ -155,25 +155,13 @@ class ShopPanel extends eui.Component {
 
     private onBuyRefresh() {
         this.showGoods();
-        // if (!UserInfo.guideDic[6])//关闭界面去进行商城引导
-        // {
-        //     this.cloLab.visible = true;
-        //     this.dianjicundang.visible = false;
-        //     UserInfo.guideDic[6] = 6;
-        //     this.shopGroup.touchEnabled = false;
-        //     this.btnClose.touchEnabled = true;
-        //     GuideManager.getInstance().onCloseImg();
-        //     GuideManager.getInstance().onShowImg(this.mainGroup, this.btnClose, 'leftClose')
-        // }
         this.updateCurrency();
-
     }
 
     private showGoods() {
         if (this.xinshou_select) {
             this.cur_models = null;
             this.currIdx = null;
-            //this.updateXinshoubaoShop();
         } else {
             let shoptpye: SHOP_TYPE = this.TAB_2_SHOPTYPE[this.currIdx];
             switch (shoptpye) {
@@ -196,9 +184,15 @@ class ShopPanel extends eui.Component {
         }
     }
 
+
     /**更新图集商城**/
     private updateImagesShop(): void {
-        if (!this.imgs_list.dataProvider) {
+        if (this.imgs_list.dataProvider) {
+            for (let i: number = 0; i < this.imgs_list.numChildren; i++) {
+                let item: ImagesShopItem = this.imgs_list.getChildAt(i) as ImagesShopItem;
+                item.data = item.data;
+            }
+        } else {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
 
@@ -214,7 +208,13 @@ class ShopPanel extends eui.Component {
     }
 
     private updateVideoShop(): void {
-        if (!this.videos_list.dataProvider) {
+        if (this.videos_list.dataProvider) {
+            // this.video_shop_scroll.viewport.scrollV = 0;
+            for (let i: number = 0; i < this.videos_list.numChildren; i++) {
+                let item: VideosShopItem = this.videos_list.getChildAt(i) as VideosShopItem;
+                item.data = item.data;
+            }
+        } else {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
 
@@ -230,7 +230,13 @@ class ShopPanel extends eui.Component {
     }
 
     private updateMusicShop(): void {
-        if (!this.musics_list.dataProvider) {
+        if (this.musics_list.dataProvider) {
+            // this.musics_shop_scroll.viewport.scrollV = 0;
+            for (let i: number = 0; i < this.musics_list.numChildren; i++) {
+                let item: MusicsShopItem = this.musics_list.getChildAt(i) as MusicsShopItem;
+                item.data = item.data;
+            }
+        } else {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
 
@@ -246,7 +252,14 @@ class ShopPanel extends eui.Component {
     }
 
     private updateChapterShop(): void {
-        if (!this.chapter_list.dataProvider) {
+        if (this.chapter_list.dataProvider) {
+            // this.chapter_shop_scroll.viewport.scrollV = 0;
+            for (let i: number = 0; i < this.chapter_list.numChildren; i++) {
+                let item: ChapterShopItem = this.chapter_list.getChildAt(i) as ChapterShopItem;
+                item.data = item.data;
+            }
+        } else {
+
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
                 this.chapter_shop_scroll.horizontalScrollBar.visible = false;
@@ -261,7 +274,13 @@ class ShopPanel extends eui.Component {
     }
 
     private updateDaojuShop(): void {
-        if (!this.daoju_list.dataProvider) {
+        if (this.daoju_list.dataProvider) {
+            // this.daoju_shop_scroll.viewport.scrollV = 0;
+            for (let i: number = 0; i < this.daoju_list.numChildren; i++) {
+                let item: DaojuShopItem = this.daoju_list.getChildAt(i) as DaojuShopItem;
+                item.data = item.data;
+            }
+        } else {
             if (!this.cur_models) {
                 this.cur_models = this.getShopDatas();
 
@@ -298,13 +317,21 @@ class ShopPanel extends eui.Component {
                 cur_models.push(shopdata);
             }
         }
-        cur_models.sort((a, b) => {
-            //如果是图片，则使用param逆序排列，其它按ID正序排列
-            let powerA = (shoptpye == SHOP_TYPE.IMAGES ? (10000 / Number(a.model.params)) : a.id) + ShopManager.getInstance().getItemNum(a.id) * 1000000;
-            let powerB = (shoptpye == SHOP_TYPE.IMAGES ? (10000 / Number(b.model.params)) : b.id) + ShopManager.getInstance().getItemNum(b.id) * 1000000;
-            return powerA - powerB;
-        });
+        cur_models.sort((a, b) => this.getOrder(a, shoptpye) - this.getOrder(b, shoptpye));
         return cur_models;
+    }
+
+    private getOrder(a, shoptpye) {
+        //如果是图片，则使用param逆序排列，其它按ID正序排列
+        let order = shoptpye == SHOP_TYPE.IMAGES ? (10000 / Number(a.model.params)) : a.id;
+        let canBuy = ShopManager.getInstance().canBuyItem(a.id);
+        if (!canBuy) {
+            order += 1000000;
+        }
+        if (canBuy && a.currPrice === 0 && a.currSuipian === 0) {
+            order -= 10000000;
+        }
+        return order;
     }
 
     private onFilter(): void {
@@ -388,12 +415,11 @@ class ImagesShopItem extends eui.ItemRenderer {
         this.banner_img.source = shoucangModel.id + "_view_png";
         //let srcAry: string[] = shoucangModel.src.split(";");
         this.imgs_num_lab.text = shoucangModel.src + "P";//srcAry.length + "P";
-        this.title_lab.text = GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] + '图集';
+        this.title_lab.text = (GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] || '其他') + '图集';
         this.style_name_lab.text = shopInfoDt.model.name;
         this.pingfen_img.source = `shop_image_${shoucangModel.level}_png`;
 
-        let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
-        if (num > 0) {//shopInfoDt.num
+        if (!ShopManager.getInstance().canBuyItem(shopInfoDt.id)) {//shopInfoDt.num
             this.discount_bar.visible = false;
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";

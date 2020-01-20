@@ -15,7 +15,7 @@
                 <e:Label id="name_lab" text="图集名称" size="30" fontFamily="SimHei" textAlign="center" touchEnabled="false"
                          textColor="0xffffff" />
                 <e:Image id="pingfen_img" source="" x="110" y="3" />
-                <e:Group height="46" width="100">
+                <e:Group id="countGroup" height="46" width="100">
                     <e:Image touchEnabled="true" source="control_zidi_select_png" left="0" right="0" top="0" bottom="0"
                              locked="true" />
                     <e:Label id="count_lab" text="19P" size="28" fontFamily="SimHei" textAlign="left"

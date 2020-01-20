@@ -108,7 +108,6 @@ class ShopManager {
         } else {
             console.trace();
         }
-
         if (callback)
             callback();
     }
@@ -212,6 +211,14 @@ class ShopManager {
         return this.getServerItemNum(id) + shopdata.num
     }
 
+    public canBuyItem(id) {
+        const parent = JsonModelManager.instance.getModelshop()[id].parent;
+        if (parent && parent.split(",").some(pid => this.getItemNum(parseInt(pid)) > 0)) {
+            return false;
+        }
+        return this.getItemNum(id) <= 0;
+    }
+
     /**获取ID商品信息**/
     public getShopInfoData(id: number): ShopInfoData {
         return this._shopDataDict[id];
@@ -252,8 +259,7 @@ class ShopManager {
         } else if (shoucangID > 5000) {
             itemId = shoucangID + SHOP_TYPE.VIDEOS * 100000;
         }
-        return ShopManager.getInstance().getItemNum(itemId) > 0;
-        //return this._openShoucangIds.indexOf(shoucangID) >= 0;
+        return !ShopManager.getInstance().canBuyItem(itemId);
     }
 
     public isVIP() {
@@ -269,25 +275,35 @@ class ShopManager {
                 case SHOP_TYPE.VIDEOS:
                 case SHOP_TYPE.MUSICS:
                     if (isBuy) {
-                        GameCommon.getInstance().onShowResultTips('购买成功\n可以在“已获福利”中查看');
+                        let sp = 0;
+                        const shops = JsonModelManager.instance.getModelshop();
+                        for (const key in shops) {
+                            if (shops.hasOwnProperty(key)) {
+                                const shop = shops[key];
+                                if (shop.parent && shop.parent.split(",").some(pid => pid == shopdata.id)
+                                    && this.getItemNum(shop.id) > 0) {
+                                    const map = {
+                                        ssr: 500,
+                                        sr: 200,
+                                        r: 100,
+                                    };
+                                    sp += map[JsonModelManager.instance.getModelshoucang()[shop.params].level];
+                                }
+                            }
+                        }
+                        let tip = '购买成功\n可以在“已获福利”中查看';
+                        if (sp) {
+                            tip += '\n获得碎片*' + sp;
+                            UserInfo.suipianMoney = UserInfo.suipianMoney + sp;
+                        }
+                        GameCommon.getInstance().onShowResultTips(tip);
                     } else {
                         GameCommon.getInstance().onShowResultTips('获得物品\n可以在“已获福利”中查看');
                     }
                     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOUCANG_NEWPOINT));
-                    // let shoucangID: number = parseInt(shopdata.model.params);
-                    // GameCommon.getInstance().onShowResultTips('购买成功', true, "立刻查看", function (): void {
-                    //     let scCfg: Modelshoucang = JsonModelManager.instance.getModelshoucang()[shoucangID];
-                    //     GameDefine.CUR_ROLEIDX = scCfg.mulu1;
-                    //     if (scCfg.mulu1 == 5) {
-                    //         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangMusicPanel')
-                    //     } else {
-                    //         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), 'ShouCangViewPanel')
-                    //     }
-                    // });
                     break;
                 case SHOP_TYPE.SPECIAL:
                     if (shopdata.id == GameDefine.GUANGLIPINGZHENG || shopdata.id == GameDefine.GUANGLIPINGZHENGEX) {
-                        //啥也不干。由调用者传入
                     }
                 default:
                     GameCommon.getInstance().onShowResultTips('购买成功');

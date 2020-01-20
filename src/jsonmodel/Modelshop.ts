@@ -34,6 +34,15 @@ class Modelshop extends ModelJsonBase {
 		return this._json["params"];
 	}
 
+	private _parent;
+	public set parent(value){
+		this._parent = value;
+	}
+	public get parent():string{
+		if (this._json["parent"] == "*") { return ""; }
+		return this._json["parent"];
+	}
+
 	private _currPrice;
 	public set currPrice(value){
 		this._currPrice = value;
