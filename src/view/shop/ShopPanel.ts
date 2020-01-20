@@ -415,7 +415,13 @@ class ImagesShopItem extends eui.ItemRenderer {
         this.banner_img.source = shoucangModel.id + "_view_png";
         //let srcAry: string[] = shoucangModel.src.split(";");
         this.imgs_num_lab.text = shoucangModel.src + "P";//srcAry.length + "P";
-        this.title_lab.text = (GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] || '其他') + '图集';
+        const map = {
+            "103023": "肖万寻",
+            "103024": "韩小白",
+            "103025": "肖千也",
+            "103026": "夏子豪",
+        };
+        this.title_lab.text = (GameDefine.ROLE_NAME[shoucangModel.mulu1 - 1] || map[this.data.id]) + '图集';
         this.style_name_lab.text = shopInfoDt.model.name;
         this.pingfen_img.source = `shop_image_${shoucangModel.level}_png`;
 

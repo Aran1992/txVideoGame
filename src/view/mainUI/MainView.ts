@@ -101,6 +101,7 @@ class MainView extends eui.Component {
     private btnDuQu: eui.Button;
     private xindong: eui.Button;
     private btnXinkaishi: eui.Button;
+    private goToBuyBtn: eui.Button;
     private curDuDang: boolean = false;
 
     constructor(gameWorld: GameWorld) {
@@ -144,6 +145,7 @@ class MainView extends eui.Component {
         this.btnShouCang.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
         this.xindong.addEventListener(egret.TouchEvent.TOUCH_TAP, MainView.onShowShowCang, this);
         this.btnXinkaishi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onXinkaishi, this);
+        this.goToBuyBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickGoToBuyBtn, this);
         this.XSMFButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickXSMFButton, this);
         //
         this.btnSetting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShowbtnSetting, this);
@@ -207,6 +209,7 @@ class MainView extends eui.Component {
     private updateXSMFButton() {
         let isVIP = ShopManager.getInstance().isVIP();
         this.XSMFButton.visible = platform.isCelebrateTime() && !isVIP;
+        this.goToBuyBtn.visible = platform.isCelebrateTime() && !isVIP;
     }
 
     private updateNewPoint() {
@@ -529,5 +532,14 @@ class MainView extends eui.Component {
         }
         btn.scaleX = scale;
         btn.scaleY = scale;
+    }
+
+    private onClickGoToBuyBtn() {
+        SoundManager.getInstance().playSound("ope_click.mp3");
+        this.cjLab.visible = false;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
+            windowName: "TicketPanel",
+            data: "myzy"
+        });
     }
 }

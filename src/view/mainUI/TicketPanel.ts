@@ -189,6 +189,7 @@ class TicketPanel extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuy600001Complte, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.SUIPIAN_CHANGE, this.onSuipianChange, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_VIP, this.onUpdateVip, this);
+        this._selectIndex = this._openParam == "myzy" ? 1 : 2;
         this.updateTab();
         this.updateResize();
 
@@ -199,7 +200,6 @@ class TicketPanel extends eui.Component {
 
         this.setUnusedNodeVisible(this.idGroupBuyTicket, this._openParam == "tipsbtnshopcar" || this._openParam == "confirm");
 
-        let cfg = JsonModelManager.instance.getModelshop()[GameDefine.GUANGLIPINGZHENG];
         this.bSpecail = platform.isCelebrateTime();//today <= discountDay;//是否在优惠期间
         this.idGroupDescCommon.visible = !this.bSpecail;
         this.idGroupDescSpecial.visible = this.bSpecail && platform.getPlatform() != "plat_txsp";

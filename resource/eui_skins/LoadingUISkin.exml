@@ -12,6 +12,6 @@
 		<e:Image source="loading_progress_icon_png" scaleX="1" scaleY="1" verticalCenter="0" horizontalCenter="-350"/>
 		<e:Image source="loading_text_png" scaleX="1" scaleY="1" horizontalCenter="0" bottom="-50"/>
 	</e:Group>
-	<e:Image source="loading_title_1_png" left="40" bottom="40"/>
-	<e:Image source="loading_title_2_png" right="40" bottom="40"/>
+
+
 </e:Skin>

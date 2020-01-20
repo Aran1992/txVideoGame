@@ -291,10 +291,18 @@ class ShopManager {
                                 }
                             }
                         }
-                        let tip = '购买成功\n可以在“已获福利”中查看';
+                        let tip;
                         if (sp) {
-                            tip += '\n获得碎片*' + sp;
                             UserInfo.suipianMoney = UserInfo.suipianMoney + sp;
+                            const map = {
+                                "103023": 10,
+                                "103024": 10,
+                                "103025": 10,
+                                "103026": 11,
+                            };
+                            tip = `购买成功\n获得图集*${map[shopdata.id]} 心动碎片*${sp}\n图集可在"已获福利”中查看`;
+                        } else {
+                            tip = '购买成功\n可以在“已获福利”中查看';
                         }
                         GameCommon.getInstance().onShowResultTips(tip);
                     } else {
