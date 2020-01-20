@@ -513,7 +513,21 @@ class MainView extends eui.Component {
     private setStartButtonVisible(visible) {
         this.play_zi.visible = visible;
         this.play_Btn.visible = visible;
+        this.updateStartBtnSize(this.play_Btn);
         this.exitBtn.visible = isTXSP && visible;
         window["startPlayBtn"].hidden = !visible;
+    }
+
+    private updateStartBtnSize(btn) {
+        const rate1 = GameDefine.GAME_VIEW_WIDTH / GameDefine.GAME_VIEW_HEIGHT;
+        const rate2 = size.width / size.height;
+        let scale;
+        if (rate1 < rate2) {
+            scale = size.width / GameDefine.GAME_VIEW_WIDTH;
+        } else {
+            scale = size.height / GameDefine.GAME_VIEW_HEIGHT;
+        }
+        btn.scaleX = scale;
+        btn.scaleY = scale;
     }
 }
