@@ -167,7 +167,7 @@ class Main extends eui.UILayer {
                 }
             }
         };
-        RES.loadConfig("resource/default.res.json", "resource/").then(() => {
+        RES.loadConfig(`resource/default.res.json?v=202001211016`, "resource/").then(() => {
             table.loadConfig = true;
             RES.loadGroup("loading", 0).then(() => {
                 table.loadGroup = true;
@@ -184,7 +184,7 @@ class Main extends eui.UILayer {
         return new Promise(resolve => {
             // load skin theme configuration file, you can manually modify the file. And replace the default skin.
             //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
-            let theme = new eui.Theme("resource/default.thm.json", this.stage);
+            let theme = new eui.Theme(`resource/default.thm.json?v=202001211016`, this.stage);
             theme.addEventListener(eui.UIEvent.COMPLETE, () => {
                 resolve();
             }, this);
