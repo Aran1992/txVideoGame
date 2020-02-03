@@ -213,11 +213,7 @@ class VideoData extends egret.DisplayObjectContainer {
                     }
                     this.againFlg = true;
                     GameDefine.IS_READ_PLAY = true;
-                    if (VideoManager.getInstance().getVideoData() && widPlayer) {
-                        this.onContinue();
-                    } else {
-                        VideoManager.getInstance().onPlay(this.videoIdx);
-                    }
+                    VideoManager.getInstance().onPlay(this.videoIdx);
                     return;
                 }
             }
