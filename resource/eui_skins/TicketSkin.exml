@@ -7,11 +7,11 @@
 		<e:Group id="idGroupCDKey" width="1132" height="780" scrollEnabled="true" verticalCenter="0" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="169">
 			<e:Image width="509" height="619" y="91" source="ticket_cdk_png" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-290"/>
 
-			<e:Label text="与好友同享" size="34" verticalCenter="-15" bold="true" horizontalCenter="-290"/>
+			<e:Label id="idTitle" text="与好友同享" size="34" verticalCenter="-15" bold="true" horizontalCenter="-290" width="400" textAlign="center"/>
 			<e:Label id="idHasCodeText" text="您已通过购买”心动PASS“获得赠送资格一次，分享激活码给好友，对方将免费获得心动PASS" size="22" anchorOffsetX="0" width="400" anchorOffsetY="0" lineSpacing="10" textColor="0x8c8a8a" horizontalCenter="-290" verticalCenter="66"/>
 
 
-			<e:Label id="idNoCode" text="              暂未获得激活码\n活动期间购买心动PASS即可获得" size="30" textColor="0x898686" lineSpacing="12" verticalCenter="-200" horizontalCenter="-290"/>
+			<e:Label id="idNoCode" text="心动pass“买一赠一”活动已经结束啦~" size="30" textColor="0x898686" lineSpacing="12" verticalCenter="-200" horizontalCenter="-290" textAlign="center" width="340"/>
 			<e:Label id="idCode" text="ABCDEFGHIJKLMNOP" size="40" textColor="0xffffff" anchorOffsetX="0" textAlign="center" verticalCenter="-210" horizontalCenter="-290"/>
 
 			<e:Label id="idExpireText" text="过期时间" size="24" anchorOffsetX="0" textAlign="center" textColor="0xbfbbbb" horizontalCenter="-290" verticalCenter="-170"/>
@@ -118,7 +118,7 @@
 
 	<e:Group id="tabGroup" touchChildren="true" y="180" x="0">
 		<e:RadioButton id="idTab2" groupName="tabGroup" label="心动任务" skinName="skins.Common_TabButtonSkin1" width="280" height="90" value="1" name="2" x="6" y="-55"/>
-		<e:RadioButton id="idTab1" groupName="tabGroup" label="买一赠一" skinName="skins.Common_TabButtonSkin1" width="280"
+		<e:RadioButton id="idTab1" groupName="tabGroup" label="限时活动" skinName="skins.Common_TabButtonSkin1" width="280"
 						height="90" value="0" selected="true"  name="1"/>
 
 

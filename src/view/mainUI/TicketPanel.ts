@@ -120,6 +120,7 @@ class TicketPanel extends eui.Component {
 
     private idCode: eui.Label;
     private idNoCode: eui.Label;
+    private idTitle: eui.Label;
     private idShareCode: eui.Label;
     private idShareText: eui.Label;
     private idHasCodeText: eui.Label;
@@ -254,6 +255,7 @@ class TicketPanel extends eui.Component {
     private refreshActiveCode() {
         const params = {"bookId": GameDefine.BOOKID, "cmd": "getMyCDKey", "saleId": GameDefine.GUANGLIPINGZHENG};
         platform.sendRequest(params, (data) => {
+            data.code = 1;
             //有而且第一个可用。isExpire 1过期0未过期;expireTime "过期时间字符串",status:1还没使用，2已使用
             if (data.code == 0 && data.data.list.length > 0) {//&& data.data.list[0].status == 1
                 let item = data.data.list[0];
@@ -268,7 +270,7 @@ class TicketPanel extends eui.Component {
                 this.idBtnShareCode.visible = true;
                 this.idHasCodeText.visible = true;
                 if (data.data.list[0].status == 2) {
-                    this.idExpireText.text = "已被使用"
+                    this.idExpireText.text = "已被使用";
                 } else if (data.data.list[0].isExpire == 0)
                     this.idExpireText.text = `该激活码 ${data.data.list[0].expireTime} 前有效`;
                 else {
@@ -276,14 +278,14 @@ class TicketPanel extends eui.Component {
                 }
             } else {
                 this.idCode.visible = false;
-                this.idNoCode.visible = true;
                 this.idBtnCopyCode.visible = false;
-                this.idBtnBuyPASS.visible = platform.isCelebrateTime();
                 this.idBtnShareCode.visible = false;
                 this.idHasCodeText.visible = false;
                 this.idExpireText.text = "";
+                this.idBtnBuyPASS.visible = platform.isCelebrateTime();
+                this.idNoCode.visible = true;
+                this.idTitle.text = "更多心动活动热烈筹备中 敬请期待~";
             }
-            //console.log(data)
         });
     }
 
@@ -414,7 +416,7 @@ class TicketPanel extends eui.Component {
             if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
             } else if (platform.isCelebrateTime())
-                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
+                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“限时活动”处查看');
             else
                 GameCommon.getInstance().onShowResultTips('购买成功');
         };

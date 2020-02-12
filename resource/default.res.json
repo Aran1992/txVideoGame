@@ -5,7 +5,7 @@
             "name": "preload"
         },
         {
-            "keys": "loading_bg_jpg,loading_head_1_png,loading_head_2_png,loading_head_3_png,loading_head_4_png,loading_progress_bg_png,loading_progress_front_png,loading_progress_icon_png,loading_text_png",
+            "keys": "loading_bg_jpg,loading_head_1_png,loading_head_2_png,loading_head_3_png,loading_head_4_png,loading_progress_bg_png,loading_progress_front_png,loading_progress_icon_png,loading_text_png,common_close1_png",
             "name": "loading"
         },
         {

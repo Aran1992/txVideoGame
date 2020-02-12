@@ -3,11 +3,14 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
     private progress: eui.Image;
     private progressGroup: eui.Group;
     private bg: eui.Image;
+    private exitBtn: eui.Button;
 
     public constructor() {
         super();
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         this.skinName = skins.LoadingUISkin;
+        this.exitBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.exitBtnClick, this);
+        this.exitBtn.visible = isTXSP;
         this.updateResize();
         const top = -180;
         const bottom = -100;
@@ -48,5 +51,9 @@ class LoadingUI extends eui.Component implements RES.PromiseTaskReporter {
         }
         this.bg.scaleX = scale;
         this.bg.scaleY = scale;
+    }
+
+    private exitBtnClick() {
+        platform.close();
     }
 }
