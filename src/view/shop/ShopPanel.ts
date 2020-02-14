@@ -435,15 +435,12 @@ class ImagesShopItem extends eui.ItemRenderer {
             this.buy_btn.label = "已购买";
             this.idNewPoint.visible = false;
         } else {
-            let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
             if (shopInfoDt.origPrice > shopInfoDt.currPrice) {
-                this.discount_bar.visible = true;
-                this.discount_bar['icon_img'].source = currencyIcon;
-                this.discount_bar['price_lab'].text = shopInfoDt.origPrice.toFixed(2);
-                this.discount_bar['discout_lab'].text = ((shopInfoDt.currPrice / shopInfoDt.origPrice * 10).toFixed(1)) + "折";
+
             } else {
-                this.discount_bar.visible = false;
+
             }
+            this.discount_bar.visible = false;
             this.buy_btn.enabled = true;
             if (this.data.model.currPrice == 0 && this.data.model.currSuipian == 0) {
                 this.buy_btn.label = "免费购买";
@@ -452,8 +449,6 @@ class ImagesShopItem extends eui.ItemRenderer {
                 this.buy_btn.label = "购买";
                 this.idNewPoint.visible = false;
             }
-            // this.buy_btn.icon = currencyIcon;
-            // this.buy_btn.label = shopInfoDt.currPrice.toFixed(2);
         }
     }
 
@@ -507,15 +502,7 @@ class VideosShopItem extends eui.ItemRenderer {
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
         } else {
-            let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
-            if (shopInfoDt.origPrice > shopInfoDt.currPrice) {
-                this.discount_bar.visible = true;
-                this.discount_bar['icon_img'].source = currencyIcon;
-                this.discount_bar['price_lab'].text = shopInfoDt.origPrice.toFixed(2);
-                this.discount_bar['discout_lab'].text = ((shopInfoDt.currPrice / shopInfoDt.origPrice * 10).toFixed(1)) + "折";
-            } else {
-                this.discount_bar.visible = false;
-            }
+            this.discount_bar.visible = false;
             this.buy_btn.enabled = true;
             this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;
@@ -571,26 +558,13 @@ class MusicsShopItem extends eui.ItemRenderer {
         this.count_lab.text = count + "首";
         this.name_lab.text = shopInfoDt.model.name;
         let num = ShopManager.getInstance().getItemNum(shopInfoDt.id);
+        if (this.discount_bar.parent) {
+            this.discountBar_Grp.removeChild(this.discount_bar);
+        }
         if (num > 0) {
-            if (this.discount_bar.parent) {
-                this.discountBar_Grp.removeChild(this.discount_bar);
-            }
             this.buy_btn.enabled = false;
             this.buy_btn.label = "已购买";
         } else {
-            let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
-            if (shopInfoDt.origPrice > shopInfoDt.currPrice) {
-                if (!this.discount_bar.parent) {
-                    this.discountBar_Grp.addChild(this.discount_bar);
-                }
-                this.discount_bar['icon_img'].source = currencyIcon;
-                this.discount_bar['price_lab'].text = shopInfoDt.origPrice.toFixed(2);
-                this.discount_bar['discout_lab'].text = ((shopInfoDt.currPrice / shopInfoDt.origPrice * 10).toFixed(1)) + "折";
-            } else {
-                if (this.discount_bar.parent) {
-                    this.discountBar_Grp.removeChild(this.discount_bar);
-                }
-            }
             this.buy_btn.enabled = true;
             this.buy_btn.label = "购买";
             // this.buy_btn.icon = currencyIcon;

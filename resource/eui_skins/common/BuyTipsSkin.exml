@@ -17,7 +17,9 @@
                 <e:Image source="control_btn_di_png" height="58"  visible="false"/>
                 <e:Image x="73.33" y="14.33" source="common_zuanshi1_png" />
                 <e:Label id="money2" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="588" textAlign="left"
-                         x="112.67" fontFamily="SimHei" width="92.33" verticalCenter="0"  anchorOffsetX="0"/>
+                         x="113" fontFamily="SimHei" verticalCenter="0"  anchorOffsetX="0"/>
+							<e:Rect id="discountLine" width="54" height="3" x="110" verticalCenter="0" fillColor="0xffffff" strokeColor="0xffffff"/>
+							<e:Label id="money3" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="588" textAlign="left" x="173" fontFamily="SimHei" verticalCenter="0" anchorOffsetX="0" bold="true"/>
             </e:Group>
 					<e:Label size="32" textColor="0xFFFFFF" verticalAlign="middle" text="选择购买以下物品" textAlign="center" x="128.33" y="8" fontFamily="SimHei"/>
 					<e:Label id="idBuyItemName" size="32" textColor="0xFFFFFF" verticalAlign="middle" text="物品名字" fontFamily="SimHei" x="66.66" y="68" textAlign="center" anchorOffsetX="0" width="386.68"/>

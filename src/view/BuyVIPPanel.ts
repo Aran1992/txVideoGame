@@ -110,7 +110,7 @@ class BuyVIPPanel extends eui.Component {
             if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
             } else if (platform.isCelebrateTime())
-                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
+                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“限时活动”处查看');
             else
                 GameCommon.getInstance().onShowResultTips('购买成功');
         };

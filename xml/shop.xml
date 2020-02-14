@@ -97,8 +97,8 @@
     <shop id="103021" name="濡湿之梦" preview="*" params="3021" parent="103026" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="就像小小的幼兽舔舐伤口，他需要的是你"/>
     <shop id="103022" name="拳拳惊喜" preview="*" params="3022" parent="" currPrice="0" origPrice="0" currSuipian="0" origSuipian="0" show="1" shaixuan_params="*" desc="拳拳惊喜，献给你"/>
 
-    <shop id="103023" name="万寻挚爱" preview="*" params="3023" parent="" currPrice="240" origPrice="240" currSuipian="34000" origSuipian="34000" show="1" shaixuan_params="*" desc="内含肖万寻所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
-    <shop id="103024" name="小白心爱" preview="*" params="3024" parent="" currPrice="240" origPrice="240" currSuipian="34000" origSuipian="34000" show="1" shaixuan_params="*" desc="内含韩小白所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
-    <shop id="103025" name="千也热爱" preview="*" params="3025" parent="" currPrice="240" origPrice="240" currSuipian="34000" origSuipian="34000" show="1" shaixuan_params="*" desc="内含肖千也所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
+    <shop id="103023" name="万寻挚爱" preview="*" params="3023" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="1" shaixuan_params="*" desc="内含肖万寻所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
+    <shop id="103024" name="小白心爱" preview="*" params="3024" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="1" shaixuan_params="*" desc="内含韩小白所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
+    <shop id="103025" name="千也热爱" preview="*" params="3025" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="1" shaixuan_params="*" desc="内含肖千也所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
     <shop id="103026" name="子豪真爱" preview="*" params="3026" parent="" currPrice="280" origPrice="280" currSuipian="34000" origSuipian="34000" show="1" shaixuan_params="*" desc="内含夏子豪所有图集，共11个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
 </shop>

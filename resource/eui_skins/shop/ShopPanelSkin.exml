@@ -13,7 +13,7 @@
 			</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Label text="全集大礼包8.2折热卖中~" fontFamily="SimHei" left="300" top="50"/>
+		<e:Label text="拳心拳意新春特惠活动进行中~" fontFamily="SimHei" left="300" top="50"/>
 		<e:Button id="filter_btn" right="75" y="32" width="80" height="80" visible="false">
 			<e:skinName>
 				<e:Skin states="up,down">
