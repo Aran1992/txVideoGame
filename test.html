@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        #panel {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container"></div>
+<div id="panel">
+    <div id="control">
+        <button id="playBtn" onclick="player.play();">play</button>
+    </div>
+    <div id="info">
+
+    </div>
+</div>
+<script src="//vm.gtimg.cn/tencentvideo/script/txi/js/txiplayer.js"></script>
+<script>
+    const player = new Txiplayer({
+        container: "#container",
+        width: "100%",
+        vid: "a0032qoeeo2"
+    });
+</script>
+</body>
+
+</html>
