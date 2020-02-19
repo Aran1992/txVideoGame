@@ -37,68 +37,68 @@
     <shop id="306004" name="默默吟唱" preview="*" desc="默默吟唱专辑" params="6004" parent="" currPrice="60" origPrice="30" currSuipian="0" origSuipian="300" show="1" shaixuan_params="等级,sr"/>
 
 
-    <shop id="101001" name="得分后卫" preview="*" params="1001" parent="103026" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你在他心里，永远需要守护"/>
-    <shop id="101002" name="沉思旋律" preview="*" params="1002" parent="103025" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="有时沉思也会很美"/>
+    <shop id="101001" name="得分后卫" preview="*" params="1001" parent="103026" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你在他心里，永远需要守护"/>
+    <shop id="101002" name="沉思旋律" preview="*" params="1002" parent="103025" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="有时沉思也会很美"/>
     <shop id="101003" name="愿星伴你" preview="*" params="1003" parent="" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="0" shaixuan_params="*" desc="她希望的是把一切给你"/>
     <shop id="101004" name="少女情怀" preview="*" params="1004" parent="" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="0" shaixuan_params="*" desc="你是否也在想着他呢"/>
     <shop id="101005" name="重忆少时" preview="*" params="1005" parent="" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="少年的梦尤为珍贵"/>
     <shop id="101006" name="加载过去" preview="*" params="1006" parent="" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="不能忘记的就是过去啊"/>
-    <shop id="101007" name="电气霓虹" preview="*" params="1007" parent="103026" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="绚烂的、夺目的、就是少年的模样"/>
-    <shop id="101008" name="默默伴奏" preview="*" params="1008" parent="103023" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="轻轻响起，慢慢放下，他的不舍得"/>
-    <shop id="101009" name="青涩微甜" preview="*" params="1009" parent="103024" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="偷偷回头，是他的小小心机"/>
-    <shop id="101010" name="五分微熟" preview="*" params="1010" parent="103023" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="有时候五分熟不是刚刚好的意思"/>
+    <shop id="101007" name="电气霓虹" preview="*" params="1007" parent="103026" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="绚烂的、夺目的、就是少年的模样"/>
+    <shop id="101008" name="默默伴奏" preview="*" params="1008" parent="103023" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="轻轻响起，慢慢放下，他的不舍得"/>
+    <shop id="101009" name="青涩微甜" preview="*" params="1009" parent="103024" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="偷偷回头，是他的小小心机"/>
+    <shop id="101010" name="五分微熟" preview="*" params="1010" parent="103023" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="有时候五分熟不是刚刚好的意思"/>
     <shop id="101011" name="偏执之心" preview="*" params="1011" parent="" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你能明白他的心么"/>
-    <shop id="101012" name="缄口不言" preview="*" params="1012" parent="103026" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="悄然退场，是骑士的风度"/>
-    <shop id="101013" name="黑暗里，靠近你" preview="*" params="1013" parent="103024" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="黑箱效应里，你会不会真的动心"/>
-    <shop id="101014" name="词不达意" preview="*" params="1014" parent="103024" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="不能说出口的话，就让他淹没在脑海吧"/>
-    <shop id="101015" name="伴我之歌" preview="*" params="1015" parent="103025" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你是否想要成为这首歌呢"/>
-    <shop id="101016" name="过速心率" preview="*" params="1016" parent="103025" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="扑通扑通的心跳声，你听到了吗"/>
-    <shop id="101017" name="为你奏响" preview="*" params="1017" parent="103023" currPrice="10" origPrice="0" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你和他的隽永之歌"/>
+    <shop id="101012" name="缄口不言" preview="*" params="1012" parent="103026" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="悄然退场，是骑士的风度"/>
+    <shop id="101013" name="黑暗里，靠近你" preview="*" params="1013" parent="103024" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="黑箱效应里，你会不会真的动心"/>
+    <shop id="101014" name="词不达意" preview="*" params="1014" parent="103024" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="不能说出口的话，就让他淹没在脑海吧"/>
+    <shop id="101015" name="伴我之歌" preview="*" params="1015" parent="103025" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你是否想要成为这首歌呢"/>
+    <shop id="101016" name="过速心率" preview="*" params="1016" parent="103025" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="扑通扑通的心跳声，你听到了吗"/>
+    <shop id="101017" name="为你奏响" preview="*" params="1017" parent="103023" currPrice="8" origPrice="10" currSuipian="1000" origSuipian="0" show="1" shaixuan_params="*" desc="你和他的隽永之歌"/>
 
     <shop id="102001" name="梦想的模样" preview="*" params="2001" parent="" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="0" shaixuan_params="*" desc="初次登台的灯光，因梦想而闪闪发亮！"/>
-    <shop id="102002" name="隐藏高手" preview="*" params="2002" parent="103024" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="少年这一次不会再放手了！"/>
-    <shop id="102003" name="斯人垂目" preview="*" params="2003" parent="103023" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="你不出现的时候，知道还有谁在等你？"/>
+    <shop id="102002" name="隐藏高手" preview="*" params="2002" parent="103024" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="少年这一次不会再放手了！"/>
+    <shop id="102003" name="斯人垂目" preview="*" params="2003" parent="103023" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="你不出现的时候，知道还有谁在等你？"/>
     <shop id="102004" name="满分拍档" preview="*" params="2004" parent="" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="在你的背后，永远有人守护"/>
-    <shop id="102005" name="长姐如虎" preview="*" params="2005" parent="103026" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="都说长姐如母，我家的这位……"/>
+    <shop id="102005" name="长姐如虎" preview="*" params="2005" parent="103026" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="都说长姐如母，我家的这位……"/>
     <shop id="102006" name="有你的样子" preview="*" params="2006" parent="" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="闺蜜的陪伴，是比暖更暖。"/>
-    <shop id="102007" name="不过少年游" preview="*" params="2007" parent="103025" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="少年的时光，太阳，微风，和你"/>
-    <shop id="102008" name="纯白少年" preview="*" params="2008" parent="103024" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="纯白包裹的少年，是你心中的样子吗"/>
-    <shop id="102009" name="舞台之上·主唱" preview="*" params="2009" parent="103024" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
-    <shop id="102010" name="舞台之上·贝斯" preview="*" params="2010" parent="103025" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
-    <shop id="102011" name="舞台之上·键盘" preview="*" params="2011" parent="103023" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
-    <shop id="102012" name="舞台之上·吉他" preview="*" params="2012" parent="103026" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
+    <shop id="102007" name="不过少年游" preview="*" params="2007" parent="103025" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="少年的时光，太阳，微风，和你"/>
+    <shop id="102008" name="纯白少年" preview="*" params="2008" parent="103024" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="纯白包裹的少年，是你心中的样子吗"/>
+    <shop id="102009" name="舞台之上·主唱" preview="*" params="2009" parent="103024" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
+    <shop id="102010" name="舞台之上·贝斯" preview="*" params="2010" parent="103025" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
+    <shop id="102011" name="舞台之上·键盘" preview="*" params="2011" parent="103023" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
+    <shop id="102012" name="舞台之上·吉他" preview="*" params="2012" parent="103026" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
     <shop id="102013" name="舞台之上·队长" preview="*" params="2013" parent="" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="为你歌唱，为你而响"/>
     <shop id="102014" name="心心念念" preview="*" params="2014" parent="" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="除了家人，或许和你每天朝夕相处的，才最牵挂"/>
-    <shop id="102015" name="眸中星河" preview="*" params="2015" parent="103026" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="看见他眸子里的光了么？那是他心心念念的人的倒影啊"/>
-    <shop id="102016" name="触碰天空" preview="*" params="2016" parent="103025" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="伸出手就能碰到的距离，都不是距离。"/>
+    <shop id="102015" name="眸中星河" preview="*" params="2015" parent="103026" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="看见他眸子里的光了么？那是他心心念念的人的倒影啊"/>
+    <shop id="102016" name="触碰天空" preview="*" params="2016" parent="103025" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="伸出手就能碰到的距离，都不是距离。"/>
     <shop id="102017" name="美梦酩酊" preview="*" params="2017" parent="" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="0" shaixuan_params="*" desc="听说，你这杯酒谁喝都会醉。"/>
-    <shop id="102018" name="与你共度" preview="*" params="2018" parent="103023" currPrice="20" origPrice="0" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="有你的日子，都是我最美好的希冀"/>
+    <shop id="102018" name="与你共度" preview="*" params="2018" parent="103023" currPrice="16" origPrice="20" currSuipian="2000" origSuipian="0" show="1" shaixuan_params="*" desc="有你的日子，都是我最美好的希冀"/>
 
     <shop id="103001" name="兄弟？兄弟！" preview="*" params="3001" parent="" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="兄弟之间的斗争，都藏在心里了呢"/>
-    <shop id="103002" name="阳光正好" preview="*" params="3002" parent="103024" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="来和少年一起阳光下嬉戏"/>
-    <shop id="103003" name="你是答案" preview="*" params="3003" parent="103026" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="少年眼睛里的谜语是你"/>
-    <shop id="103004" name="纱幔朦胧" preview="*" params="3004" parent="103025" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="雾里看花，花飞花落花满天"/>
-    <shop id="103005" name="雨后清明" preview="*" params="3005" parent="103023" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="清冷如他，也想温暖一人"/>
-    <shop id="103006" name="B面人生" preview="*" params="3006" parent="103026" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="顽劣少年也想为你正经一回，你会援助吗"/>
+    <shop id="103002" name="阳光正好" preview="*" params="3002" parent="103024" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="来和少年一起阳光下嬉戏"/>
+    <shop id="103003" name="你是答案" preview="*" params="3003" parent="103026" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="少年眼睛里的谜语是你"/>
+    <shop id="103004" name="纱幔朦胧" preview="*" params="3004" parent="103025" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="雾里看花，花飞花落花满天"/>
+    <shop id="103005" name="雨后清明" preview="*" params="3005" parent="103023" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="清冷如他，也想温暖一人"/>
+    <shop id="103006" name="B面人生" preview="*" params="3006" parent="103026" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="顽劣少年也想为你正经一回，你会援助吗"/>
     <shop id="103007" name="B面人生" preview="*" params="3007" parent="" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="害羞少年在球场也能挥洒自如，你会喝彩吗"/>
     <shop id="103008" name="B面人生" preview="*" params="3008" parent="" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="冷都少年在弹奏也会令人陶醉，你会欣赏吗"/>
     <shop id="103009" name="B面人生" preview="*" params="3009" parent="" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="0" shaixuan_params="*" desc="优雅少年在这时也会放下身段，你会心醉吗"/>
-    <shop id="103010" name="半梦半醒" preview="*" params="3010" parent="103025" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="睡眼惺忪但也要和你在一起"/>
-    <shop id="103011" name="焙香馥郁" preview="*" params="3011" parent="103023" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="早晨的活力，除了咖啡还有你"/>
-    <shop id="103012" name="谁家少年不戴花" preview="*" params="3012" parent="103024" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="少年沉迷的事情，居然不能少了你"/>
-    <shop id="103013" name="与你共度" preview="*" params="3013" parent="103026" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="精心准备的美好一天，你可不要破坏啊"/>
-    <shop id="103014" name="Best Hacker" preview="*" params="3014" parent="103024" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="最好的黑客只为了守护最珍贵的人"/>
-    <shop id="103015" name="Hush！Hush！" preview="*" params="3015" parent="103025" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="不顾一切的冲刺，只为了给爱人一个最帅的转身"/>
-    <shop id="103016" name="错过的拥抱" preview="*" params="3016" parent="103026" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="悄悄离开只会伤了他的心，这次你会回头吗"/>
-    <shop id="103017" name="指尖飞舞" preview="*" params="3017" parent="103023" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="为了你而作的歌，可不要偷听"/>
-    <shop id="103018" name="光暗之间" preview="*" params="3018" parent="103025" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="在梦中的相遇，总是伴随着最隐秘的故事"/>
-    <shop id="103019" name="轻舞泡沫" preview="*" params="3019" parent="103024" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="轻巧的泡沫，松松软软，也好像和你在一起的心情"/>
-    <shop id="103020" name="清涧涌泉" preview="*" params="3020" parent="103023" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="让自己放松的方法有千百种，但和你一起最受用"/>
-    <shop id="103021" name="濡湿之梦" preview="*" params="3021" parent="103026" currPrice="50" origPrice="0" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="就像小小的幼兽舔舐伤口，他需要的是你"/>
+    <shop id="103010" name="半梦半醒" preview="*" params="3010" parent="103025" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="睡眼惺忪但也要和你在一起"/>
+    <shop id="103011" name="焙香馥郁" preview="*" params="3011" parent="103023" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="早晨的活力，除了咖啡还有你"/>
+    <shop id="103012" name="谁家少年不戴花" preview="*" params="3012" parent="103024" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="少年沉迷的事情，居然不能少了你"/>
+    <shop id="103013" name="与你共度" preview="*" params="3013" parent="103026" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="精心准备的美好一天，你可不要破坏啊"/>
+    <shop id="103014" name="Best Hacker" preview="*" params="3014" parent="103024" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="最好的黑客只为了守护最珍贵的人"/>
+    <shop id="103015" name="Hush！Hush！" preview="*" params="3015" parent="103025" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="不顾一切的冲刺，只为了给爱人一个最帅的转身"/>
+    <shop id="103016" name="错过的拥抱" preview="*" params="3016" parent="103026" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="悄悄离开只会伤了他的心，这次你会回头吗"/>
+    <shop id="103017" name="指尖飞舞" preview="*" params="3017" parent="103023" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="为了你而作的歌，可不要偷听"/>
+    <shop id="103018" name="光暗之间" preview="*" params="3018" parent="103025" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="在梦中的相遇，总是伴随着最隐秘的故事"/>
+    <shop id="103019" name="轻舞泡沫" preview="*" params="3019" parent="103024" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="轻巧的泡沫，松松软软，也好像和你在一起的心情"/>
+    <shop id="103020" name="清涧涌泉" preview="*" params="3020" parent="103023" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="让自己放松的方法有千百种，但和你一起最受用"/>
+    <shop id="103021" name="濡湿之梦" preview="*" params="3021" parent="103026" currPrice="40" origPrice="50" currSuipian="5000" origSuipian="0" show="1" shaixuan_params="*" desc="就像小小的幼兽舔舐伤口，他需要的是你"/>
     <shop id="103022" name="拳拳惊喜" preview="*" params="3022" parent="" currPrice="0" origPrice="0" currSuipian="0" origSuipian="0" show="1" shaixuan_params="*" desc="拳拳惊喜，献给你"/>
 
-    <shop id="103023" name="万寻挚爱" preview="*" params="3023" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="1" shaixuan_params="*" desc="内含肖万寻所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
-    <shop id="103024" name="小白心爱" preview="*" params="3024" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="1" shaixuan_params="*" desc="内含韩小白所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
-    <shop id="103025" name="千也热爱" preview="*" params="3025" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="1" shaixuan_params="*" desc="内含肖千也所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
-    <shop id="103026" name="子豪真爱" preview="*" params="3026" parent="" currPrice="280" origPrice="280" currSuipian="34000" origSuipian="34000" show="1" shaixuan_params="*" desc="内含夏子豪所有图集，共11个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
+    <shop id="103023" name="万寻挚爱" preview="*" params="3023" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="0" shaixuan_params="*" desc="内含肖万寻所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
+    <shop id="103024" name="小白心爱" preview="*" params="3024" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="0" shaixuan_params="*" desc="内含韩小白所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
+    <shop id="103025" name="千也热爱" preview="*" params="3025" parent="" currPrice="240" origPrice="240" currSuipian="29000" origSuipian="29000" show="0" shaixuan_params="*" desc="内含肖千也所有图集，共10个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
+    <shop id="103026" name="子豪真爱" preview="*" params="3026" parent="" currPrice="280" origPrice="280" currSuipian="34000" origSuipian="34000" show="0" shaixuan_params="*" desc="内含夏子豪所有图集，共11个图集\n已拥有图集将会按一定比例折算成心动碎片"/>
 </shop>

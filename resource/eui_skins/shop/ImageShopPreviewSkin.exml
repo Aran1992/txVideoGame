@@ -9,6 +9,10 @@
             <e:Image source="shop_bannerkuang_png" y="0" scale9Grid="65,33,396,109" width="1180" height="600" x="0"
                      locked="true" />
             <e:Image id="banner_img" horizontalCenter="-10" height="582" width="1170"  source=""/>
+					<e:Group id="discountGroup" width="200" height="200" scaleX="1" scaleY="1" left="-5" top="-10" touchChildren="false" touchEnabled="false" touchThrough="true" x="-205" y="-125">
+						<e:Image source="shop_discount_icon_png" scaleX="1" scaleY="1" left="0" top="0" x="-114" y="-176"/>
+						<e:Label id="discountValue0" text="8折" fontFamily="SimHei" horizontalCenter="-58" verticalCenter="-53" x="-99" y="-125" scaleX="1" scaleY="1" rotation="-45"/>
+					</e:Group>
         </e:Group>
         <e:Group y="760" x="200">
             <e:Group>

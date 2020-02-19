@@ -12,6 +12,8 @@ class ImageShopPreviewPanel extends eui.Component {
 
     private readonly data: ShopInfoData;
     private shoucangModel: Modelshoucang;
+    private discountGroup: eui.Group;
+    private discountValue0: eui.Label;
 
     public constructor(data) {
         super();
@@ -53,6 +55,13 @@ class ImageShopPreviewPanel extends eui.Component {
                 this.buy_btn.label = "免费购买";
             else
                 this.buy_btn.label = "购买";
+            if (this.data.model.origPrice > this.data.model.currPrice) {
+                this.discountGroup.visible = true;
+                const value = Math.floor(Math.floor(this.data.model.currPrice / this.data.model.origPrice * 100) / 10);
+                this.discountValue0.text = `${value}折`
+            } else {
+                this.discountGroup.visible = false;
+            }
             // this.buy_btn.icon = currencyIcon;
             // this.buy_btn.label = this.data.model.currPrice.toFixed(2);
         }

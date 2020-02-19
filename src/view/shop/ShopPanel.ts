@@ -396,6 +396,8 @@ class ImagesShopItem extends eui.ItemRenderer {
     public style_name_lab: eui.Label;
     public discount_bar: eui.Component;
     public buy_btn: eui.Button;
+    private discountGroup: eui.Group;
+    private discountValue: eui.Label;
     private pingfen_img: eui.Image;
     private idNewPoint: eui.Image;
 
@@ -436,9 +438,11 @@ class ImagesShopItem extends eui.ItemRenderer {
             this.idNewPoint.visible = false;
         } else {
             if (shopInfoDt.origPrice > shopInfoDt.currPrice) {
-
+                this.discountGroup.visible = true;
+                const value = Math.floor(Math.floor(shopInfoDt.currPrice / shopInfoDt.origPrice * 100) / 10);
+                this.discountValue.text = `${value}折`
             } else {
-
+                this.discountGroup.visible = false;
             }
             this.discount_bar.visible = false;
             this.buy_btn.enabled = true;

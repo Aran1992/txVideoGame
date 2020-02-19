@@ -21,5 +21,9 @@
 		<e:Component id="discount_bar" skinName="skins.ShopDiscountBarSkin" horizontalCenter="-45" bottom="146" />
 		<e:Button id="buy_btn" skinName="skins.Button_ShopStyle1_Skin" horizontalCenter="0"
 		          bottom="30"  label="购 买"/>
+		<e:Group id="discountGroup" width="200" height="200" scaleX="1" scaleY="1" left="-5" top="-10" touchChildren="false" touchEnabled="false" touchThrough="true">
+			<e:Image source="shop_discount_icon_png" scaleX="1" scaleY="1" left="0" top="0" x="-114" y="-176"/>
+			<e:Label id="discountValue" text="8折" fontFamily="SimHei" horizontalCenter="-58" verticalCenter="-53" x="-99" y="-125" scaleX="1" scaleY="1" rotation="-45"/>
+		</e:Group>
 	</e:Group>
 </e:Skin>
