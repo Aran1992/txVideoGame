@@ -210,7 +210,7 @@ class MainView extends eui.Component {
     private updateXSMFButton() {
         let isVIP = ShopManager.getInstance().isVIP();
         this.XSMFButton.visible = platform.isCelebrateTime() && !isVIP;
-        this.goToBuyBtn.visible = platform.isCelebrateTime() && !isVIP;
+        this.goToBuyBtn.visible = !isVIP && platform.isCelebrate2Time();
     }
 
     private updateNewPoint() {

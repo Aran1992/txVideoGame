@@ -34,7 +34,7 @@
 				</e:Skin>
 				</e:skinName>
 			</e:Button>
-			<e:Button id="idBtnBuyPASS" label="立即购买" horizontalCenter="-289.5" x="861" scaleX="1" scaleY="1" enabled="true" verticalCenter="200">
+			<e:Button id="idBtnBuyPASS" label="立即购买" horizontalCenter="-289.5" x="861" scaleX="1" scaleY="1" enabled="true" verticalCenter="200" visible="false">
 				<e:skinName>
 				<e:Skin states="up,down,disabled">
 					<e:Image width="100%" height="100%" scaleX.down="0.9" scaleY.down="0.9" source="ticket_btn1_png" source.down="ticket_btn1_png"/>
@@ -118,7 +118,7 @@
 
 	<e:Group id="tabGroup" touchChildren="true" y="180" x="0">
 		<e:RadioButton id="idTab2" groupName="tabGroup" label="心动任务" skinName="skins.Common_TabButtonSkin1" width="280" height="90" value="1" name="2" x="6" y="-55"/>
-		<e:RadioButton id="idTab1" groupName="tabGroup" label="限时活动" skinName="skins.Common_TabButtonSkin1" width="280"
+		<e:RadioButton id="idTab1" groupName="tabGroup" label="买一赠一" skinName="skins.Common_TabButtonSkin1" width="280"
 						height="90" value="0" selected="true"  name="1"/>
 
 

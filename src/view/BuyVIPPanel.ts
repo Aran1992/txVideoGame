@@ -4,16 +4,24 @@ class BuyVIPPanel extends eui.Component {
         Group1001: () => {
             return !isTXSP
                 && platform.isCelebrateTime()
-                && this.from === undefined;
+                && this.from === undefined
+                && !platform.isCelebrate2Time();
         },
         Group10010: () => {
             return !isTXSP
                 && platform.isCelebrateTime()
-                && this.from === "task";
+                && this.from === "task"
+                && !platform.isCelebrate2Time();
         },
         Group10011: () => {
             return !isTXSP
-                && !platform.isCelebrateTime();
+                && !platform.isCelebrateTime()
+                && !platform.isCelebrate2Time();
+        },
+        Group10012: () => {
+            return !isTXSP
+                && !platform.isCelebrateTime()
+                && platform.isCelebrate2Time();
         },
         GroupTXSP0: () => {
             return isTXSP
@@ -110,11 +118,11 @@ class BuyVIPPanel extends eui.Component {
             if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
             } else if (platform.isCelebrateTime())
-                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“限时活动”处查看');
+                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
             else
                 GameCommon.getInstance().onShowResultTips('购买成功');
         };
-        if (platform.getPlatform() == "plat_txsp" || platform.getPlatform() == "plat_pc") {
+        if (platform.getPlatform() == "plat_txsp") {
             let itemID = GameDefine.GUANGLIPINGZHENG;
             if (platform.getPlatform() == "plat_txsp" && !platform.isPlatformVip()) {//在腾讯视频中。不是会员才买另一个原价物品
                 itemID = GameDefine.GUANGLIPINGZHENGEX;
@@ -122,7 +130,7 @@ class BuyVIPPanel extends eui.Component {
             GameCommon.getInstance().onShowBuyTips(itemID, GameCommon.getInstance().getPingzhengPrize(), GOODS_TYPE.DIAMOND, callback);
         } else {
             let itemID = GameDefine.GUANGLIPINGZHENG;
-            if (!platform.isCelebrateTime())
+            if (!platform.isCelebrate2Time())
                 itemID = GameDefine.GUANGLIPINGZHENGEX;
             ShopManager.getInstance().buyGoods(itemID, 1, callback);
         }

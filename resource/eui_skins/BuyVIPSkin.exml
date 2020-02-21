@@ -77,6 +77,24 @@
 			</e:skinName>
 		</e:Button>
 	</e:Group>
+	<e:Group id="Group10012" width="100%" height="100%" x="10" y="10" visible="false">
+		<e:Image horizontalCenter="0" verticalCenter="0" source="buy_vip_img_11_png"/>
+		<e:Button id="CloseGroup10012" width="91" height="91" top="48" right="63" x="1446" y="48" scaleX="1" scaleY="1">
+		<e:skinName>
+			<e:Skin states="up,down,disabled" xmlns:n1s="*">
+			<e:Image scaleX.down="0.9" scaleY.down="0.9" source="common_close_png" source.down="common_close_png" horizontalCenter="0" verticalCenter="0" width="91" height="91"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Button id="Button1001Buy2" verticalCenter="230" horizontalCenter="0">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="buy_vip_btn_9_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+	</e:Group>
 	<e:Group id="GroupTXSP0" width="100%" height="100%" visible="false">
 		<e:Image horizontalCenter="-330" verticalCenter="0" source="buy_vip_img_2_png"/>
 		<e:Image horizontalCenter="330" verticalCenter="0" source="buy_vip_img_4_png"/>

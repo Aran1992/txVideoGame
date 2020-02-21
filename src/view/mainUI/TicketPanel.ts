@@ -253,38 +253,55 @@ class TicketPanel extends eui.Component {
     }
 
     private refreshActiveCode() {
-        const params = {"bookId": GameDefine.BOOKID, "cmd": "getMyCDKey", "saleId": GameDefine.GUANGLIPINGZHENG};
-        platform.sendRequest(params, (data) => {
-            data.code = 1;
+        this.idTitle.visible = false;
+        this.idHasCodeText.visible = false;
+        this.idNoCode.visible = false;
+        this.idCode.visible = false;
+        this.idExpireText.visible = false;
+        this.idBtnCopyCode.visible = false;
+        this.idBtnShareCode.visible = false;
+        this.idBtnBuyPASS.visible = false;
+        platform.sendRequest({
+            "bookId": GameDefine.BOOKID,
+            "cmd": "getMyCDKey",
+            "saleId": GameDefine.GUANGLIPINGZHENG
+        }, (data) => {
             //有而且第一个可用。isExpire 1过期0未过期;expireTime "过期时间字符串",status:1还没使用，2已使用
-            if (data.code == 0 && data.data.list.length > 0) {//&& data.data.list[0].status == 1
-                let item = data.data.list[0];
-                let cdk = item.CDKey;
-                this.idCode.text = cdk;
-                this.idCode.visible = true;
-                this.idNoCode.visible = false;
-                this.idShareCode.text = cdk;
-                this.idShareText.text = `激活码有效期至：${data.data.list[0].expireTime}`;
-                this.idBtnCopyCode.visible = true;
-                this.idBtnBuyPASS.visible = false;
-                this.idBtnShareCode.visible = true;
+            this.idTitle.visible = true;
+            if (data.code == 0 && data.data.list.length > 0) {
+                this.idTitle.text = "与好友同享";
                 this.idHasCodeText.visible = true;
+                this.idCode.visible = true;
+                this.idCode.text = data.data.list[0].CDKey;
+                this.idExpireText.visible = true;
                 if (data.data.list[0].status == 2) {
                     this.idExpireText.text = "已被使用";
-                } else if (data.data.list[0].isExpire == 0)
-                    this.idExpireText.text = `该激活码 ${data.data.list[0].expireTime} 前有效`;
-                else {
-                    this.idExpireText.text = "已过期"
+                } else {
+                    if (data.data.list[0].isExpire != 0) {
+                        this.idExpireText.text = "已过期";
+                    } else {
+                        this.idExpireText.text = `该激活码 ${data.data.list[0].expireTime} 前有效`;
+                        this.idBtnCopyCode.visible = true;
+                        this.idBtnShareCode.visible = true;
+                        this.idShareCode.text = data.data.list[0].CDKey;
+                        this.idShareText.text = `激活码有效期至：${data.data.list[0].expireTime}`;
+                    }
                 }
             } else {
-                this.idCode.visible = false;
-                this.idBtnCopyCode.visible = false;
-                this.idBtnShareCode.visible = false;
-                this.idHasCodeText.visible = false;
-                this.idExpireText.text = "";
-                this.idBtnBuyPASS.visible = platform.isCelebrateTime();
-                this.idNoCode.visible = true;
-                this.idTitle.text = "更多心动活动热烈筹备中 敬请期待~";
+                if (ShopManager.getInstance().isVIP()) {
+                    this.idTitle.text = "您已经拥有心动PASS啦 无需再次购买";
+                } else {
+                    if (platform.isCelebrate2Time()) {
+                        this.idTitle.text = "与好友同享";
+                        this.idNoCode.visible = true;
+                        this.idNoCode.text = "暂未获得激活码\n活动期间购买心动PASS即可获得";
+                        this.idBtnBuyPASS.visible = true;
+                    } else {
+                        this.idTitle.text = "更多心动活动热烈筹备中 敬请期待~";
+                        this.idNoCode.visible = true;
+                        this.idNoCode.text = "心动pass“买一赠一”活动已经结束啦~";
+                    }
+                }
             }
         });
     }
@@ -347,7 +364,7 @@ class TicketPanel extends eui.Component {
 
     private idBtnBuyPASSClick() {
         SoundManager.getInstance().playSound("ope_click.mp3");
-        if (!platform.isCelebrateTime()) {
+        if (!platform.isCelebrateTime() && !platform.isCelebrate2Time()) {
             return GameCommon.getInstance().showStrongTips("已经过了活动时间咯，现在购买无法买一送一啦~", () => {
             });
         }
@@ -416,7 +433,7 @@ class TicketPanel extends eui.Component {
             if (platform.getPlatform() == "plat_txsp") {
                 GameCommon.getInstance().onShowResultTips('购买成功\n您可以观看所有最新章节');
             } else if (platform.isCelebrateTime())
-                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“限时活动”处查看');
+                GameCommon.getInstance().onShowResultTips('购买成功\n激活码可在“心动PASS”-“买一赠一”处查看');
             else
                 GameCommon.getInstance().onShowResultTips('购买成功');
         };

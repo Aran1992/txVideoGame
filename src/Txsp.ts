@@ -147,7 +147,7 @@ class Txsp {
     }
 
     async sendRequest(params, callback) {
-        callback({code: 0, data: {list: [{"isValid": 1, "CDKey": "FFFFFFFF"}]}})
+        callback({code: 1, data: {list: [{"isValid": 1, "CDKey": "FFFFFFFF"}]}})
     }
 
     async buyGoods(bookId, itemId, num, curSlotId, callbackBuyGoods) {

@@ -57,6 +57,8 @@ declare interface Platform {
 
     isCelebrateTime();
 
+    isCelebrate2Time();
+
     openWebview(option);
 }
 
@@ -74,7 +76,7 @@ class DebugPlatform implements Platform {
     private static s_serverTime: number;
     private static s_offsetTime: number = 43200 * 1000;
 
-    private _testTime;
+    private _testTime: number = new Date(2020, 2, 30).getTime();
 
     async getUserInfo() {
         return await new Promise(resolve => window["getUserInfo"](resolve));
@@ -103,11 +105,18 @@ class DebugPlatform implements Platform {
         return this.getServerTime() < (this.getSaleBeginTime() + 13 * 86400 * 1000);
     }
 
+    public isCelebrate2Time() {
+        if (this.getPlatform() === "plat_1001" || this.getPlatform() === "plat_pc") {
+            return this.getServerTime() > new Date(2020, 2, 1).getTime()
+                && this.getServerTime() < new Date(2020, 3, 1).getTime();
+        }
+    }
+
     public getOffsetTime() {
         return DebugPlatform.s_offsetTime;
     }
 
-    public setTestTime(time) {
+    public setTestTime(time: number) {
         this._testTime = time;
     }
 
