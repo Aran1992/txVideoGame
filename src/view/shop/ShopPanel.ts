@@ -36,6 +36,7 @@ class ShopPanel extends eui.Component {
     private xinshoubaoData: ShopInfoData;
     /**打开筛选**/
     private showFilter: boolean;
+    private discountNotice: eui.Label;
 
     public constructor() {
         super();
@@ -60,6 +61,8 @@ class ShopPanel extends eui.Component {
         this.updateTabIdx(0);
         this.updateCurrency();
         this.updateNewPoint();
+        this.discountNotice.visible = platform.getServerTime() < new Date(2020, 3, 1).getTime()
+            && platform.getServerTime() >= new Date(2020, 2, 1).getTime();
     }
 
     private onBuyItemComplte(data) {
