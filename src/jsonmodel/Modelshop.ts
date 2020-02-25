@@ -47,8 +47,19 @@ class Modelshop extends ModelJsonBase {
 	public set currPrice(value){
 		this._currPrice = value;
 	}
-	public get currPrice():number{
-		return parseFloat(this._json["currPrice"]);
+	public get currPrice(): number {
+		const o = parseFloat(this._json["origPrice"]);
+		const c = parseFloat(this._json["currPrice"]);
+		if (o > c) {
+			if (platform.getServerTime() < new Date(2020, 3, 1).getTime()
+				&& platform.getServerTime() >= new Date(2020, 2, 1).getTime()) {
+				return c;
+			} else {
+				return o;
+			}
+		} else {
+			return c;
+		}
 	}
 
 	private _origPrice;
