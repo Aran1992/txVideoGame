@@ -34,7 +34,7 @@ class BuyTipsPanel extends eui.Component {
         this.icon.scaleY = 0.5;
         const spModel: Modelshop = JsonModelManager.instance.getModelshop()[this.param.shopInfo.id];
         this.money1.text = spModel.currSuipian == 0 ? "不可购买" : spModel.currSuipian + '';
-        if (spModel.origPrice > spModel.currPrice) {
+        if (spModel.origPrice > spModel.currPrice && platform.getServerTime() < new Date(2020, 3, 1).getTime()) {
             this.discountLine.visible = true;
             this.money3.visible = true;
             this.money2.text = spModel.origPrice * platform.getPriceRate() + '';

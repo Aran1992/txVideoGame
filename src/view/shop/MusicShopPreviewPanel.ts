@@ -110,7 +110,7 @@ class MusicShopPreviewPanel extends eui.Component {
         } else {
             this.state_lab.text = "——  支持每首歌试听15S —— ";
             let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
-            if (this.data.origPrice > this.data.currPrice) {
+            if (this.data.origPrice > this.data.currPrice && platform.getServerTime() < new Date(2020, 3, 1).getTime()) {
                 this.discount_bar.visible = true;
                 this.discount_bar['icon_img'].source = currencyIcon;
                 this.discount_bar['price_lab'].text = this.data.origPrice.toFixed(2);
@@ -129,7 +129,12 @@ class MusicShopPreviewPanel extends eui.Component {
             //let music_src: string = srcAry[i];
             let item: Mp3Item = new Mp3Item();
             item.name = i + '';
-            item.data = {data: this.shoucangModel, idx: i, src:`resource/assets/shopmusic/${this.shoucangModel.id}_${i+1}_try.mp3`, name: music_name};//src: music_src,
+            item.data = {
+                data: this.shoucangModel,
+                idx: i,
+                src: `resource/assets/shopmusic/${this.shoucangModel.id}_${i + 1}_try.mp3`,
+                name: music_name
+            };//src: music_src,
             item.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectMusic, this);
             this.music_item_grp.addChild(item);
         }

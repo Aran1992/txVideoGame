@@ -39,7 +39,7 @@ class VideoShopPreviewPanel extends eui.Component {
             this.buy_btn.label = "已购买";
         } else {
             let currencyIcon: string = GameDefine.Currency_Icon[GOODS_TYPE.DIAMOND];
-            if (this.data.origPrice > this.data.currPrice) {
+            if (this.data.origPrice > this.data.currPrice && platform.getServerTime() < new Date(2020, 3, 1).getTime()) {
                 this.discount_bar.visible = true;
                 this.discount_bar['icon_img'].source = currencyIcon;
                 this.discount_bar['price_lab'].text = this.data.origPrice.toFixed(2);
