@@ -76,7 +76,7 @@ class DebugPlatform implements Platform {
     private static s_serverTime: number;
     private static s_offsetTime: number = 43200 * 1000;
 
-    private _testTime: number = new Date(2020, 2, 30).getTime();
+    private _testTime: number;
 
     async getUserInfo() {
         return await new Promise(resolve => window["getUserInfo"](resolve));
