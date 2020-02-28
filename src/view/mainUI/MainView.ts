@@ -137,6 +137,7 @@ class MainView extends eui.Component {
         GameDispatcher.getInstance().addEventListener(GameEvent.TASK_STATE_CHANGED, this.updateTicketButtonPoint, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyItemComplte, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.CLICK_START_PLAY_BTN, this.onEventPlay, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.ACTIVITY_CHANGE, this.updateXSMFButton, this);
         this.updateResize();
         this.btnContinueGame.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnContinue, this);
         this.play_Btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onEventPlay, this);
@@ -181,6 +182,7 @@ class MainView extends eui.Component {
             this.updateXSMFButton();
             this.updateNewPoint();
             this.updateShangChengPoint();
+            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.ACTIVITY_CHANGE));
         }, 1000);
         if (isTXSP && !hasPlayedVideo) {
             bridgeHelper.reportAction({

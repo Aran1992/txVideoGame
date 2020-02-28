@@ -119,11 +119,7 @@ class ShopManager {
             this._shopDataDict = {};
             for (let id in JsonModelManager.instance.getModelshop()) {
                 let model: Modelshop = JsonModelManager.instance.getModelshop()[id];
-                let valueObj = {
-                    saleId: model.id,
-                    currPrice: model.currPrice * platform.getPriceRate(),
-                    origPrice: model.origPrice * platform.getPriceRate()
-                };
+                let valueObj = new ValueObject(model);
                 let shopData: ShopInfoData = new ShopInfoData(valueObj);
                 this._shopDataDict[shopData.id] = shopData;
             }
@@ -354,11 +350,10 @@ class ShopInfoData {
     public id: number;
     public saleId: string;//商品id
     public saleIntro: string = "";//  物品描述
-    public origPrice: number = 0;//	单个物品原价	单位钻石
-    public currPrice: number = 0;	//	单个物品现价	单位钻石
     public pay: number = 1;//	单个物品的付费标记位	1付费2折扣4限免8免费16优惠32已购买
     public num: number = 0;//	单个物品的已拥有数量	个
     public date: number = 0;//时间
+    private info: any;
 
     public constructor(info?: any) {
         if (info) {
@@ -366,16 +361,41 @@ class ShopInfoData {
         }
     }
 
+    public get origPrice(): number {
+        return this.info.origPrice;
+    }
+
+    public get currPrice(): number {
+        return this.info.currPrice;
+    }
+
     public updateShopData(info): void {
+        this.info = info;
         this.saleId = info.saleId;
         this.id = parseInt(this.saleId);
-        this.currPrice = info.currPrice;
         if (info.pay) this.pay = info.pay;
-        if (info.origPrice) this.origPrice = info.origPrice;
         if (info.saleIntro) this.saleIntro = info.saleIntro;
         //if (info.num) this.num = info.num;//数量不更新到本地
         if (info.date) this.date = info.date;
         this.model = JsonModelManager.instance.getModelshop()[this.id];
+    }
+}
+
+class ValueObject {
+    public saleId;
+    private model;
+
+    constructor(model) {
+        this.model = model;
+        this.saleId = model.id;
+    }
+
+    public get currPrice() {
+        return this.model.currPrice * platform.getPriceRate();
+    }
+
+    public get origPrice() {
+        return this.model.origPrice * platform.getPriceRate();
     }
 }
 

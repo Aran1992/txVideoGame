@@ -53,6 +53,7 @@ class BuyTipsPanel extends eui.Component {
     private onLoadComplete(): void {
         this.touchEnabled = false;
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.ACTIVITY_CHANGE, this.onInit, this);
         this.closeBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclose, this);
         this.cancelBuy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclose, this);
         this.zuanshiBuy.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onZuanShi, this);
@@ -124,6 +125,7 @@ class BuyTipsPanel extends eui.Component {
     private onclose() {
         SoundManager.getInstance().playSound("ope_click.mp3");
         GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.CLOSE_VIEW), 'BuyTipsPanel');
+        GameDispatcher.getInstance().removeEventListener(GameEvent.ACTIVITY_CHANGE, this.onInit, this);
         this.onhideMaskBG();
     }
 }

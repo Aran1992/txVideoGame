@@ -72,6 +72,7 @@ class ImageShopPreviewPanel extends eui.Component {
         this.buy_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onUpdateInfo, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.ACTIVITY_CHANGE, this.onUpdateInfo, this);
     }
 
     private onRemoveEvent(): void {
@@ -79,6 +80,7 @@ class ImageShopPreviewPanel extends eui.Component {
         this.buy_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuy, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onUpdateInfo, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.ACTIVITY_CHANGE, this.onUpdateInfo, this);
     }
 
     private updateResize() {

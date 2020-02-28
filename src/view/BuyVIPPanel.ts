@@ -69,6 +69,7 @@ class BuyVIPPanel extends eui.Component {
     private registerEvent() {
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATA_VIP, this.update, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.ACTIVITY_CHANGE, this.update, this);
         this.bindMultiple("CloseGroup1001", this.onClickCloseBuyGroup);
         this.bindMultiple("CloseGroupTXSP", this.onClickCloseBuyGroup);
         this.CloseGroupDetail.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClickCloseGroupDetail, this);

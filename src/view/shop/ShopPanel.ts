@@ -88,6 +88,7 @@ class ShopPanel extends eui.Component {
         this.spGroup.addEventListener(egret.TouchEvent.TOUCH_TAP, this.spGroupClick, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().addEventListener(GameEvent.BUY_REFRESH, this.onBuyRefresh, this);
+        GameDispatcher.getInstance().addEventListener(GameEvent.ACTIVITY_CHANGE, this.showGoods, this);
     }
 
     private spGroupClick() {
@@ -105,6 +106,7 @@ class ShopPanel extends eui.Component {
         GameDispatcher.getInstance().removeEventListener(GameEvent.UPDATE_RESIZE, this.updateResize, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onBuyItemComplte, this);
         GameDispatcher.getInstance().removeEventListener(GameEvent.BUY_REFRESH, this.onBuyRefresh, this);
+        GameDispatcher.getInstance().removeEventListener(GameEvent.ACTIVITY_CHANGE, this.showGoods, this);
         this.cur_models = null;
         this.showFilter = null;
     }
