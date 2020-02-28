@@ -107,7 +107,7 @@ class DebugPlatform implements Platform {
 
     public isCelebrate2Time() {
         if (this.getPlatform() === "plat_1001" || this.getPlatform() === "plat_pc") {
-            return this.getServerTime() > new Date(2020, 2, 1).getTime()
+            return this.getServerTime() > new Date(2020, 2, 1, 10).getTime()
                 && this.getServerTime() < new Date(2020, 3, 1).getTime();
         }
     }

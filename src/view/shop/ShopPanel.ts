@@ -62,7 +62,7 @@ class ShopPanel extends eui.Component {
         this.updateCurrency();
         this.updateNewPoint();
         this.discountNotice.visible = platform.getServerTime() < new Date(2020, 3, 1).getTime()
-            && platform.getServerTime() >= new Date(2020, 2, 1).getTime();
+            && platform.getServerTime() >= new Date(2020, 2, 1, 10).getTime();
     }
 
     private onBuyItemComplte(data) {

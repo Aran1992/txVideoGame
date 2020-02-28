@@ -52,7 +52,7 @@ class Modelshop extends ModelJsonBase {
 		const c = parseFloat(this._json["currPrice"]);
 		if (o > c) {
 			if (platform.getServerTime() < new Date(2020, 3, 1).getTime()
-				&& platform.getServerTime() >= new Date(2020, 2, 1).getTime()) {
+				&& platform.getServerTime() >= new Date(2020, 2, 1, 10).getTime()) {
 				return c;
 			} else {
 				return o;
