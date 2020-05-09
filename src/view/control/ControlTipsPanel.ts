@@ -15,6 +15,7 @@ class ControlTipsPanel extends eui.Component {
     private isBegin: boolean = false;
     private spNames: string[] = ['', '1.5X', '1.25X', '1.0X'];
     private pinzhiNames: string[] = ['270P', '480P', '720P', '1080P'];
+    private pinzhiDatas: string[] = ['sd', 'hd', 'shd', undefined];
     private speedDic: number[] = [0, 1.5, 1.25, 1];
     private videoCurrentState: boolean = true;
     private timer: egret.Timer;
@@ -50,7 +51,7 @@ class ControlTipsPanel extends eui.Component {
             this['sp' + k].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectSpeed, this);
         }
         for (let k = 0; k < this.pinzhiNames.length; k++) {
-            this['pinzhi' + k].name = k + '';
+            this['pinzhi' + k].name = this.pinzhiDatas[k];
             this['pinzhi' + k].label = this.pinzhiNames[k];
             this['pinzhi' + k].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectPinZhi, this);
         }
@@ -119,10 +120,23 @@ class ControlTipsPanel extends eui.Component {
     private onSelectPinZhi(event: egret.Event) {
         this.pinzhiGroup.visible = false;
         try {
-            const htmlButton: any = document
+            let htmlButton: any = undefined;
+            const childNodes = document
                 .getElementsByClassName("mod_overlay setlevel")[0]
                 .getElementsByClassName("select_list")[0]
-                .childNodes[event.target.name];
+                .childNodes;
+            for (let i = 0; i < childNodes.length; i++) {
+                const child = childNodes[i] as HTMLElement;
+                const name = child.getAttribute("data-defn");
+                if (this.pinzhiDatas.indexOf(name) === -1 && event.target.name === undefined) {
+                    htmlButton = child;
+                    break;
+                }
+                if (name === event.target.name) {
+                    htmlButton = child;
+                    break;
+                }
+            }
             if (htmlButton) {
                 htmlButton.click();
                 this.qualityBtn.label = event.target.label;
@@ -299,7 +313,7 @@ class ControlTipsPanel extends eui.Component {
         widPlayer.on('timeupdate', () => {
             if (this.videoPro) {
                 //if (this.videoPro.maximum < 5) {//不知道用来干嘛
-                    this.videoPro.maximum = widPlayer.getDuration();
+                this.videoPro.maximum = widPlayer.getDuration();
                 //}
                 GameCommon.getInstance().removeLoading();
                 this.videoPro.value = widPlayer.getPlayTime();

@@ -28,6 +28,7 @@ class TipsBtn extends eui.Component {
     private speedDic: number[] = [0, 1.5, 1.25, 1];
     private spNames: string[] = ['', '1.5X', '1.25X', '1.0X'];
     private pinzhiNames: string[] = ['270P', '480P', '720P', '1080P'];
+    private pinzhiDatas: string[] = ['sd', 'hd', 'shd', undefined];
     private videoCurrentState: boolean = true;
     private timer: egret.Timer;
     private timerIdx: number = 0;
@@ -261,7 +262,7 @@ class TipsBtn extends eui.Component {
             this['btn' + i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchVideo, this);
         }
         for (let k = 0; k < this.pinzhiNames.length; k++) {
-            this['pinzhi' + k].name = k + '';
+            this['pinzhi' + k].name = this.pinzhiDatas[k];
             this['pinzhi' + k].label = this.pinzhiNames[k];
             this['pinzhi' + k].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSelectPinZhi, this);
         }
@@ -506,12 +507,24 @@ class TipsBtn extends eui.Component {
     private onSelectPinZhi(event: egret.Event) {
         this.pinzhiGroup.visible = false;
         try {
-            const htmlButton: any = document
+            let htmlButton: any = undefined;
+            const childNodes = document
                 .getElementsByClassName("mod_overlay setlevel")[0]
                 .getElementsByClassName("select_list")[0]
-                .childNodes[event.target.name];
+                .childNodes;
+            for (let i = 0; i < childNodes.length; i++) {
+                const child = childNodes[i] as HTMLElement;
+                const name = child.getAttribute("data-defn");
+                if (this.pinzhiDatas.indexOf(name) === -1 && event.target.name === undefined) {
+                    htmlButton = child;
+                    break;
+                }
+                if (name === event.target.name) {
+                    htmlButton = child;
+                    break;
+                }
+            }
             if (htmlButton) {
-                this.videoD.isChangingQuality = true;
                 htmlButton.click();
                 this.qualityBtn.label = event.target.label;
             }
@@ -524,8 +537,14 @@ class TipsBtn extends eui.Component {
             try {
                 const children = document.getElementsByClassName("mod_overlay setlevel")[0].getElementsByClassName("select_list")[0].children;
                 for (let i = 0; i < children.length; i++) {
-                    if (children[i].className.indexOf("current") !== -1) {
-                        this.qualityBtn.label = this.pinzhiNames[i];
+                    const child = children[i]
+                    if (child.className.indexOf("current") !== -1) {
+                        const attribute = child.getAttribute("data-defn");
+                        let index = this.pinzhiDatas.indexOf(attribute);
+                        if (index === -1) {
+                            index = this.pinzhiNames.length - 1;
+                        }
+                        this.qualityBtn.label = this.pinzhiNames[index];
                         clearInterval(timer);
                         break;
                     }
