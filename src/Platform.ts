@@ -57,6 +57,10 @@ declare interface Platform {
 
     isCelebrateTime();
 
+    isFreeTime();
+
+    getFreeTimeStart();
+
     isCelebrate2Time();
 
     openWebview(option);
@@ -74,7 +78,7 @@ const str2time = str => {
 
 class DebugPlatform implements Platform {
     private static s_serverTime: number;
-    private static s_offsetTime: number = 43200 * 1000;
+    private static s_offsetTime: number = 12 * 60 * 60 * 1000;
 
     private _testTime: number;
 
@@ -84,9 +88,10 @@ class DebugPlatform implements Platform {
 
     public getPriceRate() {
         if (this.getPlatform() == "plat_txsp") {
-            return 10;
-        } else
-            return 1
+            return 0.1;
+        } else {
+            return 1;
+        }
     }
 
     public async openWebview(option) {
@@ -102,14 +107,20 @@ class DebugPlatform implements Platform {
 
     //是否是活动期间；
     public isCelebrateTime() {
-        return this.getServerTime() < (this.getSaleBeginTime() + 13 * 86400 * 1000);
+        return false;
     }
 
     public isCelebrate2Time() {
-        if (this.getPlatform() === "plat_1001" || this.getPlatform() === "plat_pc") {
-            return this.getServerTime() > new Date(2020, 2, 1, 10).getTime()
-                && this.getServerTime() < new Date(2020, 3, 1).getTime();
-        }
+        return false;
+    }
+
+    public isFreeTime() {
+        return this.getServerTime() >= this.getFreeTimeStart()
+            && this.getServerTime() < new Date(2020, 7, 31, 12).getTime();
+    }
+
+    public getFreeTimeStart() {
+        return new Date(2020, 7, 7, 12).getTime();
     }
 
     public getOffsetTime() {

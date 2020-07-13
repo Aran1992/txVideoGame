@@ -211,7 +211,7 @@ class MainView extends eui.Component {
 
     private updateXSMFButton() {
         let isVIP = ShopManager.getInstance().isVIP();
-        this.XSMFButton.visible = platform.isCelebrateTime() && !isVIP;
+        this.XSMFButton.visible = platform.isFreeTime();
         this.goToBuyBtn.visible = !isVIP && platform.isCelebrate2Time();
     }
 
@@ -509,7 +509,7 @@ class MainView extends eui.Component {
     }
 
     private onClickXSMFButton() {
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "FreeNoticePanel");
     }
 
     private exitBtnClick() {

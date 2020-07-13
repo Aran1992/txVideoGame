@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <chapter>
     <chapter id="0" wenti="1" videoSrc="V001" name="序章「青藤学院」" saleTime="-100" freeTime="0" next="1" des="*"/>
-    <chapter id="1" wenti="8" videoSrc="V101" name="第一章「For-teen！」" saleTime="0" freeTime="3" next="2" des="本章没有好感度选项;本章没有好感度选项;我不是一定赢不过你，而是在你赢了我的时候，一转身我就在你身后。;不好捕获的猎物，永远是猎人一生的追求。"/>
-    <chapter id="2" wenti="13" videoSrc="V201" name="第二章「向着蓝加仑」" saleTime="0" freeTime="3" next="3" des="有一天我一定要站在舞台上，和你一起唱属于我们的歌！;下一次，一定要换我替你挡下一切，给我这个机会。;谢谢你，在兜兜转转后还是给我留下的机会。;为你谱下的乐章，是只属于我们的旋律。"/>
-    <chapter id="3" wenti="20" videoSrc="V301" name="第三章「S.I.A」" saleTime="0" freeTime="4" next="4" des="因为有你，所以我要放声歌唱，唱出你的梦想。;我全速冲向你，都想在你摔倒的一刻抓紧你的手。;我用尽我所有的力气，都想要成全你的一次满意。;节奏、旋律、调式、和声、和弦，我学会一切，仍然写不出像你一样美的曲。"/>
-    <chapter id="4" wenti="22" videoSrc="V401" name="第四章「S.I.A」" saleTime="0" freeTime="4" next="5" des="难过的时候一个拥抱会给人很大的鼓励，你别伤心了好不好？;起跳、摔倒、站起来，这样不断重复才能越跳越高，别担心，我陪着你。;别用一次错误来惩罚自己，这样的你都不像你了。;只是一次失败怎么能让你退缩，我还要一直帮你伴奏呢。"/>
-    <chapter id="5" wenti="27" videoSrc="V501" name="第五章「唯一的问题，是我？」" saleTime="0" freeTime="9" next="6" des="布朗尼、马卡龙、烤布蕾和泡芙，怎么样的味道才能让你高兴呢？;多浪漫，多绚丽，摩天轮上的夜景，都不如你。;星空长河，月升日落，你孤单的每的一刻，勿忘有我。;有时候放开自己才能成就自己，不那么美满的过去才能让人继续前进。"/>
-    <chapter id="6" wenti="33" videoSrc="V601" name="第六章「乌云下的朗日」" saleTime="0" freeTime="9" next="7" des="*"/>
-    <chapter id="7" wenti="40" videoSrc="V701" name="第七章「无法接起的电话」" saleTime="0" freeTime="10" next="8" des="*"/>
-    <chapter id="8" wenti="49" videoSrc="V801,V803" name="第八章「一人，五人」" saleTime="0" freeTime="10" next="9" des="*"/>
-    <chapter id="9" wenti="51" videoSrc="V901" name="第九章「舞台的耀星」" saleTime="0" freeTime="11" next="10;20;30" des="*"/>
-    <chapter id="10" wenti="54" videoSrc="VH1001" name="第十章「芝士蛋糕的香气」" saleTime="0" freeTime="12" next="11" des="*"/>
-    <chapter id="11" wenti="56" videoSrc="VH1101" name="第十一章「失去光芒的星星」" saleTime="0" freeTime="12" next="12" des="*"/>
-    <chapter id="12" wenti="58" videoSrc="VH1201" name="第十二章「&quot;他&quot;」" saleTime="0" freeTime="12" next="0" des="*"/>
-    <chapter id="20" wenti="59" videoSrc="VX1001" name="第十章「背」" saleTime="0" freeTime="12" next="21" des="*"/>
-    <chapter id="21" wenti="60" videoSrc="VX1101" name="第十一章「不和谐音」" saleTime="0" freeTime="12" next="22" des="*"/>
-    <chapter id="22" wenti="63" videoSrc="VX1201" name="第十二章「&quot;他&quot;」" saleTime="0" freeTime="12" next="0" des="*"/>
-    <chapter id="30" wenti="64" videoSrc="VWY1001" name="第十章「向左走，向右走」" saleTime="0" freeTime="12" next="31;41" des="*"/>
-    <chapter id="31" wenti="68" videoSrc="VY1101" name="第十一章「耳畔低喃」" saleTime="0" freeTime="12" next="32" des="*"/>
-    <chapter id="32" wenti="70" videoSrc="VY1201" name="第十二章「&quot;他&quot;」" saleTime="0" freeTime="12" next="0" des="*"/>
-    <chapter id="41" wenti="71" videoSrc="VW1101" name="第十一章「掌心间的厚度」" saleTime="0" freeTime="12" next="42" des="*"/>
-    <chapter id="42" wenti="73" videoSrc="VW1201,VW1203" name="第十二章「&quot;他&quot;」" saleTime="0" freeTime="12" next="0" des="*"/>
+    <chapter id="1" wenti="8" videoSrc="V101" name="第一章「For-teen！」" saleTime="0" freeTime="0" next="2" des="本章没有好感度选项;本章没有好感度选项;我不是一定赢不过你，而是在你赢了我的时候，一转身我就在你身后。;不好捕获的猎物，永远是猎人一生的追求。"/>
+    <chapter id="2" wenti="13" videoSrc="V201" name="第二章「向着蓝加仑」" saleTime="0" freeTime="1" next="3" des="有一天我一定要站在舞台上，和你一起唱属于我们的歌！;下一次，一定要换我替你挡下一切，给我这个机会。;谢谢你，在兜兜转转后还是给我留下的机会。;为你谱下的乐章，是只属于我们的旋律。"/>
+    <chapter id="3" wenti="20" videoSrc="V301" name="第三章「S.I.A」" saleTime="0" freeTime="1" next="4" des="因为有你，所以我要放声歌唱，唱出你的梦想。;我全速冲向你，都想在你摔倒的一刻抓紧你的手。;我用尽我所有的力气，都想要成全你的一次满意。;节奏、旋律、调式、和声、和弦，我学会一切，仍然写不出像你一样美的曲。"/>
+    <chapter id="4" wenti="22" videoSrc="V401" name="第四章「S.I.A」" saleTime="0" freeTime="2" next="5" des="难过的时候一个拥抱会给人很大的鼓励，你别伤心了好不好？;起跳、摔倒、站起来，这样不断重复才能越跳越高，别担心，我陪着你。;别用一次错误来惩罚自己，这样的你都不像你了。;只是一次失败怎么能让你退缩，我还要一直帮你伴奏呢。"/>
+    <chapter id="5" wenti="27" videoSrc="V501" name="第五章「唯一的问题，是我？」" saleTime="2" freeTime="9" next="6" des="布朗尼、马卡龙、烤布蕾和泡芙，怎么样的味道才能让你高兴呢？;多浪漫，多绚丽，摩天轮上的夜景，都不如你。;星空长河，月升日落，你孤单的每的一刻，勿忘有我。;有时候放开自己才能成就自己，不那么美满的过去才能让人继续前进。"/>
+    <chapter id="6" wenti="33" videoSrc="V601" name="第六章「乌云下的朗日」" saleTime="3" freeTime="9" next="7" des="*"/>
+    <chapter id="7" wenti="40" videoSrc="V701" name="第七章「无法接起的电话」" saleTime="4" freeTime="10" next="8" des="*"/>
+    <chapter id="8" wenti="49" videoSrc="V801,V803" name="第八章「一人，五人」" saleTime="5" freeTime="10" next="9" des="*"/>
+    <chapter id="9" wenti="51" videoSrc="V901" name="第九章「舞台的耀星」" saleTime="6" freeTime="11" next="10;20;30" des="*"/>
+    <chapter id="10" wenti="54" videoSrc="VH1001" name="第十章「芝士蛋糕的香气」" saleTime="7" freeTime="12" next="11" des="*"/>
+    <chapter id="11" wenti="56" videoSrc="VH1101" name="第十一章「失去光芒的星星」" saleTime="8" freeTime="12" next="12" des="*"/>
+    <chapter id="12" wenti="58" videoSrc="VH1201" name="第十二章「&quot;他&quot;」" saleTime="8" freeTime="12" next="0" des="*"/>
+    <chapter id="20" wenti="59" videoSrc="VX1001" name="第十章「背」" saleTime="0" freeTime="8" next="21" des="*"/>
+    <chapter id="21" wenti="60" videoSrc="VX1101" name="第十一章「不和谐音」" saleTime="0" freeTime="8" next="22" des="*"/>
+    <chapter id="22" wenti="63" videoSrc="VX1201" name="第十二章「&quot;他&quot;」" saleTime="0" freeTime="8" next="0" des="*"/>
+    <chapter id="30" wenti="64" videoSrc="VWY1001" name="第十章「向左走，向右走」" saleTime="0" freeTime="8" next="31;41" des="*"/>
+    <chapter id="31" wenti="68" videoSrc="VY1101" name="第十一章「耳畔低喃」" saleTime="0" freeTime="8" next="32" des="*"/>
+    <chapter id="32" wenti="70" videoSrc="VY1201" name="第十二章「&quot;他&quot;」" saleTime="0" freeTime="8" next="0" des="*"/>
+    <chapter id="41" wenti="71" videoSrc="VW1101" name="第十一章「掌心间的厚度」" saleTime="0" freeTime="8" next="42" des="*"/>
+    <chapter id="42" wenti="73" videoSrc="VW1201,VW1203" name="第十二章「&quot;他&quot;」" saleTime="0" freeTime="8" next="0" des="*"/>
 </chapter>

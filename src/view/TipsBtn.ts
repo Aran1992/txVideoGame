@@ -330,7 +330,7 @@ class TipsBtn extends eui.Component {
 
     private onClickXSMFButton() {
         VideoManager.getInstance().videoPause();
-        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("BuyVIPPanel", "tips"));
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW_WITH_PARAM), new WindowParam("FreeNoticePanel", "tips"));
     }
 
     private onClickXDPASSButton() {
@@ -663,7 +663,7 @@ class TipsBtn extends eui.Component {
     private updateXSMFButton() {
         const isVIP = ShopManager.getInstance().isVIP();
         this.XDPASSButton.visible = !isVIP && isTXSP && !platform.isCelebrateTime();
-        this.XSMFButton.visible = !isVIP && isTXSP && platform.isCelebrateTime();
+        this.XSMFButton.visible = platform.isFreeTime();
     }
 
     //获得某个问题解锁需要的物品
@@ -749,19 +749,8 @@ class TipsBtn extends eui.Component {
         } else {
             this.idBtnClock.visible = false;
         }
-        this.idBtnClock.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnClockClick, this);
         this.idBtnShopCar.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnShopCarClick, this);
         this.idBtnTicket.addEventListener(egret.TouchEvent.TOUCH_TAP, this.idBtnTicketClick, this);
-    }
-
-    private idBtnClockClick() {
-        let freeMs = GameCommon.getInstance().getNextChapterFreeMs();
-        let freeDay = Math.ceil(freeMs / (86400 * 1000));
-        if (freeDay > 0)
-            GameCommon.getInstance().showCommomTips("下一章" + freeDay + "天后免费");
-        else {
-            GameCommon.getInstance().showCommomTips("您可以免费阅读下一章");
-        }
     }
 
     private idBtnShopCarClick() {

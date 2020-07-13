@@ -849,37 +849,16 @@ class GameCommon {
     }
 
     //还差多少毫秒免费
-    public getLeftChapterFreeMS(chapterId) {
+    public isChapterInFreeTime(chapterId) {
         const chapterCfg = JsonModelManager.instance.getModelchapter()[chapterId];
-        let freems = platform.getSaleBeginTime() + chapterCfg.freeTime * 86400 * 1000;
-        return freems - platform.getServerTime()
+        let freeTime = platform.getFreeTimeStart() + chapterCfg.freeTime * 24 * 60 * 60 * 1000;
+        return platform.getServerTime() >= freeTime;
     }
 
     public getWentiItemId(wentiId, id) {
         return 500000 + wentiId * 100 + id;
     }
 
-    public getNextChapterId(curChapterId) {
-        const curChapterCfg = JsonModelManager.instance.getModelchapter()[curChapterId];
-        let nextChapterId = String(curChapterCfg.next);
-        const arr = nextChapterId.split(";");
-        return Number(arr[0]);
-    }
-
-    public getPlayingChapterId() {
-        let videoName = VideoManager.getInstance().getVideoID();
-        let curChapterId = this.getChapterIdByVideoName(videoName);
-        if (!curChapterId)
-            curChapterId = UserInfo.curchapter;
-        return curChapterId;
-    }
-
-    public getNextChapterFreeMs() {
-        let curChapterId = this.getPlayingChapterId();
-        let nextChapterId = this.getNextChapterId(curChapterId);
-        let freeMs = this.getLeftChapterFreeMS(nextChapterId);
-        return freeMs;
-    }
 
     //确定章节是否已开启
     public checkChapterLocked(chapterId = null, isDudang = false, isWin = false) {
@@ -891,49 +870,24 @@ class GameCommon {
             nextChapterId = chapterId;
         if (nextChapterId == 0)
             return true;
-        let onSale = this.isChapterOnSale(nextChapterId);
         let isVip = ShopManager.getInstance().isVIP();
-        if (!onSale) {
-            GameCommon.getInstance().showCommomTips("后续章节尚未更新，敬请期待。");
-            GameDefine.IS_DUDANG = false;
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
-            return false;
+        if (isVip) {
+            return true;
         }
-        let freeMs = this.getLeftChapterFreeMS(nextChapterId);
-        //提前半天开放，10号凌晨就可以看了
-        if (platform.getServerTime() < platform.getSaleBeginTime() - platform.getOffsetTime()) {
-            GameCommon.getInstance().showCommomTips("敬请期待");
-            GameDefine.IS_DUDANG = false;
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
-            return false;
+        if (platform.isFreeTime() && this.isChapterInFreeTime(nextChapterId)) {
+            return true;
         }
-        if (!isVip && (freeMs > 0 || !platform.isCelebrateTime())) {
-            //获得当前章节完成时间，计算是出下个章节是否可以阅读。
-            //每个章节完成时，需要永久记录每个章节的首次完成时间
-            ChengJiuManager.getInstance().curChapterChengJiu = {};
-            // const callback = function () {
-            //     GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), {
-            //         windowName: 'TicketPanel',
-            //         data: "confirm"
-            //     });
-            // };
-            // if (platform.getPlatform() == "plat_txsp") {
-            //     GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
-            // } else {
-            //     GameCommon.getInstance().showConfirmTips("您已体验完试看内容，购买“心动PASS”立即解锁全部剧集，附赠价值88元粉丝特典", callback, "活动期间，非心动PASS用户可通过等待免费解锁，详情请参见活动资讯", "购买心动PASS", "取消");// "等待" + freeDay + "天"
-            // }
-            if (!isWin) {
-                if (isTXSP) {
-                    GameDefine.IS_DUDANG = isDudang;
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
-                } else {
-                    GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
-                }
+        ChengJiuManager.getInstance().curChapterChengJiu = {};
+        if (!isWin) {
+            if (isTXSP) {
+                GameDefine.IS_DUDANG = isDudang;
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "JuQingPanel");
+            } else {
+                GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.GAME_GO_MAINVIEW));
             }
-            GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
-            return false;
         }
-        return true;
+        GameDispatcher.getInstance().dispatchEvent(new egret.Event(GameEvent.SHOW_VIEW), "BuyVIPPanel");
+        return false;
     }
 
     public showRoleLike() {

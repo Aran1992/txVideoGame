@@ -171,6 +171,10 @@ declare module skins{
 	}
 }
 declare module skins{
+	class FreeTimeNoticeSkin extends eui.Skin{
+	}
+}
+declare module skins{
 	class GameMainSkin extends eui.Skin{
 	}
 }

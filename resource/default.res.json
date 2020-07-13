@@ -3364,6 +3364,11 @@
             "url": "assets/font/syht.png?v=71"
         },
         {
+            "name": "freetime_png",
+            "type": "image",
+            "url": "assets/freetime.png?v=668"
+        },
+        {
             "name": "loading_bg_jpg",
             "type": "image",
             "url": "assets/loading/loading_bg.jpg?v=639"
@@ -8336,7 +8341,7 @@
         {
             "name": "config_bin",
             "type": "bin",
-            "url": "config/config.bin?v=589"
+            "url": "config/config.bin?v=612"
         }
     ]
 }
