@@ -115,7 +115,8 @@ class DebugPlatform implements Platform {
     }
 
     public isFreeTime() {
-        return this.getServerTime() >= this.getFreeTimeStart()
+        return !isTXSP
+            && this.getServerTime() >= this.getFreeTimeStart()
             && this.getServerTime() < new Date(2020, 7, 31, 12).getTime();
     }
 
